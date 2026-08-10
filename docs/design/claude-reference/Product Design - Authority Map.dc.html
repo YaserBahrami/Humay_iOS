@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="_ds/classical-44af82f3-27c9-447b-aa9e-1451fe0327c2/styles.css">
+  <script src="_ds/classical-44af82f3-27c9-447b-aa9e-1451fe0327c2/_ds_bundle.js"></script>
+  <style>
+    body { margin: 0; background: var(--color-bg); }
+    .authmap-sec { padding: var(--space-6) 0; border-bottom: 1px solid var(--color-divider); }
+    .authmap-sec:last-child { border-bottom: none; }
+    .authmap-num { font-family: var(--font-heading); color: var(--color-accent-700); font-variant-numeric: tabular-nums; }
+    .authmap-rule { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: var(--space-2); }
+    .authmap-rule li { padding-left: var(--space-4); border-left: 1px solid var(--color-divider); }
+  </style>
+</helmet>
+<div style="max-width: 860px; margin: 0 auto; padding: var(--space-8) var(--space-5) var(--space-10); font-family: var(--font-body); color: var(--color-text);">
+
+  <div style="margin-bottom: var(--space-6);">
+    <span class="tag tag-accent-outline tag-outline">Reference map — not a spec</span>
+    <h1 style="font-family: var(--font-heading); font-weight: var(--font-heading-weight); font-size: 44px; margin: var(--space-3) 0 var(--space-1);">Design Authority &amp; Supersession Map</h1>
+    <p style="color: var(--color-neutral-700); font-style: italic; margin: 0;">Which artifact governs, by topic — for engineering handoff. Older artifacts are not rewritten; this map only states precedence.</p>
+  </div>
+
+  <div class="authmap-sec">
+    <h2><span class="authmap-num">01</span> &nbsp;Product Strategy</h2>
+    <p><strong>Product Strategy.dc.html</strong> remains authoritative for the core product concept. Later passes execute against it visually and structurally; none supersede its strategic intent.</p>
+  </div>
+
+  <div class="authmap-sec">
+    <h2><span class="authmap-num">02</span> &nbsp;Information Architecture</h2>
+    <p>Current IA (latest pass wins on structure): <strong>Today / Circle / Sky / Chart / Ask</strong>, with Calendar nested under Sky, and Profile / Settings reached through the header/profile entry — not as primary nav items.</p>
+  </div>
+
+  <div class="authmap-sec">
+    <h2><span class="authmap-num">03</span> &nbsp;Core Product Screens</h2>
+    <p>Visual reference for each major area is whichever pass last touched it — earlier passes on the same area are historical only:</p>
+    <ul class="authmap-rule">
+      <li>Pass 2 / Pass 3 — early screen exploration; superseded wherever Pass 4 covers the same area.</li>
+      <li>Pass 4 — current reference for core screens (Today / Circle / Sky / Chart / Ask) except monetization surfaces.</li>
+      <li>Pass 4.1 — governs monetization-touching screens (see §4), overriding Pass 4 there only.</li>
+    </ul>
+  </div>
+
+  <div class="authmap-sec">
+    <h2><span class="authmap-num">04</span> &nbsp;Monetization</h2>
+    <p><strong>Pass 4.1</strong> is authoritative for the tier model: <strong>Free → Rewarded Access → Premium</strong>.</p>
+    <p style="margin-top: var(--space-3);">Rewarded entitlement rules:</p>
+    <ul class="authmap-rule">
+      <li>One ad unlocks one identified content item — not a session or category.</li>
+      <li>Unlocked content stays unlocked; it survives app restart.</li>
+      <li>The same item never asks again.</li>
+      <li>Different content may require another rewarded unlock.</li>
+      <li>Rewarded access is not temporary Premium — it never grants Premium features.</li>
+      <li>Premium access follows the active subscription entitlement only.</li>
+    </ul>
+  </div>
+
+  <div class="authmap-sec">
+    <h2><span class="authmap-num">05</span> &nbsp;Brand</h2>
+    <p><strong>Pass 5</strong> is historical exploration only.</p>
+    <p><strong>Pass 5.1 (Humay Brand Lock)</strong> is authoritative for: Humay, the HUMAY wordmark, the occultation mark, app icon, palette, typography, brand voice, the Roast expression, "Humay Premium" naming, launch/store/press lines, motion, and brand misuse rules.</p>
+    <p style="color: var(--color-accent-700);">Where Pass 5 and Pass 5.1 disagree, Pass 5.1 wins — no exceptions.</p>
+  </div>
+
+  <div class="authmap-sec">
+    <h2><span class="authmap-num">06</span> &nbsp;Old Names</h2>
+    <table class="table">
+      <thead><tr><th>Name</th><th>Status</th></tr></thead>
+      <tbody>
+        <tr><td>Astara</td><td>Repository / project working name only — never surfaced to users</td></tr>
+        <tr><td>Ortus</td><td>Historical placeholder</td></tr>
+        <tr><td>Ecliptic</td><td>Rejected Pass 5 recommendation</td></tr>
+        <tr><td>Eclipse</td><td>Visual/design direction only — not the product name</td></tr>
+        <tr><td>Humay</td><td>Selected consumer brand — current</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="authmap-sec">
+    <h2><span class="authmap-num">07</span> &nbsp;Astrology Data Authority</h2>
+    <ul class="authmap-rule">
+      <li>All exact chart values, placements, aspects, timing, dashas, pillars, and interpretations shown in design artifacts are prototype content unless independently validated.</li>
+      <li>They must not become engineering fixtures.</li>
+      <li>Deterministic calculation engines are the authoritative source of truth during implementation.</li>
+      <li>Interpretation consumes structured, calculated facts — it does not produce them.</li>
+      <li>The interpretation/LLM layer must never invent positions, degrees, houses, dashas, pillars, or timing.</li>
+    </ul>
+  </div>
+
+  <div class="authmap-sec">
+    <h2><span class="authmap-num">08</span> &nbsp;Known Methodology Decisions Still Open</h2>
+    <p>Preserved as unresolved — not answered here:</p>
+    <ul class="authmap-rule">
+      <li>Western composite-chart technique</li>
+      <li>Vedic non-romantic relationship dimension set</li>
+      <li>Supported house systems</li>
+      <li>Supported ayanamsas</li>
+      <li>Chinese calendar / BaZi convention choices</li>
+      <li>BaZi Luck Cycle methodology and input requirements</li>
+      <li>Event-type mapping between Western / Vedic / Chinese timing concepts</li>
+    </ul>
+  </div>
+
+  <div class="authmap-sec">
+    <h2><span class="authmap-num">09</span> &nbsp;External Brand Clearance</h2>
+    <p>Humay design is locked internally; the following remain external and unresolved: trademark, App Store name, Google Play title, domains, handles (if relevant), cultural/linguistic review.</p>
+  </div>
+
+  <div class="authmap-sec" style="border-bottom: none;">
+    <h2><span class="authmap-num">10</span> &nbsp;Next Step</h2>
+    <p><strong>Pass 6 — Engineering Handoff &amp; Final Design Audit.</strong> Not begun.</p>
+  </div>
+
+</div>
+
+</x-dc>
+</body>
+</html>
