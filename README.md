@@ -26,6 +26,18 @@ The current product direction includes:
 
 See [`docs/design/DESIGN_AUTHORITY.md`](docs/design/DESIGN_AUTHORITY.md) for the authority and supersession rules across design passes. The screenshot/Markdown archive is derived documentation and does not replace those rules.
 
+## Development plan
+
+The persistent phase-by-phase roadmap is under [`docs/development/`](docs/development/).
+
+Start each development session with:
+
+1. [`docs/development/STATUS.md`](docs/development/STATUS.md) — current phase, active task and blockers.
+2. [`docs/development/ROADMAP.md`](docs/development/ROADMAP.md) — full phase sequence and release milestones.
+3. The active phase file under [`docs/development/phases/`](docs/development/phases/).
+
+Current engineering phase: **Phase 00 — Technical Architecture & Implementation Planning**.
+
 ## Source-of-truth boundary
 
 The design artifacts are authoritative for approved product structure, UX, visual direction, brand, interaction patterns and monetization behavior.
@@ -75,4 +87,4 @@ Approved/frozen design reference: **through Pass 6.1 — Final Engineering Freez
 
 Final GitHub visual/reference archive: **present** under [`docs/design/final-archive/`](docs/design/final-archive/README.md).
 
-Next substantive phase: **Technical Architecture & Implementation Planning**.
+Current engineering phase: **Phase 00 — Technical Architecture & Implementation Planning**.
