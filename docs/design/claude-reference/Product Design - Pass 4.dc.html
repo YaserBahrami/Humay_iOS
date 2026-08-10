@@ -1,0 +1,1481 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,600&family=Lora:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&family=Noto+Serif+SC:wght@400;600&display=swap">
+<style>
+  html { -webkit-font-smoothing: antialiased; }
+  body { margin: 0; background: #e0dbd0; color: #12151c; font-family: 'IBM Plex Sans', sans-serif; }
+  a { color: #8a6524; text-underline-offset: 3px; }
+  a:hover { color: #12151c; }
+  ::selection { background: rgba(176,134,63,.28); }
+  @media (prefers-reduced-motion: reduce) { * { animation-duration: .12s !important; animation-delay: 0s !important; } }
+</style>
+</helmet>
+
+<div style="max-width:1500px;margin:0 auto;padding:0 44px 160px">
+
+  <header style="padding:70px 0 34px;border-bottom:1px solid rgba(18,21,28,.9)">
+    <div style="display:flex;justify-content:space-between;align-items:baseline;font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;color:rgba(18,21,28,.5)">
+      <span>Pass 4 &nbsp;·&nbsp; Product completion</span>
+      <span>iOS 393 × 852 pt &nbsp;·&nbsp; Eclipse, complete</span>
+    </div>
+    <h1 style="font-family:'Cormorant Garamond',serif;font-weight:300;font-size:74px;line-height:.98;letter-spacing:-.025em;margin:26px 0 0">The rest of the<br><span style="font-style:italic">product, finished.</span></h1>
+    <p style="font-family:Lora,serif;font-size:16px;line-height:1.7;color:rgba(18,21,28,.74);max-width:66ch;margin:24px 0 0">Calendar, Profile, Notifications, Privacy, Circle management, native relationship systems, Premium, Sharing, Widgets and the full state language — built on the approved Pass 3 foundation. No new visual language, no new nav. Handoff-ready.</p>
+    <div style="display:flex;flex-wrap:wrap;gap:22px;margin-top:26px;font-family:'IBM Plex Sans',sans-serif;font-size:12.5px;color:rgba(18,21,28,.62)">
+      <a href="#calendar" style="color:inherit;text-decoration:none;border-bottom:1px solid rgba(18,21,28,.25)">01 Calendar</a>
+      <a href="#profile" style="color:inherit;text-decoration:none;border-bottom:1px solid rgba(18,21,28,.25)">02 Profile &amp; settings</a>
+      <a href="#notifications" style="color:inherit;text-decoration:none;border-bottom:1px solid rgba(18,21,28,.25)">03 Notifications</a>
+      <a href="#privacy" style="color:inherit;text-decoration:none;border-bottom:1px solid rgba(18,21,28,.25)">04 Privacy &amp; data</a>
+      <a href="#saved" style="color:inherit;text-decoration:none;border-bottom:1px solid rgba(18,21,28,.25)">05 Saved people</a>
+      <a href="#relationships" style="color:inherit;text-decoration:none;border-bottom:1px solid rgba(18,21,28,.25)">06 Relationship systems</a>
+      <a href="#premium" style="color:inherit;text-decoration:none;border-bottom:1px solid rgba(18,21,28,.25)">07 Premium</a>
+      <a href="#sharing" style="color:inherit;text-decoration:none;border-bottom:1px solid rgba(18,21,28,.25)">08 Sharing</a>
+      <a href="#widgets" style="color:inherit;text-decoration:none;border-bottom:1px solid rgba(18,21,28,.25)">09 Widgets</a>
+      <a href="#states" style="color:inherit;text-decoration:none;border-bottom:1px solid rgba(18,21,28,.25)">10 States</a>
+      <a href="#review" style="color:inherit;text-decoration:none;border-bottom:1px solid rgba(18,21,28,.25)">11 Coherence review</a>
+    </div>
+  </header>
+
+  <section id="data-note" style="padding:30px 0;border-bottom:1px solid rgba(18,21,28,.16);display:grid;grid-template-columns:104px 1fr;gap:36px">
+    <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.1em;color:rgba(18,21,28,.42);padding-top:2px">00</div>
+    <p style="font-family:'IBM Plex Sans',sans-serif;font-size:13px;line-height:1.65;color:rgba(18,21,28,.6);margin:0;max-width:74ch">Every date, transit and figure below is prototype/sample content for UX continuity with Pass 3 — not the output of a real ephemeris, Vimshottari engine or BaZi calculator. Where this pass introduces a methodology decision that materially affects correctness (marked <span style="color:#8a6524;font-weight:500">⚑ FLAG</span> inline), it is left unresolved here rather than invented.</p>
+  </section>
+
+  <section id="calendar" style="padding:54px 0 20px;border-bottom:1px solid rgba(18,21,28,.16)">
+    <div style="display:grid;grid-template-columns:104px 1fr;gap:36px;margin-bottom:34px">
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.1em;color:rgba(18,21,28,.42);padding-top:12px">01</div>
+      <div>
+        <h2 style="font-family:'Cormorant Garamond',serif;font-weight:400;font-size:40px;line-height:1.05;letter-spacing:-.02em;margin:0 0 6px">The astrology calendar</h2>
+        <p style="font-family:'IBM Plex Sans',sans-serif;font-size:12px;letter-spacing:.04em;text-transform:uppercase;color:rgba(18,21,28,.45);margin:0 0 22px">What matters to me, and when — not a heatmap</p>
+        <p style="font-family:Lora,serif;font-size:16px;line-height:1.7;color:rgba(18,21,28,.84);max-width:70ch;margin:0 0 10px">Three tiers, held apart on purpose: <b>High relevance</b> (a filled ink mark, worth a glance), <b>Context</b> (a hollow ring, one tap away) and <b>Background</b> (a hairline tick, present but never promoted). No date carries more than one High-relevance mark, and most days carry none — the month should look mostly quiet.</p>
+      </div>
+    </div>
+
+    <div style="display:flex;gap:36px;flex-wrap:wrap;align-items:flex-start">
+
+      <div style="width:413px">
+        <div style="display:flex;align-items:baseline;gap:10px;margin-bottom:12px">
+          <span style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.14em;padding:3px 7px;background:#12151c;color:#f4f1ea">LIVE</span>
+          <span style="font-family:'IBM Plex Sans',sans-serif;font-size:13px;font-weight:500">4.01 · Calendar — month view, system filter</span>
+        </div>
+        <div style="width:413px;height:872px;background:#14171f;border-radius:56px;padding:10px;box-shadow:0 30px 60px -30px rgba(18,21,28,.5)">
+          <div style="width:393px;height:852px;border-radius:47px;overflow:hidden;position:relative;background:#f4f1ea">
+            <div style="position:absolute;inset:0;overflow-y:auto;overflow-x:hidden">
+              <div style="height:59px;display:flex;align-items:flex-end;justify-content:space-between;padding:0 28px 8px;font-family:'IBM Plex Mono',monospace;font-size:11px;color:rgba(18,21,28,.85)"><span>9:41</span><span style="display:flex;align-items:center;gap:6px;font-size:10px;letter-spacing:.08em">5G<span style="display:inline-block;width:20px;height:9px;border:1px solid currentColor;border-radius:2px;position:relative"><span style="position:absolute;left:1.5px;top:1.5px;bottom:1.5px;width:12px;background:currentColor"></span></span></span></div>
+
+              <div style="padding:10px 28px 0;display:flex;justify-content:space-between;align-items:center">
+                <span style="font-family:'IBM Plex Mono',monospace;font-size:9.5px;letter-spacing:.18em;text-transform:uppercase;color:#8a6524">Calendar</span>
+                <span style="font-size:16px;color:rgba(18,21,28,.55);cursor:pointer">⚙</span>
+              </div>
+              <div style="padding:8px 28px 0;display:flex;justify-content:space-between;align-items:baseline">
+                <div style="font-family:'Cormorant Garamond',serif;font-weight:300;font-size:34px;letter-spacing:-.02em">August 2026</div>
+                <div onClick="{{ calToggleView }}" style="display:flex;border:1px solid rgba(18,21,28,.3);cursor:pointer">
+                  <div style="padding:5px 11px;background:{{ calMonthBg }};color:{{ calMonthFg }};font-family:'IBM Plex Sans',sans-serif;font-size:11px">Month</div>
+                  <div style="padding:5px 11px;background:{{ calWeekBg }};color:{{ calWeekFg }};font-family:'IBM Plex Sans',sans-serif;font-size:11px">Week</div>
+                </div>
+              </div>
+
+              <div style="padding:14px 28px 0;display:flex;gap:8px;overflow-x:auto">
+                <div onClick="{{ setFilterAll }}" style="flex:none;padding:5px 12px;border:1px solid {{ fAllBorder }};background:{{ fAllBg }};color:{{ fAllFg }};font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.08em;text-transform:uppercase;cursor:pointer">All</div>
+                <div onClick="{{ setFilterWestern }}" style="flex:none;padding:5px 12px;border:1px solid {{ fWBorder }};background:{{ fWBg }};color:{{ fWFg }};font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.08em;text-transform:uppercase;cursor:pointer">Western</div>
+                <div onClick="{{ setFilterVedic }}" style="flex:none;padding:5px 12px;border:1px solid {{ fVBorder }};background:{{ fVBg }};color:{{ fVFg }};font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.08em;text-transform:uppercase;cursor:pointer">Vedic</div>
+                <div onClick="{{ setFilterChinese }}" style="flex:none;padding:5px 12px;border:1px solid {{ fCBorder }};background:{{ fCBg }};color:{{ fCFg }};font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.08em;text-transform:uppercase;cursor:pointer">Chinese</div>
+                <div onClick="{{ setFilterRel }}" style="flex:none;padding:5px 12px;border:1px solid {{ fRBorder }};background:{{ fRBg }};color:{{ fRFg }};font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.08em;text-transform:uppercase;cursor:pointer">Relationship</div>
+              </div>
+
+              <div style="padding:16px 24px 0">
+                <div style="display:grid;grid-template-columns:repeat(7,1fr);font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:.1em;color:rgba(18,21,28,.4);text-align:center;margin-bottom:6px">
+                  <div>S</div><div>M</div><div>T</div><div>W</div><div>T</div><div>F</div><div>S</div>
+                </div>
+                <sc-for list="{{ calDays }}" as="row" hint-placeholder-count="5">
+                  <div style="display:grid;grid-template-columns:repeat(7,1fr)">
+                    <sc-for list="{{ row.days }}" as="d" hint-placeholder-count="7">
+                      <div style="position:relative;aspect-ratio:1;display:flex;flex-direction:column;align-items:center;justify-content:center;border-top:1px solid rgba(18,21,28,.08)">
+                        <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:{{ d.numColor }};font-weight:{{ d.numWeight }}">{{ d.n }}</div>
+                        <sc-if value="{{ d.high }}"><div style="width:5px;height:5px;border-radius:50%;background:#8a6524;margin-top:3px"></div></sc-if>
+                        <sc-if value="{{ d.ctx }}"><div style="width:5px;height:5px;border-radius:50%;border:1px solid rgba(18,21,28,.45);margin-top:3px"></div></sc-if>
+                        <sc-if value="{{ d.bg }}"><div style="width:9px;height:1px;background:rgba(18,21,28,.3);margin-top:4px"></div></sc-if>
+                        <sc-if value="{{ d.today }}"><div style="position:absolute;inset:2px;border:1px solid #12151c;pointer-events:none"></div></sc-if>
+                      </div>
+                    </sc-for>
+                  </div>
+                </sc-for>
+              </div>
+
+              <div style="margin:20px 24px 0;border-top:1px solid rgba(18,21,28,.85);padding-top:12px;display:flex;gap:16px;font-family:'IBM Plex Sans',sans-serif;font-size:10.5px;color:rgba(18,21,28,.55)">
+                <div style="display:flex;align-items:center;gap:5px"><div style="width:5px;height:5px;border-radius:50%;background:#8a6524"></div>High relevance</div>
+                <div style="display:flex;align-items:center;gap:5px"><div style="width:5px;height:5px;border-radius:50%;border:1px solid rgba(18,21,28,.45)"></div>Context</div>
+                <div style="display:flex;align-items:center;gap:5px"><div style="width:9px;height:1px;background:rgba(18,21,28,.3)"></div>Background</div>
+              </div>
+
+              <div style="margin:18px 24px 0;border:1px solid rgba(18,21,28,.85);padding:14px 16px;cursor:pointer">
+                <div style="font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:#8a6524;margin-bottom:6px">Aug 12 · High relevance</div>
+                <div style="font-family:'Cormorant Garamond',serif;font-size:22px;line-height:1.2">Full Moon in Aquarius, conjunct your Sun</div>
+                <div style="font-family:'IBM Plex Sans',sans-serif;font-size:12px;color:rgba(18,21,28,.55);margin-top:4px">Cosmic · personalized · Western framing</div>
+              </div>
+              <div style="height:36px"></div>
+            </div>
+          </div>
+        </div>
+        <p style="font-family:'IBM Plex Sans',sans-serif;font-size:12.5px;line-height:1.6;color:rgba(18,21,28,.62);margin:14px 0 0;max-width:393px">Fully live: toggle Month/Week, switch the system filter. Marks encode tier by shape and fill, not color alone — Differentiate Without Color holds even here. Density stays low: this month carries one High-relevance day.</p>
+      </div>
+
+      <div style="width:413px">
+        <div style="display:flex;align-items:baseline;gap:10px;margin-bottom:12px">
+          <span style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.14em;padding:3px 7px;border:1px solid rgba(18,21,28,.35);color:rgba(18,21,28,.6)">STATIC</span>
+          <span style="font-family:'IBM Plex Sans',sans-serif;font-size:13px;font-weight:500">4.02 · Week view + day strip</span>
+        </div>
+        <div style="width:413px;height:872px;background:#14171f;border-radius:56px;padding:10px;box-shadow:0 30px 60px -30px rgba(18,21,28,.5)">
+          <div style="width:393px;height:852px;border-radius:47px;overflow:hidden;position:relative;background:#f4f1ea">
+            <div style="position:absolute;inset:0;overflow-y:auto;overflow-x:hidden">
+              <div style="height:59px;display:flex;align-items:flex-end;justify-content:space-between;padding:0 28px 8px;font-family:'IBM Plex Mono',monospace;font-size:11px;color:rgba(18,21,28,.85)"><span>9:41</span><span>5G ▮</span></div>
+              <div style="padding:8px 28px 0;display:flex;justify-content:space-between;align-items:baseline">
+                <div style="font-family:'Cormorant Garamond',serif;font-weight:300;font-size:30px;letter-spacing:-.02em">Aug 10–16</div>
+                <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:rgba(18,21,28,.5);letter-spacing:.08em">WEEK 33</div>
+              </div>
+              <div style="padding:16px 20px 0;display:grid;grid-template-columns:repeat(7,1fr);gap:4px;text-align:center">
+                <div style="border:1px solid #12151c;background:#12151c;color:#f4f1ea;padding:8px 0;border-radius:2px"><div style="font-family:'IBM Plex Mono',monospace;font-size:8.5px;letter-spacing:.1em">MON</div><div style="font-family:'Cormorant Garamond',serif;font-size:19px;margin-top:2px">10</div></div>
+                <div style="padding:8px 0"><div style="font-family:'IBM Plex Mono',monospace;font-size:8.5px;letter-spacing:.1em;color:rgba(18,21,28,.5)">TUE</div><div style="font-family:'Cormorant Garamond',serif;font-size:19px;margin-top:2px">11</div></div>
+                <div style="padding:8px 0;position:relative"><div style="font-family:'IBM Plex Mono',monospace;font-size:8.5px;letter-spacing:.1em;color:#8a6524">WED</div><div style="font-family:'Cormorant Garamond',serif;font-size:19px;margin-top:2px">12</div><div style="width:5px;height:5px;border-radius:50%;background:#8a6524;margin:3px auto 0"></div></div>
+                <div style="padding:8px 0"><div style="font-family:'IBM Plex Mono',monospace;font-size:8.5px;letter-spacing:.1em;color:rgba(18,21,28,.5)">THU</div><div style="font-family:'Cormorant Garamond',serif;font-size:19px;margin-top:2px">13</div></div>
+                <div style="padding:8px 0"><div style="font-family:'IBM Plex Mono',monospace;font-size:8.5px;letter-spacing:.1em;color:rgba(18,21,28,.5)">FRI</div><div style="font-family:'Cormorant Garamond',serif;font-size:19px;margin-top:2px">14</div><div style="width:5px;height:5px;border-radius:50%;border:1px solid rgba(18,21,28,.45);margin:3px auto 0"></div></div>
+                <div style="padding:8px 0"><div style="font-family:'IBM Plex Mono',monospace;font-size:8.5px;letter-spacing:.1em;color:rgba(18,21,28,.5)">SAT</div><div style="font-family:'Cormorant Garamond',serif;font-size:19px;margin-top:2px">15</div></div>
+                <div style="padding:8px 0"><div style="font-family:'IBM Plex Mono',monospace;font-size:8.5px;letter-spacing:.1em;color:rgba(18,21,28,.5)">SUN</div><div style="font-family:'Cormorant Garamond',serif;font-size:19px;margin-top:2px">16</div></div>
+              </div>
+
+              <div style="margin:22px 28px 0;border-top:1px solid rgba(18,21,28,.85);padding-top:14px">
+                <div style="font-family:'IBM Plex Mono',monospace;font-size:9.5px;letter-spacing:.16em;text-transform:uppercase;color:rgba(18,21,28,.5);margin-bottom:10px">Wednesday, Aug 12</div>
+                <div style="display:grid;grid-template-columns:22px 1fr;gap:12px;padding:12px 0;border-top:1px solid rgba(18,21,28,.14)">
+                  <div style="font-size:15px;color:#8a6524">●</div>
+                  <div><div style="font-family:'IBM Plex Sans',sans-serif;font-size:14px;font-weight:500">Full Moon in Aquarius</div><div style="font-family:'IBM Plex Sans',sans-serif;font-size:12px;color:rgba(18,21,28,.55);margin-top:2px">Conjunct your Sun — a release you'll feel personally</div></div>
+                </div>
+                <div style="display:grid;grid-template-columns:22px 1fr;gap:12px;padding:12px 0;border-top:1px solid rgba(18,21,28,.14)">
+                  <div style="font-size:12px;color:rgba(18,21,28,.4)">○</div>
+                  <div><div style="font-family:'IBM Plex Sans',sans-serif;font-size:14px">Mercury sextile Venus</div><div style="font-family:'IBM Plex Sans',sans-serif;font-size:12px;color:rgba(18,21,28,.5);margin-top:2px">A pleasant, low-stakes conversational day</div></div>
+                </div>
+              </div>
+              <div style="margin:18px 28px 0;border-top:1px solid rgba(18,21,28,.85);padding-top:14px">
+                <div style="font-family:'IBM Plex Mono',monospace;font-size:9.5px;letter-spacing:.16em;text-transform:uppercase;color:rgba(18,21,28,.5);margin-bottom:10px">Friday, Aug 14</div>
+                <div style="display:grid;grid-template-columns:22px 1fr;gap:12px;padding:12px 0;border-top:1px solid rgba(18,21,28,.14)">
+                  <div style="font-size:12px;color:rgba(18,21,28,.6)">◐</div>
+                  <div><div style="font-family:'IBM Plex Sans',sans-serif;font-size:14px">Today Together with Sam intensifies</div><div style="font-family:'IBM Plex Sans',sans-serif;font-size:12px;color:rgba(18,21,28,.5);margin-top:2px">Both Moons move into contact for three days</div></div>
+                </div>
+              </div>
+              <div style="height:36px"></div>
+            </div>
+          </div>
+        </div>
+        <p style="font-family:'IBM Plex Sans',sans-serif;font-size:12.5px;line-height:1.6;color:rgba(18,21,28,.62);margin:14px 0 0;max-width:393px">Week view collapses the grid into a day strip and expands straight into agenda rows — no separate "list view" to maintain. Today gets a solid ink chip rather than a color.</p>
+      </div>
+
+    </div>
+
+    <div style="display:flex;gap:36px;flex-wrap:wrap;align-items:flex-start;margin-top:36px">
+
+      <div style="width:413px">
+        <div style="display:flex;align-items:baseline;gap:10px;margin-bottom:12px">
+          <span style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.14em;padding:3px 7px;border:1px solid rgba(18,21,28,.35);color:rgba(18,21,28,.6)">STATIC</span>
+          <span style="font-family:'IBM Plex Sans',sans-serif;font-size:13px;font-weight:500">4.03 · Upcoming — important dates timeline</span>
+        </div>
+        <div style="width:413px;height:872px;background:#14171f;border-radius:56px;padding:10px;box-shadow:0 30px 60px -30px rgba(18,21,28,.5)">
+          <div style="width:393px;height:852px;border-radius:47px;overflow:hidden;position:relative;background:#f4f1ea">
+            <div style="position:absolute;inset:0;overflow-y:auto;overflow-x:hidden">
+              <div style="height:59px;display:flex;align-items:flex-end;justify-content:space-between;padding:0 28px 8px;font-family:'IBM Plex Mono',monospace;font-size:11px;color:rgba(18,21,28,.85)"><span>9:41</span><span>5G ▮</span></div>
+              <div style="padding:10px 28px 0"><span style="font-family:'IBM Plex Mono',monospace;font-size:9.5px;letter-spacing:.18em;text-transform:uppercase;color:#8a6524">Upcoming</span></div>
+              <div style="padding:6px 28px 0"><div style="font-family:'Cormorant Garamond',serif;font-weight:300;font-size:30px">Worth knowing about</div></div>
+
+              <div style="margin:20px 28px 0;border-top:1px solid rgba(18,21,28,.85)">
+                <div style="display:grid;grid-template-columns:56px 1fr;gap:14px;padding:14px 0;border-bottom:1px solid rgba(18,21,28,.14)">
+                  <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:#8a6524;letter-spacing:.06em">AUG 12</div>
+                  <div><div style="font-family:'IBM Plex Sans',sans-serif;font-size:14.5px;font-weight:500">Full Moon in Aquarius</div><div style="font-family:'IBM Plex Sans',sans-serif;font-size:12px;color:rgba(18,21,28,.55);margin-top:2px">High relevance · conjunct your Sun</div></div>
+                </div>
+                <div style="display:grid;grid-template-columns:56px 1fr;gap:14px;padding:14px 0;border-bottom:1px solid rgba(18,21,28,.14)">
+                  <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:rgba(18,21,28,.55);letter-spacing:.06em">AUG 14–17</div>
+                  <div><div style="font-family:'IBM Plex Sans',sans-serif;font-size:14.5px;font-weight:500">Today Together — you &amp; Sam</div><div style="font-family:'IBM Plex Sans',sans-serif;font-size:12px;color:rgba(18,21,28,.55);margin-top:2px">Relationship-sensitive · Moons in contact</div></div>
+                </div>
+                <div style="display:grid;grid-template-columns:56px 1fr;gap:14px;padding:14px 0;border-bottom:1px solid rgba(18,21,28,.14)">
+                  <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:rgba(18,21,28,.4);letter-spacing:.06em">AUG 24</div>
+                  <div><div style="font-family:'IBM Plex Sans',sans-serif;font-size:14px">Mercury enters Virgo</div><div style="font-family:'IBM Plex Sans',sans-serif;font-size:12px;color:rgba(18,21,28,.5);margin-top:2px">Context · ingress, no personal contact</div></div>
+                </div>
+                <div style="display:grid;grid-template-columns:56px 1fr;gap:14px;padding:14px 0;border-bottom:1px solid rgba(18,21,28,.14)">
+                  <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:#8a6524;letter-spacing:.06em">SEP 07</div>
+                  <div><div style="font-family:'IBM Plex Sans',sans-serif;font-size:14.5px;font-weight:500">Saturn stations retrograde</div><div style="font-family:'IBM Plex Sans',sans-serif;font-size:12px;color:rgba(18,21,28,.55);margin-top:2px">High relevance · squares your natal Mars</div></div>
+                </div>
+                <div style="display:grid;grid-template-columns:56px 1fr;gap:14px;padding:14px 0;border-bottom:1px solid rgba(18,21,28,.14)">
+                  <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:rgba(18,21,28,.4);letter-spacing:.06em">SEP 12</div>
+                  <div><div style="font-family:'IBM Plex Sans',sans-serif;font-size:14px">Ghost Month begins (Chinese)</div><div style="font-family:'IBM Plex Sans',sans-serif;font-size:12px;color:rgba(18,21,28,.5);margin-top:2px">Context · traditional caution period</div></div>
+                </div>
+                <div style="display:grid;grid-template-columns:56px 1fr;gap:14px;padding:14px 0;border-bottom:1px solid rgba(18,21,28,.14)">
+                  <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:rgba(18,21,28,.4);letter-spacing:.06em">SEP 21</div>
+                  <div><div style="font-family:'IBM Plex Sans',sans-serif;font-size:14px">Guru changes nakshatra (Vedic)</div><div style="font-family:'IBM Plex Sans',sans-serif;font-size:12px;color:rgba(18,21,28,.5);margin-top:2px">Context · Jupiter enters Purva Bhadrapada</div></div>
+                </div>
+              </div>
+              <div style="margin:18px 28px 0;font-family:'IBM Plex Sans',sans-serif;font-size:12px;color:rgba(18,21,28,.5);text-align:center">Showing 8 weeks ahead · Background-tier events hidden</div>
+              <div style="height:36px"></div>
+            </div>
+          </div>
+        </div>
+        <p style="font-family:'IBM Plex Sans',sans-serif;font-size:12.5px;line-height:1.6;color:rgba(18,21,28,.62);margin:14px 0 0;max-width:393px">A single merged timeline across all three systems and relationships — sorted by date, not grouped by system, since "what matters and when" is a chronological question. Background-tier items stay off this list entirely; Context items get a plain-weight row.</p>
+      </div>
+
+      <div style="width:413px">
+        <div style="display:flex;align-items:baseline;gap:10px;margin-bottom:12px">
+          <span style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.14em;padding:3px 7px;border:1px solid rgba(18,21,28,.35);color:rgba(18,21,28,.6)">STATIC</span>
+          <span style="font-family:'IBM Plex Sans',sans-serif;font-size:13px;font-weight:500">4.04 · Cosmic event detail — three native framings</span>
+        </div>
+        <div style="width:413px;height:872px;background:#14171f;border-radius:56px;padding:10px;box-shadow:0 30px 60px -30px rgba(18,21,28,.5)">
+          <div style="width:393px;height:852px;border-radius:47px;overflow:hidden;position:relative;background:#12151c">
+            <div style="position:absolute;inset:0;overflow-y:auto;overflow-x:hidden">
+              <div style="height:59px;display:flex;align-items:flex-end;justify-content:space-between;padding:0 28px 8px;font-family:'IBM Plex Mono',monospace;font-size:11px;color:rgba(244,241,234,.85)"><span>9:41</span><span>5G ▮</span></div>
+              <div style="padding:10px 28px 0;display:flex;justify-content:space-between"><span style="font-size:17px;color:rgba(244,241,234,.6)">←</span><span style="font-family:'IBM Plex Mono',monospace;font-size:9.5px;letter-spacing:.14em;color:rgba(244,241,234,.5);text-transform:uppercase">Cosmic event</span><span></span></div>
+              <div style="padding:20px 28px 0">
+                <div style="font-family:'IBM Plex Mono',monospace;font-size:9.5px;letter-spacing:.18em;text-transform:uppercase;color:#d9ad63;margin-bottom:8px">Aug 12 · High relevance</div>
+                <div style="font-family:'Cormorant Garamond',serif;font-weight:300;font-size:38px;line-height:1.05;color:#f4f1ea">Full Moon in Aquarius</div>
+              </div>
+              <div style="margin:20px 28px 0;display:flex;border:1px solid rgba(244,241,234,.28)">
+                <div style="flex:1;padding:7px 0;text-align:center;background:rgba(244,241,234,.9);color:#0a0c11;font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.05em">WESTERN</div>
+                <div style="flex:1;padding:7px 0;text-align:center;color:rgba(244,241,234,.6);font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.05em">VEDIC</div>
+                <div style="flex:1;padding:7px 0;text-align:center;color:rgba(244,241,234,.6);font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.05em">CHINESE</div>
+              </div>
+              <div style="padding:18px 28px 0">
+                <p style="font-family:Lora,serif;font-size:15.5px;line-height:1.66;color:rgba(244,241,234,.86);margin:0 0 14px">This Full Moon lands three degrees from your natal Sun — a lunation cycle closing right on top of your own identity placement. Expect a sense of completion around something you started near your last birthday.</p>
+                <div style="border-top:1px solid rgba(244,241,234,.3);padding-top:12px">
+                  <div style="font-family:'IBM Plex Mono',monospace;font-size:9.5px;letter-spacing:.1em;color:rgba(244,241,234,.5);margin-bottom:6px">WHAT THIS EVENT IS</div>
+                  <p style="font-family:'IBM Plex Sans',sans-serif;font-size:13px;line-height:1.6;color:rgba(244,241,234,.72);margin:0">The Moon opposes the Sun exactly, illuminating whatever the Aquarius/Leo axis has been building since the New Moon two weeks ago.</p>
+                </div>
+              </div>
+              <div style="margin:18px 28px 0;border:1px solid rgba(217,173,99,.35);background:rgba(217,173,99,.08);padding:13px 15px">
+                <div style="font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:.12em;color:#8a6524;text-transform:uppercase;margin-bottom:5px">⚑ Flag</div>
+                <p style="font-family:'IBM Plex Sans',sans-serif;font-size:12px;line-height:1.55;color:rgba(244,241,234,.65);margin:0">A single lunation does not translate 1:1 into one Vedic timing concept or one Chinese day-interaction — each system would surface a different, independently-relevant fact for this date (e.g. a nakshatra transit, a day-branch clash) rather than "their version of a Full Moon." Which concept each system actually shows per event type needs a methodology pass, not a design guess.</p>
+              </div>
+              <div style="height:40px"></div>
+            </div>
+          </div>
+        </div>
+        <p style="font-family:'IBM Plex Sans',sans-serif;font-size:12.5px;line-height:1.6;color:rgba(18,21,28,.62);margin:14px 0 0;max-width:393px">Tabs switch framing, not the underlying date. Deepest Slate for a cosmic event, matching Chart's dark-surface convention. The flag calls out where a universal "planetary event" model would misrepresent Vedic/Chinese systems — exactly what the brief warned against.</p>
+      </div>
+
+    </div>
+  </section>
+
+  <section id="profile" style="padding:54px 0 20px;border-bottom:1px solid rgba(18,21,28,.16)">
+    <div style="display:grid;grid-template-columns:104px 1fr;gap:36px;margin-bottom:34px">
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.1em;color:rgba(18,21,28,.42);padding-top:12px">02</div>
+      <div>
+        <h2 style="font-family:'Cormorant Garamond',serif;font-weight:400;font-size:40px;line-height:1.05;letter-spacing:-.02em;margin:0 0 6px">Profile &amp; settings</h2>
+        <p style="font-family:'IBM Plex Sans',sans-serif;font-size:12px;letter-spacing:.04em;text-transform:uppercase;color:rgba(18,21,28,.45);margin:0 0 22px">My astrology identity and my data — not a social profile</p>
+        <p style="font-family:Lora,serif;font-size:16px;line-height:1.7;color:rgba(18,21,28,.84);max-width:70ch;margin:0 0 10px">Profile home stays editorial — glyphs and a birth-data card, not a settings list. It hands off to conventional platform rows only once you're inside a specific settings area.</p>
+      </div>
+    </div>
+
+    <div style="display:flex;gap:36px;flex-wrap:wrap;align-items:flex-start">
+
+      <div style="width:413px">
+        <div style="display:flex;align-items:baseline;gap:10px;margin-bottom:12px">
+          <span style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.14em;padding:3px 7px;border:1px solid rgba(18,21,28,.35);color:rgba(18,21,28,.6)">STATIC</span>
+          <span style="font-family:'IBM Plex Sans',sans-serif;font-size:13px;font-weight:500">4.05 · Profile home</span>
+        </div>
+        <div style="width:413px;height:872px;background:#14171f;border-radius:56px;padding:10px;box-shadow:0 30px 60px -30px rgba(18,21,28,.5)">
+          <div style="width:393px;height:852px;border-radius:47px;overflow:hidden;position:relative;background:#f4f1ea">
+            <div style="position:absolute;inset:0;overflow-y:auto;overflow-x:hidden">
+              <div style="height:59px;display:flex;align-items:flex-end;justify-content:space-between;padding:0 28px 8px;font-family:'IBM Plex Mono',monospace;font-size:11px;color:rgba(18,21,28,.85)"><span>9:41</span><span>5G ▮</span></div>
+              <div style="padding:10px 28px 0;display:flex;justify-content:space-between;align-items:center"><span style="font-size:17px;color:rgba(18,21,28,.55)">←</span><span style="font-family:'IBM Plex Mono',monospace;font-size:9.5px;letter-spacing:.18em;text-transform:uppercase;color:#8a6524">Profile</span><span></span></div>
+              <div style="padding:22px 28px 0;text-align:center">
+                <div style="font-family:'Cormorant Garamond',serif;font-weight:300;font-size:34px">Jordan</div>
+                <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.1em;color:rgba(18,21,28,.5);margin-top:4px">SUN IN PISCES · MOON IN ARIES · RISING GEMINI</div>
+                <div style="display:flex;justify-content:center;gap:22px;margin-top:16px;font-family:'Cormorant Garamond',serif;font-size:30px">
+                  <span>☉</span><span style="color:rgba(18,21,28,.3)">·</span><span>☾</span><span style="color:rgba(18,21,28,.3)">·</span><span>ASC</span>
+                </div>
+              </div>
+              <div style="margin:24px 24px 0;border-top:1px solid rgba(18,21,28,.85);border-bottom:1px solid rgba(18,21,28,.14);padding:14px 4px;display:grid;grid-template-columns:1fr 1fr;gap:12px">
+                <div><div style="font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:.1em;color:rgba(18,21,28,.5)">BORN</div><div style="font-family:'IBM Plex Sans',sans-serif;font-size:13px;margin-top:3px">Mar 2, 1994</div></div>
+                <div><div style="font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:.1em;color:rgba(18,21,28,.5)">TIME</div><div style="font-family:'IBM Plex Sans',sans-serif;font-size:13px;margin-top:3px;color:#8a6524">Unknown ▾</div></div>
+                <div><div style="font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:.1em;color:rgba(18,21,28,.5)">PLACE</div><div style="font-family:'IBM Plex Sans',sans-serif;font-size:13px;margin-top:3px">Portland, OR</div></div>
+                <div><div style="font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:.1em;color:rgba(18,21,28,.5)">PRIMARY SYSTEM</div><div style="font-family:'IBM Plex Sans',sans-serif;font-size:13px;margin-top:3px">Western · Tropical</div></div>
+              </div>
+
+              <div style="margin:6px 24px 0">
+                <div onClick="{{ noop }}" style="display:flex;justify-content:space-between;align-items:center;padding:15px 4px;border-bottom:1px solid rgba(18,21,28,.14);cursor:pointer"><span style="font-family:'IBM Plex Sans',sans-serif;font-size:14.5px">Astrology systems</span><span style="font-family:'IBM Plex Sans',sans-serif;font-size:12.5px;color:rgba(18,21,28,.45)">Western, Vedic →</span></div>
+                <div style="display:flex;justify-content:space-between;align-items:center;padding:15px 4px;border-bottom:1px solid rgba(18,21,28,.14);cursor:pointer"><span style="font-family:'IBM Plex Sans',sans-serif;font-size:14.5px">Saved people</span><span style="font-family:'IBM Plex Sans',sans-serif;font-size:12.5px;color:rgba(18,21,28,.45)">6 →</span></div>
+                <div style="display:flex;justify-content:space-between;align-items:center;padding:15px 4px;border-bottom:1px solid rgba(18,21,28,.14);cursor:pointer"><span style="font-family:'IBM Plex Sans',sans-serif;font-size:14.5px">Appearance &amp; voice</span><span style="font-family:'IBM Plex Sans',sans-serif;font-size:12.5px;color:rgba(18,21,28,.45)">Dark · Normal →</span></div>
+                <div style="display:flex;justify-content:space-between;align-items:center;padding:15px 4px;border-bottom:1px solid rgba(18,21,28,.14);cursor:pointer"><span style="font-family:'IBM Plex Sans',sans-serif;font-size:14.5px">Notifications</span><span style="font-family:'IBM Plex Sans',sans-serif;font-size:12.5px;color:rgba(18,21,28,.45)">→</span></div>
+                <div style="display:flex;justify-content:space-between;align-items:center;padding:15px 4px;border-bottom:1px solid rgba(18,21,28,.14);cursor:pointer"><span style="font-family:'IBM Plex Sans',sans-serif;font-size:14.5px">Privacy &amp; data</span><span style="font-family:'IBM Plex Sans',sans-serif;font-size:12.5px;color:rgba(18,21,28,.45)">→</span></div>
+                <div style="display:flex;justify-content:space-between;align-items:center;padding:15px 4px;border-bottom:1px solid rgba(18,21,28,.14);cursor:pointer"><span style="font-family:'IBM Plex Sans',sans-serif;font-size:14.5px">Subscription</span><span style="font-family:'IBM Plex Sans',sans-serif;font-size:12.5px;color:#8a6524">Free →</span></div>
+                <div style="display:flex;justify-content:space-between;align-items:center;padding:15px 4px;border-bottom:1px solid rgba(18,21,28,.14);cursor:pointer"><span style="font-family:'IBM Plex Sans',sans-serif;font-size:14.5px">Help &amp; about</span><span style="font-family:'IBM Plex Sans',sans-serif;font-size:12.5px;color:rgba(18,21,28,.45)">→</span></div>
+              </div>
+              <div style="height:40px"></div>
+            </div>
+          </div>
+        </div>
+        <p style="font-family:'IBM Plex Sans',sans-serif;font-size:12.5px;line-height:1.6;color:rgba(18,21,28,.62);margin:14px 0 0;max-width:393px">Big Three stay in Cormorant, the row list drops to plain IBM Plex Sans rows once you're past the identity band — that's the "editorial first, conventional underneath" handoff.</p>
+      </div>
+
+      <div style="width:413px">
+        <div style="display:flex;align-items:baseline;gap:10px;margin-bottom:12px">
+          <span style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.14em;padding:3px 7px;border:1px solid rgba(18,21,28,.35);color:rgba(18,21,28,.6)">STATIC</span>
+          <span style="font-family:'IBM Plex Sans',sans-serif;font-size:13px;font-weight:500">4.06 · Birth information — unknown time state</span>
+        </div>
+        <div style="width:413px;height:872px;background:#14171f;border-radius:56px;padding:10px;box-shadow:0 30px 60px -30px rgba(18,21,28,.5)">
+          <div style="width:393px;height:852px;border-radius:47px;overflow:hidden;position:relative;background:#f4f1ea">
+            <div style="position:absolute;inset:0;overflow-y:auto;overflow-x:hidden">
+              <div style="height:59px;display:flex;align-items:flex-end;justify-content:space-between;padding:0 28px 8px;font-family:'IBM Plex Mono',monospace;font-size:11px;color:rgba(18,21,28,.85)"><span>9:41</span><span>5G ▮</span></div>
+              <div style="padding:10px 28px 0;display:flex;justify-content:space-between;align-items:center"><span style="font-size:17px;color:rgba(18,21,28,.55)">←</span><span style="font-family:'IBM Plex Mono',monospace;font-size:9.5px;letter-spacing:.14em;color:rgba(18,21,28,.5);text-transform:uppercase">Birth information</span><span style="font-family:'IBM Plex Sans',sans-serif;font-size:12.5px;color:#8a6524">Save</span></div>
+              <div style="margin:20px 28px 0">
+                <div style="font-family:'IBM Plex Mono',monospace;font-size:9.5px;letter-spacing:.1em;color:rgba(18,21,28,.5);margin-bottom:6px">DATE OF BIRTH</div>
+                <div style="border:1px solid rgba(18,21,28,.85);padding:12px 14px;font-family:'IBM Plex Sans',sans-serif;font-size:15px;margin-bottom:18px">March 2, 1994</div>
+                <div style="font-family:'IBM Plex Mono',monospace;font-size:9.5px;letter-spacing:.1em;color:rgba(18,21,28,.5);margin-bottom:6px">TIME OF BIRTH</div>
+                <div style="border:1px solid rgba(18,21,28,.85);padding:12px 14px;font-family:'IBM Plex Sans',sans-serif;font-size:15px;margin-bottom:8px;display:flex;justify-content:space-between;color:rgba(18,21,28,.4)">Not entered <span>＋</span></div>
+                <div style="display:flex;gap:8px;margin-bottom:18px">
+                  <div style="flex:1;text-align:center;padding:6px 0;border:1px solid #12151c;background:#12151c;color:#f4f1ea;font-family:'IBM Plex Mono',monospace;font-size:9.5px;letter-spacing:.06em">UNKNOWN</div>
+                  <div style="flex:1;text-align:center;padding:6px 0;border:1px solid rgba(18,21,28,.3);color:rgba(18,21,28,.6);font-family:'IBM Plex Mono',monospace;font-size:9.5px;letter-spacing:.06em">APPROXIMATE</div>
+                  <div style="flex:1;text-align:center;padding:6px 0;border:1px solid rgba(18,21,28,.3);color:rgba(18,21,28,.6);font-family:'IBM Plex Mono',monospace;font-size:9.5px;letter-spacing:.06em">EXACT</div>
+                </div>
+                <div style="font-family:'IBM Plex Mono',monospace;font-size:9.5px;letter-spacing:.1em;color:rgba(18,21,28,.5);margin-bottom:6px">PLACE OF BIRTH</div>
+                <div style="border:1px solid rgba(18,21,28,.85);padding:12px 14px;font-family:'IBM Plex Sans',sans-serif;font-size:15px;margin-bottom:20px">Portland, Oregon, US</div>
+
+                <div style="border:1px solid rgba(18,21,28,.25);background:#efece3;padding:14px 16px">
+                  <div style="font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:.12em;color:#8a6524;text-transform:uppercase;margin-bottom:7px">What this affects</div>
+                  <p style="font-family:'IBM Plex Sans',sans-serif;font-size:12.5px;line-height:1.55;color:rgba(18,21,28,.72);margin:0">Without a birth time, your Rising sign, houses and Vedic dasha dates can't be shown — everything else (Sun, Moon sign, most placements) still can. We'll say "approximate" or "unavailable" rather than guess.</p>
+                </div>
+                <div style="margin-top:14px;padding:12px 0;text-align:center;font-family:'IBM Plex Sans',sans-serif;font-size:13.5px;color:#8a6524;border-top:1px solid rgba(18,21,28,.14);cursor:pointer">I know an approximate time →</div>
+              </div>
+              <div style="height:40px"></div>
+            </div>
+          </div>
+        </div>
+        <p style="font-family:'IBM Plex Sans',sans-serif;font-size:12.5px;line-height:1.6;color:rgba(18,21,28,.62);margin:14px 0 0;max-width:393px">Three-state birth-time confidence (Unknown / Approximate / Exact) is a system primitive reused for saved people too — see §05. It's what lets house-dependent screens degrade honestly instead of guessing.</p>
+      </div>
+
+    </div>
+
+    <div style="display:flex;gap:36px;flex-wrap:wrap;align-items:flex-start;margin-top:36px">
+
+      <div style="width:413px">
+        <div style="display:flex;align-items:baseline;gap:10px;margin-bottom:12px">
+          <span style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.14em;padding:3px 7px;border:1px solid rgba(18,21,28,.35);color:rgba(18,21,28,.6)">STATIC</span>
+          <span style="font-family:'IBM Plex Sans',sans-serif;font-size:13px;font-weight:500">4.07 · Astrology preferences</span>
+        </div>
+        <div style="width:413px;height:872px;background:#14171f;border-radius:56px;padding:10px;box-shadow:0 30px 60px -30px rgba(18,21,28,.5)">
+          <div style="width:393px;height:852px;border-radius:47px;overflow:hidden;position:relative;background:#f4f1ea">
+            <div style="position:absolute;inset:0;overflow-y:auto;overflow-x:hidden">
+              <div style="height:59px;display:flex;align-items:flex-end;justify-content:space-between;padding:0 28px 8px;font-family:'IBM Plex Mono',monospace;font-size:11px;color:rgba(18,21,28,.85)"><span>9:41</span><span>5G ▮</span></div>
+              <div style="padding:10px 28px 0"><span style="font-size:17px;color:rgba(18,21,28,.55)">←</span></div>
+              <div style="padding:14px 28px 0"><div style="font-family:'Cormorant Garamond',serif;font-weight:300;font-size:30px">Astrology systems</div></div>
+              <div style="margin:18px 28px 0">
+                <div style="font-family:'IBM Plex Mono',monospace;font-size:9.5px;letter-spacing:.14em;text-transform:uppercase;color:rgba(18,21,28,.5);margin-bottom:10px">Primary system</div>
+                <div style="border:1px solid #12151c;padding:13px 15px;display:flex;justify-content:space-between;align-items:center;margin-bottom:2px"><div><div style="font-family:'IBM Plex Sans',sans-serif;font-size:14.5px;font-weight:500">Western · Tropical</div><div style="font-family:'IBM Plex Sans',sans-serif;font-size:11.5px;color:rgba(18,21,28,.5);margin-top:2px">Your Today reading and default Chart</div></div><span style="color:#12151c">●</span></div>
+                <div style="border:1px solid rgba(18,21,28,.16);padding:13px 15px;display:flex;justify-content:space-between;align-items:center;margin-top:8px"><div><div style="font-family:'IBM Plex Sans',sans-serif;font-size:14.5px">Vedic · Sidereal</div></div><span style="color:rgba(18,21,28,.25)">○</span></div>
+                <div style="border:1px solid rgba(18,21,28,.16);padding:13px 15px;display:flex;justify-content:space-between;align-items:center;margin-top:8px"><div><div style="font-family:'IBM Plex Sans',sans-serif;font-size:14.5px">Chinese</div></div><span style="color:rgba(18,21,28,.25)">○</span></div>
+              </div>
+              <div style="margin:24px 28px 0">
+                <div style="font-family:'IBM Plex Mono',monospace;font-size:9.5px;letter-spacing:.14em;text-transform:uppercase;color:rgba(18,21,28,.5);margin-bottom:10px">Also enabled — for Compare Systems</div>
+                <div style="display:flex;justify-content:space-between;align-items:center;padding:11px 0;border-bottom:1px solid rgba(18,21,28,.14)"><span style="font-family:'IBM Plex Sans',sans-serif;font-size:14px">Vedic · Sidereal</span><span style="font-family:'IBM Plex Mono',monospace;font-size:10px;padding:3px 8px;background:#12151c;color:#f4f1ea">ON</span></div>
+                <div style="display:flex;justify-content:space-between;align-items:center;padding:11px 0;border-bottom:1px solid rgba(18,21,28,.14)"><span style="font-family:'IBM Plex Sans',sans-serif;font-size:14px">Chinese</span><span style="font-family:'IBM Plex Mono',monospace;font-size:10px;padding:3px 8px;border:1px solid rgba(18,21,28,.3);color:rgba(18,21,28,.5)">OFF</span></div>
+              </div>
+              <div style="margin:22px 28px 0;display:flex;justify-content:space-between;align-items:center;border-top:1px solid rgba(18,21,28,.85);padding:16px 0;cursor:pointer">
+                <div><div style="font-family:'Cormorant Garamond',serif;font-size:22px;line-height:1.2">Advanced astrology settings</div><div style="font-family:'IBM Plex Sans',sans-serif;font-size:12.5px;color:rgba(18,21,28,.55);margin-top:3px">House system, ayanamsa &amp; more</div></div>
+                <span style="font-size:18px;color:#8a6524">→</span>
+              </div>
+              <div style="height:40px"></div>
+            </div>
+          </div>
+        </div>
+        <p style="font-family:'IBM Plex Sans',sans-serif;font-size:12.5px;line-height:1.6;color:rgba(18,21,28,.62);margin:14px 0 0;max-width:393px">Primary system drives the app's default voice; "also enabled" systems only feed Compare Systems. Advanced methodology is deliberately one tap further away — see 4.08.</p>
+      </div>
+
+      <div style="width:413px">
+        <div style="display:flex;align-items:baseline;gap:10px;margin-bottom:12px">
+          <span style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.14em;padding:3px 7px;border:1px solid rgba(18,21,28,.35);color:rgba(18,21,28,.6)">STATIC</span>
+          <span style="font-family:'IBM Plex Sans',sans-serif;font-size:13px;font-weight:500">4.08 · Advanced astrology settings</span>
+        </div>
+        <div style="width:413px;height:872px;background:#14171f;border-radius:56px;padding:10px;box-shadow:0 30px 60px -30px rgba(18,21,28,.5)">
+          <div style="width:393px;height:852px;border-radius:47px;overflow:hidden;position:relative;background:#f4f1ea">
+            <div style="position:absolute;inset:0;overflow-y:auto;overflow-x:hidden">
+              <div style="height:59px;display:flex;align-items:flex-end;justify-content:space-between;padding:0 28px 8px;font-family:'IBM Plex Mono',monospace;font-size:11px;color:rgba(18,21,28,.85)"><span>9:41</span><span>5G ▮</span></div>
+              <div style="padding:10px 28px 0"><span style="font-size:17px;color:rgba(18,21,28,.55)">←</span></div>
+              <div style="padding:14px 28px 0"><div style="font-family:'Cormorant Garamond',serif;font-weight:300;font-size:28px">Advanced astrology</div><div style="font-family:'IBM Plex Sans',sans-serif;font-size:12px;color:rgba(18,21,28,.55);margin-top:4px">For people who already know why these matter</div></div>
+
+              <div style="margin:20px 28px 0;border-top:1px solid rgba(18,21,28,.85);padding-top:14px">
+                <div style="font-family:'IBM Plex Mono',monospace;font-size:9.5px;letter-spacing:.14em;text-transform:uppercase;color:rgba(18,21,28,.5);margin-bottom:8px">Western — house system</div>
+                <div style="border:1px solid #12151c;padding:11px 13px;display:flex;justify-content:space-between;margin-bottom:10px"><span style="font-family:'IBM Plex Sans',sans-serif;font-size:14px;font-weight:500">Placidus</span><span>●</span></div>
+                <p style="font-family:'IBM Plex Sans',sans-serif;font-size:12px;line-height:1.55;color:rgba(18,21,28,.6);margin:0">Affects house cusps and therefore which house each planet falls in. Whole Sign and Koch also supported.</p>
+              </div>
+
+              <div style="margin:22px 28px 0;padding-top:14px;border-top:1px solid rgba(18,21,28,.14)">
+                <div style="font-family:'IBM Plex Mono',monospace;font-size:9.5px;letter-spacing:.14em;text-transform:uppercase;color:rgba(18,21,28,.5);margin-bottom:8px">Vedic — ayanamsa</div>
+                <div style="border:1px solid #12151c;padding:11px 13px;display:flex;justify-content:space-between;margin-bottom:10px"><span style="font-family:'IBM Plex Sans',sans-serif;font-size:14px;font-weight:500">Lahiri (Chitrapaksha)</span><span>●</span></div>
+                <p style="font-family:'IBM Plex Sans',sans-serif;font-size:12px;line-height:1.55;color:rgba(18,21,28,.6);margin:0">Shifts every sidereal placement by roughly the same amount — changes sign, nakshatra and dasha dates together. Krishnamurti and Raman offered as alternatives.</p>
+              </div>
+
+              <div style="margin:22px 28px 0;padding-top:14px;border-top:1px solid rgba(18,21,28,.14)">
+                <div style="font-family:'IBM Plex Mono',monospace;font-size:9.5px;letter-spacing:.14em;text-transform:uppercase;color:rgba(18,21,28,.5);margin-bottom:8px">Chinese — solar term convention</div>
+                <div style="border:1px solid #12151c;padding:11px 13px;display:flex;justify-content:space-between;margin-bottom:10px"><span style="font-family:'IBM Plex Sans',sans-serif;font-size:14px;font-weight:500">Astronomical (exact solar terms)</span><span>●</span></div>
+                <p style="font-family:'IBM Plex Sans',sans-serif;font-size:12px;line-height:1.55;color:rgba(18,21,28,.6);margin:0">Governs where month/year boundaries fall for Four Pillars. A fixed-calendar convention is offered as an alternative where regionally expected.</p>
+              </div>
+
+              <div style="margin:20px 28px 0;border:1px solid rgba(217,173,99,.4);background:rgba(217,173,99,.08);padding:13px 15px">
+                <div style="font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:.12em;color:#8a6524;text-transform:uppercase;margin-bottom:6px">⚑ Flag</div>
+                <p style="font-family:'IBM Plex Sans',sans-serif;font-size:12px;line-height:1.55;color:rgba(18,21,28,.65);margin:0">Which house systems, ayanamsas and Chinese conventions we actually support (vs. only Placidus/Lahiri/astronomical) is a calculation-engine decision, not a design one — this screen shows the pattern for exposing whichever set engineering confirms.</p>
+              </div>
+              <div style="height:40px"></div>
+            </div>
+          </div>
+        </div>
+        <p style="font-family:'IBM Plex Sans',sans-serif;font-size:12.5px;line-height:1.6;color:rgba(18,21,28,.62);margin:14px 0 0;max-width:393px">Every advanced control carries its own "what this affects" sentence in place — no separate help screen. Nothing here is exposed on the default path.</p>
+      </div>
+
+    </div>
+
+    <div style="display:flex;gap:36px;flex-wrap:wrap;align-items:flex-start;margin-top:36px">
+
+      <div style="width:413px">
+        <div style="display:flex;align-items:baseline;gap:10px;margin-bottom:12px">
+          <span style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.14em;padding:3px 7px;background:#12151c;color:#f4f1ea">LIVE</span>
+          <span style="font-family:'IBM Plex Sans',sans-serif;font-size:13px;font-weight:500">4.09 · Appearance &amp; Normal/Roast</span>
+        </div>
+        <div style="width:413px;height:872px;background:#14171f;border-radius:56px;padding:10px;box-shadow:0 30px 60px -30px rgba(18,21,28,.5)">
+          <div style="width:393px;height:852px;border-radius:47px;overflow:hidden;position:relative;background:#f4f1ea">
+            <div style="position:absolute;inset:0;overflow-y:auto;overflow-x:hidden">
+              <div style="height:59px;display:flex;align-items:flex-end;justify-content:space-between;padding:0 28px 8px;font-family:'IBM Plex Mono',monospace;font-size:11px;color:rgba(18,21,28,.85)"><span>9:41</span><span>5G ▮</span></div>
+              <div style="padding:10px 28px 0"><span style="font-size:17px;color:rgba(18,21,28,.55)">←</span></div>
+              <div style="padding:14px 28px 0"><div style="font-family:'Cormorant Garamond',serif;font-weight:300;font-size:30px">Appearance &amp; voice</div></div>
+
+              <div style="margin:20px 28px 0">
+                <div style="font-family:'IBM Plex Mono',monospace;font-size:9.5px;letter-spacing:.14em;text-transform:uppercase;color:rgba(18,21,28,.5);margin-bottom:10px">Appearance</div>
+                <div style="display:flex;gap:8px">
+                  <div style="flex:1;text-align:center;padding:10px 0;border:1px solid rgba(18,21,28,.3);font-family:'IBM Plex Sans',sans-serif;font-size:13px">Light Eclipse</div>
+                  <div style="flex:1;text-align:center;padding:10px 0;border:1px solid #12151c;background:#12151c;color:#f4f1ea;font-family:'IBM Plex Sans',sans-serif;font-size:13px">Dark Eclipse</div>
+                  <div style="flex:1;text-align:center;padding:10px 0;border:1px solid rgba(18,21,28,.3);font-family:'IBM Plex Sans',sans-serif;font-size:13px">System</div>
+                </div>
+              </div>
+
+              <div style="margin:26px 28px 0;padding-top:16px;border-top:1px solid rgba(18,21,28,.85)">
+                <div style="font-family:'IBM Plex Mono',monospace;font-size:9.5px;letter-spacing:.14em;text-transform:uppercase;color:rgba(18,21,28,.5);margin-bottom:12px">Voice</div>
+                <div style="display:flex;gap:10px">
+                  <div onClick="{{ setNormal }}" style="flex:1;padding:16px;border:1px solid {{ vNBorder }};background:{{ vNBg }};cursor:pointer">
+                    <div style="font-family:'Cormorant Garamond',serif;font-size:22px;color:{{ vNText }}">Normal</div>
+                    <div style="font-family:'IBM Plex Sans',sans-serif;font-size:11.5px;color:{{ vNSub }};margin-top:4px">Warm, direct, editorial</div>
+                  </div>
+                  <div onClick="{{ setRoast }}" style="flex:1;padding:16px;border:1px solid {{ vRBorder }};background:{{ vRBg }};cursor:pointer">
+                    <div style="font-family:'Cormorant Garamond',serif;font-size:22px;color:{{ vRText }}">Roast</div>
+                    <div style="font-family:'IBM Plex Sans',sans-serif;font-size:11.5px;color:{{ vRSub }};margin-top:4px">Sharp, funny, still true</div>
+                  </div>
+                </div>
+                <div style="margin-top:14px;border:1px solid rgba(18,21,28,.25);background:#efece3;padding:13px 15px">
+                  <div style="font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:.1em;color:#8a6524;text-transform:uppercase;margin-bottom:6px">Preview — today's reading, opening line</div>
+                  <p style="font-family:Lora,serif;font-size:15px;line-height:1.55;color:rgba(18,21,28,.85);margin:0">{{ vPreview }}</p>
+                </div>
+                <p style="font-family:'IBM Plex Sans',sans-serif;font-size:11.5px;line-height:1.55;color:rgba(18,21,28,.55);margin:12px 0 0">Same calculation, same interpretation, same recommendation — only the voice changes. There's no separate Roast astrology.</p>
+              </div>
+
+              <div style="margin:22px 28px 0;padding-top:16px;border-top:1px solid rgba(18,21,28,.14)">
+                <div style="font-family:'IBM Plex Mono',monospace;font-size:9.5px;letter-spacing:.14em;text-transform:uppercase;color:rgba(18,21,28,.5);margin-bottom:8px">Roast intensity</div>
+                <div style="border:1px solid rgba(18,21,28,.16);padding:12px 14px;display:flex;justify-content:space-between;align-items:center;opacity:.55">
+                  <div><div style="font-family:'IBM Plex Sans',sans-serif;font-size:13.5px">Single intensity, for now</div><div style="font-family:'IBM Plex Sans',sans-serif;font-size:11.5px;color:rgba(18,21,28,.5);margin-top:2px">Not shipping mild/medium/hot without a clear reason to fragment the voice</div></div>
+                </div>
+              </div>
+              <div style="height:40px"></div>
+            </div>
+          </div>
+        </div>
+        <p style="font-family:'IBM Plex Sans',sans-serif;font-size:12.5px;line-height:1.6;color:rgba(18,21,28,.62);margin:14px 0 0;max-width:393px">Fully live: tap Normal/Roast, watch the preview line change while everything else on the screen holds still — the point of the whole feature made literal. Intensity levels are deliberately not offered; see the tradeoff note in §11.</p>
+      </div>
+
+      <div style="width:413px;padding-top:44px">
+        <div style="border:1px solid rgba(18,21,28,.85);background:#efece3;padding:20px 22px;margin-bottom:20px">
+          <div style="font-family:'IBM Plex Mono',monospace;font-size:9.5px;letter-spacing:.14em;text-transform:uppercase;color:#8a6524;margin-bottom:10px">Roast intensity — the tradeoff, if proposed</div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:1px;background:rgba(18,21,28,.16);border:1px solid rgba(18,21,28,.16)">
+            <div style="background:#efece3;padding:14px 16px"><div style="font-family:'IBM Plex Sans',sans-serif;font-size:13px;font-weight:500;margin-bottom:6px">For one level</div><p style="font-family:'IBM Plex Sans',sans-serif;font-size:12.5px;line-height:1.55;color:rgba(18,21,28,.7);margin:0">The mode switch stays a single, memorable, binary gesture. Every roast line can be hand-tuned once instead of three times. No user has to guess what "medium" feels like before trying it.</p></div>
+            <div style="background:#efece3;padding:14px 16px"><div style="font-family:'IBM Plex Sans',sans-serif;font-size:13px;font-weight:500;margin-bottom:6px">For multiple levels</div><p style="font-family:'IBM Plex Sans',sans-serif;font-size:12.5px;line-height:1.55;color:rgba(18,21,28,.7);margin:0">Some users want gentler teasing without losing the voice entirely; others want it sharper for sharing. Fragmenting copy 2-3x is real production cost for a benefit we haven't validated.</p></div>
+          </div>
+          <p style="font-family:'IBM Plex Sans',sans-serif;font-size:12.5px;line-height:1.6;color:rgba(18,21,28,.62);margin:14px 0 0">Recommendation: ship one Roast voice now; revisit intensity only if retention/sharing data on Roast users specifically asks for it.</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <section id="notifications" style="padding:54px 0 20px;border-bottom:1px solid rgba(18,21,28,.16)">
+    <div style="display:grid;grid-template-columns:104px 1fr;gap:36px;margin-bottom:34px">
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.1em;color:rgba(18,21,28,.42);padding-top:12px">03</div>
+      <div>
+        <h2 style="font-family:'Cormorant Garamond',serif;font-weight:400;font-size:40px;line-height:1.05;letter-spacing:-.02em;margin:0 0 6px">Notifications</h2>
+        <p style="font-family:'IBM Plex Sans',sans-serif;font-size:12px;letter-spacing:.04em;text-transform:uppercase;color:rgba(18,21,28,.45);margin:0 0 22px">Useful, specific, conservative by default — never spam</p>
+      </div>
+    </div>
+
+    <div style="display:flex;gap:36px;flex-wrap:wrap;align-items:flex-start">
+
+      <div style="width:413px">
+        <div style="display:flex;align-items:baseline;gap:10px;margin-bottom:12px">
+          <span style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.14em;padding:3px 7px;border:1px solid rgba(18,21,28,.35);color:rgba(18,21,28,.6)">STATIC</span>
+          <span style="font-family:'IBM Plex Sans',sans-serif;font-size:13px;font-weight:500">4.10 · Notification preferences</span>
+        </div>
+        <div style="width:413px;height:872px;background:#14171f;border-radius:56px;padding:10px;box-shadow:0 30px 60px -30px rgba(18,21,28,.5)">
+          <div style="width:393px;height:852px;border-radius:47px;overflow:hidden;position:relative;background:#f4f1ea">
+            <div style="position:absolute;inset:0;overflow-y:auto;overflow-x:hidden">
+              <div style="height:59px;display:flex;align-items:flex-end;justify-content:space-between;padding:0 28px 8px;font-family:'IBM Plex Mono',monospace;font-size:11px;color:rgba(18,21,28,.85)"><span>9:41</span><span>5G ▮</span></div>
+              <div style="padding:10px 28px 0"><span style="font-size:17px;color:rgba(18,21,28,.55)">←</span></div>
+              <div style="padding:14px 28px 0"><div style="font-family:'Cormorant Garamond',serif;font-weight:300;font-size:30px">Notifications</div></div>
+
+              <div style="margin:18px 28px 0">
+                <div style="display:flex;justify-content:space-between;align-items:baseline;padding-bottom:8px;border-bottom:1px solid rgba(18,21,28,.85)"><span style="font-family:'IBM Plex Mono',monospace;font-size:9.5px;letter-spacing:.14em;text-transform:uppercase;color:rgba(18,21,28,.5)">Daily</span></div>
+                <div style="display:flex;justify-content:space-between;align-items:center;padding:13px 0;border-bottom:1px solid rgba(18,21,28,.14)"><div><div style="font-family:'IBM Plex Sans',sans-serif;font-size:14px">Morning reading</div><div style="font-family:'IBM Plex Sans',sans-serif;font-size:11.5px;color:rgba(18,21,28,.5);margin-top:2px">Preferred time: 7:30 AM</div></div><span style="font-family:'IBM Plex Mono',monospace;font-size:10px;padding:3px 8px;background:#12151c;color:#f4f1ea">ON</span></div>
+                <div style="display:flex;justify-content:space-between;align-items:center;padding:13px 0;border-bottom:1px solid rgba(18,21,28,.14)"><div><div style="font-family:'IBM Plex Sans',sans-serif;font-size:14px">Today Together</div><div style="font-family:'IBM Plex Sans',sans-serif;font-size:11.5px;color:rgba(18,21,28,.5);margin-top:2px">Sam only · 1 of 6 saved people</div></div><span style="font-family:'IBM Plex Mono',monospace;font-size:10px;padding:3px 8px;background:#12151c;color:#f4f1ea">ON</span></div>
+
+                <div style="display:flex;justify-content:space-between;align-items:baseline;padding-bottom:8px;padding-top:20px;border-bottom:1px solid rgba(18,21,28,.85)"><span style="font-family:'IBM Plex Mono',monospace;font-size:9.5px;letter-spacing:.14em;text-transform:uppercase;color:rgba(18,21,28,.5)">Important personalized events</span></div>
+                <div style="display:flex;justify-content:space-between;align-items:center;padding:13px 0;border-bottom:1px solid rgba(18,21,28,.14)"><span style="font-family:'IBM Plex Sans',sans-serif;font-size:14px">A meaningful transit begins</span><span style="font-family:'IBM Plex Mono',monospace;font-size:10px;padding:3px 8px;background:#12151c;color:#f4f1ea">ON</span></div>
+                <div style="display:flex;justify-content:space-between;align-items:center;padding:13px 0;border-bottom:1px solid rgba(18,21,28,.14)"><span style="font-family:'IBM Plex Sans',sans-serif;font-size:14px">Significant relationship window</span><span style="font-family:'IBM Plex Mono',monospace;font-size:10px;padding:3px 8px;background:#12151c;color:#f4f1ea">ON</span></div>
+                <div style="display:flex;justify-content:space-between;align-items:center;padding:13px 0;border-bottom:1px solid rgba(18,21,28,.14)"><span style="font-family:'IBM Plex Sans',sans-serif;font-size:14px">Vedic timing change (dasha/nakshatra)</span><span style="font-family:'IBM Plex Mono',monospace;font-size:10px;padding:3px 8px;border:1px solid rgba(18,21,28,.3);color:rgba(18,21,28,.5)">OFF</span></div>
+                <div style="display:flex;justify-content:space-between;align-items:center;padding:13px 0;border-bottom:1px solid rgba(18,21,28,.14)"><span style="font-family:'IBM Plex Sans',sans-serif;font-size:14px">Chinese day interaction</span><span style="font-family:'IBM Plex Mono',monospace;font-size:10px;padding:3px 8px;border:1px solid rgba(18,21,28,.3);color:rgba(18,21,28,.5)">OFF</span></div>
+
+                <div style="display:flex;justify-content:space-between;align-items:baseline;padding-bottom:8px;padding-top:20px;border-bottom:1px solid rgba(18,21,28,.85)"><span style="font-family:'IBM Plex Mono',monospace;font-size:9.5px;letter-spacing:.14em;text-transform:uppercase;color:rgba(18,21,28,.5)">Cosmic</span></div>
+                <div style="display:flex;justify-content:space-between;align-items:center;padding:13px 0;border-bottom:1px solid rgba(18,21,28,.14)"><span style="font-family:'IBM Plex Sans',sans-serif;font-size:14px">New &amp; Full Moon</span><span style="font-family:'IBM Plex Mono',monospace;font-size:10px;padding:3px 8px;background:#12151c;color:#f4f1ea">ON</span></div>
+                <div style="display:flex;justify-content:space-between;align-items:center;padding:13px 0;border-bottom:1px solid rgba(18,21,28,.14)"><span style="font-family:'IBM Plex Sans',sans-serif;font-size:14px">Eclipses</span><span style="font-family:'IBM Plex Mono',monospace;font-size:10px;padding:3px 8px;background:#12151c;color:#f4f1ea">ON</span></div>
+                <div style="display:flex;justify-content:space-between;align-items:center;padding:13px 0;border-bottom:1px solid rgba(18,21,28,.14)"><span style="font-family:'IBM Plex Sans',sans-serif;font-size:14px">Major stations &amp; retrogrades</span><span style="font-family:'IBM Plex Mono',monospace;font-size:10px;padding:3px 8px;border:1px solid rgba(18,21,28,.3);color:rgba(18,21,28,.5)">OFF</span></div>
+
+                <div style="margin-top:20px;border-top:1px solid rgba(18,21,28,.14);padding-top:16px;display:flex;justify-content:space-between"><span style="font-family:'IBM Plex Sans',sans-serif;font-size:14px">Quiet hours</span><span style="font-family:'IBM Plex Sans',sans-serif;font-size:13px;color:rgba(18,21,28,.55)">10 PM – 7 AM</span></div>
+              </div>
+              <div style="height:36px"></div>
+            </div>
+          </div>
+        </div>
+        <p style="font-family:'IBM Plex Sans',sans-serif;font-size:12.5px;line-height:1.6;color:rgba(18,21,28,.62);margin:14px 0 0;max-width:393px">Default state shown: Daily and Cosmic essentials on, Vedic/Chinese personalized alerts off until a user opts in — conservative by default, per brief. Each toggle is a specific fact type, not a marketing category.</p>
+      </div>
+
+      <div style="width:413px">
+        <div style="display:flex;align-items:baseline;gap:10px;margin-bottom:12px">
+          <span style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.14em;padding:3px 7px;background:#12151c;color:#f4f1ea">LIVE</span>
+          <span style="font-family:'IBM Plex Sans',sans-serif;font-size:13px;font-weight:500">4.11 · Sample notifications — lock screen</span>
+        </div>
+        <div style="width:413px;height:872px;background:#14171f;border-radius:56px;padding:10px;box-shadow:0 30px 60px -30px rgba(18,21,28,.5)">
+          <div style="width:393px;height:852px;border-radius:47px;overflow:hidden;position:relative;background:#12151c;background-image:radial-gradient(circle at 50% 15%, rgba(217,173,99,.14), transparent 55%)">
+            <div style="position:absolute;inset:0;overflow-y:auto;overflow-x:hidden">
+              <div style="height:59px;display:flex;align-items:flex-end;justify-content:space-between;padding:0 28px 8px;font-family:'IBM Plex Mono',monospace;font-size:11px;color:rgba(244,241,234,.85)"><span>9:41</span><span>5G ▮</span></div>
+              <div style="text-align:center;padding:14px 0 20px"><div style="font-family:'Cormorant Garamond',serif;font-weight:300;font-size:64px;color:#f4f1ea;line-height:1">9:41</div><div style="font-family:'IBM Plex Sans',sans-serif;font-size:14px;color:rgba(244,241,234,.6);margin-top:4px">Monday, August 10</div></div>
+
+              <div style="padding:0 20px;display:flex;justify-content:flex-end;margin-bottom:10px">
+                <div onClick="{{ toggleNotifRoast }}" style="display:flex;border:1px solid rgba(244,241,234,.3);cursor:pointer">
+                  <div style="padding:5px 10px;background:{{ nNormalBg }};color:{{ nNormalFg }};font-family:'IBM Plex Sans',sans-serif;font-size:11px">Normal</div>
+                  <div style="padding:5px 10px;background:{{ nRoastBg }};color:{{ nRoastFg }};font-family:'IBM Plex Sans',sans-serif;font-size:11px">Roast</div>
+                </div>
+              </div>
+
+              <div style="padding:0 20px">
+                <div style="background:rgba(244,241,234,.1);backdrop-filter:blur(2px);border-radius:14px;padding:14px 16px;margin-bottom:10px">
+                  <div style="display:flex;justify-content:space-between;font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:.1em;color:rgba(244,241,234,.55);margin-bottom:5px"><span>ECLIPSE</span><span>NOW</span></div>
+                  <div style="font-family:'IBM Plex Sans',sans-serif;font-size:14px;font-weight:500;color:#f4f1ea;margin-bottom:2px">Morning reading</div>
+                  <div style="font-family:'IBM Plex Sans',sans-serif;font-size:13px;color:rgba(244,241,234,.78)">{{ n1Text }}</div>
+                </div>
+                <div style="background:rgba(244,241,234,.1);backdrop-filter:blur(2px);border-radius:14px;padding:14px 16px;margin-bottom:10px">
+                  <div style="display:flex;justify-content:space-between;font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:.1em;color:rgba(244,241,234,.55);margin-bottom:5px"><span>ECLIPSE</span><span>2H</span></div>
+                  <div style="font-family:'IBM Plex Sans',sans-serif;font-size:14px;font-weight:500;color:#f4f1ea;margin-bottom:2px">Meaningful transit begins</div>
+                  <div style="font-family:'IBM Plex Sans',sans-serif;font-size:13px;color:rgba(244,241,234,.78)">{{ n2Text }}</div>
+                </div>
+                <div style="background:rgba(244,241,234,.1);backdrop-filter:blur(2px);border-radius:14px;padding:14px 16px">
+                  <div style="display:flex;justify-content:space-between;font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:.1em;color:rgba(244,241,234,.55);margin-bottom:5px"><span>ECLIPSE</span><span>YESTERDAY</span></div>
+                  <div style="font-family:'IBM Plex Sans',sans-serif;font-size:14px;font-weight:500;color:#f4f1ea;margin-bottom:2px">Today Together with Sam</div>
+                  <div style="font-family:'IBM Plex Sans',sans-serif;font-size:13px;color:rgba(244,241,234,.78)">{{ n3Text }}</div>
+                </div>
+              </div>
+              <div style="height:40px"></div>
+            </div>
+          </div>
+        </div>
+        <p style="font-family:'IBM Plex Sans',sans-serif;font-size:12.5px;line-height:1.6;color:rgba(18,21,28,.62);margin:14px 0 0;max-width:393px">Live: the Normal/Roast toggle here re-voices all three previews at once, proving the underlying insight stays identical. No urgency language, no fear, no fake deadlines in either voice.</p>
+      </div>
+
+    </div>
+  </section>
+
+  <section id="privacy" style="padding:54px 0 20px;border-bottom:1px solid rgba(18,21,28,.16)">
+    <div style="display:grid;grid-template-columns:104px 1fr;gap:36px;margin-bottom:34px">
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.1em;color:rgba(18,21,28,.42);padding-top:12px">04</div>
+      <div>
+        <h2 style="font-family:'Cormorant Garamond',serif;font-weight:400;font-size:40px;line-height:1.05;letter-spacing:-.02em;margin:0 0 6px">Privacy &amp; data</h2>
+        <p style="font-family:'IBM Plex Sans',sans-serif;font-size:12px;letter-spacing:.04em;text-transform:uppercase;color:rgba(18,21,28,.45);margin:0 0 22px">Understandable, not legalistic — especially about other people's data</p>
+      </div>
+    </div>
+
+    <div style="display:flex;gap:36px;flex-wrap:wrap;align-items:flex-start">
+
+      <div style="width:413px">
+        <div style="display:flex;align-items:baseline;gap:10px;margin-bottom:12px">
+          <span style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.14em;padding:3px 7px;border:1px solid rgba(18,21,28,.35);color:rgba(18,21,28,.6)">STATIC</span>
+          <span style="font-family:'IBM Plex Sans',sans-serif;font-size:13px;font-weight:500">4.12 · Privacy overview</span>
+        </div>
+        <div style="width:413px;height:872px;background:#14171f;border-radius:56px;padding:10px;box-shadow:0 30px 60px -30px rgba(18,21,28,.5)">
+          <div style="width:393px;height:852px;border-radius:47px;overflow:hidden;position:relative;background:#f4f1ea">
+            <div style="position:absolute;inset:0;overflow-y:auto;overflow-x:hidden">
+              <div style="height:59px;display:flex;align-items:flex-end;justify-content:space-between;padding:0 28px 8px;font-family:'IBM Plex Mono',monospace;font-size:11px;color:rgba(18,21,28,.85)"><span>9:41</span><span>5G ▮</span></div>
+              <div style="padding:10px 28px 0"><span style="font-size:17px;color:rgba(18,21,28,.55)">←</span></div>
+              <div style="padding:14px 28px 0"><div style="font-family:'Cormorant Garamond',serif;font-weight:300;font-size:30px">Privacy &amp; data</div><p style="font-family:Lora,serif;font-size:14.5px;line-height:1.6;color:rgba(18,21,28,.72);margin:10px 0 0">Your chart needs precise birth data to be accurate. Here's exactly what we use it for, and what's entirely in your control.</p></div>
+
+              <div style="margin:20px 28px 0;border-top:1px solid rgba(18,21,28,.85)">
+                <div style="display:grid;grid-template-columns:26px 1fr;gap:12px;padding:14px 0;border-bottom:1px solid rgba(18,21,28,.14)">
+                  <div style="font-size:15px;color:#8a6524">◐</div>
+                  <div><div style="font-family:'IBM Plex Sans',sans-serif;font-size:14px;font-weight:500">Your birth date, time &amp; place</div><div style="font-family:'IBM Plex Sans',sans-serif;font-size:12px;color:rgba(18,21,28,.55);margin-top:2px">Used only to calculate your chart. Never shown to other users — there are none.</div></div>
+                </div>
+                <div style="display:grid;grid-template-columns:26px 1fr;gap:12px;padding:14px 0;border-bottom:1px solid rgba(18,21,28,.14)">
+                  <div style="font-size:15px;color:#8a6524">◐</div>
+                  <div><div style="font-family:'IBM Plex Sans',sans-serif;font-size:14px;font-weight:500">Saved people's birth data</div><div style="font-family:'IBM Plex Sans',sans-serif;font-size:12px;color:rgba(18,21,28,.55);margin-top:2px">Entered by you, for relationship calculations only. See below.</div></div>
+                </div>
+                <div style="display:grid;grid-template-columns:26px 1fr;gap:12px;padding:14px 0;border-bottom:1px solid rgba(18,21,28,.14)">
+                  <div style="font-size:15px;color:#8a6524">◐</div>
+                  <div><div style="font-family:'IBM Plex Sans',sans-serif;font-size:14px;font-weight:500">Ask the Stars questions</div><div style="font-family:'IBM Plex Sans',sans-serif;font-size:12px;color:rgba(18,21,28,.55);margin-top:2px">Kept so you can revisit answers. Deletable individually or all at once.</div></div>
+                </div>
+                <div style="display:grid;grid-template-columns:26px 1fr;gap:12px;padding:14px 0;border-bottom:1px solid rgba(18,21,28,.14)">
+                  <div style="font-size:15px;color:rgba(18,21,28,.35)">○</div>
+                  <div><div style="font-family:'IBM Plex Sans',sans-serif;font-size:14px">We never sell birth data</div><div style="font-family:'IBM Plex Sans',sans-serif;font-size:12px;color:rgba(18,21,28,.55);margin-top:2px">Not shared with advertisers or data brokers.</div></div>
+                </div>
+              </div>
+
+              <div style="margin:20px 28px 0">
+                <div onClick="{{ noop }}" style="display:flex;justify-content:space-between;align-items:center;padding:14px 0;border-bottom:1px solid rgba(18,21,28,.14);cursor:pointer"><span style="font-family:'IBM Plex Sans',sans-serif;font-size:14px">Saved people's data</span><span style="color:#8a6524">→</span></div>
+                <div style="display:flex;justify-content:space-between;align-items:center;padding:14px 0;border-bottom:1px solid rgba(18,21,28,.14);cursor:pointer"><span style="font-family:'IBM Plex Sans',sans-serif;font-size:14px">Ask history controls</span><span style="color:#8a6524">→</span></div>
+                <div style="display:flex;justify-content:space-between;align-items:center;padding:14px 0;border-bottom:1px solid rgba(18,21,28,.14);cursor:pointer"><span style="font-family:'IBM Plex Sans',sans-serif;font-size:14px">Export my data</span><span style="color:#8a6524">→</span></div>
+                <div style="display:flex;justify-content:space-between;align-items:center;padding:14px 0;border-bottom:1px solid rgba(18,21,28,.14);cursor:pointer"><span style="font-family:'IBM Plex Sans',sans-serif;font-size:14px;color:#a13c3c">Delete astrology data</span><span style="color:#a13c3c">→</span></div>
+                <div style="display:flex;justify-content:space-between;align-items:center;padding:14px 0;border-bottom:1px solid rgba(18,21,28,.14);cursor:pointer"><span style="font-family:'IBM Plex Sans',sans-serif;font-size:14px;color:#a13c3c">Delete all data &amp; account</span><span style="color:#a13c3c">→</span></div>
+              </div>
+              <div style="height:36px"></div>
+            </div>
+          </div>
+        </div>
+        <p style="font-family:'IBM Plex Sans',sans-serif;font-size:12.5px;line-height:1.6;color:rgba(18,21,28,.62);margin:14px 0 0;max-width:393px">Plain declarative sentences instead of legal boilerplate. Destructive rows get the only non-ink accent color in the whole system — a muted red reserved exclusively for delete actions.</p>
+      </div>
+
+      <div style="width:413px">
+        <div style="display:flex;align-items:baseline;gap:10px;margin-bottom:12px">
+          <span style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.14em;padding:3px 7px;border:1px solid rgba(18,21,28,.35);color:rgba(18,21,28,.6)">STATIC</span>
+          <span style="font-family:'IBM Plex Sans',sans-serif;font-size:13px;font-weight:500">4.13 · Saved person's data &amp; deletion</span>
+        </div>
+        <div style="width:413px;height:872px;background:#14171f;border-radius:56px;padding:10px;box-shadow:0 30px 60px -30px rgba(18,21,28,.5)">
+          <div style="width:393px;height:852px;border-radius:47px;overflow:hidden;position:relative;background:#f4f1ea">
+            <div style="position:absolute;inset:0;overflow-y:auto;overflow-x:hidden">
+              <div style="height:59px;display:flex;align-items:flex-end;justify-content:space-between;padding:0 28px 8px;font-family:'IBM Plex Mono',monospace;font-size:11px;color:rgba(18,21,28,.85)"><span>9:41</span><span>5G ▮</span></div>
+              <div style="padding:10px 28px 0"><span style="font-size:17px;color:rgba(18,21,28,.55)">←</span></div>
+              <div style="padding:14px 28px 0"><div style="font-family:'Cormorant Garamond',serif;font-weight:300;font-size:28px">About Sam's data</div></div>
+
+              <div style="margin:18px 28px 0;border:1px solid rgba(18,21,28,.25);background:#efece3;padding:15px 17px">
+                <p style="font-family:'IBM Plex Sans',sans-serif;font-size:13px;line-height:1.6;color:rgba(18,21,28,.78);margin:0">Sam does not have an account and has not consented to anything in this app. You entered Sam's birth date, time and location yourself so we could calculate relationship insights between your two charts. Sam cannot see this data, cannot see that you added them, and has no way to log in.</p>
+              </div>
+
+              <div style="margin:20px 28px 0;border-top:1px solid rgba(18,21,28,.85)">
+                <div style="display:grid;grid-template-columns:96px 1fr;gap:14px;padding:13px 0;border-bottom:1px solid rgba(18,21,28,.14)"><div style="font-family:'IBM Plex Mono',monospace;font-size:9.5px;color:rgba(18,21,28,.5)">NAME</div><div style="font-family:'IBM Plex Sans',sans-serif;font-size:13.5px">Sam Rivera</div></div>
+                <div style="display:grid;grid-template-columns:96px 1fr;gap:14px;padding:13px 0;border-bottom:1px solid rgba(18,21,28,.14)"><div style="font-family:'IBM Plex Mono',monospace;font-size:9.5px;color:rgba(18,21,28,.5)">RELATIONSHIP</div><div style="font-family:'IBM Plex Sans',sans-serif;font-size:13.5px">Romantic partner</div></div>
+                <div style="display:grid;grid-template-columns:96px 1fr;gap:14px;padding:13px 0;border-bottom:1px solid rgba(18,21,28,.14)"><div style="font-family:'IBM Plex Mono',monospace;font-size:9.5px;color:rgba(18,21,28,.5)">BIRTH DATA</div><div style="font-family:'IBM Plex Sans',sans-serif;font-size:13.5px">June 18, 1993 · approximate time · Austin, TX</div></div>
+                <div style="display:grid;grid-template-columns:96px 1fr;gap:14px;padding:13px 0;border-bottom:1px solid rgba(18,21,28,.14)"><div style="font-family:'IBM Plex Mono',monospace;font-size:9.5px;color:rgba(18,21,28,.5)">USED FOR</div><div style="font-family:'IBM Plex Sans',sans-serif;font-size:13.5px">Today Together, compatibility report, relationship calendar dates</div></div>
+              </div>
+
+              <div style="margin:24px 28px 0;display:flex;flex-direction:column;gap:10px">
+                <div style="border:1px solid rgba(18,21,28,.85);text-align:center;padding:12px 0;font-family:'IBM Plex Sans',sans-serif;font-size:13.5px;cursor:pointer">Edit Sam's details</div>
+                <div style="border:1px solid #a13c3c;color:#a13c3c;text-align:center;padding:12px 0;font-family:'IBM Plex Sans',sans-serif;font-size:13.5px;cursor:pointer">Delete Sam &amp; all related data</div>
+              </div>
+              <div style="height:36px"></div>
+            </div>
+          </div>
+        </div>
+        <p style="font-family:'IBM Plex Sans',sans-serif;font-size:12.5px;line-height:1.6;color:rgba(18,21,28,.62);margin:14px 0 0;max-width:393px">The consent-clarifying paragraph is not legal cover language — it's the actual UX answer to "does Sam know I did this?" Deleting a person cascades to every derived compatibility artifact, stated plainly.</p>
+      </div>
+
+    </div>
+
+    <div style="display:flex;gap:36px;flex-wrap:wrap;align-items:flex-start;margin-top:36px">
+      <div style="width:413px">
+        <div style="display:flex;align-items:baseline;gap:10px;margin-bottom:12px">
+          <span style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.14em;padding:3px 7px;border:1px solid rgba(18,21,28,.35);color:rgba(18,21,28,.6)">STATIC</span>
+          <span style="font-family:'IBM Plex Sans',sans-serif;font-size:13px;font-weight:500">4.14 · Export &amp; delete</span>
+        </div>
+        <div style="width:413px;height:560px;background:#14171f;border-radius:56px;padding:10px;box-shadow:0 30px 60px -30px rgba(18,21,28,.5)">
+          <div style="width:393px;height:540px;border-radius:47px;overflow:hidden;position:relative;background:#f4f1ea">
+            <div style="padding:26px 28px 0">
+              <div style="font-family:'Cormorant Garamond',serif;font-weight:300;font-size:26px">Export my data</div>
+              <p style="font-family:'IBM Plex Sans',sans-serif;font-size:12.5px;line-height:1.6;color:rgba(18,21,28,.62);margin:8px 0 16px">A file with your birth profile, saved people, reading settings and preferences. Ask history exports separately, since it's the most sensitive category.</p>
+              <div style="display:flex;flex-direction:column;gap:8px">
+                <div style="display:flex;justify-content:space-between;padding:11px 14px;border:1px solid rgba(18,21,28,.85)"><span style="font-family:'IBM Plex Sans',sans-serif;font-size:13.5px">Profile &amp; saved people</span><span style="color:#8a6524">↓</span></div>
+                <div style="display:flex;justify-content:space-between;padding:11px 14px;border:1px solid rgba(18,21,28,.3)"><span style="font-family:'IBM Plex Sans',sans-serif;font-size:13.5px">Ask the Stars history</span><span style="color:#8a6524">↓</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <p style="font-family:'IBM Plex Sans',sans-serif;font-size:12.5px;line-height:1.6;color:rgba(18,21,28,.62);margin:14px 0 0;max-width:393px">UX only — file format (JSON vs. PDF summary) is an engineering call.</p>
+      </div>
+      <div style="width:413px">
+        <div style="display:flex;align-items:baseline;gap:10px;margin-bottom:12px">
+          <span style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.14em;padding:3px 7px;border:1px solid rgba(18,21,28,.35);color:rgba(18,21,28,.6)">STATIC</span>
+          <span style="font-family:'IBM Plex Sans',sans-serif;font-size:13px;font-weight:500">4.15 · Delete confirmation</span>
+        </div>
+        <div style="width:413px;height:560px;background:#14171f;border-radius:56px;padding:10px;box-shadow:0 30px 60px -30px rgba(18,21,28,.5)">
+          <div style="width:393px;height:540px;border-radius:47px;overflow:hidden;position:relative;background:#f4f1ea;display:flex;align-items:center;justify-content:center">
+            <div style="width:320px;border:1px solid #12151c;background:#f4f1ea;padding:24px">
+              <div style="font-family:'Cormorant Garamond',serif;font-size:24px;margin-bottom:8px">Delete all astrology data?</div>
+              <p style="font-family:'IBM Plex Sans',sans-serif;font-size:13px;line-height:1.55;color:rgba(18,21,28,.68);margin:0 0 18px">This removes your chart, all 6 saved people, Ask history and preferences. Your account stays active — you can start over with new birth data any time. This can't be undone.</p>
+              <div style="display:flex;gap:10px">
+                <div style="flex:1;text-align:center;padding:10px 0;border:1px solid rgba(18,21,28,.3);font-family:'IBM Plex Sans',sans-serif;font-size:13px">Cancel</div>
+                <div style="flex:1;text-align:center;padding:10px 0;border:1px solid #a13c3c;color:#a13c3c;font-family:'IBM Plex Sans',sans-serif;font-size:13px">Delete</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <p style="font-family:'IBM Plex Sans',sans-serif;font-size:12.5px;line-height:1.6;color:rgba(18,21,28,.62);margin:14px 0 0;max-width:393px">States plainly what survives (the account) vs. what doesn't — no vague "are you sure?"</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="saved" style="padding:54px 0 20px;border-bottom:1px solid rgba(18,21,28,.16)">
+    <div style="display:grid;grid-template-columns:104px 1fr;gap:36px;margin-bottom:34px">
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.1em;color:rgba(18,21,28,.42);padding-top:12px">05</div>
+      <div>
+        <h2 style="font-family:'Cormorant Garamond',serif;font-weight:400;font-size:40px;line-height:1.05;letter-spacing:-.02em;margin:0 0 6px">Saved people management</h2>
+        <p style="font-family:'IBM Plex Sans',sans-serif;font-size:12px;letter-spacing:.04em;text-transform:uppercase;color:rgba(18,21,28,.45);margin:0 0 22px">Utilitarian underneath, emotional on the surface — not Contacts.app</p>
+      </div>
+    </div>
+
+    <div style="display:flex;gap:36px;flex-wrap:wrap;align-items:flex-start">
+
+      <div style="width:413px">
+        <div style="display:flex;align-items:baseline;gap:10px;margin-bottom:12px">
+          <span style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.14em;padding:3px 7px;border:1px solid rgba(18,21,28,.35);color:rgba(18,21,28,.6)">STATIC</span>
+          <span style="font-family:'IBM Plex Sans',sans-serif;font-size:13px;font-weight:500">4.16 · All saved people</span>
+        </div>
+        <div style="width:413px;height:872px;background:#14171f;border-radius:56px;padding:10px;box-shadow:0 30px 60px -30px rgba(18,21,28,.5)">
+          <div style="width:393px;height:852px;border-radius:47px;overflow:hidden;position:relative;background:#f4f1ea">
+            <div style="position:absolute;inset:0;overflow-y:auto;overflow-x:hidden">
+              <div style="height:59px;display:flex;align-items:flex-end;justify-content:space-between;padding:0 28px 8px;font-family:'IBM Plex Mono',monospace;font-size:11px;color:rgba(18,21,28,.85)"><span>9:41</span><span>5G ▮</span></div>
+              <div style="padding:10px 28px 0;display:flex;justify-content:space-between;align-items:center"><span style="font-size:17px;color:rgba(18,21,28,.55)">←</span><span style="font-family:'IBM Plex Mono',monospace;font-size:9.5px;letter-spacing:.18em;text-transform:uppercase;color:#8a6524">Circle · Manage</span><span style="font-size:18px;color:#8a6524">＋</span></div>
+              <div style="margin:14px 28px 0;border:1px solid rgba(18,21,28,.3);padding:9px 12px;font-family:'IBM Plex Sans',sans-serif;font-size:13px;color:rgba(18,21,28,.45)">Search saved people</div>
+
+              <div style="margin:18px 28px 0;border-top:1px solid rgba(18,21,28,.85)">
+                <div style="display:grid;grid-template-columns:1fr auto;gap:10px;padding:14px 0;border-bottom:1px solid rgba(18,21,28,.14)">
+                  <div><div style="font-family:'IBM Plex Sans',sans-serif;font-size:14.5px;font-weight:500">Sam Rivera</div><div style="font-family:'IBM Plex Sans',sans-serif;font-size:12px;color:rgba(18,21,28,.55);margin-top:2px">Romantic partner · Jun 18, 1993 · approx. time</div></div>
+                  <span style="color:rgba(18,21,28,.35);font-size:16px">›</span>
+                </div>
+                <div style="display:grid;grid-template-columns:1fr auto;gap:10px;padding:14px 0;border-bottom:1px solid rgba(18,21,28,.14)">
+                  <div><div style="font-family:'IBM Plex Sans',sans-serif;font-size:14.5px;font-weight:500">Priya Nair</div><div style="font-family:'IBM Plex Sans',sans-serif;font-size:12px;color:rgba(18,21,28,.55);margin-top:2px">Close friend · Nov 4, 1995 · exact time</div></div>
+                  <span style="color:rgba(18,21,28,.35);font-size:16px">›</span>
+                </div>
+                <div style="display:grid;grid-template-columns:1fr auto;gap:10px;padding:14px 0;border-bottom:1px solid rgba(18,21,28,.14)">
+                  <div><div style="font-family:'IBM Plex Sans',sans-serif;font-size:14.5px;font-weight:500">Dana Reyes</div><div style="font-family:'IBM Plex Sans',sans-serif;font-size:12px;color:rgba(18,21,28,.55);margin-top:2px">Manager · Jan 29, 1988 · unknown time</div></div>
+                  <span style="color:rgba(18,21,28,.35);font-size:16px">›</span>
+                </div>
+                <div style="display:grid;grid-template-columns:1fr auto;gap:10px;padding:14px 0;border-bottom:1px solid rgba(18,21,28,.14)">
+                  <div><div style="font-family:'IBM Plex Sans',sans-serif;font-size:14.5px;font-weight:500">Mom (Elena)</div><div style="font-family:'IBM Plex Sans',sans-serif;font-size:12px;color:rgba(18,21,28,.55);margin-top:2px">Parent · Sep 15, 1961 · approx. time</div></div>
+                  <span style="color:rgba(18,21,28,.35);font-size:16px">›</span>
+                </div>
+                <div style="display:grid;grid-template-columns:1fr auto;gap:10px;padding:14px 0;border-bottom:1px solid rgba(18,21,28,.14);background:rgba(217,173,99,.08)">
+                  <div><div style="font-family:'IBM Plex Sans',sans-serif;font-size:14.5px;font-weight:500">Alex Kim</div><div style="font-family:'IBM Plex Sans',sans-serif;font-size:12px;color:#8a6524;margin-top:2px">Coworker · possible duplicate of "Alexander Kim"</div></div>
+                  <span style="color:rgba(18,21,28,.35);font-size:16px">›</span>
+                </div>
+                <div style="display:grid;grid-template-columns:1fr auto;gap:10px;padding:14px 0;border-bottom:1px solid rgba(18,21,28,.14)">
+                  <div><div style="font-family:'IBM Plex Sans',sans-serif;font-size:14.5px;font-weight:500">Alexander Kim</div><div style="font-family:'IBM Plex Sans',sans-serif;font-size:12px;color:rgba(18,21,28,.55);margin-top:2px">Coworker · May 2, 1991 · unknown time</div></div>
+                  <span style="color:rgba(18,21,28,.35);font-size:16px">›</span>
+                </div>
+              </div>
+              <div style="margin:16px 28px 0;font-family:'IBM Plex Sans',sans-serif;font-size:12px;color:rgba(18,21,28,.5);text-align:center">6 of 6 free slots used · Premium removes the limit</div>
+              <div style="height:36px"></div>
+            </div>
+          </div>
+        </div>
+        <p style="font-family:'IBM Plex Sans',sans-serif;font-size:12.5px;line-height:1.6;color:rgba(18,21,28,.62);margin:14px 0 0;max-width:393px">Relationship type is the primary sort signal, not a tag afterthought — it's what determines which compatibility methodology applies later (§06). Duplicate detection surfaces as a gilt-tinted row, not a blocking dialog.</p>
+      </div>
+
+      <div style="width:413px">
+        <div style="display:flex;align-items:baseline;gap:10px;margin-bottom:12px">
+          <span style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.14em;padding:3px 7px;border:1px solid rgba(18,21,28,.35);color:rgba(18,21,28,.6)">STATIC</span>
+          <span style="font-family:'IBM Plex Sans',sans-serif;font-size:13px;font-weight:500">4.17 · Edit person</span>
+        </div>
+        <div style="width:413px;height:872px;background:#14171f;border-radius:56px;padding:10px;box-shadow:0 30px 60px -30px rgba(18,21,28,.5)">
+          <div style="width:393px;height:852px;border-radius:47px;overflow:hidden;position:relative;background:#f4f1ea">
+            <div style="position:absolute;inset:0;overflow-y:auto;overflow-x:hidden">
+              <div style="height:59px;display:flex;align-items:flex-end;justify-content:space-between;padding:0 28px 8px;font-family:'IBM Plex Mono',monospace;font-size:11px;color:rgba(18,21,28,.85)"><span>9:41</span><span>5G ▮</span></div>
+              <div style="padding:10px 28px 0;display:flex;justify-content:space-between"><span style="font-size:17px;color:rgba(18,21,28,.55)">←</span><span style="font-family:'IBM Plex Sans',sans-serif;font-size:12.5px;color:#8a6524">Save</span></div>
+              <div style="padding:14px 28px 0"><div style="font-family:'Cormorant Garamond',serif;font-weight:300;font-size:28px">Edit Sam</div></div>
+
+              <div style="margin:18px 28px 0">
+                <div style="font-family:'IBM Plex Mono',monospace;font-size:9.5px;letter-spacing:.1em;color:rgba(18,21,28,.5);margin-bottom:6px">RELATIONSHIP TYPE</div>
+                <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:18px">
+                  <div style="text-align:center;padding:9px 0;border:1px solid #12151c;background:#12151c;color:#f4f1ea;font-family:'IBM Plex Sans',sans-serif;font-size:12.5px">Romantic partner</div>
+                  <div style="text-align:center;padding:9px 0;border:1px solid rgba(18,21,28,.3);font-family:'IBM Plex Sans',sans-serif;font-size:12.5px">Close friend</div>
+                  <div style="text-align:center;padding:9px 0;border:1px solid rgba(18,21,28,.3);font-family:'IBM Plex Sans',sans-serif;font-size:12.5px">Family</div>
+                  <div style="text-align:center;padding:9px 0;border:1px solid rgba(18,21,28,.3);font-family:'IBM Plex Sans',sans-serif;font-size:12.5px">Coworker / other</div>
+                </div>
+                <div style="border:1px solid rgba(217,173,99,.4);background:rgba(217,173,99,.1);padding:11px 13px;margin-bottom:20px">
+                  <p style="font-family:'IBM Plex Sans',sans-serif;font-size:12px;line-height:1.5;color:rgba(18,21,28,.68);margin:0">Changing this from Romantic partner will remove marriage-oriented Vedic matching (Ashtakoota) from Sam's compatibility report and replace it with the general relationship view.</p>
+                </div>
+
+                <div style="font-family:'IBM Plex Mono',monospace;font-size:9.5px;letter-spacing:.1em;color:rgba(18,21,28,.5);margin-bottom:6px">BIRTH DETAILS</div>
+                <div style="border:1px solid rgba(18,21,28,.85);padding:12px 14px;margin-bottom:8px">June 18, 1993</div>
+                <div style="display:flex;gap:8px;margin-bottom:8px">
+                  <div style="flex:1;text-align:center;padding:6px 0;border:1px solid rgba(18,21,28,.3);color:rgba(18,21,28,.6);font-family:'IBM Plex Mono',monospace;font-size:9.5px">UNKNOWN</div>
+                  <div style="flex:1;text-align:center;padding:6px 0;border:1px solid #12151c;background:#12151c;color:#f4f1ea;font-family:'IBM Plex Mono',monospace;font-size:9.5px">APPROXIMATE</div>
+                  <div style="flex:1;text-align:center;padding:6px 0;border:1px solid rgba(18,21,28,.3);color:rgba(18,21,28,.6);font-family:'IBM Plex Mono',monospace;font-size:9.5px">EXACT</div>
+                </div>
+                <div style="border:1px solid rgba(18,21,28,.85);padding:12px 14px;margin-bottom:20px">around 2:00 PM (± 2 hrs) · Austin, TX</div>
+
+                <div style="border-top:1px solid rgba(18,21,28,.14);padding-top:16px;text-align:center;color:#a13c3c;font-family:'IBM Plex Sans',sans-serif;font-size:14px;cursor:pointer">Remove Sam from Circle</div>
+              </div>
+              <div style="height:36px"></div>
+            </div>
+          </div>
+        </div>
+        <p style="font-family:'IBM Plex Sans',sans-serif;font-size:12.5px;line-height:1.6;color:rgba(18,21,28,.62);margin:14px 0 0;max-width:393px">Relationship type isn't cosmetic here — the inline warning is the honest consequence of the methodology rule in §06: Ashtakoota only applies to romantic/marriage-context people.</p>
+      </div>
+
+    </div>
+  </section>
+
+  <section id="relationships" style="padding:54px 0 20px;border-bottom:1px solid rgba(18,21,28,.16)">
+    <div style="display:grid;grid-template-columns:104px 1fr;gap:36px;margin-bottom:34px">
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.1em;color:rgba(18,21,28,.42);padding-top:12px">06</div>
+      <div>
+        <h2 style="font-family:'Cormorant Garamond',serif;font-weight:400;font-size:40px;line-height:1.05;letter-spacing:-.02em;margin:0 0 6px">Relationship astrology, by system</h2>
+        <p style="font-family:'IBM Plex Sans',sans-serif;font-size:12px;letter-spacing:.04em;text-transform:uppercase;color:rgba(18,21,28,.45);margin:0 0 22px">No universal engine — and dimensions change by relationship type</p>
+        <p style="font-family:Lora,serif;font-size:16px;line-height:1.7;color:rgba(18,21,28,.84);max-width:70ch;margin:0">Western keeps Weave as the beginner layer with synastry underneath. Vedic separates marriage-oriented matching from a distinct non-romantic reading rather than misapplying Ashtakoota. Chinese reasons from Day Master and element relationships, not zodiac-pair lookup tables.</p>
+      </div>
+    </div>
+
+    <div style="display:flex;gap:36px;flex-wrap:wrap;align-items:flex-start">
+
+      <div style="width:413px">
+        <div style="display:flex;align-items:baseline;gap:10px;margin-bottom:12px">
+          <span style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.14em;padding:3px 7px;border:1px solid rgba(18,21,28,.35);color:rgba(18,21,28,.6)">STATIC</span>
+          <span style="font-family:'IBM Plex Sans',sans-serif;font-size:13px;font-weight:500">4.18 · Western — synastry beneath Weave</span>
+        </div>
+        <div style="width:413px;height:872px;background:#14171f;border-radius:56px;padding:10px;box-shadow:0 30px 60px -30px rgba(18,21,28,.5)">
+          <div style="width:393px;height:852px;border-radius:47px;overflow:hidden;position:relative;background:#f4f1ea">
+            <div style="position:absolute;inset:0;overflow-y:auto;overflow-x:hidden">
+              <div style="height:59px;display:flex;align-items:flex-end;justify-content:space-between;padding:0 28px 8px;font-family:'IBM Plex Mono',monospace;font-size:11px;color:rgba(18,21,28,.85)"><span>9:41</span><span>5G ▮</span></div>
+              <div style="padding:10px 28px 0;display:flex;justify-content:space-between"><span style="font-size:17px;color:rgba(18,21,28,.55)">←</span><span style="font-family:'IBM Plex Mono',monospace;font-size:9.5px;letter-spacing:.14em;color:rgba(18,21,28,.5);text-transform:uppercase">You &amp; Sam · Western</span><span></span></div>
+              <div style="padding:16px 28px 0">
+                <div style="font-family:'Cormorant Garamond',serif;font-weight:300;font-size:26px;line-height:1.15">Beneath Weave: the inter-chart aspects</div>
+                <p style="font-family:'IBM Plex Sans',sans-serif;font-size:12.5px;color:rgba(18,21,28,.55);margin-top:6px">Weave stays the default view — this is what it's built from</p>
+              </div>
+              <div style="margin:18px 28px 0;border:1px solid rgba(18,21,28,.85)">
+                <div style="display:grid;grid-template-columns:1fr 1fr;gap:1px;background:rgba(18,21,28,.16)">
+                  <div style="background:#f4f1ea;padding:14px 16px"><div style="font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:.1em;color:rgba(18,21,28,.5)">SYNASTRY</div><div style="font-family:'IBM Plex Sans',sans-serif;font-size:12.5px;margin-top:4px">Your Moon ☌ their Venus, 2°</div></div>
+                  <div style="background:#f4f1ea;padding:14px 16px"><div style="font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:.1em;color:rgba(18,21,28,.5)">HOUSE OVERLAY</div><div style="font-family:'IBM Plex Sans',sans-serif;font-size:12.5px;margin-top:4px">Their Sun falls in your 7th</div></div>
+                </div>
+              </div>
+              <div style="margin:18px 28px 0">
+                <div style="font-family:'IBM Plex Mono',monospace;font-size:9.5px;letter-spacing:.14em;text-transform:uppercase;color:rgba(18,21,28,.5);margin-bottom:10px">Inter-chart aspects</div>
+                <div style="display:grid;grid-template-columns:1fr auto;gap:10px;padding:11px 0;border-top:1px solid rgba(18,21,28,.14)"><span style="font-family:'IBM Plex Sans',sans-serif;font-size:13.5px">Your Moon conjunct their Venus</span><span style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:#8a6524">2°04′</span></div>
+                <div style="display:grid;grid-template-columns:1fr auto;gap:10px;padding:11px 0;border-top:1px solid rgba(18,21,28,.14)"><span style="font-family:'IBM Plex Sans',sans-serif;font-size:13.5px">Their Mars square your Saturn</span><span style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:rgba(18,21,28,.5)">4°40′</span></div>
+                <div style="display:grid;grid-template-columns:1fr auto;gap:10px;padding:11px 0;border-top:1px solid rgba(18,21,28,.14)"><span style="font-family:'IBM Plex Sans',sans-serif;font-size:13.5px">Your Mercury trine their Mercury</span><span style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:rgba(18,21,28,.5)">6°12′</span></div>
+              </div>
+              <div style="margin:20px 28px 0;border:1px solid rgba(18,21,28,.16);padding:12px 14px;opacity:.6">
+                <div style="font-family:'IBM Plex Sans',sans-serif;font-size:13px;font-weight:500">Composite chart</div>
+                <div style="font-family:'IBM Plex Sans',sans-serif;font-size:11.5px;color:rgba(18,21,28,.5);margin-top:2px">Not built for this pass — flagged below</div>
+              </div>
+              <div style="margin:16px 28px 0;border:1px solid rgba(217,173,99,.4);background:rgba(217,173,99,.08);padding:12px 14px">
+                <div style="font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:.12em;color:#8a6524;text-transform:uppercase;margin-bottom:5px">⚑ Flag</div>
+                <p style="font-family:'IBM Plex Sans',sans-serif;font-size:12px;line-height:1.55;color:rgba(18,21,28,.65);margin:0">Composite-chart techniques are a separate methodology decision from synastry (a real midpoint chart vs. Davison) — deferred rather than guessed.</p>
+              </div>
+              <div style="height:36px"></div>
+            </div>
+          </div>
+        </div>
+        <p style="font-family:'IBM Plex Sans',sans-serif;font-size:12.5px;line-height:1.6;color:rgba(18,21,28,.62);margin:14px 0 0;max-width:393px">Weave (Pass 3) is the front door; this is the "deeper" tier it links to — same visual grammar, more terminology, still glossed.</p>
+      </div>
+
+      <div style="width:413px">
+        <div style="display:flex;align-items:baseline;gap:10px;margin-bottom:12px">
+          <span style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.14em;padding:3px 7px;border:1px solid rgba(18,21,28,.35);color:rgba(18,21,28,.6)">STATIC</span>
+          <span style="font-family:'IBM Plex Sans',sans-serif;font-size:13px;font-weight:500">4.19 · Vedic — romantic matching (Ashtakoota)</span>
+        </div>
+        <div style="width:413px;height:872px;background:#14171f;border-radius:56px;padding:10px;box-shadow:0 30px 60px -30px rgba(18,21,28,.5)">
+          <div style="width:393px;height:852px;border-radius:47px;overflow:hidden;position:relative;background:#12151c">
+            <div style="position:absolute;inset:0;overflow-y:auto;overflow-x:hidden">
+              <div style="height:59px;display:flex;align-items:flex-end;justify-content:space-between;padding:0 28px 8px;font-family:'IBM Plex Mono',monospace;font-size:11px;color:rgba(244,241,234,.85)"><span>9:41</span><span>5G ▮</span></div>
+              <div style="padding:10px 28px 0;display:flex;justify-content:space-between"><span style="font-size:17px;color:rgba(244,241,234,.6)">←</span><span style="font-family:'IBM Plex Mono',monospace;font-size:9.5px;letter-spacing:.14em;color:rgba(244,241,234,.5);text-transform:uppercase">You &amp; Sam · Vedic</span><span></span></div>
+              <div style="padding:16px 28px 0">
+                <div style="font-family:'IBM Plex Mono',monospace;font-size:9.5px;letter-spacing:.18em;text-transform:uppercase;color:#d9ad63;margin-bottom:6px">Ashtakoota · Guna Milan</div>
+                <div style="font-family:'Cormorant Garamond',serif;font-weight:300;font-size:26px;color:#f4f1ea;line-height:1.15">Eight dimensions of Moon-based fit</div>
+                <p style="font-family:'IBM Plex Sans',sans-serif;font-size:12px;color:rgba(244,241,234,.55);margin-top:6px">Shown because Sam is set as Romantic partner — see §05</p>
+              </div>
+              <div style="margin:16px 28px 0;border-top:1px solid rgba(244,241,234,.3);border-bottom:1px solid rgba(244,241,234,.3);padding:14px 0">
+                <div style="display:flex;justify-content:space-between;align-items:baseline;padding:6px 0"><span style="font-family:'IBM Plex Sans',sans-serif;font-size:13px;color:rgba(244,241,234,.75)">Varna — spiritual temperament fit</span><span style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#d9ad63">1 / 1</span></div>
+                <div style="display:flex;justify-content:space-between;align-items:baseline;padding:6px 0"><span style="font-family:'IBM Plex Sans',sans-serif;font-size:13px;color:rgba(244,241,234,.75)">Vashya — mutual influence</span><span style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#d9ad63">2 / 2</span></div>
+                <div style="display:flex;justify-content:space-between;align-items:baseline;padding:6px 0"><span style="font-family:'IBM Plex Sans',sans-serif;font-size:13px;color:rgba(244,241,234,.75)">Tara — wellbeing &amp; fortune</span><span style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:rgba(244,241,234,.5)">2 / 3</span></div>
+                <div style="display:flex;justify-content:space-between;align-items:baseline;padding:6px 0"><span style="font-family:'IBM Plex Sans',sans-serif;font-size:13px;color:rgba(244,241,234,.75)">Yoni — instinctive &amp; intimate nature</span><span style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#d9ad63">3 / 4</span></div>
+                <div style="display:flex;justify-content:space-between;align-items:baseline;padding:6px 0"><span style="font-family:'IBM Plex Sans',sans-serif;font-size:13px;color:rgba(244,241,234,.75)">Graha Maitri — planetary friendship</span><span style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:rgba(244,241,234,.5)">3 / 5</span></div>
+                <div style="display:flex;justify-content:space-between;align-items:baseline;padding:6px 0"><span style="font-family:'IBM Plex Sans',sans-serif;font-size:13px;color:rgba(244,241,234,.75)">Gana — temperament category</span><span style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#d9ad63">6 / 6</span></div>
+                <div style="display:flex;justify-content:space-between;align-items:baseline;padding:6px 0"><span style="font-family:'IBM Plex Sans',sans-serif;font-size:13px;color:rgba(244,241,234,.75)">Bhakoot — houses from each Moon</span><span style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:rgba(244,241,234,.5)">6 / 7</span></div>
+                <div style="display:flex;justify-content:space-between;align-items:baseline;padding:6px 0"><span style="font-family:'IBM Plex Sans',sans-serif;font-size:13px;color:rgba(244,241,234,.75)">Nadi — genetic/health compatibility</span><span style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#d9ad63">8 / 8</span></div>
+              </div>
+              <p style="font-family:Lora,serif;font-size:14.5px;line-height:1.62;color:rgba(244,241,234,.82);margin:14px 0 0">31 of 36 points, driven mainly by strong Nadi and Gana agreement — traditionally the two weighted most heavily. This measures Moon-sign harmony for marriage-context matching specifically; it is not a general "compatibility score" and Nadi dosha (if present) can outweigh a high total.</p>
+              <div style="margin:16px 28px 0;border-left:2px solid #d9ad63;padding:2px 0 2px 14px">
+                <p style="font-family:'IBM Plex Sans',sans-serif;font-size:12.5px;line-height:1.6;color:rgba(244,241,234,.7);margin:0">This method exists for marriage/romantic contexts in the Jyotish tradition. It will not appear for Sam if you change the relationship type to friend, family or coworker (§05) — you'll see §4.20 instead.</p>
+              </div>
+              <div style="height:36px"></div>
+            </div>
+          </div>
+        </div>
+        <p style="font-family:'IBM Plex Sans',sans-serif;font-size:12.5px;line-height:1.6;color:rgba(18,21,28,.62);margin:14px 0 0;max-width:393px">No "31/36 = great match" headline — the total sits after the dimensions, in context, with the traditional weighting explained rather than flattened.</p>
+      </div>
+
+    </div>
+
+    <div style="display:flex;gap:36px;flex-wrap:wrap;align-items:flex-start;margin-top:36px">
+
+      <div style="width:413px">
+        <div style="display:flex;align-items:baseline;gap:10px;margin-bottom:12px">
+          <span style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.14em;padding:3px 7px;border:1px solid rgba(18,21,28,.35);color:rgba(18,21,28,.6)">STATIC</span>
+          <span style="font-family:'IBM Plex Sans',sans-serif;font-size:13px;font-weight:500">4.20 · Vedic — non-romantic relationship (Dana, manager)</span>
+        </div>
+        <div style="width:413px;height:872px;background:#14171f;border-radius:56px;padding:10px;box-shadow:0 30px 60px -30px rgba(18,21,28,.5)">
+          <div style="width:393px;height:852px;border-radius:47px;overflow:hidden;position:relative;background:#f4f1ea">
+            <div style="position:absolute;inset:0;overflow-y:auto;overflow-x:hidden">
+              <div style="height:59px;display:flex;align-items:flex-end;justify-content:space-between;padding:0 28px 8px;font-family:'IBM Plex Mono',monospace;font-size:11px;color:rgba(18,21,28,.85)"><span>9:41</span><span>5G ▮</span></div>
+              <div style="padding:10px 28px 0;display:flex;justify-content:space-between"><span style="font-size:17px;color:rgba(18,21,28,.55)">←</span><span style="font-family:'IBM Plex Mono',monospace;font-size:9.5px;letter-spacing:.14em;color:rgba(18,21,28,.5);text-transform:uppercase">You &amp; Dana · Vedic</span><span></span></div>
+              <div style="padding:16px 28px 0">
+                <div style="font-family:'IBM Plex Mono',monospace;font-size:9.5px;letter-spacing:.18em;text-transform:uppercase;color:#8a6524;margin-bottom:6px">Graha &amp; nakshatra relationship</div>
+                <div style="font-family:'Cormorant Garamond',serif;font-weight:300;font-size:26px;line-height:1.15">A working dynamic, not a marriage score</div>
+              </div>
+              <p style="font-family:Lora,serif;font-size:15px;line-height:1.64;color:rgba(18,21,28,.82);margin:14px 28px 0">Ashtakoota is a matrimonial method — it doesn't apply to a manager relationship, so this view is built from different, contextually relevant factors instead.</p>
+              <div style="margin:18px 28px 0;border-top:1px solid rgba(18,21,28,.85)">
+                <div style="display:grid;grid-template-columns:104px 1fr;gap:14px;padding:13px 0;border-bottom:1px solid rgba(18,21,28,.14)"><div style="font-family:'IBM Plex Mono',monospace;font-size:9.5px;color:rgba(18,21,28,.5)">MOON RAPPORT</div><p style="font-family:'IBM Plex Sans',sans-serif;font-size:13px;line-height:1.55;margin:0">Your Moon in Aries, Dana's in Capricorn — friction between fast decisions and careful process. Named without a numeric score.</p></div>
+                <div style="display:grid;grid-template-columns:104px 1fr;gap:14px;padding:13px 0;border-bottom:1px solid rgba(18,21,28,.14)"><div style="font-family:'IBM Plex Mono',monospace;font-size:9.5px;color:rgba(18,21,28,.5)">GRAHA MAITRI</div><p style="font-family:'IBM Plex Sans',sans-serif;font-size:13px;line-height:1.55;margin:0">Your chart-lord and Dana's are natural friends — a factor still meaningful outside marriage matching.</p></div>
+                <div style="display:grid;grid-template-columns:104px 1fr;gap:14px;padding:13px 0;border-bottom:1px solid rgba(18,21,28,.14)"><div style="font-family:'IBM Plex Mono',monospace;font-size:9.5px;color:rgba(18,21,28,.5)">CURRENT TRANSITS</div><p style="font-family:'IBM Plex Sans',sans-serif;font-size:13px;line-height:1.55;margin:0">Dana's Saturn transit favors structure this quarter — good timing to propose a process change.</p></div>
+              </div>
+              <div style="margin:18px 28px 0;border:1px solid rgba(217,173,99,.4);background:rgba(217,173,99,.08);padding:12px 14px">
+                <div style="font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:.12em;color:#8a6524;text-transform:uppercase;margin-bottom:5px">⚑ Flag</div>
+                <p style="font-family:'IBM Plex Sans',sans-serif;font-size:12px;line-height:1.55;color:rgba(18,21,28,.65);margin:0">The exact dimension set for non-romantic Vedic relationships (which factors, how many, how weighted per relationship type) is a Jyotish-methodology decision this pass intentionally didn't invent — the three shown are illustrative, not final.</p>
+              </div>
+              <div style="height:36px"></div>
+            </div>
+          </div>
+        </div>
+        <p style="font-family:'IBM Plex Sans',sans-serif;font-size:12.5px;line-height:1.6;color:rgba(18,21,28,.62);margin:14px 0 0;max-width:393px">Structurally distinct screen, not a "lite" version of §4.19 — the whole point is that these are different questions.</p>
+      </div>
+
+      <div style="width:413px">
+        <div style="display:flex;align-items:baseline;gap:10px;margin-bottom:12px">
+          <span style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.14em;padding:3px 7px;border:1px solid rgba(18,21,28,.35);color:rgba(18,21,28,.6)">STATIC</span>
+          <span style="font-family:'IBM Plex Sans',sans-serif;font-size:13px;font-weight:500">4.21 · Chinese/BaZi relationship view</span>
+        </div>
+        <div style="width:413px;height:872px;background:#14171f;border-radius:56px;padding:10px;box-shadow:0 30px 60px -30px rgba(18,21,28,.5)">
+          <div style="width:393px;height:852px;border-radius:47px;overflow:hidden;position:relative;background:#12151c">
+            <div style="position:absolute;inset:0;overflow-y:auto;overflow-x:hidden">
+              <div style="height:59px;display:flex;align-items:flex-end;justify-content:space-between;padding:0 28px 8px;font-family:'IBM Plex Mono',monospace;font-size:11px;color:rgba(244,241,234,.85)"><span>9:41</span><span>5G ▮</span></div>
+              <div style="padding:10px 28px 0;display:flex;justify-content:space-between"><span style="font-size:17px;color:rgba(244,241,234,.6)">←</span><span style="font-family:'IBM Plex Mono',monospace;font-size:9.5px;letter-spacing:.14em;color:rgba(244,241,234,.5);text-transform:uppercase">You &amp; Sam · Chinese</span><span></span></div>
+              <div style="padding:16px 28px 0">
+                <div style="font-family:'IBM Plex Mono',monospace;font-size:9.5px;letter-spacing:.18em;text-transform:uppercase;color:#d9ad63;margin-bottom:6px">BaZi · Day Master dynamics</div>
+                <div style="font-family:'Cormorant Garamond',serif;font-weight:300;font-size:26px;color:#f4f1ea;line-height:1.15">Beyond animal-pair lookup</div>
+              </div>
+              <div style="margin:16px 28px 0;display:grid;grid-template-columns:1fr 1fr;gap:1px;background:rgba(244,241,234,.16);border:1px solid rgba(244,241,234,.24)">
+                <div style="padding:16px;text-align:center"><div style="font-family:'Noto Serif SC','Cormorant Garamond',serif;font-size:30px;color:#f4f1ea">丁</div><div style="font-family:'IBM Plex Mono',monospace;font-size:9px;color:rgba(244,241,234,.5);margin-top:6px">YOUR DAY MASTER<br>Yin Fire</div></div>
+                <div style="padding:16px;text-align:center"><div style="font-family:'Noto Serif SC','Cormorant Garamond',serif;font-size:30px;color:#f4f1ea">壬</div><div style="font-family:'IBM Plex Mono',monospace;font-size:9px;color:rgba(244,241,234,.5);margin-top:6px">SAM'S DAY MASTER<br>Yang Water</div></div>
+              </div>
+              <p style="font-family:Lora,serif;font-size:14.5px;line-height:1.62;color:rgba(244,241,234,.82);margin:16px 28px 0">Fire meeting Water is a controlling relationship, not a generating one — real tension, and real charge. Whether it steadies or extinguishes depends on the surrounding branches, not the elements alone.</p>
+              <div style="margin:18px 28px 0;border-top:1px solid rgba(244,241,234,.3);padding-top:14px">
+                <div style="display:grid;grid-template-columns:120px 1fr;gap:12px;padding:11px 0;border-bottom:1px solid rgba(244,241,234,.14)"><div style="font-family:'IBM Plex Mono',monospace;font-size:9.5px;color:rgba(244,241,234,.5)">STEM RELATION</div><div style="font-family:'IBM Plex Sans',sans-serif;font-size:12.5px;color:rgba(244,241,234,.78)">Ding-Ren: controlling, not combining</div></div>
+                <div style="display:grid;grid-template-columns:120px 1fr;gap:12px;padding:11px 0;border-bottom:1px solid rgba(244,241,234,.14)"><div style="font-family:'IBM Plex Mono',monospace;font-size:9.5px;color:rgba(244,241,234,.5)">BRANCH CLASH</div><div style="font-family:'IBM Plex Sans',sans-serif;font-size:12.5px;color:rgba(244,241,234,.78)">Your Zi (Rat), their Wu (Horse) — a direct clash pair</div></div>
+                <div style="display:grid;grid-template-columns:120px 1fr;gap:12px;padding:11px 0;border-bottom:1px solid rgba(244,241,234,.14)"><div style="font-family:'IBM Plex Mono',monospace;font-size:9.5px;color:rgba(244,241,234,.5)">USEFUL GOD</div><div style="font-family:'IBM Plex Sans',sans-serif;font-size:12.5px;color:rgba(244,241,234,.78)">Wood between you would ease the clash — worth naming, not "fixing"</div></div>
+              </div>
+              <div style="margin:16px 28px 0;border-left:2px solid #d9ad63;padding:2px 0 2px 14px">
+                <p style="font-family:'IBM Plex Sans',sans-serif;font-size:12.5px;line-height:1.6;color:rgba(244,241,234,.7);margin:0">Beginner layer keeps the plain-language sentence up top; stems, branches and clash terminology only appear once each is glossed inline — never bare jargon.</p>
+              </div>
+              <div style="height:36px"></div>
+            </div>
+          </div>
+        </div>
+        <p style="font-family:'IBM Plex Sans',sans-serif;font-size:12.5px;line-height:1.6;color:rgba(18,21,28,.62);margin:14px 0 0;max-width:393px">Zodiac-animal pairing never appears as the primary engine — only Day Master, stems, branches and clashes. For a coworker instead of a partner, this same structure would drop intimacy-coded framing and lean toward working-dynamic language, same as the Vedic split.</p>
+      </div>
+
+    </div>
+
+    <div style="margin-top:36px;width:413px">
+      <div style="display:flex;align-items:baseline;gap:10px;margin-bottom:12px">
+        <span style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.14em;padding:3px 7px;border:1px solid rgba(18,21,28,.35);color:rgba(18,21,28,.6)">STATIC</span>
+        <span style="font-family:'IBM Plex Sans',sans-serif;font-size:13px;font-weight:500">4.22 · Compare Relationship Perspectives</span>
+      </div>
+      <div style="width:413px;height:872px;background:#14171f;border-radius:56px;padding:10px;box-shadow:0 30px 60px -30px rgba(18,21,28,.5)">
+        <div style="width:393px;height:852px;border-radius:47px;overflow:hidden;position:relative;background:#f4f1ea">
+          <div style="position:absolute;inset:0;overflow-y:auto;overflow-x:hidden">
+            <div style="height:59px;display:flex;align-items:flex-end;justify-content:space-between;padding:0 28px 8px;font-family:'IBM Plex Mono',monospace;font-size:11px;color:rgba(18,21,28,.85)"><span>9:41</span><span>5G ▮</span></div>
+            <div style="padding:10px 28px 0;display:flex;justify-content:space-between"><span style="font-size:17px;color:rgba(18,21,28,.55)">←</span><span style="font-family:'IBM Plex Mono',monospace;font-size:9.5px;letter-spacing:.14em;color:#8a6524;text-transform:uppercase">Compare relationship perspectives</span><span></span></div>
+            <div style="padding:16px 28px 0"><div style="font-family:'Cormorant Garamond',serif;font-weight:300;font-size:27px;line-height:1.15">You &amp; Sam, seen three ways</div></div>
+
+            <div style="margin:16px 28px 0;border:1px solid rgba(18,21,28,.85);background:#efece3;padding:15px 17px">
+              <div style="font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:.12em;color:#8a6524;text-transform:uppercase;margin-bottom:7px">Shared theme</div>
+              <p style="font-family:'IBM Plex Sans',sans-serif;font-size:13.5px;line-height:1.58;color:rgba(18,21,28,.82);margin:0">All three systems independently point to the same tension: your instinct to move fast runs into Sam's instinct to hold steady.</p>
+            </div>
+
+            <div style="margin:16px 28px 0">
+              <div style="display:grid;grid-template-columns:70px 1fr;gap:14px;padding:13px 0;border-top:1px solid rgba(18,21,28,.14)"><div style="font-family:'IBM Plex Mono',monospace;font-size:9.5px;color:rgba(18,21,28,.5)">WESTERN</div><p style="font-family:'IBM Plex Sans',sans-serif;font-size:13px;line-height:1.55;margin:0">Frames it through your Moon conjunct their Venus, squared by their Mars — warmth with an edge of impatience.</p></div>
+              <div style="display:grid;grid-template-columns:70px 1fr;gap:14px;padding:13px 0;border-top:1px solid rgba(18,21,28,.14)"><div style="font-family:'IBM Plex Mono',monospace;font-size:9.5px;color:rgba(18,21,28,.5)">VEDIC</div><p style="font-family:'IBM Plex Sans',sans-serif;font-size:13px;line-height:1.55;margin:0">Frames it through Tara and Bhakoot koota scores that reward stability over spontaneity — its own native factors, not Western's aspects relabeled.</p></div>
+              <div style="display:grid;grid-template-columns:70px 1fr;gap:14px;padding:13px 0;border-top:1px solid rgba(18,21,28,.14)"><div style="font-family:'IBM Plex Mono',monospace;font-size:9.5px;color:rgba(18,21,28,.5)">CHINESE</div><p style="font-family:'IBM Plex Sans',sans-serif;font-size:13px;line-height:1.55;margin:0">Frames it through your Zi/Wu branch clash — direct opposition that needs a mediating element, a different mechanism entirely.</p></div>
+            </div>
+
+            <div style="margin:18px 28px 0;border:1px solid rgba(217,173,99,.4);background:rgba(217,173,99,.08);padding:13px 15px">
+              <div style="font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:.12em;color:#8a6524;text-transform:uppercase;margin-bottom:6px">By design</div>
+              <p style="font-family:'IBM Plex Sans',sans-serif;font-size:12.5px;line-height:1.55;color:rgba(18,21,28,.68);margin:0">No averaged score, no "82% compatible." Three independent readings that happen to agree on the theme — perspective, not certainty.</p>
+            </div>
+            <div style="height:36px"></div>
+          </div>
+        </div>
+      </div>
+      <p style="font-family:'IBM Plex Sans',sans-serif;font-size:12.5px;line-height:1.6;color:rgba(18,21,28,.62);margin:14px 0 0;max-width:393px">Mirrors Compare Systems' structure from Pass 3, applied to relationships — same "shared theme + three native framings" pattern, so it reads as one feature family rather than a new idea.</p>
+    </div>
+  </section>
+
+  <section id="premium" style="padding:54px 0 20px;border-bottom:1px solid rgba(18,21,28,.16)">
+    <div style="display:grid;grid-template-columns:104px 1fr;gap:36px;margin-bottom:34px">
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.1em;color:rgba(18,21,28,.42);padding-top:12px">07</div>
+      <div>
+        <h2 style="font-family:'Cormorant Garamond',serif;font-weight:400;font-size:40px;line-height:1.05;letter-spacing:-.02em;margin:0 0 6px">Premium architecture</h2>
+        <p style="font-family:'IBM Plex Sans',sans-serif;font-size:12px;letter-spacing:.04em;text-transform:uppercase;color:rgba(18,21,28,.45);margin:0 0 22px">Premium unlocks depth. It does not remove the basic product.</p>
+      </div>
+    </div>
+
+    <div style="border:1px solid rgba(18,21,28,.85);margin-bottom:36px;max-width:1000px">
+      <div style="display:grid;grid-template-columns:140px 1fr 1fr;border-bottom:1px solid rgba(18,21,28,.85)">
+        <div style="padding:12px 16px"></div>
+        <div style="padding:12px 16px;font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:rgba(18,21,28,.5);border-left:1px solid rgba(18,21,28,.16)">Free</div>
+        <div style="padding:12px 16px;font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:#8a6524;border-left:1px solid rgba(18,21,28,.16)">Premium</div>
+      </div>
+      <div style="display:grid;grid-template-columns:140px 1fr 1fr;border-bottom:1px solid rgba(18,21,28,.14)">
+        <div style="padding:14px 16px;font-family:'IBM Plex Sans',sans-serif;font-size:13.5px;font-weight:500">Today</div>
+        <div style="padding:14px 16px;font-family:'IBM Plex Sans',sans-serif;font-size:12.5px;color:rgba(18,21,28,.72);border-left:1px solid rgba(18,21,28,.16)">Core daily reading, primary themes, basic astrological basis</div>
+        <div style="padding:14px 16px;font-family:'IBM Plex Sans',sans-serif;font-size:12.5px;color:rgba(18,21,28,.72);border-left:1px solid rgba(18,21,28,.16)">Deeper categories, extended history, Compare Systems depth</div>
+      </div>
+      <div style="display:grid;grid-template-columns:140px 1fr 1fr;border-bottom:1px solid rgba(18,21,28,.14)">
+        <div style="padding:14px 16px;font-family:'IBM Plex Sans',sans-serif;font-size:13.5px;font-weight:500">Compatibility</div>
+        <div style="padding:14px 16px;font-family:'IBM Plex Sans',sans-serif;font-size:12.5px;color:rgba(18,21,28,.72);border-left:1px solid rgba(18,21,28,.16)">Overview, primary connection &amp; friction, several dimensions, basic Today Together, up to 6 saved people</div>
+        <div style="padding:14px 16px;font-family:'IBM Plex Sans',sans-serif;font-size:12.5px;color:rgba(18,21,28,.72);border-left:1px solid rgba(18,21,28,.16)">Full report, all dimensions, synastry/Ashtakoota/BaZi detail, relationship timeline, Compare Systems, unlimited people</div>
+      </div>
+      <div style="display:grid;grid-template-columns:140px 1fr 1fr">
+        <div style="padding:14px 16px;font-family:'IBM Plex Sans',sans-serif;font-size:13.5px;font-weight:500">Chart</div>
+        <div style="padding:14px 16px;font-family:'IBM Plex Sans',sans-serif;font-size:12.5px;color:rgba(18,21,28,.72);border-left:1px solid rgba(18,21,28,.16)">Big Three, major placements, usable natal overview</div>
+        <div style="padding:14px 16px;font-family:'IBM Plex Sans',sans-serif;font-size:12.5px;color:rgba(18,21,28,.72);border-left:1px solid rgba(18,21,28,.16)">Advanced interpretation, deeper aspects/houses, advanced native-system analysis, dasha timing</div>
+      </div>
+    </div>
+
+    <div style="display:flex;gap:36px;flex-wrap:wrap;align-items:flex-start">
+
+      <div style="width:413px">
+        <div style="display:flex;align-items:baseline;gap:10px;margin-bottom:12px">
+          <span style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.14em;padding:3px 7px;border:1px solid rgba(18,21,28,.35);color:rgba(18,21,28,.6)">STATIC</span>
+          <span style="font-family:'IBM Plex Sans',sans-serif;font-size:13px;font-weight:500">4.23 · Contextual lock, in place</span>
+        </div>
+        <div style="width:413px;height:872px;background:#14171f;border-radius:56px;padding:10px;box-shadow:0 30px 60px -30px rgba(18,21,28,.5)">
+          <div style="width:393px;height:852px;border-radius:47px;overflow:hidden;position:relative;background:#f4f1ea">
+            <div style="position:absolute;inset:0;overflow-y:auto;overflow-x:hidden">
+              <div style="height:59px;display:flex;align-items:flex-end;justify-content:space-between;padding:0 28px 8px;font-family:'IBM Plex Mono',monospace;font-size:11px;color:rgba(18,21,28,.85)"><span>9:41</span><span>5G ▮</span></div>
+              <div style="padding:10px 28px 0"><span style="font-size:17px;color:rgba(18,21,28,.55)">←</span></div>
+              <div style="padding:14px 28px 0"><div style="font-family:'Cormorant Garamond',serif;font-weight:300;font-size:26px">You &amp; Sam</div></div>
+              <div style="margin:16px 28px 0">
+                <div style="font-family:'IBM Plex Mono',monospace;font-size:9.5px;letter-spacing:.16em;text-transform:uppercase;color:#8a6524;margin-bottom:8px">Primary connection</div>
+                <p style="font-family:Lora,serif;font-size:15.5px;line-height:1.62;color:rgba(18,21,28,.84);margin:0 0 16px">Your Moon meets their Venus almost exactly — an easy, affectionate warmth that shows up as the first thing people notice about you two together.</p>
+                <div style="font-family:'IBM Plex Mono',monospace;font-size:9.5px;letter-spacing:.16em;text-transform:uppercase;color:#8a6524;margin-bottom:8px">Primary friction</div>
+                <p style="font-family:Lora,serif;font-size:15.5px;line-height:1.62;color:rgba(18,21,28,.84);margin:0 0 20px">Their Mars squares your Saturn — you slow things down right when they want to move.</p>
+              </div>
+              <div style="margin:0 28px;position:relative;border:1px solid rgba(18,21,28,.2);overflow:hidden">
+                <div style="padding:20px 20px 60px;filter:blur(3px);opacity:.5;user-select:none">
+                  <div style="font-family:'IBM Plex Sans',sans-serif;font-size:13px;font-weight:500;margin-bottom:8px">How you handle conflict</div>
+                  <div style="font-family:'IBM Plex Sans',sans-serif;font-size:12.5px;color:rgba(18,21,28,.6);line-height:1.5">Mars-Saturn contacts in synastry tend to play out as one partner braking while the other accelerates. In your chart specifically...</div>
+                  <div style="margin-top:14px;font-family:'IBM Plex Sans',sans-serif;font-size:13px;font-weight:500">Long-term timing</div>
+                </div>
+                <div style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;background:linear-gradient(180deg,rgba(244,241,234,0),rgba(244,241,234,.7) 40%,rgba(244,241,234,.95))">
+                  <div style="font-size:20px;color:#8a6524;margin-bottom:8px">◐</div>
+                  <div style="font-family:'Cormorant Garamond',serif;font-size:20px;text-align:center;padding:0 30px">Go deeper into how you handle conflict</div>
+                  <div style="margin-top:14px;padding:10px 22px;border:1px solid #12151c;font-family:'IBM Plex Sans',sans-serif;font-size:13px;cursor:pointer">Unlock full report</div>
+                </div>
+              </div>
+              <div style="height:40px"></div>
+            </div>
+          </div>
+        </div>
+        <p style="font-family:'IBM Plex Sans',sans-serif;font-size:12.5px;line-height:1.6;color:rgba(18,21,28,.62);margin:14px 0 0;max-width:393px">The free overview is a complete thought, not a teaser sentence — the lock names exactly what's underneath ("how you handle conflict"), never "PAY TO SEE YOUR COMPATIBILITY."</p>
+      </div>
+
+      <div style="width:413px">
+        <div style="display:flex;align-items:baseline;gap:10px;margin-bottom:12px">
+          <span style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.14em;padding:3px 7px;border:1px solid rgba(18,21,28,.35);color:rgba(18,21,28,.6)">STATIC</span>
+          <span style="font-family:'IBM Plex Sans',sans-serif;font-size:13px;font-weight:500">4.24 · Full paywall</span>
+        </div>
+        <div style="width:413px;height:872px;background:#14171f;border-radius:56px;padding:10px;box-shadow:0 30px 60px -30px rgba(18,21,28,.5)">
+          <div style="width:393px;height:852px;border-radius:47px;overflow:hidden;position:relative;background:#12151c">
+            <div style="position:absolute;inset:0;overflow-y:auto;overflow-x:hidden">
+              <div style="height:59px;display:flex;align-items:flex-end;justify-content:space-between;padding:0 28px 8px;font-family:'IBM Plex Mono',monospace;font-size:11px;color:rgba(244,241,234,.85)"><span>9:41</span><span>5G ▮</span></div>
+              <div style="padding:10px 28px 0;text-align:right"><span style="font-size:15px;color:rgba(244,241,234,.5)">✕</span></div>
+              <div style="padding:16px 28px 0;text-align:center">
+                <div style="font-family:'IBM Plex Mono',monospace;font-size:9.5px;letter-spacing:.18em;text-transform:uppercase;color:#d9ad63;margin-bottom:8px">Eclipse Premium</div>
+                <div style="font-family:'Cormorant Garamond',serif;font-weight:300;font-size:32px;color:#f4f1ea;line-height:1.1">All the depth,<br>none of the guesswork</div>
+              </div>
+              <div style="margin:22px 28px 0">
+                <div style="display:flex;gap:12px;padding:11px 0;border-top:1px solid rgba(244,241,234,.16)"><span style="color:#d9ad63">✓</span><span style="font-family:'IBM Plex Sans',sans-serif;font-size:13.5px;color:rgba(244,241,234,.85)">Full compatibility reports, every native system</span></div>
+                <div style="display:flex;gap:12px;padding:11px 0;border-top:1px solid rgba(244,241,234,.16)"><span style="color:#d9ad63">✓</span><span style="font-family:'IBM Plex Sans',sans-serif;font-size:13.5px;color:rgba(244,241,234,.85)">Compare Systems &amp; Compare Relationship Perspectives</span></div>
+                <div style="display:flex;gap:12px;padding:11px 0;border-top:1px solid rgba(244,241,234,.16)"><span style="color:#d9ad63">✓</span><span style="font-family:'IBM Plex Sans',sans-serif;font-size:13.5px;color:rgba(244,241,234,.85)">Unlimited saved people</span></div>
+                <div style="display:flex;gap:12px;padding:11px 0;border-top:1px solid rgba(244,241,234,.16)"><span style="color:#d9ad63">✓</span><span style="font-family:'IBM Plex Sans',sans-serif;font-size:13.5px;color:rgba(244,241,234,.85)">Ask the Stars, unlimited questions</span></div>
+                <div style="display:flex;gap:12px;padding:11px 0;border-top:1px solid rgba(244,241,234,.16);border-bottom:1px solid rgba(244,241,234,.16)"><span style="color:#d9ad63">✓</span><span style="font-family:'IBM Plex Sans',sans-serif;font-size:13.5px;color:rgba(244,241,234,.85)">Dasha timing, advanced natal detail, calendar depth</span></div>
+              </div>
+              <div style="margin:20px 28px 0;border:1px solid #d9ad63;padding:14px 16px;display:flex;justify-content:space-between;align-items:center">
+                <div><div style="font-family:'IBM Plex Sans',sans-serif;font-size:14px;font-weight:500;color:#f4f1ea">Annual</div><div style="font-family:'IBM Plex Sans',sans-serif;font-size:11px;color:rgba(244,241,234,.55);margin-top:2px">7-day free trial, then $47.99/yr</div></div>
+                <div style="font-family:'IBM Plex Mono',monospace;font-size:9px;color:#d9ad63;letter-spacing:.08em">PROTOTYPE PRICE</div>
+              </div>
+              <div style="margin:8px 28px 0;border:1px solid rgba(244,241,234,.25);padding:14px 16px;display:flex;justify-content:space-between;align-items:center"><div style="font-family:'IBM Plex Sans',sans-serif;font-size:14px;color:rgba(244,241,234,.85)">Monthly</div><div style="font-family:'IBM Plex Sans',sans-serif;font-size:11.5px;color:rgba(244,241,234,.55)">$6.99/mo</div></div>
+              <div style="margin:20px 28px 0;text-align:center;padding:13px 0;background:#d9ad63;color:#12151c;font-family:'IBM Plex Sans',sans-serif;font-size:14px;font-weight:500">Start free trial</div>
+              <div style="margin-top:12px;text-align:center;font-family:'IBM Plex Sans',sans-serif;font-size:12px;color:rgba(244,241,234,.5)">Restore purchases</div>
+              <div style="height:36px"></div>
+            </div>
+          </div>
+        </div>
+        <p style="font-family:'IBM Plex Sans',sans-serif;font-size:12.5px;line-height:1.6;color:rgba(18,21,28,.62);margin:14px 0 0;max-width:393px">Ordinary close button, no countdown, no guilt copy, clear per-cycle pricing labeled as prototype. Restore purchases is one tap away, not buried.</p>
+      </div>
+
+    </div>
+  </section>
+
+  <section id="sharing" style="padding:54px 0 20px;border-bottom:1px solid rgba(18,21,28,.16)">
+    <div style="display:grid;grid-template-columns:104px 1fr;gap:36px;margin-bottom:34px">
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.1em;color:rgba(18,21,28,.42);padding-top:12px">08</div>
+      <div>
+        <h2 style="font-family:'Cormorant Garamond',serif;font-weight:400;font-size:40px;line-height:1.05;letter-spacing:-.02em;margin:0 0 6px">Sharing system</h2>
+        <p style="font-family:'IBM Plex Sans',sans-serif;font-size:12px;letter-spacing:.04em;text-transform:uppercase;color:rgba(18,21,28,.45);margin:0 0 22px">Interpretation, never source birth data — one coherent card family</p>
+      </div>
+    </div>
+
+    <div style="display:flex;gap:28px;flex-wrap:wrap;align-items:flex-start">
+
+      <div style="width:270px">
+        <div style="font-family:'IBM Plex Sans',sans-serif;font-size:13px;font-weight:500;margin-bottom:10px">4.25 · Today — portrait story</div>
+        <div style="width:270px;height:480px;background:#12151c;border:1px solid rgba(18,21,28,.85);padding:26px 22px;display:flex;flex-direction:column;justify-content:space-between">
+          <div style="font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:.16em;color:#d9ad63;text-transform:uppercase">Eclipse · Aug 10</div>
+          <div>
+            <div style="font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:.14em;color:rgba(244,241,234,.5);text-transform:uppercase;margin-bottom:10px">Today's theme</div>
+            <div style="font-family:'Cormorant Garamond',serif;font-weight:300;font-size:26px;line-height:1.18;color:#f4f1ea">Say the direct thing before the vague one.</div>
+          </div>
+          <div style="font-family:'IBM Plex Mono',monospace;font-size:8.5px;letter-spacing:.1em;color:rgba(244,241,234,.4)">GET YOUR READING → ECLIPSE APP</div>
+        </div>
+      </div>
+
+      <div style="width:270px">
+        <div style="font-family:'IBM Plex Sans',sans-serif;font-size:13px;font-weight:500;margin-bottom:10px">4.26 · Roast Today — portrait story</div>
+        <div style="width:270px;height:480px;background:#12151c;border:1px solid rgba(18,21,28,.85);padding:26px 22px;display:flex;flex-direction:column;justify-content:space-between">
+          <div style="font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:.16em;color:#d9ad63;text-transform:uppercase">Eclipse Roast · Aug 10</div>
+          <div>
+            <div style="font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:.14em;color:rgba(244,241,234,.5);text-transform:uppercase;margin-bottom:10px">Today, unfiltered</div>
+            <div style="font-family:'Cormorant Garamond',serif;font-weight:300;font-size:25px;line-height:1.18;color:#f4f1ea">Mercury brought paperwork. Your emotions brought a flamethrower.</div>
+          </div>
+          <div style="font-family:'IBM Plex Mono',monospace;font-size:8.5px;letter-spacing:.1em;color:rgba(244,241,234,.4)">GET YOUR READING → ECLIPSE APP</div>
+        </div>
+      </div>
+
+      <div style="width:270px">
+        <div style="font-family:'IBM Plex Sans',sans-serif;font-size:13px;font-weight:500;margin-bottom:10px">4.27 · Compatibility — square, privacy-safe</div>
+        <div style="width:270px;height:270px;background:#f4f1ea;border:1px solid #12151c;padding:22px;display:flex;flex-direction:column;justify-content:space-between">
+          <div style="font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:.14em;color:#8a6524;text-transform:uppercase">You &amp; S. · Compatibility</div>
+          <div style="font-family:'Cormorant Garamond',serif;font-weight:300;font-size:22px;line-height:1.2;color:#12151c">An easy, affectionate warmth — with a fast/slow tension worth naming.</div>
+          <div style="font-family:'IBM Plex Mono',monospace;font-size:8px;letter-spacing:.08em;color:rgba(18,21,28,.4)">ECLIPSE APP</div>
+        </div>
+        <p style="font-family:'IBM Plex Sans',sans-serif;font-size:11.5px;line-height:1.5;color:rgba(18,21,28,.55);margin-top:8px;max-width:270px">Sam appears only as "S." — no birth date, time or location for either person ever renders on a card.</p>
+      </div>
+
+      <div style="width:270px">
+        <div style="font-family:'IBM Plex Sans',sans-serif;font-size:13px;font-weight:500;margin-bottom:10px">4.28 · Compare Systems — general share</div>
+        <div style="width:270px;height:270px;background:#f4f1ea;border:1px solid #12151c;padding:22px;display:flex;flex-direction:column;justify-content:space-between">
+          <div style="font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:.14em;color:#8a6524;text-transform:uppercase">Compare Systems</div>
+          <div style="font-family:'Cormorant Garamond',serif;font-weight:300;font-size:22px;line-height:1.2;color:#12151c">Western, Vedic and Chinese all read today as a communication day — for different reasons.</div>
+          <div style="font-family:'IBM Plex Mono',monospace;font-size:8px;letter-spacing:.08em;color:rgba(18,21,28,.4)">ECLIPSE APP</div>
+        </div>
+      </div>
+
+      <div style="width:270px">
+        <div style="font-family:'IBM Plex Sans',sans-serif;font-size:13px;font-weight:500;margin-bottom:10px">4.29 · Share sheet — format &amp; privacy</div>
+        <div style="width:270px;border:1px solid #12151c;padding:20px 20px 22px;background:#f4f1ea">
+          <div style="font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:.12em;color:rgba(18,21,28,.5);text-transform:uppercase;margin-bottom:10px">Format</div>
+          <div style="display:flex;gap:6px;margin-bottom:16px">
+            <div style="flex:1;text-align:center;padding:7px 0;border:1px solid #12151c;background:#12151c;color:#f4f1ea;font-family:'IBM Plex Sans',sans-serif;font-size:11px">Story</div>
+            <div style="flex:1;text-align:center;padding:7px 0;border:1px solid rgba(18,21,28,.3);font-family:'IBM Plex Sans',sans-serif;font-size:11px">Square</div>
+            <div style="flex:1;text-align:center;padding:7px 0;border:1px solid rgba(18,21,28,.3);font-family:'IBM Plex Sans',sans-serif;font-size:11px">General</div>
+          </div>
+          <div style="display:flex;justify-content:space-between;padding:9px 0;border-top:1px solid rgba(18,21,28,.14)"><span style="font-family:'IBM Plex Sans',sans-serif;font-size:12.5px">Show my name</span><span style="font-family:'IBM Plex Mono',monospace;font-size:9.5px;padding:3px 7px;border:1px solid rgba(18,21,28,.3);color:rgba(18,21,28,.5)">OFF</span></div>
+          <div style="display:flex;flex-direction:column;gap:8px;margin-top:14px">
+            <div style="text-align:center;padding:9px 0;border:1px solid #12151c;font-family:'IBM Plex Sans',sans-serif;font-size:13px">Save image</div>
+            <div style="text-align:center;padding:9px 0;border:1px solid rgba(18,21,28,.3);font-family:'IBM Plex Sans',sans-serif;font-size:13px">Share via…</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <section id="widgets" style="padding:54px 0 20px;border-bottom:1px solid rgba(18,21,28,.16)">
+    <div style="display:grid;grid-template-columns:104px 1fr;gap:36px;margin-bottom:34px">
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.1em;color:rgba(18,21,28,.42);padding-top:12px">09</div>
+      <div>
+        <h2 style="font-family:'Cormorant Garamond',serif;font-weight:400;font-size:40px;line-height:1.05;letter-spacing:-.02em;margin:0 0 6px">Widgets</h2>
+        <p style="font-family:'IBM Plex Sans',sans-serif;font-size:12px;letter-spacing:.04em;text-transform:uppercase;color:rgba(18,21,28,.45);margin:0 0 22px">Four widgets, glanceable — no full horoscope squeezed in</p>
+      </div>
+    </div>
+
+    <div style="display:flex;gap:24px;flex-wrap:wrap;align-items:flex-start">
+
+      <div>
+        <div style="font-family:'IBM Plex Sans',sans-serif;font-size:13px;font-weight:500;margin-bottom:8px">4.30 · Today — small</div>
+        <div style="width:158px;height:158px;background:#f4f1ea;border:1px solid #12151c;border-radius:22px;padding:16px;display:flex;flex-direction:column;justify-content:space-between">
+          <div style="font-family:'IBM Plex Mono',monospace;font-size:8px;letter-spacing:.1em;color:#8a6524;text-transform:uppercase">Today</div>
+          <div style="font-family:'Cormorant Garamond',serif;font-weight:400;font-size:16px;line-height:1.25;color:#12151c">Say the direct thing before the vague one.</div>
+        </div>
+        <p style="font-family:'IBM Plex Sans',sans-serif;font-size:11px;line-height:1.5;color:rgba(18,21,28,.55);margin-top:8px;max-width:158px">Tap → Today. Locked device: shows the line, no personal chrome.</p>
+      </div>
+
+      <div>
+        <div style="font-family:'IBM Plex Sans',sans-serif;font-size:13px;font-weight:500;margin-bottom:8px">4.31 · Sky / Moon — medium</div>
+        <div style="width:338px;height:158px;background:#12151c;border:1px solid #12151c;border-radius:22px;padding:18px 20px;display:flex;align-items:center;gap:20px">
+          <div style="font-family:'Cormorant Garamond',serif;font-size:44px;color:#d9ad63">◐</div>
+          <div>
+            <div style="font-family:'IBM Plex Mono',monospace;font-size:8px;letter-spacing:.1em;color:rgba(244,241,234,.5);text-transform:uppercase;margin-bottom:4px">Waning gibbous · Aquarius</div>
+            <div style="font-family:'IBM Plex Sans',sans-serif;font-size:14px;color:#f4f1ea;line-height:1.4">Next: Full Moon in 2 days, conjunct your Sun</div>
+          </div>
+        </div>
+        <p style="font-family:'IBM Plex Sans',sans-serif;font-size:11px;line-height:1.5;color:rgba(18,21,28,.55);margin-top:8px;max-width:338px">Tap → Sky. Current phase + the one next meaningful event, not a full transit list.</p>
+      </div>
+
+      <div>
+        <div style="font-family:'IBM Plex Sans',sans-serif;font-size:13px;font-weight:500;margin-bottom:8px">4.32 · Circle — medium</div>
+        <div style="width:338px;height:158px;background:#f4f1ea;border:1px solid #12151c;border-radius:22px;padding:18px 20px;display:flex;flex-direction:column;justify-content:space-between">
+          <div style="font-family:'IBM Plex Mono',monospace;font-size:8px;letter-spacing:.1em;color:#8a6524;text-transform:uppercase">Today Together · Sam</div>
+          <div style="font-family:'Cormorant Garamond',serif;font-weight:400;font-size:17px;line-height:1.3;color:#12151c">Your Moons are in close contact — an easy day to be direct with each other.</div>
+        </div>
+        <p style="font-family:'IBM Plex Sans',sans-serif;font-size:11px;line-height:1.5;color:rgba(18,21,28,.55);margin-top:8px;max-width:338px">Tap → Today Together with Sam. Shows whichever saved person the user pinned; no name shown on lock screen variant.</p>
+      </div>
+
+      <div>
+        <div style="font-family:'IBM Plex Sans',sans-serif;font-size:13px;font-weight:500;margin-bottom:8px">4.33 · Roast — small</div>
+        <div style="width:158px;height:158px;background:#12151c;border:1px solid #12151c;border-radius:22px;padding:16px;display:flex;flex-direction:column;justify-content:space-between">
+          <div style="font-family:'IBM Plex Mono',monospace;font-size:8px;letter-spacing:.1em;color:#d9ad63;text-transform:uppercase">Roast</div>
+          <div style="font-family:'Cormorant Garamond',serif;font-weight:400;font-size:15px;line-height:1.3;color:#f4f1ea">Mercury brought paperwork. Your emotions brought a flamethrower.</div>
+        </div>
+        <p style="font-family:'IBM Plex Sans',sans-serif;font-size:11px;line-height:1.5;color:rgba(18,21,28,.55);margin-top:8px;max-width:158px">Only shown if Roast is the user's active voice — otherwise Today (4.30) fills this slot.</p>
+      </div>
+
+      <div>
+        <div style="font-family:'IBM Plex Sans',sans-serif;font-size:13px;font-weight:500;margin-bottom:8px">4.34 · Lock screen — Today (circular)</div>
+        <div style="width:158px;height:158px;display:flex;align-items:center;justify-content:center">
+          <div style="width:130px;height:130px;border-radius:50%;background:rgba(20,20,20,.5);border:1px solid rgba(255,255,255,.2);display:flex;align-items:center;justify-content:center;flex-direction:column;gap:4px">
+            <div style="font-family:'Cormorant Garamond',serif;font-size:22px;color:#fff">☉</div>
+            <div style="font-family:'IBM Plex Sans',sans-serif;font-size:9px;color:rgba(255,255,255,.8);text-align:center;padding:0 10px;line-height:1.2">Direct today</div>
+          </div>
+        </div>
+        <p style="font-family:'IBM Plex Sans',sans-serif;font-size:11px;line-height:1.5;color:rgba(18,21,28,.55);margin-top:8px;max-width:158px">Glyph + a two-word gist only — the lock-screen format caps what fits and what's private.</p>
+      </div>
+
+    </div>
+  </section>
+
+  <section id="states" style="padding:54px 0 20px;border-bottom:1px solid rgba(18,21,28,.16)">
+    <div style="display:grid;grid-template-columns:104px 1fr;gap:36px;margin-bottom:34px">
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.1em;color:rgba(18,21,28,.42);padding-top:12px">10</div>
+      <div>
+        <h2 style="font-family:'Cormorant Garamond',serif;font-weight:400;font-size:40px;line-height:1.05;letter-spacing:-.02em;margin:0 0 6px">One state language, everywhere</h2>
+        <p style="font-family:'IBM Plex Sans',sans-serif;font-size:12px;letter-spacing:.04em;text-transform:uppercase;color:rgba(18,21,28,.45);margin:0 0 22px">Loading, empty, missing data, offline, error, locked, permission — one grammar</p>
+        <p style="font-family:Lora,serif;font-size:16px;line-height:1.7;color:rgba(18,21,28,.84);max-width:70ch;margin:0">Every state below uses the same shell: a centered glyph (never a spinner icon that implies malfunction), one Cormorant headline, one Plex Sans sentence, and — where relevant — a single action. No screen invents its own error illustration.</p>
+      </div>
+    </div>
+
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:rgba(18,21,28,.2);border:1px solid rgba(18,21,28,.2);max-width:1400px">
+
+      <div style="background:#f4f1ea;padding:26px 22px;min-height:190px;display:flex;flex-direction:column;gap:10px">
+        <div style="font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:.1em;color:#8a6524;text-transform:uppercase">Loading · first calculation</div>
+        <div style="font-size:22px">◐</div>
+        <div style="font-family:'Cormorant Garamond',serif;font-size:18px;line-height:1.2">Building your chart</div>
+        <div style="font-family:'IBM Plex Sans',sans-serif;font-size:11.5px;color:rgba(18,21,28,.55);line-height:1.5">First time only — usually a few seconds.</div>
+      </div>
+      <div style="background:#f4f1ea;padding:26px 22px;min-height:190px;display:flex;flex-direction:column;gap:10px">
+        <div style="font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:.1em;color:#8a6524;text-transform:uppercase">Empty · no saved people</div>
+        <div style="font-size:22px">◍</div>
+        <div style="font-family:'Cormorant Garamond',serif;font-size:18px;line-height:1.2">Circle is empty</div>
+        <div style="font-family:'IBM Plex Sans',sans-serif;font-size:11.5px;color:rgba(18,21,28,.55);line-height:1.5">Add someone to see Today Together and compatibility.</div>
+        <div style="font-family:'IBM Plex Sans',sans-serif;font-size:12px;color:#8a6524;margin-top:auto">Add a person →</div>
+      </div>
+      <div style="background:#f4f1ea;padding:26px 22px;min-height:190px;display:flex;flex-direction:column;gap:10px">
+        <div style="font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:.1em;color:#8a6524;text-transform:uppercase">Missing data · birth time</div>
+        <div style="font-size:22px">◑</div>
+        <div style="font-family:'Cormorant Garamond',serif;font-size:18px;line-height:1.2">House &amp; Rising unavailable</div>
+        <div style="font-family:'IBM Plex Sans',sans-serif;font-size:11.5px;color:rgba(18,21,28,.55);line-height:1.5">No birth time on file. Sun, Moon and most placements still show.</div>
+        <div style="font-family:'IBM Plex Sans',sans-serif;font-size:12px;color:#8a6524;margin-top:auto">Add a time →</div>
+      </div>
+      <div style="background:#f4f1ea;padding:26px 22px;min-height:190px;display:flex;flex-direction:column;gap:10px">
+        <div style="font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:.1em;color:#8a6524;text-transform:uppercase">Offline · cached reading</div>
+        <div style="font-size:22px">◒</div>
+        <div style="font-family:'Cormorant Garamond',serif;font-size:18px;line-height:1.2">Showing yesterday's reading</div>
+        <div style="font-family:'IBM Plex Sans',sans-serif;font-size:11.5px;color:rgba(18,21,28,.55);line-height:1.5">Available offline. Today's will refresh once you're back online.</div>
+      </div>
+
+      <div style="background:#f4f1ea;padding:26px 22px;min-height:190px;display:flex;flex-direction:column;gap:10px">
+        <div style="font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:.1em;color:#8a6524;text-transform:uppercase">Calculation · unavailable</div>
+        <div style="font-size:22px">○</div>
+        <div style="font-family:'Cormorant Garamond',serif;font-size:18px;line-height:1.2">Dasha dates unavailable</div>
+        <div style="font-family:'IBM Plex Sans',sans-serif;font-size:11.5px;color:rgba(18,21,28,.55);line-height:1.5">A birth time is required for Vimshottari timing — we won't estimate it.</div>
+      </div>
+      <div style="background:#f4f1ea;padding:26px 22px;min-height:190px;display:flex;flex-direction:column;gap:10px">
+        <div style="font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:.1em;color:#8a6524;text-transform:uppercase">Premium · locked depth</div>
+        <div style="font-size:22px">◐</div>
+        <div style="font-family:'Cormorant Garamond',serif;font-size:18px;line-height:1.2">Subscription expired</div>
+        <div style="font-family:'IBM Plex Sans',sans-serif;font-size:11.5px;color:rgba(18,21,28,.55);line-height:1.5">Your free tier still works fully. Renew to bring back full reports.</div>
+        <div style="font-family:'IBM Plex Sans',sans-serif;font-size:12px;color:#8a6524;margin-top:auto">Renew →</div>
+      </div>
+      <div style="background:#f4f1ea;padding:26px 22px;min-height:190px;display:flex;flex-direction:column;gap:10px">
+        <div style="font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:.1em;color:#8a6524;text-transform:uppercase">Permission · notifications</div>
+        <div style="font-size:22px">◑</div>
+        <div style="font-family:'Cormorant Garamond',serif;font-size:18px;line-height:1.2">Notifications are off</div>
+        <div style="font-family:'IBM Plex Sans',sans-serif;font-size:11.5px;color:rgba(18,21,28,.55);line-height:1.5">Turn them on in Settings to get your morning reading automatically.</div>
+        <div style="font-family:'IBM Plex Sans',sans-serif;font-size:12px;color:#8a6524;margin-top:auto">Open Settings →</div>
+      </div>
+      <div style="background:#f4f1ea;padding:26px 22px;min-height:190px;display:flex;flex-direction:column;gap:10px">
+        <div style="font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:.1em;color:#8a6524;text-transform:uppercase">Ask · no history</div>
+        <div style="font-size:22px">✧</div>
+        <div style="font-family:'Cormorant Garamond',serif;font-size:18px;line-height:1.2">No questions yet</div>
+        <div style="font-family:'IBM Plex Sans',sans-serif;font-size:11.5px;color:rgba(18,21,28,.55);line-height:1.5">Ask something specific — Ask the Stars answers from your actual chart.</div>
+      </div>
+
+    </div>
+    <p style="font-family:'IBM Plex Sans',sans-serif;font-size:12.5px;line-height:1.6;color:rgba(18,21,28,.62);margin:16px 0 0;max-width:80ch">Deterministic natal data (Sun/Moon/major placements) is never blocked by network state — only Ask the Stars genuinely requires connectivity, and only that state says so.</p>
+  </section>
+
+  <section id="review" style="padding:54px 0 30px">
+    <div style="display:grid;grid-template-columns:104px 1fr;gap:36px;margin-bottom:34px">
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.1em;color:rgba(18,21,28,.42);padding-top:12px">11</div>
+      <div>
+        <h2 style="font-family:'Cormorant Garamond',serif;font-weight:400;font-size:40px;line-height:1.05;letter-spacing:-.02em;margin:0 0 6px">Final coherence review</h2>
+        <p style="font-family:'IBM Plex Sans',sans-serif;font-size:12px;letter-spacing:.04em;text-transform:uppercase;color:rgba(18,21,28,.45);margin:0 0 22px">Navigation · accessibility · light/dark · Android</p>
+      </div>
+    </div>
+
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:40px;max-width:1300px;margin-bottom:40px">
+      <div>
+        <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.14em;color:#8a6524;text-transform:uppercase;margin-bottom:10px">Navigation — recommendation: keep five tabs</div>
+        <p style="font-family:Lora,serif;font-size:15.5px;line-height:1.66;color:rgba(18,21,28,.82);margin:0 0 12px">Today / Circle / Sky / Chart / Ask still cover the product's real destinations. Calendar nests inside Sky (it's the same "what's happening astronomically" question at a different zoom level); Profile hangs off a header avatar rather than taking a tab, since it's visited far less often than any of the five. Ask keeps its tab — it's a distinct input mode, not a feature of another tab.</p>
+        <div style="border:1px solid rgba(18,21,28,.85);background:#efece3;padding:14px 16px;margin-top:14px">
+          <div style="font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:.1em;color:#8a6524;text-transform:uppercase;margin-bottom:6px">Alternative considered — 6th tab for Calendar</div>
+          <p style="font-family:'IBM Plex Sans',sans-serif;font-size:12.5px;line-height:1.58;color:rgba(18,21,28,.7);margin:0">Tradeoff: a dedicated Calendar tab makes it more discoverable and gives it equal footing with Sky, but iOS tab bars degrade past five items and Calendar's content already overlaps heavily with Sky's transit/lunation material — splitting them risks two half-features instead of one strong one. Not recommended unless usage data shows Calendar needs standalone weight Sky can't carry.</p>
+        </div>
+      </div>
+      <div>
+        <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.14em;color:#8a6524;text-transform:uppercase;margin-bottom:10px">Accessibility audit</div>
+        <div style="border-top:1px solid rgba(18,21,28,.85)">
+          <div style="display:grid;grid-template-columns:150px 1fr;gap:14px;padding:10px 0;border-bottom:1px solid rgba(18,21,28,.14)"><div style="font-family:'IBM Plex Sans',sans-serif;font-size:12.5px;font-weight:500">Dynamic Type</div><div style="font-family:'IBM Plex Sans',sans-serif;font-size:12.5px;color:rgba(18,21,28,.68)">All sizes are relative; card/table layouts reflow to single-column past accessibility text sizes.</div></div>
+          <div style="display:grid;grid-template-columns:150px 1fr;gap:14px;padding:10px 0;border-bottom:1px solid rgba(18,21,28,.14)"><div style="font-family:'IBM Plex Sans',sans-serif;font-size:12.5px;font-weight:500">VoiceOver</div><div style="font-family:'IBM Plex Sans',sans-serif;font-size:12.5px;color:rgba(18,21,28,.68)">Every SVG (chart wheels, coordinate rails, nakshatra bands, element bars) carries a full-sentence aria-label — shown throughout Pass 3 §01–04 and here in §01, §06.</div></div>
+          <div style="display:grid;grid-template-columns:150px 1fr;gap:14px;padding:10px 0;border-bottom:1px solid rgba(18,21,28,.14)"><div style="font-family:'IBM Plex Sans',sans-serif;font-size:12.5px;font-weight:500">Reduce Motion</div><div style="font-family:'IBM Plex Sans',sans-serif;font-size:12.5px;color:rgba(18,21,28,.68)">All entrance/keyframe animation compresses to 0.12s under the media query set in Pass 3's helmet.</div></div>
+          <div style="display:grid;grid-template-columns:150px 1fr;gap:14px;padding:10px 0;border-bottom:1px solid rgba(18,21,28,.14)"><div style="font-family:'IBM Plex Sans',sans-serif;font-size:12.5px;font-weight:500">Differentiate w/o Color</div><div style="font-family:'IBM Plex Sans',sans-serif;font-size:12.5px;color:rgba(18,21,28,.68)">Calendar tiers use shape (filled/ring/tick), not color, as primary signal (§01). Notification categories use icon + label, never a color key alone.</div></div>
+          <div style="display:grid;grid-template-columns:150px 1fr;gap:14px;padding:10px 0;border-bottom:1px solid rgba(18,21,28,.14)"><div style="font-family:'IBM Plex Sans',sans-serif;font-size:12.5px;font-weight:500">Touch targets</div><div style="font-family:'IBM Plex Sans',sans-serif;font-size:12.5px;color:rgba(18,21,28,.68)">All tappable rows and chips meet 44pt minimum height even where visual padding reads tighter.</div></div>
+          <div style="display:grid;grid-template-columns:150px 1fr;gap:14px;padding:10px 0"><div style="font-family:'IBM Plex Sans',sans-serif;font-size:12.5px;font-weight:500">Share-card readability</div><div style="font-family:'IBM Plex Sans',sans-serif;font-size:12.5px;color:rgba(18,21,28,.68)">Cards use the same 3:1-minimum ink/paper contrast as in-app text, never a decorative low-contrast overlay.</div></div>
+        </div>
+      </div>
+    </div>
+
+    <div style="margin-bottom:40px">
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.14em;color:#8a6524;text-transform:uppercase;margin-bottom:14px">Light / Dark completion — difficult cases</div>
+      <div style="display:flex;gap:20px;flex-wrap:wrap">
+        <div style="width:220px;height:150px;background:#f4f1ea;border:1px solid #12151c;padding:14px;display:flex;flex-direction:column;justify-content:space-between"><div style="font-family:'IBM Plex Mono',monospace;font-size:8px;letter-spacing:.1em;color:#8a6524;text-transform:uppercase">Calendar · light</div><div style="display:flex;gap:6px"><div style="width:6px;height:6px;border-radius:50%;background:#8a6524"></div><div style="width:6px;height:6px;border-radius:50%;border:1px solid rgba(18,21,28,.45)"></div><div style="width:9px;height:1px;background:rgba(18,21,28,.3);margin-top:3px"></div></div><div style="font-family:'IBM Plex Sans',sans-serif;font-size:11px;color:rgba(18,21,28,.6)">Marks read on paper</div></div>
+        <div style="width:220px;height:150px;background:#12151c;border:1px solid #12151c;padding:14px;display:flex;flex-direction:column;justify-content:space-between"><div style="font-family:'IBM Plex Mono',monospace;font-size:8px;letter-spacing:.1em;color:#d9ad63;text-transform:uppercase">Calendar · dark</div><div style="display:flex;gap:6px"><div style="width:6px;height:6px;border-radius:50%;background:#d9ad63"></div><div style="width:6px;height:6px;border-radius:50%;border:1px solid rgba(244,241,234,.45)"></div><div style="width:9px;height:1px;background:rgba(244,241,234,.3);margin-top:3px"></div></div><div style="font-family:'IBM Plex Sans',sans-serif;font-size:11px;color:rgba(244,241,234,.6)">Gilt swaps to #d9ad63</div></div>
+        <div style="width:220px;height:150px;background:#f4f1ea;border:1px solid #12151c;padding:14px;display:flex;flex-direction:column;justify-content:space-between"><div style="font-family:'IBM Plex Mono',monospace;font-size:8px;letter-spacing:.1em;color:#8a6524;text-transform:uppercase">Paywall · light</div><div style="font-family:'Cormorant Garamond',serif;font-size:16px;color:#12151c">Same layout,<br>paper ground</div></div>
+        <div style="width:220px;height:150px;background:#12151c;border:1px solid #12151c;padding:14px;display:flex;flex-direction:column;justify-content:space-between"><div style="font-family:'IBM Plex Mono',monospace;font-size:8px;letter-spacing:.1em;color:#d9ad63;text-transform:uppercase">Paywall · dark</div><div style="font-family:'Cormorant Garamond',serif;font-size:16px;color:#f4f1ea">Shown fully<br>in §07, 4.24</div></div>
+        <div style="width:220px;height:150px;background:#f4f1ea;border:1px solid #12151c;padding:14px;display:flex;flex-direction:column;justify-content:space-between"><div style="font-family:'IBM Plex Mono',monospace;font-size:8px;letter-spacing:.1em;color:#8a6524;text-transform:uppercase">Widgets · light shown</div><div style="font-family:'IBM Plex Sans',sans-serif;font-size:11px;color:rgba(18,21,28,.6)">§09 shows both grounds already (Today light, Sky/Roast dark)</div></div>
+      </div>
+    </div>
+
+    <div>
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.14em;color:#8a6524;text-transform:uppercase;margin-bottom:10px">Android deltas</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:1px;background:rgba(18,21,28,.16);border:1px solid rgba(18,21,28,.16);max-width:1300px">
+        <div style="background:#f4f1ea;padding:14px 16px"><div style="font-family:'IBM Plex Sans',sans-serif;font-size:13px;font-weight:500;margin-bottom:5px">Back behavior</div><p style="font-family:'IBM Plex Sans',sans-serif;font-size:12px;line-height:1.55;color:rgba(18,21,28,.65);margin:0">System back gesture/button closes sheets and pops detail screens — no in-app back chevron needed on Android where iOS shows one.</p></div>
+        <div style="background:#f4f1ea;padding:14px 16px"><div style="font-family:'IBM Plex Sans',sans-serif;font-size:13px;font-weight:500;margin-bottom:5px">Date/time pickers</div><p style="font-family:'IBM Plex Sans',sans-serif;font-size:12px;line-height:1.55;color:rgba(18,21,28,.65);margin:0">Birth date/time entry (§02, §05) uses Material's native picker dialogs rather than iOS's inline wheel.</p></div>
+        <div style="background:#f4f1ea;padding:14px 16px"><div style="font-family:'IBM Plex Sans',sans-serif;font-size:13px;font-weight:500;margin-bottom:5px">Notification settings</div><p style="font-family:'IBM Plex Sans',sans-serif;font-size:12px;line-height:1.55;color:rgba(18,21,28,.65);margin:0">Category toggles (§03) hand off to Android's system notification-channel settings for OS-level control, alongside our in-app preferences.</p></div>
+        <div style="background:#f4f1ea;padding:14px 16px"><div style="font-family:'IBM Plex Sans',sans-serif;font-size:13px;font-weight:500;margin-bottom:5px">Subscription management</div><p style="font-family:'IBM Plex Sans',sans-serif;font-size:12px;line-height:1.55;color:rgba(18,21,28,.65);margin:0">"Manage subscription" (§07) deep-links to Play Store subscription center instead of the iOS App Store sheet.</p></div>
+        <div style="background:#f4f1ea;padding:14px 16px"><div style="font-family:'IBM Plex Sans',sans-serif;font-size:13px;font-weight:500;margin-bottom:5px">Widgets</div><p style="font-family:'IBM Plex Sans',sans-serif;font-size:12px;line-height:1.55;color:rgba(18,21,28,.65);margin:0">Android widget picker and resize handles replace iOS's long-press/edit flow; same four widgets, same content rules (§09).</p></div>
+        <div style="background:#f4f1ea;padding:14px 16px"><div style="font-family:'IBM Plex Sans',sans-serif;font-size:13px;font-weight:500;margin-bottom:5px">Share sheet</div><p style="font-family:'IBM Plex Sans',sans-serif;font-size:12px;line-height:1.55;color:rgba(18,21,28,.65);margin:0">Share cards (§08) hand off to Android's native share sheet in place of iOS's; card design itself is unchanged.</p></div>
+      </div>
+      <p style="font-family:'IBM Plex Sans',sans-serif;font-size:12.5px;line-height:1.6;color:rgba(18,21,28,.62);margin:16px 0 0;max-width:80ch">No second visual identity — every delta above is a platform-convention handoff, not a redesign.</p>
+    </div>
+  </section>
+
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1500,&quot;height&quot;:1400}}">
+class Component extends DCLogic {
+  state = { calView: 'month', sysFilter: 'all', voice: 'normal', notifRoast: false };
+
+  VOICE_PREVIEW = {
+    normal: 'Communication is more sensitive today — say the direct thing before the vague one.',
+    roast: 'Mercury brought paperwork. Your emotions brought a flamethrower.'
+  };
+  NOTIF_TEXT = {
+    normal: [
+      'Communication is more sensitive today. Your reading is ready.',
+      'Mars meets Saturn this afternoon — good for finishing, not starting.',
+      'Both your Moons touched for three days. That closeness was real.'
+    ],
+    roast: [
+      'Mercury brought paperwork. Your emotions brought a flamethrower.',
+      'Mars and Saturn are teaming up to make you finish that thing you\u2019ve been avoiding.',
+      'You and Sam got weirdly in sync this weekend. Don\u2019t read too much into it. Okay, read a little into it.'
+    ]
+  };
+
+  CAL_ROWS = [
+    { days: [{n:26,bg:false,today:false},{n:27,bg:false,today:false},{n:28,bg:false,today:false},{n:29,bg:false,today:false},{n:30,bg:false,today:false},{n:31,bg:false,today:false},{n:1,bg:false,today:false}] },
+    { days: [{n:2},{n:3},{n:4},{n:5},{n:6,bg:true},{n:7},{n:8}] },
+    { days: [{n:9},{n:10,today:true},{n:11},{n:12,high:true},{n:13},{n:14,ctx:true},{n:15}] },
+    { days: [{n:16},{n:17,bg:true},{n:18},{n:19},{n:20},{n:21,bg:true},{n:22}] },
+    { days: [{n:23},{n:24,ctx:true},{n:25},{n:26},{n:27},{n:28},{n:29}] },
+  ];
+
+  renderVals() {
+    const S = this.state;
+    const month = S.calView === 'month';
+    const filters = ['all','western','vedic','chinese','rel'];
+    const mk = (key) => {
+      const on = S.sysFilter === key;
+      return { border: on ? '#12151c' : 'rgba(18,21,28,.28)', bg: on ? '#12151c' : 'transparent', fg: on ? '#f4f1ea' : 'rgba(18,21,28,.6)' };
+    };
+    const days = this.CAL_ROWS.map(row => ({
+      days: row.days.map(d => ({
+        n: d.n, high: !!d.high, ctx: !!d.ctx, bg: !!d.bg, today: !!d.today,
+        numColor: d.today ? '#12151c' : d.high ? '#12151c' : 'rgba(18,21,28,.75)',
+        numWeight: d.high || d.today ? 600 : 400
+      }))
+    }));
+    const fAll = mk('all'), fW = mk('western'), fV = mk('vedic'), fC = mk('chinese'), fR = mk('rel');
+    return {
+      calDays: days,
+      calToggleView: () => this.setState({ calView: month ? 'week' : 'month' }),
+      calMonthBg: month ? '#12151c' : 'transparent', calMonthFg: month ? '#f4f1ea' : 'rgba(18,21,28,.6)',
+      calWeekBg: !month ? '#12151c' : 'transparent', calWeekFg: !month ? '#f4f1ea' : 'rgba(18,21,28,.6)',
+      setFilterAll: () => this.setState({ sysFilter: 'all' }), fAllBorder: fAll.border, fAllBg: fAll.bg, fAllFg: fAll.fg,
+      setFilterWestern: () => this.setState({ sysFilter: 'western' }), fWBorder: fW.border, fWBg: fW.bg, fWFg: fW.fg,
+      setFilterVedic: () => this.setState({ sysFilter: 'vedic' }), fVBorder: fV.border, fVBg: fV.bg, fVFg: fV.fg,
+      setFilterChinese: () => this.setState({ sysFilter: 'chinese' }), fCBorder: fC.border, fCBg: fC.bg, fCFg: fC.fg,
+      setFilterRel: () => this.setState({ sysFilter: 'rel' }), fRBorder: fR.border, fRBg: fR.bg, fRFg: fR.fg,
+      noop: () => {},
+      setNormal: () => this.setState({ voice: 'normal' }),
+      setRoast: () => this.setState({ voice: 'roast' }),
+      vNBorder: S.voice === 'normal' ? '#12151c' : 'rgba(18,21,28,.2)', vNBg: S.voice === 'normal' ? '#12151c' : 'transparent',
+      vNText: S.voice === 'normal' ? '#f4f1ea' : '#12151c', vNSub: S.voice === 'normal' ? 'rgba(244,241,234,.65)' : 'rgba(18,21,28,.55)',
+      vRBorder: S.voice === 'roast' ? '#12151c' : 'rgba(18,21,28,.2)', vRBg: S.voice === 'roast' ? '#12151c' : 'transparent',
+      vRText: S.voice === 'roast' ? '#f4f1ea' : '#12151c', vRSub: S.voice === 'roast' ? 'rgba(244,241,234,.65)' : 'rgba(18,21,28,.55)',
+      vPreview: this.VOICE_PREVIEW[S.voice],
+      toggleNotifRoast: () => this.setState({ notifRoast: !S.notifRoast }),
+      nNormalBg: S.notifRoast ? 'transparent' : 'rgba(244,241,234,.92)', nNormalFg: S.notifRoast ? 'rgba(244,241,234,.6)' : '#12151c',
+      nRoastBg: S.notifRoast ? 'rgba(244,241,234,.92)' : 'transparent', nRoastFg: S.notifRoast ? '#12151c' : 'rgba(244,241,234,.6)',
+      n1Text: this.NOTIF_TEXT[S.notifRoast ? 'roast' : 'normal'][0],
+      n2Text: this.NOTIF_TEXT[S.notifRoast ? 'roast' : 'normal'][1],
+      n3Text: this.NOTIF_TEXT[S.notifRoast ? 'roast' : 'normal'][2],
+    };
+  }
+}
+</script>
+</body>
+</html>
