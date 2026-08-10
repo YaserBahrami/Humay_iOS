@@ -536,7 +536,7 @@
       <div style="grid-column:2;margin-top:16px;display:grid;grid-template-columns:1fr 1fr;gap:26px">
         <div style="border-left:2px solid #8a6524;padding:2px 0 2px 16px">
           <div style="font-family:'IBM Plex Mono',monospace;font-size:9.5px;letter-spacing:.14em;text-transform:uppercase;color:#8a6524;margin-bottom:6px">Rewarded access</div>
-          <p style="font-family:'IBM Plex Sans',sans-serif;font-size:12.5px;line-height:1.65;color:rgba(18,21,28,.72);margin:0">"Rewarded access" stays an internal term. Users read <b>Watch ad to unlock</b> — explicit, unglamorous, and honest about the trade. The unlock is stated in plain scope ("this section", "today's reading"), never as a balance.</p>
+          <p style="font-family:'IBM Plex Sans',sans-serif;font-size:12.5px;line-height:1.65;color:rgba(18,21,28,.72);margin:0">"Rewarded access" stays an internal term. Users read <b>Watch ad to unlock</b> — explicit, unglamorous, and honest about the trade. One ad unlocks one identified piece of content, and that content stays unlocked: it does not expire, it survives a restart, and it never asks for a second ad. A different reading is a separate unlock, within the global allowance. Scope is named in plain words ("this section", "this reading"), never as a balance and never as temporary Premium.</p>
         </div>
         <div style="border-left:2px solid #8a2f1a;padding:2px 0 2px 16px">
           <div style="font-family:'IBM Plex Mono',monospace;font-size:9.5px;letter-spacing:.14em;text-transform:uppercase;color:#8a2f1a;margin-bottom:6px">No branded currency</div>
@@ -623,7 +623,7 @@
             </div>
             <div style="position:absolute;left:28px;right:28px;bottom:110px">
               <div style="border:1px solid #d9ad63;color:#d9ad63;text-align:center;padding:16px 0;font-family:'IBM Plex Sans',sans-serif;font-size:16px;font-weight:500">Subscribe · £3.99 / month</div>
-              <div style="text-align:center;padding:14px 0 0;font-family:'IBM Plex Sans',sans-serif;font-size:13.5px;color:rgba(244,241,234,.55)">Or watch a short ad to unlock today</div>
+              <div style="text-align:center;padding:14px 0 0;font-family:'IBM Plex Sans',sans-serif;font-size:13.5px;color:rgba(244,241,234,.55)">Or watch a short ad to unlock this reading</div>
             </div>
             <div style="position:absolute;bottom:9px;left:50%;transform:translateX(-50%);width:139px;height:5px;border-radius:3px;background:rgba(244,241,234,.85)"></div>
           </div>
@@ -674,9 +674,9 @@
               <div style="font-family:'IBM Plex Mono',monospace;font-size:9.5px;letter-spacing:.14em;text-transform:uppercase;color:rgba(18,21,28,.5);margin-bottom:12px">Unlock confirmation</div>
               <div style="display:flex;align-items:center;gap:12px;margin-bottom:12px">
                 <svg width="30" height="30" viewBox="0 0 100 100"><circle cx="50" cy="50" r="38" fill="#12151c"></circle><path d="M55.5 12.4 A38 38 0 1 0 55.5 87.6 A38 38 0 0 1 55.5 12.4 Z" fill="#b0863f"></path></svg>
-                <div style="font-family:'Cormorant Garamond',serif;font-size:21px;line-height:1.2">Unlocked for today</div>
+                <div style="font-family:'Cormorant Garamond',serif;font-size:21px;line-height:1.2">Unlocked</div>
               </div>
-              <p style="font-family:'IBM Plex Sans',sans-serif;font-size:12.5px;line-height:1.6;color:rgba(18,21,28,.66);margin:0">Your Vedic reading is open until midnight. Premium keeps it open permanently.</p>
+              <p style="font-family:'IBM Plex Sans',sans-serif;font-size:12.5px;line-height:1.6;color:rgba(18,21,28,.66);margin:0">This reading is now unlocked. Premium includes full access without rewarded unlocks.</p>
             </div>
             <div style="width:172px">
               <div style="font-family:'IBM Plex Mono',monospace;font-size:9.5px;letter-spacing:.14em;text-transform:uppercase;color:rgba(18,21,28,.5);margin-bottom:12px">Widget · small</div>
@@ -922,7 +922,7 @@ class Component extends DCLogic {
         { surface: 'Vedic reading', bad: 'Your transit says this is a lucky month.', good: 'You are in a Mercury dasha, with the Moon in Uttara Ashadha today. Detail work goes further than persuasion.' },
         { surface: 'About the name', bad: 'Named after the legendary bird of fortune, Humay brings luck to your day.', good: 'Humay (hoo-MAY) takes its name from a bird in Persian and Turkish literature — something seen rarely, and only by looking up.' },
         { surface: 'Compatibility', bad: 'You two are a 92% match — soulmate energy.', good: 'Warm, generative, occasionally combustible. The friction is Mercury\u2013Mars, and it is workable.' },
-        { surface: 'Rewarded unlock', bad: 'Tired of ads? Go Premium and never see one again!', good: 'One short ad unlocks this section for today. Premium unlocks everything, permanently.' },
+        { surface: 'Rewarded unlock', bad: 'Tired of ads? Go Premium and never see one again!', good: 'One short ad unlocks this section. Premium includes full access without rewarded unlocks.' },
         { surface: 'Empty state', bad: 'Nothing here yet — the stars are still aligning', good: 'No saved people yet. Add someone to compare charts with.' },
       ],
 
@@ -931,7 +931,7 @@ class Component extends DCLogic {
         { surface: 'Settings row', good: 'Premium', bad: 'Humay Premium (brand name repeats)' },
         { surface: 'Upsell in context', good: 'Open with Premium', bad: 'Unlock with Humay Premium' },
         { surface: 'Rewarded unlock', good: 'Watch ad to unlock', bad: 'Earn a free reading · Get 1 credit · Humay points' },
-        { surface: 'Unlock confirmation', good: 'Unlocked for today', bad: 'Nice work! You earned a reading' },
+        { surface: 'Unlock confirmation', good: 'Unlocked', bad: 'Unlocked for today · Nice work! You earned a reading' },
         { surface: 'Receipts, support', good: 'Premium, monthly', bad: 'VIP · Plus · Gold tier' },
       ],
 
