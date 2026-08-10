@@ -2,7 +2,7 @@
 
 This directory is the repository-owned source of truth for approved Humay product and UI/UX design artifacts. The repository itself still uses `Astara_iOS` as its working project name.
 
-The broad design phase is now **frozen and implementation-ready through Pass 6.1 — Final Engineering Freeze**. Some astrology methodologies remain feature-specific blockers; see [`DESIGN_AUTHORITY.md`](DESIGN_AUTHORITY.md).
+The broad design phase is **frozen and implementation-ready through Pass 6.1 — Final Engineering Freeze**. Some astrology methodologies remain feature-specific blockers; see [`DESIGN_AUTHORITY.md`](DESIGN_AUTHORITY.md).
 
 ## Current structure
 
@@ -10,6 +10,7 @@ The broad design phase is now **frozen and implementation-ready through Pass 6.1
 docs/design/
   README.md
   DESIGN_AUTHORITY.md
+
   claude-reference/
     README.md
     Product Strategy.dc.html
@@ -24,39 +25,44 @@ docs/design/
     Product Design - Pass 6.1 - Final Engineering Freeze.dc.html
     Product Design - Authority Map.dc.html
     support.js
-    _ds/
-      classical-.../
-        styles.css
-        _ds_bundle.js
+    _ds/...
+
+  final-archive/
+    README.md
+    reference/*.md
+    previews/...
 ```
 
-Keep each HTML artifact together with `support.js` and its referenced `_ds` assets so the exported designs remain renderable.
+Keep each original HTML artifact together with `support.js` and its referenced `_ds` assets so the exported designs remain renderable.
 
-## Authority
+## Where to start
 
-Read [`DESIGN_AUTHORITY.md`](DESIGN_AUTHORITY.md) before implementation, architecture work or any later design correction. It defines which artifact governs when older and newer passes disagree.
+For implementation/architecture work:
 
-Key precedence rules:
+1. Read [`DESIGN_AUTHORITY.md`](DESIGN_AUTHORITY.md).
+2. Use the original files in [`claude-reference/`](claude-reference/) when exact design detail or authority matters.
+3. Use the [final visual archive](final-archive/README.md) for fast GitHub browsing, screenshots and concise Markdown summaries.
 
-- `Product Strategy.dc.html` remains authoritative for the core product concept.
-- Pass 4 remains the broad product-screen reference where a later artifact does not explicitly override it.
-- Pass 4.1 remains the monetization-surface reference, subject to explicit Pass 6 / Pass 6.1 corrections.
-- Pass 5 is historical brand exploration.
-- Pass 5.1 is authoritative for the Humay brand system.
-- Pass 6 is the engineering-handoff and contradiction-audit record.
-- Pass 6.1 is the final correction/freeze layer and wins only where it explicitly supersedes Pass 6 or an older artifact.
-- Newer explicit decisions override older conflicting decisions; older artifacts remain preserved as historical reference.
+The final archive is **derived documentation**. It does not become a new authority layer.
+
+## Authority summary
+
+- `Product Strategy.dc.html` — core product concept and principles.
+- `Onboarding.dc.html` — dedicated onboarding visual reference, subject to later birth-time corrections.
+- Pass 4 — broad product-screen reference where later artifacts do not override it.
+- Pass 4.1 — monetization-surface reference, subject to explicit Pass 6 / 6.1 corrections.
+- Pass 5 — historical brand exploration.
+- Pass 5.1 — Humay brand authority.
+- Pass 6 — engineering-handoff and contradiction-audit record.
+- Pass 6.1 — final correction/freeze layer; it wins only for scopes it explicitly supersedes.
 
 ## Source-of-truth rules
 
-- Treat the HTML files as design/reference artifacts, not production application code.
-- Preserve generated HTML instead of manually translating reference files into production UI code.
-- Implementation documents should link back to the relevant design artifact/section when a design contract matters.
-- The reference package is authoritative for approved UX, hierarchy, visual direction, interactions, monetization behavior, brand and product structure.
-- It is **not** authoritative for astronomical or astrological calculation outputs.
+- Design artifacts are authoritative for approved UX, hierarchy, visual direction, interactions, monetization behavior, brand and product structure.
+- They are **not** authoritative for astronomical or astrological calculation outputs.
 - Exact placements, aspects, timing, dashas, pillars and interpretations shown in design artifacts are illustrative prototype content unless independently validated.
-- Deterministic calculation engines and validated outputs must provide chart facts such as planetary positions, Ascendant, houses, aspects, sidereal placements, nakshatras, dashas, BaZi pillars and timing.
-- The interpretation/LLM layer consumes structured calculated facts and must never invent positions, degrees, houses, dashas, pillars or timing.
+- Deterministic calculation engines and validated outputs provide chart facts such as planetary positions, Ascendant, houses, aspects, sidereal placements, nakshatras, dashas, BaZi pillars and timing.
+- Interpretation consumes structured calculated facts and must never invent positions, degrees, houses, dashas, pillars or timing.
 - Normal and Roast consume the same calculated facts and the same underlying interpretation; only expression differs.
 
 ## Final product direction
@@ -112,8 +118,10 @@ Humay is internally design-locked. External clearance remains pending for tradem
 
 **Design/UX frozen: Pass 6.1 — Final Engineering Freeze.**
 
+The [GitHub-friendly final screenshot/Markdown archive](final-archive/README.md) is present and verified as derived documentation: 51 PNGs and 9 Markdown reference files.
+
+One known visual exception is documented in the archive: the notification-settings screenshot predates the Pass 6 ruling and still shows the superseded Roast toggle. The final behavior remains Normal-only notifications.
+
 Production iOS implementation has not started.
 
 Next substantive phase: **Technical Architecture & Implementation Planning**.
-
-A final GitHub-friendly screenshot/Markdown archive may be generated from the frozen artifacts for documentation. Such exports are derived references and do not supersede the `.dc.html` artifacts or this authority map.

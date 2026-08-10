@@ -60,7 +60,7 @@ Ask uses a separate approved entitlement shape:
 
 ### Saved People
 
-Pass 6.1 supersedes Pass 6's temporary `+1 slot per ad` decision:
+Pass 4.1 left rewarded Saved People capacity under review. Pass 6 temporarily approved `+1 slot per ad`; Pass 6.1 explicitly reverses that Pass 6 decision:
 
 - Free has a base Saved People limit;
 - Rewarded Access is **not** used to increase Saved People capacity;
@@ -135,7 +135,7 @@ General rule: unknown birth time degrades individual calculated facts according 
 
 ## 10 — Methodology Status
 
-Any choice that changes calculated astrological output is a methodology decision, not ordinary UI/engineering discretion.
+Any choice that changes calculated astrological output is a methodology/domain decision requiring validation/sign-off, not ordinary UI/engineering discretion.
 
 ### Research required before the affected production feature ships
 
@@ -208,8 +208,15 @@ Pass 6 remains the audit record. Pass 6.1 is the final correction layer and supe
 
 No Pass 6.2 is planned.
 
-## 14 — Next Step
+## 14 — Derived GitHub Archive
+
+[`final-archive/`](final-archive/README.md) contains the frozen design's GitHub-friendly screenshots and Markdown summaries.
+
+- 51 PNG files and 9 Markdown reference files were added from the final export.
+- The archive is **derived documentation only** and never supersedes this authority map or the applicable `.dc.html` source artifact.
+- `final-archive/previews/settings/settings-03-notifications.png` is a known pre-freeze visual exception: it still shows the old notification Roast control. The final implementation rule remains **Normal-only notifications with no Roast toggle**.
+- Methodology-blocked screenshots remain visual/product references only; their sample astrology does not validate methodology or calculation output.
+
+## 15 — Next Step
 
 **Technical Architecture & Implementation Planning**, followed by iOS foundation implementation.
-
-Final GitHub screenshot/Markdown archival export may be generated from the frozen design artifacts as documentation; those derived exports do not become a new design authority layer.

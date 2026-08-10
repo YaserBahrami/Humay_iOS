@@ -6,7 +6,9 @@ The broad product-design phase is complete. The design/UX handoff is frozen and 
 
 ## Design reference
 
-Approved product and UI/UX artifacts live under `docs/design/claude-reference/`.
+Original approved product/UI artifacts live under [`docs/design/claude-reference/`](docs/design/claude-reference/).
+
+For GitHub-friendly browsing, screenshots and concise summaries, use the [Humay Final Design Archive](docs/design/final-archive/README.md).
 
 The current product direction includes:
 
@@ -22,7 +24,7 @@ The current product direction includes:
 - Free → optional Rewarded Access → Premium
 - Humay brand identity and the Eclipse visual direction
 
-See [`docs/design/DESIGN_AUTHORITY.md`](docs/design/DESIGN_AUTHORITY.md) for the current authority and supersession rules across design passes.
+See [`docs/design/DESIGN_AUTHORITY.md`](docs/design/DESIGN_AUTHORITY.md) for the authority and supersession rules across design passes. The screenshot/Markdown archive is derived documentation and does not replace those rules.
 
 ## Source-of-truth boundary
 
@@ -32,7 +34,7 @@ They are **not** authoritative for astronomical or astrological calculation outp
 
 The interpretation layer consumes structured calculated facts; it must not invent positions, degrees, houses, Ascendant, aspects, nakshatras, dashas, pillars or timing.
 
-Any convention that changes calculated astrological output is a methodology decision, not ordinary UI/engineering discretion.
+Any convention that changes calculated astrological output is a methodology/domain decision requiring validation/sign-off, not ordinary UI/engineering discretion.
 
 ## Design freeze and methodology dependencies
 
@@ -57,7 +59,7 @@ Rewarded Access has two supported behaviors:
 - a persistent per-item reading/section unlock that survives restart and never asks again for the same item;
 - a single-use additional Ask question after one completed rewarded ad.
 
-Saved People capacity is not increased through Rewarded Access. Exact Free/Premium limits remain product configuration.
+Saved People capacity is not increased through Rewarded Access. Free has a base limit and Premium a larger limit; exact values remain product configuration.
 
 Concrete StoreKit, rewarded-ad provider, verification, storage/sync and notification-delivery mechanisms are deferred to technical architecture.
 
@@ -70,5 +72,7 @@ External clearance is still required for trademark risk, App Store / Google Play
 ## Status
 
 Approved/frozen design reference: **through Pass 6.1 — Final Engineering Freeze**.
+
+Final GitHub visual/reference archive: **present** under [`docs/design/final-archive/`](docs/design/final-archive/README.md).
 
 Next substantive phase: **Technical Architecture & Implementation Planning**.
