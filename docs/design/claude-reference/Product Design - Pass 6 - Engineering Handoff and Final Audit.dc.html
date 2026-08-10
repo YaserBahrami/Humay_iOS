@@ -1,0 +1,726 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="_ds/classical-44af82f3-27c9-447b-aa9e-1451fe0327c2/styles.css">
+  <script src="_ds/classical-44af82f3-27c9-447b-aa9e-1451fe0327c2/_ds_bundle.js"></script>
+  <style>
+    body { margin: 0; background: #f4f1ea; }
+    a { color: #8a6524; }
+    a:hover { color: #6e501c; }
+    ::selection { background: rgba(176,134,63,.28); }
+  </style>
+</helmet>
+
+<div style="font-family:Lora,serif;color:#12151c;background:#f4f1ea;max-width:1180px;margin:0 auto;padding:0 40px 100px">
+
+  <div style="padding:54px 0 30px">
+    <div style="display:flex;align-items:baseline;justify-content:space-between;flex-wrap:wrap;gap:10px;font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:rgba(18,21,28,.45)">
+      <span>Humay — Pass 6</span>
+      <span>Handoff document · not a visual exploration</span>
+    </div>
+    <h1 style="font-family:'Cormorant Garamond',serif;font-weight:300;font-size:72px;line-height:.98;letter-spacing:-.025em;margin:22px 0 0">Engineering handoff<br><span style="font-style:italic">&amp; final design audit</span></h1>
+    <p style="font-family:Lora,serif;font-size:16px;line-height:1.72;color:rgba(18,21,28,.74);max-width:70ch;margin:22px 0 0">This pass invents nothing. It reads Passes 1–5.1 and the Design Authority &amp; Supersession Map, resolves the contradictions authority already settles, makes the small number of calls nothing else settles, and freezes the contracts iOS engineering builds against. No new direction, no rename, no SwiftUI, no astrology recalculated by hand.</p>
+    <div style="display:flex;flex-wrap:wrap;gap:22px;margin-top:24px;font-family:'IBM Plex Sans',sans-serif;font-size:12.5px;color:rgba(18,21,28,.62)">
+      <a href="#authority" style="color:inherit;text-decoration:none;border-bottom:1px solid rgba(18,21,28,.25)">00 Authority</a>
+      <a href="#foundation" style="color:inherit;text-decoration:none;border-bottom:1px solid rgba(18,21,28,.25)">01 Foundation</a>
+      <a href="#brand" style="color:inherit;text-decoration:none;border-bottom:1px solid rgba(18,21,28,.25)">02 Brand</a>
+      <a href="#data-safety" style="color:inherit;text-decoration:none;border-bottom:1px solid rgba(18,21,28,.25)">03 Data safety</a>
+      <a href="#disclosure" style="color:inherit;text-decoration:none;border-bottom:1px solid rgba(18,21,28,.25)">04 Disclosure</a>
+      <a href="#systems" style="color:inherit;text-decoration:none;border-bottom:1px solid rgba(18,21,28,.25)">05 Systems</a>
+      <a href="#birth-time" style="color:inherit;text-decoration:none;border-bottom:1px solid rgba(18,21,28,.25)">06 Birth time</a>
+      <a href="#bazi-luck" style="color:inherit;text-decoration:none;border-bottom:1px solid rgba(18,21,28,.25)">07 BaZi luck</a>
+      <a href="#roast" style="color:inherit;text-decoration:none;border-bottom:1px solid rgba(18,21,28,.25)">08 Roast</a>
+      <a href="#notif" style="color:#8a2f1a;text-decoration:none;border-bottom:1px solid rgba(138,47,26,.4)">09 Notification ruling</a>
+      <a href="#monetization" style="color:inherit;text-decoration:none;border-bottom:1px solid rgba(18,21,28,.25)">10 Monetization</a>
+      <a href="#ask" style="color:inherit;text-decoration:none;border-bottom:1px solid rgba(18,21,28,.25)">11 Ask</a>
+      <a href="#compat" style="color:inherit;text-decoration:none;border-bottom:1px solid rgba(18,21,28,.25)">12 Compatibility</a>
+      <a href="#methodology" style="color:inherit;text-decoration:none;border-bottom:1px solid rgba(18,21,28,.25)">13 Methodology</a>
+      <a href="#tokens" style="color:inherit;text-decoration:none;border-bottom:1px solid rgba(18,21,28,.25)">14 Tokens</a>
+      <a href="#components" style="color:inherit;text-decoration:none;border-bottom:1px solid rgba(18,21,28,.25)">15 Components</a>
+      <a href="#screens" style="color:inherit;text-decoration:none;border-bottom:1px solid rgba(18,21,28,.25)">16 Screens</a>
+      <a href="#navigation" style="color:inherit;text-decoration:none;border-bottom:1px solid rgba(18,21,28,.25)">17 Navigation</a>
+      <a href="#states" style="color:inherit;text-decoration:none;border-bottom:1px solid rgba(18,21,28,.25)">18 States</a>
+      <a href="#a11y" style="color:inherit;text-decoration:none;border-bottom:1px solid rgba(18,21,28,.25)">19 Accessibility</a>
+      <a href="#motion" style="color:inherit;text-decoration:none;border-bottom:1px solid rgba(18,21,28,.25)">20 Motion</a>
+      <a href="#privacy" style="color:inherit;text-decoration:none;border-bottom:1px solid rgba(18,21,28,.25)">21 Privacy</a>
+      <a href="#data-map" style="color:inherit;text-decoration:none;border-bottom:1px solid rgba(18,21,28,.25)">22 Data map</a>
+      <a href="#ios" style="color:inherit;text-decoration:none;border-bottom:1px solid rgba(18,21,28,.25)">23 iOS</a>
+      <a href="#android" style="color:inherit;text-decoration:none;border-bottom:1px solid rgba(18,21,28,.25)">24 Android</a>
+      <a href="#nomenclature" style="color:inherit;text-decoration:none;border-bottom:1px solid rgba(18,21,28,.25)">25 Nomenclature</a>
+      <a href="#contradictions" style="color:#8a2f1a;text-decoration:none;border-bottom:1px solid rgba(138,47,26,.4)">26 Contradictions</a>
+      <a href="#readiness" style="color:inherit;text-decoration:none;border-bottom:1px solid rgba(18,21,28,.25)">27 Readiness</a>
+      <a href="#report" style="color:#8a2f1a;text-decoration:none;border-bottom:1px solid rgba(138,47,26,.4)">28 Final report</a>
+    </div>
+  </div>
+
+  <section style="padding:24px 0;border-bottom:1px solid rgba(18,21,28,.16);border-top:1px solid rgba(18,21,28,.16);display:grid;grid-template-columns:104px 1fr;gap:36px">
+    <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.1em;color:rgba(18,21,28,.42);padding-top:2px">NB</div>
+    <p style="font-family:'IBM Plex Sans',sans-serif;font-size:13px;line-height:1.65;color:rgba(18,21,28,.6);margin:0;max-width:82ch">Every degree, dasha, pillar and score cited below is prototype/sample content carried from Passes 2–4 for illustration. None of it is an engineering fixture — see §03. Screens are referenced by their existing artifact and screen ID rather than redrawn; this document specifies contracts, not new pixels.</p>
+  </section>
+
+  <section id="authority" style="padding:54px 0 40px;border-bottom:1px solid rgba(18,21,28,.16)">
+    <div style="display:grid;grid-template-columns:104px 1fr;gap:36px">
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.1em;color:rgba(18,21,28,.42);padding-top:12px">00</div>
+      <div>
+        <h2 style="font-family:'Cormorant Garamond',serif;font-weight:400;font-size:40px;line-height:1.05;letter-spacing:-.02em;margin:0 0 6px">Authority applied</h2>
+        <p style="font-family:'IBM Plex Sans',sans-serif;font-size:12px;letter-spacing:.04em;text-transform:uppercase;color:rgba(18,21,28,.45);margin:0 0 22px">Design Authority &amp; Supersession Map governs — read in full there</p>
+        <p style="font-family:Lora,serif;font-size:16px;line-height:1.7;color:rgba(18,21,28,.84);max-width:74ch;margin:0 0 18px">Every ruling below traces back to <strong>Product Design – Authority Map</strong>. In summary: Product Strategy is authoritative for concept; Pass 4 for core screens except where Pass 4.1 overrides monetization surfaces; Pass 5.1 for brand, wherever it disagrees with Pass 5; deterministic calculation engines — not design artifacts — for astrology fact. Names: <strong>Humay</strong> / <strong>HUMAY</strong> current; Astara repo-only; Ortus and Ecliptic historical/rejected; Eclipse is the visual direction, not the product name.</p>
+        <div style="border:1px solid rgba(18,21,28,.16);background:#efece3;padding:14px 16px">
+          <p style="font-family:'IBM Plex Sans',sans-serif;font-size:12.5px;line-height:1.6;color:rgba(18,21,28,.72);margin:0">This pass does not re-litigate that map. Where it finds a genuine gap — a question the map is silent on — it rules once, marks the ruling explicit, and feeds the result back into the map's vocabulary (§09, §26).</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="foundation" style="padding:54px 0 40px;border-bottom:1px solid rgba(18,21,28,.16)">
+    <div style="display:grid;grid-template-columns:104px 1fr;gap:36px">
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.1em;color:rgba(18,21,28,.42);padding-top:12px">01</div>
+      <div>
+        <h2 style="font-family:'Cormorant Garamond',serif;font-weight:400;font-size:40px;line-height:1.05;letter-spacing:-.02em;margin:0 0 6px">Product foundation, preserved</h2>
+        <p style="font-family:'IBM Plex Sans',sans-serif;font-size:12px;letter-spacing:.04em;text-transform:uppercase;color:rgba(18,21,28,.45);margin:0 0 22px">Nothing here is up for debate this pass</p>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:1px;background:rgba(18,21,28,.16);border:1px solid rgba(18,21,28,.16);margin-bottom:20px">
+          <div style="background:#f4f1ea;padding:18px 20px">
+            <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:rgba(18,21,28,.5);margin-bottom:10px">Locked primary IA</div>
+            <div style="font-family:'Cormorant Garamond',serif;font-size:22px">Today · Circle · Sky · Chart · Ask</div>
+            <p style="font-family:'IBM Plex Sans',sans-serif;font-size:12.5px;line-height:1.6;color:rgba(18,21,28,.65);margin:8px 0 0">Calendar lives inside Sky. Profile/Settings is a header entry, not a sixth tab. Not revisited — no implementation-blocking contradiction was found against it.</p>
+          </div>
+          <div style="background:#f4f1ea;padding:18px 20px">
+            <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:rgba(18,21,28,.5);margin-bottom:10px">Three native systems</div>
+            <div style="font-family:'Cormorant Garamond',serif;font-size:22px">Western · Vedic · Chinese/BaZi</div>
+            <p style="font-family:'IBM Plex Sans',sans-serif;font-size:12.5px;line-height:1.6;color:rgba(18,21,28,.65);margin:8px 0 0">Each keeps its own terminology, calculation method and interpretive grammar. None flattens into another (see §05).</p>
+          </div>
+        </div>
+        <p style="font-family:'IBM Plex Sans',sans-serif;font-size:12.5px;line-height:1.75;color:rgba(18,21,28,.72);margin:0 0 8px"><strong>Approved capability surface, carried forward as-is:</strong></p>
+        <p style="font-family:'IBM Plex Sans',sans-serif;font-size:12.5px;line-height:1.85;color:rgba(18,21,28,.7);margin:0">Today · Compatibility · Today Together · Circle · Chart · Sky/Cosmic Weather · Calendar · Western/Vedic/Chinese native experiences · Compare Systems · Ask the Stars · Normal/Roast · Patterns · Sharing · Widgets · Notifications · Premium · optional Rewarded Access.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="brand" style="padding:54px 0 40px;border-bottom:1px solid rgba(18,21,28,.16)">
+    <div style="display:grid;grid-template-columns:104px 1fr;gap:36px">
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.1em;color:rgba(18,21,28,.42);padding-top:12px">02</div>
+      <div>
+        <h2 style="font-family:'Cormorant Garamond',serif;font-weight:400;font-size:40px;line-height:1.05;letter-spacing:-.02em;margin:0 0 6px">Humay is locked</h2>
+        <p style="font-family:'IBM Plex Sans',sans-serif;font-size:12px;letter-spacing:.04em;text-transform:uppercase;color:rgba(18,21,28,.45);margin:0 0 22px">Pass 5.1 governs in full — recapped, not restated</p>
+        <p style="font-family:Lora,serif;font-size:16px;line-height:1.7;color:rgba(18,21,28,.84);max-width:74ch;margin:0 0 18px">Consumer brand <strong>Humay</strong> (hoo-MAY), wordmark <strong>HUMAY</strong>, the occultation mark, app icon, Ink/Slate/Paper/Gilt/Cinnabar palette, Cormorant Garamond + Lora + IBM Plex type system, Coordinate Rail / Horizon / Weave primitives, restrained Gilt, Cinnabar scoped to Roast content, light + dark modes, the eight voice rules, and all misuse rules carry forward unchanged. No bird, feather, wing, phoenix, crown or zodiac-wheel imagery; brand origin never reads as a luck, destiny or fortune claim; externally the name remains legally unconfirmed (trademark, store titles, domains, cultural review).</p>
+        <div style="display:flex;gap:10px;flex-wrap:wrap">
+          <span style="font-family:'IBM Plex Mono',monospace;font-size:9.5px;letter-spacing:.1em;text-transform:uppercase;padding:5px 10px;border:1px solid #12151c;color:#12151c">Ink #12151C</span>
+          <span style="font-family:'IBM Plex Mono',monospace;font-size:9.5px;letter-spacing:.1em;text-transform:uppercase;padding:5px 10px;border:1px solid rgba(18,21,28,.3);color:rgba(18,21,28,.6)">Paper #F4F1EA</span>
+          <span style="font-family:'IBM Plex Mono',monospace;font-size:9.5px;letter-spacing:.1em;text-transform:uppercase;padding:5px 10px;border:1px solid #b0863f;color:#8a6524">Gilt #B0863F</span>
+          <span style="font-family:'IBM Plex Mono',monospace;font-size:9.5px;letter-spacing:.1em;text-transform:uppercase;padding:5px 10px;border:1px solid #c2472a;color:#c2472a">Cinnabar #C2472A — Roast content only</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="data-safety" style="padding:54px 0 40px;border-bottom:1px solid rgba(18,21,28,.16)">
+    <div style="display:grid;grid-template-columns:104px 1fr;gap:36px">
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.1em;color:rgba(18,21,28,.42);padding-top:12px">03</div>
+      <div>
+        <h2 style="font-family:'Cormorant Garamond',serif;font-weight:400;font-size:40px;line-height:1.05;letter-spacing:-.02em;margin:0 0 6px">Astrology data safety</h2>
+        <p style="font-family:'IBM Plex Sans',sans-serif;font-size:12px;letter-spacing:.04em;text-transform:uppercase;color:rgba(18,21,28,.45);margin:0 0 22px">The architecture boundary this whole product depends on</p>
+        <p style="font-family:Lora,serif;font-size:16px;line-height:1.7;color:rgba(18,21,28,.84);max-width:74ch;margin:0 0 22px">Every exact placement, degree, aspect, dasha, nakshatra, house and pillar in every design artifact (including this one) is prototype content. None of it is validated ephemeris output, and none of it should be copied into engineering test fixtures because it appeared in a mock.</p>
+        <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:1px;background:rgba(18,21,28,.85);border:1px solid #12151c">
+          <div style="background:#f4f1ea;padding:20px 18px">
+            <div style="font-family:'IBM Plex Mono',monospace;font-size:9.5px;letter-spacing:.12em;color:#8a6524;text-transform:uppercase;margin-bottom:8px">Layer 1</div>
+            <div style="font-family:'Cormorant Garamond',serif;font-size:21px;line-height:1.2;margin-bottom:8px">Deterministic calculation</div>
+            <p style="font-family:'IBM Plex Sans',sans-serif;font-size:12px;line-height:1.6;color:rgba(18,21,28,.68);margin:0">Produces validated structured facts: positions, houses, aspects, dashas, pillars, timing. Sole source of truth.</p>
+          </div>
+          <div style="background:#f4f1ea;padding:20px 18px;border-left:1px solid rgba(18,21,28,.85);border-right:1px solid rgba(18,21,28,.85)">
+            <div style="font-family:'IBM Plex Mono',monospace;font-size:9.5px;letter-spacing:.12em;color:#8a6524;text-transform:uppercase;margin-bottom:8px">Layer 2</div>
+            <div style="font-family:'Cormorant Garamond',serif;font-size:21px;line-height:1.2;margin-bottom:8px">Interpretation</div>
+            <p style="font-family:'IBM Plex Sans',sans-serif;font-size:12px;line-height:1.6;color:rgba(18,21,28,.68);margin:0">Consumes Layer 1's facts only. Never invents a position, house, aspect, nakshatra, dasha, pillar or timing — Normal and Roast both read from here (§08).</p>
+          </div>
+          <div style="background:#f4f1ea;padding:20px 18px">
+            <div style="font-family:'IBM Plex Mono',monospace;font-size:9.5px;letter-spacing:.12em;color:#8a6524;text-transform:uppercase;margin-bottom:8px">Layer 3</div>
+            <div style="font-family:'Cormorant Garamond',serif;font-size:21px;line-height:1.2;margin-bottom:8px">Presentation</div>
+            <p style="font-family:'IBM Plex Sans',sans-serif;font-size:12px;line-height:1.6;color:rgba(18,21,28,.68);margin:0">Renders Layer 2's output. Design specifies how a value is shown — typography, disclosure, tone — never what the value is.</p>
+          </div>
+        </div>
+        <p style="font-family:'IBM Plex Sans',sans-serif;font-size:12.5px;line-height:1.65;color:rgba(18,21,28,.62);margin:16px 0 0;max-width:74ch">Exact clock times render only where Layer 1 actually calculated one. Fabricated precision — a time, a degree, a percentage the engine didn't produce — is a defect regardless of which layer introduces it.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="disclosure" style="padding:54px 0 40px;border-bottom:1px solid rgba(18,21,28,.16)">
+    <div style="display:grid;grid-template-columns:104px 1fr;gap:36px">
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.1em;color:rgba(18,21,28,.42);padding-top:12px">04</div>
+      <div>
+        <h2 style="font-family:'Cormorant Garamond',serif;font-weight:400;font-size:40px;line-height:1.05;letter-spacing:-.02em;margin:0 0 6px">Progressive disclosure</h2>
+        <p style="font-family:'IBM Plex Sans',sans-serif;font-size:12px;letter-spacing:.04em;text-transform:uppercase;color:rgba(18,21,28,.45);margin:0 0 22px">Insight → basis, in that order, always</p>
+        <p style="font-family:Lora,serif;font-size:16px;line-height:1.7;color:rgba(18,21,28,.84);max-width:74ch;margin:0 0 16px">The reading leads with practical meaning; the astrological basis sits one disclosure step beneath it. Frozen user-facing labels for that second step: <strong>Astrological basis</strong> (section title), <strong>What's influencing this</strong>, <strong>Why this reading</strong>, <strong>Chart factors</strong>, <strong>How this was derived</strong>. "Evidence" is not a user-facing label — see §26 for why that isn't actually a contradiction with the strategy deck's internal use of the word.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="systems" style="padding:54px 0 40px;border-bottom:1px solid rgba(18,21,28,.16)">
+    <div style="display:grid;grid-template-columns:104px 1fr;gap:36px">
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.1em;color:rgba(18,21,28,.42);padding-top:12px">05</div>
+      <div>
+        <h2 style="font-family:'Cormorant Garamond',serif;font-weight:400;font-size:40px;line-height:1.05;letter-spacing:-.02em;margin:0 0 6px">Native system terminology</h2>
+        <p style="font-family:'IBM Plex Sans',sans-serif;font-size:12px;letter-spacing:.04em;text-transform:uppercase;color:rgba(18,21,28,.45);margin:0 0 22px">Compare Systems describes; it never ranks</p>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:1px;background:rgba(18,21,28,.16);border:1px solid rgba(18,21,28,.16);margin-bottom:18px">
+          <div style="background:#f4f1ea;padding:18px 20px">
+            <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:#8a6524;margin-bottom:10px">Vedic vocabulary, frozen</div>
+            <p style="font-family:'IBM Plex Sans',sans-serif;font-size:12.5px;line-height:1.75;color:rgba(18,21,28,.75);margin:0">Lagna · Rashis · Bhavas · Nakshatras · Dashas · Yogas · Grahas</p>
+          </div>
+          <div style="background:#f4f1ea;padding:18px 20px">
+            <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:#8a6524;margin-bottom:10px">Chinese/BaZi vocabulary, frozen</div>
+            <p style="font-family:'IBM Plex Sans',sans-serif;font-size:12.5px;line-height:1.75;color:rgba(18,21,28,.75);margin:0">Four Pillars · Heavenly Stems · Earthly Branches · Five Elements · Yin/Yang</p>
+          </div>
+        </div>
+        <p style="font-family:'IBM Plex Sans',sans-serif;font-size:12.5px;line-height:1.7;color:rgba(18,21,28,.72);margin:0 0 8px"><strong>Compare Systems contract:</strong> shared themes, different emphasis, different perspective. Never ranks systems, never declares one more accurate, never treats cross-system agreement as scientific confidence, never forces a Western concept onto a Vedic or Chinese reading. "Transit" is Western-specific — a Vedic reading cites a dasha period, a Chinese reading cites pillar/element timing (already corrected in Pass 5.1's voice rules; see §26).</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="birth-time" style="padding:54px 0 40px;border-bottom:1px solid rgba(18,21,28,.16)">
+    <div style="display:grid;grid-template-columns:104px 1fr;gap:36px">
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.1em;color:rgba(18,21,28,.42);padding-top:12px">06</div>
+      <div>
+        <h2 style="font-family:'Cormorant Garamond',serif;font-weight:400;font-size:40px;line-height:1.05;letter-spacing:-.02em;margin:0 0 6px">Unknown birth time</h2>
+        <p style="font-family:'IBM Plex Sans',sans-serif;font-size:12px;letter-spacing:.04em;text-transform:uppercase;color:rgba(18,21,28,.45);margin:0 0 22px">Frozen behavior — degrade gracefully, never fabricate</p>
+        <table style="width:100%;border-collapse:collapse;font-family:'IBM Plex Sans',sans-serif;font-size:12.5px">
+          <thead>
+            <tr style="border-bottom:1px solid #12151c">
+              <th style="text-align:left;padding:9px 10px;font-weight:600">System</th>
+              <th style="text-align:left;padding:9px 10px;font-weight:600">Unavailable / unreliable</th>
+              <th style="text-align:left;padding:9px 10px;font-weight:600">Remains usable</th>
+            </tr>
+          </thead>
+          <tbody style="color:rgba(18,21,28,.78)">
+            <tr style="border-bottom:1px solid rgba(18,21,28,.14)"><td style="padding:9px 10px;font-weight:500">Western</td><td style="padding:9px 10px">Rising sign, houses</td><td style="padding:9px 10px">Sun, Moon, planetary signs, aspects between planets</td></tr>
+            <tr style="border-bottom:1px solid rgba(18,21,28,.14)"><td style="padding:9px 10px;font-weight:500">Vedic</td><td style="padding:9px 10px">Lagna, Bhavas; Vimshottari timing reliability scales with Moon-position uncertainty (reliable / approximate / unavailable)</td><td style="padding:9px 10px">Rashi, nakshatra where Moon degree is confident enough, Graha positions by sign</td></tr>
+            <tr><td style="padding:9px 10px;font-weight:500">Chinese/BaZi</td><td style="padding:9px 10px">Hour Pillar</td><td style="padding:9px 10px">Year, Month, Day Pillars</td></tr>
+          </tbody>
+        </table>
+        <p style="font-family:'IBM Plex Sans',sans-serif;font-size:12.5px;line-height:1.65;color:rgba(18,21,28,.62);margin:16px 0 0;max-width:74ch">The UI states what's still usable rather than invalidating the whole chart. No estimated time is ever fabricated to fill a gap.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="bazi-luck" style="padding:54px 0 40px;border-bottom:1px solid rgba(18,21,28,.16)">
+    <div style="display:grid;grid-template-columns:104px 1fr;gap:36px">
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.1em;color:rgba(18,21,28,.42);padding-top:12px">07</div>
+      <div>
+        <h2 style="font-family:'Cormorant Garamond',serif;font-weight:400;font-size:40px;line-height:1.05;letter-spacing:-.02em;margin:0 0 6px">BaZi Luck Cycle input</h2>
+        <p style="font-family:'IBM Plex Sans',sans-serif;font-size:12px;letter-spacing:.04em;text-transform:uppercase;color:rgba(18,21,28,.45);margin:0 0 22px">Methodology-pending — not silently decided</p>
+        <p style="font-family:Lora,serif;font-size:16px;line-height:1.7;color:rgba(18,21,28,.84);max-width:74ch;margin:0 0 14px">Da Yun / Luck Pillar direction traditionally derives from the year stem's polarity read against sex at birth — flagged pending since Pass 3, still unresolved. Sex at birth is <strong>not</strong> added as a universal onboarding field.</p>
+        <div style="border:1px solid #b0863f;background:rgba(176,134,63,.08);padding:14px 16px;max-width:74ch">
+          <div style="font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:.12em;color:#8a6524;text-transform:uppercase;margin-bottom:6px">Frozen behavior if a future methodology needs it</div>
+          <p style="font-family:'IBM Plex Sans',sans-serif;font-size:12.5px;line-height:1.6;color:rgba(18,21,28,.72);margin:0">Ask contextually only when the user opens advanced Luck Cycles · explain why it's needed · allow Skip · never fabricate a direction or start age if skipped.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="roast" style="padding:54px 0 40px;border-bottom:1px solid rgba(18,21,28,.16)">
+    <div style="display:grid;grid-template-columns:104px 1fr;gap:36px">
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.1em;color:rgba(18,21,28,.42);padding-top:12px">08</div>
+      <div>
+        <h2 style="font-family:'Cormorant Garamond',serif;font-weight:400;font-size:40px;line-height:1.05;letter-spacing:-.02em;margin:0 0 6px">Roast mode</h2>
+        <p style="font-family:'IBM Plex Sans',sans-serif;font-size:12px;letter-spacing:.04em;text-transform:uppercase;color:rgba(18,21,28,.45);margin:0 0 22px">Same product, same facts — tone only</p>
+        <p style="font-family:Lora,serif;font-size:16px;line-height:1.7;color:rgba(18,21,28,.84);max-width:74ch;margin:0 0 16px">Normal and Roast consume identical calculated facts and identical interpretation; only expression changes. Roast is playful, dry, sarcastic, concise, never cruel, and punches at a pattern, not a person. It never infers grief, illness, trauma, abuse, breakup, unemployment, crisis or financial hardship, and never attacks body, health, money, identity or protected characteristics.</p>
+        <p style="font-family:'IBM Plex Sans',sans-serif;font-size:12.5px;line-height:1.6;color:rgba(18,21,28,.62);margin:0">Normal → Gilt. Roast → Cinnabar, scoped to in-content only. Roast is not a sub-brand: no separate logo, wordmark or icon. Its notification behavior is ruled in §09.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="notif" style="padding:54px 0 40px;border-bottom:1px solid rgba(18,21,28,.16);background:rgba(138,47,26,.04);margin:0 -40px;padding-left:40px;padding-right:40px">
+    <div style="display:grid;grid-template-columns:104px 1fr;gap:36px">
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.1em;color:#8a2f1a;padding-top:12px">09</div>
+      <div>
+        <span style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.12em;text-transform:uppercase;padding:4px 9px;background:#8a2f1a;color:#f4f1ea">Ruling</span>
+        <h2 style="font-family:'Cormorant Garamond',serif;font-weight:400;font-size:40px;line-height:1.05;letter-spacing:-.02em;margin:10px 0 6px">Roast never reaches a notification</h2>
+        <p style="font-family:'IBM Plex Sans',sans-serif;font-size:12px;letter-spacing:.04em;text-transform:uppercase;color:rgba(18,21,28,.45);margin:0 0 22px">The one contradiction this pass had to resolve outright</p>
+
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:1px;background:rgba(18,21,28,.16);border:1px solid rgba(18,21,28,.16);margin-bottom:20px">
+          <div style="background:#f4f1ea;padding:18px 20px">
+            <div style="font-family:'IBM Plex Mono',monospace;font-size:9.5px;letter-spacing:.1em;padding:3px 7px;border:1px solid rgba(18,21,28,.35);color:rgba(18,21,28,.6);display:inline-block;margin-bottom:10px">SUPERSEDED</div>
+            <div style="font-family:'IBM Plex Sans',sans-serif;font-size:12.5px;font-weight:500;margin-bottom:6px">Pass 4 · §4.09–4.10</div>
+            <p style="font-family:'IBM Plex Sans',sans-serif;font-size:12.5px;line-height:1.6;color:rgba(18,21,28,.65);margin:0">Notification preferences included a live Normal/Roast toggle (<code>toggleNotifRoast</code>) controlling the tone of sample push copy.</p>
+          </div>
+          <div style="background:#f4f1ea;padding:18px 20px">
+            <div style="font-family:'IBM Plex Mono',monospace;font-size:9.5px;letter-spacing:.1em;padding:3px 7px;background:#12151c;color:#f4f1ea;display:inline-block;margin-bottom:10px">GOVERNS</div>
+            <div style="font-family:'IBM Plex Sans',sans-serif;font-size:12.5px;font-weight:500;margin-bottom:6px">Pass 5.1 · Roast voice rules</div>
+            <p style="font-family:'IBM Plex Sans',sans-serif;font-size:12.5px;line-height:1.6;color:rgba(18,21,28,.65);margin:0">"Never in notifications. Roast is opt-in and in-app; it never arrives as a push."</p>
+          </div>
+        </div>
+
+        <p style="font-family:Lora,serif;font-size:16px;line-height:1.7;color:rgba(18,21,28,.84);max-width:74ch;margin:0 0 16px"><strong>Final rule: Pass 5.1 wins outright — Roast is excluded from notifications entirely.</strong> Brand voice is Pass 5.1's domain by the authority map (§05 there), and a push notification is the one surface a joke can't be un-seen or re-framed in: it sits on a lock screen a partner, parent or coworker can glance at, it persists in a notification center without the in-app context that makes "punches a pattern, not the person" legible, and it collides with the brand's own no-urgency/no-FOMO discipline the moment tone becomes a hook to open the app. An opt-in toggle only relocates that risk into a settings row most users never revisit.</p>
+
+        <div style="border:1px solid #12151c;background:#efece3;padding:16px 18px;max-width:74ch">
+          <div style="font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:.12em;color:#8a6524;text-transform:uppercase;margin-bottom:8px">Frozen notification-settings behavior</div>
+          <p style="font-family:'IBM Plex Sans',sans-serif;font-size:12.5px;line-height:1.65;color:rgba(18,21,28,.78);margin:0 0 8px">All push notifications ship in Normal register only, regardless of the user's in-app mode. Notification preferences drop the Normal/Roast segmented control from §4.10 entirely — categories only (e.g. daily reading ready, major sky event). A single line of copy in Settings states: <em>"Roast stays in the app — notifications are always Normal."</em></p>
+          <p style="font-family:'IBM Plex Sans',sans-serif;font-size:12px;line-height:1.6;color:rgba(18,21,28,.55);margin:0">In-app Roast is unaffected — the user's mode still governs everything they read once they open Humay.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="monetization" style="padding:54px 0 40px;border-bottom:1px solid rgba(18,21,28,.16)">
+    <div style="display:grid;grid-template-columns:104px 1fr;gap:36px">
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.1em;color:rgba(18,21,28,.42);padding-top:12px">10</div>
+      <div>
+        <h2 style="font-family:'Cormorant Garamond',serif;font-weight:400;font-size:40px;line-height:1.05;letter-spacing:-.02em;margin:0 0 6px">Monetization contract</h2>
+        <p style="font-family:'IBM Plex Sans',sans-serif;font-size:12px;letter-spacing:.04em;text-transform:uppercase;color:rgba(18,21,28,.45);margin:0 0 22px">Free → Rewarded Access → Premium, a hierarchy not a menu</p>
+
+        <div style="display:flex;flex-wrap:wrap;gap:10px;margin-bottom:20px">
+          <span style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;padding:6px 12px;border:1px solid rgba(18,21,28,.3);color:rgba(18,21,28,.6)">Free — genuinely useful</span>
+          <span style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;padding:6px 12px;border:1px solid #8a6524;color:#8a6524">Rewarded — one ad, one item, permanent per item</span>
+          <span style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;padding:6px 12px;background:#12151c;color:#f4f1ea">Premium — subscription entitlement</span>
+        </div>
+
+        <table style="width:100%;border-collapse:collapse;font-family:'IBM Plex Sans',sans-serif;font-size:12px;margin-bottom:18px">
+          <thead><tr style="border-bottom:1px solid #12151c"><th style="text-align:left;padding:8px 8px;font-weight:600">Feature</th><th style="text-align:left;padding:8px 8px;font-weight:600">Free</th><th style="text-align:left;padding:8px 8px;font-weight:600">Rewarded</th><th style="text-align:left;padding:8px 8px;font-weight:600">Premium</th></tr></thead>
+          <tbody style="color:rgba(18,21,28,.75)">
+            <tr style="border-bottom:1px solid rgba(18,21,28,.12)"><td style="padding:7px 8px;font-weight:500">Compatibility</td><td style="padding:7px 8px">Overview, top connection, top friction</td><td style="padding:7px 8px">One deeper section per ad</td><td style="padding:7px 8px">Full report, all sections</td></tr>
+            <tr style="border-bottom:1px solid rgba(18,21,28,.12)"><td style="padding:7px 8px;font-weight:500">Today Together</td><td style="padding:7px 8px">Basic daily overlap</td><td style="padding:7px 8px">N/A</td><td style="padding:7px 8px">Expanded daily overlap</td></tr>
+            <tr style="border-bottom:1px solid rgba(18,21,28,.12)"><td style="padding:7px 8px;font-weight:500">Chart</td><td style="padding:7px 8px">Big Three, major placements</td><td style="padding:7px 8px">One advanced placement/aspect read</td><td style="padding:7px 8px">Full advanced Chart</td></tr>
+            <tr style="border-bottom:1px solid rgba(18,21,28,.12)"><td style="padding:7px 8px;font-weight:500">Sky</td><td style="padding:7px 8px">Important current events</td><td style="padding:7px 8px">N/A</td><td style="padding:7px 8px">Extended personalized relevance</td></tr>
+            <tr style="border-bottom:1px solid rgba(18,21,28,.12)"><td style="padding:7px 8px;font-weight:500">Calendar</td><td style="padding:7px 8px">Important basic events</td><td style="padding:7px 8px">One deeper insight per event</td><td style="padding:7px 8px">Full deeper Calendar</td></tr>
+            <tr style="border-bottom:1px solid rgba(18,21,28,.12)"><td style="padding:7px 8px;font-weight:500">Compare Systems</td><td style="padding:7px 8px">Shared theme</td><td style="padding:7px 8px">One full reading, this instance</td><td style="padding:7px 8px">Unlimited Compare readings</td></tr>
+            <tr style="border-bottom:1px solid rgba(18,21,28,.12)"><td style="padding:7px 8px;font-weight:500">Ask</td><td style="padding:7px 8px">Limited daily questions</td><td style="padding:7px 8px">+1 question per ad</td><td style="padding:7px 8px">Larger/unlimited allowance</td></tr>
+            <tr><td style="padding:7px 8px;font-weight:500">Saved People</td><td style="padding:7px 8px">Base saved-person limit</td><td style="padding:7px 8px">+1 slot per ad, permanently</td><td style="padding:7px 8px">Larger saved-person limit</td></tr>
+          </tbody>
+        </table>
+
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:26px;margin-bottom:18px">
+          <div>
+            <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:#8a6524;margin-bottom:8px">Never reward-gated</div>
+            <p style="font-family:'IBM Plex Sans',sans-serif;font-size:12.5px;line-height:1.7;color:rgba(18,21,28,.72);margin:0">Basic Today · basic Big Three/Chart · basic compatibility overview · onboarding · birth-data editing · privacy controls · export/delete data · normal navigation · essential notifications.</p>
+          </div>
+          <div>
+            <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:#8a6524;margin-bottom:8px">Never used</div>
+            <p style="font-family:'IBM Plex Sans',sans-serif;font-size:12.5px;line-height:1.7;color:rgba(18,21,28,.72);margin:0">Banner, native-feed, autoplay, interstitial or launch ads. Coins, gems, stars, energy or any gamified currency.</p>
+          </div>
+        </div>
+
+        <div style="border:1px solid rgba(18,21,28,.16);padding:14px 16px;max-width:80ch">
+          <p style="font-family:'IBM Plex Sans',sans-serif;font-size:12.5px;line-height:1.65;color:rgba(18,21,28,.72);margin:0"><strong>Terminology:</strong> "Rewarded Access" stays internal; users read <em>Watch ad to unlock</em>. "Humay Premium" only where Pass 5.1 specifies full brand naming (paywall); elsewhere just <em>Premium</em>. The daily reward allowance and cooldown (a small numeric limit in Pass 4.1's prototype) are product configuration, not architectural constants — do not hard-code the prototype number.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="ask" style="padding:54px 0 40px;border-bottom:1px solid rgba(18,21,28,.16)">
+    <div style="display:grid;grid-template-columns:104px 1fr;gap:36px">
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.1em;color:rgba(18,21,28,.42);padding-top:12px">11</div>
+      <div>
+        <h2 style="font-family:'Cormorant Garamond',serif;font-weight:400;font-size:40px;line-height:1.05;letter-spacing:-.02em;margin:0 0 6px">Ask the Stars</h2>
+        <p style="font-family:'IBM Plex Sans',sans-serif;font-size:12px;letter-spacing:.04em;text-transform:uppercase;color:rgba(18,21,28,.45);margin:0 0 22px">A contextual assistant, not a general chatbot</p>
+        <p style="font-family:Lora,serif;font-size:16px;line-height:1.7;color:rgba(18,21,28,.84);max-width:74ch;margin:0 0 18px">Answers only from structured calculated chart/timing facts, in the selected system's terminology, with sourceability shown and unknown-birth-time limits respected. The access decision (free/rewarded/Premium) resolves <strong>before</strong> the question is answered — never an ad gate mid-answer.</p>
+        <div style="display:flex;flex-wrap:wrap;gap:8px">
+          <span style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;padding:5px 10px;border:1px solid rgba(18,21,28,.3);color:rgba(18,21,28,.65)">available</span>
+          <span style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;padding:5px 10px;border:1px solid rgba(18,21,28,.3);color:rgba(18,21,28,.65)">loading</span>
+          <span style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;padding:5px 10px;border:1px solid rgba(18,21,28,.3);color:rgba(18,21,28,.65)">answer</span>
+          <span style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;padding:5px 10px;border:1px solid rgba(18,21,28,.3);color:rgba(18,21,28,.65)">insufficient chart data</span>
+          <span style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;padding:5px 10px;border:1px solid rgba(18,21,28,.3);color:rgba(18,21,28,.65)">unsupported calculation</span>
+          <span style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;padding:5px 10px;border:1px solid #8a6524;color:#8a6524">free allowance exhausted</span>
+          <span style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;padding:5px 10px;border:1px solid #8a6524;color:#8a6524">rewarded unlock available</span>
+          <span style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;padding:5px 10px;border:1px solid rgba(18,21,28,.3);color:rgba(18,21,28,.65)">rewarded unavailable</span>
+          <span style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;padding:5px 10px;background:#12151c;color:#f4f1ea">Premium</span>
+          <span style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;padding:5px 10px;border:1px solid #8a2f1a;color:#8a2f1a">provider/network failure</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="compat" style="padding:54px 0 40px;border-bottom:1px solid rgba(18,21,28,.16)">
+    <div style="display:grid;grid-template-columns:104px 1fr;gap:36px">
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.1em;color:rgba(18,21,28,.42);padding-top:12px">12</div>
+      <div>
+        <h2 style="font-family:'Cormorant Garamond',serif;font-weight:400;font-size:40px;line-height:1.05;letter-spacing:-.02em;margin:0 0 6px">Compatibility</h2>
+        <p style="font-family:'IBM Plex Sans',sans-serif;font-size:12px;letter-spacing:.04em;text-transform:uppercase;color:rgba(18,21,28,.45);margin:0 0 22px">Romantic, family, friends, coworkers — one model, native methods</p>
+        <p style="font-family:Lora,serif;font-size:16px;line-height:1.7;color:rgba(18,21,28,.84);max-width:74ch;margin:0 0 16px">Overall/permanent compatibility plus Today Together are preserved. Two phrases stay banned outright, confirmed already in the strategy work: <em>incompatible</em>, and any generic percentage/match score. 5–8 meaningful primary dimensions surface before deeper disclosure. Vedic romantic matching keeps its own native method (Ashtakoota/Guna Milan, eight kootas) — a traditional named methodology, not a generic score, so it does not conflict with the no-percentage rule (§26). Vedic non-romantic dimensions and the Western composite-chart technique remain open — Pass 4 itself flags both rather than pretending a method exists; tracked in §13.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="methodology" style="padding:54px 0 40px;border-bottom:1px solid rgba(18,21,28,.16)">
+    <div style="display:grid;grid-template-columns:104px 1fr;gap:36px">
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.1em;color:rgba(18,21,28,.42);padding-top:12px">13</div>
+      <div>
+        <h2 style="font-family:'Cormorant Garamond',serif;font-weight:400;font-size:40px;line-height:1.05;letter-spacing:-.02em;margin:0 0 6px">Methodology registry</h2>
+        <p style="font-family:'IBM Plex Sans',sans-serif;font-size:12px;letter-spacing:.04em;text-transform:uppercase;color:rgba(18,21,28,.45);margin:0 0 22px">Locked · implementation choice · methodology research required</p>
+        <table style="width:100%;border-collapse:collapse;font-family:'IBM Plex Sans',sans-serif;font-size:12px">
+          <thead><tr style="border-bottom:1px solid #12151c"><th style="text-align:left;padding:8px;font-weight:600">Item</th><th style="text-align:left;padding:8px;font-weight:600">Status</th><th style="text-align:left;padding:8px;font-weight:600">Ships before resolved?</th></tr></thead>
+          <tbody style="color:rgba(18,21,28,.75)">
+            <tr style="border-bottom:1px solid rgba(18,21,28,.12)"><td style="padding:7px 8px">Western house-system support</td><td style="padding:7px 8px"><span style="font-family:'IBM Plex Mono',monospace;font-size:9.5px;border:1px solid rgba(18,21,28,.35);padding:2px 6px">RESEARCH REQUIRED</span></td><td style="padding:7px 8px">Yes — Big Three needs no house system; house-based reads wait</td></tr>
+            <tr style="border-bottom:1px solid rgba(18,21,28,.12)"><td style="padding:7px 8px">Western composite-chart technique</td><td style="padding:7px 8px"><span style="font-family:'IBM Plex Mono',monospace;font-size:9.5px;border:1px solid rgba(18,21,28,.35);padding:2px 6px">RESEARCH REQUIRED</span></td><td style="padding:7px 8px">Yes — synastry-based Weave covers Western compatibility MVP</td></tr>
+            <tr style="border-bottom:1px solid rgba(18,21,28,.12)"><td style="padding:7px 8px">Vedic ayanamsa support</td><td style="padding:7px 8px"><span style="font-family:'IBM Plex Mono',monospace;font-size:9.5px;border:1px solid #b0863f;color:#8a6524;padding:2px 6px">IMPL. CHOICE</span></td><td style="padding:7px 8px">Yes — Lahiri is the only ayanamsa exercised in every Vedic prototype; recommend as engineering default pending methodology owner sign-off</td></tr>
+            <tr style="border-bottom:1px solid rgba(18,21,28,.12)"><td style="padding:7px 8px">Vedic non-romantic relationship dimensions</td><td style="padding:7px 8px"><span style="font-family:'IBM Plex Mono',monospace;font-size:9.5px;border:1px solid rgba(18,21,28,.35);padding:2px 6px">RESEARCH REQUIRED</span></td><td style="padding:7px 8px">Yes — romantic Ashtakoota already has a defined method; non-romantic can follow later</td></tr>
+            <tr style="border-bottom:1px solid rgba(18,21,28,.12)"><td style="padding:7px 8px">Vimshottari uncertainty behavior</td><td style="padding:7px 8px"><span style="font-family:'IBM Plex Mono',monospace;font-size:9.5px;background:#12151c;color:#f4f1ea;padding:2px 6px">LOCKED</span></td><td style="padding:7px 8px">Reliable/approximate/unavailable tiers frozen in §06</td></tr>
+            <tr style="border-bottom:1px solid rgba(18,21,28,.12)"><td style="padding:7px 8px">Chinese calendar conventions</td><td style="padding:7px 8px"><span style="font-family:'IBM Plex Mono',monospace;font-size:9.5px;border:1px solid rgba(18,21,28,.35);padding:2px 6px">RESEARCH REQUIRED</span></td><td style="padding:7px 8px">No — Year/Month Pillar accuracy depends on solar-term convention; blocking for BaZi specifically</td></tr>
+            <tr style="border-bottom:1px solid rgba(18,21,28,.12)"><td style="padding:7px 8px">BaZi Four Pillars conventions</td><td style="padding:7px 8px"><span style="font-family:'IBM Plex Mono',monospace;font-size:9.5px;border:1px solid rgba(18,21,28,.35);padding:2px 6px">RESEARCH REQUIRED</span></td><td style="padding:7px 8px">No — blocking for BaZi native experience</td></tr>
+            <tr style="border-bottom:1px solid rgba(18,21,28,.12)"><td style="padding:7px 8px">BaZi local/solar time handling</td><td style="padding:7px 8px"><span style="font-family:'IBM Plex Mono',monospace;font-size:9.5px;border:1px solid #b0863f;color:#8a6524;padding:2px 6px">IMPL. CHOICE</span></td><td style="padding:7px 8px">Yes — local solar time is the only convention exercised in prototypes; recommend as default</td></tr>
+            <tr style="border-bottom:1px solid rgba(18,21,28,.12)"><td style="padding:7px 8px">BaZi Luck Cycle / Da Yun methodology + input</td><td style="padding:7px 8px"><span style="font-family:'IBM Plex Mono',monospace;font-size:9.5px;border:1px solid rgba(18,21,28,.35);padding:2px 6px">RESEARCH REQUIRED</span></td><td style="padding:7px 8px">Yes — basic Four Pillars ships without advanced Luck Cycles (§07)</td></tr>
+            <tr><td style="padding:7px 8px">Event-type mapping, Western/Vedic/Chinese timing</td><td style="padding:7px 8px"><span style="font-family:'IBM Plex Mono',monospace;font-size:9.5px;border:1px solid rgba(18,21,28,.35);padding:2px 6px">RESEARCH REQUIRED</span></td><td style="padding:7px 8px">Partially — single-system Sky/Calendar ships; full Compare Systems parity waits</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <section id="tokens" style="padding:54px 0 40px;border-bottom:1px solid rgba(18,21,28,.16)">
+    <div style="display:grid;grid-template-columns:104px 1fr;gap:36px">
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.1em;color:rgba(18,21,28,.42);padding-top:12px">14</div>
+      <div>
+        <h2 style="font-family:'Cormorant Garamond',serif;font-weight:400;font-size:40px;line-height:1.05;letter-spacing:-.02em;margin:0 0 6px">Design tokens, frozen</h2>
+        <p style="font-family:'IBM Plex Sans',sans-serif;font-size:12px;letter-spacing:.04em;text-transform:uppercase;color:rgba(18,21,28,.45);margin:0 0 22px">Implementation-level values only — nothing invented to look thorough</p>
+
+        <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:#8a6524;margin:22px 0 10px">Color</div>
+        <table style="width:100%;border-collapse:collapse;font-family:'IBM Plex Sans',sans-serif;font-size:12px;margin-bottom:8px">
+          <tbody style="color:rgba(18,21,28,.78)">
+            <tr style="border-bottom:1px solid rgba(18,21,28,.12)"><td style="padding:7px 8px;font-weight:500;width:150px">Ink</td><td style="padding:7px 8px">#12151C — text, dark surface ground. Not a "dark mode" — a surface with meaning (sky, waiting, calculation, Roast).</td></tr>
+            <tr style="border-bottom:1px solid rgba(18,21,28,.12)"><td style="padding:7px 8px;font-weight:500">Paper</td><td style="padding:7px 8px">#F4F1EA — primary light surface for reading.</td></tr>
+            <tr style="border-bottom:1px solid rgba(18,21,28,.12)"><td style="padding:7px 8px;font-weight:500">Gilt</td><td style="padding:7px 8px">#B0863F base · #D9AD63 on Ink · #8A6524 for accent text on Paper (contrast-safe body-size use).</td></tr>
+            <tr style="border-bottom:1px solid rgba(18,21,28,.12)"><td style="padding:7px 8px;font-weight:500">Cinnabar</td><td style="padding:7px 8px">#C2472A — Roast content only. Never chrome, never the mark, never a status color in engineering tooling.</td></tr>
+            <tr><td style="padding:7px 8px;font-weight:500">Text hierarchy</td><td style="padding:7px 8px">Ink at full, .84, .74, .62, .5, .45 opacity for primary/body/secondary/tertiary/label/disabled — matches every artifact from Pass 2 forward; do not introduce new stops.</td></tr>
+          </tbody>
+        </table>
+
+        <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:#8a6524;margin:22px 0 10px">Typography</div>
+        <table style="width:100%;border-collapse:collapse;font-family:'IBM Plex Sans',sans-serif;font-size:12px;margin-bottom:8px">
+          <tbody style="color:rgba(18,21,28,.78)">
+            <tr style="border-bottom:1px solid rgba(18,21,28,.12)"><td style="padding:7px 8px;font-weight:500;width:150px">Cormorant Garamond</td><td style="padding:7px 8px">Display/headings, weight 300–400. Never bold; the bigger the size, the lighter the weight.</td></tr>
+            <tr style="border-bottom:1px solid rgba(18,21,28,.12)"><td style="padding:7px 8px;font-weight:500">Lora</td><td style="padding:7px 8px">Reading body serif, 1.6–1.75 line height. Never used for mono/tabular data.</td></tr>
+            <tr style="border-bottom:1px solid rgba(18,21,28,.12)"><td style="padding:7px 8px;font-weight:500">IBM Plex Sans</td><td style="padding:7px 8px">UI copy, labels, controls, kickers (uppercase, tracked ~.04em).</td></tr>
+            <tr style="border-bottom:1px solid rgba(18,21,28,.12)"><td style="padding:7px 8px;font-weight:500">IBM Plex Mono</td><td style="padding:7px 8px">Coordinates, degrees, timestamps, indices — all figures tabular. Mono is never prose.</td></tr>
+            <tr><td style="padding:7px 8px;font-weight:500">Dynamic Type</td><td style="padding:7px 8px">Body scales to 200%. Display caps at 1.4× and re-wraps. Mono caps at 1.2× and falls back to Plex Sans above 1.3× so tables don't shatter.</td></tr>
+          </tbody>
+        </table>
+
+        <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:20px;margin-top:22px">
+          <div>
+            <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:#8a6524;margin-bottom:8px">Spacing / radius / border</div>
+            <p style="font-family:'IBM Plex Sans',sans-serif;font-size:12px;line-height:1.7;color:rgba(18,21,28,.7);margin:0">Hairline 1px dividers throughout; 2px only for the deliberate "core relationship" emphasis rule. Corners are square by default — Eclipse draws with rules, not rounded containers; the one exception is the occultation mark and widget corner radius (24px), owned by brand.</p>
+          </div>
+          <div>
+            <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:#8a6524;margin-bottom:8px">Shadow / iconography</div>
+            <p style="font-family:'IBM Plex Sans',sans-serif;font-size:12px;line-height:1.7;color:rgba(18,21,28,.7);margin:0">Shadow restrained to device-frame presentation only, never on in-app surfaces. Icons follow Lucide's line weight and proportions where a glyph is needed; astrological glyphs (planets, signs) are typographic marks, not icon-set icons — see §19 for spoken-label requirements.</p>
+          </div>
+          <div>
+            <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:#8a6524;margin-bottom:8px">Motion</div>
+            <p style="font-family:'IBM Plex Sans',sans-serif;font-size:12px;line-height:1.7;color:rgba(18,21,28,.7);margin:0">Full detail in §20. Occultation 640ms; screen pushes 320ms; reveal beats ~900ms apart; reduced motion 120–160ms crossfade throughout, nothing loops.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="components" style="padding:54px 0 40px;border-bottom:1px solid rgba(18,21,28,.16)">
+    <div style="display:grid;grid-template-columns:104px 1fr;gap:36px">
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.1em;color:rgba(18,21,28,.42);padding-top:12px">15</div>
+      <div>
+        <h2 style="font-family:'Cormorant Garamond',serif;font-weight:400;font-size:40px;line-height:1.05;letter-spacing:-.02em;margin:0 0 6px">Component inventory</h2>
+        <p style="font-family:'IBM Plex Sans',sans-serif;font-size:12px;letter-spacing:.04em;text-transform:uppercase;color:rgba(18,21,28,.45);margin:0 0 22px">Canonical, reusable — merge what's visually identical, keep what isn't</p>
+        <table style="width:100%;border-collapse:collapse;font-family:'IBM Plex Sans',sans-serif;font-size:12px">
+          <thead><tr style="border-bottom:1px solid #12151c"><th style="text-align:left;padding:8px;font-weight:600">Component</th><th style="text-align:left;padding:8px;font-weight:600">Variants / states</th><th style="text-align:left;padding:8px;font-weight:600">Used in</th></tr></thead>
+          <tbody style="color:rgba(18,21,28,.75)">
+            <tr style="border-bottom:1px solid rgba(18,21,28,.12)"><td style="padding:7px 8px">App header</td><td style="padding:7px 8px">large-title collapse, profile entry, section title</td><td style="padding:7px 8px">All five tabs</td></tr>
+            <tr style="border-bottom:1px solid rgba(18,21,28,.12)"><td style="padding:7px 8px">Profile/avatar entry</td><td style="padding:7px 8px">initials, no photo required</td><td style="padding:7px 8px">Header, universal</td></tr>
+            <tr style="border-bottom:1px solid rgba(18,21,28,.12)"><td style="padding:7px 8px">Primary tab bar</td><td style="padding:7px 8px">5 items, hairline top rule, no badges beyond a quiet dot</td><td style="padding:7px 8px">Root nav</td></tr>
+            <tr style="border-bottom:1px solid rgba(18,21,28,.12)"><td style="padding:7px 8px">Coordinate rail</td><td style="padding:7px 8px">mono index + tick, active/inactive</td><td style="padding:7px 8px">Onboarding, Today, Chart headers</td></tr>
+            <tr style="border-bottom:1px solid rgba(18,21,28,.12)"><td style="padding:7px 8px">Insight card</td><td style="padding:7px 8px">Normal/Roast tone, loading/loaded/empty</td><td style="padding:7px 8px">Today, Sky, Chart, Circle</td></tr>
+            <tr style="border-bottom:1px solid rgba(18,21,28,.12)"><td style="padding:7px 8px">Astrological-basis disclosure</td><td style="padding:7px 8px">collapsed/expanded, per-system field set</td><td style="padding:7px 8px">Every insight card</td></tr>
+            <tr style="border-bottom:1px solid rgba(18,21,28,.12)"><td style="padding:7px 8px">System selector</td><td style="padding:7px 8px">Western/Vedic/Chinese, compact/full</td><td style="padding:7px 8px">Chart, Ask, Compatibility</td></tr>
+            <tr style="border-bottom:1px solid rgba(18,21,28,.12)"><td style="padding:7px 8px">Chart-factor row</td><td style="padding:7px 8px">placement/aspect/dasha/pillar variants — <em>not merged, grammar differs per system</em></td><td style="padding:7px 8px">Chart, Ask basis</td></tr>
+            <tr style="border-bottom:1px solid rgba(18,21,28,.12)"><td style="padding:7px 8px">Celestial/event row</td><td style="padding:7px 8px">current/upcoming, has-detail</td><td style="padding:7px 8px">Sky, Calendar</td></tr>
+            <tr style="border-bottom:1px solid rgba(18,21,28,.12)"><td style="padding:7px 8px">Compatibility dimension</td><td style="padding:7px 8px">gap-visualization row, per-system variant</td><td style="padding:7px 8px">Compatibility, Compare Systems</td></tr>
+            <tr style="border-bottom:1px solid rgba(18,21,28,.12)"><td style="padding:7px 8px">Person card / relationship row</td><td style="padding:7px 8px">romantic/family/friend/coworker header treatment</td><td style="padding:7px 8px">Circle</td></tr>
+            <tr style="border-bottom:1px solid rgba(18,21,28,.12)"><td style="padding:7px 8px">Premium gate · Rewarded gate · Unlocked confirmation</td><td style="padding:7px 8px">one shared "access" family — three states of the same component</td><td style="padding:7px 8px">Every gated surface</td></tr>
+            <tr style="border-bottom:1px solid rgba(18,21,28,.12)"><td style="padding:7px 8px">Empty / loading / error / unavailable-calculation states</td><td style="padding:7px 8px">one shared "surface state" family</td><td style="padding:7px 8px">Every data surface</td></tr>
+            <tr style="border-bottom:1px solid rgba(18,21,28,.12)"><td style="padding:7px 8px">Buttons, segmented controls, sheets, menus</td><td style="padding:7px 8px">standard iOS primitives, Eclipse-styled</td><td style="padding:7px 8px">Universal</td></tr>
+            <tr><td style="padding:7px 8px">Share-card templates · Widget surfaces</td><td style="padding:7px 8px">small/medium widget, ink share plate</td><td style="padding:7px 8px">Sharing, Widgets</td></tr>
+          </tbody>
+        </table>
+        <p style="font-family:'IBM Plex Sans',sans-serif;font-size:12.5px;line-height:1.6;color:rgba(18,21,28,.62);margin:14px 0 0;max-width:80ch"><strong>Merge:</strong> Premium gate, Rewarded gate and Unlocked confirmation are one component with an access-state prop, not three. Empty/loading/error/unavailable are one surface-state family. <strong>Do not merge:</strong> chart-factor rows across Western/Vedic/Chinese — the grammar (aspect vs. yoga vs. pillar interaction) is genuinely different content, not a skin.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="screens" style="padding:54px 0 40px;border-bottom:1px solid rgba(18,21,28,.16)">
+    <div style="display:grid;grid-template-columns:104px 1fr;gap:36px">
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.1em;color:rgba(18,21,28,.42);padding-top:12px">16</div>
+      <div>
+        <h2 style="font-family:'Cormorant Garamond',serif;font-weight:400;font-size:40px;line-height:1.05;letter-spacing:-.02em;margin:0 0 6px">Screen inventory</h2>
+        <p style="font-family:'IBM Plex Sans',sans-serif;font-size:12px;letter-spacing:.04em;text-transform:uppercase;color:rgba(18,21,28,.45);margin:0 0 22px">Reference to existing artifacts, not a redraw</p>
+        <table style="width:100%;border-collapse:collapse;font-family:'IBM Plex Sans',sans-serif;font-size:12px">
+          <thead><tr style="border-bottom:1px solid #12151c"><th style="text-align:left;padding:8px;font-weight:600">Area</th><th style="text-align:left;padding:8px;font-weight:600">Surfaces</th><th style="text-align:left;padding:8px;font-weight:600">Source artifact</th></tr></thead>
+          <tbody style="color:rgba(18,21,28,.75)">
+            <tr style="border-bottom:1px solid rgba(18,21,28,.12)"><td style="padding:7px 8px;font-weight:500">Onboarding</td><td style="padding:7px 8px">14 stages, Big Three reveal, notification permission</td><td style="padding:7px 8px">Onboarding.dc.html</td></tr>
+            <tr style="border-bottom:1px solid rgba(18,21,28,.12)"><td style="padding:7px 8px;font-weight:500">Today</td><td style="padding:7px 8px">Headline, day arc, category scan, transit/basis detail</td><td style="padding:7px 8px">Pass 2</td></tr>
+            <tr style="border-bottom:1px solid rgba(18,21,28,.12)"><td style="padding:7px 8px;font-weight:500">Circle</td><td style="padding:7px 8px">People list, person detail, compatibility, Today Together</td><td style="padding:7px 8px">Pass 2, Pass 4</td></tr>
+            <tr style="border-bottom:1px solid rgba(18,21,28,.12)"><td style="padding:7px 8px;font-weight:500">Sky</td><td style="padding:7px 8px">Current sky, Calendar, event detail</td><td style="padding:7px 8px">Pass 3, Pass 4</td></tr>
+            <tr style="border-bottom:1px solid rgba(18,21,28,.12)"><td style="padding:7px 8px;font-weight:500">Chart</td><td style="padding:7px 8px">Overview, Western, Vedic (incl. Vimshottari), Chinese/BaZi, Compare Systems</td><td style="padding:7px 8px">Pass 3, Pass 4</td></tr>
+            <tr style="border-bottom:1px solid rgba(18,21,28,.12)"><td style="padding:7px 8px;font-weight:500">Ask</td><td style="padding:7px 8px">Question entry, answer, all states in §11</td><td style="padding:7px 8px">Pass 3</td></tr>
+            <tr style="border-bottom:1px solid rgba(18,21,28,.12)"><td style="padding:7px 8px;font-weight:500">Profile/Settings</td><td style="padding:7px 8px">Advanced astrology settings, appearance/mode, notifications (revised §09), privacy/delete, subscription</td><td style="padding:7px 8px">Pass 4</td></tr>
+            <tr style="border-bottom:1px solid rgba(18,21,28,.12)"><td style="padding:7px 8px;font-weight:500">Premium / Rewarded Access</td><td style="padding:7px 8px">Paywall, watch-ad prompts, unlocked confirmation, entitlement table</td><td style="padding:7px 8px">Pass 4.1</td></tr>
+            <tr style="border-bottom:1px solid rgba(18,21,28,.12)"><td style="padding:7px 8px;font-weight:500">Sharing / Widgets</td><td style="padding:7px 8px">Share sheet (format &amp; privacy), 4 widget sizes</td><td style="padding:7px 8px">Pass 4</td></tr>
+            <tr><td style="padding:7px 8px;font-weight:500">System/product states</td><td style="padding:7px 8px">Empty, loading, error, unavailable — see §18 for the matrix</td><td style="padding:7px 8px">Pass 4</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <section id="navigation" style="padding:54px 0 40px;border-bottom:1px solid rgba(18,21,28,.16)">
+    <div style="display:grid;grid-template-columns:104px 1fr;gap:36px">
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.1em;color:rgba(18,21,28,.42);padding-top:12px">17</div>
+      <div>
+        <h2 style="font-family:'Cormorant Garamond',serif;font-weight:400;font-size:40px;line-height:1.05;letter-spacing:-.02em;margin:0 0 6px">Navigation contract</h2>
+        <p style="font-family:'IBM Plex Sans',sans-serif;font-size:12px;letter-spacing:.04em;text-transform:uppercase;color:rgba(18,21,28,.45);margin:0 0 22px">Behavior, not SwiftUI</p>
+        <table style="width:100%;border-collapse:collapse;font-family:'IBM Plex Sans',sans-serif;font-size:12px">
+          <tbody style="color:rgba(18,21,28,.78)">
+            <tr style="border-bottom:1px solid rgba(18,21,28,.14)"><td style="padding:8px;font-weight:500;width:200px">Root tabs</td><td style="padding:8px">5 tabs, each preserves its own navigation stack across tab switches</td></tr>
+            <tr style="border-bottom:1px solid rgba(18,21,28,.14)"><td style="padding:8px;font-weight:500">Deep links</td><td style="padding:8px">Notification and widget taps land on the specific surface (event detail, Ask answer, unlock confirmation) inside its owning tab, not the tab root</td></tr>
+            <tr style="border-bottom:1px solid rgba(18,21,28,.14)"><td style="padding:8px;font-weight:500">Push vs. sheet vs. modal</td><td style="padding:8px">Drilling into detail (person, event, chart factor) pushes. Transient decisions (share, watch-ad, delete confirm) sheet. Paywall presents as a sheet, dismissible, never full-screen-blocking</td></tr>
+            <tr style="border-bottom:1px solid rgba(18,21,28,.14)"><td style="padding:8px;font-weight:500">Profile/Settings, Calendar entry</td><td style="padding:8px">Profile from header avatar (push). Calendar as a segment/tab inside Sky, not a separate root</td></tr>
+            <tr style="border-bottom:1px solid rgba(18,21,28,.14)"><td style="padding:8px;font-weight:500">Person / compatibility routes</td><td style="padding:8px">Circle → person → {compatibility, Today Together, their chart}, all pushes within Circle's stack</td></tr>
+            <tr style="border-bottom:1px solid rgba(18,21,28,.14)"><td style="padding:8px;font-weight:500">Chart-system routes</td><td style="padding:8px">Chart overview → system tab (Western/Vedic/Chinese) as an in-place segmented switch, not a new push</td></tr>
+            <tr style="border-bottom:1px solid rgba(18,21,28,.14)"><td style="padding:8px;font-weight:500">Ask, contextual entry</td><td style="padding:8px">Launching Ask from an existing insight card pre-fills chart context; still opens as a push within the current tab, never a modal takeover</td></tr>
+            <tr><td style="padding:8px;font-weight:500">Rewarded-unlock presentation</td><td style="padding:8px">Presents from the exact gated element as a sheet; on success the sheet dismisses into the unlocked content in place — never a separate confirmation screen</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <section id="states" style="padding:54px 0 40px;border-bottom:1px solid rgba(18,21,28,.16)">
+    <div style="display:grid;grid-template-columns:104px 1fr;gap:36px">
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.1em;color:rgba(18,21,28,.42);padding-top:12px">18</div>
+      <div>
+        <h2 style="font-family:'Cormorant Garamond',serif;font-weight:400;font-size:40px;line-height:1.05;letter-spacing:-.02em;margin:0 0 6px">State matrix</h2>
+        <p style="font-family:'IBM Plex Sans',sans-serif;font-size:12px;letter-spacing:.04em;text-transform:uppercase;color:rgba(18,21,28,.45);margin:0 0 22px">Only the combinations that materially change UI</p>
+        <table style="width:100%;border-collapse:collapse;font-family:'IBM Plex Sans',sans-serif;font-size:12px">
+          <thead><tr style="border-bottom:1px solid #12151c"><th style="text-align:left;padding:8px;font-weight:600">Axis</th><th style="text-align:left;padding:8px;font-weight:600">Values</th></tr></thead>
+          <tbody style="color:rgba(18,21,28,.78)">
+            <tr style="border-bottom:1px solid rgba(18,21,28,.12)"><td style="padding:7px 8px;font-weight:500">Data</td><td style="padding:7px 8px">loading · loaded · empty · stale · failed · unavailable</td></tr>
+            <tr style="border-bottom:1px solid rgba(18,21,28,.12)"><td style="padding:7px 8px;font-weight:500">Birth data</td><td style="padding:7px 8px">complete · time unknown · location incomplete/invalid · calculation partially available</td></tr>
+            <tr style="border-bottom:1px solid rgba(18,21,28,.12)"><td style="padding:7px 8px;font-weight:500">Access</td><td style="padding:7px 8px">Free · reward-eligible · reward-unlocked (this item) · reward unavailable · Premium</td></tr>
+            <tr style="border-bottom:1px solid rgba(18,21,28,.12)"><td style="padding:7px 8px;font-weight:500">Mode</td><td style="padding:7px 8px">Normal · Roast</td></tr>
+            <tr><td style="padding:7px 8px;font-weight:500">Network</td><td style="padding:7px 8px">online · offline/cached</td></tr>
+          </tbody>
+        </table>
+        <p style="font-family:'IBM Plex Sans',sans-serif;font-size:12.5px;line-height:1.6;color:rgba(18,21,28,.62);margin:14px 0 0;max-width:80ch">Meaningful crossings, not the full combinatorial set: Access × Data (a reward-eligible surface still needs its own loading/error), Birth data × system (§06's table), Mode × Data (Roast never substitutes for a missing calculated fact — an unavailable state stays unavailable in either mode).</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="a11y" style="padding:54px 0 40px;border-bottom:1px solid rgba(18,21,28,.16)">
+    <div style="display:grid;grid-template-columns:104px 1fr;gap:36px">
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.1em;color:rgba(18,21,28,.42);padding-top:12px">19</div>
+      <div>
+        <h2 style="font-family:'Cormorant Garamond',serif;font-weight:400;font-size:40px;line-height:1.05;letter-spacing:-.02em;margin:0 0 6px">Accessibility handoff</h2>
+        <p style="font-family:'IBM Plex Sans',sans-serif;font-size:12px;letter-spacing:.04em;text-transform:uppercase;color:rgba(18,21,28,.45);margin:0 0 22px">Charts are not accessible only as graphics</p>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:26px">
+          <div>
+            <p style="font-family:'IBM Plex Sans',sans-serif;font-size:12.5px;line-height:1.75;color:rgba(18,21,28,.72);margin:0">Dynamic Type per §14's table · VoiceOver order follows visual reading order (insight → basis, never basis-first) · every zodiac/planet glyph carries a spoken label ("Mercury", "Gemini") rather than reading a Unicode symbol name · contrast holds at body-text minimums against both Ink and Paper grounds · Reduce Motion swaps every signature animation for the crossfade in §20 · Reduce Transparency removes any translucent overlay on gated content.</p>
+          </div>
+          <div>
+            <p style="font-family:'IBM Plex Sans',sans-serif;font-size:12.5px;line-height:1.75;color:rgba(18,21,28,.72);margin:0">Hit targets never below 44pt · the natal wheel and Weave diagram both ship a structured-text alternative (a VoiceOver-navigable list of the same placements/dimensions), not just an "image" accessibility label · focus order follows the coordinate rail top-to-bottom, then content · system terminology (Lagna, Nakshatra, Da Yun) gets an explicit pronunciation/label pass with native speakers before ship, not guessed.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="motion" style="padding:54px 0 40px;border-bottom:1px solid rgba(18,21,28,.16)">
+    <div style="display:grid;grid-template-columns:104px 1fr;gap:36px">
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.1em;color:rgba(18,21,28,.42);padding-top:12px">20</div>
+      <div>
+        <h2 style="font-family:'Cormorant Garamond',serif;font-weight:400;font-size:40px;line-height:1.05;letter-spacing:-.02em;margin:0 0 6px">Motion handoff</h2>
+        <p style="font-family:'IBM Plex Sans',sans-serif;font-size:12px;letter-spacing:.04em;text-transform:uppercase;color:rgba(18,21,28,.45);margin:0 0 22px">Occultation preserved · nothing decorative loops</p>
+        <table style="width:100%;border-collapse:collapse;font-family:'IBM Plex Sans',sans-serif;font-size:12px">
+          <tbody style="color:rgba(18,21,28,.78)">
+            <tr style="border-bottom:1px solid rgba(18,21,28,.14)"><td style="padding:7px 8px;font-weight:500;width:200px">Occultation (signature)</td><td style="padding:7px 8px">Disc slides from left, ~640ms, cubic-bezier(.22,.61,.36,1), plays once. Used sparingly: launch, calculation/chart reveal, rewarded confirmation.</td></tr>
+            <tr style="border-bottom:1px solid rgba(18,21,28,.14)"><td style="padding:7px 8px;font-weight:500">Onboarding push</td><td style="padding:7px 8px">320ms horizontal; coordinate-rail tick lags 80ms behind.</td></tr>
+            <tr style="border-bottom:1px solid rgba(18,21,28,.14)"><td style="padding:7px 8px;font-weight:500">Big Three / reveal beats</td><td style="padding:7px 8px">Sun → Moon → Rising, ~900ms apart, each holds before the next.</td></tr>
+            <tr style="border-bottom:1px solid rgba(18,21,28,.14)"><td style="padding:7px 8px;font-weight:500">Mode turn (Normal ⇄ Roast)</td><td style="padding:7px 8px">Type re-strikes in place, accent index rotates 180°, one haptic tick.</td></tr>
+            <tr style="border-bottom:1px solid rgba(18,21,28,.14)"><td style="padding:7px 8px;font-weight:500">Reduced Motion</td><td style="padding:7px 8px">~160ms crossfade replaces the occultation; onboarding reveal beats collapse to a single 120ms opacity fade. Nothing animates on a loop under any setting.</td></tr>
+            <tr><td style="padding:7px 8px;font-weight:500">Prohibited</td><td style="padding:7px 8px">Ambient celestial animation, constant motion of any kind, motion used to create urgency (matches the no-FOMO brand rule).</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <section id="privacy" style="padding:54px 0 40px;border-bottom:1px solid rgba(18,21,28,.16)">
+    <div style="display:grid;grid-template-columns:104px 1fr;gap:36px">
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.1em;color:rgba(18,21,28,.42);padding-top:12px">21</div>
+      <div>
+        <h2 style="font-family:'Cormorant Garamond',serif;font-weight:400;font-size:40px;line-height:1.05;letter-spacing:-.02em;margin:0 0 6px">Privacy &amp; account assumptions</h2>
+        <p style="font-family:'IBM Plex Sans',sans-serif;font-size:12px;letter-spacing:.04em;text-transform:uppercase;color:rgba(18,21,28,.45);margin:0 0 22px">No login infrastructure is assumed — a slip found and closed</p>
+        <p style="font-family:Lora,serif;font-size:16px;line-height:1.7;color:rgba(18,21,28,.84);max-width:74ch;margin:0 0 16px">No approved artifact requires authentication. Local profile/birth data, saved people, purchase entitlement (StoreKit, device/receipt-scoped) and ad entitlement (per-item, device-scoped) are four separate concepts — none of them is a login account, and no future sync concept is assumed into existence.</p>
+        <div style="border:1px solid #b0863f;background:rgba(176,134,63,.08);padding:14px 16px;max-width:74ch">
+          <div style="font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:.12em;color:#8a6524;text-transform:uppercase;margin-bottom:6px">Found in audit — small correction</div>
+          <p style="font-family:'IBM Plex Sans',sans-serif;font-size:12.5px;line-height:1.6;color:rgba(18,21,28,.72);margin:0">Pass 3 and Pass 4 copy twice says "account" where it means the local profile ("Sam does not have an account and has not consented…"; the delete-data dialog's "what survives (the account)"). Rename to <strong>local profile</strong> in both specs — the underlying behavior (nothing survives deletion except what the user explicitly keeps) doesn't change, only the noun. Privacy/data controls (export, delete) remain reachable with no monetization gate, as already specified.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="data-map" style="padding:54px 0 40px;border-bottom:1px solid rgba(18,21,28,.16)">
+    <div style="display:grid;grid-template-columns:104px 1fr;gap:36px">
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.1em;color:rgba(18,21,28,.42);padding-top:12px">22</div>
+      <div>
+        <h2 style="font-family:'Cormorant Garamond',serif;font-weight:400;font-size:40px;line-height:1.05;letter-spacing:-.02em;margin:0 0 6px">Data dependency map</h2>
+        <p style="font-family:'IBM Plex Sans',sans-serif;font-size:12px;letter-spacing:.04em;text-transform:uppercase;color:rgba(18,21,28,.45);margin:0 0 22px">Input → calculated facts → interpretation → presentation → entitlement</p>
+        <table style="width:100%;border-collapse:collapse;font-family:'IBM Plex Sans',sans-serif;font-size:12px">
+          <thead><tr style="border-bottom:1px solid #12151c"><th style="text-align:left;padding:8px;font-weight:600">Feature</th><th style="text-align:left;padding:8px;font-weight:600">Input</th><th style="text-align:left;padding:8px;font-weight:600">Calculated facts</th><th style="text-align:left;padding:8px;font-weight:600">Interpretation + entitlement</th></tr></thead>
+          <tbody style="color:rgba(18,21,28,.75)">
+            <tr style="border-bottom:1px solid rgba(18,21,28,.12)"><td style="padding:7px 8px;font-weight:500">Today</td><td style="padding:7px 8px">User birth input, selected system</td><td style="padding:7px 8px">Deterministic natal chart, current timing factors</td><td style="padding:7px 8px">Interpretation output + entitlement state</td></tr>
+            <tr style="border-bottom:1px solid rgba(18,21,28,.12)"><td style="padding:7px 8px;font-weight:500">Compatibility</td><td style="padding:7px 8px">Both people's validated inputs, relationship type</td><td style="padding:7px 8px">System-specific relationship facts</td><td style="padding:7px 8px">Relationship interpretation + access state</td></tr>
+            <tr style="border-bottom:1px solid rgba(18,21,28,.12)"><td style="padding:7px 8px;font-weight:500">Calendar</td><td style="padding:7px 8px">Location/timezone, system</td><td style="padding:7px 8px">Calculated astronomical/astrological events</td><td style="padding:7px 8px">Interpretation metadata + entitlement</td></tr>
+            <tr><td style="padding:7px 8px;font-weight:500">Ask</td><td style="padding:7px 8px">Question, selected system</td><td style="padding:7px 8px">Contextual chart/timing facts</td><td style="padding:7px 8px">Interpretation response + entitlement state</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <section id="ios" style="padding:54px 0 40px;border-bottom:1px solid rgba(18,21,28,.16)">
+    <div style="display:grid;grid-template-columns:104px 1fr;gap:36px">
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.1em;color:rgba(18,21,28,.42);padding-top:12px">23</div>
+      <div>
+        <h2 style="font-family:'Cormorant Garamond',serif;font-weight:400;font-size:40px;line-height:1.05;letter-spacing:-.02em;margin:0 0 6px">iOS handoff</h2>
+        <p style="font-family:'IBM Plex Sans',sans-serif;font-size:12px;letter-spacing:.04em;text-transform:uppercase;color:rgba(18,21,28,.45);margin:0 0 22px">Behavior notes — no SwiftUI written here</p>
+        <p style="font-family:'IBM Plex Sans',sans-serif;font-size:12.5px;line-height:1.85;color:rgba(18,21,28,.75);margin:0">Bottom tab bar with hairline top rule; large-title collapse on scroll for section headers. Safe areas respected on both notch and Dynamic Island devices — the occultation launch animation stays inside the safe area, never behind it. Sheets for transient decisions (§17); context menus on person rows and chart-factor rows (share, remove, deeper view) where they add real value, not decoratively. Haptics: one tick on Mode turn, one on rewarded-unlock success — nowhere else. Dynamic Type per §14. iPhone is the primary layout; iPad adapts the Chart/Compare Systems screens to a two-column split (list + detail) rather than stretching the phone layout. Keyboard: birth-data entry uses native date/time pickers, not a custom keyboard. Share sheet: native, offering the ink share-plate image. Widgets: the four glanceable sizes from Pass 4, no live-activity variant scoped yet. Notifications: local + remote scheduling both possible; content rules per §09 regardless of channel. StoreKit assumptions: Premium is a StoreKit 2 auto-renewable subscription; rewarded-ad entitlement is a local, per-item unlock ledger, not a StoreKit product. Rewarded-ad boundary: the SDK's ad-completion callback is the only trigger for unlock — no client-side "reward" without a verified completion. Accessibility: VoiceOver, Dynamic Type and Reduce Motion are first-class, not audited after the fact.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="android" style="padding:54px 0 40px;border-bottom:1px solid rgba(18,21,28,.16)">
+    <div style="display:grid;grid-template-columns:104px 1fr;gap:36px">
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.1em;color:rgba(18,21,28,.42);padding-top:12px">24</div>
+      <div>
+        <h2 style="font-family:'Cormorant Garamond',serif;font-weight:400;font-size:40px;line-height:1.05;letter-spacing:-.02em;margin:0 0 6px">Android — future handoff</h2>
+        <p style="font-family:'IBM Plex Sans',sans-serif;font-size:12px;letter-spacing:.04em;text-transform:uppercase;color:rgba(18,21,28,.45);margin:0 0 22px">Not designed now — the seam is marked</p>
+        <p style="font-family:'IBM Plex Sans',sans-serif;font-size:12.5px;line-height:1.8;color:rgba(18,21,28,.75);margin:0"><strong>Platform-independent:</strong> the whole content model (§22), the five-tab IA, the monetization contract, the state matrix, all voice/brand rules. <strong>iOS-specific interaction choices to re-derive, not port:</strong> sheet vs. push conventions, context-menu placement, haptic points, share-sheet mechanics. <strong>Visual parity required:</strong> Ink/Paper/Gilt/Cinnabar palette, type pairing, the occultation mark and its motion signature, card/rule-based surface language. <strong>Behavioral intent only (no UIKit/SwiftUI parity expected):</strong> exact gesture handling, navigation transition curves, native picker chrome — Android should feel native to Android while reading unmistakably as Humay.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="nomenclature" style="padding:54px 0 40px;border-bottom:1px solid rgba(18,21,28,.16)">
+    <div style="display:grid;grid-template-columns:104px 1fr;gap:36px">
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.1em;color:rgba(18,21,28,.42);padding-top:12px">25</div>
+      <div>
+        <h2 style="font-family:'Cormorant Garamond',serif;font-weight:400;font-size:40px;line-height:1.05;letter-spacing:-.02em;margin:0 0 6px">Product copy &amp; nomenclature freeze</h2>
+        <p style="font-family:'IBM Plex Sans',sans-serif;font-size:12px;letter-spacing:.04em;text-transform:uppercase;color:rgba(18,21,28,.45);margin:0 0 22px">Consistency, not a copywriting redesign</p>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:26px">
+          <div>
+            <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:#8a6524;margin-bottom:8px">Current, canonical</div>
+            <p style="font-family:'IBM Plex Sans',sans-serif;font-size:12.5px;line-height:1.85;color:rgba(18,21,28,.75);margin:0">Humay · Humay Premium (paywall only, else "Premium") · Today · Circle · Sky · Chart · Ask · Ask the Stars (full naming where appropriate) · Compare Systems · Today Together · Roast · Astrological basis · Watch ad to unlock</p>
+          </div>
+          <div>
+            <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:#8a2f1a;margin-bottom:8px">Must not appear in current implementation</div>
+            <p style="font-family:'IBM Plex Sans',sans-serif;font-size:12.5px;line-height:1.85;color:rgba(18,21,28,.75);margin:0">Astara, Ortus, Ecliptic as product names (Eclipse is a visual direction only) · "evidence" as a user-facing label · "account" for the local profile (§21) · "permanently" describing Premium (§26) · any percentage/match score for compatibility · "incompatible"</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contradictions" style="padding:54px 0 40px;border-bottom:1px solid rgba(18,21,28,.16);background:rgba(138,47,26,.03);margin:0 -40px;padding-left:40px;padding-right:40px">
+    <div style="display:grid;grid-template-columns:104px 1fr;gap:36px">
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.1em;color:#8a2f1a;padding-top:12px">26</div>
+      <div>
+        <h2 style="font-family:'Cormorant Garamond',serif;font-weight:400;font-size:40px;line-height:1.05;letter-spacing:-.02em;margin:0 0 6px">Contradiction audit</h2>
+        <p style="font-family:'IBM Plex Sans',sans-serif;font-size:12px;letter-spacing:.04em;text-transform:uppercase;color:rgba(18,21,28,.45);margin:0 0 22px">Nine found across every artifact — none left ambiguous</p>
+        <table style="width:100%;border-collapse:collapse;font-family:'IBM Plex Sans',sans-serif;font-size:11.5px">
+          <thead><tr style="border-bottom:1px solid #12151c"><th style="text-align:left;padding:7px;font-weight:600">Contradiction</th><th style="text-align:left;padding:7px;font-weight:600">Status</th><th style="text-align:left;padding:7px;font-weight:600">Final rule</th></tr></thead>
+          <tbody style="color:rgba(18,21,28,.78)">
+            <tr style="border-bottom:1px solid rgba(18,21,28,.12)"><td style="padding:7px">Roast in push notifications (Pass 4 toggle vs. Pass 5.1 "never")</td><td style="padding:7px"><span style="font-family:'IBM Plex Mono',monospace;font-size:9px;border:1px solid #8a2f1a;color:#8a2f1a;padding:2px 5px">DECIDED THIS PASS</span></td><td style="padding:7px">Excluded entirely — §09</td></tr>
+            <tr style="border-bottom:1px solid rgba(18,21,28,.12)"><td style="padding:7px">"Permanent"/"permanently" describing Premium (Pass 5's example copy; Pass 4.1's "Permanent — Premium" table header)</td><td style="padding:7px"><span style="font-family:'IBM Plex Mono',monospace;font-size:9px;border:1px solid rgba(18,21,28,.35);padding:2px 5px">RESOLVED BY AUTHORITY</span></td><td style="padding:7px">Pass 5.1 already corrected the copy ("Premium includes full access without rewarded unlocks"). Relabel Pass 4.1's header "Subscription (Premium)" vs. "Bounded, per-item (Rewarded)" — word "permanent" retired everywhere, including internal specs</td></tr>
+            <tr style="border-bottom:1px solid rgba(18,21,28,.12)"><td style="padding:7px">"Account" language for the local profile (Pass 3, Pass 4 copy) vs. no-login-assumed rule</td><td style="padding:7px"><span style="font-family:'IBM Plex Mono',monospace;font-size:9px;border:1px solid #8a2f1a;color:#8a2f1a;padding:2px 5px">DECIDED THIS PASS</span></td><td style="padding:7px">Rename to "local profile" — §21</td></tr>
+            <tr style="border-bottom:1px solid rgba(18,21,28,.12)"><td style="padding:7px">Saved-people rewarded slot flagged "under review" in Pass 4.1</td><td style="padding:7px"><span style="font-family:'IBM Plex Mono',monospace;font-size:9px;border:1px solid #8a2f1a;color:#8a2f1a;padding:2px 5px">DECIDED THIS PASS</span></td><td style="padding:7px">Permitted: +1 slot per ad, unlocked permanently — fits the existing per-item entitlement model (§10)</td></tr>
+            <tr style="border-bottom:1px solid rgba(18,21,28,.12)"><td style="padding:7px">"Evidence" retired in UI (Pass 2) vs. Product Strategy's "evidence on demand" positioning language</td><td style="padding:7px"><span style="font-family:'IBM Plex Mono',monospace;font-size:9px;border:1px solid rgba(18,21,28,.35);padding:2px 5px">RESOLVED BY AUTHORITY</span></td><td style="padding:7px">Not a real conflict — scoped: internal strategic shorthand only, never user-facing copy (§04)</td></tr>
+            <tr style="border-bottom:1px solid rgba(18,21,28,.12)"><td style="padding:7px">Ashtakoota's 36-point score vs. the banned generic percentage/match-score rule</td><td style="padding:7px"><span style="font-family:'IBM Plex Mono',monospace;font-size:9px;border:1px solid rgba(18,21,28,.35);padding:2px 5px">RESOLVED BY AUTHORITY</span></td><td style="padding:7px">Not a real conflict — a named traditional methodology is native system grammar, not a generic score (§12)</td></tr>
+            <tr style="border-bottom:1px solid rgba(18,21,28,.12)"><td style="padding:7px">"Transit" used loosely vs. Western-only scope</td><td style="padding:7px"><span style="font-family:'IBM Plex Mono',monospace;font-size:9px;border:1px solid rgba(18,21,28,.35);padding:2px 5px">RESOLVED BY AUTHORITY</span></td><td style="padding:7px">Already fixed in Pass 5.1's voice rules (§05)</td></tr>
+            <tr style="border-bottom:1px solid rgba(18,21,28,.12)"><td style="padding:7px">House system / ayanamsa / BaZi-clock samples used consistently in prototypes but never formally locked</td><td style="padding:7px"><span style="font-family:'IBM Plex Mono',monospace;font-size:9px;border:1px solid rgba(18,21,28,.35);padding:2px 5px">PROTOTYPE DATA ONLY</span></td><td style="padding:7px">Not fixtures; recommended as implementation-choice defaults pending methodology sign-off (§13)</td></tr>
+            <tr><td style="padding:7px">Archived claude-reference README calls the project "Astara iOS"</td><td style="padding:7px"><span style="font-family:'IBM Plex Mono',monospace;font-size:9px;border:1px solid rgba(18,21,28,.35);padding:2px 5px">PROTOTYPE DATA ONLY</span></td><td style="padding:7px">Consistent with the authority map (Astara = repo name only); archived Aug 10 2026, no resurfacing risk</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <section id="readiness" style="padding:54px 0 40px;border-bottom:1px solid rgba(18,21,28,.16)">
+    <div style="display:grid;grid-template-columns:104px 1fr;gap:36px">
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.1em;color:rgba(18,21,28,.42);padding-top:12px">27</div>
+      <div>
+        <h2 style="font-family:'Cormorant Garamond',serif;font-weight:400;font-size:40px;line-height:1.05;letter-spacing:-.02em;margin:0 0 6px">Implementation readiness</h2>
+        <p style="font-family:'IBM Plex Sans',sans-serif;font-size:12px;letter-spacing:.04em;text-transform:uppercase;color:rgba(18,21,28,.45);margin:0 0 22px">A through G</p>
+
+        <div style="margin-bottom:16px"><div style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.12em;color:#8a6524;text-transform:uppercase;margin-bottom:6px">A. Locked design decisions</div>
+        <p style="font-family:'IBM Plex Sans',sans-serif;font-size:12.5px;line-height:1.7;color:rgba(18,21,28,.75);margin:0">Primary IA · three native systems, never flattened · Humay brand system in full · Layer 1/2/3 astrology architecture boundary · progressive-disclosure labels · Roast excluded from notifications · monetization hierarchy and never-gate/never-use lists · design tokens (§14) · Vimshottari uncertainty tiers.</p></div>
+
+        <div style="margin-bottom:16px"><div style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.12em;color:#8a6524;text-transform:uppercase;margin-bottom:6px">B. Implementation choices</div>
+        <p style="font-family:'IBM Plex Sans',sans-serif;font-size:12.5px;line-height:1.7;color:rgba(18,21,28,.75);margin:0">Lahiri as default ayanamsa · local solar time for BaZi clock · saved-people rewarded-slot mechanic · daily reward allowance/cooldown values · Rewarded gate/Premium gate/Unlocked confirmation as one component family.</p></div>
+
+        <div style="margin-bottom:16px"><div style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.12em;color:#8a6524;text-transform:uppercase;margin-bottom:6px">C. Methodology research required</div>
+        <p style="font-family:'IBM Plex Sans',sans-serif;font-size:12.5px;line-height:1.7;color:rgba(18,21,28,.75);margin:0">Western house-system support · Western composite-chart technique · Vedic non-romantic relationship dimensions · Chinese calendar conventions · BaZi Four Pillars conventions · BaZi Luck Cycle/Da Yun methodology · cross-system event-type mapping. Seven items, per §13.</p></div>
+
+        <div style="margin-bottom:16px"><div style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.12em;color:#8a6524;text-transform:uppercase;margin-bottom:6px">D. External clearance required</div>
+        <p style="font-family:'IBM Plex Sans',sans-serif;font-size:12.5px;line-height:1.7;color:rgba(18,21,28,.75);margin:0">Trademark · App Store and Google Play title · domains · cultural/linguistic review of "Humay." None of this blocks design or engineering work; it blocks public launch.</p></div>
+
+        <div style="margin-bottom:16px"><div style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.12em;color:#8a2f1a;text-transform:uppercase;margin-bottom:6px">E. Blockers before iOS implementation</div>
+        <p style="font-family:'IBM Plex Sans',sans-serif;font-size:12.5px;line-height:1.7;color:rgba(18,21,28,.75);margin:0">None. The three items that had no existing authority (§26) are resolved in this pass; nothing else stops foundation work from starting.</p></div>
+
+        <div style="margin-bottom:16px"><div style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.12em;color:#8a6524;text-transform:uppercase;margin-bottom:6px">F. Non-blocking follow-ups</div>
+        <p style="font-family:'IBM Plex Sans',sans-serif;font-size:12.5px;line-height:1.7;color:rgba(18,21,28,.75);margin:0">Relabel Pass 4.1's "Permanent — Premium" header · rename "account" → "local profile" in Pass 3/4 specs · remove the notification Roast toggle artifact from Pass 4 (§4.10) · native-speaker pronunciation pass on system terminology (§19).</p></div>
+
+        <div><div style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.12em;color:#8a6524;text-transform:uppercase;margin-bottom:6px">G. Implementation order</div>
+        <p style="font-family:'IBM Plex Sans',sans-serif;font-size:13px;line-height:2;color:rgba(18,21,28,.8);margin:0">Foundation/design system → deterministic astrology foundation (Western first — fewest open methodology items) → onboarding/birth data → Chart foundation → Today → Sky → Circle/compatibility → Ask → monetization → sharing/widgets/notifications → polish/accessibility. Unchanged from the suggested default: audited dependencies (Western needing the fewest open decisions, Vedic/Chinese needing calendar and ayanamsa/Luck-Cycle research) support building in that order rather than in parallel.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="report" style="padding:54px 0 30px">
+    <div style="display:grid;grid-template-columns:104px 1fr;gap:36px">
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.1em;color:#8a2f1a;padding-top:12px">28</div>
+      <div>
+        <h2 style="font-family:'Cormorant Garamond',serif;font-weight:400;font-size:40px;line-height:1.05;letter-spacing:-.02em;margin:0 0 6px">Final report</h2>
+        <p style="font-family:'IBM Plex Sans',sans-serif;font-size:12px;letter-spacing:.04em;text-transform:uppercase;color:rgba(18,21,28,.45);margin:0 0 26px">Pass 6 is complete — nothing further starts without direction</p>
+
+        <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:#12151c;border:1px solid #12151c;margin-bottom:22px">
+          <div style="background:#f4f1ea;padding:20px 16px"><div style="font-family:'Cormorant Garamond',serif;font-size:40px;font-variant-numeric:tabular-nums;color:#12151c">9</div><div style="font-family:'IBM Plex Sans',sans-serif;font-size:11.5px;color:rgba(18,21,28,.6);margin-top:4px">Contradictions found</div></div>
+          <div style="background:#f4f1ea;padding:20px 16px"><div style="font-family:'Cormorant Garamond',serif;font-size:40px;font-variant-numeric:tabular-nums;color:#12151c">6</div><div style="font-family:'IBM Plex Sans',sans-serif;font-size:11.5px;color:rgba(18,21,28,.6);margin-top:4px">Resolved by authority or now decided</div></div>
+          <div style="background:#f4f1ea;padding:20px 16px"><div style="font-family:'Cormorant Garamond',serif;font-size:40px;font-variant-numeric:tabular-nums;color:#12151c">3</div><div style="font-family:'IBM Plex Sans',sans-serif;font-size:11.5px;color:rgba(18,21,28,.6);margin-top:4px">Required an explicit decision this pass</div></div>
+          <div style="background:#f4f1ea;padding:20px 16px"><div style="font-family:'Cormorant Garamond',serif;font-size:40px;font-variant-numeric:tabular-nums;color:#12151c">7</div><div style="font-family:'IBM Plex Sans',sans-serif;font-size:11.5px;color:rgba(18,21,28,.6);margin-top:4px">Methodology-research items remaining</div></div>
+        </div>
+
+        <p style="font-family:'IBM Plex Sans',sans-serif;font-size:13px;line-height:1.7;color:rgba(18,21,28,.75);margin:0 0 16px"><strong>Blockers before iOS implementation: none.</strong> All three undecided contradictions (§26) are resolved within this pass; the seven open methodology items (§13) are non-blocking for the recommended build order (§27G) except Chinese calendar and BaZi Four Pillars conventions, which block only the Chinese/BaZi native experience specifically, not foundation, onboarding, Western Chart, or Today.</p>
+
+        <div style="border:2px solid #12151c;background:#efece3;padding:20px 22px;margin-bottom:18px">
+          <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.12em;color:rgba(18,21,28,.5);text-transform:uppercase;margin-bottom:8px">Verdict</div>
+          <div style="font-family:'Cormorant Garamond',serif;font-weight:400;font-size:28px;color:#12151c">Ready after small corrections</div>
+        </div>
+
+        <p style="font-family:'IBM Plex Sans',sans-serif;font-size:12.5px;line-height:1.6;color:rgba(18,21,28,.62);margin:0 0 8px"><strong>Corrections required before engineering treats this as final (all mechanical, none design decisions):</strong></p>
+        <ol style="font-family:'IBM Plex Sans',sans-serif;font-size:12.5px;line-height:1.85;color:rgba(18,21,28,.75);margin:0 0 24px;padding-left:20px">
+          <li>Remove the Normal/Roast notification toggle from Pass 4 §4.10; ship the restrained-only copy from §09.</li>
+          <li>Relabel Pass 4.1's "Permanent — Premium" table header; scrub "permanently" from any Premium-adjacent copy or spec.</li>
+          <li>Rename "account" → "local profile" in the two Pass 3/4 copy instances identified in §21.</li>
+        </ol>
+
+        <div style="border-top:1px solid rgba(18,21,28,.85);padding-top:18px">
+          <p style="font-family:'IBM Plex Sans',sans-serif;font-size:12px;line-height:1.6;color:rgba(18,21,28,.5);margin:0">Stopping here, as instructed. No Pass 6.1, no implementation, no Git operations, no screenshot/GitHub archival export. This document is presented for review.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+</x-dc>
+</body>
+</html>
