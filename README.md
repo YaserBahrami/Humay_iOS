@@ -1,25 +1,44 @@
 # Astara iOS
 
-Astara is an astrology application for iOS. This repository currently starts with the approved product/design reference produced during the Claude Design exploration.
+This repository currently uses **Astara** as its project/repository working name. The selected consumer-facing brand is **Humay**.
+
+The repository is still in the design and engineering-handoff stage; production iOS implementation has not started.
 
 ## Design reference
 
-The current design artifacts live under `docs/design/claude-reference/` and should be treated as the visual/UX source of truth until implementation handoff documentation supersedes them.
+Approved product and UI/UX artifacts live under `docs/design/claude-reference/`.
 
-Key product areas covered so far include:
+The current product direction includes:
 
-- Onboarding and personalized chart reveal
-- Today / daily astrology
-- Circle / relationship compatibility and Today Together
-- Chart and natal interpretation
-- Sky / current astrological conditions
-- Western, Vedic and Chinese native-system experiences
+- Today / Circle / Sky / Chart / Ask
+- Calendar nested under Sky
+- Profile / Settings through the header/profile entry
+- Western, Vedic and Chinese astrology as native independent systems
 - Compare Systems
+- Compatibility and Today Together
 - Ask the Stars
-- Normal and Roast modes
+- Normal and Roast modes using the same underlying astrology
+- Free → optional Rewarded Access → Premium
+- Humay brand identity and the Eclipse visual direction
+
+See [`docs/design/DESIGN_AUTHORITY.md`](docs/design/DESIGN_AUTHORITY.md) for the current authority and supersession rules across design passes.
+
+## Source-of-truth boundary
+
+The design artifacts are authoritative for approved product structure, UX, visual direction, brand, interaction patterns and monetization UX.
+
+They are **not** authoritative for astronomical or astrological calculations. Exact placements, houses, aspects, timing, dashas, pillars and related chart values shown in design artifacts are prototype content unless independently validated. Production calculation engines and validated outputs are the source of truth.
+
+The interpretation layer consumes structured calculated facts; it must not invent positions, degrees, houses, dashas, pillars or timing.
+
+## Brand status
+
+**Humay** is the selected consumer brand. **Eclipse** remains the visual/design direction only.
+
+External clearance is still required for trademark risk, App Store / Google Play naming, domains, relevant handles and cultural/linguistic review.
 
 ## Status
 
-Design is still in progress. The repository intentionally contains the design reference before application implementation begins so future agents and developers can preserve product and visual continuity.
+Approved design reference: **through Pass 5.1 — Humay Brand Lock**.
 
-The temporary product/design name used inside some artifacts is not necessarily the final brand name.
+Next planned phase: **Pass 6 — Engineering Handoff & Final Design Audit**.
