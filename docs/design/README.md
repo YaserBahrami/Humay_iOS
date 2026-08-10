@@ -1,13 +1,14 @@
 # Design Reference
 
-This directory is the repository-owned source of truth for Astara product and UI design artifacts.
+This directory is the repository-owned source of truth for Astara product and UI/UX design artifacts.
 
-## Intended structure
+## Current structure
 
 ```text
 docs/design/
   README.md
   claude-reference/
+    README.md
     Product Strategy.dc.html
     Onboarding.dc.html
     Product Design - Pass 2.dc.html
@@ -17,24 +18,22 @@ docs/design/
       classical-.../
         styles.css
         _ds_bundle.js
-        _ds_manifest.json
-        _adherence.oxlintrc.json
-        readme.md
 ```
 
-Keep the HTML artifacts together with `support.js` and the referenced `_ds` directory so they remain renderable and self-contained.
+Keep each HTML artifact together with `support.js` and its referenced `_ds` assets so the exported design remains renderable.
 
 ## Rules
 
 - Treat these files as design/reference artifacts, not production application code.
-- Preserve the original generated HTML instead of manually converting it into SwiftUI.
-- When a newer approved design pass supersedes an older one, keep the old artifact for history unless it is explicitly marked invalid.
+- Preserve the generated HTML instead of manually converting the reference files into SwiftUI.
 - Product implementation documents should link back to the relevant design artifact/section.
-- Deterministic astrology calculations are the source of truth for chart facts; design/sample copy must not become a calculation source.
+- The reference package is the source of truth for approved UX, hierarchy, visual direction, interactions, and product structure.
+- It is **not** the source of truth for astronomical or astrological calculations. Deterministic calculation engines must provide chart facts such as planetary positions, Ascendant, houses, aspects, sidereal placements, nakshatras, dashas, BaZi pillars, and transit timing.
 - Normal and Roast modes must consume the same underlying calculated/interpreted astrology facts.
+- When a newer approved design pass supersedes an older one, preserve useful historical artifacts unless they are explicitly marked invalid.
 
 ## Current design status
 
-The current design direction includes Eclipse, Today / Circle / Sky / Chart / Ask, native Western/Vedic/Chinese experiences, Compare Systems, compatibility/Today Together, and Normal/Roast modes.
+The archived reference currently covers the approved direction through Pass 3.2: Eclipse, Today / Circle / Sky / Chart / Ask, native Western/Vedic/Chinese experiences, Compare Systems, compatibility/Today Together, and Normal/Roast modes.
 
-Before marking the current HTML package as canonical, its frozen prototype dataset should pass the final cross-document calculation/data-integrity check. Once approved, copy the complete Claude Design export into `claude-reference/` without dropping its support assets.
+Implementation has not started. Any prototype chart values inside the HTML must be independently reproduced by the production calculation layer before being used as engineering fixtures or tests.
