@@ -1,0 +1,842 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Lora:ital@0;1&family=IBM+Plex+Sans:wght@400;500&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  html { -webkit-font-smoothing: antialiased; }
+  body { margin: 0; background: #e0dbd0; color: #12151c; font-family: 'IBM Plex Sans', sans-serif; }
+  a { color: #8a6524; text-underline-offset: 3px; }
+  a:hover { color: #12151c; }
+  ::selection { background: rgba(176,134,63,.28); }
+  @keyframes occult { 0% { transform: translateX(-46px); } 55% { transform: translateX(11px); } 100% { transform: translateX(11px); } }
+  @media (prefers-reduced-motion: reduce) { * { animation-duration: .12s !important; animation-delay: 0s !important; } }
+</style>
+</helmet>
+
+<div style="max-width:1500px;margin:0 auto;padding:0 44px 160px">
+
+  <header style="padding:70px 0 34px;border-bottom:1px solid rgba(18,21,28,.9)">
+    <div style="display:flex;justify-content:space-between;align-items:baseline;font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;color:rgba(18,21,28,.5)">
+      <span>Pass 5 &nbsp;·&nbsp; Brand &amp; identity</span>
+      <span>Internal build reference &nbsp;·&nbsp; Eclipse direction, unchanged</span>
+    </div>
+    <h1 style="font-family:'Cormorant Garamond',serif;font-weight:300;font-size:74px;line-height:.98;letter-spacing:-.025em;margin:26px 0 0">The identity the product<br><span style="font-style:italic">already earned</span></h1>
+    <p style="font-family:Lora,serif;font-size:16px;line-height:1.7;color:rgba(18,21,28,.74);max-width:66ch;margin:24px 0 0">Passes 1–4.1 built an editorial astrology product with a settled surface rule, one accent and a mark already drawn in the onboarding flow. This pass does not restate strategy and does not redesign the app. It decides the name, fixes the mark's construction, and writes down the voice — so that every future screen, notification and store asset argues from the same page.</p>
+    <div style="display:flex;flex-wrap:wrap;gap:22px;margin-top:26px;font-family:'IBM Plex Sans',sans-serif;font-size:12.5px;color:rgba(18,21,28,.62)">
+      <a href="#platform" style="color:inherit;text-decoration:none;border-bottom:1px solid rgba(18,21,28,.25)">01 Brand platform</a>
+      <a href="#naming" style="color:inherit;text-decoration:none;border-bottom:1px solid rgba(18,21,28,.25)">02 Naming</a>
+      <a href="#mark" style="color:inherit;text-decoration:none;border-bottom:1px solid rgba(18,21,28,.25)">03 The mark</a>
+      <a href="#wordmark" style="color:inherit;text-decoration:none;border-bottom:1px solid rgba(18,21,28,.25)">04 Wordmark &amp; lockups</a>
+      <a href="#icon" style="color:inherit;text-decoration:none;border-bottom:1px solid rgba(18,21,28,.25)">05 App icon</a>
+      <a href="#lines" style="color:inherit;text-decoration:none;border-bottom:1px solid rgba(18,21,28,.25)">06 Taglines</a>
+      <a href="#voice" style="color:inherit;text-decoration:none;border-bottom:1px solid rgba(18,21,28,.25)">07 Voice &amp; tone</a>
+      <a href="#roast" style="color:inherit;text-decoration:none;border-bottom:1px solid rgba(18,21,28,.25)">08 Roast</a>
+      <a href="#notif" style="color:inherit;text-decoration:none;border-bottom:1px solid rgba(18,21,28,.25)">09 Notification voice</a>
+      <a href="#nomen" style="color:inherit;text-decoration:none;border-bottom:1px solid rgba(18,21,28,.25)">10 Nomenclature</a>
+      <a href="#share" style="color:inherit;text-decoration:none;border-bottom:1px solid rgba(18,21,28,.25)">11 Share plates</a>
+      <a href="#motion" style="color:inherit;text-decoration:none;border-bottom:1px solid rgba(18,21,28,.25)">12 Motion signature</a>
+      <a href="#applied" style="color:inherit;text-decoration:none;border-bottom:1px solid rgba(18,21,28,.25)">13 Applied in app</a>
+      <a href="#donts" style="color:inherit;text-decoration:none;border-bottom:1px solid rgba(18,21,28,.25)">14 Misuse</a>
+    </div>
+  </header>
+
+  <section style="padding:30px 0;border-bottom:1px solid rgba(18,21,28,.16);display:grid;grid-template-columns:104px 1fr;gap:36px">
+    <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.1em;color:rgba(18,21,28,.42);padding-top:2px">00</div>
+    <p style="font-family:'IBM Plex Sans',sans-serif;font-size:13px;line-height:1.65;color:rgba(18,21,28,.6);margin:0;max-width:74ch">Nothing here changes the approved IA, the Eclipse surface rule, the palette or the monetization hierarchy. The brand name is set as a tweakable prop, so the whole document — wordmark, icon, lockups, screens, store lines — re-renders under any candidate before anything is committed to a trademark search.</p>
+  </section>
+
+  <section id="platform" style="padding:54px 0 40px;border-bottom:1px solid rgba(18,21,28,.16)">
+    <div style="display:grid;grid-template-columns:104px 1fr;gap:36px">
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.1em;color:rgba(18,21,28,.42);padding-top:12px">01</div>
+      <div>
+        <h2 style="font-family:'Cormorant Garamond',serif;font-weight:400;font-size:40px;line-height:1.05;letter-spacing:-.02em;margin:0 0 6px">Brand platform</h2>
+        <p style="font-family:'IBM Plex Sans',sans-serif;font-size:12px;letter-spacing:.04em;text-transform:uppercase;color:rgba(18,21,28,.45);margin:0 0 24px">Derived from the product, not invented alongside it</p>
+
+        <div style="border-top:1px solid rgba(18,21,28,.85);border-bottom:1px solid rgba(18,21,28,.16);padding:22px 0;margin-bottom:28px">
+          <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:#8a6524;margin-bottom:10px">Positioning</div>
+          <p style="font-family:'Cormorant Garamond',serif;font-weight:300;font-size:34px;line-height:1.2;letter-spacing:-.015em;margin:0;max-width:26ch">An astrology app for people who want to see the reasoning.</p>
+          <p style="font-family:Lora,serif;font-size:15.5px;line-height:1.7;color:rgba(18,21,28,.78);max-width:64ch;margin:16px 0 0">Three living traditions, each kept in its own language rather than blended into one horoscope. Every claim opens to the placement behind it. The tone is literate and adult; the pleasure on offer is understanding, not reassurance.</p>
+        </div>
+
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:34px;margin-bottom:30px">
+          <div>
+            <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:rgba(18,21,28,.5);margin-bottom:12px">The brand is</div>
+            <div style="font-family:'IBM Plex Sans',sans-serif;font-size:13.5px;line-height:1.9;color:rgba(18,21,28,.78)">
+              <div style="border-top:1px solid rgba(18,21,28,.12);padding:5px 0">Literate — it reads like a good publisher, not a feed</div>
+              <div style="border-top:1px solid rgba(18,21,28,.12);padding:5px 0">Precise — figures, degrees and dates are set with care</div>
+              <div style="border-top:1px solid rgba(18,21,28,.12);padding:5px 0">Plural — three traditions, none subordinated</div>
+              <div style="border-top:1px solid rgba(18,21,28,.12);padding:5px 0">Dry — funny when it earns it, never zany</div>
+              <div style="border-top:1px solid rgba(18,21,28,.12);border-bottom:1px solid rgba(18,21,28,.12);padding:5px 0">Restrained — what it declines to do is the product</div>
+            </div>
+          </div>
+          <div>
+            <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:rgba(18,21,28,.5);margin-bottom:12px">The brand is not</div>
+            <div style="font-family:'IBM Plex Sans',sans-serif;font-size:13.5px;line-height:1.9;color:rgba(18,21,28,.78)">
+              <div style="border-top:1px solid rgba(18,21,28,.12);padding:5px 0">A teenage horoscope app — no cute, no confetti</div>
+              <div style="border-top:1px solid rgba(18,21,28,.12);padding:5px 0">A mystical lifestyle brand — no crystals, no manifesting</div>
+              <div style="border-top:1px solid rgba(18,21,28,.12);padding:5px 0">A dating product — compatibility is not matchmaking</div>
+              <div style="border-top:1px solid rgba(18,21,28,.12);padding:5px 0">An AI chatbot — Ask is a feature, not the identity</div>
+              <div style="border-top:1px solid rgba(18,21,28,.12);border-bottom:1px solid rgba(18,21,28,.12);padding:5px 0">A Western-zodiac brand — no sun-sign glyph as a logo</div>
+            </div>
+          </div>
+        </div>
+
+        <div style="border-left:2px solid #8a6524;padding:2px 0 2px 18px;max-width:70ch">
+          <div style="font-family:'IBM Plex Mono',monospace;font-size:9.5px;letter-spacing:.14em;text-transform:uppercase;color:#8a6524;margin-bottom:6px">Carried forward, not re-argued</div>
+          <p style="font-family:Lora,serif;font-size:15px;line-height:1.65;color:rgba(18,21,28,.78);margin:0">The six brand principles from Product Strategy stand unchanged and govern this pass: show the work · the page is the interface · color is stroke and state · light and shadow mean something · numbers are typography · restraint is the brand.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="naming" style="padding:54px 0 40px;border-bottom:1px solid rgba(18,21,28,.16)">
+    <div style="display:grid;grid-template-columns:104px 1fr;gap:36px;margin-bottom:32px">
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.1em;color:rgba(18,21,28,.42);padding-top:12px">02</div>
+      <div>
+        <h2 style="font-family:'Cormorant Garamond',serif;font-weight:400;font-size:40px;line-height:1.05;letter-spacing:-.02em;margin:0 0 6px">Naming</h2>
+        <p style="font-family:'IBM Plex Sans',sans-serif;font-size:12px;letter-spacing:.04em;text-transform:uppercase;color:rgba(18,21,28,.45);margin:0 0 22px">Six candidates, one recommendation, honest risks</p>
+        <p style="font-family:Lora,serif;font-size:16px;line-height:1.7;color:rgba(18,21,28,.84);max-width:70ch;margin:0 0 22px">The name has to survive a specific test the product created for itself: it must sit equally above Western, Vedic and Chinese readings. That rules out anything drawn from the tropical zodiac, anything Sanskrit-flavoured enough to claim Vedic ground, and anything that reads as a single culture's mysticism. What it leaves is the shared physical sky — which is exactly where all three traditions actually agree.</p>
+        <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:1px;background:rgba(18,21,28,.16);border:1px solid rgba(18,21,28,.16)">
+          <div style="background:#e0dbd0;padding:14px 15px"><div style="font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:.12em;color:#8a6524;margin-bottom:6px">01</div><div style="font-family:'IBM Plex Sans',sans-serif;font-size:12.5px;line-height:1.5;color:rgba(18,21,28,.78)">Neutral across all three traditions</div></div>
+          <div style="background:#e0dbd0;padding:14px 15px"><div style="font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:.12em;color:#8a6524;margin-bottom:6px">02</div><div style="font-family:'IBM Plex Sans',sans-serif;font-size:12.5px;line-height:1.5;color:rgba(18,21,28,.78)">Adult and premium at first hearing</div></div>
+          <div style="background:#e0dbd0;padding:14px 15px"><div style="font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:.12em;color:#8a6524;margin-bottom:6px">03</div><div style="font-family:'IBM Plex Sans',sans-serif;font-size:12.5px;line-height:1.5;color:rgba(18,21,28,.78)">Sayable by a non-English speaker on first sight</div></div>
+          <div style="background:#e0dbd0;padding:14px 15px"><div style="font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:.12em;color:#8a6524;margin-bottom:6px">04</div><div style="font-family:'IBM Plex Sans',sans-serif;font-size:12.5px;line-height:1.5;color:rgba(18,21,28,.78)">Defensible — not a bare common noun</div></div>
+          <div style="background:#e0dbd0;padding:14px 15px"><div style="font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:.12em;color:#8a6524;margin-bottom:6px">05</div><div style="font-family:'IBM Plex Sans',sans-serif;font-size:12.5px;line-height:1.5;color:rgba(18,21,28,.78)">Belongs to the eclipse mark already drawn</div></div>
+        </div>
+      </div>
+    </div>
+
+    <div style="display:grid;grid-template-columns:104px 1fr;gap:36px">
+      <div></div>
+      <div>
+        <div style="border:1px solid #12151c;padding:26px 28px;margin-bottom:26px;background:#f4f1ea">
+          <div style="display:grid;grid-template-columns:250px 1fr;gap:30px;align-items:start">
+            <div>
+              <div style="font-family:'Cormorant Garamond',serif;font-size:38px;letter-spacing:.16em;text-transform:uppercase;line-height:1">Ecliptic</div>
+              <div style="font-family:'IBM Plex Mono',monospace;font-size:9.5px;letter-spacing:.1em;color:#8a6524;margin-top:10px">RECOMMENDED · ee-KLIP-tik · 3 syl</div>
+              <div style="margin-top:18px;display:flex;gap:8px;flex-wrap:wrap">
+                <span style="font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:.1em;text-transform:uppercase;padding:5px 9px;border:1px solid rgba(18,21,28,.3);color:rgba(18,21,28,.6)">Astronomy, not zodiac</span>
+                <span style="font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:.1em;text-transform:uppercase;padding:5px 9px;border:1px solid rgba(18,21,28,.3);color:rgba(18,21,28,.6)">Same root as the mark</span>
+              </div>
+            </div>
+            <div>
+              <p style="font-family:Lora,serif;font-size:15.5px;line-height:1.72;color:rgba(18,21,28,.86);margin:0 0 14px">The ecliptic is the sun's apparent path — the single great circle that <em>every one</em> of the three systems divides. The Western zodiac cuts it into twelve signs, Vedic astrology into twenty-seven nakshatras, Chinese astrology into twenty-eight lunar mansions. One name that is literally the common ground the product is built on, and it doesn't flatter any tradition at the expense of another.</p>
+              <p style="font-family:Lora,serif;font-size:15.5px;line-height:1.72;color:rgba(18,21,28,.86);margin:0 0 14px">It also sounds like what the brand is: technical, composed, slightly cool. Its Greek root — <em>ekleiptikos</em>, the line on which eclipses happen — is the same root as the approved Eclipse direction, so the mark stops being decorative and becomes an explanation of the name. Internationally it is already a loanword in the Romance languages and reads correctly to a Latin-alphabet reader anywhere.</p>
+              <div style="display:grid;grid-template-columns:1fr 1fr;gap:24px;border-top:1px solid rgba(18,21,28,.16);padding-top:14px">
+                <div><div style="font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:rgba(18,21,28,.5);margin-bottom:6px">Risks</div><p style="font-family:'IBM Plex Sans',sans-serif;font-size:12.5px;line-height:1.6;color:rgba(18,21,28,.7);margin:0">Three syllables and a cold register — needs the warm paper ground and Cormorant setting to stay human. Misreads as "elliptic" in speech; the domain will likely need a modifier.</p></div>
+                <div><div style="font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:rgba(18,21,28,.5);margin-bottom:6px">Before committing</div><p style="font-family:'IBM Plex Sans',sans-serif;font-size:12.5px;line-height:1.6;color:rgba(18,21,28,.7);margin:0">Class 9/42 trademark search, App Store name collision check, and a say-it-aloud test with non-English speakers. Not cleared here.</p></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:1px;background:rgba(18,21,28,.16);border:1px solid rgba(18,21,28,.16);margin-bottom:26px">
+          <sc-for list="{{ candidates }}" as="c" hint-placeholder-count="6">
+            <div style="background:#f4f1ea;padding:20px 22px">
+              <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:4px">
+                <span style="font-family:'Cormorant Garamond',serif;font-size:27px;letter-spacing:.14em;text-transform:uppercase;line-height:1.1">{{ c.name }}</span>
+                <span style="font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:.1em;color:#8a6524">{{ c.verdict }}</span>
+              </div>
+              <div style="font-family:'IBM Plex Mono',monospace;font-size:9.5px;letter-spacing:.08em;color:rgba(18,21,28,.45);margin-bottom:12px">{{ c.pron }}</div>
+              <p style="font-family:'IBM Plex Sans',sans-serif;font-size:12.5px;line-height:1.65;color:rgba(18,21,28,.78);margin:0 0 10px">{{ c.rationale }}</p>
+              <div style="display:grid;grid-template-columns:52px 1fr;gap:10px;border-top:1px solid rgba(18,21,28,.12);padding-top:10px">
+                <div style="font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:rgba(18,21,28,.45)">Risk</div>
+                <p style="font-family:'IBM Plex Sans',sans-serif;font-size:12px;line-height:1.6;color:rgba(18,21,28,.62);margin:0">{{ c.risk }}</p>
+              </div>
+            </div>
+          </sc-for>
+        </div>
+
+        <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:rgba(18,21,28,.5);margin-bottom:10px">Scored against the five criteria</div>
+        <div style="border:1px solid rgba(18,21,28,.16);margin-bottom:22px">
+          <div style="display:grid;grid-template-columns:130px repeat(5,1fr);border-bottom:1px solid rgba(18,21,28,.85)">
+            <div style="padding:11px 14px"></div>
+            <div style="padding:11px 14px;font-family:'IBM Plex Mono',monospace;font-size:9.5px;letter-spacing:.08em;text-transform:uppercase;color:rgba(18,21,28,.5);border-left:1px solid rgba(18,21,28,.16)">Tradition-neutral</div>
+            <div style="padding:11px 14px;font-family:'IBM Plex Mono',monospace;font-size:9.5px;letter-spacing:.08em;text-transform:uppercase;color:rgba(18,21,28,.5);border-left:1px solid rgba(18,21,28,.16)">Adult / premium</div>
+            <div style="padding:11px 14px;font-family:'IBM Plex Mono',monospace;font-size:9.5px;letter-spacing:.08em;text-transform:uppercase;color:rgba(18,21,28,.5);border-left:1px solid rgba(18,21,28,.16)">Global sayability</div>
+            <div style="padding:11px 14px;font-family:'IBM Plex Mono',monospace;font-size:9.5px;letter-spacing:.08em;text-transform:uppercase;color:rgba(18,21,28,.5);border-left:1px solid rgba(18,21,28,.16)">Defensibility</div>
+            <div style="padding:11px 14px;font-family:'IBM Plex Mono',monospace;font-size:9.5px;letter-spacing:.08em;text-transform:uppercase;color:rgba(18,21,28,.5);border-left:1px solid rgba(18,21,28,.16)">Mark fit</div>
+          </div>
+          <sc-for list="{{ scores }}" as="r" hint-placeholder-count="6">
+            <div style="display:grid;grid-template-columns:130px repeat(5,1fr);border-bottom:1px solid rgba(18,21,28,.1)">
+              <div style="padding:11px 14px;font-family:'IBM Plex Sans',sans-serif;font-size:12.5px;font-weight:500">{{ r.name }}</div>
+              <div style="padding:11px 14px;font-family:'IBM Plex Sans',sans-serif;font-size:12.5px;color:rgba(18,21,28,.68);border-left:1px solid rgba(18,21,28,.1)">{{ r.neutral }}</div>
+              <div style="padding:11px 14px;font-family:'IBM Plex Sans',sans-serif;font-size:12.5px;color:rgba(18,21,28,.68);border-left:1px solid rgba(18,21,28,.1)">{{ r.premium }}</div>
+              <div style="padding:11px 14px;font-family:'IBM Plex Sans',sans-serif;font-size:12.5px;color:rgba(18,21,28,.68);border-left:1px solid rgba(18,21,28,.1)">{{ r.say }}</div>
+              <div style="padding:11px 14px;font-family:'IBM Plex Sans',sans-serif;font-size:12.5px;color:rgba(18,21,28,.68);border-left:1px solid rgba(18,21,28,.1)">{{ r.legal }}</div>
+              <div style="padding:11px 14px;font-family:'IBM Plex Sans',sans-serif;font-size:12.5px;color:rgba(18,21,28,.68);border-left:1px solid rgba(18,21,28,.1)">{{ r.mark }}</div>
+            </div>
+          </sc-for>
+        </div>
+        <p style="font-family:'IBM Plex Sans',sans-serif;font-size:11.5px;line-height:1.55;color:rgba(18,21,28,.45);margin:0;max-width:80ch">Scores are design judgement, not legal advice. No trademark, domain or App Store availability has been verified — treat clearance as a blocking task before any name is used in code, contracts or store metadata.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="mark" style="padding:54px 0 40px;border-bottom:1px solid rgba(18,21,28,.16)">
+    <div style="display:grid;grid-template-columns:104px 1fr;gap:36px;margin-bottom:30px">
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.1em;color:rgba(18,21,28,.42);padding-top:12px">03</div>
+      <div>
+        <h2 style="font-family:'Cormorant Garamond',serif;font-weight:400;font-size:40px;line-height:1.05;letter-spacing:-.02em;margin:0 0 6px">The mark</h2>
+        <p style="font-family:'IBM Plex Sans',sans-serif;font-size:12px;letter-spacing:.04em;text-transform:uppercase;color:rgba(18,21,28,.45);margin:0 0 22px">Two circles of equal radius, offset — nothing else</p>
+        <p style="font-family:Lora,serif;font-size:16px;line-height:1.7;color:rgba(18,21,28,.84);max-width:70ch;margin:0">The mark was already established in onboarding: one lit limb of gilt, the rest of the disc in shadow. This fixes its geometry so it can be redrawn identically at any size, by anyone, without a source file. It is drawn from geometry rather than from letters, which is what makes a rename cheap.</p>
+      </div>
+    </div>
+
+    <div style="display:grid;grid-template-columns:104px 1fr;gap:36px">
+      <div></div>
+      <div style="display:flex;gap:40px;flex-wrap:wrap;align-items:flex-start">
+        <div style="background:#f4f1ea;border:1px solid rgba(18,21,28,.16);padding:26px">
+          <svg width="300" height="300" viewBox="0 0 100 100">
+            <sc-if value="{{ showGrid }}" hint-placeholder-val="{{ true }}">
+              <g>
+                <rect x="0" y="0" width="100" height="100" fill="none" stroke="rgba(18,21,28,.12)" stroke-width=".5"></rect>
+                <line x1="50" y1="0" x2="50" y2="100" stroke="rgba(18,21,28,.14)" stroke-width=".5"></line>
+                <line x1="0" y1="50" x2="100" y2="50" stroke="rgba(18,21,28,.14)" stroke-width=".5"></line>
+                <circle cx="50" cy="50" r="38" fill="none" stroke="rgba(18,21,28,.22)" stroke-width=".5" stroke-dasharray="2 2"></circle>
+                <circle cx="61" cy="50" r="38" fill="none" stroke="rgba(176,134,63,.5)" stroke-width=".5" stroke-dasharray="2 2"></circle>
+                <line x1="50" y1="50" x2="61" y2="50" stroke="#b0863f" stroke-width=".6"></line>
+                <circle cx="50" cy="50" r=".9" fill="rgba(18,21,28,.5)"></circle>
+                <circle cx="61" cy="50" r=".9" fill="#b0863f"></circle>
+                <text x="55.5" y="46" text-anchor="middle" font-family="IBM Plex Mono" font-size="3.4" fill="#8a6524">d = 0.29r</text>
+                <text x="50" y="7" text-anchor="middle" font-family="IBM Plex Mono" font-size="3.4" fill="rgba(18,21,28,.45)">r = 0.38 × box</text>
+              </g>
+            </sc-if>
+            <circle cx="50" cy="50" r="38" fill="#12151c"></circle>
+            <path d="M55.5 12.4 A38 38 0 1 0 55.5 87.6 A38 38 0 0 1 55.5 12.4 Z" fill="#b0863f"></path>
+          </svg>
+          <div style="font-family:'IBM Plex Mono',monospace;font-size:9.5px;letter-spacing:.12em;text-transform:uppercase;color:rgba(18,21,28,.5);margin-top:14px">Construction · lit limb at left</div>
+        </div>
+
+        <div style="flex:1;min-width:340px">
+          <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:rgba(18,21,28,.5);margin-bottom:12px">Rules</div>
+          <div style="font-family:'IBM Plex Sans',sans-serif;font-size:13px;line-height:1.7;color:rgba(18,21,28,.78);max-width:52ch">
+            <div style="border-top:1px solid rgba(18,21,28,.12);padding:9px 0"><b>Radius</b> — the shadow disc is 0.76 of the box width. The occulting circle has the same radius, offset horizontally by 0.29r.</div>
+            <div style="border-top:1px solid rgba(18,21,28,.12);padding:9px 0"><b>Lit limb</b> — the crescent left over is filled gilt at full strength. It is never a stroke, never a gradient, never a glow.</div>
+            <div style="border-top:1px solid rgba(18,21,28,.12);padding:9px 0"><b>Orientation</b> — the limb lights the left side. It does not rotate, tilt or animate to a different angle.</div>
+            <div style="border-top:1px solid rgba(18,21,28,.12);padding:9px 0"><b>Clear space</b> — 0.5r on all sides, measured from the shadow disc. Nothing enters it, including the wordmark.</div>
+            <div style="border-top:1px solid rgba(18,21,28,.12);border-bottom:1px solid rgba(18,21,28,.12);padding:9px 0"><b>Minimum size</b> — 20 pt / 20 px. Below that, use the one-colour cut.</div>
+          </div>
+
+          <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:rgba(18,21,28,.5);margin:26px 0 12px">Sanctioned cuts</div>
+          <div style="display:flex;gap:14px;flex-wrap:wrap">
+            <div style="width:112px">
+              <div style="background:#f4f1ea;border:1px solid rgba(18,21,28,.16);height:112px;display:flex;align-items:center;justify-content:center"><svg width="66" height="66" viewBox="0 0 100 100"><circle cx="50" cy="50" r="38" fill="#12151c"></circle><path d="M55.5 12.4 A38 38 0 1 0 55.5 87.6 A38 38 0 0 1 55.5 12.4 Z" fill="#b0863f"></path></svg></div>
+              <div style="font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:.08em;text-transform:uppercase;color:rgba(18,21,28,.5);margin-top:7px">On paper</div>
+            </div>
+            <div style="width:112px">
+              <div style="background:#12151c;border:1px solid rgba(18,21,28,.16);height:112px;display:flex;align-items:center;justify-content:center"><svg width="66" height="66" viewBox="0 0 100 100"><circle cx="50" cy="50" r="38" fill="#12151c" stroke="rgba(244,241,234,.22)" stroke-width="1"></circle><path d="M55.5 12.4 A38 38 0 1 0 55.5 87.6 A38 38 0 0 1 55.5 12.4 Z" fill="#d9ad63"></path></svg></div>
+              <div style="font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:.08em;text-transform:uppercase;color:rgba(18,21,28,.5);margin-top:7px">On ink</div>
+            </div>
+            <div style="width:112px">
+              <div style="background:#f4f1ea;border:1px solid rgba(18,21,28,.16);height:112px;display:flex;align-items:center;justify-content:center"><svg width="66" height="66" viewBox="0 0 100 100"><circle cx="50" cy="50" r="38" fill="#12151c"></circle><path d="M55.5 12.4 A38 38 0 1 0 55.5 87.6 A38 38 0 0 1 55.5 12.4 Z" fill="#f4f1ea"></path></svg></div>
+              <div style="font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:.08em;text-transform:uppercase;color:rgba(18,21,28,.5);margin-top:7px">One colour</div>
+            </div>
+            <div style="width:112px">
+              <div style="background:#f4f1ea;border:1px solid rgba(18,21,28,.16);height:112px;display:flex;align-items:center;justify-content:center"><svg width="30" height="30" viewBox="0 0 100 100"><circle cx="50" cy="50" r="38" fill="#12151c"></circle><path d="M55.5 12.4 A38 38 0 1 0 55.5 87.6 A38 38 0 0 1 55.5 12.4 Z" fill="#b0863f"></path></svg></div>
+              <div style="font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:.08em;text-transform:uppercase;color:rgba(18,21,28,.5);margin-top:7px">At 20 px</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="wordmark" style="padding:54px 0 40px;border-bottom:1px solid rgba(18,21,28,.16)">
+    <div style="display:grid;grid-template-columns:104px 1fr;gap:36px;margin-bottom:30px">
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.1em;color:rgba(18,21,28,.42);padding-top:12px">04</div>
+      <div>
+        <h2 style="font-family:'Cormorant Garamond',serif;font-weight:400;font-size:40px;line-height:1.05;letter-spacing:-.02em;margin:0 0 6px">Wordmark &amp; lockups</h2>
+        <p style="font-family:'IBM Plex Sans',sans-serif;font-size:12px;letter-spacing:.04em;text-transform:uppercase;color:rgba(18,21,28,.45);margin:0 0 22px">Cormorant Garamond Light, letterspaced — no custom drawing</p>
+        <p style="font-family:Lora,serif;font-size:16px;line-height:1.7;color:rgba(18,21,28,.84);max-width:70ch;margin:0">The wordmark is a setting, not a logotype: Cormorant Garamond 300, all caps, 0.34em tracking. That is deliberate — a typeset wordmark survives a rename, translates to any Latin-script locale, and keeps the identity in the type system rather than in an asset nobody can edit. Only two lockups exist.</p>
+      </div>
+    </div>
+
+    <div style="display:grid;grid-template-columns:104px 1fr;gap:36px">
+      <div></div>
+      <div>
+        <div style="background:#f4f1ea;border:1px solid rgba(18,21,28,.16);padding:52px 40px;margin-bottom:20px;display:flex;flex-direction:column;gap:44px;align-items:center">
+          <sc-if value="{{ isUpper }}" hint-placeholder-val="{{ true }}">
+            <div style="font-family:'Cormorant Garamond',serif;font-weight:300;font-size:58px;letter-spacing:.34em;text-transform:uppercase;line-height:1;text-indent:.34em">{{ brandName }}</div>
+          </sc-if>
+          <sc-if value="{{ isCaps }}">
+            <div style="font-family:'Cormorant Garamond',serif;font-weight:300;font-size:62px;letter-spacing:.06em;line-height:1">{{ brandName }}</div>
+          </sc-if>
+        </div>
+
+        <div style="display:flex;gap:20px;flex-wrap:wrap;margin-bottom:24px">
+          <div style="flex:1;min-width:300px;background:#f4f1ea;border:1px solid rgba(18,21,28,.16);padding:34px 30px">
+            <div style="display:flex;align-items:center;gap:18px">
+              <svg width="46" height="46" viewBox="0 0 100 100"><circle cx="50" cy="50" r="38" fill="#12151c"></circle><path d="M55.5 12.4 A38 38 0 1 0 55.5 87.6 A38 38 0 0 1 55.5 12.4 Z" fill="#b0863f"></path></svg>
+              <div style="font-family:'Cormorant Garamond',serif;font-weight:300;font-size:26px;letter-spacing:.3em;text-transform:uppercase;line-height:1;text-indent:.3em">{{ brandName }}</div>
+            </div>
+            <div style="font-family:'IBM Plex Mono',monospace;font-size:9.5px;letter-spacing:.12em;text-transform:uppercase;color:rgba(18,21,28,.5);margin-top:26px">Horizontal lockup · mark height = cap height × 1.6 · gap = 0.5r</div>
+          </div>
+          <div style="flex:1;min-width:300px;background:#12151c;border:1px solid rgba(18,21,28,.16);padding:34px 30px;display:flex;flex-direction:column;justify-content:space-between">
+            <div style="display:flex;flex-direction:column;align-items:center;gap:16px">
+              <svg width="46" height="46" viewBox="0 0 100 100"><circle cx="50" cy="50" r="38" fill="#12151c" stroke="rgba(244,241,234,.22)" stroke-width="1"></circle><path d="M55.5 12.4 A38 38 0 1 0 55.5 87.6 A38 38 0 0 1 55.5 12.4 Z" fill="#d9ad63"></path></svg>
+              <div style="font-family:'Cormorant Garamond',serif;font-weight:300;font-size:22px;letter-spacing:.34em;text-transform:uppercase;line-height:1;color:#f4f1ea;text-indent:.34em">{{ brandName }}</div>
+            </div>
+            <div style="font-family:'IBM Plex Mono',monospace;font-size:9.5px;letter-spacing:.12em;text-transform:uppercase;color:rgba(244,241,234,.45);margin-top:26px">Stacked lockup · launch, share plates, ink surfaces only</div>
+          </div>
+        </div>
+
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:34px">
+          <div>
+            <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:rgba(18,21,28,.5);margin-bottom:10px">Specification</div>
+            <div style="font-family:'IBM Plex Sans',sans-serif;font-size:12.5px;line-height:1.8;color:rgba(18,21,28,.76)">
+              <div style="border-top:1px solid rgba(18,21,28,.12);padding:6px 0;display:grid;grid-template-columns:120px 1fr"><span style="color:rgba(18,21,28,.5)">Face</span><span>Cormorant Garamond 300</span></div>
+              <div style="border-top:1px solid rgba(18,21,28,.12);padding:6px 0;display:grid;grid-template-columns:120px 1fr"><span style="color:rgba(18,21,28,.5)">Case</span><span>All caps</span></div>
+              <div style="border-top:1px solid rgba(18,21,28,.12);padding:6px 0;display:grid;grid-template-columns:120px 1fr"><span style="color:rgba(18,21,28,.5)">Tracking</span><span>0.34em (0.42em under 16 px)</span></div>
+              <div style="border-top:1px solid rgba(18,21,28,.12);padding:6px 0;display:grid;grid-template-columns:120px 1fr"><span style="color:rgba(18,21,28,.5)">In-app header</span><span>15 px, ink or ivory at 85%</span></div>
+              <div style="border-top:1px solid rgba(18,21,28,.12);border-bottom:1px solid rgba(18,21,28,.12);padding:6px 0;display:grid;grid-template-columns:120px 1fr"><span style="color:rgba(18,21,28,.5)">Trailing indent</span><span>Always applied — tracking follows the last letter</span></div>
+            </div>
+          </div>
+          <div>
+            <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:rgba(18,21,28,.5);margin-bottom:10px">Where each is used</div>
+            <div style="font-family:'IBM Plex Sans',sans-serif;font-size:12.5px;line-height:1.8;color:rgba(18,21,28,.76)">
+              <div style="border-top:1px solid rgba(18,21,28,.12);padding:6px 0">Wordmark alone — in-app header, settings, legal, email</div>
+              <div style="border-top:1px solid rgba(18,21,28,.12);padding:6px 0">Horizontal lockup — documents, decks, partner contexts</div>
+              <div style="border-top:1px solid rgba(18,21,28,.12);padding:6px 0">Stacked lockup — launch screen, share plates</div>
+              <div style="border-top:1px solid rgba(18,21,28,.12);padding:6px 0">Mark alone — app icon, favicon, notification badge, avatar</div>
+              <div style="border-top:1px solid rgba(18,21,28,.12);border-bottom:1px solid rgba(18,21,28,.12);padding:6px 0">Never both lockups on one surface</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="icon" style="padding:54px 0 40px;border-bottom:1px solid rgba(18,21,28,.16)">
+    <div style="display:grid;grid-template-columns:104px 1fr;gap:36px;margin-bottom:30px">
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.1em;color:rgba(18,21,28,.42);padding-top:12px">05</div>
+      <div>
+        <h2 style="font-family:'Cormorant Garamond',serif;font-weight:400;font-size:40px;line-height:1.05;letter-spacing:-.02em;margin:0 0 6px">App icon</h2>
+        <p style="font-family:'IBM Plex Sans',sans-serif;font-size:12px;letter-spacing:.04em;text-transform:uppercase;color:rgba(18,21,28,.45);margin:0 0 22px">Three variants, one geometry</p>
+        <p style="font-family:Lora,serif;font-size:16px;line-height:1.7;color:rgba(18,21,28,.84);max-width:70ch;margin:0">The icon is the mark on a flat ground — no bevel, no ring, no gradient, no letters. On a home screen full of saturated glyphs, a single dark disc with one gilt edge is the most legible thing available. The mark sits at 62% of the icon box, optically centred.</p>
+      </div>
+    </div>
+
+    <div style="display:grid;grid-template-columns:104px 1fr;gap:36px">
+      <div></div>
+      <div>
+        <div style="display:flex;gap:26px;flex-wrap:wrap;margin-bottom:26px">
+          <div>
+            <div style="width:180px;height:180px;border-radius:40px;background:#f4f1ea;display:flex;align-items:center;justify-content:center;box-shadow:0 12px 30px -14px rgba(18,21,28,.45)">
+              <svg width="112" height="112" viewBox="0 0 100 100"><circle cx="50" cy="50" r="38" fill="#12151c"></circle><path d="M55.5 12.4 A38 38 0 1 0 55.5 87.6 A38 38 0 0 1 55.5 12.4 Z" fill="#b0863f"></path></svg>
+            </div>
+            <div style="font-family:'IBM Plex Mono',monospace;font-size:9.5px;letter-spacing:.12em;text-transform:uppercase;color:rgba(18,21,28,.5);margin-top:12px">Light · ivory ground</div>
+          </div>
+          <div>
+            <div style="width:180px;height:180px;border-radius:40px;background:#12151c;display:flex;align-items:center;justify-content:center;box-shadow:0 12px 30px -14px rgba(18,21,28,.45)">
+              <svg width="112" height="112" viewBox="0 0 100 100"><circle cx="50" cy="50" r="38" fill="#0a0c11"></circle><path d="M55.5 12.4 A38 38 0 1 0 55.5 87.6 A38 38 0 0 1 55.5 12.4 Z" fill="#d9ad63"></path></svg>
+            </div>
+            <div style="font-family:'IBM Plex Mono',monospace;font-size:9.5px;letter-spacing:.12em;text-transform:uppercase;color:rgba(18,21,28,.5);margin-top:12px">Dark · ink ground</div>
+          </div>
+          <div>
+            <div style="width:180px;height:180px;border-radius:40px;background:#2a2d33;display:flex;align-items:center;justify-content:center;box-shadow:0 12px 30px -14px rgba(18,21,28,.45)">
+              <svg width="112" height="112" viewBox="0 0 100 100"><circle cx="50" cy="50" r="38" fill="#0f1115"></circle><path d="M55.5 12.4 A38 38 0 1 0 55.5 87.6 A38 38 0 0 1 55.5 12.4 Z" fill="#e6e6e6"></path></svg>
+            </div>
+            <div style="font-family:'IBM Plex Mono',monospace;font-size:9.5px;letter-spacing:.12em;text-transform:uppercase;color:rgba(18,21,28,.5);margin-top:12px">Tinted · single channel</div>
+          </div>
+          <div style="flex:1;min-width:280px;padding-top:6px">
+            <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:rgba(18,21,28,.5);margin-bottom:12px">Rules</div>
+            <div style="font-family:'IBM Plex Sans',sans-serif;font-size:12.5px;line-height:1.7;color:rgba(18,21,28,.76);max-width:44ch">
+              <div style="border-top:1px solid rgba(18,21,28,.12);padding:8px 0">The tinted variant carries no gilt. Luminance alone must hold the shape, so the shadow disc drops to near-black and the limb goes to near-white.</div>
+              <div style="border-top:1px solid rgba(18,21,28,.12);padding:8px 0">No text in the icon, ever — including at launch or in store screenshots.</div>
+              <div style="border-top:1px solid rgba(18,21,28,.12);padding:8px 0">The dark variant deepens the disc rather than lightening the ground; the boundary is carried by the limb, not by a stroke.</div>
+              <div style="border-top:1px solid rgba(18,21,28,.12);border-bottom:1px solid rgba(18,21,28,.12);padding:8px 0">Notification and widget badges use the one-colour cut at 20 px.</div>
+            </div>
+          </div>
+        </div>
+
+        <div style="background:#e9e4d8;border:1px solid rgba(18,21,28,.16);padding:22px 24px;display:flex;align-items:center;gap:26px;flex-wrap:wrap">
+          <div style="font-family:'IBM Plex Mono',monospace;font-size:9.5px;letter-spacing:.12em;text-transform:uppercase;color:rgba(18,21,28,.5);width:100%">Home-screen sizes · 120 / 76 / 40 / 20 px</div>
+          <div style="display:flex;align-items:flex-end;gap:22px">
+            <div style="width:120px;height:120px;border-radius:27px;background:#f4f1ea;display:flex;align-items:center;justify-content:center"><svg width="74" height="74" viewBox="0 0 100 100"><circle cx="50" cy="50" r="38" fill="#12151c"></circle><path d="M55.5 12.4 A38 38 0 1 0 55.5 87.6 A38 38 0 0 1 55.5 12.4 Z" fill="#b0863f"></path></svg></div>
+            <div style="width:76px;height:76px;border-radius:17px;background:#f4f1ea;display:flex;align-items:center;justify-content:center"><svg width="47" height="47" viewBox="0 0 100 100"><circle cx="50" cy="50" r="38" fill="#12151c"></circle><path d="M55.5 12.4 A38 38 0 1 0 55.5 87.6 A38 38 0 0 1 55.5 12.4 Z" fill="#b0863f"></path></svg></div>
+            <div style="width:40px;height:40px;border-radius:9px;background:#f4f1ea;display:flex;align-items:center;justify-content:center"><svg width="25" height="25" viewBox="0 0 100 100"><circle cx="50" cy="50" r="38" fill="#12151c"></circle><path d="M55.5 12.4 A38 38 0 1 0 55.5 87.6 A38 38 0 0 1 55.5 12.4 Z" fill="#b0863f"></path></svg></div>
+            <div style="width:20px;height:20px;border-radius:5px;background:#f4f1ea;display:flex;align-items:center;justify-content:center"><svg width="13" height="13" viewBox="0 0 100 100"><circle cx="50" cy="50" r="38" fill="#12151c"></circle><path d="M55.5 12.4 A38 38 0 1 0 55.5 87.6 A38 38 0 0 1 55.5 12.4 Z" fill="#b0863f"></path></svg></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="lines" style="padding:54px 0 40px;border-bottom:1px solid rgba(18,21,28,.16)">
+    <div style="display:grid;grid-template-columns:104px 1fr;gap:36px">
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.1em;color:rgba(18,21,28,.42);padding-top:12px">06</div>
+      <div>
+        <h2 style="font-family:'Cormorant Garamond',serif;font-weight:400;font-size:40px;line-height:1.05;letter-spacing:-.02em;margin:0 0 6px">The lines</h2>
+        <p style="font-family:'IBM Plex Sans',sans-serif;font-size:12px;letter-spacing:.04em;text-transform:uppercase;color:rgba(18,21,28,.45);margin:0 0 24px">Three registers, one claim</p>
+
+        <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:1px;background:rgba(18,21,28,.16);border:1px solid rgba(18,21,28,.16);margin-bottom:22px">
+          <div style="background:#f4f1ea;padding:24px 22px;display:flex;flex-direction:column;justify-content:space-between;min-height:190px">
+            <div style="font-family:'IBM Plex Mono',monospace;font-size:9.5px;letter-spacing:.14em;text-transform:uppercase;color:#8a6524">Store line · 30 char cap</div>
+            <div style="font-family:'Cormorant Garamond',serif;font-weight:300;font-size:29px;line-height:1.15;letter-spacing:-.01em">Astrology, with its<br><span style="font-style:italic">work shown</span></div>
+            <div style="font-family:'IBM Plex Sans',sans-serif;font-size:11.5px;line-height:1.55;color:rgba(18,21,28,.5)">App Store subtitle. Leads with the category so search understands it, ends with the differentiator.</div>
+          </div>
+          <div style="background:#f4f1ea;padding:24px 22px;display:flex;flex-direction:column;justify-content:space-between;min-height:190px">
+            <div style="font-family:'IBM Plex Mono',monospace;font-size:9.5px;letter-spacing:.14em;text-transform:uppercase;color:#8a6524">Launch line</div>
+            <div style="font-family:'Cormorant Garamond',serif;font-weight:300;font-size:29px;line-height:1.15;letter-spacing:-.01em">Read the sky.<br>See the <span style="font-style:italic">reasoning.</span></div>
+            <div style="font-family:'IBM Plex Sans',sans-serif;font-size:11.5px;line-height:1.55;color:rgba(18,21,28,.5)">Already carried by the onboarding welcome screen. Promoted to the brand line — it is the product's whole argument in six words.</div>
+          </div>
+          <div style="background:#f4f1ea;padding:24px 22px;display:flex;flex-direction:column;justify-content:space-between;min-height:190px">
+            <div style="font-family:'IBM Plex Mono',monospace;font-size:9.5px;letter-spacing:.14em;text-transform:uppercase;color:#8a6524">Press one-liner</div>
+            <div style="font-family:Lora,serif;font-size:15.5px;line-height:1.6;color:rgba(18,21,28,.86)">An astrology app that reads Western, Vedic and Chinese charts side by side, and opens every claim to the placement behind it.</div>
+            <div style="font-family:'IBM Plex Sans',sans-serif;font-size:11.5px;line-height:1.55;color:rgba(18,21,28,.5)">One sentence, no adjectives about itself. Never described as "AI-powered".</div>
+          </div>
+        </div>
+        <p style="font-family:'IBM Plex Sans',sans-serif;font-size:12.5px;line-height:1.65;color:rgba(18,21,28,.6);margin:0;max-width:74ch">The launch line is the only one that appears inside the product. It is never stacked with the store line, never animated, and never set below 15 px.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="voice" style="padding:54px 0 40px;border-bottom:1px solid rgba(18,21,28,.16)">
+    <div style="display:grid;grid-template-columns:104px 1fr;gap:36px;margin-bottom:28px">
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.1em;color:rgba(18,21,28,.42);padding-top:12px">07</div>
+      <div>
+        <h2 style="font-family:'Cormorant Garamond',serif;font-weight:400;font-size:40px;line-height:1.05;letter-spacing:-.02em;margin:0 0 6px">Voice &amp; tone</h2>
+        <p style="font-family:'IBM Plex Sans',sans-serif;font-size:12px;letter-spacing:.04em;text-transform:uppercase;color:rgba(18,21,28,.45);margin:0 0 22px">Seven rules that settle copy arguments</p>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:1px;background:rgba(18,21,28,.16);border:1px solid rgba(18,21,28,.16)">
+          <sc-for list="{{ guardrails }}" as="g" hint-placeholder-count="7">
+            <div style="background:#f4f1ea;padding:16px 18px">
+              <div style="font-family:'IBM Plex Mono',monospace;font-size:9.5px;letter-spacing:.1em;color:#8a6524;margin-bottom:6px">{{ g.n }}</div>
+              <div style="font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:600;line-height:1.2;margin-bottom:5px">{{ g.rule }}</div>
+              <div style="font-family:'IBM Plex Sans',sans-serif;font-size:12.5px;line-height:1.6;color:rgba(18,21,28,.66)">{{ g.note }}</div>
+            </div>
+          </sc-for>
+        </div>
+      </div>
+    </div>
+
+    <div style="display:grid;grid-template-columns:104px 1fr;gap:36px">
+      <div></div>
+      <div>
+        <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:rgba(18,21,28,.5);margin-bottom:12px">In practice — real strings from the approved screens</div>
+        <div style="border:1px solid rgba(18,21,28,.16)">
+          <div style="display:grid;grid-template-columns:150px 1fr 1fr;border-bottom:1px solid rgba(18,21,28,.85)">
+            <div style="padding:11px 16px;font-family:'IBM Plex Mono',monospace;font-size:9.5px;letter-spacing:.1em;text-transform:uppercase;color:rgba(18,21,28,.5)">Surface</div>
+            <div style="padding:11px 16px;font-family:'IBM Plex Mono',monospace;font-size:9.5px;letter-spacing:.1em;text-transform:uppercase;color:rgba(18,21,28,.45);border-left:1px solid rgba(18,21,28,.16)">Not this</div>
+            <div style="padding:11px 16px;font-family:'IBM Plex Mono',monospace;font-size:9.5px;letter-spacing:.1em;text-transform:uppercase;color:#8a6524;border-left:1px solid rgba(18,21,28,.16)">This</div>
+          </div>
+          <sc-for list="{{ voicePairs }}" as="p" hint-placeholder-count="6">
+            <div style="display:grid;grid-template-columns:150px 1fr 1fr;border-bottom:1px solid rgba(18,21,28,.1)">
+              <div style="padding:13px 16px;font-family:'IBM Plex Sans',sans-serif;font-size:12.5px;font-weight:500">{{ p.surface }}</div>
+              <div style="padding:13px 16px;font-family:Lora,serif;font-size:13.5px;line-height:1.55;color:rgba(18,21,28,.45);border-left:1px solid rgba(18,21,28,.1);text-decoration:line-through;text-decoration-color:rgba(138,101,36,.45)">{{ p.bad }}</div>
+              <div style="padding:13px 16px;font-family:Lora,serif;font-size:13.5px;line-height:1.55;color:rgba(18,21,28,.86);border-left:1px solid rgba(18,21,28,.1)">{{ p.good }}</div>
+            </div>
+          </sc-for>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="roast" style="padding:54px 0 40px;border-bottom:1px solid rgba(18,21,28,.16)">
+    <div style="display:grid;grid-template-columns:104px 1fr;gap:36px;margin-bottom:28px">
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.1em;color:rgba(18,21,28,.42);padding-top:12px">08</div>
+      <div>
+        <h2 style="font-family:'Cormorant Garamond',serif;font-weight:400;font-size:40px;line-height:1.05;letter-spacing:-.02em;margin:0 0 6px">Roast</h2>
+        <p style="font-family:'IBM Plex Sans',sans-serif;font-size:12px;letter-spacing:.04em;text-transform:uppercase;color:rgba(18,21,28,.45);margin:0 0 22px">One brand, a sanctioned accent shift, its own voice rules</p>
+        <p style="font-family:Lora,serif;font-size:16px;line-height:1.7;color:rgba(18,21,28,.84);max-width:70ch;margin:0 0 20px">Roast is not a sub-brand. No second wordmark, no second icon, no second personality — the same astrology, read by someone less inclined to be kind about it. The only visual licence is that Cinnabar replaces Gilt as the accent while Roast is on, and Roast content blocks sit on ink. Everything else in the identity holds.</p>
+        <div style="display:flex;gap:26px;flex-wrap:wrap">
+          <div style="flex:1;min-width:300px">
+            <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:rgba(18,21,28,.5);margin-bottom:10px">The accent shift, scoped</div>
+            <div style="display:flex;gap:10px;margin-bottom:14px">
+              <div style="flex:1;background:#b0863f;height:52px;display:flex;align-items:flex-end;padding:7px 10px"><span style="font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:.1em;color:rgba(18,21,28,.7)">GILT · NORMAL</span></div>
+              <div style="flex:1;background:#c2472a;height:52px;display:flex;align-items:flex-end;padding:7px 10px"><span style="font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:.1em;color:rgba(244,241,234,.85)">CINNABAR · ROAST</span></div>
+            </div>
+            <div style="font-family:'IBM Plex Sans',sans-serif;font-size:12.5px;line-height:1.7;color:rgba(18,21,28,.76)">
+              <div style="border-top:1px solid rgba(18,21,28,.12);padding:8px 0">Cinnabar takes over rules, marks, chips and underlines <b>within Roast content only</b> — never the tab bar, never system UI, never the mark.</div>
+              <div style="border-top:1px solid rgba(18,21,28,.12);padding:8px 0">The app icon never changes. There is no red variant.</div>
+              <div style="border-top:1px solid rgba(18,21,28,.12);border-bottom:1px solid rgba(18,21,28,.12);padding:8px 0">Same underlying astrology, same sources, same unfold-to-the-transit behaviour. Roast is a register, not a different engine.</div>
+            </div>
+          </div>
+          <div style="flex:1;min-width:300px">
+            <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:rgba(18,21,28,.5);margin-bottom:10px">Roast voice rules</div>
+            <div style="font-family:'IBM Plex Sans',sans-serif;font-size:12.5px;line-height:1.7;color:rgba(18,21,28,.76)">
+              <div style="border-top:1px solid rgba(18,21,28,.12);padding:8px 0"><b>Punch at the pattern, not the person.</b> The chart is the target; the user is the audience.</div>
+              <div style="border-top:1px solid rgba(18,21,28,.12);padding:8px 0"><b>Never body, money, health, grief or relationships in crisis.</b> Off-limits regardless of placement.</div>
+              <div style="border-top:1px solid rgba(18,21,28,.12);padding:8px 0"><b>Still sourceable.</b> Every joke unfolds to the same transit a normal reading would cite.</div>
+              <div style="border-top:1px solid rgba(18,21,28,.12);padding:8px 0"><b>Dry, not mean.</b> If it would land badly read aloud to the user by a friend, it is out.</div>
+              <div style="border-top:1px solid rgba(18,21,28,.12);border-bottom:1px solid rgba(18,21,28,.12);padding:8px 0"><b>Never in notifications.</b> Roast is opt-in, in-app, and never arrives uninvited on a lock screen.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div style="display:grid;grid-template-columns:104px 1fr;gap:36px;margin-top:24px">
+      <div></div>
+      <div style="display:flex;gap:20px;flex-wrap:wrap">
+        <div style="flex:1;min-width:320px;background:#f4f1ea;border:1px solid rgba(18,21,28,.16);padding:22px 24px">
+          <div style="font-family:'IBM Plex Mono',monospace;font-size:9.5px;letter-spacing:.14em;text-transform:uppercase;color:#8a6524;margin-bottom:10px">Normal</div>
+          <div style="font-family:'Cormorant Garamond',serif;font-weight:300;font-size:24px;line-height:1.2;margin-bottom:10px">Mercury retrograde in your third house</div>
+          <p style="font-family:Lora,serif;font-size:14.5px;line-height:1.65;color:rgba(18,21,28,.78);margin:0">Conversations you thought were finished come back this week. Say the thing plainly the first time — you will be repeating it.</p>
+        </div>
+        <div style="flex:1;min-width:320px;background:#12151c;border:1px solid rgba(18,21,28,.16);padding:22px 24px">
+          <div style="font-family:'IBM Plex Mono',monospace;font-size:9.5px;letter-spacing:.14em;text-transform:uppercase;color:#c2472a;margin-bottom:10px">Roast · same transit</div>
+          <div style="font-family:'Cormorant Garamond',serif;font-weight:300;font-size:24px;line-height:1.2;color:#f4f1ea;margin-bottom:10px">Mercury retrograde in your third house</div>
+          <p style="font-family:Lora,serif;font-size:14.5px;line-height:1.65;color:rgba(244,241,234,.78);margin:0">You are going to have the same argument three times and call it a misunderstanding twice. Write it down the first time, for everyone's sake.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="notif" style="padding:54px 0 40px;border-bottom:1px solid rgba(18,21,28,.16)">
+    <div style="display:grid;grid-template-columns:104px 1fr;gap:36px;margin-bottom:28px">
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.1em;color:rgba(18,21,28,.42);padding-top:12px">09</div>
+      <div>
+        <h2 style="font-family:'Cormorant Garamond',serif;font-weight:400;font-size:40px;line-height:1.05;letter-spacing:-.02em;margin:0 0 6px">Notification voice</h2>
+        <p style="font-family:'IBM Plex Sans',sans-serif;font-size:12px;letter-spacing:.04em;text-transform:uppercase;color:rgba(18,21,28,.45);margin:0 0 22px">The hardest surface to keep honest</p>
+        <p style="font-family:Lora,serif;font-size:16px;line-height:1.7;color:rgba(18,21,28,.84);max-width:70ch;margin:0">A notification states what happened in the sky, not what the user will lose by ignoring it. No countdowns, no streaks, no "don't miss", no manufactured urgency, no Roast. One a day is the ceiling; sky events that genuinely matter are the only reason for a second.</p>
+      </div>
+    </div>
+    <div style="display:grid;grid-template-columns:104px 1fr;gap:36px">
+      <div></div>
+      <div style="display:flex;gap:34px;flex-wrap:wrap;align-items:flex-start">
+        <div style="width:392px;background:#12151c;padding:26px 22px 30px">
+          <div style="font-family:'IBM Plex Mono',monospace;font-size:9.5px;letter-spacing:.14em;text-transform:uppercase;color:rgba(244,241,234,.4);margin-bottom:16px">Lock screen</div>
+          <div style="display:flex;flex-direction:column;gap:10px">
+            <sc-for list="{{ notifications }}" as="n" hint-placeholder-count="3">
+              <div style="background:rgba(244,241,234,.1);border-radius:16px;padding:12px 14px;display:flex;gap:11px;align-items:flex-start">
+                <div style="width:26px;height:26px;border-radius:7px;background:#f4f1ea;display:flex;align-items:center;justify-content:center;flex:none"><svg width="17" height="17" viewBox="0 0 100 100"><circle cx="50" cy="50" r="38" fill="#12151c"></circle><path d="M55.5 12.4 A38 38 0 1 0 55.5 87.6 A38 38 0 0 1 55.5 12.4 Z" fill="#b0863f"></path></svg></div>
+                <div style="flex:1">
+                  <div style="display:flex;justify-content:space-between;align-items:baseline">
+                    <span style="font-family:'IBM Plex Sans',sans-serif;font-size:12px;font-weight:500;color:#f4f1ea">{{ brandName }}</span>
+                    <span style="font-family:'IBM Plex Sans',sans-serif;font-size:11px;color:rgba(244,241,234,.45)">{{ n.time }}</span>
+                  </div>
+                  <div style="font-family:'IBM Plex Sans',sans-serif;font-size:13px;line-height:1.45;color:rgba(244,241,234,.9);margin-top:2px">{{ n.body }}</div>
+                </div>
+              </div>
+            </sc-for>
+          </div>
+        </div>
+        <div style="flex:1;min-width:320px">
+          <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:rgba(18,21,28,.5);margin-bottom:10px">Rules</div>
+          <div style="font-family:'IBM Plex Sans',sans-serif;font-size:12.5px;line-height:1.7;color:rgba(18,21,28,.76);max-width:48ch">
+            <div style="border-top:1px solid rgba(18,21,28,.12);padding:8px 0">Lead with the fact, not the feeling. The sky did something; the user decides what it means to them.</div>
+            <div style="border-top:1px solid rgba(18,21,28,.12);padding:8px 0">No imperative that instructs behaviour — "Do this today" is out; "Worth a look" is fine.</div>
+            <div style="border-top:1px solid rgba(18,21,28,.12);padding:8px 0">Never reference the user's unread state, streak, absence or lapsed subscription.</div>
+            <div style="border-top:1px solid rgba(18,21,28,.12);padding:8px 0">Never a rewarded-ad prompt. Monetization does not appear on a lock screen.</div>
+            <div style="border-top:1px solid rgba(18,21,28,.12);border-bottom:1px solid rgba(18,21,28,.12);padding:8px 0">Title is always the brand name alone. No emoji in the title or the body.</div>
+          </div>
+          <div style="margin-top:20px;border-left:2px solid #8a6524;padding:2px 0 2px 16px;max-width:46ch">
+            <div style="font-family:'IBM Plex Mono',monospace;font-size:9.5px;letter-spacing:.14em;text-transform:uppercase;color:#8a6524;margin-bottom:5px">Banned constructions</div>
+            <p style="font-family:'IBM Plex Sans',sans-serif;font-size:12.5px;line-height:1.6;color:rgba(18,21,28,.66);margin:0">"You won't believe…" · "Your reading is waiting" · "3 days left" · "The universe has a message" · "Someone viewed your chart" · anything with an exclamation mark.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="nomen" style="padding:54px 0 40px;border-bottom:1px solid rgba(18,21,28,.16)">
+    <div style="display:grid;grid-template-columns:104px 1fr;gap:36px;margin-bottom:26px">
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.1em;color:rgba(18,21,28,.42);padding-top:12px">10</div>
+      <div>
+        <h2 style="font-family:'Cormorant Garamond',serif;font-weight:400;font-size:40px;line-height:1.05;letter-spacing:-.02em;margin:0 0 6px">Nomenclature</h2>
+        <p style="font-family:'IBM Plex Sans',sans-serif;font-size:12px;letter-spacing:.04em;text-transform:uppercase;color:rgba(18,21,28,.45);margin:0 0 22px">The names are settled — this fixes their casing and their strings</p>
+        <p style="font-family:Lora,serif;font-size:16px;line-height:1.7;color:rgba(18,21,28,.84);max-width:70ch;margin:0">Feature names are capitalised as proper nouns; modes are lowercase in prose. The one string this pass changes is Premium, written as "Eclipse Premium" in Pass 4.1 — Eclipse is the visual direction, not the brand, so it takes the brand name instead.</p>
+      </div>
+    </div>
+    <div style="display:grid;grid-template-columns:104px 1fr;gap:36px">
+      <div></div>
+      <div style="border:1px solid rgba(18,21,28,.16)">
+        <div style="display:grid;grid-template-columns:170px 180px 1fr;border-bottom:1px solid rgba(18,21,28,.85)">
+          <div style="padding:11px 16px;font-family:'IBM Plex Mono',monospace;font-size:9.5px;letter-spacing:.1em;text-transform:uppercase;color:rgba(18,21,28,.5)">Canonical</div>
+          <div style="padding:11px 16px;font-family:'IBM Plex Mono',monospace;font-size:9.5px;letter-spacing:.1em;text-transform:uppercase;color:rgba(18,21,28,.5);border-left:1px solid rgba(18,21,28,.16)">Short form</div>
+          <div style="padding:11px 16px;font-family:'IBM Plex Mono',monospace;font-size:9.5px;letter-spacing:.1em;text-transform:uppercase;color:rgba(18,21,28,.5);border-left:1px solid rgba(18,21,28,.16)">Usage</div>
+        </div>
+        <sc-for list="{{ nomenclature }}" as="n" hint-placeholder-count="10">
+          <div style="display:grid;grid-template-columns:170px 180px 1fr;border-bottom:1px solid rgba(18,21,28,.1)">
+            <div style="padding:12px 16px;font-family:'IBM Plex Sans',sans-serif;font-size:13px;font-weight:500">{{ n.name }}</div>
+            <div style="padding:12px 16px;font-family:'IBM Plex Mono',monospace;font-size:12px;color:rgba(18,21,28,.7);border-left:1px solid rgba(18,21,28,.1)">{{ n.short }}</div>
+            <div style="padding:12px 16px;font-family:'IBM Plex Sans',sans-serif;font-size:12.5px;line-height:1.55;color:rgba(18,21,28,.68);border-left:1px solid rgba(18,21,28,.1)">{{ n.usage }}</div>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+  </section>
+
+  <section id="share" style="padding:54px 0 40px;border-bottom:1px solid rgba(18,21,28,.16)">
+    <div style="display:grid;grid-template-columns:104px 1fr;gap:36px;margin-bottom:28px">
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.1em;color:rgba(18,21,28,.42);padding-top:12px">11</div>
+      <div>
+        <h2 style="font-family:'Cormorant Garamond',serif;font-weight:400;font-size:40px;line-height:1.05;letter-spacing:-.02em;margin:0 0 6px">Share plates</h2>
+        <p style="font-family:'IBM Plex Sans',sans-serif;font-size:12px;letter-spacing:.04em;text-transform:uppercase;color:rgba(18,21,28,.45);margin:0 0 22px">The identity's highest-volume surface</p>
+        <p style="font-family:Lora,serif;font-size:16px;line-height:1.7;color:rgba(18,21,28,.84);max-width:70ch;margin:0">A plate is a page, not a poster: one sentence, one attribution rule, no decoration. The strategy target — the recipient can tell what app it is without a logo — is met by the type and the surface, so the mark stays small and sits bottom-right. Ink plates for sky and consequence, paper plates for readings.</p>
+      </div>
+    </div>
+    <div style="display:grid;grid-template-columns:104px 1fr;gap:36px">
+      <div></div>
+      <div style="display:flex;gap:22px;flex-wrap:wrap">
+        <div style="width:280px;height:280px;background:#12151c;padding:24px;display:flex;flex-direction:column;justify-content:space-between">
+          <div style="font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:#d9ad63">Full Moon in Aquarius · 10 Aug</div>
+          <div style="font-family:'Cormorant Garamond',serif;font-weight:300;font-size:26px;line-height:1.2;color:#f4f1ea">Release, seen through three different lenses.</div>
+          <div style="display:flex;justify-content:space-between;align-items:flex-end">
+            <div style="font-family:'IBM Plex Mono',monospace;font-size:8px;letter-spacing:.1em;color:rgba(244,241,234,.4)">WESTERN · VEDIC · CHINESE</div>
+            <svg width="20" height="20" viewBox="0 0 100 100"><circle cx="50" cy="50" r="38" fill="#12151c" stroke="rgba(244,241,234,.25)" stroke-width="1.5"></circle><path d="M55.5 12.4 A38 38 0 1 0 55.5 87.6 A38 38 0 0 1 55.5 12.4 Z" fill="#d9ad63"></path></svg>
+          </div>
+        </div>
+        <div style="width:280px;height:280px;background:#f4f1ea;border:1px solid #12151c;padding:24px;display:flex;flex-direction:column;justify-content:space-between">
+          <div style="font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:#8a6524">You &amp; Jordan · Compatibility</div>
+          <div style="font-family:'Cormorant Garamond',serif;font-weight:300;font-size:24px;line-height:1.22;color:#12151c">Warm, generative, occasionally combustible.</div>
+          <div style="display:flex;justify-content:space-between;align-items:flex-end">
+            <div style="font-family:'IBM Plex Mono',monospace;font-size:8px;letter-spacing:.1em;color:rgba(18,21,28,.4)">VENUS – JUPITER TRINE</div>
+            <svg width="20" height="20" viewBox="0 0 100 100"><circle cx="50" cy="50" r="38" fill="#12151c"></circle><path d="M55.5 12.4 A38 38 0 1 0 55.5 87.6 A38 38 0 0 1 55.5 12.4 Z" fill="#b0863f"></path></svg>
+          </div>
+        </div>
+        <div style="flex:1;min-width:300px;padding-top:4px">
+          <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:rgba(18,21,28,.5);margin-bottom:10px">Plate rules</div>
+          <div style="font-family:'IBM Plex Sans',sans-serif;font-size:12.5px;line-height:1.7;color:rgba(18,21,28,.76);max-width:46ch">
+            <div style="border-top:1px solid rgba(18,21,28,.12);padding:8px 0">1:1 at 1080 px. Same composition at every size; no alternate crops.</div>
+            <div style="border-top:1px solid rgba(18,21,28,.12);padding:8px 0">Three zones only — kicker, sentence, footer. Never a fourth.</div>
+            <div style="border-top:1px solid rgba(18,21,28,.12);padding:8px 0">The sentence never exceeds two lines at 26 px. If it does, the reading is edited, not the type shrunk.</div>
+            <div style="border-top:1px solid rgba(18,21,28,.12);padding:8px 0">No wordmark on a plate — the mark at 20 px is the attribution.</div>
+            <div style="border-top:1px solid rgba(18,21,28,.12);border-bottom:1px solid rgba(18,21,28,.12);padding:8px 0">Never share another person's placements. Compatibility plates name the relationship, not their chart.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="motion" style="padding:54px 0 40px;border-bottom:1px solid rgba(18,21,28,.16)">
+    <div style="display:grid;grid-template-columns:104px 1fr;gap:36px;margin-bottom:28px">
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.1em;color:rgba(18,21,28,.42);padding-top:12px">12</div>
+      <div>
+        <h2 style="font-family:'Cormorant Garamond',serif;font-weight:400;font-size:40px;line-height:1.05;letter-spacing:-.02em;margin:0 0 6px">Motion signature</h2>
+        <p style="font-family:'IBM Plex Sans',sans-serif;font-size:12px;letter-spacing:.04em;text-transform:uppercase;color:rgba(18,21,28,.45);margin:0 0 22px">The occultation — one move, three uses</p>
+        <p style="font-family:Lora,serif;font-size:16px;line-height:1.7;color:rgba(18,21,28,.84);max-width:70ch;margin:0">One shape crosses another and settles. It is the mark being drawn, not a logo animation: the occulting disc slides in from the left over 640 ms on an ease-out curve and stops at the offset that forms the lit limb. Nothing spins, pulses, twinkles or loops indefinitely.</p>
+      </div>
+    </div>
+    <div style="display:grid;grid-template-columns:104px 1fr;gap:36px">
+      <div></div>
+      <div style="display:flex;gap:34px;flex-wrap:wrap;align-items:flex-start">
+        <div style="background:#12151c;padding:34px 40px;display:flex;flex-direction:column;align-items:center;gap:18px">
+          <svg width="150" height="150" viewBox="0 0 100 100" style="overflow:hidden">
+            <circle cx="50" cy="50" r="38" fill="#d9ad63"></circle>
+            <circle cx="50" cy="50" r="38" fill="#12151c" style="animation:occult 2.6s cubic-bezier(.22,.61,.36,1) infinite"></circle>
+          </svg>
+          <div style="font-family:'IBM Plex Mono',monospace;font-size:9.5px;letter-spacing:.12em;text-transform:uppercase;color:rgba(244,241,234,.45)">640 ms · cubic-bezier(.22,.61,.36,1)</div>
+        </div>
+        <div style="flex:1;min-width:320px">
+          <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:rgba(18,21,28,.5);margin-bottom:10px">Where it is allowed</div>
+          <div style="font-family:'IBM Plex Sans',sans-serif;font-size:12.5px;line-height:1.7;color:rgba(18,21,28,.76);max-width:48ch">
+            <div style="border-top:1px solid rgba(18,21,28,.12);padding:8px 0"><b>Launch</b> — once, then the app appears. It never delays a warm start.</div>
+            <div style="border-top:1px solid rgba(18,21,28,.12);padding:8px 0"><b>Calculation and chart reveal</b> — the onboarding ink screens, where the wait is real and the move is the progress indicator.</div>
+            <div style="border-top:1px solid rgba(18,21,28,.12);padding:8px 0"><b>Rewarded-ad confirmation</b> — a single occultation as the unlock resolves. Nowhere else in monetization.</div>
+            <div style="border-top:1px solid rgba(18,21,28,.12);border-bottom:1px solid rgba(18,21,28,.12);padding:8px 0"><b>Reduced motion</b> — replaced by a 160 ms cross-fade to the settled mark. Never removed entirely; the mark still resolves.</div>
+          </div>
+          <p style="font-family:'IBM Plex Sans',sans-serif;font-size:11.5px;line-height:1.55;color:rgba(18,21,28,.45);margin:14px 0 0;max-width:48ch">Looping here is a specimen convenience. In product the move plays once and holds.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="applied" style="padding:54px 0 40px;border-bottom:1px solid rgba(18,21,28,.16)">
+    <div style="display:grid;grid-template-columns:104px 1fr;gap:36px;margin-bottom:28px">
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.1em;color:rgba(18,21,28,.42);padding-top:12px">13</div>
+      <div>
+        <h2 style="font-family:'Cormorant Garamond',serif;font-weight:400;font-size:40px;line-height:1.05;letter-spacing:-.02em;margin:0 0 6px">Applied in app</h2>
+        <p style="font-family:'IBM Plex Sans',sans-serif;font-size:12px;letter-spacing:.04em;text-transform:uppercase;color:rgba(18,21,28,.45);margin:0 0 22px">Two screens, unchanged except for the name</p>
+        <p style="font-family:Lora,serif;font-size:16px;line-height:1.7;color:rgba(18,21,28,.84);max-width:70ch;margin:0">The brand's whole in-product footprint is a 15 px wordmark in the header and the mark on the launch screen. That is the intended amount. The identity is carried by the surface rule and the typography, which is why a rename costs nothing beyond a string.</p>
+      </div>
+    </div>
+    <div style="display:grid;grid-template-columns:104px 1fr;gap:36px">
+      <div></div>
+      <div style="display:flex;gap:44px;flex-wrap:wrap">
+        <div style="width:393px">
+          <div style="display:flex;align-items:baseline;gap:10px;margin-bottom:12px">
+            <span style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.14em;padding:3px 7px;background:#12151c;color:#f4f1ea">5.01</span>
+            <span style="font-family:'IBM Plex Sans',sans-serif;font-size:13px;font-weight:500">Launch — stacked lockup</span>
+          </div>
+          <div data-screen-label="5.01 Launch" style="width:393px;height:852px;border-radius:46px;background:#12151c;position:relative;overflow:hidden;box-shadow:0 0 0 1px rgba(18,21,28,.9),0 20px 44px rgba(18,21,28,.16)">
+            <div style="position:absolute;top:11px;left:50%;transform:translateX(-50%);width:124px;height:36px;border-radius:20px;background:#05070a;z-index:6"></div>
+            <div style="position:absolute;top:0;left:0;right:0;height:54px;display:flex;align-items:center;justify-content:space-between;padding:0 28px 0 34px;font-family:'IBM Plex Mono',monospace;font-size:12px;color:#f4f1ea"><span>9:41</span><span>100%</span></div>
+            <div style="position:absolute;top:50%;left:0;right:0;transform:translateY(-60%);display:flex;flex-direction:column;align-items:center;gap:30px">
+              <svg width="96" height="96" viewBox="0 0 100 100"><circle cx="50" cy="50" r="38" fill="#12151c" stroke="rgba(244,241,234,.18)" stroke-width="1"></circle><path d="M55.5 12.4 A38 38 0 1 0 55.5 87.6 A38 38 0 0 1 55.5 12.4 Z" fill="#d9ad63"></path></svg>
+              <div style="font-family:'Cormorant Garamond',serif;font-weight:300;font-size:20px;letter-spacing:.42em;text-transform:uppercase;color:rgba(244,241,234,.9);text-indent:.42em">{{ brandName }}</div>
+            </div>
+            <div style="position:absolute;left:0;right:0;bottom:74px;text-align:center;font-family:'Cormorant Garamond',serif;font-size:17px;color:rgba(244,241,234,.5);font-style:italic">Read the sky. See the reasoning.</div>
+            <div style="position:absolute;bottom:9px;left:50%;transform:translateX(-50%);width:139px;height:5px;border-radius:3px;background:rgba(244,241,234,.85)"></div>
+          </div>
+        </div>
+
+        <div style="width:393px">
+          <div style="display:flex;align-items:baseline;gap:10px;margin-bottom:12px">
+            <span style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.14em;padding:3px 7px;background:#12151c;color:#f4f1ea">5.02</span>
+            <span style="font-family:'IBM Plex Sans',sans-serif;font-size:13px;font-weight:500">Today — wordmark in header</span>
+          </div>
+          <div data-screen-label="5.02 Today" style="width:393px;height:852px;border-radius:46px;background:#f4f1ea;position:relative;overflow:hidden;box-shadow:0 0 0 1px rgba(18,21,28,.9),0 20px 44px rgba(18,21,28,.16)">
+            <div style="position:absolute;top:0;left:0;right:0;height:352px;background:#12151c"></div>
+            <div style="position:absolute;top:11px;left:50%;transform:translateX(-50%);width:124px;height:36px;border-radius:20px;background:#05070a;z-index:6"></div>
+            <div style="position:absolute;top:0;left:0;right:0;height:54px;display:flex;align-items:center;justify-content:space-between;padding:0 28px 0 34px;font-family:'IBM Plex Mono',monospace;font-size:12px;color:#f4f1ea"><span>9:41</span><span>100%</span></div>
+            <div style="position:absolute;top:62px;left:26px;right:26px;display:flex;justify-content:space-between;align-items:center">
+              <span style="font-family:'Cormorant Garamond',serif;font-weight:300;font-size:15px;letter-spacing:.34em;text-transform:uppercase;color:rgba(244,241,234,.85);text-indent:.34em">{{ brandName }}</span>
+              <div style="width:26px;height:26px;border-radius:50%;border:1px solid rgba(244,241,234,.3)"></div>
+            </div>
+            <div style="position:absolute;top:118px;left:26px;right:26px">
+              <div style="font-family:'IBM Plex Mono',monospace;font-size:9.5px;letter-spacing:.18em;text-transform:uppercase;color:#d9ad63;margin-bottom:12px">Monday · 10 August</div>
+              <div style="font-family:'Cormorant Garamond',serif;font-weight:300;font-size:38px;line-height:1.08;letter-spacing:-.02em;color:#f4f1ea">A day for finishing<br>rather than <span style="font-style:italic">starting</span></div>
+              <div style="font-family:Lora,serif;font-size:14px;line-height:1.6;color:rgba(244,241,234,.6);margin-top:14px;max-width:32ch">Moon in Capricorn squares Mercury just after noon.</div>
+            </div>
+            <div style="position:absolute;top:382px;left:26px;right:26px">
+              <div style="padding:14px 0;border-bottom:1px solid rgba(18,21,28,.14)"><div style="font-family:'IBM Plex Sans',sans-serif;font-size:12.5px;color:rgba(18,21,28,.5)">Western</div><div style="font-family:'Cormorant Garamond',serif;font-size:19px;margin-top:2px">Moon–Mercury square, 12:40</div></div>
+              <div style="padding:14px 0;border-bottom:1px solid rgba(18,21,28,.14)"><div style="font-family:'IBM Plex Sans',sans-serif;font-size:12.5px;color:rgba(18,21,28,.5)">Vedic</div><div style="font-family:'Cormorant Garamond',serif;font-size:19px;margin-top:2px">Uttara Ashadha, Shukla Ekadashi</div></div>
+              <div style="padding:14px 0"><div style="font-family:'IBM Plex Sans',sans-serif;font-size:12.5px;color:rgba(18,21,28,.5)">Chinese</div><div style="font-family:'Cormorant Garamond',serif;font-size:19px;margin-top:2px">Yang Wood Dragon day</div></div>
+            </div>
+            <div style="position:absolute;bottom:9px;left:50%;transform:translateX(-50%);width:139px;height:5px;border-radius:3px;background:rgba(18,21,28,.85)"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="donts" style="padding:54px 0 0">
+    <div style="display:grid;grid-template-columns:104px 1fr;gap:36px;margin-bottom:26px">
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.1em;color:rgba(18,21,28,.42);padding-top:12px">14</div>
+      <div>
+        <h2 style="font-family:'Cormorant Garamond',serif;font-weight:400;font-size:40px;line-height:1.05;letter-spacing:-.02em;margin:0 0 6px">Misuse</h2>
+        <p style="font-family:'IBM Plex Sans',sans-serif;font-size:12px;letter-spacing:.04em;text-transform:uppercase;color:rgba(18,21,28,.45);margin:0 0 22px">Everything below has been considered and rejected</p>
+      </div>
+    </div>
+    <div style="display:grid;grid-template-columns:104px 1fr;gap:36px">
+      <div></div>
+      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:1px;background:rgba(18,21,28,.16);border:1px solid rgba(18,21,28,.16)">
+        <sc-for list="{{ donts }}" as="d" hint-placeholder-count="9">
+          <div style="background:#f4f1ea;padding:16px 18px">
+            <div style="font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:#8a2f1a;margin-bottom:6px">Never</div>
+            <div style="font-family:'IBM Plex Sans',sans-serif;font-size:13px;line-height:1.6;color:rgba(18,21,28,.8)">{{ d }}</div>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+
+    <div style="display:grid;grid-template-columns:104px 1fr;gap:36px;margin-top:46px">
+      <div></div>
+      <div style="border-top:1px solid rgba(18,21,28,.85);padding-top:22px;display:grid;grid-template-columns:1fr 1fr;gap:34px">
+        <div>
+          <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:rgba(18,21,28,.5);margin-bottom:10px">Decisions this pass needs from you</div>
+          <div style="font-family:'IBM Plex Sans',sans-serif;font-size:13.5px;line-height:1.9;color:rgba(18,21,28,.82)">
+            <div style="padding:6px 0;border-top:1px solid rgba(18,21,28,.12)"><b>The name</b> — Ecliptic as recommended, or another candidate from the shortlist.</div>
+            <div style="padding:6px 0;border-top:1px solid rgba(18,21,28,.12)"><b>Wordmark case</b> — letterspaced caps (shown) or capitalised.</div>
+            <div style="padding:6px 0;border-top:1px solid rgba(18,21,28,.12);border-bottom:1px solid rgba(18,21,28,.12)"><b>Clearance</b> — who runs the trademark, domain and App Store checks, and when.</div>
+          </div>
+        </div>
+        <div>
+          <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:rgba(18,21,28,.5);margin-bottom:10px">Deliberately not in this pass</div>
+          <p style="font-family:'IBM Plex Sans',sans-serif;font-size:12.5px;line-height:1.7;color:rgba(18,21,28,.66);margin:0;max-width:48ch">App Store screenshots and listing copy, a marketing site, and any illustration system. All were scoped out; none are blocked by anything here. Legal clearance is not design work and has not been performed.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;brandName&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;Ecliptic&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Brand&quot;},&quot;wordmarkCase&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;default&quot;:&quot;letterspaced caps&quot;,&quot;options&quot;:[&quot;letterspaced caps&quot;,&quot;capitalised&quot;],&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Brand&quot;},&quot;showConstruction&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Mark&quot;}}">
+class Component extends DCLogic {
+  renderVals() {
+    const brandName = this.props.brandName ?? 'Ecliptic';
+    const wordmarkCase = this.props.wordmarkCase ?? 'letterspaced caps';
+    return {
+      brandName,
+      isUpper: wordmarkCase === 'letterspaced caps',
+      isCaps: wordmarkCase === 'capitalised',
+      showGrid: this.props.showConstruction ?? true,
+
+      candidates: [
+        { name: 'Umbra', pron: 'UM-bra · 2 syl · Latin, "shadow"', verdict: 'RUNNER-UP',
+          rationale: 'The darkest part of an eclipse shadow — the mark named literally. Short, adult, easy to say in almost any language, and tradition-neutral. The strongest option if three syllables prove too cold.',
+          risk: 'Semantically it points at darkness while the product is about clarity. Well-known homewares trademark; likely crowded in software too.' },
+        { name: 'Astara', pron: 'a-STAR-a · 3 syl · incumbent', verdict: 'INCUMBENT',
+          rationale: 'Already the repository name, so the cheapest possible outcome. Star-adjacent and softly international; nothing about it is wrong.',
+          risk: 'Reads Sanskrit-flavoured, which quietly tilts the brand toward the Vedic system it is meant to hold neutrally. Soft and generic in a category full of soft, generic names; several existing uses.' },
+        { name: 'Almanac', pron: 'AWL-ma-nak · 3 syl', verdict: 'STRONG IDEA, WEAK MARK',
+          rationale: 'The genuinely cross-cultural concept: the Western almanac, the Vedic panchang and the Chinese tong shu are the same object. Adult, unmystical, and it flatters the show-the-work principle.',
+          risk: 'A bare common noun — hard to protect, hard to own in search. Slightly agricultural and backward-looking for a premium app.' },
+        { name: 'Syzygy', pron: 'SIZ-i-jee · 3 syl', verdict: 'TOO CLEVER',
+          rationale: 'The astronomical term for three bodies in a line — which is exactly what an eclipse is, and a genuinely distinctive word nobody else owns.',
+          risk: 'Unspellable and unsayable on first sight, especially for non-English speakers. Fails the international-credibility test outright.' },
+        { name: 'Ortus', pron: 'OR-tus · 2 syl · retired placeholder', verdict: 'RETIRED',
+          rationale: 'Latin for "rising" — the Ascendant, in one word. Short, handsome, and already sitting in the older mockups.',
+          risk: 'Ascendant is a Western/Hellenistic frame, so it takes a side. Latin-only heritage reads European rather than global, and it has been the placeholder long enough to feel provisional.' },
+        { name: 'Meridian', pron: 'me-RID-ee-an · 4 syl', verdict: 'BLOCKED',
+          rationale: 'The great circle through the zenith — astronomical, premium and confident.',
+          risk: 'Already the name of a colour in the approved palette, so it collides internally on day one. Heavily trademarked across finance, energy and health.' },
+      ],
+
+      scores: [
+        { name: 'Ecliptic', neutral: 'Strong', premium: 'Strong', say: 'Fair', legal: 'Fair', mark: 'Strong' },
+        { name: 'Umbra', neutral: 'Strong', premium: 'Strong', say: 'Strong', legal: 'Weak', mark: 'Strong' },
+        { name: 'Astara', neutral: 'Fair', premium: 'Fair', say: 'Strong', legal: 'Fair', mark: 'Fair' },
+        { name: 'Almanac', neutral: 'Strong', premium: 'Fair', say: 'Fair', legal: 'Weak', mark: 'Weak' },
+        { name: 'Syzygy', neutral: 'Strong', premium: 'Fair', say: 'Weak', legal: 'Strong', mark: 'Strong' },
+        { name: 'Ortus', neutral: 'Weak', premium: 'Strong', say: 'Strong', legal: 'Fair', mark: 'Fair' },
+      ],
+
+      guardrails: [
+        { n: '01', rule: 'Never predicts fate', note: 'No guaranteed outcomes, no "you will", no dates on which something is promised to happen. Conditions and tendencies only.' },
+        { n: '02', rule: 'No universe-speak', note: '"The universe wants you to…" and everything in that family is banned. The sky is a set of positions, not an agent with intentions.' },
+        { n: '03', rule: 'Second person, present tense', note: 'You, now. Not "one might find" and not "this week will bring". The reading addresses a person who is currently reading it.' },
+        { n: '04', rule: 'Dry wit, never cruelty', note: 'Humour is allowed anywhere and required nowhere. Roast included: the joke lands on the pattern, not on the person.' },
+        { n: '05', rule: 'No emoji, ever', note: 'Not in copy, not in notifications, not in store metadata, not in support replies. The type carries the tone.' },
+        { n: '06', rule: 'No urgency, no FOMO', note: 'Nothing expires to create pressure. No countdowns, streaks, "last chance" or manufactured scarcity — including around Premium.' },
+        { n: '07', rule: 'Plain English before jargon', note: 'Say the effect, then name the mechanism. Every technical term is defined the first time it appears on a screen.' },
+      ],
+
+      voicePairs: [
+        { surface: 'Today', bad: 'The universe is pushing you toward a big change today!', good: 'A day for finishing rather than starting. Moon in Capricorn squares Mercury just after noon.' },
+        { surface: 'Chart reveal', bad: 'Your cosmic blueprint is ready. Prepare to be amazed.', good: 'Your chart is built. Start with the three placements that shape most of it.' },
+        { surface: 'Compatibility', bad: 'You two are a 92% match — soulmate energy.', good: 'Warm, generative, occasionally combustible. The friction is Mercury–Mars, and it is workable.' },
+        { surface: 'Compare Systems', bad: 'See which system is most accurate for you.', good: 'Three traditions read the same moment differently. Here is where they agree, and where they do not.' },
+        { surface: 'Rewarded unlock', bad: 'Tired of ads? Go Premium and never see one again!', good: 'One short ad unlocks this section. Premium unlocks everything, permanently.' },
+        { surface: 'Empty state', bad: 'Nothing here yet — the stars are still aligning', good: 'No saved people yet. Add someone to compare charts with.' },
+      ],
+
+      notifications: [
+        { time: '7:00', body: 'Mercury turns direct today after three weeks retrograde.' },
+        { time: 'Wed', body: 'Full Moon in Aquarius tonight — it falls across your seventh house.' },
+        { time: 'Mon', body: 'Your Saturn return begins this month. Worth a look when you have ten minutes.' },
+      ],
+
+      nomenclature: [
+        { name: 'Today', short: 'Today', usage: 'Tab one. Never "Daily" or "Horoscope".' },
+        { name: 'Circle', short: 'Circle', usage: 'Tab two — saved people and compatibility. Never "Friends" or "Matches".' },
+        { name: 'Sky', short: 'Sky', usage: 'Tab three. Contains Calendar; Calendar is never a peer of Sky.' },
+        { name: 'Chart', short: 'Chart', usage: 'Tab four — the user\u2019s own natal chart. Never "Birth chart" in navigation.' },
+        { name: 'Ask the Stars', short: 'Ask', usage: 'Tab five. Full name on first mention per screen, "Ask" thereafter.' },
+        { name: 'Compare Systems', short: 'Compare', usage: 'Capital C, capital S. Never "accuracy", "score" or "which is right".' },
+        { name: 'Today Together', short: '—', usage: 'Always both words. Never abbreviated in UI.' },
+        { name: 'Roast', short: 'roast', usage: 'Capitalised as a mode name; lowercase in prose ("read it in roast").' },
+        { name: 'Premium', short: 'Premium', usage: brandName + ' Premium on the paywall; "Premium" everywhere else. Never "Pro", "Plus" or "VIP".' },
+        { name: 'Rewarded access', short: '—', usage: 'Internal term only. Users see "Watch ad to unlock" — never "free", "earn", "coins" or "rewards".' },
+      ],
+
+      donts: [
+        'Put a zodiac glyph, constellation or star field in the mark',
+        'Use purple, indigo or any galaxy gradient anywhere in the identity',
+        'Add sparkles, twinkles, glows or lens flare to the mark',
+        'Rotate, tilt or re-angle the lit limb',
+        'Set the wordmark in Lora, IBM Plex or any face but Cormorant Garamond',
+        'Fill an area larger than a chip with gilt',
+        'Put the wordmark inside the app icon',
+        'Give Roast its own logo, icon or wordmark treatment',
+        'Describe the product as AI-powered, or as predicting the future',
+      ],
+    };
+  }
+}
+
+</script>
+</body>
+</html>
