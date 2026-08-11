@@ -4,129 +4,109 @@
 **Effective:** 2026-08-12  
 **Design branch:** `design/soulful-light-dark`
 
-This document defines the design sources that may guide Humay UI implementation. The repository intentionally keeps **one current design program only**. Superseded design plans, generated design passes, historical visual archives and implementation-review screenshots are not part of this branch's design authority.
+This branch intentionally contains one current design program only.
 
 ## 1. Authority order
 
 For implementation, use this order:
 
-1. [`../development/PRODUCT_ACCESS_MODEL.md`](../development/PRODUCT_ACCESS_MODEL.md) for Free / Rewarded / Premium behavior and runtime-cost rules.
-2. This document for design authority and non-negotiable product/visual constraints.
-3. [`SOULFUL_CELESTIAL_DESIGN_DIRECTION.md`](SOULFUL_CELESTIAL_DESIGN_DIRECTION.md) for visual language, Light/Dark behavior, typography, illustration, color, surfaces and motion.
-4. [`SCREEN_DESIGN_PLAN.md`](SCREEN_DESIGN_PLAN.md) for D0–D9 screen coverage and approval sequencing.
-5. Approved screen references, tokens and asset specifications under [`soulful-reference/`](soulful-reference/README.md).
-6. [`../development/METHODOLOGY_TRACK.md`](../development/METHODOLOGY_TRACK.md) for methodology gates that affect actual astrology output.
+1. [`../development/PRODUCT_ACCESS_MODEL.md`](../development/PRODUCT_ACCESS_MODEL.md) — access/cost behavior.
+2. This document — design authority and non-negotiable product/visual constraints.
+3. [`SOULFUL_CELESTIAL_DESIGN_DIRECTION.md`](SOULFUL_CELESTIAL_DESIGN_DIRECTION.md) — current visual language and component rules.
+4. [`SCREEN_DESIGN_PLAN.md`](SCREEN_DESIGN_PLAN.md) — D0–D9 screen inventory and sequencing.
+5. Approved references under [`soulful-reference/`](soulful-reference/README.md).
+6. [`../development/METHODOLOGY_TRACK.md`](../development/METHODOLOGY_TRACK.md) — methodology gates for real astrology output.
 
-If a generated screenshot conflicts with product access, methodology, accessibility or this authority document, the screenshot is corrected; it does not redefine the product.
+If a mockup conflicts with product access, methodology or accessibility, the mockup is corrected.
 
 ## 2. Canonical information architecture
 
-Primary navigation is:
+Primary navigation remains:
 
 **Today / Circle / Sky / Chart / Ask**
 
 - Calendar is nested under Sky.
-- Profile / Settings is opened from the header/profile entry.
-- Profile / Settings is not a sixth tab.
+- Profile / Settings is opened from the profile/header entry.
 - Compatibility is reached through Circle/people flows.
-- A visual exploration must not silently change navigation.
+- Reference screenshots may contain temporary navigation labels; they do not silently redefine IA.
 
 ## 3. Current visual direction
 
-Humay uses the **Soulful Celestial** direction:
+The selected Humay style is **cosmic editorial with selective cute illustration**:
 
-- warm, alive and emotionally inviting;
-- colorful with disciplined semantic accent use;
-- painterly gouache/watercolor celestial illustration;
-- premium editorial typography;
-- rounded/tinted feature surfaces and controlled elevation;
-- cute in selected moments without becoming childish or mascot-driven;
-- restrained utility screens rather than decorating everything;
-- first-class Light and Dark appearances.
+- warm cream Light mode and deep navy Dark mode;
+- strong serif editorial headlines with clean system UI typography;
+- restrained coral/lavender/gold/blue/sage accents;
+- soft rounded cards and simple line/flat illustrations;
+- friendly celestial characters/objects used sparingly;
+- clean utility surfaces with minimal decoration;
+- first-class intentional Light and Dark designs.
 
-The target is storybook-quality celestial art inside a polished modern iOS product: memorable without becoming a cartoon astrology game.
+The D0 Today, Daily Horoscope and Compatibility Light/Dark references under `soulful-reference/anchors/` define the visual source of truth.
+
+The current direction explicitly **does not use painterly watercolor/gouache landscapes** as its primary illustration language.
 
 ## 4. Light + Dark requirement
 
-Every shipping screen family requires an intentional **Light + Dark pair** before final visual freeze.
+Every shipping screen family requires a deliberate Light + Dark pair before final visual freeze.
 
-Dark mode is not an automatic inversion. It uses midnight-navy surfaces, warm-ivory text and rebalanced accent colors while preserving the identity and warmth of illustrations.
-
-D0 establishes the shared translation strategy. Later Dark references must be reviewed side by side with their Light counterpart.
+Dark mode is not an automatic inversion: it uses midnight grounds, tonal card elevation, warm light text and slightly brighter accent colors.
 
 ## 5. Typography
 
-- **Cormorant Garamond** — wordmark, major titles, hero/editorial headlines and selected large scores.
-- **SF Pro / system** — body copy, navigation, controls, forms, settings and general UI.
-- **SF Mono / system** — degrees, coordinates and technical chart/date/time values where mono improves scanning.
+- **Cormorant Garamond** — wordmark, hero/editorial headlines and selected large scores.
+- **SF Pro / system** — body copy, controls, navigation, forms and settings.
+- **SF Mono / system** — technical degrees/coordinates/dates/times where beneficial.
 
-Dynamic Type remains mandatory. Rows reflow rather than shrinking important text to fit.
+Dynamic Type remains mandatory; rows reflow rather than shrinking important text.
 
 ## 6. Illustration and visual intensity
 
-Humay uses three intensity levels:
+- **Level A:** one major emotional moment on Today, Compatibility, onboarding welcome/reveal and selected premium surfaces.
+- **Level B:** one compact simple illustration for meaningful feature/category cards.
+- **Level C:** quiet native utility surfaces for forms, settings and dense technical data.
 
-- **Level A — Hero:** one major emotional/illustrated moment on screens such as Today, Compatibility, onboarding reveal and premium highlights.
-- **Level B — Illustrated feature:** compact meaningful art for categories and feature cards.
-- **Level C — Utility:** mostly native typography, controls and quiet surfaces for settings/forms/dense technical data.
-
-Approved art language includes painterly celestial landscapes, restrained sun/moon expression, botanical/cosmic mini-illustrations, tasteful orbit/constellation lines and semi-real editorial portraits where human context benefits.
-
-Avoid chibi, 3D emoji mascots, sticker density, thick cartoon outlines, generic purple-neon galaxy styling and unrelated illustration styles.
+Approved illustration is simple line/flat cosmic art with minimal shading, small stars/orbit details and occasional friendly faces. Avoid chibi, 3D emoji, sticker density, painterly landscapes, thick cartoon outlines and generic purple-neon galaxy styling.
 
 ## 7. Product access model
 
-Humay's user-facing access hierarchy is:
+User-facing access hierarchy remains:
 
 **Free → optional Rewarded Access → Premium**
 
-The exact rules are defined in `PRODUCT_ACCESS_MODEL.md`; design may improve presentation but may not redefine entitlement behavior.
-
-- Free ordinary runtime usage must not call paid astrology or LLM providers.
-- Free Western daily horoscope uses finite pre-generated catalog content.
-- Free Western compatibility uses the 12 × 12 sign-pair catalog.
-- Free has no natal-chart calculation.
-- Rewarded Access authorizes one needed provider-backed generation for the selected result key after cache checks.
-- Successfully generated results are cached/reopenable according to the access/cache contract.
-- Rewarded Access is not a coin/token wallet or temporary Premium.
-- Premium uses the same cache-first precision path without a rewarded ad for each included generation while entitlement is valid.
+Design may improve presentation but cannot redefine entitlement behavior. Free ordinary runtime usage must not call paid providers. Rewarded/Premium precision is cache-first and follows `PRODUCT_ACCESS_MODEL.md`.
 
 ## 8. Compatibility score presentation
 
-The current design allows numeric compatibility presentation:
+Numeric compatibility presentation is allowed:
 
-- an overall compatibility percentage/score may be shown;
-- dimensions may show percentages/scores;
-- qualitative explanation must accompany the numbers.
+- overall percentage/score;
+- dimension percentages/scores;
+- qualitative explanation alongside numbers.
 
-Mock percentages are illustrative only. Production scoring algorithm, weights, confidence and cross-system semantics require explicit product/methodology definition before they become real output.
+Mock percentages are illustrative only. Production scoring requires explicit methodology/product definition.
 
 ## 9. Roast and notifications
 
 - Roast is an in-app expression only.
-- Notifications are always written in the Normal register.
-- Normal and Roast consume the same astrology facts; tone may not change calculated meaning.
+- Notifications remain Normal-register copy.
+- Tone does not change calculated facts.
 
 ## 10. Astrology-data boundary
 
-Design artifacts never validate astronomical or astrological facts.
-
-- Exact placements, houses, aspects, timing, dashas, pillars and relationship facts come from the structured calculation/provider layer and validated methodology.
-- Interpretation consumes structured facts and must not invent calculation facts.
-- Exact times are shown only when deterministically supported.
-- Unknown birth time must degrade only the facts that actually depend on time; no hidden substitute time is allowed.
+Design artifacts do not validate astrology facts. Exact placements, houses, aspects, timing, dashas, pillars and relationship facts come from structured calculation/provider data and validated methodology. Unknown birth time is never replaced with a hidden fake time.
 
 ## 11. Device and accessibility scope
 
-V1 targets **iPhone portrait**. iPad is a dedicated later design/implementation phase, not a stretched phone layout.
+V1 targets iPhone portrait. iPad is a dedicated later phase.
 
-The UI must use semantic spacing, reusable components and responsive chart/art geometry. Light and Dark contrast are checked independently. Information is never encoded by color or artwork alone.
+The UI uses semantic spacing, reusable components and responsive technical geometry. Light/Dark contrast is checked independently, information is not encoded only by color, and minimum hit targets remain accessible.
 
 ## 12. Current design status
 
-- **D0:** Today/Home, Daily Horoscope and Compatibility Light/Dark anchors establish the visual system.
-- **D1–D9:** proceed according to `SCREEN_DESIGN_PLAN.md`.
-- The existing mock-first app is a structural/accessibility test bed, not visual authority.
-- Final production visual polish for a feature family waits for approval of its current Light + Dark references.
+- **D0 — APPROVED STYLE SOURCE:** Today, Daily Horoscope and Compatibility Light/Dark anchors are committed under `soulful-reference/anchors/`.
+- **D1 — GENERATED / REVIEW NEXT:** 9 onboarding screens × Light/Dark plus component/illustration reference boards are committed under `soulful-reference/onboarding/` and `soulful-reference/components/`.
+- D2–D9 proceed according to `SCREEN_DESIGN_PLAN.md`.
+- The mock-first app remains an engineering/accessibility test bed, not visual authority.
 
-After D9, this file is updated with the final screen index and production-asset catalog. No alternate design authority is to be added alongside it.
+No alternate design authority should be added alongside this one.
