@@ -71,14 +71,39 @@ nonisolated final class OnboardingUITests: XCTestCase {
         )
     }
 
+    /// Onboarding has no navigation bar and no other way out, so a beat that overflows
+    /// without scrolling is a beat the reader cannot get past.
+    ///
+    /// This is not hypothetical: the welcome beat was a plain `VStack`, and at this text
+    /// size "Begin" sat below the bottom of the screen. Every case above passed, because
+    /// they all ran at the default size.
+    @MainActor
+    func testOnboardingCompletesAtTheLargestAccessibilitySize() {
+        let app = launchFresh(contentSize: .accessibilityExtraExtraExtraLarge)
+        completeOnboarding(in: app)
+
+        XCTAssertTrue(
+            app.tabBars.buttons["Today"].waitForExistence(timeout: 10),
+            "Onboarding must be completable at the largest accessibility text size"
+        )
+    }
+
     // MARK: - Helpers
 
     private static let tabs = ["Today", "Circle", "Sky", "Chart", "Ask"]
 
+    /// The content size categories worth launching at, as UIKit names them.
+    private enum ContentSize: String {
+        case accessibilityExtraExtraExtraLarge = "UICTContentSizeCategoryAccessibilityXXXL"
+    }
+
     @MainActor
-    private func launchFresh() -> XCUIApplication {
+    private func launchFresh(contentSize: ContentSize? = nil) -> XCUIApplication {
         let app = XCUIApplication()
         app.launchArguments = ["-humay-reset-state"]
+        if let contentSize {
+            app.launchArguments += ["-UIPreferredContentSizeCategoryName", contentSize.rawValue]
+        }
         app.launch()
         return app
     }

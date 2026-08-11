@@ -26,9 +26,9 @@ struct ChartView: View {
 
     @ViewBuilder
     private func content(_ profile: SignProfile) -> some View {
-        HStack(alignment: .firstTextBaseline) {
+        AdaptiveRow {
             MonoKicker(text: "Your sign profile")
-            Spacer(minLength: HumaySpacing.xs)
+        } trailing: {
             TierBadge(tier: .general)
         }
 
@@ -85,7 +85,6 @@ struct ChartView: View {
 struct ChartFullView: View {
     @Environment(AppEnvironment.self) private var environment
     @Environment(AppRouter.self) private var router
-    @Environment(\.humayTheme) private var theme
 
     @State private var system: ChartSystem = .western
     @State private var chart: SystemChart?
@@ -93,44 +92,34 @@ struct ChartFullView: View {
     @State private var glossaryTermID: String?
 
     var body: some View {
-        ScrollView {
-            VStack(alignment: .leading, spacing: HumaySpacing.l) {
-                HumaySegmentedControl(
-                    options: ChartSystem.allCases,
-                    title: \.shortName,
-                    selection: $system
-                )
+        DetailScaffold(title: "Your chart") {
+            HumaySegmentedControl(
+                options: ChartSystem.allCases,
+                title: \.shortName,
+                selection: $system
+            )
 
-                if let chart {
-                    switch chart {
-                    case .western(let western):
-                        WesternChartSection(chart: western) { placementID in
-                            router.push(.placement(id: placementID, system: .western), on: .chart)
-                        }
-                    case .vedic(let vedic):
-                        VedicChartSection(chart: vedic, onGlossaryTerm: { glossaryTermID = $0 }) { placementID in
-                            router.push(.placement(id: placementID, system: .vedic), on: .chart)
-                        }
-                    case .chinese(let chinese):
-                        ChineseChartSection(chart: chinese, onGlossaryTerm: { glossaryTermID = $0 }) { placementID in
-                            router.push(.placement(id: placementID, system: .chinese), on: .chart)
-                        }
+            if let chart {
+                switch chart {
+                case .western(let western):
+                    WesternChartSection(chart: western) { placementID in
+                        router.push(.placement(id: placementID, system: .western), on: .chart)
                     }
-                } else if let failure {
-                    ErrorStateView(message: failure) { Task { await load() } }
-                } else {
-                    LoadingState(message: "Reading your placements…")
+                case .vedic(let vedic):
+                    VedicChartSection(chart: vedic, onGlossaryTerm: { glossaryTermID = $0 }) { placementID in
+                        router.push(.placement(id: placementID, system: .vedic), on: .chart)
+                    }
+                case .chinese(let chinese):
+                    ChineseChartSection(chart: chinese, onGlossaryTerm: { glossaryTermID = $0 }) { placementID in
+                        router.push(.placement(id: placementID, system: .chinese), on: .chart)
+                    }
                 }
+            } else if let failure {
+                ErrorStateView(message: failure) { Task { await load() } }
+            } else {
+                LoadingState(message: "Reading your placements…")
             }
-            .padding(.horizontal, HumaySpacing.gutter)
-            .padding(.top, HumaySpacing.m)
-            .padding(.bottom, HumaySpacing.xxxl)
-            .frame(maxWidth: .infinity, alignment: .leading)
         }
-        .scrollIndicators(.hidden)
-        .background(theme.colors.background.ignoresSafeArea())
-        .navigationTitle("Your chart")
-        .navigationBarTitleDisplayMode(.inline)
         .task(id: system) { await load() }
         .sheet(item: Binding(
             get: { glossaryTermID.map(GlossaryRequest.init) },
@@ -173,43 +162,55 @@ struct GlossarySheet: View {
     var body: some View {
         NavigationStack {
             VStack(alignment: .leading, spacing: HumaySpacing.m) {
-                if let term {
-                    MonoKicker(text: term.system.displayName)
-                    Text(term.term)
-                        .humayFont(.displayM)
-                        .foregroundStyle(theme.colors.textPrimary)
-                    Text(term.definition)
-                        .humayFont(.bodySmall)
-                        .foregroundStyle(theme.colors.textBody)
-                        .fixedSize(horizontal: false, vertical: true)
-                    if let requirement = term.requirement {
-                        HairlineRule()
-                        Text(requirement)
-                            .humayFont(.callout)
-                            .foregroundStyle(theme.colors.textTertiary)
+                // A definition at the largest accessibility size is several times the
+                // height of a medium detent, so the body scrolls and the action stays
+                // pinned below it rather than being pushed off the sheet.
+                ScrollView {
+                    VStack(alignment: .leading, spacing: HumaySpacing.m) {
+                        if let term {
+                            MonoKicker(text: term.system.displayName)
+                            Text(term.term)
+                                .humayFont(.displayM)
+                                .foregroundStyle(theme.colors.textPrimary)
+                                .fixedSize(horizontal: false, vertical: true)
+                            Text(term.definition)
+                                .humayFont(.bodySmall)
+                                .foregroundStyle(theme.colors.textBody)
+                                .fixedSize(horizontal: false, vertical: true)
+                            if let requirement = term.requirement {
+                                HairlineRule()
+                                Text(requirement)
+                                    .humayFont(.callout)
+                                    .foregroundStyle(theme.colors.textTertiary)
+                                    .fixedSize(horizontal: false, vertical: true)
+                            }
+                        } else {
+                            LoadingState(message: "Loading…")
+                        }
                     }
-                } else {
-                    LoadingState(message: "Loading…")
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                    .padding(.top, HumaySpacing.l)
+                    .padding(.bottom, HumaySpacing.m)
                 }
-                Spacer(minLength: 0)
+                .scrollIndicators(.hidden)
+
                 Button("Got it") { dismiss() }
                     .buttonStyle(.humayPrimary)
+                    .padding(.bottom, HumaySpacing.m)
             }
             .padding(.horizontal, HumaySpacing.gutter)
-            .padding(.top, HumaySpacing.l)
-            .padding(.bottom, HumaySpacing.m)
             .frame(maxWidth: .infinity, alignment: .leading)
             .background(theme.colors.background.ignoresSafeArea())
             .toolbar {
                 ToolbarItem(placement: .topBarTrailing) {
                     Button { dismiss() } label: {
-                        Image(systemName: "xmark").font(.system(size: 13))
+                        Image(systemName: "xmark").font(.system(size: HumayIconSize.inline))
                     }
                     .accessibilityLabel("Close")
                 }
             }
         }
-        .presentationDetents([.medium])
+        .presentationDetents([.medium, .large])
         .task {
             term = try? await environment.glossaryService.term(id: termID)
         }
@@ -228,25 +229,15 @@ struct PlacementDetailView: View {
     @State private var failure: String?
 
     var body: some View {
-        ScrollView {
-            VStack(alignment: .leading, spacing: HumaySpacing.l) {
-                if let detail {
-                    content(detail)
-                } else if let failure {
-                    ErrorStateView(message: failure)
-                } else {
-                    LoadingState(message: "Loading…")
-                }
+        DetailScaffold(title: detail?.title ?? "Placement") {
+            if let detail {
+                content(detail)
+            } else if let failure {
+                ErrorStateView(message: failure)
+            } else {
+                LoadingState(message: "Loading…")
             }
-            .padding(.horizontal, HumaySpacing.gutter)
-            .padding(.top, HumaySpacing.m)
-            .padding(.bottom, HumaySpacing.xxxl)
-            .frame(maxWidth: .infinity, alignment: .leading)
         }
-        .scrollIndicators(.hidden)
-        .background(theme.colors.background.ignoresSafeArea())
-        .navigationTitle(detail?.title ?? "Placement")
-        .navigationBarTitleDisplayMode(.inline)
         .task { await load() }
     }
 
@@ -254,22 +245,26 @@ struct PlacementDetailView: View {
     private func content(_ detail: PlacementDetail) -> some View {
         VStack(alignment: .leading, spacing: HumaySpacing.xs) {
             MonoKicker(text: detail.system.displayName)
-            HStack(alignment: .firstTextBaseline, spacing: HumaySpacing.s) {
-                GlyphLabel(
-                    glyph: detail.glyph,
-                    spokenName: detail.glyphSpokenName,
-                    role: .displayM,
-                    color: theme.colors.accentMark
-                )
-                VStack(alignment: .leading, spacing: 0) {
-                    Text(detail.title)
-                        .humayFont(.displayM)
-                        .foregroundStyle(theme.colors.textPrimary)
-                    Text(detail.subtitle)
-                        .humayFont(.titleS)
-                        .foregroundStyle(theme.colors.textSecondary)
+            AdaptiveRow {
+                HStack(alignment: .firstTextBaseline, spacing: HumaySpacing.s) {
+                    GlyphLabel(
+                        glyph: detail.glyph,
+                        spokenName: detail.glyphSpokenName,
+                        role: .displayM,
+                        color: theme.colors.accentMark
+                    )
+                    VStack(alignment: .leading, spacing: 0) {
+                        Text(detail.title)
+                            .humayFont(.displayM)
+                            .foregroundStyle(theme.colors.textPrimary)
+                            .fixedSize(horizontal: false, vertical: true)
+                        Text(detail.subtitle)
+                            .humayFont(.titleS)
+                            .foregroundStyle(theme.colors.textSecondary)
+                            .fixedSize(horizontal: false, vertical: true)
+                    }
                 }
-                Spacer(minLength: HumaySpacing.xs)
+            } trailing: {
                 if let precision = detail.precision {
                     MonoFact(text: precision, emphasised: true)
                 }

@@ -29,7 +29,6 @@ struct RootView: View {
 struct RootTabView: View {
     @Environment(AppEnvironment.self) private var environment
     @Environment(AppRouter.self) private var router
-    @Environment(\.humayTheme) private var theme
 
     var body: some View {
         @Bindable var router = router

@@ -9,47 +9,42 @@ struct OnboardingWelcomeView: View {
     @State private var markVisible = false
 
     var body: some View {
-        VStack(alignment: .leading, spacing: 0) {
-            Spacer(minLength: HumaySpacing.xl)
+        OnboardingScaffold(actionTitle: "Begin", fillsHeight: true, action: onContinue) {
+            VStack(alignment: .leading, spacing: 0) {
+                Spacer(minLength: HumaySpacing.xl)
 
-            OccultationMark(size: 34)
-                .opacity(markVisible ? 1 : 0)
-                .scaleEffect(markVisible || reduceMotion ? 1 : 0.94)
-                .padding(.bottom, HumaySpacing.l)
-                .onAppear {
-                    // The signature reveal. Plays once, here and at a chart reveal.
-                    withAnimation(HumayMotion.reveal(reduceMotion: reduceMotion)) {
-                        markVisible = true
+                OccultationMark(size: 34)
+                    .opacity(markVisible ? 1 : 0)
+                    .scaleEffect(markVisible || reduceMotion ? 1 : 0.94)
+                    .padding(.bottom, HumaySpacing.l)
+                    .onAppear {
+                        // The signature reveal. Plays once, here and at a chart reveal.
+                        withAnimation(HumayMotion.reveal(reduceMotion: reduceMotion)) {
+                            markVisible = true
+                        }
                     }
-                }
 
-            Wordmark(size: 17)
-                .padding(.bottom, HumaySpacing.l)
-                .riseIn(1)
+                Wordmark(size: 17)
+                    .padding(.bottom, HumaySpacing.l)
+                    .riseIn(1)
 
-            Text("Read the sky.\nSee the reasoning.")
-                .humayFont(.displayXL)
-                .foregroundStyle(theme.colors.textPrimary)
-                .fixedSize(horizontal: false, vertical: true)
-                .padding(.bottom, HumaySpacing.m)
-                .riseIn(2)
+                Text("Read the sky.\nSee the reasoning.")
+                    .humayFont(.displayXL)
+                    .foregroundStyle(theme.colors.textPrimary)
+                    .fixedSize(horizontal: false, vertical: true)
+                    .padding(.bottom, HumaySpacing.m)
+                    .riseIn(2)
 
-            Text("Western, Vedic and Chinese traditions, each kept in its own language. Every reading opens to show the chart factors behind it.")
-                .humayFont(.body)
-                .foregroundStyle(theme.colors.textSecondary)
-                .fixedSize(horizontal: false, vertical: true)
-                .riseIn(3)
+                Text("Western, Vedic and Chinese traditions, each kept in its own language. Every reading opens to show the chart factors behind it.")
+                    .humayFont(.body)
+                    .foregroundStyle(theme.colors.textSecondary)
+                    .fixedSize(horizontal: false, vertical: true)
+                    .riseIn(3)
 
-            Spacer(minLength: HumaySpacing.xl)
-
-            Button("Begin", action: onContinue)
-                .buttonStyle(.humayPrimary)
-                .padding(.bottom, HumaySpacing.s)
-                .riseIn(4)
+                Spacer(minLength: HumaySpacing.xl)
+            }
+            .frame(maxWidth: .infinity, alignment: .leading)
         }
-        .frame(maxWidth: .infinity, alignment: .leading)
-        .padding(.horizontal, HumaySpacing.gutter)
-        .padding(.top, HumaySpacing.screenTop)
     }
 }
 
@@ -189,7 +184,7 @@ struct TraditionRow: View {
                 Spacer(minLength: HumaySpacing.xs)
 
                 Image(systemName: "checkmark")
-                    .font(.system(size: 13, weight: .medium))
+                    .font(.system(size: HumayIconSize.inline, weight: .medium))
                     .foregroundStyle(theme.colors.accentText)
                     .opacity(isSelected ? 1 : 0)
             }
@@ -242,7 +237,7 @@ struct OnboardingRevealView: View {
 
                     HStack(spacing: HumaySpacing.xs) {
                         TierBadge(tier: .general)
-                        MonoKicker(text: "from your birth date")
+                        MonoKicker(text: "· from your birth date")
                         SampleContentMarker(provenance: profile.provenance)
                     }
                     .riseIn(4)
@@ -267,30 +262,34 @@ struct SignProfileRow: View {
     let entry: SignProfile.Entry
 
     @Environment(\.humayTheme) private var theme
+    @Environment(\.dynamicTypeSize) private var dynamicTypeSize
+    @ScaledMetric(relativeTo: .title3) private var glyphColumn: CGFloat = 30
 
     var body: some View {
-        HStack(spacing: HumaySpacing.s) {
-            GlyphLabel(
-                glyph: entry.glyph,
-                spokenName: entry.glyphSpokenName,
-                role: .titleM,
-                color: theme.colors.accentMark
-            )
-            .frame(width: 30, alignment: .leading)
+        AdaptiveRow(horizontalAlignment: .center) {
+            HStack(spacing: HumaySpacing.s) {
+                GlyphLabel(
+                    glyph: entry.glyph,
+                    spokenName: entry.glyphSpokenName,
+                    role: .titleM,
+                    color: theme.colors.accentMark
+                )
+                .frame(width: glyphColumn, alignment: .leading)
 
-            VStack(alignment: .leading, spacing: 1) {
-                MonoKicker(text: entry.system.displayName)
-                Text(entry.label)
-                    .humayFont(.callout)
-                    .foregroundStyle(theme.colors.textSecondary)
+                VStack(alignment: .leading, spacing: 1) {
+                    MonoKicker(text: entry.system.displayName)
+                    Text(entry.label)
+                        .humayFont(.callout)
+                        .foregroundStyle(theme.colors.textSecondary)
+                        .fixedSize(horizontal: false, vertical: true)
+                }
             }
-
-            Spacer(minLength: HumaySpacing.xs)
-
+        } trailing: {
             Text(entry.value)
                 .humayFont(.titleS)
                 .foregroundStyle(theme.colors.textPrimary)
-                .multilineTextAlignment(.trailing)
+                .multilineTextAlignment(dynamicTypeSize.rowTrailingAlignment)
+                .fixedSize(horizontal: false, vertical: true)
         }
         .padding(.vertical, HumaySpacing.s)
         .accessibilityElement(children: .combine)

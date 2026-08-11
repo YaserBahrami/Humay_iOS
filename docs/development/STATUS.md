@@ -34,9 +34,11 @@ Last updated: **2026-08-11**
 
 ## Parallel track — Phase 01M
 
-**Built.** A mock-first iOS application now exists: it builds, launches, and every major flow is navigable over fixture content. Recorded as `DEV-001` in [`DEVIATIONS.md`](DEVIATIONS.md), with tasks and outcome in [`phases/01M-mock-first-app.md`](phases/01M-mock-first-app.md). Architecture is documented under [`../architecture/`](../architecture/).
+**Complete.** A mock-first iOS application exists: it builds, launches, and every major flow is navigable over fixture content. Recorded as `DEV-001` in [`DEVIATIONS.md`](DEVIATIONS.md), with tasks and outcome in [`phases/01M-mock-first-app.md`](phases/01M-mock-first-app.md). Architecture is documented under [`../architecture/`](../architecture/).
 
-Every task is `DONE` except `IOS-010` (accessibility), which is `IN PROGRESS` pending a Dynamic Type sweep at the largest accessibility sizes.
+Every task is `DONE`, including `IOS-010` (accessibility), closed on 2026-08-11 by `IOS-012` — a visual reconciliation of the implementation against the minimal design direction plus the remaining Dynamic Type sweep. That pass added no product feature and changed no architectural boundary. Screenshots of the result are in [`../design/review/`](../design/review/README.md), and the direction they were checked against is now written down in [`../design/MINIMAL_DESIGN_DIRECTION.md`](../design/MINIMAL_DESIGN_DIRECTION.md).
+
+**This is the first stable UI baseline.** The next substantive step on this track is replacing mocks with real services — and it has not started.
 
 Phase 00 remains **IN PROGRESS**. Phase 01M does not complete it, does not satisfy Phase 01 exit criteria, and advances no `ARCH-###` or feature task. Every astrological value in that application is mock fixture content, marked as such at the type level and asserted by test.
 
@@ -45,7 +47,8 @@ Decisions taken for that track and now binding on implementation:
 - Bundle identifier `online.humay.ios` — permanent; product domain humay.online.
 - Minimum deployment target iOS 18.0; V1 targets iPhone in portrait. iPad is a planned dedicated phase.
 - Persistence is SwiftData with a `VersionedSchema` from V1 and a `SchemaMigrationPlan` established from the outset.
-- Visual authority is the minimal Humay direction — see [`../design/DESIGN_AUTHORITY.md`](../design/DESIGN_AUTHORITY.md) §03A for the All-Paper, typography and device-scope locks.
+- Visual authority is the minimal Humay direction — [`../design/MINIMAL_DESIGN_DIRECTION.md`](../design/MINIMAL_DESIGN_DIRECTION.md), summarised in [`../design/DESIGN_AUTHORITY.md`](../design/DESIGN_AUTHORITY.md) §03A for the All-Paper, typography and device-scope locks.
+- Dynamic Type ceilings are staggered per type role rather than flat, so the reading hierarchy survives the accessibility sizes. Row titles are uncapped; a row reflows into a stack rather than shrinking its text.
 - Normal/Roast tone is set in Settings and the header chip, not during onboarding.
 - Compatibility uses four qualitative axes — Love & Chemistry, Communication, Emotional Connection, Conflict & Pace — with verdicts Strong / Balanced / Mixed / Friction. No score or percentage.
 - Swift 6 with `SWIFT_DEFAULT_ACTOR_ISOLATION = nonisolated`; isolation is declared where it is needed rather than defaulted.

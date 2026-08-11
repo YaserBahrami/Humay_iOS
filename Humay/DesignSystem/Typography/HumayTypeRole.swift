@@ -92,11 +92,27 @@ enum HumayTypeRole: Sendable {
 
     /// Dynamic Type ceiling, as a multiple of the base size.
     ///
-    /// Display caps at 1.4x and re-wraps; mono caps at 1.2x so tables stay legible;
-    /// body is uncapped and reaches 200%.
+    /// A ceiling exists because a 38pt editorial headline at the largest accessibility
+    /// size would be 120pt and fit four characters to a line. But a ceiling has a cost:
+    /// a capped role stops growing while the text beneath it keeps going, and a title
+    /// ends up smaller than its own subtitle. A single flat 1.4x cap on every display
+    /// and title role did exactly that — at the accessibility sizes a person's name was
+    /// set smaller than "Leo · Partner" underneath it.
+    ///
+    /// So the ceilings are staggered to preserve the hierarchy rather than to hold a
+    /// single number, and the roles that title a row are not capped at all: they are UI
+    /// titles rather than editorial display, and they have to keep pace with the body
+    /// copy they sit above. `HumayTypeRoleTests` asserts the resulting order.
     var maxScale: CGFloat? {
         switch self {
-        case .wordmark, .displayXL, .displayL, .displayM, .titleM, .titleS: 1.4
+        // Chrome. The mark is a fixed piece of brand furniture, not reading text.
+        case .wordmark: 1.4
+        case .displayXL: 1.8
+        case .displayL: 2.2
+        case .displayM: 2.6
+        // Uncapped: a row title must never end up smaller than its own subtitle.
+        case .titleM, .titleS: nil
+        // Tables stay legible only if the columns stay roughly aligned.
         case .monoKicker, .monoFact, .monoDegree: 1.2
         case .body, .bodySmall, .callout, .label, .caption: nil
         }

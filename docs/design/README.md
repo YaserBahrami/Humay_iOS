@@ -10,6 +10,11 @@ The broad design phase is **frozen and implementation-ready through Pass 6.1 —
 docs/design/
   README.md
   DESIGN_AUTHORITY.md
+  MINIMAL_DESIGN_DIRECTION.md
+
+  review/
+    README.md
+    01-welcome.png … 10-profile-settings.png
 
   claude-reference/
     README.md
@@ -40,10 +45,12 @@ Keep each original HTML artifact together with `support.js` and its referenced `
 For implementation/architecture work:
 
 1. Read [`DESIGN_AUTHORITY.md`](DESIGN_AUTHORITY.md).
-2. Use the original files in [`claude-reference/`](claude-reference/) when exact design detail or authority matters.
-3. Use the [final visual archive](final-archive/README.md) for fast GitHub browsing, screenshots and concise Markdown summaries.
+2. Read [`MINIMAL_DESIGN_DIRECTION.md`](MINIMAL_DESIGN_DIRECTION.md) — the current visual and layout authority for anything you are about to draw.
+3. Use the original files in [`claude-reference/`](claude-reference/) for product concepts, feature behaviour, terminology and copy. They are no longer the visual authority.
+4. Use the [final visual archive](final-archive/README.md) for fast GitHub browsing, screenshots and concise Markdown summaries.
+5. Use the [implementation review screenshots](review/README.md) to see what the application currently looks like.
 
-The final archive is **derived documentation**. It does not become a new authority layer.
+The final archive is **derived documentation**. It does not become a new authority layer. Neither do the review screenshots: they record what was built, not what should be.
 
 ## Authority summary
 

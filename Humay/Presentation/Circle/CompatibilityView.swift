@@ -10,7 +10,6 @@ struct CompatibilityView: View {
     let tier: PrecisionTier
 
     @Environment(AppEnvironment.self) private var environment
-    @Environment(\.humayTheme) private var theme
 
     @State private var reading: CompatibilityReading?
     @State private var failure: String?
@@ -20,25 +19,15 @@ struct CompatibilityView: View {
     }
 
     var body: some View {
-        ScrollView {
-            VStack(alignment: .leading, spacing: HumaySpacing.l) {
-                if let reading {
-                    CompatibilityReadingView(reading: reading)
-                } else if let failure {
-                    ErrorStateView(message: failure) { Task { await load() } }
-                } else {
-                    LoadingState(message: tier == .precise ? "Reading both charts…" : "Reading the pairing…")
-                }
+        DetailScaffold(title: person?.name ?? "Compatibility") {
+            if let reading {
+                CompatibilityReadingView(reading: reading)
+            } else if let failure {
+                ErrorStateView(message: failure) { Task { await load() } }
+            } else {
+                LoadingState(message: tier == .precise ? "Reading both charts…" : "Reading the pairing…")
             }
-            .padding(.horizontal, HumaySpacing.gutter)
-            .padding(.top, HumaySpacing.m)
-            .padding(.bottom, HumaySpacing.xxxl)
-            .frame(maxWidth: .infinity, alignment: .leading)
         }
-        .scrollIndicators(.hidden)
-        .background(theme.colors.background.ignoresSafeArea())
-        .navigationTitle(person?.name ?? "Compatibility")
-        .navigationBarTitleDisplayMode(.inline)
         .task(id: environment.settings.tone) { await load() }
     }
 
@@ -114,15 +103,16 @@ struct CompatibilityReadingView: View {
         tier: PrecisionTier
     ) -> some View {
         VStack(alignment: .leading, spacing: HumaySpacing.s) {
-            HStack(alignment: .firstTextBaseline, spacing: HumaySpacing.xs) {
+            AdaptiveRow {
                 MonoKicker(text: subtitle ?? "Sign to sign")
-                Spacer(minLength: HumaySpacing.xs)
+            } trailing: {
                 TierBadge(tier: tier)
             }
             HStack(alignment: .firstTextBaseline, spacing: HumaySpacing.s) {
                 Text(label)
                     .humayFont(.displayM)
                     .foregroundStyle(theme.colors.textPrimary)
+                    .fixedSize(horizontal: false, vertical: true)
                 if !glyphs.isEmpty {
                     HStack(spacing: 4) {
                         ForEach(Array(glyphs.enumerated()), id: \.offset) { index, glyph in
@@ -163,11 +153,12 @@ struct CompatibilityAxisRow: View {
 
     var body: some View {
         VStack(alignment: .leading, spacing: HumaySpacing.xs) {
-            HStack(alignment: .firstTextBaseline) {
+            AdaptiveRow {
                 Text(reading.axis.displayName)
                     .humayFont(.titleS)
                     .foregroundStyle(theme.colors.textPrimary)
-                Spacer(minLength: HumaySpacing.s)
+                    .fixedSize(horizontal: false, vertical: true)
+            } trailing: {
                 // A word, never a number. There is no score here and nothing is ranked.
                 Text(reading.verdict.displayName.uppercased())
                     .humayFont(.monoKicker)
@@ -202,32 +193,24 @@ struct QuickCheckView: View {
     @State private var reading: GeneralCompatibilityReading?
 
     var body: some View {
-        ScrollView {
-            VStack(alignment: .leading, spacing: HumaySpacing.l) {
-                Text("Any two signs, no saving required.")
-                    .humayFont(.bodySmall)
-                    .foregroundStyle(theme.colors.textSecondary)
+        DetailScaffold(title: "Quick check") {
+            Text("Any two signs, no saving required.")
+                .humayFont(.bodySmall)
+                .foregroundStyle(theme.colors.textSecondary)
+                .fixedSize(horizontal: false, vertical: true)
 
-                HStack(spacing: HumaySpacing.m) {
-                    signPicker("First", selection: $first)
-                    signPicker("Second", selection: $second)
-                }
-
-                if let reading {
-                    CompatibilityReadingView(reading: .general(reading))
-                } else {
-                    LoadingState(message: "Reading the pairing…")
-                }
+            AdaptiveRow(horizontalSpacing: HumaySpacing.m, verticalSpacing: HumaySpacing.m) {
+                signPicker("First", selection: $first)
+            } trailing: {
+                signPicker("Second", selection: $second)
             }
-            .padding(.horizontal, HumaySpacing.gutter)
-            .padding(.top, HumaySpacing.m)
-            .padding(.bottom, HumaySpacing.xxxl)
-            .frame(maxWidth: .infinity, alignment: .leading)
+
+            if let reading {
+                CompatibilityReadingView(reading: .general(reading))
+            } else {
+                LoadingState(message: "Reading the pairing…")
+            }
         }
-        .scrollIndicators(.hidden)
-        .background(theme.colors.background.ignoresSafeArea())
-        .navigationTitle("Quick check")
-        .navigationBarTitleDisplayMode(.inline)
         .task(id: "\(first.rawValue)-\(second.rawValue)-\(environment.settings.tone.rawValue)") {
             reading = try? await environment.compatibilityService.generalReading(
                 first,

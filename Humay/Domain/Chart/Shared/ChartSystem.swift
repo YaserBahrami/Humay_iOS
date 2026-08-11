@@ -100,6 +100,13 @@ struct ChartTriad: Sendable, Hashable {
         /// A term in this entry that has a glossary definition, if any.
         let glossaryTermID: String?
 
+        /// Stands in for a glyph that is not available, so a triad keeps its shape when
+        /// one of its three values is withheld. Named rather than repeated as a literal
+        /// so a view can tell a placeholder from a real mark and draw it accordingly.
+        static let unavailableGlyph = "·"
+
+        var hasGlyph: Bool { glyph != Self.unavailableGlyph }
+
         init(
             id: String,
             label: String,

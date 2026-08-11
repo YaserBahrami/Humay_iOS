@@ -204,7 +204,7 @@ struct ChineseChart: Sendable, Hashable {
                 id: "dayMaster",
                 label: "Day Master",
                 value: dayMaster.value?.element.spokenName ?? "—",
-                glyph: dayMaster.value?.element.han ?? "·",
+                glyph: dayMaster.value?.element.han ?? ChartTriad.Entry.unavailableGlyph,
                 glyphSpokenName: dayMaster.value?.spokenName ?? "not available",
                 glossaryTermID: "day-master"
             ),
@@ -212,7 +212,7 @@ struct ChineseChart: Sendable, Hashable {
                 id: "hour",
                 label: "Hour pillar",
                 value: hourPillar.value?.han ?? "—",
-                glyph: hourPillar.value?.branch.animalHan ?? "·",
+                glyph: hourPillar.value?.branch.animalHan ?? ChartTriad.Entry.unavailableGlyph,
                 glyphSpokenName: hourPillar.value?.spokenDescription ?? "not available",
                 glossaryTermID: "pillar"
             ),

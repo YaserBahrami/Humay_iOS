@@ -10,6 +10,7 @@ struct SkyCalendarContent: View {
     let onSelectEvent: (String) -> Void
 
     @Environment(\.humayTheme) private var theme
+    @ScaledMetric(relativeTo: .callout) private var dayCellHeight: CGFloat = HumayHitTarget.minimum
     @State private var monthAnchor = Date.now
     @State private var selectedDay: Int?
 
@@ -45,10 +46,9 @@ struct SkyCalendarContent: View {
                                 .humayFont(.titleS)
                                 .foregroundStyle(theme.colors.textPrimary)
                                 .multilineTextAlignment(.leading)
+                                .fixedSize(horizontal: false, vertical: true)
                             Spacer(minLength: HumaySpacing.xs)
-                            Image(systemName: "chevron.right")
-                                .font(.system(size: 12))
-                                .foregroundStyle(theme.colors.textLabel)
+                            DisclosureChevron()
                         }
                         .frame(minHeight: HumayHitTarget.minimum)
                         .contentShape(Rectangle())
@@ -74,6 +74,7 @@ struct SkyCalendarContent: View {
                 shiftMonth(by: -1)
             } label: {
                 Image(systemName: "chevron.left")
+                    .font(.system(size: HumayIconSize.chrome, weight: .regular))
                     .frame(width: HumayHitTarget.minimum, height: HumayHitTarget.minimum)
                     .contentShape(Rectangle())
             }
@@ -84,12 +85,14 @@ struct SkyCalendarContent: View {
             Text(monthLabel())
                 .humayFont(.titleM)
                 .foregroundStyle(theme.colors.textPrimary)
+                .multilineTextAlignment(.center)
                 .frame(maxWidth: .infinity)
 
             Button {
                 shiftMonth(by: 1)
             } label: {
                 Image(systemName: "chevron.right")
+                    .font(.system(size: HumayIconSize.chrome, weight: .regular))
                     .frame(width: HumayHitTarget.minimum, height: HumayHitTarget.minimum)
                     .contentShape(Rectangle())
             }
@@ -120,9 +123,13 @@ struct SkyCalendarContent: View {
                 selectedDay = selectedDay == day ? nil : day
             } label: {
                 VStack(spacing: 3) {
+                    // A date is mono, per the typography lock, and mono is capped — which
+                    // is what keeps seven columns readable. Set in the body face it grew
+                    // uncapped and the tenth of the month wrapped to two lines.
                     Text("\(day)")
-                        .humayFont(.callout)
+                        .humayFont(.monoDegree)
                         .monospacedDigit()
+                        .lineLimit(1)
                         .foregroundStyle(
                             selectedDay == day ? theme.colors.textPrimary : theme.colors.textSecondary
                         )
@@ -131,7 +138,7 @@ struct SkyCalendarContent: View {
                         .frame(width: 4, height: 4)
                         .opacity(relevance == nil ? 0 : 1)
                 }
-                .frame(maxWidth: .infinity, minHeight: 42)
+                .frame(maxWidth: .infinity, minHeight: dayCellHeight)
                 .overlay(
                     Rectangle()
                         .stroke(theme.colors.hairlineStrong, lineWidth: selectedDay == day ? 1 : 0)
@@ -141,7 +148,7 @@ struct SkyCalendarContent: View {
             .buttonStyle(.plain)
             .accessibilityLabel(dayAccessibilityLabel(day, relevance: relevance))
         } else {
-            Color.clear.frame(minHeight: 42)
+            Color.clear.frame(minHeight: dayCellHeight)
         }
     }
 
@@ -213,23 +220,15 @@ struct SkyCalendarContent: View {
 struct SkyCalendarView: View {
     @Environment(AppEnvironment.self) private var environment
     @Environment(AppRouter.self) private var router
-    @Environment(\.humayTheme) private var theme
 
     @State private var events: [SkyEvent] = []
 
     var body: some View {
-        ScrollView {
+        DetailScaffold(title: "Calendar") {
             SkyCalendarContent(events: events) { id in
                 router.push(.skyEvent(id), on: .sky)
             }
-            .padding(.horizontal, HumaySpacing.gutter)
-            .padding(.top, HumaySpacing.m)
-            .padding(.bottom, HumaySpacing.xxxl)
         }
-        .scrollIndicators(.hidden)
-        .background(theme.colors.background.ignoresSafeArea())
-        .navigationTitle("Calendar")
-        .navigationBarTitleDisplayMode(.inline)
         .task {
             events = (try? await environment.skyService.events(
                 in: Calendar.current.dateComponents([.year, .month], from: .now),
@@ -250,25 +249,15 @@ struct SkyEventDetailView: View {
     @State private var failure: String?
 
     var body: some View {
-        ScrollView {
-            VStack(alignment: .leading, spacing: HumaySpacing.l) {
-                if let event {
-                    content(event)
-                } else if let failure {
-                    ErrorStateView(message: failure)
-                } else {
-                    LoadingState(message: "Loading…")
-                }
+        DetailScaffold(title: event?.title ?? "Event") {
+            if let event {
+                content(event)
+            } else if let failure {
+                ErrorStateView(message: failure)
+            } else {
+                LoadingState(message: "Loading…")
             }
-            .padding(.horizontal, HumaySpacing.gutter)
-            .padding(.top, HumaySpacing.m)
-            .padding(.bottom, HumaySpacing.xxxl)
-            .frame(maxWidth: .infinity, alignment: .leading)
         }
-        .scrollIndicators(.hidden)
-        .background(theme.colors.background.ignoresSafeArea())
-        .navigationTitle(event?.title ?? "Event")
-        .navigationBarTitleDisplayMode(.inline)
         .task { await load() }
     }
 

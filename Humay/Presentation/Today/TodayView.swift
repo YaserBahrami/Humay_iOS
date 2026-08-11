@@ -8,7 +8,6 @@ import SwiftUI
 struct TodayView: View {
     @Environment(AppEnvironment.self) private var environment
     @Environment(AppRouter.self) private var router
-    @Environment(\.humayTheme) private var theme
 
     @State private var reading: HoroscopeReading?
     @State private var failure: String?
@@ -34,9 +33,9 @@ struct TodayView: View {
     @ViewBuilder
     private func content(_ reading: HoroscopeReading) -> some View {
         VStack(alignment: .leading, spacing: HumaySpacing.l) {
-            HStack(alignment: .firstTextBaseline, spacing: HumaySpacing.xs) {
+            AdaptiveRow {
                 MonoKicker(text: "\(Self.dateLabel) · \(reading.subjectLabel)")
-                Spacer(minLength: HumaySpacing.xs)
+            } trailing: {
                 TierBadge(tier: reading.tier)
             }
 
@@ -100,39 +99,28 @@ struct TodayView: View {
 /// version would be an architecture to delete later rather than a head start.
 struct TodayPreciseView: View {
     @Environment(AppEnvironment.self) private var environment
-    @Environment(\.humayTheme) private var theme
 
     @State private var reading: HoroscopeReading?
     @State private var failure: String?
 
     var body: some View {
-        ScrollView {
-            VStack(alignment: .leading, spacing: HumaySpacing.l) {
-                if let reading {
-                    content(reading)
-                } else if let failure {
-                    ErrorStateView(message: failure) { Task { await load() } }
-                } else {
-                    LoadingState(message: "Reading your placements…")
-                }
+        DetailScaffold(title: "Precise Today") {
+            if let reading {
+                content(reading)
+            } else if let failure {
+                ErrorStateView(message: failure) { Task { await load() } }
+            } else {
+                LoadingState(message: "Reading your placements…")
             }
-            .padding(.horizontal, HumaySpacing.gutter)
-            .padding(.top, HumaySpacing.m)
-            .padding(.bottom, HumaySpacing.xxxl)
-            .frame(maxWidth: .infinity, alignment: .leading)
         }
-        .scrollIndicators(.hidden)
-        .background(theme.colors.background.ignoresSafeArea())
-        .navigationTitle("Precise Today")
-        .navigationBarTitleDisplayMode(.inline)
         .task { await load() }
     }
 
     @ViewBuilder
     private func content(_ reading: HoroscopeReading) -> some View {
-        HStack(alignment: .firstTextBaseline, spacing: HumaySpacing.xs) {
+        AdaptiveRow {
             MonoKicker(text: Self.dateLabel)
-            Spacer(minLength: HumaySpacing.xs)
+        } trailing: {
             TierBadge(tier: .precise)
         }
 

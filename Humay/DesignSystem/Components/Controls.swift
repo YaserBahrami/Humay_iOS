@@ -72,9 +72,24 @@ struct HumaySegmentedControl<Value: Hashable>: View {
     @Binding var selection: Value
 
     @Environment(\.humayTheme) private var theme
+    @Environment(\.dynamicTypeSize) private var dynamicTypeSize
     @Namespace private var underline
 
     var body: some View {
+        // At the accessibility sizes three labels no longer fit across a phone. Scrolling
+        // keeps the control looking and behaving like itself rather than turning into a
+        // different control at the bottom of the ramp.
+        if dynamicTypeSize.isAccessibilitySize {
+            ScrollView(.horizontal) {
+                segments
+            }
+            .scrollIndicators(.hidden)
+        } else {
+            segments
+        }
+    }
+
+    private var segments: some View {
         HStack(spacing: HumaySpacing.l) {
             ForEach(options, id: \.self) { option in
                 Button {
@@ -126,17 +141,17 @@ struct HumayDisclosureRow<Leading: View>: View {
                         .humayFont(.titleS)
                         .foregroundStyle(theme.colors.textPrimary)
                         .multilineTextAlignment(.leading)
+                        .fixedSize(horizontal: false, vertical: true)
                     if let detail {
                         Text(detail)
                             .humayFont(.callout)
                             .foregroundStyle(theme.colors.textSecondary)
                             .multilineTextAlignment(.leading)
+                            .fixedSize(horizontal: false, vertical: true)
                     }
                 }
                 Spacer(minLength: HumaySpacing.s)
-                Image(systemName: "chevron.right")
-                    .font(.system(size: 12, weight: .regular))
-                    .foregroundStyle(theme.colors.textLabel)
+                DisclosureChevron()
             }
             .frame(minHeight: HumayHitTarget.minimum)
             .contentShape(Rectangle())
@@ -155,10 +170,18 @@ extension HumayDisclosureRow where Leading == EmptyView {
 ///
 /// Visually small, but with a full 44pt target — the glyph is the affordance, not the
 /// hit area.
+///
+/// The target is larger than the space the trigger occupies in a layout, which is the
+/// point: callers used to shrink the whole thing to 22 or 30 points to stop it inflating
+/// a row, and took the hit area down with it. The negative padding gives the layout back
+/// the space while the button keeps its full target.
 struct InfoTrigger: View {
     let termID: String
     let termName: String
     let action: (String) -> Void
+
+    /// The footprint the trigger claims in a layout. The target stays at 44pt regardless.
+    var visualSize: CGFloat = 24
 
     @Environment(\.humayTheme) private var theme
 
@@ -167,12 +190,13 @@ struct InfoTrigger: View {
             action(termID)
         } label: {
             Image(systemName: "info.circle")
-                .font(.system(size: 13, weight: .regular))
+                .font(.system(size: HumayIconSize.inline, weight: .regular))
                 .foregroundStyle(theme.colors.accentText)
                 .frame(width: HumayHitTarget.minimum, height: HumayHitTarget.minimum)
                 .contentShape(Rectangle())
         }
         .buttonStyle(.plain)
+        .padding(-(HumayHitTarget.minimum - visualSize) / 2)
         .accessibilityLabel("What does \(termName) mean?")
     }
 }

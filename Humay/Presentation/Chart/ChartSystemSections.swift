@@ -9,12 +9,14 @@ struct WesternChartSection: View {
     let onSelectPlacement: (String) -> Void
 
     @Environment(\.humayTheme) private var theme
+    /// Width of the "H1" / "B1" notation gutter. Scales so the notation is not clipped.
+    @ScaledMetric(relativeTo: .caption) private var notationColumn: CGFloat = 28
 
     var body: some View {
         VStack(alignment: .leading, spacing: HumaySpacing.l) {
-            HStack(alignment: .firstTextBaseline) {
+            AdaptiveRow {
                 MonoKicker(text: ChartSystem.western.displayName)
-                Spacer(minLength: HumaySpacing.xs)
+            } trailing: {
                 SampleContentMarker(provenance: chart.provenance)
             }
 
@@ -57,14 +59,14 @@ struct WesternChartSection: View {
                 VStack(spacing: 0) {
                     SectionHeader(title: "Aspects", trailing: "\(chart.aspects.count)")
                     ForEach(chart.aspects.prefix(8)) { aspect in
-                        HStack {
+                        AdaptiveRow {
                             Text("\(aspect.first.glyph) \(aspect.kind.glyph) \(aspect.second.glyph)")
                                 .humayFont(.titleS)
                                 .foregroundStyle(theme.colors.textPrimary)
-                            Spacer(minLength: HumaySpacing.s)
+                        } trailing: {
                             MonoFact(text: aspect.orbFormatted, emphasised: aspect.orbDegrees < 1)
                         }
-                        .frame(minHeight: 34)
+                        .padding(.vertical, HumaySpacing.xs)
                         .accessibilityElement(children: .combine)
                         .accessibilityLabel(aspect.spokenDescription)
                         HairlineRule()
@@ -77,19 +79,22 @@ struct WesternChartSection: View {
                 VStack(spacing: 0) {
                     SectionHeader(title: "Houses")
                     ForEach(houses) { house in
-                        HStack(alignment: .top, spacing: HumaySpacing.s) {
-                            MonoFact(text: "H\(house.id)", emphasised: true)
-                                .frame(width: 28, alignment: .leading)
-                            VStack(alignment: .leading, spacing: 1) {
-                                Text(house.title)
-                                    .humayFont(.callout)
-                                    .foregroundStyle(theme.colors.textPrimary)
-                                Text(house.summary)
-                                    .humayFont(.caption)
-                                    .foregroundStyle(theme.colors.textSecondary)
-                                    .fixedSize(horizontal: false, vertical: true)
+                        AdaptiveRow(horizontalAlignment: .top) {
+                            HStack(alignment: .top, spacing: HumaySpacing.s) {
+                                MonoFact(text: "H\(house.id)", emphasised: true)
+                                    .frame(width: notationColumn, alignment: .leading)
+                                VStack(alignment: .leading, spacing: 1) {
+                                    Text(house.title)
+                                        .humayFont(.callout)
+                                        .foregroundStyle(theme.colors.textPrimary)
+                                        .fixedSize(horizontal: false, vertical: true)
+                                    Text(house.summary)
+                                        .humayFont(.caption)
+                                        .foregroundStyle(theme.colors.textSecondary)
+                                        .fixedSize(horizontal: false, vertical: true)
+                                }
                             }
-                            Spacer(minLength: HumaySpacing.xs)
+                        } trailing: {
                             MonoFact(text: house.cusp.formatted)
                         }
                         .padding(.vertical, HumaySpacing.xs)
@@ -120,12 +125,13 @@ struct VedicChartSection: View {
     let onSelectPlacement: (String) -> Void
 
     @Environment(\.humayTheme) private var theme
+    @ScaledMetric(relativeTo: .caption) private var notationColumn: CGFloat = 28
 
     var body: some View {
         VStack(alignment: .leading, spacing: HumaySpacing.l) {
-            HStack(alignment: .firstTextBaseline) {
+            AdaptiveRow {
                 MonoKicker(text: ChartSystem.vedic.displayName)
-                Spacer(minLength: HumaySpacing.xs)
+            } trailing: {
                 SampleContentMarker(provenance: chart.provenance)
             }
 
@@ -143,11 +149,11 @@ struct VedicChartSection: View {
             ChartFeatureView(feature: chart.feature)
 
             VStack(alignment: .leading, spacing: HumaySpacing.s) {
-                HStack(spacing: 0) {
-                    SectionHeader(title: "Current period")
-                    InfoTrigger(termID: "mahadasha", termName: "Mahadasha", action: onGlossaryTerm)
-                        .frame(width: 30, height: 30)
-                }
+                SectionHeader(
+                    title: "Current period",
+                    glossaryTerm: (id: "mahadasha", name: "Mahadasha"),
+                    onGlossaryTerm: onGlossaryTerm
+                )
                 switch chart.currentDasha {
                 case .available(let dasha), .uncertain(let dasha, _):
                     VStack(alignment: .leading, spacing: 3) {
@@ -187,19 +193,20 @@ struct VedicChartSection: View {
             switch chart.bhavas {
             case .available(let bhavas):
                 VStack(spacing: 0) {
-                    HStack(spacing: 0) {
-                        SectionHeader(title: "Bhavas")
-                        InfoTrigger(termID: "bhava", termName: "Bhava", action: onGlossaryTerm)
-                            .frame(width: 30, height: 30)
-                    }
+                    SectionHeader(
+                        title: "Bhavas",
+                        glossaryTerm: (id: "bhava", name: "Bhava"),
+                        onGlossaryTerm: onGlossaryTerm
+                    )
                     ForEach(bhavas) { bhava in
                         HStack(alignment: .top, spacing: HumaySpacing.s) {
                             MonoFact(text: bhava.notation, emphasised: true)
-                                .frame(width: 28, alignment: .leading)
+                                .frame(width: notationColumn, alignment: .leading)
                             VStack(alignment: .leading, spacing: 1) {
                                 Text(bhava.title)
                                     .humayFont(.callout)
                                     .foregroundStyle(theme.colors.textPrimary)
+                                    .fixedSize(horizontal: false, vertical: true)
                                 Text(bhava.summary)
                                     .humayFont(.caption)
                                     .foregroundStyle(theme.colors.textSecondary)
@@ -224,14 +231,14 @@ struct VedicChartSection: View {
 
             VStack(alignment: .leading, spacing: HumaySpacing.xs) {
                 HairlineRule()
-                HStack(spacing: 0) {
+                HStack(alignment: .firstTextBaseline, spacing: 0) {
                     Text(chart.ayanamsaNote)
                         .humayFont(.caption)
                         .foregroundStyle(theme.colors.textTertiary)
                         .fixedSize(horizontal: false, vertical: true)
-                        .padding(.top, HumaySpacing.xs)
                     InfoTrigger(termID: "ayanamsa", termName: "Ayanamsa", action: onGlossaryTerm)
                 }
+                .padding(.top, HumaySpacing.xs)
             }
         }
     }
@@ -243,17 +250,32 @@ struct VedicChartSection: View {
 /// because the system has neither — it reads element interactions between pillars
 /// rather than bodies moving through a sky.
 struct ChineseChartSection: View {
+    /// Pairs a pillar position with its value so the four can be laid out as columns.
+    struct PillarSlot: Identifiable {
+        let position: PillarPosition
+        let value: FactValue<Pillar>
+
+        var id: PillarPosition { position }
+
+        init(_ pair: (PillarPosition, FactValue<Pillar>)) {
+            position = pair.0
+            value = pair.1
+        }
+    }
+
     let chart: ChineseChart
     let onGlossaryTerm: (String) -> Void
     let onSelectPlacement: (String) -> Void
 
     @Environment(\.humayTheme) private var theme
+    @Environment(\.dynamicTypeSize) private var dynamicTypeSize
+    @ScaledMetric(relativeTo: .headline) private var elementColumn: CGFloat = 24
 
     var body: some View {
         VStack(alignment: .leading, spacing: HumaySpacing.l) {
-            HStack(alignment: .firstTextBaseline) {
+            AdaptiveRow {
                 MonoKicker(text: ChartSystem.chinese.displayName)
-                Spacer(minLength: HumaySpacing.xs)
+            } trailing: {
                 SampleContentMarker(provenance: chart.provenance)
             }
 
@@ -267,68 +289,69 @@ struct ChineseChartSection: View {
             ChartFeatureView(feature: chart.feature)
 
             VStack(alignment: .leading, spacing: HumaySpacing.s) {
-                HStack(spacing: 0) {
-                    SectionHeader(title: "Four pillars")
-                    InfoTrigger(termID: "pillar", termName: "Pillar", action: onGlossaryTerm)
-                        .frame(width: 30, height: 30)
+                SectionHeader(
+                    title: "Four pillars",
+                    glossaryTerm: (id: "pillar", name: "Pillar"),
+                    onGlossaryTerm: onGlossaryTerm
+                )
+                AdaptiveColumns(items: Array(zip(PillarPosition.allCases, chart.pillars).map(PillarSlot.init))) { slot in
+                    pillarColumn(position: slot.position, value: slot.value)
                 }
-                HStack(alignment: .top, spacing: 0) {
-                    ForEach(Array(zip(PillarPosition.allCases, chart.pillars)), id: \.0) { position, value in
-                        pillarColumn(position: position, value: value)
-                    }
-                }
-                .fixedSize(horizontal: false, vertical: true)
                 HairlineRule()
             }
 
             VStack(alignment: .leading, spacing: HumaySpacing.s) {
-                HStack(spacing: 0) {
-                    SectionHeader(title: "Element balance")
-                    InfoTrigger(termID: "wu-xing", termName: "Five Elements", action: onGlossaryTerm)
-                        .frame(width: 30, height: 30)
-                }
+                SectionHeader(
+                    title: "Element balance",
+                    glossaryTerm: (id: "wu-xing", name: "Five Elements"),
+                    onGlossaryTerm: onGlossaryTerm
+                )
                 ForEach(WuXing.allCases) { element in
-                    HStack(spacing: HumaySpacing.s) {
-                        GlyphLabel(
-                            glyph: element.han,
-                            spokenName: element.spokenName,
-                            role: .titleS,
-                            color: theme.colors.accentMark
-                        )
-                        .frame(width: 24, alignment: .leading)
-                        Text(element.spokenName)
-                            .humayFont(.callout)
-                            .foregroundStyle(theme.colors.textPrimary)
-                        Spacer(minLength: HumaySpacing.s)
-                        MonoFact(
-                            text: String(repeating: "▪", count: chart.elementBalance[element] ?? 0),
-                            emphasised: (chart.elementBalance[element] ?? 0) > 1
-                        )
-                        MonoFact(text: "\(chart.elementBalance[element] ?? 0)")
+                    AdaptiveRow {
+                        HStack(spacing: HumaySpacing.s) {
+                            GlyphLabel(
+                                glyph: element.han,
+                                spokenName: element.spokenName,
+                                role: .titleS,
+                                color: theme.colors.accentMark
+                            )
+                            .frame(width: elementColumn, alignment: .leading)
+                            Text(element.spokenName)
+                                .humayFont(.callout)
+                                .foregroundStyle(theme.colors.textPrimary)
+                        }
+                    } trailing: {
+                        HStack(spacing: HumaySpacing.xs) {
+                            MonoFact(
+                                text: String(repeating: "▪", count: chart.elementBalance[element] ?? 0),
+                                emphasised: (chart.elementBalance[element] ?? 0) > 1
+                            )
+                            MonoFact(text: "\(chart.elementBalance[element] ?? 0)")
+                        }
                     }
-                    .frame(minHeight: 32)
+                    .padding(.vertical, HumaySpacing.xs)
                     .accessibilityElement(children: .combine)
                     .accessibilityLabel("\(element.spokenName), \(chart.elementBalance[element] ?? 0) of four pillars")
                 }
             }
 
             VStack(alignment: .leading, spacing: HumaySpacing.s) {
-                HStack(spacing: 0) {
-                    SectionHeader(title: "Luck cycle")
-                    InfoTrigger(termID: "luck-cycle", termName: "Luck Cycle", action: onGlossaryTerm)
-                        .frame(width: 30, height: 30)
-                }
+                SectionHeader(
+                    title: "Luck cycle",
+                    glossaryTerm: (id: "luck-cycle", name: "Luck Cycle"),
+                    onGlossaryTerm: onGlossaryTerm
+                )
                 switch chart.luckCycle {
                 case .available(let cycles), .uncertain(let cycles, _):
                     ForEach(cycles) { cycle in
-                        HStack {
+                        HStack(spacing: HumaySpacing.s) {
                             MonoFact(text: "FROM \(cycle.startAge)", emphasised: true)
                             Text(cycle.pillar.han)
                                 .humayFont(.titleS)
                                 .foregroundStyle(theme.colors.textPrimary)
-                            Spacer()
+                            Spacer(minLength: 0)
                         }
-                        .frame(minHeight: 32)
+                        .padding(.vertical, HumaySpacing.xs)
                     }
                 case .unavailable(let reason):
                     UnavailableFactView(reason: reason)
@@ -348,10 +371,15 @@ struct ChineseChartSection: View {
 
     @ViewBuilder
     private func pillarColumn(position: PillarPosition, value: FactValue<Pillar>) -> some View {
+        // Four columns become four rows once the text is large enough that they cannot
+        // sit side by side; the reading order is the same either way.
+        let stacked = dynamicTypeSize.isAccessibilitySize
+        let alignment: HorizontalAlignment = stacked ? .leading : .center
+
         Button {
             if value.value != nil { onSelectPlacement(position.rawValue) }
         } label: {
-            VStack(spacing: HumaySpacing.xs) {
+            VStack(alignment: alignment, spacing: HumaySpacing.xs) {
                 MonoKicker(text: position.rawValue)
                 if let pillar = value.value {
                     Text(pillar.han)
@@ -367,10 +395,11 @@ struct ChineseChartSection: View {
                     Text("Needs time")
                         .humayFont(.caption)
                         .foregroundStyle(theme.colors.textTertiary)
-                        .multilineTextAlignment(.center)
+                        .multilineTextAlignment(stacked ? .leading : .center)
                 }
             }
-            .frame(maxWidth: .infinity)
+            .frame(maxWidth: .infinity, alignment: stacked ? .leading : .center)
+            .frame(minHeight: HumayHitTarget.minimum)
             .padding(.vertical, HumaySpacing.s)
             .contentShape(Rectangle())
         }
@@ -395,37 +424,46 @@ struct PlacementRow: View {
     let action: () -> Void
 
     @Environment(\.humayTheme) private var theme
+    @Environment(\.dynamicTypeSize) private var dynamicTypeSize
+    @ScaledMetric(relativeTo: .headline) private var glyphColumn: CGFloat = 22
 
     var body: some View {
         Button(action: action) {
             HStack(spacing: HumaySpacing.s) {
-                GlyphLabel(
-                    glyph: glyph,
-                    spokenName: glyphSpokenName,
-                    role: .titleS,
-                    color: theme.colors.accentMark
-                )
-                .frame(width: 22, alignment: .leading)
+                AdaptiveRow(horizontalAlignment: .center) {
+                    HStack(spacing: HumaySpacing.s) {
+                        GlyphLabel(
+                            glyph: glyph,
+                            spokenName: glyphSpokenName,
+                            role: .titleS,
+                            color: theme.colors.accentMark
+                        )
+                        .frame(width: glyphColumn, alignment: .leading)
 
-                VStack(alignment: .leading, spacing: 1) {
-                    Text(title)
-                        .humayFont(.titleS)
-                        .foregroundStyle(theme.colors.textPrimary)
-                    Text(subtitle)
-                        .humayFont(.callout)
-                        .foregroundStyle(theme.colors.textSecondary)
+                        VStack(alignment: .leading, spacing: 1) {
+                            Text(title)
+                                .humayFont(.titleS)
+                                .foregroundStyle(theme.colors.textPrimary)
+                                .multilineTextAlignment(.leading)
+                                .fixedSize(horizontal: false, vertical: true)
+                            Text(subtitle)
+                                .humayFont(.callout)
+                                .foregroundStyle(theme.colors.textSecondary)
+                                .multilineTextAlignment(.leading)
+                                .fixedSize(horizontal: false, vertical: true)
+                        }
+                    }
+                } trailing: {
+                    HStack(spacing: HumaySpacing.xs) {
+                        if isRetrograde { MonoFact(text: "Rx", emphasised: true) }
+                        if let detail { MonoFact(text: detail) }
+                        if let trailingNote { MonoFact(text: trailingNote, emphasised: true) }
+                    }
                 }
 
-                Spacer(minLength: HumaySpacing.xs)
-
-                if isRetrograde { MonoFact(text: "Rx", emphasised: true) }
-                if let detail { MonoFact(text: detail) }
-                if let trailingNote { MonoFact(text: trailingNote, emphasised: true) }
-
-                Image(systemName: "chevron.right")
-                    .font(.system(size: 11))
-                    .foregroundStyle(theme.colors.textLabel)
+                DisclosureChevron()
             }
+            .padding(.vertical, dynamicTypeSize.isAccessibilitySize ? HumaySpacing.xs : 0)
             .frame(minHeight: HumayHitTarget.minimum)
             .contentShape(Rectangle())
         }

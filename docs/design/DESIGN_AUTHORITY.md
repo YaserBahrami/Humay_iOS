@@ -8,7 +8,7 @@ For implementation, use this order:
 
 1. Current explicit product decisions in [`../development/PRODUCT_ACCESS_MODEL.md`](../development/PRODUCT_ACCESS_MODEL.md) for Free/Rewarded/Premium, runtime-cost and precision-vs-catalog behavior.
 2. This authority map for supersession rules.
-3. **The minimal Humay direction (§03A) for all visual and layout decisions.**
+3. **[`MINIMAL_DESIGN_DIRECTION.md`](MINIMAL_DESIGN_DIRECTION.md) for all visual and layout decisions** — the full statement of the minimal Humay direction summarised in §03A.
 4. Pass 6.1 and the final archive for interaction/structure baseline where not superseded.
 5. Older Claude passes for historical/detail reference only when no newer authority conflicts.
 
@@ -37,7 +37,7 @@ This remains the baseline unless the next Claude Design pass explicitly changes 
 
 ## 03A — Minimal Humay direction — current visual authority
 
-Recorded 2026-08-11 alongside [`../development/DEVIATIONS.md`](../development/DEVIATIONS.md) `DEV-001`.
+Recorded 2026-08-11 alongside [`../development/DEVIATIONS.md`](../development/DEVIATIONS.md) `DEV-001`. Stated in full in [`MINIMAL_DESIGN_DIRECTION.md`](MINIMAL_DESIGN_DIRECTION.md), which is the reference an implementation is checked against; this section remains the supersession record.
 
 **The minimal Humay direction governs all visual and layout decisions.** `claude-reference/Humay Product Prototype - Consolidated.dc.html` and the earlier passes remain authoritative for **product concepts, feature behavior, terminology and copy**, but are no longer the visual or layout authority. Where the prototype conflicts visually with the minimal direction, the minimal direction wins.
 
@@ -187,11 +187,24 @@ Humay is the current internal product/project name. Trademark, App Store/Google 
 
 ## 12 — Current design status
 
-- The minimal Humay direction (§03A) is the current visual/layout authority.
+- The minimal Humay direction (§03A, stated in full in [`MINIMAL_DESIGN_DIRECTION.md`](MINIMAL_DESIGN_DIRECTION.md)) is the current visual/layout authority.
 - Pass 6.1 is preserved as the latest completed interaction/UX baseline; its visual treatment is superseded by §03A where they conflict.
 - The 2026-08-11 product/access change supersedes conflicting Pass 6.1 monetization/access behavior.
 - **A new Claude Design revision is required** for Chart, Today, Compatibility, Ask and paywall/rewarded/cached-result states before those surfaces are implementation-final.
 - Unaffected visual/IA work can still use Pass 6.1 as reference.
+
+### Reconciliation pass — 2026-08-11
+
+The Phase 01M application was reviewed screen by screen against the minimal direction and brought into line. Recorded in [`../development/phases/01M-mock-first-app.md`](../development/phases/01M-mock-first-app.md) as `IOS-012`; screenshots of the result are in [`review/`](review/README.md).
+
+Decisions taken during that pass, now part of the visual authority:
+
+- **Only the precise tier is outlined.** A general badge appeared on nearly every screen and distinguished nothing, so it is a plain mono kicker. The outline is reserved for precision.
+- **One page component.** Every screen — tab root, pushed screen, settings page and sheet — is built on the same scrolling page, so the gutter, top inset, bottom inset and ground colour cannot drift apart. Tab roots take the large title; everything else takes the inline title.
+- **Type ceilings are staggered rather than flat.** A single 1.4× cap across every display and title role inverted the hierarchy at the accessibility text sizes: a row title came out smaller than its own subtitle. Row titles are uncapped; the editorial display roles cap at increasing multiples that keep them above body copy.
+- **Rows reflow rather than shrink.** A label-and-value row becomes a stacked pair at the accessibility sizes; the chart triad and the four BaZi pillars turn from columns into rows. Nothing important is scaled down to fit.
+- **Fixed-geometry drawings step aside.** The Circle drawing is dropped at the accessibility sizes, where the list beneath already carries the whole of its meaning. Calendar dates are set in mono, which is both the typographic rule for a date and what keeps seven columns legible.
+- **A withheld triad value keeps its slot** but is drawn at the disabled weight, so the placeholder does not read as a mark that means something.
 
 ## 13 — Next step
 

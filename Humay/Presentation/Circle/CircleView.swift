@@ -19,7 +19,6 @@ struct CircleView: View {
                     ) { isAddingPerson = true }
                 } else {
                     CircleOrbitView(people: environment.people)
-                        .frame(height: 230)
                         .padding(.vertical, HumaySpacing.s)
 
                     VStack(spacing: 0) {
@@ -74,6 +73,8 @@ struct PersonRow: View {
     let action: () -> Void
 
     @Environment(\.humayTheme) private var theme
+    @Environment(\.dynamicTypeSize) private var dynamicTypeSize
+    @ScaledMetric(relativeTo: .callout) private var initialsSide: CGFloat = 36
 
     var body: some View {
         Button(action: action) {
@@ -83,7 +84,7 @@ struct PersonRow: View {
                 Text(person.initials)
                     .humayFont(.callout)
                     .foregroundStyle(theme.colors.textSecondary)
-                    .frame(width: 36, height: 36)
+                    .frame(width: initialsSide, height: initialsSide)
                     .overlay(
                         Rectangle().stroke(
                             person.role.isCore ? theme.colors.hairlineAccent : theme.colors.hairline,
@@ -96,20 +97,23 @@ struct PersonRow: View {
                     Text(person.name)
                         .humayFont(.titleS)
                         .foregroundStyle(theme.colors.textPrimary)
+                        .fixedSize(horizontal: false, vertical: true)
                     Text("\(MockAstrology.sunSign(for: person.birth).spokenName) · \(person.role.displayName)")
                         .humayFont(.callout)
                         .foregroundStyle(theme.colors.textSecondary)
+                        .fixedSize(horizontal: false, vertical: true)
+                    if !person.birth.time.isKnown, dynamicTypeSize.isAccessibilitySize {
+                        MonoFact(text: "DATE ONLY")
+                    }
                 }
 
                 Spacer(minLength: HumaySpacing.xs)
 
-                if !person.birth.time.isKnown {
+                if !person.birth.time.isKnown, !dynamicTypeSize.isAccessibilitySize {
                     MonoFact(text: "DATE ONLY")
                 }
 
-                Image(systemName: "chevron.right")
-                    .font(.system(size: 12))
-                    .foregroundStyle(theme.colors.textLabel)
+                DisclosureChevron()
             }
             .frame(minHeight: HumayHitTarget.minimum)
             .padding(.vertical, HumaySpacing.xs)
@@ -138,15 +142,27 @@ struct PersonRow: View {
 /// heavier weight — the single sanctioned emphasis case in the design.
 ///
 /// The ring is sized from the container rather than from a fixed number, so a larger
-/// screen later gets a larger drawing rather than a stretched one.
+/// screen later gets a larger drawing rather than a stretched one. The height scales with
+/// the reader's text size, because the initials and role labels sitting on the ring grow
+/// with it; at the accessibility sizes the drawing is dropped entirely and the list below
+/// carries the whole of its meaning, which is what its accessible representation already
+/// said it did.
 struct CircleOrbitView: View {
     let people: [CirclePerson]
 
     @Environment(\.humayTheme) private var theme
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
+    @Environment(\.dynamicTypeSize) private var dynamicTypeSize
+    @ScaledMetric(relativeTo: .body) private var height: CGFloat = 230
     @State private var drawn = false
 
     var body: some View {
+        if !dynamicTypeSize.isAccessibilitySize {
+            drawing.frame(height: height)
+        }
+    }
+
+    private var drawing: some View {
         GeometryReader { proxy in
             let size = min(proxy.size.width, proxy.size.height)
             let centre = CGPoint(x: proxy.size.width / 2, y: proxy.size.height / 2)

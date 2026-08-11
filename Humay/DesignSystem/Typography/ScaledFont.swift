@@ -13,37 +13,44 @@ private struct HumayFontModifier: ViewModifier {
 
     func body(content: Content) -> some View {
         content
-            .font(Font(resolvedFont()))
+            .font(Font(role.resolvedFont(at: dynamicTypeSize.contentSizeCategory)))
             .tracking(role.trackingEm * role.size)
             .lineSpacing(role.lineSpacing)
     }
+}
 
-    private func resolvedFont() -> UIFont {
+extension HumayTypeRole {
+    /// The font this role resolves to at a given content size category.
+    ///
+    /// Exposed rather than buried in the modifier so a test can assert what a reader at
+    /// the largest accessibility size actually gets — the size ordering between roles is
+    /// part of the design contract, and it is not visible from the caps alone.
+    func resolvedFont(at category: UIContentSizeCategory) -> UIFont {
         let base: UIFont
-        if let face = role.face {
-            base = UIFont(name: face.postScriptName, size: role.size)
-                ?? .systemFont(ofSize: role.size, weight: uiWeight)
-        } else if role.isMonospaced {
-            base = .monospacedSystemFont(ofSize: role.size, weight: uiWeight)
+        if let face {
+            base = UIFont(name: face.postScriptName, size: size)
+                ?? .systemFont(ofSize: size, weight: uiWeight)
+        } else if isMonospaced {
+            base = .monospacedSystemFont(ofSize: size, weight: uiWeight)
         } else {
-            base = .systemFont(ofSize: role.size, weight: uiWeight)
+            base = .systemFont(ofSize: size, weight: uiWeight)
         }
 
-        let metrics = UIFontMetrics(forTextStyle: role.textStyle)
-        let traits = UITraitCollection(preferredContentSizeCategory: dynamicTypeSize.contentSizeCategory)
+        let metrics = UIFontMetrics(forTextStyle: textStyle)
+        let traits = UITraitCollection(preferredContentSizeCategory: category)
 
-        guard let maxScale = role.maxScale else {
+        guard let maxScale else {
             return metrics.scaledFont(for: base, compatibleWith: traits)
         }
         return metrics.scaledFont(
             for: base,
-            maximumPointSize: role.size * maxScale,
+            maximumPointSize: size * maxScale,
             compatibleWith: traits
         )
     }
 
     private var uiWeight: UIFont.Weight {
-        switch role.systemWeight {
+        switch systemWeight {
         case .medium: .medium
         case .semibold: .semibold
         default: .regular

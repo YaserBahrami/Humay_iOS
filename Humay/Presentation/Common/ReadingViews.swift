@@ -61,7 +61,7 @@ struct BasisDisclosure: View {
                     HStack(spacing: HumaySpacing.xs) {
                         MonoKicker(text: "What's influencing this", color: theme.colors.accentText)
                         Image(systemName: "chevron.down")
-                            .font(.system(size: 9, weight: .medium))
+                            .font(.system(size: HumayIconSize.hint, weight: .medium))
                             .foregroundStyle(theme.colors.accentText)
                             .rotationEffect(.degrees(isExpanded ? 180 : 0))
                     }
@@ -76,12 +76,12 @@ struct BasisDisclosure: View {
                     VStack(alignment: .leading, spacing: HumaySpacing.xs) {
                         HairlineRule()
                         ForEach(basis.factors) { factor in
-                            HStack(alignment: .firstTextBaseline) {
+                            AdaptiveRow(verticalSpacing: 2) {
                                 MonoFact(text: factor.label, emphasised: true)
-                                Spacer(minLength: HumaySpacing.s)
+                            } trailing: {
                                 MonoFact(text: factor.detail)
                             }
-                            .frame(minHeight: 26)
+                            .padding(.vertical, HumaySpacing.xxs)
                             .accessibilityElement(children: .combine)
                         }
                     }
@@ -110,10 +110,12 @@ struct PreciseEntryPoint: View {
             VStack(alignment: .leading, spacing: HumaySpacing.xs) {
                 HairlineRule(color: theme.colors.hairlineAccent)
                     .padding(.bottom, HumaySpacing.xs)
-                HStack(alignment: .firstTextBaseline, spacing: HumaySpacing.xs) {
+                AdaptiveRow(horizontalSpacing: HumaySpacing.xs) {
                     Text(title)
                         .humayFont(.titleM)
                         .foregroundStyle(theme.colors.textPrimary)
+                        .fixedSize(horizontal: false, vertical: true)
+                } trailing: {
                     TierBadge(tier: .precise)
                 }
                 Text(message)
@@ -126,7 +128,7 @@ struct PreciseEntryPoint: View {
                         .humayFont(.label)
                         .foregroundStyle(theme.colors.accentText)
                     Image(systemName: "arrow.right")
-                        .font(.system(size: 11, weight: .medium))
+                        .font(.system(size: HumayIconSize.row, weight: .medium))
                         .foregroundStyle(theme.colors.accentText)
                 }
                 .padding(.top, 2)
@@ -173,50 +175,56 @@ struct ChartTriadView: View {
 
     @Environment(\.humayTheme) private var theme
 
+    @Environment(\.dynamicTypeSize) private var dynamicTypeSize
+
     var body: some View {
         VStack(spacing: 0) {
             HairlineRule()
-            HStack(alignment: .top, spacing: 0) {
-                ForEach(Array(triad.entries.enumerated()), id: \.element.id) { index, entry in
-                    if index > 0 {
-                        Rectangle()
-                            .fill(theme.colors.hairline)
-                            .frame(width: 1)
-                            .frame(maxHeight: .infinity)
-                    }
-                    entryColumn(entry)
-                }
+            AdaptiveColumns(items: triad.entries) { entry in
+                entryColumn(entry)
             }
-            .fixedSize(horizontal: false, vertical: true)
             HairlineRule()
         }
     }
 
     @ViewBuilder
     private func entryColumn(_ entry: ChartTriad.Entry) -> some View {
-        VStack(spacing: HumaySpacing.xs) {
-            GlyphLabel(
-                glyph: entry.glyph,
-                spokenName: entry.glyphSpokenName,
-                role: .displayM,
-                color: theme.colors.accentMark
-            )
-            HStack(spacing: 0) {
+        // Three columns of accessibility-sized text do not fit across a phone, so the
+        // triad stacks. Stacked, centring the glyph over its label reads as a mistake —
+        // the reading order is left to right like everything else on the screen.
+        let alignment: HorizontalAlignment = dynamicTypeSize.isAccessibilitySize ? .leading : .center
+
+        VStack(alignment: alignment, spacing: HumaySpacing.xs) {
+            // Everything except the trigger is one spoken element. Combining the whole
+            // column would take the glossary button with it and leave the definition
+            // unreachable.
+            VStack(alignment: alignment, spacing: HumaySpacing.xs) {
+                // A withheld value keeps its slot so the three columns still line up,
+                // but the placeholder is drawn at the disabled weight — in gold it read
+                // as a mark that meant something.
+                GlyphLabel(
+                    glyph: entry.glyph,
+                    spokenName: entry.glyphSpokenName,
+                    role: .displayM,
+                    color: entry.hasGlyph ? theme.colors.accentMark : theme.colors.textDisabled
+                )
+                .accessibilityHidden(!entry.hasGlyph)
                 MonoKicker(text: entry.label)
-                if let termID = entry.glossaryTermID, let onGlossaryTerm {
-                    InfoTrigger(termID: termID, termName: entry.label, action: onGlossaryTerm)
-                        .frame(width: 22, height: 22)
-                }
+                Text(entry.value)
+                    .humayFont(.titleS)
+                    .foregroundStyle(theme.colors.textPrimary)
+                    .multilineTextAlignment(dynamicTypeSize.isAccessibilitySize ? .leading : .center)
+                    .fixedSize(horizontal: false, vertical: true)
             }
-            Text(entry.value)
-                .humayFont(.titleS)
-                .foregroundStyle(theme.colors.textPrimary)
-                .multilineTextAlignment(.center)
+            .accessibilityElement(children: .combine)
+            .accessibilityLabel("\(entry.label): \(entry.value)")
+
+            if let termID = entry.glossaryTermID, let onGlossaryTerm {
+                InfoTrigger(termID: termID, termName: entry.label, action: onGlossaryTerm)
+            }
         }
-        .frame(maxWidth: .infinity)
+        .frame(maxWidth: .infinity, alignment: dynamicTypeSize.isAccessibilitySize ? .leading : .center)
         .padding(.vertical, HumaySpacing.m)
-        .accessibilityElement(children: .combine)
-        .accessibilityLabel("\(entry.label): \(entry.value)")
     }
 }
 

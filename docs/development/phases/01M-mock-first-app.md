@@ -20,7 +20,7 @@ Astrology calculation providers · LLM/AI providers · backend services · authe
 
 ## Visual authority
 
-The approved **minimal Humay direction** governs visuals and layout: All Paper surfaces, generous whitespace, restrained gold, Cormorant Garamond headlines, SF Pro body and UI, SF Mono for degrees/coordinates/dates, minimal surfaces, subtle borders, limited card usage, native iOS interaction patterns.
+The approved **minimal Humay direction** governs visuals and layout, and is stated in full in [`../../design/MINIMAL_DESIGN_DIRECTION.md`](../../design/MINIMAL_DESIGN_DIRECTION.md): All Paper surfaces, generous whitespace, restrained gold, Cormorant Garamond headlines, SF Pro body and UI, SF Mono for degrees/coordinates/dates, minimal surfaces, subtle borders, limited card usage, native iOS interaction patterns.
 
 `docs/design/claude-reference/Humay Product Prototype - Consolidated.dc.html` is authoritative for **product concepts, feature behaviour, terminology and copy only**. Where it conflicts visually with the minimal direction, the minimal direction wins. See [`../../design/DESIGN_AUTHORITY.md`](../../design/DESIGN_AUTHORITY.md).
 
@@ -213,7 +213,18 @@ Status: DONE — suggested questions, composer, answers citing mock chart and tr
 Status: DONE — the four motion verbs plus the signature reveal; Reduce Motion paths; nothing loops; haptics on tone change only.
 
 ### IOS-010 — Accessibility
-Status: IN PROGRESS — VoiceOver order follows visual reading order with insight before basis; every astrological glyph carries a spoken label; hit targets at or above 44pt; Dynamic Type verified at the largest accessibility size on every screen.
+Status: DONE — VoiceOver order follows visual reading order with insight before basis; every astrological glyph carries a spoken label; hit targets at or above 44pt; Dynamic Type verified at the largest accessibility size on every screen.
+
+Closed 2026-08-11 with `IOS-012`. The Dynamic Type sweep found and fixed:
+
+- **Onboarding could not be completed at the accessibility sizes.** The welcome beat was a `VStack` with no scroll view, so "Begin" sat below the bottom of the screen with no way to reach it. Every onboarding beat now scrolls with the action pinned below it. The UI tests were failing this before the fix and pass after it.
+- **Type ceilings inverted the hierarchy.** A flat 1.4× cap on display and title roles against uncapped body copy meant a person's name was set smaller than "Leo · Partner" underneath it. Ceilings are staggered, row titles are uncapped, and `AccessibilityTests` asserts the resulting order.
+- **Targets below 44pt.** The Ask send button was 34pt; the glossary triggers were shrunk to 22 and 30pt by their callers to keep rows tight; calendar day cells were 42pt. All now meet the minimum, and `InfoTrigger` separates its visual size from its target so a caller cannot trade one for the other again.
+- **Rows that could not reflow.** Label-and-value pairs, the chart triad, the four BaZi pillars and the placement rows now stack rather than compress.
+- **The glossary sheet clipped.** A definition at the largest size is several times the height of a medium detent, with no scroll view and the action pushed off the sheet.
+- **Calendar dates wrapped mid-number.** Set in the body face and uncapped, the tenth of the month broke across two lines in a 50pt column. Dates are mono, per the typography lock, and mono is capped.
+
+Reduce Motion paths were re-verified: the occultation reveal, the circle draw and the chart chords all take their reduced alternative, and nothing loops.
 
 ### IOS-007 — Diagnostics and configuration
 Status: DONE — privacy-redacted logging and build configuration flags. No secrets, no analytics.
@@ -223,6 +234,30 @@ Status: DONE — test coverage asserting mock provenance across every mock servi
 
 ### IOS-011 — Architecture documentation
 Status: DONE — `docs/architecture/IOS_ARCHITECTURE.md`, `DATA_MODEL.md`, `MOCK_DATA_STRATEGY.md`, `TESTING_STRATEGY.md`.
+
+### IOS-012 — Visual reconciliation and accessibility closure
+Status: DONE
+Depends on: every task above
+
+The application was built from the written design rules rather than against the approved minimal direction screen by screen. This pass reconciled the two and closed `IOS-010`. **No product feature was added, and no architectural boundary was touched** — `check-layering.sh` and `check-nomenclature.sh` pass unchanged, and the repository, provenance, chart-family and service boundaries are as they were.
+
+Scope:
+- The approved direction was written down as [`../../design/MINIMAL_DESIGN_DIRECTION.md`](../../design/MINIMAL_DESIGN_DIRECTION.md), including what counts as drift, so the next pass has something to check against.
+- Every screen listed in that document's §04 was reviewed against it.
+- The Dynamic Type and hit-target work above.
+- Screenshots of the result in [`../../design/review/`](../../design/review/README.md).
+
+What was reconciled:
+- **Twelve hand-rolled screen scaffolds became one.** Each pushed screen, settings page and sheet repeated the same four modifiers, and the top inset had already drifted between them. `HumayPage` now owns the gutter, insets, ground and title treatment; `ScreenScaffold` and `DetailScaffold` are the two shapes above it.
+- **The general tier badge lost its outline.** It appeared on nearly every screen and distinguished nothing.
+- **Chevrons and icons come from shared components.** The same chevron had been set at 11, 12 and 13 points in different files.
+- **Glossary triggers moved inside their section headers**, so a section with a definition rules to the same width as one without.
+- **A withheld triad glyph is drawn at the disabled weight** rather than as a gold mark that means nothing.
+
+Acceptance:
+- Clean build; 49 unit tests and 5 UI tests pass. One of the UI tests drives onboarding at the largest accessibility text size, so the overflow above cannot come back unnoticed.
+- `check-layering.sh` and `check-nomenclature.sh` pass.
+- Driven on iPhone SE (3rd generation), iPhone 17 Pro and iPhone 17 Pro Max, at default and largest accessibility Dynamic Type.
 
 ---
 
@@ -238,14 +273,17 @@ Status: DONE — `docs/architecture/IOS_ARCHITECTURE.md`, `DATA_MODEL.md`, `MOCK
 
 ## Outcome
 
-All tasks above are `DONE` except `IOS-010`, which is `IN PROGRESS`: VoiceOver labels, hit targets and glyph naming are in place throughout, but the Dynamic Type sweep at the largest accessibility sizes has not been run on every screen.
+**Every task above is `DONE`.** The phase closed on 2026-08-11 with `IOS-012`, which reconciled the implementation against the minimal design direction and completed the accessibility sweep that `IOS-010` was waiting on.
 
 Verified at close:
 
 - Clean Debug build for an iPhone simulator; the app launches and every flow is navigable.
-- 42 unit tests and 4 UI tests pass.
+- 49 unit tests and 5 UI tests pass, one of which drives onboarding at the largest accessibility text size — the case that caught the onboarding overflow.
 - `check-layering.sh` and `check-nomenclature.sh` pass.
-- Onboarding, Today (both tiers), Circle, compatibility, Sky, Calendar, event detail, Chart (all three systems), placement detail, glossary, Ask and every settings page were driven in the simulator.
+- Onboarding, Today (both tiers), Circle, compatibility, Sky, Calendar, event detail, Chart (all three systems), placement detail, glossary, Ask and every settings page were driven in the simulator on iPhone SE (3rd generation), iPhone 17 Pro and iPhone 17 Pro Max.
+- Screenshots of the ten primary screens are in [`../../design/review/`](../../design/review/README.md).
+
+This is the first stable UI baseline. It is still mock content throughout.
 
 ### Decisions taken during implementation
 

@@ -18,6 +18,7 @@ The suite deliberately targets the rules that are easy to break silently, not co
 | Birth-time cases within it | `.unknown` must round-trip as `.unknown`, and midnight must stay distinguishable from "not set". This is the single rule the whole unknown-time design rests on. |
 | `LiveWiringTests` | Exercises the composition root against the real on-disk store. Exists because the repositories originally kept only `container.mainContext` and not the container: every isolated test passed while the application trapped inside SwiftData on its first write. Ownership mistakes of that shape are invisible to narrow tests. |
 | `TypographyTests` | Every bundled Cormorant face resolves. A missing font does not crash — UIKit substitutes San Francisco silently, and the mistake can survive for weeks. |
+| `AccessibilityTests` | The reading hierarchy holds at the largest accessibility text size, reading roles stay uncapped, and no icon size is doing the work of a hit target. Exists because the type ceilings once inverted the hierarchy — a row title set smaller than its own subtitle — and nothing failed. |
 | `ToneInvarianceTests` | Normal and Roast share one basis across all twelve signs. The executable form of "Roast changes expression only". |
 | `MockProvenanceTests` | Every value from every mock service reports mock provenance. The executable form of the central rule in `MOCK_DATA_STRATEGY.md`; a new mock method that forgets provenance fails here. |
 | `FixtureCompletenessTests` | Every sign and category resolves. Prevents "works for Pisces, crashes for Capricorn". Asserts shape, never truth. |
@@ -27,7 +28,7 @@ The suite deliberately targets the rules that are easy to break silently, not co
 ## What is deliberately excluded
 
 - **Any test asserting an astrological value is correct.** There is nothing to be correct against, and writing one would convert prototype content into an engineering fixture — precisely what `TASK_CONVENTIONS.md` forbids.
-- **Snapshot testing.** Needs a third-party dependency, and several surfaces are pre-reconciliation, so goldens would be re-recorded constantly. Revisit after Phase 00 closes.
+- **Snapshot testing.** Needs a third-party dependency. Now that the UI baseline is reconciled and stable the argument against it is weaker than it was, but the goldens would still be recording mock content. Revisit when real services land.
 - **View-model tests that only exercise a mock.** Most models in this phase are `service.call() → assign`; testing them tests the fixture.
 - **Performance, localisation and iPad layout tests.** Nothing to measure and iPad is out of scope.
 

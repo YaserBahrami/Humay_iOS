@@ -89,9 +89,9 @@ struct AskView: View {
                     Task { await ask(draft) }
                 } label: {
                     Image(systemName: "arrow.up")
-                        .font(.system(size: 14, weight: .medium))
+                        .font(.system(size: HumayIconSize.inline, weight: .medium))
                         .foregroundStyle(canSend ? theme.colors.actionLabel : theme.colors.textDisabled)
-                        .frame(width: 34, height: 34)
+                        .frame(width: HumayHitTarget.minimum, height: HumayHitTarget.minimum)
                         .background(canSend ? theme.colors.actionFill : theme.colors.hairline)
                         .contentShape(Rectangle())
                 }

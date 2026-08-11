@@ -145,35 +145,41 @@ struct SkyPositionRow: View {
     let position: SkyPosition
 
     @Environment(\.humayTheme) private var theme
+    @Environment(\.dynamicTypeSize) private var dynamicTypeSize
+
+    @ScaledMetric(relativeTo: .headline) private var glyphColumn: CGFloat = 22
 
     var body: some View {
         VStack(alignment: .leading, spacing: 3) {
-            HStack(spacing: HumaySpacing.s) {
-                GlyphLabel(
-                    glyph: position.planet.glyph,
-                    spokenName: position.planet.spokenName,
-                    role: .titleS,
-                    color: theme.colors.accentMark
-                )
-                .frame(width: 22, alignment: .leading)
+            AdaptiveRow(horizontalAlignment: .center) {
+                HStack(spacing: HumaySpacing.s) {
+                    GlyphLabel(
+                        glyph: position.planet.glyph,
+                        spokenName: position.planet.spokenName,
+                        role: .titleS,
+                        color: theme.colors.accentMark
+                    )
+                    .frame(width: glyphColumn, alignment: .leading)
 
-                Text(position.planet.spokenName)
-                    .humayFont(.titleS)
-                    .foregroundStyle(theme.colors.textPrimary)
-
-                Spacer(minLength: HumaySpacing.xs)
-
-                if position.isRetrograde {
-                    MonoFact(text: "Rx", emphasised: true)
+                    Text(position.planet.spokenName)
+                        .humayFont(.titleS)
+                        .foregroundStyle(theme.colors.textPrimary)
+                        .fixedSize(horizontal: false, vertical: true)
                 }
-                MonoFact(text: position.position.formatted)
+            } trailing: {
+                HStack(spacing: HumaySpacing.s) {
+                    if position.isRetrograde {
+                        MonoFact(text: "Rx", emphasised: true)
+                    }
+                    MonoFact(text: position.position.formatted)
+                }
             }
             if !position.note.isEmpty {
                 Text(position.note)
                     .humayFont(.callout)
                     .foregroundStyle(theme.colors.textSecondary)
                     .fixedSize(horizontal: false, vertical: true)
-                    .padding(.leading, 22 + HumaySpacing.s)
+                    .padding(.leading, dynamicTypeSize.isAccessibilitySize ? 0 : glyphColumn + HumaySpacing.s)
             }
         }
         .padding(.vertical, HumaySpacing.xs)
@@ -191,20 +197,21 @@ struct SkyEventRow: View {
 
     var body: some View {
         Button(action: action) {
-            HStack(alignment: .top, spacing: HumaySpacing.s) {
+            AdaptiveRow(horizontalAlignment: .top) {
                 VStack(alignment: .leading, spacing: 2) {
                     Text(event.title)
                         .humayFont(.titleS)
                         .foregroundStyle(theme.colors.textPrimary)
                         .multilineTextAlignment(.leading)
+                        .fixedSize(horizontal: false, vertical: true)
                     Text(event.inTheSky)
                         .humayFont(.callout)
                         .foregroundStyle(theme.colors.textSecondary)
                         .lineLimit(2)
                         .multilineTextAlignment(.leading)
                 }
-                Spacer(minLength: HumaySpacing.s)
-                VStack(alignment: .trailing, spacing: 2) {
+            } trailing: {
+                HStack(spacing: HumaySpacing.s) {
                     MonoFact(text: event.shortDateFormatted, emphasised: event.relevance == .high)
                     if event.relevance == .high {
                         MonoKicker(text: "High", color: theme.colors.accentText)

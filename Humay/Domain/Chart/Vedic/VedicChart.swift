@@ -181,7 +181,7 @@ struct VedicChart: Sendable, Hashable {
                 id: "lagna",
                 label: "Lagna",
                 value: lagna.value?.spokenName ?? "—",
-                glyph: lagna.value?.glyph ?? "·",
+                glyph: lagna.value?.glyph ?? ChartTriad.Entry.unavailableGlyph,
                 glyphSpokenName: lagna.value?.spokenName ?? "not available",
                 glossaryTermID: "lagna"
             ),

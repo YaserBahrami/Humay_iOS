@@ -89,6 +89,9 @@ struct OnboardingScaffold<Content: View>: View {
     var onBack: (() -> Void)?
     let actionTitle: String
     var actionEnabled: Bool = true
+    /// Lets the content claim the full height so its spacers can centre a composition.
+    /// Only the welcome beat wants this; the rest are top-aligned forms.
+    var fillsHeight: Bool = false
     let action: () -> Void
     @ViewBuilder var content: Content
 
@@ -96,37 +99,50 @@ struct OnboardingScaffold<Content: View>: View {
 
     var body: some View {
         VStack(alignment: .leading, spacing: 0) {
-            HStack(spacing: HumaySpacing.xs) {
-                if let onBack {
-                    Button(action: onBack) {
-                        Image(systemName: "chevron.left")
-                            .font(.system(size: 15, weight: .regular))
-                            .foregroundStyle(theme.colors.textSecondary)
-                            .frame(width: HumayHitTarget.minimum, height: HumayHitTarget.minimum)
-                            .contentShape(Rectangle())
+            if onBack != nil || stepLabel != nil {
+                HStack(spacing: HumaySpacing.xs) {
+                    if let onBack {
+                        Button(action: onBack) {
+                            Image(systemName: "chevron.left")
+                                .font(.system(size: HumayIconSize.chrome, weight: .regular))
+                                .foregroundStyle(theme.colors.textSecondary)
+                                .frame(width: HumayHitTarget.minimum, height: HumayHitTarget.minimum)
+                                .contentShape(Rectangle())
+                        }
+                        .buttonStyle(.plain)
+                        .accessibilityLabel("Back")
+                        .padding(.leading, -HumaySpacing.s)
                     }
-                    .buttonStyle(.plain)
-                    .accessibilityLabel("Back")
-                    .padding(.leading, -HumaySpacing.s)
+                    if let stepLabel {
+                        MonoKicker(text: stepLabel)
+                    }
+                    Spacer(minLength: 0)
                 }
-                if let stepLabel {
-                    MonoKicker(text: stepLabel)
-                }
-                Spacer(minLength: 0)
+                .frame(minHeight: HumayHitTarget.minimum)
             }
-            .frame(height: HumayHitTarget.minimum)
 
-            ScrollView {
-                content
-                    .frame(maxWidth: .infinity, alignment: .leading)
-                    .padding(.top, HumaySpacing.l)
-                    .padding(.bottom, HumaySpacing.l)
+            // The content scrolls and the action stays pinned. Onboarding has no
+            // navigation bar to fall back on, so a beat that overflows without scrolling
+            // is a beat with no way forward — which is exactly what happened to the
+            // welcome screen at the accessibility text sizes.
+            // A minimum height of one viewport, rather than a fixed one: the spacers in
+            // the welcome composition can expand into it at the ordinary text sizes, and
+            // the content can still grow past it — and scroll — at the accessibility ones.
+            GeometryReader { proxy in
+                ScrollView {
+                    content
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                        .padding(.top, HumaySpacing.l)
+                        .padding(.bottom, HumaySpacing.l)
+                        .frame(minHeight: fillsHeight ? proxy.size.height : nil, alignment: .top)
+                }
+                .scrollIndicators(.hidden)
             }
-            .scrollIndicators(.hidden)
 
             Button(actionTitle, action: action)
                 .buttonStyle(.humayPrimary)
                 .disabled(!actionEnabled)
+                .padding(.top, HumaySpacing.s)
                 .padding(.bottom, HumaySpacing.s)
         }
         .padding(.horizontal, HumaySpacing.gutter)

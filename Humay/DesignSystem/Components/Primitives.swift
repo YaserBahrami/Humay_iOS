@@ -67,6 +67,11 @@ struct MonoFact: View {
 /// Under the all-paper surface model this badge and the hairline beneath it carry the
 /// distinction that a dark ground used to carry, so it needs to be legible without
 /// being loud.
+///
+/// Only the precise tier is outlined. General is the ordinary state of nearly every
+/// screen, so boxing it added a border on almost every surface in the application while
+/// distinguishing nothing — the mono kicker alone says it, and the outline is left to
+/// mean something.
 struct TierBadge: View {
     let tier: PrecisionTier
 
@@ -76,12 +81,12 @@ struct TierBadge: View {
         Text(tier.badgeLabel.uppercased())
             .humayFont(.monoKicker)
             .foregroundStyle(tier == .precise ? theme.colors.accentText : theme.colors.textLabel)
-            .padding(.horizontal, HumaySpacing.xs)
-            .padding(.vertical, 3)
+            .padding(.horizontal, tier == .precise ? HumaySpacing.xs : 0)
+            .padding(.vertical, tier == .precise ? 3 : 0)
             .overlay(
                 Rectangle()
                     .stroke(
-                        tier == .precise ? theme.colors.hairlineAccent : theme.colors.hairline,
+                        tier == .precise ? theme.colors.hairlineAccent : .clear,
                         lineWidth: HumayBorder.hairline
                     )
             )
@@ -154,25 +159,43 @@ struct OccultationMark: View {
 }
 
 /// A section heading: a mono kicker over a rule.
+///
+/// The glossary trigger belongs *inside* the header rather than beside it. Put outside,
+/// it shortened the rule to whatever width was left over, so the sections carrying a term
+/// definition ruled to a different length than the ones that did not — a difference of a
+/// few points that reads, across a chart screen, as carelessness.
 struct SectionHeader: View {
     let title: String
     var trailing: String?
-
-    @Environment(\.humayTheme) private var theme
+    var glossaryTerm: (id: String, name: String)?
+    var onGlossaryTerm: ((String) -> Void)?
 
     var body: some View {
         VStack(alignment: .leading, spacing: HumaySpacing.xs) {
-            HStack(alignment: .firstTextBaseline) {
+            HStack(alignment: .firstTextBaseline, spacing: 0) {
+                // The trigger stays a separate button rather than being merged into the
+                // heading: folding a control into a header is how a definition becomes
+                // unreachable with VoiceOver.
                 MonoKicker(text: title)
+                    .accessibilityAddTraits(.isHeader)
+
+                if let glossaryTerm, let onGlossaryTerm {
+                    InfoTrigger(
+                        termID: glossaryTerm.id,
+                        termName: glossaryTerm.name,
+                        action: onGlossaryTerm
+                    )
+                }
+
+                Spacer(minLength: HumaySpacing.s)
+
                 if let trailing {
-                    Spacer(minLength: HumaySpacing.s)
                     MonoFact(text: trailing)
+                        .accessibilityLabel("\(title): \(trailing)")
                 }
             }
             HairlineRule()
         }
-        .accessibilityElement(children: .combine)
-        .accessibilityAddTraits(.isHeader)
     }
 }
 

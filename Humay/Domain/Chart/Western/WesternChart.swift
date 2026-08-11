@@ -235,14 +235,14 @@ struct WesternChart: Sendable, Hashable {
                 id: "moon",
                 label: "Moon",
                 value: moon.value.map { $0.position.sign.spokenName } ?? "—",
-                glyph: moon.value.map { $0.position.sign.glyph } ?? "·",
+                glyph: moon.value.map { $0.position.sign.glyph } ?? ChartTriad.Entry.unavailableGlyph,
                 glyphSpokenName: moon.value.map { $0.position.sign.spokenName } ?? "not available"
             ),
             .init(
                 id: "rising",
                 label: "Rising",
                 value: rising.value.map { $0.position.sign.spokenName } ?? "—",
-                glyph: rising.value.map { $0.position.sign.glyph } ?? "·",
+                glyph: rising.value.map { $0.position.sign.glyph } ?? ChartTriad.Entry.unavailableGlyph,
                 glyphSpokenName: rising.value.map { $0.position.sign.spokenName } ?? "not available"
             ),
         ])

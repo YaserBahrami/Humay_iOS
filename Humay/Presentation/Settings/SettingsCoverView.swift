@@ -92,7 +92,9 @@ struct SettingsHomeView: View {
             Text(environment.profile?.birth.dateFormatted() ?? "No birth date")
                 .humayFont(.displayM)
                 .foregroundStyle(theme.colors.textPrimary)
+                .fixedSize(horizontal: false, vertical: true)
             MonoKicker(text: identityLine)
+                .fixedSize(horizontal: false, vertical: true)
         }
         .padding(.bottom, HumaySpacing.xs)
         .accessibilityElement(children: .combine)
@@ -137,24 +139,29 @@ struct SettingsRowLabel: View {
     let detail: String?
 
     @Environment(\.humayTheme) private var theme
+    @Environment(\.dynamicTypeSize) private var dynamicTypeSize
 
     var body: some View {
         VStack(spacing: 0) {
             HStack(spacing: HumaySpacing.s) {
-                Text(title)
-                    .humayFont(.body)
-                    .foregroundStyle(theme.colors.textPrimary)
-                Spacer(minLength: HumaySpacing.s)
-                if let detail {
-                    Text(detail)
-                        .humayFont(.callout)
-                        .foregroundStyle(theme.colors.textTertiary)
-                        .multilineTextAlignment(.trailing)
+                AdaptiveRow {
+                    Text(title)
+                        .humayFont(.body)
+                        .foregroundStyle(theme.colors.textPrimary)
+                        .multilineTextAlignment(.leading)
+                        .fixedSize(horizontal: false, vertical: true)
+                } trailing: {
+                    if let detail {
+                        Text(detail)
+                            .humayFont(.callout)
+                            .foregroundStyle(theme.colors.textTertiary)
+                            .multilineTextAlignment(dynamicTypeSize.rowTrailingAlignment)
+                            .fixedSize(horizontal: false, vertical: true)
+                    }
                 }
-                Image(systemName: "chevron.right")
-                    .font(.system(size: 12))
-                    .foregroundStyle(theme.colors.textLabel)
+                DisclosureChevron()
             }
+            .padding(.vertical, HumaySpacing.xs)
             .frame(minHeight: HumayHitTarget.minimum)
             HairlineRule()
         }
@@ -169,22 +176,11 @@ struct SettingsPageScaffold<Content: View>: View {
     @ViewBuilder var content: Content
 
     @Environment(AppRouter.self) private var router
-    @Environment(\.humayTheme) private var theme
 
     var body: some View {
-        ScrollView {
-            VStack(alignment: .leading, spacing: HumaySpacing.l) {
-                content
-            }
-            .padding(.horizontal, HumaySpacing.gutter)
-            .padding(.top, HumaySpacing.m)
-            .padding(.bottom, HumaySpacing.xxxl)
-            .frame(maxWidth: .infinity, alignment: .leading)
+        DetailScaffold(title: title) {
+            content
         }
-        .scrollIndicators(.hidden)
-        .background(theme.colors.background.ignoresSafeArea())
-        .navigationTitle(title)
-        .navigationBarTitleDisplayMode(.inline)
         .toolbar {
             if showsClose {
                 ToolbarItem(placement: .topBarTrailing) {
@@ -192,7 +188,7 @@ struct SettingsPageScaffold<Content: View>: View {
                         router.closeSettings()
                     } label: {
                         Image(systemName: "xmark")
-                            .font(.system(size: 14, weight: .regular))
+                            .font(.system(size: HumayIconSize.inline, weight: .regular))
                     }
                     .accessibilityLabel("Close")
                 }

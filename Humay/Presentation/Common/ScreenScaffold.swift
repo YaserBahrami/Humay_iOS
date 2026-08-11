@@ -1,21 +1,47 @@
 import SwiftUI
 
-/// The standard tab-root screen.
+/// The scrolling page every screen in the application is built on.
 ///
-/// Uses the system navigation bar with a large title rather than drawing a header into
-/// the scroll content. That is what gives the title its collapse-on-scroll behaviour and
-/// what keeps content from passing behind the clock — a hand-drawn header inside a
-/// scroll view has neither.
+/// One gutter, one top inset per title style, one bottom inset, one ground colour. Before
+/// this existed, twelve screens each repeated the same four modifiers and three of them
+/// had drifted — which is exactly the inconsistency the minimal direction is least able
+/// to absorb, because the layout is mostly space.
+///
+/// Uses the system navigation bar rather than drawing a header into the scroll content.
+/// That is what gives the title its collapse-on-scroll behaviour and what keeps content
+/// from passing behind the clock — a hand-drawn header inside a scroll view has neither.
 ///
 /// The identity is carried by the editorial headline below the bar, which is Cormorant.
 /// The bar itself is chrome and stays in the system face.
-struct ScreenScaffold<Content: View>: View {
+struct HumayPage<Content: View>: View {
+    enum Kind {
+        /// A tab root: large title, collapsing on scroll.
+        case tabRoot
+        /// A pushed screen, a settings page or a sheet: inline title.
+        case detail
+
+        var displayMode: NavigationBarItem.TitleDisplayMode {
+            switch self {
+            case .tabRoot: .large
+            case .detail: .inline
+            }
+        }
+
+        /// A large title already supplies most of the space above the first element; an
+        /// inline title supplies almost none.
+        var topInset: CGFloat {
+            switch self {
+            case .tabRoot: HumaySpacing.xs
+            case .detail: HumaySpacing.m
+            }
+        }
+    }
+
     let title: String
-    var showsSettingsEntry: Bool = true
+    var kind: Kind = .detail
     @ViewBuilder var content: Content
 
     @Environment(\.humayTheme) private var theme
-    @Environment(\.openHumaySettings) private var openSettings
 
     var body: some View {
         ScrollView {
@@ -23,16 +49,31 @@ struct ScreenScaffold<Content: View>: View {
                 content
             }
             .padding(.horizontal, HumaySpacing.gutter)
-            .padding(.top, HumaySpacing.xs)
+            .padding(.top, kind.topInset)
             .padding(.bottom, HumaySpacing.xxxl)
             .frame(maxWidth: .infinity, alignment: .leading)
         }
         .scrollIndicators(.hidden)
         .background(theme.colors.background.ignoresSafeArea())
         .navigationTitle(title)
-        .navigationBarTitleDisplayMode(.large)
+        .navigationBarTitleDisplayMode(kind.displayMode)
         .toolbarBackground(theme.colors.background, for: .navigationBar)
         .toolbarBackground(.visible, for: .navigationBar)
+    }
+}
+
+/// A tab root, with the header entry points into tone and settings.
+struct ScreenScaffold<Content: View>: View {
+    let title: String
+    var showsSettingsEntry: Bool = true
+    @ViewBuilder var content: Content
+
+    @Environment(\.openHumaySettings) private var openSettings
+
+    var body: some View {
+        HumayPage(title: title, kind: .tabRoot) {
+            content
+        }
         .toolbar {
             if showsSettingsEntry {
                 ToolbarItem(placement: .topBarTrailing) {
@@ -43,11 +84,26 @@ struct ScreenScaffold<Content: View>: View {
                         openSettings()
                     } label: {
                         Image(systemName: "person")
-                            .font(.system(size: 15, weight: .light))
+                            .font(.system(size: HumayIconSize.chrome, weight: .light))
                     }
                     .accessibilityLabel("Profile and settings")
                 }
             }
+        }
+    }
+}
+
+/// A pushed screen.
+///
+/// The same page as a tab root, with an inline title and no header entry points — the way
+/// back is the navigation bar's own control.
+struct DetailScaffold<Content: View>: View {
+    let title: String
+    @ViewBuilder var content: Content
+
+    var body: some View {
+        HumayPage(title: title, kind: .detail) {
+            content
         }
     }
 }

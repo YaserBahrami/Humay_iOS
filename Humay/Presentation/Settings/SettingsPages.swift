@@ -247,7 +247,7 @@ struct ToneOptionRow: View {
                         .foregroundStyle(tone == .roast && isSelected ? theme.colors.roast : theme.colors.textPrimary)
                     Spacer(minLength: HumaySpacing.xs)
                     Image(systemName: "checkmark")
-                        .font(.system(size: 13, weight: .medium))
+                        .font(.system(size: HumayIconSize.inline, weight: .medium))
                         .foregroundStyle(theme.colors.accentText)
                         .opacity(isSelected ? 1 : 0)
                 }
