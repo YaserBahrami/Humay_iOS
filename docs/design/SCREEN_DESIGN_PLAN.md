@@ -6,16 +6,15 @@
 
 ## Goal
 
-Design every Humay product surface in the Soulful Celestial direction and produce an intentional **Light + Dark pair** before final visual implementation is frozen.
-
-This is a phased pass. Each phase establishes reusable layout/art rules for the next so the product remains coherent rather than becoming a set of unrelated generated screens.
+Design every Humay product surface in the selected cosmic-editorial direction and produce an intentional **Light + Dark pair** before final visual implementation is frozen.
 
 ## Reference structure
 
 ```text
 docs/design/soulful-reference/
-  anchors/
-  onboarding/
+  anchors/                 # D0 selected references
+  onboarding/              # D1
+  components/              # shared UI + illustration boards
   today/
   circle/
   sky/
@@ -28,37 +27,31 @@ docs/design/soulful-reference/
   assets/
 ```
 
-Each screen-family folder may contain `light/`, `dark/` and a concise implementation/reference README as material is approved.
+SVG reference boards are GitHub-viewable/editable design images. Production artwork is exported separately into `Humay/Resources/Assets.xcassets/` only after approval.
 
-Production artwork is exported separately into `Humay/Resources/Assets.xcassets/`; screenshot crops are not production assets by default.
-
-## D0 — Visual anchor lock
-
-Purpose: establish the shared visual language before the full product pass.
+## D0 — Visual anchor lock — APPROVED
 
 | Screen | Light | Dark | Status |
 |---|---|---|---|
-| Today / Home | required | required | Initial pair created |
-| Daily Horoscope / reading detail | required | required | Initial pair created |
-| Compatibility | required | required | Initial pair created |
+| Today / Home | committed | committed | approved style source |
+| Daily Horoscope | committed | committed | approved style source |
+| Compatibility | committed | committed | approved style source |
 
 D0 establishes:
 
-- painterly celestial illustration language;
-- navy/ivory editorial typography relationship;
-- coral/gold/lavender/blue/sage category accents;
-- card radius/elevation behavior;
-- light cream and dark midnight grounds;
-- Level A/B/C visual intensity rules.
+- warm cream vs midnight navy appearance;
+- strong editorial serif + clean system UI typography;
+- simple cute line/flat celestial illustration;
+- coral/lavender/gold/blue/sage accents;
+- soft rounded cards and sparse decoration;
+- deliberate Light/Dark translation.
 
-The first Dark translations must be deliberately refined before they become the pattern propagated through the remaining screens.
+## D1 — Onboarding — GENERATED / REVIEW NEXT
 
-## D1 — Onboarding
-
-Generate/review in both appearances:
+Generated in both appearances:
 
 1. Welcome
-2. Value proposition
+2. Why Humay / value proposition
 3. Birth date
 4. Birth time
 5. Unknown birth-time path
@@ -67,12 +60,13 @@ Generate/review in both appearances:
 8. Calculation/progress
 9. Big Three / first reveal
 
-**Deliverable:** 18 screen references plus reusable welcome/reveal/system artwork.
+**Deliverables:** Light/Dark onboarding boards plus UI-component and illustration/icon reference boards.
+
+Review D1 against D0 before marking it approved. Do not propagate any D1 drift into D2.
 
 ## D2 — Today + Circle
 
 ### Today
-
 1. Today primary/home
 2. Astrological basis / why this reading
 3. Roast expression example
@@ -82,15 +76,12 @@ Generate/review in both appearances:
 7. Cached precise-result state where visually distinct
 
 ### Circle
-
 1. People list
 2. Person detail
 3. Today Together
 4. Compatibility overview
 5. Deeper compatibility
-6. Unknown/insufficient birth-data compatibility state where applicable
-
-**Deliverable:** paired references plus reusable Love/Career/Finance/Health and relationship artwork.
+6. Unknown/insufficient birth-data state where applicable
 
 ## D3 — Sky + Calendar
 
@@ -99,8 +90,6 @@ Generate/review in both appearances:
 3. Calendar week
 4. Event detail
 5. Required empty/unavailable state
-
-Calendar remains utility-first; Current Sky and Event Detail may carry richer celestial art.
 
 ## D4 — Chart + astrology systems
 
@@ -113,31 +102,23 @@ Calendar remains utility-first; Current Sky and Event Detail may carry richer ce
 7. Unknown birth-time state
 8. Precision access/generation state where required
 
-**Deliverable:** paired references plus system-specific color/art rules without reducing technical readability.
-
 ## D5 — Ask the Stars
 
 1. Empty/question state
 2. Conversation/answer state
 3. Loading/generating state
 4. Rewarded extension state
-5. Provider/error/recovery state where user action differs
-
-Conversation UI remains familiar; richer illustration is concentrated in empty/hero and access moments.
+5. Provider/error/recovery state
 
 ## D6 — Profile + Settings
-
-At minimum:
 
 1. Profile/settings cover
 2. Astrology settings
 3. Notification settings
 4. Privacy/data settings
-5. Birth-details editor if visually separate
+5. Birth-details editor if separate
 6. Appearance/tone controls if retained
-7. Saved People management if not fully represented in Circle
-
-These are primarily Level C utility surfaces.
+7. Saved People management if needed
 
 ## D7 — Monetization + access
 
@@ -145,11 +126,9 @@ These are primarily Level C utility surfaces.
 2. Rewarded generation gate
 3. Ask rewarded extension
 4. Generation/unlocked confirmation
-5. Premium sheet / plan detail
+5. Premium plan detail
 6. Provider failure after rewarded completion
-7. Cached-result reopen state if treatment differs
-
-These screens must match `PRODUCT_ACCESS_MODEL.md`; art may never obscure the exact entitlement/action.
+7. Cached-result reopen state if visually distinct
 
 ## D8 — Sharing, widgets and global states
 
@@ -157,52 +136,35 @@ These screens must match `PRODUCT_ACCESS_MODEL.md`; art may never obscure the ex
 2. Widget size family
 3. Loading / empty / error state board
 4. Offline/cached state where required
-5. Notification visual examples where useful
-
-Provide paired appearance references where the platform supports appearance variants; fixed-theme share exports may define their own controlled theme.
+5. Notification visual examples
 
 ## D9 — Brand + production handoff
 
-Finalize:
-
-- Humay wordmark behavior on Light/Dark;
-- mark/app-icon direction;
-- launch screen Light/Dark;
-- palette/type/component token board;
-- illustration asset catalog;
-- production asset export list;
-- overview contact sheets;
-- screen index with approval status;
-- final authority reconciliation.
-
-## Expected scope
-
-Current product inventory plus explicit access/cache/error states implies **at least ~82 Light/Dark product-screen references**, plus brand/token boards, reusable art references and contact sheets. The exact count follows the final state inventory; completeness matters more than matching a target number.
+Finalize wordmark, mark/app icon, launch Light/Dark, final token board, component inventory, illustration asset catalog, production export list, overview contact sheets and final authority reconciliation.
 
 ## Per-screen approval checklist
 
-- [ ] canonical IA / route correct
-- [ ] product/access semantics current
+- [ ] canonical route/IA correct
+- [ ] current access semantics
 - [ ] Light design approved
 - [ ] Dark design approved
-- [ ] no more than one dominant Level A hero when appropriate
-- [ ] illustration matches the shared Humay art language
+- [ ] hierarchy matches D0
+- [ ] simple/editorial illustration style; no painterly drift
 - [ ] color has semantic purpose
-- [ ] readable at normal and accessibility text sizes
-- [ ] contrast checked separately in Light and Dark
-- [ ] mock astrology values treated as illustrative
-- [ ] production-asset candidates identified
+- [ ] readable at accessibility sizes
+- [ ] contrast checked separately
+- [ ] mock astrology values remain illustrative
+- [ ] reusable assets/components identified
 
 ## Review cadence
 
-Work phase by phase:
+1. generate/compose Light;
+2. correct hierarchy and product content;
+3. compose Dark intentionally;
+4. review side by side;
+5. reconcile shared components/assets;
+6. commit references;
+7. mark phase approved;
+8. continue to next phase.
 
-1. generate Light composition;
-2. correct hierarchy/content;
-3. design Dark counterpart intentionally;
-4. compare side by side;
-5. freeze reusable illustration/component rules;
-6. commit approved references/assets/specifications;
-7. proceed to the next phase.
-
-Do not create a second parallel design plan. Any design decision that changes this sequence or authority is edited into this file and `DESIGN_AUTHORITY.md` directly.
+Do not create a second parallel design plan.
