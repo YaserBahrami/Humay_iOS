@@ -39,23 +39,23 @@ SVG references are GitHub-viewable/editable design images. Production artwork is
 
 D0 establishes warm cream vs midnight navy appearance, strong editorial serif + clean system UI typography, simple cute line/flat celestial illustration, disciplined coral/lavender/gold/blue/sage accents, soft rounded cards and sparse decoration.
 
-## D1 — Onboarding — GENERATED / REVIEW NEXT
+## D1 — Onboarding — REDESIGN IN PROGRESS
 
-Generated and committed in both appearances:
+The previous nine-screen onboarding exploration is stale. The current app implements four beats in `OnboardingFlowView.Step`, and D1 must follow that product truth.
 
-1. Welcome
-2. Why Humay / value proposition
-3. Birth date
-4. Birth time
-5. Unknown birth-time path
-6. Birth location
-7. Astrology system selection
-8. Calculation/progress
-9. Big Three / first reveal
+1. Welcome — **Light/Dark redesigned; review now**
+2. Birth Date — next
+3. Tradition — pending
+4. Profile Reveal — pending
 
-**Deliverables:** 18 individual SVG screen references, Light/Dark contact boards, shared UI-component board and illustration/icon reference board.
+Birth time and birth location are not onboarding steps. They are optional later inputs for precise chart features.
 
-Review D1 against D0 before marking it approved. Do not propagate any D1 drift into D2.
+**Step 01 references:**
+
+- `soulful-reference/onboarding/light/01-welcome.svg`
+- `soulful-reference/onboarding/dark/01-welcome.svg`
+
+Do not propagate any legacy nine-screen onboarding draft into implementation.
 
 ## D2 — Today + Circle
 
