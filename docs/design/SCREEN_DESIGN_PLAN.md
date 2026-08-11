@@ -13,7 +13,7 @@ Design every Humay product surface in the selected cosmic-editorial direction an
 ```text
 docs/design/soulful-reference/
   anchors/                 # D0 selected references
-  onboarding/              # D1
+  onboarding/              # D1 individual Light/Dark screens + boards
   components/              # shared UI + illustration boards
   today/
   circle/
@@ -27,7 +27,7 @@ docs/design/soulful-reference/
   assets/
 ```
 
-SVG reference boards are GitHub-viewable/editable design images. Production artwork is exported separately into `Humay/Resources/Assets.xcassets/` only after approval.
+SVG references are GitHub-viewable/editable design images. Production artwork is exported separately into `Humay/Resources/Assets.xcassets/` only after approval.
 
 ## D0 — Visual anchor lock — APPROVED
 
@@ -37,18 +37,11 @@ SVG reference boards are GitHub-viewable/editable design images. Production artw
 | Daily Horoscope | committed | committed | approved style source |
 | Compatibility | committed | committed | approved style source |
 
-D0 establishes:
-
-- warm cream vs midnight navy appearance;
-- strong editorial serif + clean system UI typography;
-- simple cute line/flat celestial illustration;
-- coral/lavender/gold/blue/sage accents;
-- soft rounded cards and sparse decoration;
-- deliberate Light/Dark translation.
+D0 establishes warm cream vs midnight navy appearance, strong editorial serif + clean system UI typography, simple cute line/flat celestial illustration, disciplined coral/lavender/gold/blue/sage accents, soft rounded cards and sparse decoration.
 
 ## D1 — Onboarding — GENERATED / REVIEW NEXT
 
-Generated in both appearances:
+Generated and committed in both appearances:
 
 1. Welcome
 2. Why Humay / value proposition
@@ -60,7 +53,7 @@ Generated in both appearances:
 8. Calculation/progress
 9. Big Three / first reveal
 
-**Deliverables:** Light/Dark onboarding boards plus UI-component and illustration/icon reference boards.
+**Deliverables:** 18 individual SVG screen references, Light/Dark contact boards, shared UI-component board and illustration/icon reference board.
 
 Review D1 against D0 before marking it approved. Do not propagate any D1 drift into D2.
 
