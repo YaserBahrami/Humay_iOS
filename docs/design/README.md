@@ -1,8 +1,19 @@
-# Design Reference
+# Humay Design Reference
 
-This directory is the repository-owned source of truth for approved Humay product and UI/UX design artifacts. The repository itself still uses `Astara_iOS` as its working project name.
+This directory is the repository-owned source of truth for Humay product and UI/UX design artifacts.
 
-The broad design phase is **frozen and implementation-ready through Pass 6.1 — Final Engineering Freeze**. Some astrology methodologies remain feature-specific blockers; see [`DESIGN_AUTHORITY.md`](DESIGN_AUTHORITY.md).
+## Current visual direction
+
+As of **2026-08-12**, Humay's current visual authority is:
+
+1. [`DESIGN_AUTHORITY.md`](DESIGN_AUTHORITY.md)
+2. [`SOULFUL_CELESTIAL_DESIGN_DIRECTION.md`](SOULFUL_CELESTIAL_DESIGN_DIRECTION.md)
+3. [`SCREEN_DESIGN_PLAN.md`](SCREEN_DESIGN_PLAN.md)
+4. Approved paired screen references in [`soulful-reference/`](soulful-reference/README.md)
+
+The target feeling is **soulful, colorful, charming and premium**: painterly celestial artwork and expressive editorial typography inside a clear modern iOS product. It should be fun/cute in selected moments without becoming childish, cartoon-heavy or visually noisy.
+
+Every redesigned product screen requires a deliberate **Light + Dark pair** before final visual implementation is frozen.
 
 ## Current structure
 
@@ -10,125 +21,80 @@ The broad design phase is **frozen and implementation-ready through Pass 6.1 —
 docs/design/
   README.md
   DESIGN_AUTHORITY.md
-  MINIMAL_DESIGN_DIRECTION.md
+  SOULFUL_CELESTIAL_DESIGN_DIRECTION.md
+  SCREEN_DESIGN_PLAN.md
+  MINIMAL_DESIGN_DIRECTION.md          # historical previous visual direction
 
-  review/
+  soulful-reference/                  # current redesign references
     README.md
-    01-welcome.png … 10-profile-settings.png
+    anchors/
+      light/
+      dark/
+    assets/
+    ... screen families added D1-D9
 
-  claude-reference/
-    README.md
-    Product Strategy.dc.html
-    Onboarding.dc.html
-    Product Design - Pass 2.dc.html
-    Product Design - Pass 3.dc.html
-    Product Design - Pass 4.dc.html
-    Product Design - Pass 4.1 - Rewarded Access.dc.html
-    Product Design - Pass 5 - Brand and Identity.dc.html
-    Product Design - Pass 5.1 - Humay Brand Lock.dc.html
-    Product Design - Pass 6 - Engineering Handoff and Final Audit.dc.html
-    Product Design - Pass 6.1 - Final Engineering Freeze.dc.html
-    Product Design - Authority Map.dc.html
-    support.js
-    _ds/...
-
-  final-archive/
-    README.md
-    reference/*.md
-    previews/...
+  review/                              # screenshots of the existing mock-first app
+  claude-reference/                    # historical original design artifacts
+  final-archive/                       # historical GitHub-friendly derived archive
 ```
-
-Keep each original HTML artifact together with `support.js` and its referenced `_ds` assets so the exported designs remain renderable.
 
 ## Where to start
 
-For implementation/architecture work:
+For design/implementation work:
 
 1. Read [`DESIGN_AUTHORITY.md`](DESIGN_AUTHORITY.md).
-2. Read [`MINIMAL_DESIGN_DIRECTION.md`](MINIMAL_DESIGN_DIRECTION.md) — the current visual and layout authority for anything you are about to draw.
-3. Use the original files in [`claude-reference/`](claude-reference/) for product concepts, feature behaviour, terminology and copy. They are no longer the visual authority.
-4. Use the [final visual archive](final-archive/README.md) for fast GitHub browsing, screenshots and concise Markdown summaries.
-5. Use the [implementation review screenshots](review/README.md) to see what the application currently looks like.
+2. Read [`SOULFUL_CELESTIAL_DESIGN_DIRECTION.md`](SOULFUL_CELESTIAL_DESIGN_DIRECTION.md).
+3. Use [`SCREEN_DESIGN_PLAN.md`](SCREEN_DESIGN_PLAN.md) to identify whether the screen family is already visually frozen.
+4. Use [`soulful-reference/`](soulful-reference/README.md) for approved Light/Dark composition references.
+5. Use `claude-reference/`, `final-archive/` and `review/` only to recover product behavior, states, copy and historical interaction decisions that have not been superseded.
 
-The final archive is **derived documentation**. It does not become a new authority layer. Neither do the review screenshots: they record what was built, not what should be.
+## Canonical information architecture
 
-## Authority summary
+The visual redesign does not automatically change navigation.
 
-- `Product Strategy.dc.html` — core product concept and principles.
-- `Onboarding.dc.html` — dedicated onboarding visual reference, subject to later birth-time corrections.
-- Pass 4 — broad product-screen reference where later artifacts do not override it.
-- Pass 4.1 — monetization-surface reference, subject to explicit Pass 6 / 6.1 corrections.
-- Pass 5 — historical brand exploration.
-- Pass 5.1 — Humay brand authority.
-- Pass 6 — engineering-handoff and contradiction-audit record.
-- Pass 6.1 — final correction/freeze layer; it wins only for scopes it explicitly supersedes.
+**Today / Circle / Sky / Chart / Ask** remains canonical.
 
-## Source-of-truth rules
+- Calendar is nested under Sky.
+- Profile / Settings is reached from the header/profile entry.
+- Compatibility lives in Circle/people flows.
+- Concept screenshots that temporarily show `Compatibility` or `Library` tabs are style explorations, not IA authority.
 
-- Design artifacts are authoritative for approved UX, hierarchy, visual direction, interactions, monetization behavior, brand and product structure.
-- They are **not** authoritative for astronomical or astrological calculation outputs.
-- Exact placements, aspects, timing, dashas, pillars and interpretations shown in design artifacts are illustrative prototype content unless independently validated.
-- Deterministic calculation engines and validated outputs provide chart facts such as planetary positions, Ascendant, houses, aspects, sidereal placements, nakshatras, dashas, BaZi pillars and timing.
-- Interpretation consumes structured calculated facts and must never invent positions, degrees, houses, dashas, pillars or timing.
-- Normal and Roast consume the same calculated facts and the same underlying interpretation; only expression differs.
+## Historical material
 
-## Final product direction
+### `MINIMAL_DESIGN_DIRECTION.md`
 
-- Humay consumer brand and HUMAY wordmark
-- Eclipse visual direction
-- Today / Circle / Sky / Chart / Ask
-- Calendar under Sky
-- Profile / Settings through the header/profile entry
-- native Western / Vedic / Chinese experiences without flattening their system grammar
-- Compare Systems
-- compatibility and Today Together
-- Ask the Stars
-- Normal / Roast in-app expression
-- notifications always in the Normal register; the earlier notification Roast toggle is superseded
-- sharing, widgets, privacy/data controls and complete product states
-- Free → optional Rewarded Access → Premium
+Preserved as the previous visual direction. Its serious/minimal appearance, all-paper lock, square/no-shadow emphasis and restricted color treatment are superseded.
 
-## Rewarded Access
+Its useful implementation/accessibility lessons—semantic layout, reflow instead of shrinking, Dynamic Type hierarchy and responsive fixed-geometry behavior—remain captured in the current authority map.
 
-Two rewarded entitlement shapes are approved:
+### `claude-reference/`
 
-1. **Persistent content unlock** — one completed rewarded ad unlocks one identified reading/section; that item stays unlocked, survives restart and never asks again.
-2. **Immediate Ask extension** — one completed rewarded ad permits one additional Ask question; it is single-use and is not stored or shown as currency/balance.
+Original product/design explorations and freeze artifacts. Use for feature concepts, interaction history, terminology and states where newer authority does not conflict.
 
-Saved People capacity is **not** increased through Rewarded Access. Free has a base limit and Premium a larger limit; exact limits remain product configuration.
+### `final-archive/`
 
-Rewarded ads remain voluntary and bounded. No banner, native-feed, autoplay, interstitial or launch ads are part of the approved product direction.
+Historical GitHub-friendly derived screenshots/Markdown. It is a convenient inventory, not current visual authority.
 
-## Methodology status
+### `review/`
 
-Design/UX readiness does not mean every astrology methodology is complete.
+Screenshots of the completed Phase 01M mock-first application. They document what was built, not the new target appearance.
 
-Research/sign-off remains necessary for output-affecting methodology including:
+## Current redesign status
 
-- Western house-system strategy
-- Western composite-chart technique
-- Vedic non-romantic relationship dimensions
-- Chinese calendar conventions
-- BaZi Four Pillars conventions
-- BaZi Luck Cycle / Da Yun methodology and inputs
-- cross-system timing/event mapping
-- Lahiri ayanamsa as a provisional Vedic default pending sign-off
-- BaZi local/solar-time handling as a provisional default pending sign-off
+**D0 — Visual anchor lock** is the active first step.
 
-These are feature-specific dependencies. They do not block the iOS foundation/design system or unaffected feature work.
+The anchor family is:
 
-## Brand status
+- Today / Home
+- Daily Horoscope / reading detail
+- Compatibility
 
-Humay is internally design-locked. External clearance remains pending for trademark, App Store/Google Play naming, domains, relevant handles and cultural/linguistic review.
+Each has a Light reference and an initial Dark translation. The Light anchors define the selected art direction; Dark receives a deliberate refinement pass before it becomes the pattern for all downstream screens.
 
-## Current status
+Next: **D1 — Onboarding**, nine screens in both appearances.
 
-**Design/UX frozen: Pass 6.1 — Final Engineering Freeze.**
+## Product/data caveat
 
-The [GitHub-friendly final screenshot/Markdown archive](final-archive/README.md) is present and verified as derived documentation: 51 PNGs and 9 Markdown reference files.
+Design artifacts define presentation and interaction. They do **not** validate astrology calculations.
 
-One known visual exception is documented in the archive: the notification-settings screenshot predates the Pass 6 ruling and still shows the superseded Roast toggle. The final behavior remains Normal-only notifications.
-
-Production iOS implementation has not started.
-
-Next substantive phase: **Technical Architecture & Implementation Planning**.
+Exact placements, aspects, timing, dashas, pillars, compatibility values and interpretations shown in mockups are illustrative unless independently validated by the structured calculation/methodology layer. Current access/cost behavior is governed by [`../development/PRODUCT_ACCESS_MODEL.md`](../development/PRODUCT_ACCESS_MODEL.md).
