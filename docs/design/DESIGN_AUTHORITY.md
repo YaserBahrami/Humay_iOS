@@ -1,18 +1,21 @@
 # Design Authority & Supersession Map
 
-Reference map — not a product or technical-architecture specification.
+This map defines which artifacts govern Humay implementation. Historical Claude artifacts remain preserved. Newer explicit product decisions override older conflicting decisions only within the scope they address.
 
-This document states which artifact governs by topic for engineering handoff. Older artifacts remain preserved as historical references. Newer explicit decisions override older conflicting decisions only within the scope they address.
+## 01 — Current authority order
 
-## 01 — Product Strategy
+For implementation, use this order:
 
-**`Product Strategy.dc.html`** remains authoritative for the core product concept and product principles.
+1. Current explicit product decisions in [`../development/PRODUCT_ACCESS_MODEL.md`](../development/PRODUCT_ACCESS_MODEL.md) for Free/Rewarded/Premium, runtime-cost and precision-vs-catalog behavior.
+2. This authority map for supersession rules.
+3. Pass 6.1 and the final archive for current visual/interaction baseline where not superseded.
+4. Older Claude passes for historical/detail reference only when no newer authority conflicts.
 
-Later passes execute against that strategy; they do not replace its strategic intent unless this map explicitly says otherwise.
+The 2026-08-11 product/access decision requires a new Claude Design revision for affected surfaces. Until then, Pass 6.1 is **not** implementation-final for access/monetization/personalization states.
 
-## 02 — Information Architecture
+## 02 — Information architecture
 
-Current primary IA is locked:
+Current primary IA remains:
 
 **Today / Circle / Sky / Chart / Ask**
 
@@ -20,203 +23,142 @@ Current primary IA is locked:
 - Profile / Settings is reached through the header/profile entry.
 - Profile / Settings is not a sixth primary tab.
 
-Pass 6 confirmed that no implementation-blocking contradiction exists against this structure.
+This remains the baseline unless the next Claude Design pass explicitly changes it.
 
-## 03 — Core Product Screens
+## 03 — Visual/core screen reference
 
-Use the latest applicable artifact for each surface:
+- Onboarding: `Onboarding.dc.html` plus later corrections.
+- Pass 2 / Pass 3: foundational exploration/historical reference.
+- Pass 4 / 4.1: broad product and monetization exploration, historical where superseded.
+- Pass 6: engineering-handoff/audit record.
+- Pass 6.1: latest frozen visual/interaction correction layer before the 2026-08-11 access-model change.
+- `final-archive/`: GitHub-friendly derived screenshots/Markdown; never calculation truth.
 
-- **Onboarding** — `Onboarding.dc.html`, with Pass 6.1 rules overriding it where birth-time uncertainty or later handoff contracts conflict.
-- **Pass 2 / Pass 3** — foundational Today, Circle, compatibility, Chart, Sky, native-system, Compare Systems and Ask exploration; historical where later passes cover the same surface.
-- **Pass 4** — current broad product-screen reference for completion work where no later artifact overrides the topic.
-- **Pass 4.1** — monetization-touching UX and access-state reference, subject to the Pass 6 / Pass 6.1 corrections below.
-- **Pass 6** — engineering handoff and contradiction-audit record.
-- **Pass 6.1** — final implementation-facing correction/freeze layer. Where Pass 6.1 explicitly supersedes Pass 6 or an earlier artifact, Pass 6.1 wins.
+## 04 — Product access model — supersedes old monetization semantics where conflicting
 
-## 04 — Monetization
+The hierarchy is still conceptually:
 
-The product hierarchy remains:
+**Free → optional Rewarded Access → Premium**
 
-**Free → Rewarded Access → Premium**
+But the behavior is now defined as follows.
 
-### Persistent rewarded content unlock
+### Free
 
-For bounded reading/content depth:
+- Ordinary Free runtime usage must not call a paid astrology or LLM provider.
+- Free daily horoscope is a coarse, pre-generated catalog experience based on birth date/system bucket rather than a natal chart.
+- Western baseline uses 12 Sun-sign daily entries.
+- Free Western compatibility uses 12 × 12 = 144 pre-generated sign-pair keys.
+- Free has no natal-chart calculation.
+- Vedic/Chinese coarse catalogs exist only if methodology validates a finite bucket model.
 
-- one completed rewarded ad unlocks one identified reading or section;
-- that content stays unlocked;
-- the unlock survives app restart;
-- the same content item never asks again;
-- different content may require another rewarded unlock;
-- Rewarded Access is not temporary Premium.
+### Rewarded Access
 
-### Ask rewarded extension
+- One completed rewarded ad authorizes one needed provider-backed generation for the selected feature/result key.
+- Cache is checked before ad/provider generation.
+- After successful generation, that result is cached and can be reopened without another provider generation/ad for the same valid key.
+- A materially different result key can require a new reward.
+- Rewarded Access is not temporary Premium and not a token/coin wallet.
+- Provider failure after ad completion requires a fair idempotent recovery flow.
 
-Ask uses a separate approved entitlement shape:
-
-- one completed rewarded ad permits one additional Ask question;
-- the entitlement is single-use and consumed by that question;
-- it is not a visible or bankable balance, coin, credit, token or currency system.
-
-### Saved People
-
-Pass 4.1 left rewarded Saved People capacity under review. Pass 6 temporarily approved `+1 slot per ad`; Pass 6.1 explicitly reverses that Pass 6 decision:
-
-- Free has a base Saved People limit;
-- Rewarded Access is **not** used to increase Saved People capacity;
-- Premium has a larger Saved People limit;
-- exact numeric limits remain product configuration.
+This supersedes the older generic 'persistent per-section unlock' model where it conflicts.
 
 ### Premium
 
-- Premium access follows a valid subscription entitlement.
-- Premium is not described as permanent.
-- Concrete subscription/store implementation is a technical-architecture decision, not a design decision.
+- Premium provides provider-backed personalized/precision features while subscription entitlement is valid.
+- Premium still uses cache first.
+- Premium avoids the per-generation rewarded-ad requirement for included features.
+- Post-expiry visibility of previously generated cached Premium results remains to be finalized.
 
-## 05 — Brand
+### Saved People
 
-**Pass 5** is historical exploration only.
+- Rewarded Access is not used as a Saved People slot currency.
+- Exact Free/Premium capacities remain product configuration.
 
-**Pass 5.1 — Humay Brand Lock** is authoritative for:
+### Ask
 
-- Humay consumer name;
-- HUMAY wordmark;
-- occultation mark;
-- app icon;
-- palette;
-- typography;
-- brand voice;
-- Roast expression;
-- Humay Premium naming;
-- launch / store / press lines;
-- motion principles;
-- brand misuse rules.
+- Provider-backed Ask must pass cache/access checks before paid generation.
+- A rewarded completion can authorize one additional question generation.
+- No bankable balance/token/currency system.
 
-Where Pass 5 and Pass 5.1 disagree, Pass 5.1 wins.
+## 05 — Brand/name authority
 
-## 06 — Roast and Notifications
-
-Pass 6 resolves the Pass 4 / Pass 5.1 conflict:
-
-- Roast is an in-app expression only.
-- Push notifications are always written in the Normal register.
-- The old Pass 4 Normal/Roast notification toggle is superseded and must not be implemented.
-- Normal and Roast consume the same calculated astrology facts and the same underlying interpretation; only expression changes.
-
-## 07 — Old Names
+**Humay** is the product name, repository name and current internal project name.
 
 | Name | Status |
-| --- | --- |
-| Astara | Repository / project working name only — never surfaced to users |
+|---|---|
+| Astara | Historical former working/repository name only |
 | Ortus | Historical placeholder |
-| Ecliptic | Rejected Pass 5 recommendation |
-| Eclipse | Visual/design direction only — not the product name |
-| Humay | Selected consumer brand — current |
+| Ecliptic | Rejected historical recommendation |
+| Eclipse | Visual/design direction only — not product name |
+| Humay | Current product/project/repository name |
 
-## 08 — Astrology Data Authority
+Pass 5.1 remains the baseline brand-lock reference for wordmark/mark/icon/palette/typography/voice/Roast/motion, subject to future explicit Humay design revisions.
 
-- All exact chart values, placements, aspects, timing, dashas, pillars and interpretations shown in design artifacts are prototype content unless independently validated.
-- Design-artifact values must not become engineering fixtures merely because they appear in a mockup.
-- Deterministic calculation engines and validated outputs are authoritative for astronomical and astrological facts.
-- Interpretation consumes structured calculated facts; it does not produce them.
-- The interpretation/LLM layer must never invent positions, degrees, houses, Ascendant, aspects, nakshatras, dashas, pillars or timing.
-- Presentation controls how facts and interpretations are shown, not what the calculated facts are.
-- Exact clock times appear only when deterministically calculated.
+## 06 — Roast and notifications
 
-## 09 — Unknown Birth Time
+- Roast is an in-app expression only.
+- Push notifications are always Normal-register copy.
+- Normal and Roast consume the same astrology facts; tone must not alter calculated meaning.
+- The old Normal/Roast notification toggle must not be implemented.
 
-Pass 6.1 supersedes Pass 6 §06.
+## 07 — Astrology data authority
 
-General rule: unknown birth time degrades individual calculated facts according to the actual uncertainty window; it does not automatically invalidate the entire chart and it does not make uncertain facts reliable by assumption.
+### Free catalog
 
-- **Western:** Rising sign and houses are unavailable/unreliable without sufficient time. Moon sign/degree and Moon-dependent aspects can also be uncertain when the possible birth-time window crosses a relevant boundary.
-- **Vedic:** Lagna/Bhavas depend on time. Nakshatra and Moon-dependent timing use the actual Moon uncertainty window. Vimshottari timing remains classified as Reliable / Approximate / Unavailable as appropriate.
-- **Chinese/BaZi:** Hour Pillar is unavailable without birth time. Year/Month/Day Pillar availability depends on the validated calendar/day-boundary convention and the user's uncertainty window; Day Pillar is not assumed universally reliable while methodology remains unresolved.
+- Free catalog text is intentionally coarse and pre-generated.
+- It must disclose its limited basis and never present itself as natal-level precision.
+- Catalog content is product/editorial content, not a source of astronomical facts.
 
-## 10 — Methodology Status
+### Precision features
 
-Any choice that changes calculated astrological output is a methodology/domain decision requiring validation/sign-off, not ordinary UI/engineering discretion.
+- Exact placements, aspects, houses, timing, dashas, pillars and relationship facts come from the structured calculation layer/provider and validated methodology.
+- Design mockup values are prototype content unless independently validated.
+- Interpretation/LLM consumes structured facts; it must not invent positions, degrees, houses, Ascendant, aspects, nakshatras, dashas, pillars or timing.
+- Exact clock times appear only when deterministically/calculationally supported.
 
-### Research required before the affected production feature ships
+## 08 — Unknown birth time
 
-- supported Western house-system strategy;
-- Western composite-chart technique;
-- Vedic non-romantic relationship dimension set;
-- Chinese calendar conventions;
-- BaZi Four Pillars conventions;
-- BaZi Luck Cycle / Da Yun methodology and input requirements;
-- event-type mapping between Western / Vedic / Chinese timing concepts.
+For precision features, unknown birth time degrades only the facts actually dependent on time/uncertainty; it is never replaced with a hidden fake time.
 
-### Provisional methodology defaults requiring sign-off
+- Western: Rising/houses require sufficient time; Moon/aspects may become uncertain near boundaries.
+- Vedic: Lagna/Bhavas and some Moon/timing outputs depend on time/uncertainty.
+- Chinese/BaZi: Hour Pillar is unavailable without time; other pillar reliability depends on signed-off calendar/day-boundary methodology.
 
-- Lahiri ayanamsa for Vedic;
-- local/solar-time handling for BaZi.
+Free coarse catalog paths do not use birth time merely to imitate precision.
 
-These defaults may be used for prototyping/development but must not be treated as canonical production methodology without sign-off.
+## 09 — Methodology status
 
-### Feature-specific blockers
+Any choice that changes calculated output requires domain/methodology validation.
 
-The design/UX handoff is implementation-ready, but the following features remain methodology-blocked:
+Research/sign-off remains required for items tracked in [`../development/METHODOLOGY_TRACK.md`](../development/METHODOLOGY_TRACK.md), including Western house/composite choices, Vedic conventions/non-romantic compatibility, Chinese/BaZi calendar/Four-Pillars/Luck-Cycle rules and cross-system timing mapping.
 
-- Chinese/BaZi native production astrology;
-- advanced BaZi Luck Cycles;
-- Western composite-chart readings;
-- Vedic non-romantic compatibility;
-- full Compare Systems parity where cross-system timing-event mapping is required.
+A provider response does not automatically constitute methodology sign-off.
 
-These do not block the iOS foundation/design system or unaffected feature work.
+## 10 — Design vs technical architecture
 
-## 11 — Design vs Technical Architecture
+Product/design locks user-visible behavior and access meaning. Architecture decides:
 
-Pass 6.1 explicitly separates behavioral design contracts from implementation mechanics.
+- exact backend/storage technology;
+- provider adapters and vendor configuration;
+- StoreKit/ad SDK details;
+- reward verification/recovery;
+- cache identity/TTL/retention;
+- notification delivery mechanics;
+- privacy/security implementation.
 
-Design locks behavior such as:
+Architecture may optimize cost but may not silently turn Free requests into paid provider calls.
 
-- Premium reflects valid subscription entitlement;
-- successful rewarded completion grants the approved reward shape;
-- persistent content unlocks survive restart and remain unlocked for that item;
-- notification content follows Humay rules;
-- no login/account infrastructure is assumed by design.
+## 11 — External brand clearance
 
-Technical architecture will decide:
+Humay is the current internal product/project name. Trademark, App Store/Google Play naming, domains, handles and cultural/linguistic clearance remain external launch tasks.
 
-- exact StoreKit/API implementation and product configuration;
-- rewarded-ad provider/SDK;
-- reward verification strategy;
-- persistence and sync mechanics;
-- local vs remote notification architecture;
-- backend/storage details.
+## 12 — Current design status
 
-## 12 — External Brand Clearance
+- Pass 6.1 is preserved as the latest completed visual/UX baseline.
+- The 2026-08-11 product/access change supersedes conflicting Pass 6.1 monetization/access behavior.
+- **A new Claude Design revision is required** for Chart, Today, Compatibility, Ask and paywall/rewarded/cached-result states before those surfaces are implementation-final.
+- Unaffected visual/IA work can still use Pass 6.1 as reference.
 
-Humay is internally design-locked. The following remain external and unresolved:
+## 13 — Next step
 
-- trademark;
-- App Store name;
-- Google Play title;
-- domains;
-- handles, if relevant;
-- cultural/linguistic review.
-
-These do not block design or foundation engineering, but they must be resolved before public launch/brand commitment where applicable.
-
-## 13 — Current Status
-
-**Design/UX is frozen and implementation-ready as of Pass 6.1 — Final Engineering Freeze.**
-
-Pass 6 remains the audit record. Pass 6.1 is the final correction layer and supersedes only the portions it explicitly identifies.
-
-No Pass 6.2 is planned.
-
-## 14 — Derived GitHub Archive
-
-[`final-archive/`](final-archive/README.md) contains the frozen design's GitHub-friendly screenshots and Markdown summaries.
-
-- 51 PNG files and 9 Markdown reference files were added from the final export.
-- The archive is **derived documentation only** and never supersedes this authority map or the applicable `.dc.html` source artifact.
-- `final-archive/previews/settings/settings-03-notifications.png` is a known pre-freeze visual exception: it still shows the old notification Roast control. The final implementation rule remains **Normal-only notifications with no Roast toggle**.
-- Methodology-blocked screenshots remain visual/product references only; their sample astrology does not validate methodology or calculation output.
-
-## 15 — Next Step
-
-**Technical Architecture & Implementation Planning**, followed by iOS foundation implementation.
+After the GitHub product/roadmap documentation is reconciled, continue Claude Design using [`../development/PRODUCT_ACCESS_MODEL.md`](../development/PRODUCT_ACCESS_MODEL.md) as a mandatory input and update the final archive/authority map after the new design pass is approved.

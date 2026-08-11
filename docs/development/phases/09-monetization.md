@@ -1,18 +1,18 @@
-# Phase 09 — Monetization & Entitlements
+# Phase 09 — Monetization & Generation Entitlements
 
 Status: **TODO**
 Depends on: Phase 01, feature access contracts from Phases 04–08
 
-Goal: implement the frozen Free → Rewarded Access → Premium behavior without coupling product logic to a specific store/ad SDK.
+Goal: implement **Free catalog → Rewarded one-generation access → Premium** while preserving the zero-paid-call Free invariant and cache-first behavior.
 
 ## Tasks
 
-### MON-001 — Implement entitlement domain model
+### MON-001 — Implement access/entitlement domain model
 Status: TODO
 
 Acceptance:
-- Free, valid Premium, persistent content unlock and immediate Ask extension are distinct types.
-- Premium is not represented as permanent/lifetime.
+- Free catalog access, valid Premium, rewarded-generation authorization and cached-result availability are distinct concepts.
+- Rewarded Access is not temporary Premium and is not a wallet/currency.
 
 ### MON-002 — Implement Premium purchase-status adapter
 Status: TODO
@@ -20,54 +20,60 @@ Depends on: MON-001, ARCH-007
 
 Acceptance:
 - Store implementation sits behind an interface.
-- Current Premium entitlement can be refreshed/recovered.
-- No Humay login is required.
+- Premium entitlement can be refreshed/recovered.
+- No Humay login is required by default.
 
 ### MON-003 — Implement Premium/paywall surfaces
 Status: TODO
 Depends on: MON-002
 
 Acceptance:
-- Humay Premium screens match frozen design semantics.
-- Manage/restore flows are reachable where architecture requires them.
-- Free app remains useful when purchase infrastructure is unavailable.
+- Surfaces match the next reconciled design.
+- They explain personalized/precision value without implying Free content is broken or fake.
+- Free catalog remains usable when purchase infrastructure is unavailable.
 
 ### MON-004 — Implement rewarded-ad provider abstraction
 Status: TODO
 Depends on: MON-001, ARCH-007
 
 Acceptance:
-- Presentation/domain logic requests a reward outcome, not SDK objects.
-- Cancel/failure/retry paths never grant a reward accidentally.
+- Domain/presentation requests a reward outcome, not SDK objects.
+- Cancel/failure paths do not grant generation authorization.
 - Provider choice can change without rewriting features.
 
-### MON-005 — Implement persistent per-item rewarded unlocks
+### MON-005 — Implement one-generation rewarded authorization
 Status: TODO
 Depends on: MON-004, ARCH-004
 
 Acceptance:
-- Unlock key identifies one content item/section.
-- Successful unlock survives restart and never re-prompts for that item.
-- No temporary Premium semantics.
+- Cache lookup happens before asking for an ad when the exact valid result already exists.
+- Successful reward authorizes exactly one needed provider-backed generation for the selected feature/result key.
+- Successful generated result is cached and reopenable without another generation/ad.
+- A new materially different result key can require another reward.
 
-### MON-006 — Implement Ask immediate-extension entitlement
+### MON-006 — Implement provider-failure recovery after reward
 Status: TODO
-Depends on: MON-004
+Depends on: MON-005
 
 Acceptance:
-- Successful reward authorizes one additional Ask request.
-- No wallet, balance or stacking UI.
+- User is not stranded after completing an ad when downstream generation fails.
+- Retry/recovery is idempotent and cannot multiply provider calls/rewards.
+- Recovery semantics are documented and tested.
 
-### MON-007 — Add entitlement integration tests
+### MON-007 — Add entitlement/cost integration tests
 Status: TODO
 Depends on: MON-002 through MON-006
 
 Acceptance:
-- Free/Premium transitions, restore/recovery, ad success/failure, persistent unlock and Ask consumption are tested.
+- Free catalog requests cause 0 paid provider calls.
+- Cache hits cause 0 new paid provider calls and no redundant reward gate.
+- Premium/reward transitions, ad success/failure and provider recovery are tested.
+- Duplicate client retries cannot duplicate generation.
 
 ## Exit criteria
 
-- Frozen monetization semantics are implemented independently of provider details.
-- No account/login dependency exists.
-- Entitlement loss/failure does not lose local profile data.
-- Rewarded ads remain voluntary and bounded.
+- Free runtime cost invariant is enforced.
+- Rewarded Access maps to one required personalized generation, not temporary Premium.
+- Cached results reopen without repeat generation.
+- Premium uses the same cache-first provider pipeline.
+- No account/login dependency exists unless separately approved.

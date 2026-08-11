@@ -1,16 +1,38 @@
-# Astara iOS
+# Humay iOS
 
-This repository currently uses **Astara** as its project/repository working name. The selected consumer-facing brand is **Humay**.
+**Humay** is the product name, repository name and current internal project name for this iOS application.
 
-The broad product-design phase is complete. The design/UX handoff is frozen and implementation-ready through **Pass 6.1 — Final Engineering Freeze**. Production iOS implementation has not started.
+Production implementation has not started. The existing Claude design archive remains the visual/interaction baseline through **Pass 6.1**, but the product access and cost model was revised on **2026-08-11**. Access, monetization and personalization surfaces affected by that decision must be updated in the next Claude Design pass before they are treated as implementation-final.
+
+## Current product model
+
+Humay uses two distinct content paths:
+
+1. **Free catalog path — near-zero marginal runtime cost**
+   - Free daily horoscope content is based on coarse birth-date/system buckets rather than a natal chart.
+   - Western daily horoscope uses the 12 Sun signs, so only 12 daily entries are required per content variant/locale/tone.
+   - Free Western compatibility uses 12 × 12 sign combinations = 144 catalog keys.
+   - Other systems may use finite pre-generated catalogs only where the methodology is valid with the available coarse inputs.
+   - Free catalog content is generated ahead of time, versioned and stored in the backend; a free request must not call a paid astrology or LLM provider.
+
+2. **Precision/personalized path — Rewarded Access or Premium**
+   - Natal chart, precise personalized horoscope, precise compatibility and other provider-backed features are not part of the zero-cost Free path.
+   - The initial provider strategy is an astrology calculation service (currently Astrologer/RapidAPI) for structured astrology facts plus **DeepSeek V4 Flash** for interpretation/expression.
+   - Provider calls happen server-side, behind replaceable adapters.
+   - The backend checks cache first. A rewarded unlock authorizes one provider-backed generation for the selected feature/result key; the generated result is cached and can be reopened without generating it again.
+   - Premium uses the same cache-first pipeline without requiring a rewarded ad for each generation while the subscription entitlement is valid.
+
+See [`docs/development/PRODUCT_ACCESS_MODEL.md`](docs/development/PRODUCT_ACCESS_MODEL.md) for the authoritative current product/access decision.
 
 ## Design reference
 
 Original approved product/UI artifacts live under [`docs/design/claude-reference/`](docs/design/claude-reference/).
 
-For GitHub-friendly browsing, screenshots and concise summaries, use the [Humay Final Design Archive](docs/design/final-archive/README.md).
+For GitHub-friendly browsing, screenshots and summaries, use the [Humay Final Design Archive](docs/design/final-archive/README.md).
 
-The current product direction includes:
+See [`docs/design/DESIGN_AUTHORITY.md`](docs/design/DESIGN_AUTHORITY.md) for authority/supersession rules. The Pass 6.1 archive is still the visual baseline, but it no longer overrides the 2026-08-11 product/access decision where they conflict.
+
+Current information architecture remains:
 
 - Today / Circle / Sky / Chart / Ask
 - Calendar nested under Sky
@@ -19,72 +41,30 @@ The current product direction includes:
 - Compare Systems
 - Compatibility and Today Together
 - Ask the Stars
-- Normal and Roast in-app modes using the same underlying astrology
-- notifications always written in the Normal register
-- Free → optional Rewarded Access → Premium
-- Humay brand identity and the Eclipse visual direction
-
-See [`docs/design/DESIGN_AUTHORITY.md`](docs/design/DESIGN_AUTHORITY.md) for the authority and supersession rules across design passes. The screenshot/Markdown archive is derived documentation and does not replace those rules.
+- Normal and Roast in-app modes using the same underlying astrology facts
+- notifications written in the Normal register
 
 ## Development plan
 
-The persistent phase-by-phase roadmap is under [`docs/development/`](docs/development/).
-
 Start each development session with:
 
-1. [`docs/development/STATUS.md`](docs/development/STATUS.md) — current phase, active task and blockers.
-2. [`docs/development/ROADMAP.md`](docs/development/ROADMAP.md) — full phase sequence and release milestones.
-3. The active phase file under [`docs/development/phases/`](docs/development/phases/).
+1. [`docs/development/STATUS.md`](docs/development/STATUS.md)
+2. [`docs/development/PRODUCT_ACCESS_MODEL.md`](docs/development/PRODUCT_ACCESS_MODEL.md)
+3. [`docs/development/ROADMAP.md`](docs/development/ROADMAP.md)
+4. the active phase file under [`docs/development/phases/`](docs/development/phases/)
 
 Current engineering phase: **Phase 00 — Technical Architecture & Implementation Planning**.
 
 ## Source-of-truth boundary
 
-The design artifacts are authoritative for approved product structure, UX, visual direction, brand, interaction patterns and monetization behavior.
+Exact astronomical/astrological facts are never invented by an interpretation model. Provider-backed precision features consume structured calculated facts from the astrology calculation layer. Interpretation consumes those facts and produces user-facing meaning/expression.
 
-They are **not** authoritative for astronomical or astrological calculation outputs. Exact placements, houses, aspects, timing, dashas, pillars and related chart values shown in design artifacts are prototype content unless independently validated. Deterministic calculation engines and validated outputs are the source of truth.
+Free catalog content is intentionally coarse and must disclose its basis (for example, Western Sun-sign/date-based rather than natal-chart-based). It must never imply natal-level precision.
 
-The interpretation layer consumes structured calculated facts; it must not invent positions, degrees, houses, Ascendant, aspects, nakshatras, dashas, pillars or timing.
-
-Any convention that changes calculated astrological output is a methodology/domain decision requiring validation/sign-off, not ordinary UI/engineering discretion.
-
-## Design freeze and methodology dependencies
-
-The design/UX handoff is implementation-ready, but several features remain blocked on methodology research/sign-off before their production astrology can ship:
-
-- Chinese/BaZi native production astrology
-- advanced BaZi Luck Cycles
-- Western composite-chart readings
-- Vedic non-romantic compatibility
-- full Compare Systems parity where cross-system timing/event mapping is required
-
-Lahiri ayanamsa and BaZi local/solar-time handling are provisional methodology defaults for prototyping/development only until methodology sign-off.
-
-These items do **not** block iOS foundation/design-system work or unaffected feature development.
-
-## Monetization
-
-Approved hierarchy: **Free → optional Rewarded Access → Premium**.
-
-Rewarded Access has two supported behaviors:
-
-- a persistent per-item reading/section unlock that survives restart and never asks again for the same item;
-- a single-use additional Ask question after one completed rewarded ad.
-
-Saved People capacity is not increased through Rewarded Access. Free has a base limit and Premium a larger limit; exact values remain product configuration.
-
-Concrete StoreKit, rewarded-ad provider, verification, storage/sync and notification-delivery mechanisms are deferred to technical architecture.
+Any methodology choice that changes calculated output remains a domain decision requiring validation/sign-off.
 
 ## Brand status
 
-**Humay** is the selected consumer brand. **Eclipse** remains the visual/design direction only.
+**Humay** is the selected product and project name. **Eclipse** remains a visual/design direction only. `Astara` is historical and must not be used as the active repository, project or product name.
 
-External clearance is still required for trademark risk, App Store / Google Play naming, domains, relevant handles and cultural/linguistic review.
-
-## Status
-
-Approved/frozen design reference: **through Pass 6.1 — Final Engineering Freeze**.
-
-Final GitHub visual/reference archive: **present** under [`docs/design/final-archive/`](docs/design/final-archive/README.md).
-
-Current engineering phase: **Phase 00 — Technical Architecture & Implementation Planning**.
+External trademark, store-name, domain/handle and cultural/linguistic clearance remain separate launch tasks.

@@ -3,69 +3,74 @@
 Status: **TODO**
 Depends on: Phase 02, Phase 03
 
-Goal: ship the first complete astrology-reading surface on top of deterministic chart facts.
+Goal: deliver Humay's natal/precision Chart experience without creating paid provider cost for ordinary Free users.
 
 ## Tasks
 
-### CHART-001 — Implement Chart overview shell
+### CHART-001 — Implement Chart shell and access states
 Status: TODO
 
 Acceptance:
-- Matches final archive structure and system switching behavior.
-- Loading/error/unavailable states use shared components.
+- Matches the next reconciled Humay design.
+- Free state can explain/preview the feature but does not calculate a natal chart or call a paid provider.
+- Rewarded/Premium/cached-result/error states use shared access components.
 
-### CHART-002 — Implement Western chart experience
+### CHART-002 — Implement Western precision chart path
 Status: TODO
 Depends on: CHART-001, ASTRO-003
 
 Acceptance:
-- Major placements, houses/aspects where valid, and basis disclosures use typed facts.
-- Unknown-time limitations are shown per fact rather than disabling the whole chart.
+- Calculation happens only after cache/access checks.
+- Major placements, houses/aspects where valid and uncertainty use typed provider-independent facts.
+- Unknown-time limitations are represented per fact.
 
 ### CHART-003 — Implement interpretation pipeline for chart factors
 Status: TODO
 Depends on: ARCH-005, CHART-002
 
 Acceptance:
-- Interpretation consumes deterministic factor IDs/values.
-- Cached/retried interpretations remain tied to calculation and prompt versions.
+- Interpretation consumes deterministic/structured factor IDs and values.
+- Calculation and interpretation versions are recorded separately.
+- Reopening a valid cached chart/result does not regenerate it.
 
-### CHART-004 — Implement advanced factor/detail access states
+### CHART-004 — Implement rewarded one-generation and Premium integration
 Status: TODO
-Depends on: CHART-002
+Depends on: CHART-001, ARCH-007
 
 Acceptance:
-- Free baseline is useful.
-- Reward/Premium gates are represented through entitlement interfaces, even if monetization providers are not yet wired.
+- A cache hit opens without another ad/provider call.
+- A rewarded completion authorizes one required chart generation/result key.
+- Premium bypasses the per-generation ad requirement while valid.
+- Provider failure recovery follows the entitlement contract.
 
-### CHART-005 — Implement Vedic UI against gated engine contract
+### CHART-005 — Implement Vedic UI against methodology/provider gates
 Status: TODO
 Depends on: CHART-001, ASTRO-004
 
 Acceptance:
 - Uses native Vedic terminology.
-- Production behavior requiring unsigned methodology remains disabled/marked.
+- Unsigned methodology remains disabled/marked.
 
 ### CHART-006 — Implement Chinese/BaZi structural UI behind feature gate
 Status: TODO
 Depends on: CHART-001, ASTRO-005
 
 Acceptance:
-- UI can be exercised with explicit development fixtures.
-- Production calculation path remains disabled until methodology gates close.
+- UI can use explicit development fixtures.
+- Production calculation remains gated until methodology sign-off.
 
 ### CHART-007 — Implement Compare Systems baseline
 Status: TODO
-Depends on: CHART-002, CHART-005, CHART-006
+Depends on: supported CHART paths
 
 Acceptance:
 - Shared themes / Different emphasis / Different perspective presentation.
-- No ranking or confidence scoring.
-- Timing parity remains gated by METHOD-009.
+- No fake ranking/confidence score.
+- Unsupported cross-system timing remains gated.
 
 ## Exit criteria
 
-- Western Chart is production-valid for supported inputs.
-- Unknown-time behavior is correct.
-- Vedic/BaZi surfaces respect methodology gating.
-- Compare Systems does not imply scientific agreement/confidence.
+- No ordinary Free request calculates a natal chart.
+- Supported precision Chart generation is cache-first and access-controlled.
+- Calculation facts remain provider-independent and validated.
+- Vedic/BaZi respect methodology gates.

@@ -2,9 +2,20 @@
 
 Status: **IN PROGRESS**
 
-Goal: make the minimum set of technical decisions required to start implementation without coupling product behavior to accidental infrastructure choices.
+Goal: freeze the minimum architecture needed to implement Humay's two-path content model safely and cheaply: **Free pre-generated catalog** vs **Rewarded/Premium provider-backed precision**.
 
+Product authority: [`../PRODUCT_ACCESS_MODEL.md`](../PRODUCT_ACCESS_MODEL.md)
 Design reference: [`../../design/DESIGN_AUTHORITY.md`](../../design/DESIGN_AUTHORITY.md)
+
+## Architecture baseline already decided
+
+- Ordinary Free use makes no paid astrology/LLM request.
+- Free content is pre-generated, versioned and served from Humay-owned backend/static/cache storage.
+- Provider-backed personalization is server-side only and cache-first.
+- Initial provider direction: Astrologer API for structured calculation facts + DeepSeek V4 Flash for interpretation.
+- iOS receives normalized Humay contracts, never provider secrets/vendor-native models.
+- Rewarded Access grants one generation for a selected result key; successful results are cached and reopenable.
+- Premium uses the same cache-first path without per-generation rewarded ads while entitlement is valid.
 
 ## Tasks
 
@@ -12,107 +23,112 @@ Design reference: [`../../design/DESIGN_AUTHORITY.md`](../../design/DESIGN_AUTHO
 Status: IN PROGRESS
 
 Scope:
-- Decide what runs on-device vs backend/Cloudflare vs third-party service.
-- Define trust boundaries for deterministic calculations, interpretation, entitlements and reference/static data.
-- Keep authentication out of v1 unless a concrete requirement emerges.
+- Document iOS vs Humay backend/Cloudflare vs static catalog storage vs external providers.
+- Define cache-before-entitlement/provider flow.
+- Define failure behavior when catalog, ad, calculation provider or interpretation provider is unavailable.
+- Keep provider secrets and paid-provider calls off-device.
 
 Acceptance:
-- `docs/architecture/SYSTEM_ARCHITECTURE.md` exists with a clear component/data-flow diagram in Markdown.
-- Each external dependency has an owner, purpose and failure behavior.
+- `docs/architecture/SYSTEM_ARCHITECTURE.md` contains component/data-flow diagrams for Free and precision paths.
+- Every external dependency has purpose, trust boundary and failure behavior.
+- The Free flow demonstrably cannot fall through to a paid provider.
 
 ### ARCH-002 — Define iOS architecture and module boundaries
 Status: TODO
 Depends on: ARCH-001
 
-Scope:
-- App/domain/data/presentation boundaries.
-- Dependency injection, navigation ownership and feature-module strategy.
-- Concurrency/isolation conventions.
-
 Acceptance:
-- `IOS_ARCHITECTURE.md` defines module responsibilities and dependency direction.
-- No feature layer owns deterministic astrology calculations directly.
+- `IOS_ARCHITECTURE.md` defines app/domain/data/presentation and dependency direction.
+- Feature layers consume Humay repositories/use cases, not vendor SDK/API models.
 
-### ARCH-003 — Decide deterministic astrology engine strategy
+### ARCH-003 — Freeze astrology calculation-provider strategy
 Status: TODO
 Depends on: ARCH-001
 
 Scope:
-- Evaluate on-device engine vs API vs hybrid.
-- Define Western/Vedic/BaZi engine interfaces without forcing one implementation across systems.
-- Define versioning and provenance of calculated facts.
+- Define provider-independent Western/Vedic/Chinese calculation contracts.
+- Use Astrologer/RapidAPI as the initial precision-provider direction without coupling domain code to it.
+- Define provenance, methodology/version fields, validation fixtures and replacement/fallback rules.
 
 Acceptance:
-- `ASTROLOGY_ENGINE.md` states the chosen strategy and fallback behavior.
-- Engine output is a typed structured contract consumed by interpretation/presentation.
-- Methodology-pending areas remain explicit gates.
+- `ASTROLOGY_ENGINE.md` states the selected initial provider path and replaceable adapter boundary.
+- Precision output is typed structured data consumed by interpretation/presentation.
+- No calculation provider is required for ordinary Free catalog requests.
 
-### ARCH-004 — Define local persistence, cache and offline strategy
+### ARCH-004 — Define persistence, result cache and offline strategy
 Status: TODO
 Depends on: ARCH-001, ARCH-002
 
 Scope:
-- Local profile, saved people, cached calculations/readings, settings and rewarded unlocks.
-- Migration/versioning policy.
-- Decide whether v1 is local-only or uses any iCloud/backend sync; no auth assumption.
+- Local profile/saved people/settings.
+- Free catalog cache/version behavior.
+- Personalized calculation and interpretation cache identity.
+- Migration/retention/invalidation policy.
 
 Acceptance:
-- `DATA_MODEL.md` documents stores/entities, ownership, retention and migration policy.
-- Offline behavior is defined for each major data category.
+- `DATA_MODEL.md` documents ownership, cache keys, version invalidation and offline behavior.
+- Reopening a valid cached personalized result does not trigger another provider call/reward gate.
 
 ### ARCH-005 — Define interpretation/LLM boundary
 Status: TODO
 Depends on: ARCH-003
 
 Scope:
-- Structured input/output contracts.
-- Prompt/version provenance, safety and retry/fallback behavior.
-- Normal/Roast transformation over the same underlying facts/interpretation.
+- DeepSeek V4 Flash as initial interpretation provider behind an interface.
+- Structured input/output, prompt/model provenance, safety, retries and idempotency.
+- Normal/Roast expression from the same facts.
 
 Acceptance:
-- `INTERPRETATION_LAYER.md` explicitly forbids calculation invention.
-- Deterministic facts, interpretation output and presentation copy are distinguishable in data contracts.
+- `INTERPRETATION_LAYER.md` forbids calculation invention.
+- Calculation facts can be cached separately from interpretation/tone text.
 
-### ARCH-006 — Define backend and static/reference-data responsibilities
+### ARCH-006 — Define backend, Free catalog and static/reference-data responsibilities
 Status: TODO
-Depends on: ARCH-001, ARCH-003
+Depends on: ARCH-001
 
 Scope:
-- Cloudflare Worker/API responsibilities.
-- Static JSON/reference datasets and versioning.
-- Secrets, rate limiting and cache policy.
+- Cloudflare/backend responsibilities.
+- ChatGPT-assisted offline/batch Free catalog generation workflow.
+- Editorial/review/version/publish process.
+- Static JSON/edge-cache/reference datasets and invalidation.
+- Secrets/rate limiting/idempotency/cost observability.
 
 Acceptance:
-- `BACKEND.md` defines routes/responsibilities conceptually without premature endpoint sprawl.
+- `BACKEND.md` defines Free and precision request flows conceptually.
+- Free runtime serving remains functional without external paid providers.
+- Catalog versions can be rolled forward/back without app release.
 
-### ARCH-007 — Define Premium and rewarded-entitlement architecture
+### ARCH-007 — Define Premium and rewarded-generation entitlement architecture
 Status: TODO
 Depends on: ARCH-001, ARCH-004
 
 Scope:
 - Premium entitlement source of truth.
-- Persistent content unlock vs immediate Ask extension.
-- Persistence/recovery behavior.
-- No login required.
+- Rewarded one-generation authorization for selected result key.
+- Cache hit behavior before reward consumption.
+- Recovery when ad succeeds but provider generation fails.
+- No token/coin wallet and no login requirement by default.
 
 Acceptance:
-- `ENTITLEMENTS.md` maps frozen design semantics to technical responsibilities.
-- Store/ad SDK/provider choices remain replaceable behind interfaces.
+- `ENTITLEMENTS.md` maps current product semantics to technical responsibilities.
+- Provider/store/ad SDKs remain replaceable.
 
-### ARCH-008 — Define privacy/security and data-handling model
+### ARCH-008 — Define privacy/security and data handling
 Status: TODO
 Depends on: ARCH-001, ARCH-004, ARCH-005
 
 Acceptance:
-- `PRIVACY_SECURITY.md` identifies sensitive user/saved-person data, local/remote boundaries, logging/redaction rules and deletion/export expectations.
+- `PRIVACY_SECURITY.md` defines sensitive birth/saved-person data boundaries, minimization, logging/redaction, retention, deletion/export and provider transmission rules.
+- Full birth data is never sent to paid providers for a Free coarse catalog request.
 
-### ARCH-009 — Define testing and calculation-validation strategy
+### ARCH-009 — Define testing, validation and cost-invariant strategy
 Status: TODO
-Depends on: ARCH-003
+Depends on: ARCH-003 through ARCH-007
 
 Acceptance:
-- `TESTING_STRATEGY.md` defines unit/integration/UI tests, deterministic fixtures, engine golden tests and methodology-sign-off fixtures.
-- Design mockup values are explicitly excluded as test truth unless independently validated.
+- `TESTING_STRATEGY.md` covers calculation fixtures, provider contract tests, cache/idempotency tests and methodology fixtures.
+- Tests assert that ordinary Free requests cause 0 paid provider calls.
+- Tests assert cached personalized results cause 0 new calculation/LLM calls.
 
 ### ARCH-010 — Freeze initial implementation roadmap and repo structure
 Status: TODO
@@ -120,12 +136,13 @@ Depends on: ARCH-002 through ARCH-009
 
 Acceptance:
 - Architecture README/index exists.
-- Phase 01 tasks are adjusted if architecture decisions require it.
-- `STATUS.md` moves to `IOS-001`.
+- Phase tasks match the final architecture.
+- `STATUS.md` can advance to `IOS-001` after the affected Claude Design revision is reconciled.
 
 ## Exit criteria
 
-- All architecture documents required above are committed.
-- Major technical boundaries are decided enough to create the Xcode project and modules.
-- Open choices are categorized as implementation choice, methodology blocker or later optimization.
-- No production feature implementation has started prematurely.
+- Free and precision architecture contracts are documented.
+- Provider/cache/entitlement/privacy boundaries are explicit.
+- Cost invariants are testable.
+- The next Claude Design pass reflects the revised access states.
+- No production feature implementation starts against stale monetization/access design.

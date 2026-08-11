@@ -1,9 +1,9 @@
 # Phase 08 — Ask the Stars
 
 Status: **TODO**
-Depends on: Phase 02, Phase 07, ARCH-005
+Depends on: Phase 02, Phase 07, ARCH-005, ARCH-007
 
-Goal: implement contextual astrology Q&A over validated structured facts, not a generic chatbot.
+Goal: implement contextual astrology Q&A over validated structured facts without creating an uncontrolled Free LLM cost path.
 
 ## Tasks
 
@@ -11,55 +11,56 @@ Goal: implement contextual astrology Q&A over validated structured facts, not a 
 Status: TODO
 
 Acceptance:
-- Request includes selected system, relevant chart/timing facts, question and access context.
+- Includes selected system, relevant structured facts, question, locale/tone and access context.
 - Missing/unsupported calculations are represented explicitly.
 
-### ASK-002 — Implement Ask orchestration and provider abstraction
+### ASK-002 — Implement Ask orchestration/provider abstraction
 Status: TODO
 Depends on: ASK-001
 
 Acceptance:
-- Interpretation provider is replaceable.
-- Retries/timeouts/errors are typed.
-- No provider can silently calculate astrology facts.
+- DeepSeek V4 Flash is an initial provider choice behind a replaceable interface.
+- Retries/timeouts/errors/idempotency are typed.
+- Interpretation cannot silently invent chart facts.
 
-### ASK-003 — Implement question and answer UI
+### ASK-003 — Implement question/answer UI
 Status: TODO
 Depends on: ASK-002
 
 Acceptance:
-- Matches final archive.
-- Answer can expose Astrological basis/Chart factors.
-- Contextual entry from other insights is supported without duplicating facts.
+- Matches reconciled Humay design.
+- Answer can expose astrological basis/factors.
+- Cached/reopened answer behavior is explicit where applicable.
 
 ### ASK-004 — Implement safety and unsupported-data behavior
 Status: TODO
 Depends on: ASK-002
 
 Acceptance:
-- Sensitive-life-event inference constraints are enforced.
-- Unknown-time and methodology limitations reach the answer context.
-- Unsupported calculation state is distinct from provider/network failure.
+- Sensitive-life-event constraints are enforced.
+- Unknown-time/methodology limitations reach the context.
+- Unsupported calculation state differs from provider/network failure.
 
-### ASK-005 — Implement Free/Premium allowance interface
+### ASK-005 — Implement Ask access decision
 Status: TODO
 Depends on: ASK-003
 
 Acceptance:
-- Access decision happens before answer generation.
-- Daily/period limits remain configurable rather than hard-coded product assumptions.
+- Access/cache decision happens before any paid model generation.
+- Ordinary Free use cannot cause an uncached paid Ask generation unless a later explicit product budget decision supersedes this rule.
+- Premium access remains configurable by product policy.
 
-### ASK-006 — Implement rewarded immediate Ask extension
+### ASK-006 — Implement rewarded one-question generation
 Status: TODO
 Depends on: ASK-005, MON-004 contract
 
 Acceptance:
-- One successful rewarded completion permits one additional question.
+- One successful rewarded completion authorizes one additional provider-backed question/answer generation.
 - It is single-use, not a bankable balance/token/currency.
-- No ad gate interrupts an answer already being generated.
+- Ad/provider failure recovery is explicit.
 
 ## Exit criteria
 
-- Ask answers only from supplied structured astrology context.
-- Safety/insufficient-data/provider-failure states are distinct and tested.
-- Access decisions happen before generation.
+- Ask only uses supplied/validated astrology context.
+- No uncontrolled Free provider path exists.
+- Safety, insufficient-data, entitlement and provider-failure states are distinct/tested.
