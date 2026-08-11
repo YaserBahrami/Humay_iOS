@@ -1,21 +1,17 @@
-# Humay Design Reference
+# Humay Design
 
-This directory is the repository-owned source of truth for Humay product and UI/UX design artifacts.
+This directory is the **single current source of truth** for Humay UI/UX design.
 
-## Current visual direction
+As of **2026-08-12**, there is one design program only: **Soulful Celestial, Light + Dark**.
 
-As of **2026-08-12**, Humay's current visual authority is:
+## Read in this order
 
 1. [`DESIGN_AUTHORITY.md`](DESIGN_AUTHORITY.md)
 2. [`SOULFUL_CELESTIAL_DESIGN_DIRECTION.md`](SOULFUL_CELESTIAL_DESIGN_DIRECTION.md)
 3. [`SCREEN_DESIGN_PLAN.md`](SCREEN_DESIGN_PLAN.md)
-4. Approved paired screen references in [`soulful-reference/`](soulful-reference/README.md)
+4. [`soulful-reference/`](soulful-reference/README.md)
 
-The target feeling is **soulful, colorful, charming and premium**: painterly celestial artwork and expressive editorial typography inside a clear modern iOS product. It should be fun/cute in selected moments without becoming childish, cartoon-heavy or visually noisy.
-
-Every redesigned product screen requires a deliberate **Light + Dark pair** before final visual implementation is frozen.
-
-## Current structure
+## Directory structure
 
 ```text
 docs/design/
@@ -23,78 +19,62 @@ docs/design/
   DESIGN_AUTHORITY.md
   SOULFUL_CELESTIAL_DESIGN_DIRECTION.md
   SCREEN_DESIGN_PLAN.md
-  MINIMAL_DESIGN_DIRECTION.md          # historical previous visual direction
 
-  soulful-reference/                  # current redesign references
+  soulful-reference/
     README.md
     anchors/
-      light/
-      dark/
+    onboarding/
+    today/
+    circle/
+    sky/
+    chart/
+    ask/
+    settings/
+    monetization/
+    sharing-widgets/
+    brand/
     assets/
-    ... screen families added D1-D9
-
-  review/                              # screenshots of the existing mock-first app
-  claude-reference/                    # historical original design artifacts
-  final-archive/                       # historical GitHub-friendly derived archive
 ```
 
-## Where to start
+Only the folders that have generated/approved material need to exist at a given moment.
 
-For design/implementation work:
+## Current design goal
 
-1. Read [`DESIGN_AUTHORITY.md`](DESIGN_AUTHORITY.md).
-2. Read [`SOULFUL_CELESTIAL_DESIGN_DIRECTION.md`](SOULFUL_CELESTIAL_DESIGN_DIRECTION.md).
-3. Use [`SCREEN_DESIGN_PLAN.md`](SCREEN_DESIGN_PLAN.md) to identify whether the screen family is already visually frozen.
-4. Use [`soulful-reference/`](soulful-reference/README.md) for approved Light/Dark composition references.
-5. Use `claude-reference/`, `final-archive/` and `review/` only to recover product behavior, states, copy and historical interaction decisions that have not been superseded.
+Humay should feel **soulful, colorful, charming and premium**: painterly celestial artwork and expressive editorial typography inside a clear modern iOS product.
+
+It may be cute and playful in selected places, but must not become childish, cartoon-heavy, generic purple-neon astrology or visually busy on every surface.
+
+Every product screen requires a deliberate **Light + Dark pair** before final visual implementation is frozen.
 
 ## Canonical information architecture
 
-The visual redesign does not automatically change navigation.
-
-**Today / Circle / Sky / Chart / Ask** remains canonical.
+**Today / Circle / Sky / Chart / Ask**
 
 - Calendar is nested under Sky.
-- Profile / Settings is reached from the header/profile entry.
+- Profile / Settings is reached through the header/profile entry.
 - Compatibility lives in Circle/people flows.
-- Concept screenshots that temporarily show `Compatibility` or `Library` tabs are style explorations, not IA authority.
+- Generated concept images do not change IA unless `DESIGN_AUTHORITY.md` is explicitly updated.
 
-## Historical material
+## Current phase
 
-### `MINIMAL_DESIGN_DIRECTION.md`
+**D0 — Visual anchor lock**
 
-Preserved as the previous visual direction. Its serious/minimal appearance, all-paper lock, square/no-shadow emphasis and restricted color treatment are superseded.
-
-Its useful implementation/accessibility lessons—semantic layout, reflow instead of shrinking, Dynamic Type hierarchy and responsive fixed-geometry behavior—remain captured in the current authority map.
-
-### `claude-reference/`
-
-Original product/design explorations and freeze artifacts. Use for feature concepts, interaction history, terminology and states where newer authority does not conflict.
-
-### `final-archive/`
-
-Historical GitHub-friendly derived screenshots/Markdown. It is a convenient inventory, not current visual authority.
-
-### `review/`
-
-Screenshots of the completed Phase 01M mock-first application. They document what was built, not the new target appearance.
-
-## Current redesign status
-
-**D0 — Visual anchor lock** is the active first step.
-
-The anchor family is:
+Anchor families:
 
 - Today / Home
 - Daily Horoscope / reading detail
 - Compatibility
 
-Each has a Light reference and an initial Dark translation. The Light anchors define the selected art direction; Dark receives a deliberate refinement pass before it becomes the pattern for all downstream screens.
+Next: **D1 — Onboarding**, nine screens in both Light and Dark.
 
-Next: **D1 — Onboarding**, nine screens in both appearances.
+## Asset rule
 
-## Product/data caveat
+Screen references and design-source artwork stay under `soulful-reference/` during design work. Only reusable, approved and optimized production assets are promoted into `Humay/Resources/Assets.xcassets/`.
 
-Design artifacts define presentation and interaction. They do **not** validate astrology calculations.
+Do not ship full screenshot crops as app assets.
 
-Exact placements, aspects, timing, dashas, pillars, compatibility values and interpretations shown in mockups are illustrative unless independently validated by the structured calculation/methodology layer. Current access/cost behavior is governed by [`../development/PRODUCT_ACCESS_MODEL.md`](../development/PRODUCT_ACCESS_MODEL.md).
+## Product/data boundary
+
+Design mockups define presentation and interaction, not astrology truth. Exact placements, aspects, timing, dashas, pillars, compatibility values and interpretations are illustrative unless validated by the structured calculation/methodology layer.
+
+Current access/cost behavior is governed by [`../development/PRODUCT_ACCESS_MODEL.md`](../development/PRODUCT_ACCESS_MODEL.md).

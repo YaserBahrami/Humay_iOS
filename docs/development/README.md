@@ -2,41 +2,40 @@
 
 This directory is the persistent engineering roadmap for Humay. It should let any implementation session answer: **where are we, what is next, what is blocked, and what defines done?**
 
-The existing visual/UX archive is frozen through Pass 6.1 as a reference baseline. The product access/cost model changed on **2026-08-11** and is authoritative in [`PRODUCT_ACCESS_MODEL.md`](PRODUCT_ACCESS_MODEL.md). Access/monetization/personalization surfaces affected by that decision require the next Claude Design revision before implementation is considered visually final.
+Product access/cost authority is [`PRODUCT_ACCESS_MODEL.md`](PRODUCT_ACCESS_MODEL.md). Current visual authority is [`../design/DESIGN_AUTHORITY.md`](../design/DESIGN_AUTHORITY.md), with the only screen-design plan in [`../design/SCREEN_DESIGN_PLAN.md`](../design/SCREEN_DESIGN_PLAN.md).
 
 ## How to use this plan
 
-1. Read [`STATUS.md`](STATUS.md) first.
-2. Read [`PRODUCT_ACCESS_MODEL.md`](PRODUCT_ACCESS_MODEL.md) for Free/Rewarded/Premium and runtime-cost rules.
-3. Read [`ROADMAP.md`](ROADMAP.md) for the full phase sequence.
-4. Open the current phase file under [`phases/`](phases/).
-5. Work tasks in dependency order and update task/acceptance criteria when a product or architecture decision changes.
-6. At the end of each meaningful implementation session, update `STATUS.md` and the active phase checklist.
+1. Read [`STATUS.md`](STATUS.md).
+2. Read [`PRODUCT_ACCESS_MODEL.md`](PRODUCT_ACCESS_MODEL.md).
+3. Read [`ROADMAP.md`](ROADMAP.md).
+4. For UI work, read [`../design/DESIGN_AUTHORITY.md`](../design/DESIGN_AUTHORITY.md) and the relevant D-phase in [`../design/SCREEN_DESIGN_PLAN.md`](../design/SCREEN_DESIGN_PLAN.md).
+5. Open the active engineering phase file under [`phases/`](phases/).
+6. Work tasks in dependency order and update status/acceptance criteria when a product or architecture decision changes.
+7. Update `STATUS.md` after meaningful sessions.
 
 ## Planning principles
 
-- **Free runtime cost is bounded by design.** Ordinary Free content reads Humay-owned pre-generated catalogs and must not trigger paid astrology/LLM calls.
-- **Cache before generation.** Rewarded and Premium personalized paths must reuse valid cached results before external provider calls.
-- **Calculated facts before interpretation.** Precision astrology facts come from the calculation layer; the interpretation model does not invent positions, houses, aspects or timing.
-- **Provider boundaries stay replaceable.** The initial direction is Astrologer API for calculation facts and DeepSeek V4 Flash for interpretation, both behind backend interfaces.
+- **Free runtime cost is bounded by design.** Ordinary Free reads Humay-owned pre-generated catalogs and must not trigger paid astrology/LLM calls.
+- **Cache before generation.** Rewarded and Premium personalized paths reuse valid cached results before external calls.
+- **Calculated facts before interpretation.** The interpretation model never invents positions, houses, aspects or timing.
+- **Provider boundaries stay replaceable.** Initial providers remain behind backend interfaces.
 - **No authentication for v1 unless a concrete requirement emerges.** Entitlements and local profile data are separate concerns.
-- **Methodology blockers are scoped.** Unresolved methodology blocks only the affected feature/path.
+- **Methodology blockers are scoped.** Unresolved methodology blocks only affected feature paths.
 - **Every phase has exit criteria.** Code alone is not completion.
-- **Keep main releasable.** Use feature flags/stubs for methodology-blocked work rather than fake production astrology.
+- **One current design program.** Do not create or reference a parallel UI plan; update the current design authority/plan directly.
 
 ## Documents
 
-- [`PRODUCT_ACCESS_MODEL.md`](PRODUCT_ACCESS_MODEL.md) — current product/access/cost decision.
-- [`ROADMAP.md`](ROADMAP.md) — phase order, dependencies and release gates.
-- [`STATUS.md`](STATUS.md) — current phase, active task and decisions/blockers.
+- [`PRODUCT_ACCESS_MODEL.md`](PRODUCT_ACCESS_MODEL.md) — product/access/cost rules.
+- [`ROADMAP.md`](ROADMAP.md) — engineering phases plus D0–D9 visual dependencies.
+- [`STATUS.md`](STATUS.md) — current priorities and blockers.
 - [`TASK_CONVENTIONS.md`](TASK_CONVENTIONS.md) — task IDs/status/update rules.
 - [`METHODOLOGY_TRACK.md`](METHODOLOGY_TRACK.md) — astrology-methodology research/sign-off.
 - [`phases/`](phases/) — phase-by-phase implementation tasks.
 
 ## Current state
 
-**Planning only. No production iOS implementation has started.**
+Current engineering phase: **Phase 00 — Technical Architecture & Implementation Planning**.
 
-Current phase: **Phase 00 — Technical Architecture & Implementation Planning**.
-
-Immediate goal: finish the architecture contracts for the two-path content system (Free catalog vs provider-backed precision), then revise Claude Design access states before feature implementation.
+Current UI priority: **Soulful Celestial D0 → D1**, with Light + Dark references generated phase by phase before final production visual polish.

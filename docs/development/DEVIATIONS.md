@@ -1,57 +1,59 @@
 # Deviations
 
-This file records deliberate departures from the documented development process. Every entry states what rule was set aside, who directed it, what is *not* satisfied as a result, what compensating controls exist, and the condition under which the deviation closes.
-
-A deviation recorded here is not an amendment. The original rule still stands for every purpose except the scope named below.
+This file records deliberate departures from the normal development sequence. A deviation is not a new design or product authority.
 
 ---
 
 ## DEV-001 — Mock-first iOS implementation ahead of Phase 00 exit
 
-**Status:** OPEN
-**Opened:** 2026-08-11
-**Directed by:** product owner, explicitly, with the constraints reproduced below.
+**Status:** OPEN  
+**Opened:** 2026-08-11  
+**Directed by:** product owner
 
-### What the process says
+### Normal rule
 
-- [`ROADMAP.md`](ROADMAP.md) — "Phase 00 must freeze the system boundary before production feature code starts."
-- [`phases/00-technical-architecture.md`](phases/00-technical-architecture.md) — "No production feature implementation starts against stale monetization/access design." `ARCH-010` allows `STATUS.md` to advance to `IOS-001` only after the Claude Design revision is reconciled.
-- [`../design/DESIGN_AUTHORITY.md`](../design/DESIGN_AUTHORITY.md) — Pass 6.1 is not implementation-final for access/monetization/personalization states; Chart, Today, Compatibility, Ask and the paywall/rewarded/cached-result states require a new design revision first.
+Production feature implementation should follow the Phase 00 architecture freeze and the current visual/access contracts.
 
-Phase 00 is still `IN PROGRESS`. `ARCH-001` through `ARCH-010` are open.
+### Directed exception
 
-### What was directed instead
+Build a first working iOS application with **mock/local data only** to establish architecture, navigation, reusable UI infrastructure, major screens, realistic fixture content and complete primary flows before provider/backend work is available.
 
-Build a first working iOS application now, using **mock/local data only**, to establish architecture, navigation, a reusable design system, all major screens, realistic mock content and complete primary user flows — a foundation that real services plug into later.
+Explicitly excluded from this track: astrology calculation APIs, LLM/AI providers, backend services, authentication, StoreKit/subscriptions, advertisements and analytics.
 
-Explicitly excluded from this track: astrology calculation APIs, LLM/AI providers, backend services, authentication, StoreKit/subscriptions, advertisements, analytics.
+### What this track does not satisfy
 
-### What this track does NOT satisfy
-
-- **Phase 00 is not complete.** No `ARCH-###` task is advanced by this work. The provider adapter contract, cache identity, interpretation contract, catalog pipeline, entitlement model and privacy boundary remain undefined.
-- **Phase 01 exit criteria are not met.** `IOS-001`–`IOS-007` acceptance depends on `IOS_ARCHITECTURE.md` and `DATA_MODEL.md`, and on access-state primitives that require the reconciled design revision. The mock track writes the first two of those documents but does not deliver the access-state primitives, because monetization is out of scope here.
-- **No feature task is DONE.** `TODAY-001`, `CHART-002`, `CIRCLE-004`, `ASK-003` and every other feature task in [`phases/`](phases/) remain at their recorded status. Marking a feature complete against mock data is precisely what [`TASK_CONVENTIONS.md`](TASK_CONVENTIONS.md) forbids ("never mark methodology-dependent behavior complete using placeholder calculations"). Mock-track work carries its own IDs in [`phases/01M-mock-first-app.md`](phases/01M-mock-first-app.md).
-- **No astrological value in the app is calculated.** Every placement, degree, aspect, pillar, dasha, moon phase and transit shown is illustrative fixture content transcribed from the design prototype.
-- **Methodology blockers are unaffected.** Vedic ayanamsa and BaZi day-boundary conventions remain unvalidated. Where the design already says "methodology pending" — the BaZi Luck Cycle direction — the app renders `FactValue.unavailable(.methodologyPending(...))` rather than a value.
+- Phase 00 is not complete.
+- Phase 01 production exit criteria are not complete.
+- No provider-backed feature is production-complete merely because a mock screen exists.
+- No astrological value in the mock-first app is calculation truth.
+- Methodology blockers remain unchanged.
+- The mock-first UI is not the current visual authority; final UI follows the active D0–D9 Light/Dark design program.
 
 ### Compensating controls
 
-1. **`ContentProvenance` is non-optional on every content-bearing domain type.** A reading, chart, event or answer cannot be constructed without declaring where it came from. Mock services emit `.mockFixture(fixtureID:)`; the `.calculated(engine:methodologyVersion:)` case exists but has no producer in this track.
-2. **`MockProvenanceTests`** calls every method of every mock service and asserts `provenance.isMock` on every returned value. A new mock that forgets provenance fails the suite.
-3. **Runtime marking.** In DEBUG builds a `SAMPLE` kicker renders beside any basis line whose provenance is mock.
-4. **File-level containment.** All fixture content lives under `Humay/Resources/MockContent/` with its own README stating the rule. `Scripts/check-layering.sh` fails if anything outside `Humay/Data/Mock/` reads that directory.
-5. **Zero provider surface in the tree.** No networking code, no HTTP client, no StoreKit import, no ad SDK, no analytics SDK, no API key handling. There is nothing to accidentally call.
-6. **No stub entitlement system.** Precise readings are directly reachable. There is deliberately no `hasEntitlement` flag, no simulated ad, and no fake paywall — a stub access model would accrete an architecture that `ARCH-007` would then have to delete.
-7. **`FactValue<T>`** makes unknown birth time and pending methodology explicit at the type level rather than substituting defaults.
+1. Content-bearing domain values carry explicit `ContentProvenance`.
+2. Mock services emit `.mockFixture` provenance and are covered by provenance tests.
+3. DEBUG builds visibly mark sample/mock basis where appropriate.
+4. Fixture content is contained under `Humay/Data/Mock/Fixtures/`.
+5. No paid-provider/network/payment/ad/analytics integration was added by the mock track.
+6. No fake entitlement/token system was introduced.
+7. `FactValue<T>` keeps unknown birth time and pending methodology explicit rather than substituting values.
+
+### Current reconciliation rule
+
+The mock-first app may continue to serve as a route, architecture and accessibility test bed. Any screen receiving production visual polish must use the current design authority:
+
+- `docs/design/DESIGN_AUTHORITY.md`
+- `docs/design/SOULFUL_CELESTIAL_DESIGN_DIRECTION.md`
+- `docs/design/SCREEN_DESIGN_PLAN.md`
+- approved references under `docs/design/soulful-reference/`
 
 ### Exit condition
 
-This deviation closes when Phase 00 completes and the reconciled design revision lands. At that point:
+DEV-001 closes when Phase 00 is complete and production services/access primitives replace the mock-only path sufficiently for normal feature work to proceed.
 
-- `Humay/Data/Mock/` is **replaced**, not extended. New feature work goes behind the real service implementations.
-- Access-state primitives are built against `ARCH-007`, not retrofitted onto this track.
-- Screens affected by the design revision (Today, Chart, Compatibility, Ask) are re-reviewed against it before their feature tasks can be marked DONE.
+At closure:
 
-### Notes
-
-The mock track also carries three deliberate visual divergences from the frozen design archive, recorded separately in [`../design/DESIGN_AUTHORITY.md`](../design/DESIGN_AUTHORITY.md): the All-Paper surface model, the Cormorant + system-font typography lock, and iPhone-only V1 scope.
+- `Humay/Data/Mock/` is replaced rather than extended for production behavior;
+- access-state primitives follow the production entitlement/cache architecture;
+- affected screens are re-reviewed against their approved current Light/Dark references before feature tasks are marked production-complete.
