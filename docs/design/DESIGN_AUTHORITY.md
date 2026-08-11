@@ -8,8 +8,9 @@ For implementation, use this order:
 
 1. Current explicit product decisions in [`../development/PRODUCT_ACCESS_MODEL.md`](../development/PRODUCT_ACCESS_MODEL.md) for Free/Rewarded/Premium, runtime-cost and precision-vs-catalog behavior.
 2. This authority map for supersession rules.
-3. Pass 6.1 and the final archive for current visual/interaction baseline where not superseded.
-4. Older Claude passes for historical/detail reference only when no newer authority conflicts.
+3. **[`MINIMAL_DESIGN_DIRECTION.md`](MINIMAL_DESIGN_DIRECTION.md) for all visual and layout decisions** — the full statement of the minimal Humay direction summarised in §03A.
+4. Pass 6.1 and the final archive for interaction/structure baseline where not superseded.
+5. Older Claude passes for historical/detail reference only when no newer authority conflicts.
 
 The 2026-08-11 product/access decision requires a new Claude Design revision for affected surfaces. Until then, Pass 6.1 is **not** implementation-final for access/monetization/personalization states.
 
@@ -33,6 +34,38 @@ This remains the baseline unless the next Claude Design pass explicitly changes 
 - Pass 6: engineering-handoff/audit record.
 - Pass 6.1: latest frozen visual/interaction correction layer before the 2026-08-11 access-model change.
 - `final-archive/`: GitHub-friendly derived screenshots/Markdown; never calculation truth.
+
+## 03A — Minimal Humay direction — current visual authority
+
+Recorded 2026-08-11 alongside [`../development/DEVIATIONS.md`](../development/DEVIATIONS.md) `DEV-001`. Stated in full in [`MINIMAL_DESIGN_DIRECTION.md`](MINIMAL_DESIGN_DIRECTION.md), which is the reference an implementation is checked against; this section remains the supersession record.
+
+**The minimal Humay direction governs all visual and layout decisions.** `claude-reference/Humay Product Prototype - Consolidated.dc.html` and the earlier passes remain authoritative for **product concepts, feature behavior, terminology and copy**, but are no longer the visual or layout authority. Where the prototype conflicts visually with the minimal direction, the minimal direction wins.
+
+Characteristics: extremely clean, premium but restrained, editorial. Generous whitespace. Warm off-white ground, near-black text, restrained gold accent. Minimal surfaces, subtle borders, limited card usage, minimal shadows, no decorative gradients. Typography carries the visual identity. Astrology symbols used selectively. Elegant motion only where it does work. Native iOS interaction patterns throughout.
+
+Three specific locks supersede the frozen prototype:
+
+### Surfaces — All Paper
+
+Every screen renders on Paper. The prototype's per-screen ink/paper split — welcome, reveal, precise Today, full chart and Sky on `#12151C` — is superseded. Precision and tier are differentiated by badge, hairline and typographic weight rather than by a dark ground.
+
+Ink and Paper remain semantic tokens rather than a light/dark theme pair. A dark appearance is a separate future decision and must not be implemented by inverting these tokens.
+
+### Typography
+
+- **Cormorant Garamond** — wordmark, major titles, important editorial headlines. Weights 300–400 only.
+- **SF Pro (system)** — all body copy, navigation, buttons, forms, settings and general UI.
+- **SF Mono (system)** — degrees, coordinates, dates and technical chart data only.
+
+**Lora, IBM Plex Sans and IBM Plex Mono are removed.** The prototype's Lora reading paragraphs become SF Pro; its IBM Plex UI and mono become the system faces. This keeps the type system minimal, Dynamic Type-friendly and native, with Cormorant carrying the identity.
+
+The Pass 5.1 wordmark construction, occultation mark geometry, palette, ink opacity ramp, square-by-default radii, hairline borders, no-shadow rule and motion verbs all remain in force. §05's brand-lock reference stands except where this section names a replacement.
+
+### Device scope
+
+**V1 targets iPhone in portrait.** iPad is a planned dedicated design and implementation phase, not a stretched phone layout — Chart, Circle, Sky and Compatibility should use genuinely different compositions on larger screens, including two-column layouts.
+
+The iPhone implementation must not make that harder: no hard-coded device dimensions, semantic spacing tokens throughout, reusable layout components, adaptable navigation architecture, chart visualizations responsive to their container, and content separated from presentation. No speculative iPad layouts in this phase.
 
 ## 04 — Product access model — supersedes old monetization semantics where conflicting
 
@@ -154,10 +187,24 @@ Humay is the current internal product/project name. Trademark, App Store/Google 
 
 ## 12 — Current design status
 
-- Pass 6.1 is preserved as the latest completed visual/UX baseline.
+- The minimal Humay direction (§03A, stated in full in [`MINIMAL_DESIGN_DIRECTION.md`](MINIMAL_DESIGN_DIRECTION.md)) is the current visual/layout authority.
+- Pass 6.1 is preserved as the latest completed interaction/UX baseline; its visual treatment is superseded by §03A where they conflict.
 - The 2026-08-11 product/access change supersedes conflicting Pass 6.1 monetization/access behavior.
 - **A new Claude Design revision is required** for Chart, Today, Compatibility, Ask and paywall/rewarded/cached-result states before those surfaces are implementation-final.
 - Unaffected visual/IA work can still use Pass 6.1 as reference.
+
+### Reconciliation pass — 2026-08-11
+
+The Phase 01M application was reviewed screen by screen against the minimal direction and brought into line. Recorded in [`../development/phases/01M-mock-first-app.md`](../development/phases/01M-mock-first-app.md) as `IOS-012`; screenshots of the result are in [`review/`](review/README.md).
+
+Decisions taken during that pass, now part of the visual authority:
+
+- **Only the precise tier is outlined.** A general badge appeared on nearly every screen and distinguished nothing, so it is a plain mono kicker. The outline is reserved for precision.
+- **One page component.** Every screen — tab root, pushed screen, settings page and sheet — is built on the same scrolling page, so the gutter, top inset, bottom inset and ground colour cannot drift apart. Tab roots take the large title; everything else takes the inline title.
+- **Type ceilings are staggered rather than flat.** A single 1.4× cap across every display and title role inverted the hierarchy at the accessibility text sizes: a row title came out smaller than its own subtitle. Row titles are uncapped; the editorial display roles cap at increasing multiples that keep them above body copy.
+- **Rows reflow rather than shrink.** A label-and-value row becomes a stacked pair at the accessibility sizes; the chart triad and the four BaZi pillars turn from columns into rows. Nothing important is scaled down to fit.
+- **Fixed-geometry drawings step aside.** The Circle drawing is dropped at the accessibility sizes, where the list beneath already carries the whole of its meaning. Calendar dates are set in mono, which is both the typographic rule for a date and what keeps seven columns legible.
+- **A withheld triad value keeps its slot** but is drawn at the disabled weight, so the placeholder does not read as a mark that means something.
 
 ## 13 — Next step
 
