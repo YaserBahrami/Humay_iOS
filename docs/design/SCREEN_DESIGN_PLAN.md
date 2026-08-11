@@ -8,12 +8,14 @@
 
 Design every Humay product surface in the selected cosmic-editorial direction and produce an intentional **Light + Dark pair** before final visual implementation is frozen.
 
+Every completed step must store its review imagery, design specification and reusable reference elements in the repository so later implementation agents do not have to infer visual details from chat history.
+
 ## Reference structure
 
 ```text
 docs/design/soulful-reference/
   anchors/                 # D0 selected references
-  onboarding/              # D1 individual Light/Dark screens + boards
+  onboarding/              # D1 current design packages + historical drafts
   components/              # shared UI + illustration boards
   today/
   circle/
@@ -27,7 +29,7 @@ docs/design/soulful-reference/
   assets/
 ```
 
-SVG references are GitHub-viewable/editable design images. Production artwork is exported separately into `Humay/Resources/Assets.xcassets/` only after approval.
+Repository design packages may contain SVG plus compressed high-quality WebP review imagery. Production artwork is exported separately into `Humay/Resources/Assets.xcassets/` only after approval.
 
 ## D0 — Visual anchor lock — APPROVED
 
@@ -41,19 +43,33 @@ D0 establishes warm cream vs midnight navy appearance, strong editorial serif + 
 
 ## D1 — Onboarding — REDESIGN IN PROGRESS
 
-The previous nine-screen onboarding exploration is stale. The current app implements four beats in `OnboardingFlowView.Step`, and D1 must follow that product truth.
+The previous nine-screen onboarding exploration is stale. The current app implements four beats in `OnboardingFlowView.Step`, and D1 follows that product truth.
 
-1. Welcome — **Light/Dark redesigned; review now**
-2. Birth Date — next
-3. Tradition — pending
+1. Welcome — **Light/Dark redesigned; ready for review**
+2. Birth Date — **Light/Dark + elements + spec committed; ready for review**
+3. Tradition — **next**
 4. Profile Reveal — pending
 
 Birth time and birth location are not onboarding steps. They are optional later inputs for precise chart features.
 
-**Step 01 references:**
+### Step 01 references
 
 - `soulful-reference/onboarding/light/01-welcome.svg`
 - `soulful-reference/onboarding/dark/01-welcome.svg`
+
+### Step 02 package
+
+`docs/design/soulful-reference/onboarding/step-02-birth-date/`
+
+Contains:
+
+- `birth-date-light-dark.webp`
+- `birth-date-elements.webp`
+- `README.md`
+- `design-spec.json`
+- `elements/*.svg`
+
+The Birth Date package is reconciled with the current app behavior: native wheel date picker, 1900-01-01 through today, no birth-time/location collection, back to Welcome and Continue to Tradition.
 
 Do not propagate any legacy nine-screen onboarding draft into implementation.
 
@@ -135,6 +151,21 @@ Do not propagate any legacy nine-screen onboarding draft into implementation.
 
 Finalize wordmark, mark/app icon, launch Light/Dark, final token board, component inventory, illustration asset catalog, production export list, overview contact sheets and final authority reconciliation.
 
+## Per-screen repository package
+
+For each new screen/step, store:
+
+- [ ] Light review image
+- [ ] Dark review image
+- [ ] side-by-side review board
+- [ ] element/component board when the screen introduces reusable treatment
+- [ ] editable reference elements where applicable
+- [ ] canonical copy and behavior
+- [ ] structured design spec / handoff data
+- [ ] accessibility notes
+- [ ] sample-data disclaimer
+- [ ] links from the relevant design indexes
+
 ## Per-screen approval checklist
 
 - [ ] canonical route/IA correct
@@ -156,7 +187,7 @@ Finalize wordmark, mark/app icon, launch Light/Dark, final token board, componen
 3. compose Dark intentionally;
 4. review side by side;
 5. reconcile shared components/assets;
-6. commit references;
+6. commit complete repository package;
 7. mark phase approved;
 8. continue to next phase.
 
