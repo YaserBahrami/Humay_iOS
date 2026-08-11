@@ -21,21 +21,24 @@ Each is represented in Light and Dark. These references define the current visua
 
 ## D1 — onboarding
 
-`onboarding/` now contains **18 individual screen images** — 9 Light and 9 Dark — plus two overview boards.
+D1 is being rebuilt against the approved D0 visual language and the **current four-beat onboarding flow** in the app.
 
-Screens:
+Canonical screens:
 
 1. Welcome
-2. Why Humay
-3. Birth Date
-4. Birth Time
-5. Unknown Time
-6. Birth Location
-7. Astrology System
-8. Calculating
-9. Big Three
+2. Birth Date
+3. Tradition
+4. Profile Reveal
 
-D1 is generated and ready for design review. It is not marked final until reviewed against D0.
+Current status:
+
+- Welcome Light — redesigned and committed; ready for review
+- Welcome Dark — redesigned and committed; ready for review
+- Birth Date — next
+- Tradition — pending
+- Profile Reveal — pending
+
+The older nine-screen onboarding concept files are superseded historical drafts and must not be used as implementation authority.
 
 ## Components
 
