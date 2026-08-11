@@ -1,33 +1,49 @@
-# Soulful Celestial Design References
+# Humay Current Design References
 
-This directory contains the current visual-reference work for Humay's 2026-08-12 redesign.
+This directory is the repository-owned visual reference set for the current Humay Light/Dark design.
 
 ## Authority
-
-Read these first:
 
 1. [`../DESIGN_AUTHORITY.md`](../DESIGN_AUTHORITY.md)
 2. [`../SOULFUL_CELESTIAL_DESIGN_DIRECTION.md`](../SOULFUL_CELESTIAL_DESIGN_DIRECTION.md)
 3. [`../SCREEN_DESIGN_PLAN.md`](../SCREEN_DESIGN_PLAN.md)
+4. The committed screen images in this directory
 
-## D0 anchor set
+## D0 — selected anchors
 
-The first committed anchor family establishes the target visual language across three high-value surfaces:
+`anchors/` contains the current visual source for:
 
 - Today / Home
-- Daily Horoscope / reading detail
+- Daily Horoscope
 - Compatibility
 
-Each has a Light and Dark reference under `anchors/`.
+Each is represented in Light and Dark. These references define the current visual language: warm cream / deep navy, editorial serif hierarchy, simple line/flat cute cosmic art, soft cards and disciplined accent color. Navigation labels shown inside a reference image do not override canonical IA.
 
-The Light anchors are the selected design direction. The first Dark anchors are **initial appearance translations** used to lock the midnight-surface/color strategy. They are not the final per-pixel Dark implementation reference; Dark mode receives a deliberate refinement pass before D1 becomes the pattern for the rest of the app.
+## D1 — onboarding
 
-## Assets
+`onboarding/` contains the Light and Dark onboarding design boards covering:
 
-`assets/` contains cropped artwork/style references derived from approved anchor compositions. They are useful for maintaining illustration consistency and identifying reusable production-art candidates.
+1. Welcome
+2. Why Humay
+3. Birth Date
+4. Birth Time
+5. Unknown Time
+6. Birth Location
+7. Astrology System
+8. Calculating
+9. Big Three
 
-These files are **not automatically shippable application assets**. Shipping artwork should be exported/optimized separately into `Humay/Resources/Assets.xcassets/` after approval.
+D1 is generated and ready for design review. It is not marked final until reviewed against D0.
+
+## Components
+
+`components/` contains:
+
+- `ui-elements-light-dark.svg` — shared colors, typography, buttons, chips, cards, inputs, state/progress and icon treatment;
+- `illustration-icon-reference.svg` — current simple celestial illustration/icon language.
+
+These are design references, not production code or automatically shippable assets.
 
 ## Astrology values
 
-All dates, signs, percentages, timing windows and readings in visual mockups are illustrative unless separately validated by Humay's calculation/methodology layer. Design references define presentation, hierarchy and interaction—not astronomical truth.
+Dates, signs, scores and readings shown in mockups are illustrative unless separately validated by Humay's calculation/methodology layer. Design references define presentation and interaction, not astronomical truth.
