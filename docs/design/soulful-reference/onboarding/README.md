@@ -31,13 +31,16 @@ The pair follows the selected D0 direction: warm cream vs midnight navy, editori
 
 ## Step 02 — Birth Date
 
-Complete review package:
+Complete repository package:
 
-- `step-02-birth-date/birth-date-light-dark.webp` — primary Light/Dark review board
-- `step-02-birth-date/birth-date-elements.webp` — element / component review board
+- `step-02-birth-date/birth-date-light.svg` — full Light screen
+- `step-02-birth-date/birth-date-dark.svg` — full Dark screen
+- `step-02-birth-date/birth-date-light-dark.svg` — primary review board
+- `step-02-birth-date/birth-date-elements.svg` — component / visual-element board
 - `step-02-birth-date/design-spec.json` — structured implementation handoff
-- `step-02-birth-date/README.md` — full visual, copy, behavior and accessibility specification
-- `step-02-birth-date/elements/` — editable vector reference motifs and progress elements
+- `step-02-birth-date/README.md` — visual, copy, behavior and accessibility specification
+- `step-02-birth-date/SOURCE.md` — provenance and authority notes
+- `step-02-birth-date/elements/` — editable vector motifs and progress elements
 
 The design is intentionally utility-led: editorial question, native wheel picker, one small calendar/celestial motif, two explanatory notes and a pinned Continue action. It does not introduce fake precision or ask for birth time/place.
 
@@ -45,8 +48,10 @@ The design is intentionally utility-led: editorial question, native wheel picker
 
 - Light: ready for review
 - Dark: ready for review
+- Side-by-side board: committed
 - Element board: committed
 - Vector reference elements: committed
+- Structured spec: committed
 - Product semantics: reconciled with `OnboardingBirthDateView`
 - Implementation: not started from this reference yet
 
@@ -61,7 +66,7 @@ The existing legacy files for the former nine-screen onboarding exploration rema
 
 ## Typography and token authority
 
-Generated raster review boards can contain incidental annotation labels from the image-generation pass. Production typography and color values are governed by:
+Production typography and color values are governed by:
 
 - `../SOULFUL_CELESTIAL_DESIGN_DIRECTION.md`
 - the per-step `README.md`
