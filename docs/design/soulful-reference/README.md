@@ -34,9 +34,11 @@ Current status:
 
 - Welcome Light — redesigned and committed; ready for review
 - Welcome Dark — redesigned and committed; ready for review
-- Birth Date Light — redesigned and committed; ready for review
-- Birth Date Dark — redesigned and committed; ready for review
-- Birth Date element board + vector reference elements — committed
+- Birth Date Light — full SVG committed; ready for review
+- Birth Date Dark — full SVG committed; ready for review
+- Birth Date side-by-side review board — committed
+- Birth Date element board + isolated vector reference elements — committed
+- Birth Date behavior/copy/accessibility spec — committed
 - Tradition — next
 - Profile Reveal — pending
 
@@ -44,10 +46,11 @@ Current status:
 
 `onboarding/step-02-birth-date/` is a self-contained handoff package with:
 
-- paired Light/Dark screen review board;
+- individual Light and Dark screen references;
+- paired Light/Dark review board;
 - element board;
 - structured `design-spec.json`;
-- complete README/specification;
+- complete README/specification and source metadata;
 - editable SVG reference motifs.
 
 This package is the design authority for the Birth Date step, subject to the higher-level D0/design-direction rules.
