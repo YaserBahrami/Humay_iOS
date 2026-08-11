@@ -59,8 +59,10 @@
     }
   },
   "referenceFiles": [
-    "birth-date-light-dark.webp",
-    "birth-date-elements.webp"
+    "birth-date-light.svg",
+    "birth-date-dark.svg",
+    "birth-date-light-dark.svg",
+    "birth-date-elements.svg"
   ],
   "referenceElements": [
     "elements/birth-date-motif-light.svg",
@@ -68,9 +70,16 @@
     "elements/progress-light.svg",
     "elements/progress-dark.svg"
   ],
+  "accessibility": {
+    "minimumTouchTargetPoints": 44,
+    "supportsDynamicTypeReflow": true,
+    "contentMayScroll": true,
+    "colorOnlySelection": false
+  },
   "notes": [
-    "Generated-board font and hex labels are visual annotations only; project design authority wins.",
+    "Reference SVGs use the canonical repository design tokens.",
     "Reference SVG elements are not automatically production assets.",
-    "Keep dark mode intentionally composed rather than inverted."
+    "Keep dark mode intentionally composed rather than inverted.",
+    "The sample date is presentation-only data."
   ]
 }
