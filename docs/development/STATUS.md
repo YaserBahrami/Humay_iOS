@@ -6,7 +6,7 @@ Last updated: **2026-08-12**
 
 Humay has two parallel priorities:
 
-1. **D0 — Soulful Celestial Light/Dark visual design**
+1. **D1 review — current Light/Dark onboarding reference set**
 2. **Phase 00 — Technical Architecture & Implementation Planning**
 
 Architecture work that does not depend on final appearance may continue while screen designs are produced phase by phase.
@@ -26,21 +26,23 @@ There are no alternate design plans on this branch.
 
 ### D0 — Visual anchor lock
 
-Initial Light/Dark pairs establish the direction for:
+**APPROVED STYLE SOURCE.** Light/Dark references are committed for:
 
 - Today / Home
 - Daily Horoscope / reading detail
 - Compatibility
 
-The target is soulful, colorful and charming with painterly celestial art, expressive editorial typography and restrained cute/playful motifs. Utility surfaces stay calmer.
+The selected direction is cosmic editorial: warm cream / deep navy, expressive serif hierarchy, simple line/flat cute celestial illustration, soft rounded cards, sparse star/orbit decoration and disciplined coral/lavender/gold/blue/sage accents. The painterly/watercolor exploration is no longer the current direction.
 
-The first Dark anchors establish midnight surfaces/color translation and receive deliberate refinement before downstream Dark screens are frozen.
+### D1 — Onboarding
 
-### Next design phase
+**GENERATED / REVIEW NEXT.** Nine screens × Light/Dark are committed under `docs/design/soulful-reference/onboarding/`, with shared component/illustration boards.
 
-**D1 — Onboarding:** nine screens × Light/Dark.
+D1 must be reviewed against D0 before it is marked approved or used as the source for D2.
 
-Then D2–D9 proceed through Today/Circle, Sky, Chart, Ask, Settings, Monetization, Sharing/Widgets/States and final brand/production handoff.
+### Next design phase after approval
+
+**D2 — Today + Circle.** Then D3–D9 proceed through Sky, Chart, Ask, Settings, Monetization, Sharing/Widgets/States and final brand/production handoff.
 
 ## Phase 00 — Architecture
 
@@ -97,9 +99,3 @@ Every astrological value in the mock-first application remains fixture content a
 ## Active blockers
 
 No blocker prevents current design work or Phase 00 architecture planning.
-
-Provider/API access is not required for the design pass because references use explicit mock content. Production provider-backed implementation remains gated by architecture/provider/methodology work.
-
-## Methodology blockers
-
-See [`METHODOLOGY_TRACK.md`](METHODOLOGY_TRACK.md). Vedic/Chinese coarse Free catalogs require a valid bucket methodology; they must not be invented solely for cost symmetry. Exact compatibility scoring also requires a production definition before illustrative percentages become real outputs.
