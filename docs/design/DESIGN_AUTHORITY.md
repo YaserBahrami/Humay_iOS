@@ -1,20 +1,22 @@
 # Design Authority & Supersession Map
 
-This map defines which artifacts govern Humay implementation. Historical Claude artifacts remain preserved. Newer explicit product decisions override older conflicting decisions only within the scope they address.
+This map defines which artifacts govern Humay implementation. Historical Claude/minimal artifacts remain preserved for product history and useful interaction/accessibility detail, but the approved 2026-08-12 redesign is the current visual authority.
 
 ## 01 — Current authority order
 
 For implementation, use this order:
 
-1. Current explicit product decisions in [`../development/PRODUCT_ACCESS_MODEL.md`](../development/PRODUCT_ACCESS_MODEL.md) for Free/Rewarded/Premium, runtime-cost and precision-vs-catalog behavior.
+1. Current explicit product/access decisions in [`../development/PRODUCT_ACCESS_MODEL.md`](../development/PRODUCT_ACCESS_MODEL.md).
 2. This authority map for supersession rules.
-3. **[`MINIMAL_DESIGN_DIRECTION.md`](MINIMAL_DESIGN_DIRECTION.md) for all visual and layout decisions** — the full statement of the minimal Humay direction summarised in §03A.
-4. Pass 6.1 and the final archive for interaction/structure baseline where not superseded.
-5. Older Claude passes for historical/detail reference only when no newer authority conflicts.
+3. **[`SOULFUL_CELESTIAL_DESIGN_DIRECTION.md`](SOULFUL_CELESTIAL_DESIGN_DIRECTION.md)** for visual language, Light/Dark behavior, illustration, color, surface and hierarchy decisions.
+4. **[`SCREEN_DESIGN_PLAN.md`](SCREEN_DESIGN_PLAN.md)** for screen-family coverage and visual-freeze sequencing.
+5. Approved paired references in [`soulful-reference/`](soulful-reference/README.md) for concrete screen composition.
+6. Pass 7 / Pass 6.1 / the historical final archive for feature structure, interaction and copy only where newer authority does not supersede them.
+7. Older Claude passes and `MINIMAL_DESIGN_DIRECTION.md` for historical reference only.
 
-The 2026-08-11 product/access decision requires a new Claude Design revision for affected surfaces. Until then, Pass 6.1 is **not** implementation-final for access/monetization/personalization states.
+Where a newer approved soulful reference conflicts visually with an older artifact, the soulful reference wins. Product/access rules and validated methodology still override illustrative mockup content.
 
-## 02 — Information architecture
+## 02 — Canonical information architecture
 
 Current primary IA remains:
 
@@ -23,116 +25,120 @@ Current primary IA remains:
 - Calendar is nested under Sky.
 - Profile / Settings is reached through the header/profile entry.
 - Profile / Settings is not a sixth primary tab.
+- Compatibility is reached from Circle/people flows.
 
-This remains the baseline unless the next Claude Design pass explicitly changes it.
+Some 2026-08-12 visual explorations show temporary tabs such as `Compatibility` or `Library`. Those are **style explorations only** and do not change the canonical IA.
 
-## 03 — Visual/core screen reference
+## 03 — Current visual direction
 
-- Onboarding: `Onboarding.dc.html` plus later corrections.
-- Pass 2 / Pass 3: foundational exploration/historical reference.
-- Pass 4 / 4.1: broad product and monetization exploration, historical where superseded.
-- Pass 6: engineering-handoff/audit record.
-- Pass 6.1: latest frozen visual/interaction correction layer before the 2026-08-11 access-model change.
-- `final-archive/`: GitHub-friendly derived screenshots/Markdown; never calculation truth.
+The previous minimal direction is superseded for appearance and layout styling by [`SOULFUL_CELESTIAL_DESIGN_DIRECTION.md`](SOULFUL_CELESTIAL_DESIGN_DIRECTION.md).
 
-## 03A — Minimal Humay direction — current visual authority
+The current direction is **soulful celestial**:
 
-Recorded 2026-08-11 alongside [`../development/DEVIATIONS.md`](../development/DEVIATIONS.md) `DEV-001`. Stated in full in [`MINIMAL_DESIGN_DIRECTION.md`](MINIMAL_DESIGN_DIRECTION.md), which is the reference an implementation is checked against; this section remains the supersession record.
+- warm, alive and emotionally inviting;
+- colorful with disciplined accent use;
+- painterly gouache/watercolor celestial illustrations;
+- premium editorial typography;
+- rounded/tinted feature cards and controlled elevation;
+- cute in selected moments without becoming childish or mascot-driven;
+- explicit visual-intensity levels so utility screens remain calm;
+- first-class Light and Dark designs.
 
-**The minimal Humay direction governs all visual and layout decisions.** `claude-reference/Humay Product Prototype - Consolidated.dc.html` and the earlier passes remain authoritative for **product concepts, feature behavior, terminology and copy**, but are no longer the visual or layout authority. Where the prototype conflicts visually with the minimal direction, the minimal direction wins.
+Humay should feel like storybook-quality celestial art inside a polished modern iOS product, not like a sterile utility and not like a cartoon astrology game.
 
-Characteristics: extremely clean, premium but restrained, editorial. Generous whitespace. Warm off-white ground, near-black text, restrained gold accent. Minimal surfaces, subtle borders, limited card usage, minimal shadows, no decorative gradients. Typography carries the visual identity. Astrology symbols used selectively. Elegant motion only where it does work. Native iOS interaction patterns throughout.
+## 03A — Light + Dark lock
 
-Three specific locks supersede the frozen prototype:
+**Both appearances are required.** A screen family is not visually frozen until its Light and Dark references are approved.
 
-### Surfaces — All Paper
+Dark mode is a separate composition/color translation, not a global inversion of Light mode. It uses a midnight-navy ground, warm-ivory text and intentionally rebalanced accent surfaces while preserving the color identity of celestial illustrations.
 
-Every screen renders on Paper. The prototype's per-screen ink/paper split — welcome, reveal, precise Today, full chart and Sky on `#12151C` — is superseded. Precision and tier are differentiated by badge, hairline and typographic weight rather than by a dark ground.
+Initial D0 Dark anchor translations may be used to establish direction. They must be refined deliberately before becoming per-pixel implementation authority.
 
-Ink and Paper remain semantic tokens rather than a light/dark theme pair. A dark appearance is a separate future decision and must not be implemented by inverting these tokens.
+## 03B — Typography
 
-### Typography
+Typography remains:
 
-- **Cormorant Garamond** — wordmark, major titles, important editorial headlines. Weights 300–400 only.
-- **SF Pro (system)** — all body copy, navigation, buttons, forms, settings and general UI.
-- **SF Mono (system)** — degrees, coordinates, dates and technical chart data only.
+- **Cormorant Garamond** — Humay wordmark, major titles, expressive editorial headlines and selected large scores.
+- **SF Pro (system)** — body copy, navigation, buttons, forms, settings and general UI.
+- **SF Mono (system)** — degrees, coordinates, technical dates/times and chart data where mono improves scanning.
 
-**Lora, IBM Plex Sans and IBM Plex Mono are removed.** The prototype's Lora reading paragraphs become SF Pro; its IBM Plex UI and mono become the system faces. This keeps the type system minimal, Dynamic Type-friendly and native, with Cormorant carrying the identity.
+The new direction permits more expressive scale/italic use than the minimal baseline, but Dynamic Type and semantic hierarchy remain mandatory.
 
-The Pass 5.1 wordmark construction, occultation mark geometry, palette, ink opacity ramp, square-by-default radii, hairline borders, no-shadow rule and motion verbs all remain in force. §05's brand-lock reference stands except where this section names a replacement.
+## 03C — Illustration authority
 
-### Device scope
+Approved visual language:
 
-**V1 targets iPhone in portrait.** iPad is a planned dedicated design and implementation phase, not a stretched phone layout — Chart, Circle, Sky and Compatibility should use genuinely different compositions on larger screens, including two-column layouts.
+- painterly gouache/watercolor celestial landscapes;
+- warm sun/moon expression used selectively;
+- tasteful botanical/cosmic mini-illustrations;
+- semi-real editorial portraits where relationship/person context benefits;
+- restrained orbit lines, stars and constellations.
 
-The iPhone implementation must not make that harder: no hard-coded device dimensions, semantic spacing tokens throughout, reusable layout components, adaptable navigation architecture, chart visualizations responsive to their container, and content separated from presentation. No speculative iPad layouts in this phase.
+Avoid unrelated illustration styles, sticker density, chibi/3D emoji treatment, thick cartoon outlines and generic purple-neon galaxy treatment.
 
-## 04 — Product access model — supersedes old monetization semantics where conflicting
+Reference art under `soulful-reference/assets/` is design reference until explicitly promoted into `Humay/Resources/Assets.xcassets/` as optimized production artwork.
 
-The hierarchy is still conceptually:
+## 03D — Useful rules retained from the minimal implementation
+
+The minimal visual appearance is superseded, but these implementation/accessibility lessons remain binding unless a newer screen contract changes them:
+
+- one reusable page/scaffold approach should prevent gutter/inset drift;
+- Dynamic Type role ceilings must preserve hierarchy;
+- rows reflow rather than shrink text to fit;
+- fixed-geometry drawings step aside when accessibility sizes require it;
+- withheld/unknown values must remain semantically clear rather than replaced with fake precision;
+- no hard-coded device dimensions; use semantic layout tokens and responsive visualizations.
+
+## 04 — Product access model
+
+The hierarchy remains:
 
 **Free → optional Rewarded Access → Premium**
 
-But the behavior is now defined as follows.
+The exact runtime/cost behavior is defined in [`../development/PRODUCT_ACCESS_MODEL.md`](../development/PRODUCT_ACCESS_MODEL.md). Visual redesign may improve presentation but may not redefine entitlement semantics.
 
 ### Free
 
 - Ordinary Free runtime usage must not call a paid astrology or LLM provider.
-- Free daily horoscope is a coarse, pre-generated catalog experience based on birth date/system bucket rather than a natal chart.
+- Free daily horoscope is a coarse, pre-generated catalog experience based on supported finite buckets.
 - Western baseline uses 12 Sun-sign daily entries.
 - Free Western compatibility uses 12 × 12 = 144 pre-generated sign-pair keys.
 - Free has no natal-chart calculation.
-- Vedic/Chinese coarse catalogs exist only if methodology validates a finite bucket model.
 
 ### Rewarded Access
 
 - One completed rewarded ad authorizes one needed provider-backed generation for the selected feature/result key.
 - Cache is checked before ad/provider generation.
-- After successful generation, that result is cached and can be reopened without another provider generation/ad for the same valid key.
-- A materially different result key can require a new reward.
-- Rewarded Access is not temporary Premium and not a token/coin wallet.
-- Provider failure after ad completion requires a fair idempotent recovery flow.
-
-This supersedes the older generic 'persistent per-section unlock' model where it conflicts.
+- Successfully generated results are cached/reopenable according to the access/cache contract.
+- Rewarded Access is not a token/coin wallet and not temporary Premium.
+- Provider failure after ad completion requires fair idempotent recovery.
 
 ### Premium
 
-- Premium provides provider-backed personalized/precision features while subscription entitlement is valid.
-- Premium still uses cache first.
+- Premium provides included provider-backed personalized/precision features while entitlement is valid.
+- Premium remains cache-first.
 - Premium avoids the per-generation rewarded-ad requirement for included features.
-- Post-expiry visibility of previously generated cached Premium results remains to be finalized.
 
-### Saved People
+## 05 — Compatibility score presentation
 
-- Rewarded Access is not used as a Saved People slot currency.
-- Exact Free/Premium capacities remain product configuration.
+The new compatibility direction approves **numeric score presentation** as a UI pattern:
 
-### Ask
+- an overall compatibility percentage/score may be shown;
+- dimensions may also show percentages/scores;
+- qualitative explanation must accompany the numbers so the feature does not reduce the relationship to a game score.
 
-- Provider-backed Ask must pass cache/access checks before paid generation.
-- A rewarded completion can authorize one additional question generation.
-- No bankable balance/token/currency system.
+This supersedes the older visual rule that prohibited percentages.
 
-## 05 — Brand/name authority
-
-**Humay** is the product name, repository name and current internal project name.
-
-| Name | Status |
-|---|---|
-| Astara | Historical former working/repository name only |
-| Ortus | Historical placeholder |
-| Ecliptic | Rejected historical recommendation |
-| Eclipse | Visual/design direction only — not product name |
-| Humay | Current product/project/repository name |
-
-Pass 5.1 remains the baseline brand-lock reference for wordmark/mark/icon/palette/typography/voice/Roast/motion, subject to future explicit Humay design revisions.
+However, the mockup values (for example `82%`) are illustrative. Production scoring algorithm, weights, confidence and cross-system semantics remain methodology/product decisions. Design approval does not validate an astrology formula.
 
 ## 06 — Roast and notifications
 
 - Roast is an in-app expression only.
 - Push notifications are always Normal-register copy.
 - Normal and Roast consume the same astrology facts; tone must not alter calculated meaning.
-- The old Normal/Roast notification toggle must not be implemented.
+- Do not implement the historical Normal/Roast notification toggle.
+
+The redesign may make Roast visually playful, but it must remain readable and must not change underlying facts.
 
 ## 07 — Astrology data authority
 
@@ -151,7 +157,7 @@ Pass 5.1 remains the baseline brand-lock reference for wordmark/mark/icon/palett
 
 ## 08 — Unknown birth time
 
-For precision features, unknown birth time degrades only the facts actually dependent on time/uncertainty; it is never replaced with a hidden fake time.
+For precision features, unknown birth time degrades only the facts that truly depend on time/uncertainty; it is never replaced with a hidden fake time.
 
 - Western: Rising/houses require sufficient time; Moon/aspects may become uncertain near boundaries.
 - Vedic: Lagna/Bhavas and some Moon/timing outputs depend on time/uncertainty.
@@ -165,11 +171,11 @@ Any choice that changes calculated output requires domain/methodology validation
 
 Research/sign-off remains required for items tracked in [`../development/METHODOLOGY_TRACK.md`](../development/METHODOLOGY_TRACK.md), including Western house/composite choices, Vedic conventions/non-romantic compatibility, Chinese/BaZi calendar/Four-Pillars/Luck-Cycle rules and cross-system timing mapping.
 
-A provider response does not automatically constitute methodology sign-off.
+A provider response or a visual mockup does not constitute methodology sign-off.
 
 ## 10 — Design vs technical architecture
 
-Product/design locks user-visible behavior and access meaning. Architecture decides:
+Product/design locks user-visible behavior, hierarchy and access meaning. Architecture decides:
 
 - exact backend/storage technology;
 - provider adapters and vendor configuration;
@@ -181,31 +187,40 @@ Product/design locks user-visible behavior and access meaning. Architecture deci
 
 Architecture may optimize cost but may not silently turn Free requests into paid provider calls.
 
-## 11 — External brand clearance
+## 11 — Brand/name authority
 
-Humay is the current internal product/project name. Trademark, App Store/Google Play naming, domains, handles and cultural/linguistic clearance remain external launch tasks.
+**Humay** is the product name, repository name and current internal project name.
 
-## 12 — Current design status
+| Name | Status |
+|---|---|
+| Astara | Historical former working/repository name only |
+| Ortus | Historical placeholder |
+| Ecliptic | Rejected historical recommendation |
+| Eclipse | Historical visual exploration only |
+| Humay | Current product/project/repository name |
 
-- The minimal Humay direction (§03A, stated in full in [`MINIMAL_DESIGN_DIRECTION.md`](MINIMAL_DESIGN_DIRECTION.md)) is the current visual/layout authority.
-- Pass 6.1 is preserved as the latest completed interaction/UX baseline; its visual treatment is superseded by §03A where they conflict.
-- The 2026-08-11 product/access change supersedes conflicting Pass 6.1 monetization/access behavior.
-- **A new Claude Design revision is required** for Chart, Today, Compatibility, Ask and paywall/rewarded/cached-result states before those surfaces are implementation-final.
-- Unaffected visual/IA work can still use Pass 6.1 as reference.
+Pass 5.1 remains useful history for the Humay wordmark/mark. The 2026-08-12 soulful direction controls how the brand appears in current Light/Dark product surfaces.
 
-### Reconciliation pass — 2026-08-11
+External trademark, store naming, domain/handle and cultural/linguistic clearance remain launch tasks.
 
-The Phase 01M application was reviewed screen by screen against the minimal direction and brought into line. Recorded in [`../development/phases/01M-mock-first-app.md`](../development/phases/01M-mock-first-app.md) as `IOS-012`; screenshots of the result are in [`review/`](review/README.md).
+## 12 — Device scope
 
-Decisions taken during that pass, now part of the visual authority:
+V1 targets **iPhone portrait**. iPad remains a dedicated later design/implementation phase rather than a stretched phone layout.
 
-- **Only the precise tier is outlined.** A general badge appeared on nearly every screen and distinguished nothing, so it is a plain mono kicker. The outline is reserved for precision.
-- **One page component.** Every screen — tab root, pushed screen, settings page and sheet — is built on the same scrolling page, so the gutter, top inset, bottom inset and ground colour cannot drift apart. Tab roots take the large title; everything else takes the inline title.
-- **Type ceilings are staggered rather than flat.** A single 1.4× cap across every display and title role inverted the hierarchy at the accessibility text sizes: a row title came out smaller than its own subtitle. Row titles are uncapped; the editorial display roles cap at increasing multiples that keep them above body copy.
-- **Rows reflow rather than shrink.** A label-and-value row becomes a stacked pair at the accessibility sizes; the chart triad and the four BaZi pillars turn from columns into rows. Nothing important is scaled down to fit.
-- **Fixed-geometry drawings step aside.** The Circle drawing is dropped at the accessibility sizes, where the list beneath already carries the whole of its meaning. Calendar dates are set in mono, which is both the typographic rule for a date and what keeps seven columns legible.
-- **A withheld triad value keeps its slot** but is drawn at the disabled weight, so the placeholder does not read as a mark that means something.
+The iPhone design system must remain adaptable: semantic spacing, reusable components, responsive chart geometry and content separated from presentation.
 
-## 13 — Next step
+## 13 — Current design status
 
-After the GitHub product/roadmap documentation is reconciled, continue Claude Design using [`../development/PRODUCT_ACCESS_MODEL.md`](../development/PRODUCT_ACCESS_MODEL.md) as a mandatory input and update the final archive/authority map after the new design pass is approved.
+- Soulful Celestial is the current visual authority.
+- D0 establishes three anchor families: Today/Home, Daily Horoscope and Compatibility, each with a Light/Dark pair.
+- Light anchors define the selected direction.
+- Initial Dark anchors define translation strategy and require a dedicated refinement pass.
+- The full redesign proceeds D1–D9 according to [`SCREEN_DESIGN_PLAN.md`](SCREEN_DESIGN_PLAN.md).
+- Historical Claude/final-archive screenshots remain useful for feature/state inventory, not visual styling.
+- The Phase 01M implementation remains a stable structural/accessibility/mock baseline but is no longer the target visual appearance.
+
+## 14 — Implementation gate
+
+A screen family should not receive final production visual polish until its paired Light/Dark references are approved. Architectural/service work that is independent of appearance may continue in parallel.
+
+After D9, update this map once more with the final screen index and production-asset catalog.
