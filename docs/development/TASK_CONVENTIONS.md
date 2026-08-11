@@ -17,6 +17,11 @@ Each task uses a stable prefix and number:
 - `PLATFORM-###` — sharing/widgets/notifications
 - `RC-###` — hardening/release
 - `METHOD-###` — methodology research/sign-off
+- `MOCK-###` — mock content boundary, fixtures and provenance controls
+
+`MOCK-###` exists so that fixture work is tracked separately from the feature it feeds. Mock content is never a step toward completing a feature task; it is scaffolding that a real service replaces. Keeping it under its own prefix prevents a fixture landing from being mistaken for progress on `TODAY-###` or `CHART-###`.
+
+Mock-track tasks also use numbers at or above 101 within their existing prefix (`TODAY-101`, `CHART-104`) so they can never collide with the real-implementation tasks numbered from 001. See [`DEVIATIONS.md`](DEVIATIONS.md) `DEV-001`.
 
 Task IDs should not be renumbered after work begins.
 

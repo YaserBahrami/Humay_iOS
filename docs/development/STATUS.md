@@ -32,6 +32,25 @@ Last updated: **2026-08-11**
 6. `ARCH-007` — define rewarded one-generation entitlement, Premium access and provider-failure recovery.
 7. `ARCH-008` — privacy/security boundary for birth/saved-person data sent to providers.
 
+## Parallel track — Phase 01M
+
+**Built.** A mock-first iOS application now exists: it builds, launches, and every major flow is navigable over fixture content. Recorded as `DEV-001` in [`DEVIATIONS.md`](DEVIATIONS.md), with tasks and outcome in [`phases/01M-mock-first-app.md`](phases/01M-mock-first-app.md). Architecture is documented under [`../architecture/`](../architecture/).
+
+Every task is `DONE` except `IOS-010` (accessibility), which is `IN PROGRESS` pending a Dynamic Type sweep at the largest accessibility sizes.
+
+Phase 00 remains **IN PROGRESS**. Phase 01M does not complete it, does not satisfy Phase 01 exit criteria, and advances no `ARCH-###` or feature task. Every astrological value in that application is mock fixture content, marked as such at the type level and asserted by test.
+
+Decisions taken for that track and now binding on implementation:
+
+- Bundle identifier `online.humay.ios` — permanent; product domain humay.online.
+- Minimum deployment target iOS 18.0; V1 targets iPhone in portrait. iPad is a planned dedicated phase.
+- Persistence is SwiftData with a `VersionedSchema` from V1 and a `SchemaMigrationPlan` established from the outset.
+- Visual authority is the minimal Humay direction — see [`../design/DESIGN_AUTHORITY.md`](../design/DESIGN_AUTHORITY.md) §03A for the All-Paper, typography and device-scope locks.
+- Normal/Roast tone is set in Settings and the header chip, not during onboarding.
+- Compatibility uses four qualitative axes — Love & Chemistry, Communication, Emotional Connection, Conflict & Pace — with verdicts Strong / Balanced / Mixed / Friction. No score or percentage.
+- Swift 6 with `SWIFT_DEFAULT_ACTOR_ISOLATION = nonisolated`; isolation is declared where it is needed rather than defaulted.
+- `UIDesignRequiresCompatibility` is set, opting out of the iOS 26 system appearance. Transitional — see [`../architecture/IOS_ARCHITECTURE.md`](../architecture/IOS_ARCHITECTURE.md).
+
 ## Active blockers
 
 None for architecture planning.

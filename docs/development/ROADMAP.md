@@ -19,6 +19,16 @@ This roadmap is dependency-driven rather than date-driven. The current product/a
 | 10 | Sharing, Widgets & Notifications | Share cards, widgets, Normal-only notifications | 05–09 |
 | 11 | Hardening & Release | Accessibility, performance, privacy, cost controls, QA and launch readiness | all shipping phases |
 
+### Parallel track
+
+| Phase | Name | Primary outcome | Depends on |
+|---|---|---|---|
+| 01M | [Mock-First iOS Application](phases/01M-mock-first-app.md) | Launchable, navigable app with architecture, design system, all major screens and complete flows over mock content behind service protocols | — (authorized by [`DEVIATIONS.md`](DEVIATIONS.md) `DEV-001`) |
+
+Phase 01M runs ahead of the Phase 00 dependency gate by explicit direction. **It does not satisfy the exit criteria of Phase 00 or Phase 01**, and it advances no `ARCH-###` or feature task. Phase 01 still requires the reconciled design revision and real access-state primitives; Phase 00 still owns the provider, cache, entitlement and privacy contracts.
+
+When Phase 00 completes, `Humay/Data/Mock/` is replaced rather than extended.
+
 ## Product architecture invariant
 
 Humay has two runtime paths:
@@ -77,7 +87,7 @@ Complete Phase 11 and all methodology gates for included production features.
 
 ## Dependency rules
 
-- Phase 00 must freeze the system boundary before production feature code starts.
+- Phase 00 must freeze the system boundary before production feature code starts. Phase 01M is the single recorded exception; it ships no production feature path.
 - Free content generation/publishing is a backend/content-pipeline responsibility, not an on-device LLM feature.
 - Provider-backed calculation facts and interpretation text must be separately versioned/cacheable.
 - No interpretation model may fabricate calculation facts.
