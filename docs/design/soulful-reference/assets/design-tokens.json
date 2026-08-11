@@ -1,0 +1,65 @@
+{
+  "meta": {
+    "name": "Humay Soulful Celestial",
+    "status": "design-reference",
+    "updated": "2026-08-12",
+    "note": "Starting values. Production colors must pass Light/Dark contrast review before freeze."
+  },
+  "color": {
+    "light": {
+      "ground": "#FFF8ED",
+      "surface": "#FFFDF8",
+      "ink": "#17213F",
+      "secondaryInk": "#596070",
+      "coral": "#F06C5D",
+      "peach": "#F6AA83",
+      "gold": "#E6A12C",
+      "lavender": "#9B72DA",
+      "plum": "#57305F",
+      "celestialBlue": "#4E8DBE",
+      "sage": "#78966D",
+      "rose": "#D95C78"
+    },
+    "dark": {
+      "ground": "#0D1220",
+      "surface": "#151B2C",
+      "raisedSurface": "#1B2236",
+      "ink": "#F8F1E7",
+      "secondaryInk": "#B7BDCD",
+      "hairline": "#FFFFFF1A",
+      "coral": "#FF7B6D",
+      "peach": "#F5A77D",
+      "gold": "#F0B24A",
+      "lavender": "#AF8AE8",
+      "plum": "#8F628F",
+      "celestialBlue": "#68A7D5",
+      "sage": "#91AD84",
+      "rose": "#EA7690"
+    }
+  },
+  "radius": {
+    "compact": 14,
+    "card": 20,
+    "feature": 24,
+    "hero": 28,
+    "pill": 999
+  },
+  "spacing": {
+    "xs": 4,
+    "s": 8,
+    "m": 12,
+    "l": 16,
+    "xl": 24,
+    "xxl": 32
+  },
+  "illustrationIntensity": {
+    "A": "one hero/emotional focal point per screen",
+    "B": "illustrated feature/category card",
+    "C": "quiet utility surface; illustration normally omitted"
+  },
+  "type": {
+    "display": "Cormorant Garamond",
+    "ui": "SF Pro / system",
+    "technical": "SF Mono / system"
+  }
+}
