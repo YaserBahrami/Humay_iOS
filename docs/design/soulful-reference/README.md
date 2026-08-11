@@ -21,7 +21,9 @@ Each is represented in Light and Dark. These references define the current visua
 
 ## D1 — onboarding
 
-`onboarding/` contains the Light and Dark onboarding design boards covering:
+`onboarding/` now contains **18 individual screen images** — 9 Light and 9 Dark — plus two overview boards.
+
+Screens:
 
 1. Welcome
 2. Why Humay
