@@ -1,286 +1,198 @@
 # Soulful Celestial Design Direction
 
 **Status:** Current visual authority  
-**Approved:** 2026-08-12  
-**Scope:** Humay iPhone UI, Light + Dark appearance, illustration language, motion and hierarchy
+**Approved visual source:** D0 Light/Dark reference screens selected on 2026-08-12  
+**Scope:** Humay iPhone UI, Light + Dark appearance, illustration language, components, motion and hierarchy
 
 ## 1. Product feeling
 
-Humay should feel **alive, warm, charming and premium**.
+Humay should feel **warm, alive, friendly, colorful and premium** without becoming childish or visually busy.
 
-The product is neither a serious utility wearing astrology symbols nor a cartoon astrology game. The visual idea is:
+The current direction is **cosmic editorial with selective cute illustration**:
 
-> **storybook-quality celestial art inside a polished modern iOS product.**
+- serious enough to trust;
+- playful enough to have personality;
+- colorful in controlled places;
+- clean enough for long-form astrology content;
+- cute in illustration, not cartoon-heavy in layout;
+- modern iOS UI first, astrology styling second.
 
-A user should feel curiosity and affection when opening Humay. Color, illustration and small moments of personality make it memorable while information architecture and reading remain clear.
+The D0 Today, Daily Horoscope and Compatibility Light/Dark references under `soulful-reference/anchors/` are the visual source of truth. Navigation labels inside a visual reference do not override canonical IA.
 
-### Personality balance
-
-- soulful, not solemn;
-- cute, not childish;
-- colorful, not noisy;
-- illustrated, not clip-art-like;
-- magical, not generic purple-neon astrology;
-- premium, not sterile;
-- playful in selected moments, not on every control.
-
-## 2. Visual intensity system
-
-Not every surface gets the same amount of art.
+## 2. Visual intensity
 
 ### Level A — Hero
-
-Use for the emotional center of a screen: Today hero, compatibility hero, onboarding reveal, major chart/system introductions and premium moments.
-
-May include a large painterly celestial scene, expressive sun/moon art, a rich color field, restrained orbit/constellation detail and one strong editorial headline.
-
-Normally use **one Level A moment per screen**.
+Use once on an emotional screen: Today cosmic weather, Compatibility hero, onboarding welcome/reveal, selected premium moments.
 
 ### Level B — Illustrated feature
-
-Use for meaningful cards and reading categories such as Love, Career, Finance, Health, relationship dimensions and Sky highlights.
-
-May include one compact illustration, a category-specific accent, a soft tinted surface and sparse sparkle/star detail.
+Use for Love, Career, Money/Finance, Health, Roast, system selection, important Sky events and similar feature cards.
 
 ### Level C — Utility
-
-Use for settings, forms, lists, technical chart data, metadata, buttons and dense information.
-
-Keep mostly native and quiet: solid/lightly tinted surfaces, system or restrained custom symbols, strong typography and spacing, and little/no decorative illustration.
-
-### Restraint rule
-
-Do **not** put stars, gradients, faces or painterly art on every card. Delight works because it contrasts with calm utility surfaces.
+Forms, settings, lists, technical chart rows, calendars and dense information stay quiet and mostly native.
 
 ## 3. Illustration language
 
 ### Approved
 
-- painterly gouache/watercolor texture;
-- rich celestial skies and landscapes;
-- warm illustrated suns and moons with gentle expression, used selectively;
-- symbolic mini-illustrations for categories;
-- tasteful botanical/celestial combinations;
-- semi-real editorial portraits for people/compatibility where useful;
-- thin orbit lines, stars and constellations as secondary framing;
-- subtle soft grain/paper texture.
+- simple flat/vector or thin-line celestial illustration;
+- hand-drawn feeling without looking rough;
+- friendly sun, moon, planets, coffee cup, crystal ball, lion and similar objects used selectively;
+- very limited facial expressions on selected illustrations;
+- small stars, sparkles, orbit lines and dotted connectors;
+- soft geometric tint circles behind category icons;
+- portrait circles for people/compatibility;
+- minimal shading and simple color blocking.
 
-### Avoid
+### Do not use
 
-- chibi characters;
-- 3D emoji-like mascots;
-- sticker-sheet density;
+- watercolor/gouache landscapes;
+- painterly storybook scenes;
+- complex botanical illustration;
+- 3D emoji or glossy mascot rendering;
+- chibi proportions;
 - thick cartoon outlines;
-- generic glowing purple galaxy backgrounds;
-- default glassmorphism;
-- clip-art iconography;
-- a face on every planet/icon;
-- decorative art behind dense text.
+- sticker-sheet density;
+- generic purple-neon galaxy backgrounds;
+- glassmorphism as the default surface treatment;
+- decorative stars on every card.
 
-Every generated or commissioned asset must look as if it came from one illustrator and one color world.
+The app should feel illustrated, not illustrated **everywhere**.
 
-## 4. Color system
+## 4. Color tokens
 
-These are starting tokens and may be tuned after contrast testing.
+### Light
 
-### Light appearance
-
-| Role | Starting value |
+| Role | Reference value |
 |---|---:|
-| Ground | `#FFF8ED` |
-| Surface | `#FFFDF8` |
-| Ink | `#17213F` |
-| Secondary ink | `#596070` |
-| Coral | `#F06C5D` |
-| Peach | `#F6AA83` |
-| Gold | `#E6A12C` |
-| Lavender | `#9B72DA` |
-| Plum | `#57305F` |
-| Celestial blue | `#4E8DBE` |
-| Sage | `#78966D` |
-| Rose | `#D95C78` |
+| Ground | `#FBF7F1` |
+| Surface | `#FFFDFC` |
+| Secondary surface | `#F7F0E8` |
+| Ink | `#151B28` |
+| Secondary text | `#6C6A6C` |
+| Hairline | `#E9E0D8` |
+| Coral | `#F06F67` |
+| Soft peach | `#F7C7B8` |
+| Lavender | `#9A82C8` |
+| Soft lavender | `#E8E0F1` |
+| Solar gold | `#D5A253` |
+| Celestial blue | `#6B9FC1` |
+| Sage | `#79A58C` |
 
-Light mode should feel luminous and tactile, not stark white.
+### Dark
 
-### Dark appearance
-
-| Role | Starting value |
+| Role | Reference value |
 |---|---:|
-| Ground | `#0D1220` |
-| Surface | `#151B2C` |
-| Raised surface | `#1B2236` |
-| Ink | `#F8F1E7` |
-| Secondary ink | `#B7BDCD` |
-| Hairline | `#FFFFFF1A` |
+| Ground | `#101725` |
+| Surface | `#171F30` |
+| Raised surface | `#20283A` |
+| Primary text | `#F5F0EA` |
+| Secondary text | `#B8B2B2` |
+| Hairline | `#30394B` |
+| Coral | `#F77476` |
+| Lavender | `#B06BD4` |
+| Solar gold | `#E5AA55` |
+| Celestial blue | `#71A9D0` |
+| Sage | `#77B39A` |
 
-Dark mode is **not an inversion**. Keep the celestial palette recognizable and maintain warmth/saturation in illustrations. Dark surfaces should feel like night around the artwork, not a gray accessibility skin.
-
-### Color discipline
-
-- Use color to identify content or emotion, not merely decorate.
-- Establish one dominant accent family per screen with a small number of supporting colors.
-- Long reading text remains high-contrast neutral.
-- Never communicate state by color alone.
+Dark mode is deliberately composed, not generated by inversion. Cards use tonal elevation and thin hairlines; accent colors become slightly more luminous.
 
 ## 5. Typography
 
-- **Cormorant Garamond** — wordmark, hero headings, major editorial reading titles and expressive percentages/scores.
-- **SF Pro / system** — body copy, controls, navigation, settings, forms and most card text.
-- **SF Mono / system** — degrees, coordinates and technical dates/times where mono improves scanning.
+- **Cormorant Garamond** — Humay wordmark, large editorial headings, reading headlines and selected compatibility numbers.
+- **SF Pro / system** — body, navigation, forms, buttons, settings, card labels and most UI.
+- **SF Mono / system** — degrees, coordinates and technical date/time values only where scanning benefits.
 
-Expressive scale and italics are welcome where they strengthen hierarchy, but Dynamic Type must remain robust.
+Large serif typography provides soul; system typography keeps the product modern and readable.
 
-## 6. Surfaces, shape and elevation
+## 6. Surfaces and geometry
 
-### Cards
+- Feature cards: typically 18–24 pt radius.
+- Compact rows/cards: typically 14–18 pt radius.
+- Primary buttons: pill or high-radius control, visually simple.
+- Light mode: subtle borders and very soft elevation only when needed.
+- Dark mode: tonal card separation before shadows.
+- Controls and forms remain crisp; decorative texture is not part of the current direction.
 
-- Hero/feature cards: roughly 18–28 pt radius.
-- Compact information cards: roughly 12–18 pt radius.
-- Prefer tinted backgrounds and soft borders over a UI made entirely of white cards.
+## 7. Core recurring UI language
 
-### Elevation
+The current D0 references establish these reusable patterns:
 
-Light mode may use controlled soft shadows for separation. Dark mode relies more on tonal elevation, hairlines and selective luminosity from artwork.
-
-### Texture
-
-Paper/grain texture is allowed only at low intensity. Text and controls remain crisp.
-
-## 7. Light and Dark parity
-
-Every approved Humay screen must have a paired Light and Dark reference before visual freeze.
-
-For Dark mode:
-
-- redesign backgrounds and cards for night values;
-- preserve illustration identity rather than applying a global filter;
-- rebalance gold/coral/lavender accents for contrast;
-- keep stars/orbit lines secondary;
-- avoid pure black except where system UI requires it;
-- keep major illustrations luminous against the midnight ground.
-
-An automatic dark conversion is only a study, never the final design deliverable.
+- warm editorial greeting/headline;
+- small playful object illustration beside rather than behind text;
+- dark cosmic-weather/daily-tip card used as a strong contrast surface;
+- soft category circles for Love/Career/Money/Health;
+- Roast card with one playful character/object;
+- segmented day selector;
+- portrait medallions + dotted connection line in Compatibility;
+- large serif compatibility score plus simple metric bars;
+- clean bottom navigation with line icons;
+- sparse star/sparkle decoration.
 
 ## 8. Canonical information architecture
 
+The visual references do **not** redefine navigation.
+
+Current product IA remains:
+
 **Today / Circle / Sky / Chart / Ask**
 
-- Calendar is under Sky.
-- Profile / Settings is reached through the header/profile entry.
-- Compatibility is reached through Circle/people flows.
-- A concept screenshot does not change navigation by itself.
+- Calendar lives under Sky.
+- Profile/Settings is reached from the profile/header entry.
+- Compatibility is a Circle/people flow.
 
-## 9. Core-screen direction
+## 9. Onboarding direction
 
-### Today
+D1 follows the same visual language as D0:
 
-Today is the warmest and most immediately lovable screen.
+1. Welcome — friendly hero illustration, strong serif statement, simple CTA.
+2. Why Humay — three clean value cards.
+3. Birth date — utility-first with one small calendar illustration.
+4. Birth time — utility-first with clock/crescent illustration.
+5. Unknown time — reassuring educational state, no fake precision.
+6. Birth location — simple globe/pin illustration.
+7. Astrology system — three system cards, visually distinct but restrained.
+8. Calculating — simple orbit graphic and progress.
+9. Big Three — strongest reveal, three clear cards and one short summary.
 
-- One hero cosmic-weather illustration.
-- A short emotional summary before dense reading text.
-- Love, Career, Finance and Health may use Level B illustrated cards.
-- Planet/transit mood may be colorful without becoming a mascot row.
-- Free vs precise provenance/access stays clear.
+## 10. Motion
 
-### Daily Horoscope / reading detail
+- tiny sparkle appearance;
+- slow orbit on selected hero graphics;
+- soft card/row entrance;
+- matched-geometry transitions where useful;
+- gentle haptics for confirmation.
 
-- Editorial headline plus one meaningful celestial scene.
-- Long text lives on calm surfaces.
-- Category cards reuse the Today visual language.
-- Timing callouts appear only when methodology/calculation supports them.
+No looping mascot motion or busy particle backgrounds. Respect Reduce Motion.
 
-### Circle and Compatibility
+## 11. Accessibility
 
-- Human connection feels romantic/warm rather than analytical.
-- Portrait medallions, connective orbit lines and sun/moon imagery are appropriate Level A devices.
-- Compatibility may present an overall percentage/score and dimension percentages as a presentation pattern.
-- Qualitative language accompanies numbers.
-- The real scoring algorithm remains separate product/methodology work.
+- Dynamic Type hierarchy must survive accessibility sizes.
+- Forms and rows reflow instead of shrinking important text.
+- Minimum touch targets remain 44 pt.
+- Light and Dark contrast are tested independently.
+- Color is never the only carrier of meaning.
+- Decorative illustration never substitutes for factual labels.
+- Unknown/unavailable astrology facts remain explicit rather than replaced with visual guesses.
 
-### Sky
+## 12. Asset strategy
 
-Use deeper blue/lavender celestial art where it improves orientation. Calendar grids and event lists remain utility-first.
+Design references live under `docs/design/soulful-reference/`.
 
-### Chart
+- `anchors/` — D0 selected Light/Dark references.
+- `onboarding/` — D1 Light/Dark screen boards.
+- `components/` — reusable UI/component and illustration reference boards.
+- `assets/` — future isolated reusable art candidates.
 
-Chart remains data-first. Illustration introduces systems and major summaries; it does not sit behind technical values.
+Reference mockups are not automatically production assets. Approved shipping art is exported/optimized separately into `Humay/Resources/Assets.xcassets/`.
 
-- Western: indigo/navy + gold celestial geometry.
-- Vedic: saffron/gold + deep blue, respectful and non-pastiche.
-- Chinese/BaZi: vermilion/jade/ink-inspired accents without decorative stereotypes.
-- Compare Systems: neutral base with system-specific accents.
+## 13. Visual completion rule
 
-### Ask
+A family is visually complete only when:
 
-Ask feels intimate and magical while retaining a familiar conversation structure. Concentrate illustration in the empty/hero and access moments; keep messages calm and readable.
-
-### Settings
-
-Settings are Level C: native hierarchy first, with small purposeful color accents or glyphs.
-
-### Monetization
-
-Premium/rewarded moments may carry richer art, but decoration may never obscure price, ad behavior, cache/reopen behavior or entitlement state.
-
-## 10. Onboarding
-
-Visual intensity increases gradually:
-
-1. Welcome — strong brand/hero.
-2. Value proposition — warm Level A/B.
-3. Birth date — utility with small illustration.
-4. Birth time — utility.
-5. Unknown-time explanation — calm educational illustration.
-6. Birth location — utility.
-7. System selection — colorful system cards.
-8. Calculation/progress — atmospheric motion.
-9. Reveal — strongest celebratory Level A moment.
-
-## 11. Motion
-
-Good candidates:
-
-- slow orbit/parallax on hero art;
-- tiny sparkle appearance on reveal;
-- subtle watercolor light shift;
-- gentle card entrance/matched geometry;
-- quiet haptic confirmation.
-
-Avoid busy particle fields, bouncing mascots and decorative motion on utility screens. Respect Reduce Motion.
-
-## 12. Accessibility
-
-- Dynamic Type hierarchy survives accessibility sizes.
-- Rows reflow instead of shrinking important text.
-- Fixed-geometry art steps aside when it blocks content.
-- Information is never encoded only by color or illustration.
-- Light and Dark contrast are tested separately.
-- Decorative artwork does not replace accessible text for factual information.
-
-## 13. Asset strategy
-
-During design exploration:
-
-- screen references live under `docs/design/soulful-reference/`;
-- reusable illustration/source references live under `docs/design/soulful-reference/assets/`;
-- reference art is not automatically a production asset.
-
-After approval for shipping:
-
-- export optimized production artwork with explicit names and appearance behavior;
-- add raster/vector assets to `Humay/Resources/Assets.xcassets/`;
-- provide Light/Dark variants only when the artwork genuinely changes;
-- never ship full screenshot crops as app assets.
-
-## 14. Visual completion definition
-
-A screen family is complete only when:
-
-1. Light reference approved;
-2. Dark reference approved;
-3. hierarchy/copy/access state agree with product authority;
-4. artwork matches the shared illustration system;
-5. accessibility/contrast risks are resolved or recorded;
-6. reusable production-asset candidates are identified separately from screenshot reference art.
-
-See [`SCREEN_DESIGN_PLAN.md`](SCREEN_DESIGN_PLAN.md) for the phased screen inventory.
+1. Light reference exists and is approved;
+2. Dark reference exists and is approved;
+3. hierarchy matches the D0 language;
+4. product/access semantics are current;
+5. illustration is simple/editorial rather than painterly/cartoon-heavy;
+6. accessibility risks are recorded;
+7. reusable components/assets are identified separately.
