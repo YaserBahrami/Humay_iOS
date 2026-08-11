@@ -1,6 +1,8 @@
 # iOS Architecture
 
-Describes the application as built in Phase 01M. Anything marked **mock** is fixture content behind a replaceable boundary — see [`MOCK_DATA_STRATEGY.md`](MOCK_DATA_STRATEGY.md) and [`../development/DEVIATIONS.md`](../development/DEVIATIONS.md).
+Describes the application architecture established by completed Phase 01M and the production direction that replaces its mock-only/runtime appearance assumptions. Anything marked **mock** is fixture content behind a replaceable boundary — see [`MOCK_DATA_STRATEGY.md`](MOCK_DATA_STRATEGY.md) and [`../development/DEVIATIONS.md`](../development/DEVIATIONS.md).
+
+Current UI/visual authority is [`../design/DESIGN_AUTHORITY.md`](../design/DESIGN_AUTHORITY.md). This architecture document does not define an alternative visual system.
 
 ## Platform
 
@@ -10,91 +12,110 @@ Describes the application as built in Phase 01M. Anything marked **mock** is fix
 | Language | Swift 6, strict concurrency, `SWIFT_DEFAULT_ACTOR_ISOLATION = nonisolated` |
 | UI | SwiftUI |
 | Persistence | SwiftData, versioned from V1 |
-| Devices | iPhone, portrait (`TARGETED_DEVICE_FAMILY = 1`) |
+| Devices | iPhone portrait for V1 (`TARGETED_DEVICE_FAMILY = 1`) |
 | Bundle identifier | `online.humay.ios` |
-| Third-party dependencies | none |
+| Third-party dependencies | none in the mock-first baseline |
 
-Isolation is opt-in rather than defaulted to `MainActor`. Under MainActor-by-default, the synthesized `Hashable`/`Equatable` conformances on domain value types become actor-isolated and can no longer satisfy the `Sendable` requirement on generics like `FactValue<Bhava>` — the layer that should be the most concurrency-neutral becomes the most constrained. SwiftUI views still get `MainActor` from the `View` protocol; repositories, view models and the composition root declare it explicitly.
+Isolation is opt-in rather than defaulted to `MainActor`. SwiftUI views receive MainActor isolation from `View`; repositories, view models and composition code declare isolation explicitly where required. Domain value types remain concurrency-neutral.
 
 ## Project layout
 
-The Xcode project is hand-written and uses `PBXFileSystemSynchronizedRootGroup` (`objectVersion = 70`), so folders sync automatically and adding a Swift file requires no project edit. Build settings live in `Config/*.xcconfig`; only per-target settings that cannot be shared stay in the project file.
+The Xcode project uses `PBXFileSystemSynchronizedRootGroup` so source folders sync automatically. Shared build settings live in `Config/*.xcconfig`; per-target settings that cannot be shared remain in the project file.
 
-```
-Humay.xcodeproj/          project.pbxproj + shared scheme
+```text
+Humay.xcodeproj/          project + shared scheme
 Config/                   Shared/Debug/Release xcconfig + Info.plist
-Scripts/                  check-layering.sh, check-nomenclature.sh
+Scripts/                  layering/nomenclature checks
 Humay/
 ├── App/                  entry point, composition root, routing, logging
-├── Domain/               pure Swift: value types, service and repository protocols
-│   ├── Shared/           FactValue
-│   ├── Profile/          UserProfile, BirthDetails, AstrologyTradition, Tone, AppSettings
-│   ├── Content/          ContentProvenance, HoroscopeReading, ReadingBasis
-│   ├── Chart/            Shared, Western, Vedic, Chinese — three unrelated families
-│   ├── Sky/              SkyEvent, SkySnapshot, MoonPhase
-│   ├── Circle/           CirclePerson, CompatibilityReading
-│   ├── Ask/              AskConversation, AskMessage
-│   ├── Services/         protocols only
-│   └── Repositories/     protocols only
+├── Domain/               pure Swift values, service/repository protocols
+│   ├── Shared/
+│   ├── Profile/
+│   ├── Content/
+│   ├── Chart/            Western / Vedic / Chinese remain distinct families
+│   ├── Sky/
+│   ├── Circle/
+│   ├── Ask/
+│   ├── Services/
+│   └── Repositories/
 ├── Data/
-│   ├── Persistence/      SwiftData schema, container, mappers, repositories
-│   ├── InMemory/         repositories for previews and fast tests
-│   └── Mock/             THE BOUNDARY — fixture services and content
-├── DesignSystem/         Tokens, Typography, Components, Motion
-├── Presentation/         one folder per surface, plus Common
+│   ├── Persistence/
+│   ├── InMemory/
+│   └── Mock/             fixture-only boundary
+├── DesignSystem/         semantic tokens, typography, components, motion
+├── Presentation/         feature surfaces + Common
 └── Resources/            Assets.xcassets, Fonts
-HumayTests/               Swift Testing
-HumayUITests/             XCTest
+HumayTests/
+HumayUITests/
 ```
-
-`Config/` is a plain group rather than a synchronized one. Synchronized groups copy every non-source file into the Resources phase, which would produce "Multiple commands produce Info.plist".
 
 ## Layers
 
-```
+```text
 App  →  Presentation  →  Domain  ←  Data
 ```
 
-`Domain` imports nothing but Foundation. `Presentation` depends on domain protocols and never on an implementation. `Data` depends on `Domain` and is depended on only by the composition root.
+`Domain` imports only Foundation. `Presentation` depends on domain protocols and does not know concrete data/provider implementations. `Data` depends on `Domain` and concrete implementations are wired only at the composition root.
 
-The compiler cannot enforce this in a single target, so `Scripts/check-layering.sh` does: no SwiftUI/SwiftData/UIKit in `Domain/`, no SwiftData or `@Query` in `Presentation/`, no concrete `Mock*` or `*Repository` type named in `Presentation/`, `@Model` only under `Data/Persistence/`, and colour literals only in the palette file.
+`Scripts/check-layering.sh` enforces dependency rules that the compiler cannot see in a single app target.
 
-`HumayDomain` becomes a local Swift package the moment a real calculation engine lands and needs to be tested without an app host or shared with a widget extension. Until then, folders.
+A local Swift package for domain/calculation code may be introduced when production calculation engines or shared extensions make that boundary valuable; the current folder structure does not preclude it.
 
 ## Composition root
 
-`AppEnvironment` is `@Observable`, `@MainActor`, and holds every dependency as a protocol existential. `AppEnvironment+Live` is the only file in the application that names a concrete repository or service; replacing the mocks is a change to that one file.
+`AppEnvironment` owns dependencies behind protocol existentials. Concrete repositories/services are named only by composition wiring, allowing mock services to be replaced without presentation code depending on vendor types.
 
-It also owns the small amount of state more than one screen must agree about — the profile, the settings and the Circle — and every write goes through it so the in-memory copy and the store cannot drift.
+Shared user state such as profile/settings/Circle data flows through the environment/repository boundary so in-memory and persisted state cannot silently drift.
 
-`AppEnvironment.preview` (DEBUG only) is built from in-memory repositories with zero latency, so previews never touch SwiftData.
+Preview wiring uses in-memory repositories and must not contact production services.
 
 ## Persistence
 
-- `HumaySchemaV1: VersionedSchema` namespaces every `@Model` type. `HumayMigrationPlan: SchemaMigrationPlan` exists from the first release with no stages. A later revision becomes `HumaySchemaV2` with a stage; **V1 is never edited retroactively**, because once a shipped build has written data in that shape the file describes what is on disk rather than what we would like.
-- Entities store primitives and `String` raw values only — no enums with associated values, no `Codable` composites. That is SwiftData's most migration-fragile area, and a flat shape makes `BirthTime.unknown` impossible to confuse with a stored zero.
-- `@Model` types never leave `Data/Persistence/`. The app does not call `.modelContainer(_:)` and no view uses `@Query`; either would put SwiftData in the view layer.
-- Repositories are `@MainActor` and synchronous. The dataset is one profile, a handful of people and a few conversations. If one ever needs background work, the protocol becomes `async` and gains a backing actor — call sites already `try`, so the change is mechanical.
-- **Repositories hold the `ModelContainer`, not just its context.** A `ModelContext` does not keep its container alive, so a repository storing only `container.mainContext` works for as long as something else happens to hold the container and then traps inside SwiftData once that reference goes away. `LiveWiringTests` exercises the composition root itself for exactly this reason.
+- `HumaySchemaV1: VersionedSchema` represents the shipped V1 on-disk shape and is never edited retroactively after release.
+- Future changes add new schema versions and migration stages.
+- Entities store migration-safe primitives/raw values rather than provider-native models.
+- `@Model` types stay inside `Data/Persistence/` and do not leak into Domain/Presentation.
+- Unknown birth time remains explicitly unknown; it is never represented by a hidden midnight/noon substitute.
+- Repositories own the resources required for their model context/container lifetime.
 
-The store lives at `Application Support/Humay.store`. That directory does not exist in a fresh container and SwiftData does not create it; `HumayModelContainer.storeURL()` does.
+Production cache/result persistence is finalized by Phase 00 architecture (`ARCH-004`) and remains distinct from local profile/settings persistence.
 
 ## Navigation
 
-Five tabs — Today, Circle, Sky, Chart, Ask — each with its own `NavigationStack`, so switching tabs never discards position. Re-selecting the active tab pops that stack to its root and leaves the others untouched. Calendar is a segment inside Sky. Profile and settings are a full-screen cover reached from the header, not a sixth tab.
+Five primary tabs:
 
-`AppRouter` owns per-tab paths and the settings cover. `Route` and `SettingsPage` are `Hashable` enums.
+**Today / Circle / Sky / Chart / Ask**
 
-## Appearance
+Each tab has its own navigation stack so switching tabs preserves position. Calendar is nested under Sky. Profile/Settings is reached from the header rather than becoming another primary tab.
 
-`UIDesignRequiresCompatibility` is set. The iOS 26 floating tab bar is translucent and capsule-shaped, so a reading would be visible through the chrome while being read — the opposite of a design built on a flat ground, square edges and hairline rules. The alternative, a hand-built tab bar, would cost the free accessibility, keyboard and state behaviour of the real one. This key is transitional and should be revisited when the design takes an explicit position on the newer appearance.
+`AppRouter` owns per-tab paths and presentation routes. Current design work may change composition inside screens but does not change this IA unless `docs/design/DESIGN_AUTHORITY.md` is explicitly updated.
 
-The application is light-only (`UIUserInterfaceStyle = Light`) because the surface model is All Paper. Ink and Paper are semantic tokens, not a light/dark pair — a dark appearance is a separate design decision and must not be implemented by inverting them.
+## Appearance and design-system target
+
+Production appearance follows the single current design program: **Soulful Celestial, Light + Dark**.
+
+Architecture requirements:
+
+- use semantic appearance-aware tokens rather than Light-only color literals;
+- support intentional Light and Dark surfaces, not token inversion;
+- keep illustration assets separate from layout/business logic;
+- allow appearance-specific artwork only where the approved asset genuinely differs;
+- preserve Dynamic Type, VoiceOver, Reduce Motion and native interaction behavior;
+- keep hero/feature artwork responsive to its container rather than hard-coding device dimensions;
+- keep utility/data screens calm even though the visual system supports rich illustrated hero moments.
+
+The completed Phase 01M runtime still contains transitional appearance choices from the mock-first implementation. Those are implementation debt, not target architecture, and are reconciled during the production design-system/family implementation tasks. The active target is defined only by:
+
+- [`../design/DESIGN_AUTHORITY.md`](../design/DESIGN_AUTHORITY.md)
+- [`../design/SOULFUL_CELESTIAL_DESIGN_DIRECTION.md`](../design/SOULFUL_CELESTIAL_DESIGN_DIRECTION.md)
+- [`../design/SCREEN_DESIGN_PLAN.md`](../design/SCREEN_DESIGN_PLAN.md)
 
 ## Testing
 
-Swift Testing for unit tests, XCTest for UI tests, not mixed in one target. See [`TESTING_STRATEGY.md`](TESTING_STRATEGY.md).
+Swift Testing is used for unit/domain tests and XCTest for UI tests. See [`TESTING_STRATEGY.md`](TESTING_STRATEGY.md).
 
-## Not built
+Visual implementation adds Light/Dark and accessibility verification as the D0–D9 screen families become production-ready.
 
-No networking, no astrology provider, no interpretation provider, no authentication, no StoreKit, no advertising, no analytics, no CloudKit, no widgets, no notification scheduling, no iPad layouts. There is no HTTP client in the tree.
+## Not yet built for production
+
+Production networking, astrology provider adapters, interpretation provider, authentication (unless later required), StoreKit, advertising, analytics, widgets, notification delivery and iPad layouts are not complete. The existing mock-first service implementations are explicitly non-production.

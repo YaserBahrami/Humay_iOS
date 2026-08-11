@@ -1,6 +1,6 @@
 # Testing Strategy
 
-Swift Testing for unit tests, XCTest for UI tests. The two are not mixed in one target.
+Swift Testing is used for unit/domain tests and XCTest for UI tests.
 
 ```bash
 xcodebuild test -project Humay.xcodeproj -scheme Humay \
@@ -8,41 +8,57 @@ xcodebuild test -project Humay.xcodeproj -scheme Humay \
   -derivedDataPath .build/DerivedData
 ```
 
-## What is worth testing at this stage
+## Current high-value tests
 
-The suite deliberately targets the rules that are easy to break silently, not coverage.
+The suite targets rules that can fail silently rather than chasing coverage percentage.
 
-| Suite | Why it exists |
+| Suite | Purpose |
 |---|---|
-| `RepositoryTests` | CRUD over an in-memory container per test. Catches SwiftData relationship and delete-rule mistakes, which are the framework's most common bite. |
-| Birth-time cases within it | `.unknown` must round-trip as `.unknown`, and midnight must stay distinguishable from "not set". This is the single rule the whole unknown-time design rests on. |
-| `LiveWiringTests` | Exercises the composition root against the real on-disk store. Exists because the repositories originally kept only `container.mainContext` and not the container: every isolated test passed while the application trapped inside SwiftData on its first write. Ownership mistakes of that shape are invisible to narrow tests. |
-| `TypographyTests` | Every bundled Cormorant face resolves. A missing font does not crash — UIKit substitutes San Francisco silently, and the mistake can survive for weeks. |
-| `AccessibilityTests` | The reading hierarchy holds at the largest accessibility text size, reading roles stay uncapped, and no icon size is doing the work of a hit target. Exists because the type ceilings once inverted the hierarchy — a row title set smaller than its own subtitle — and nothing failed. |
-| `ToneInvarianceTests` | Normal and Roast share one basis across all twelve signs. The executable form of "Roast changes expression only". |
-| `MockProvenanceTests` | Every value from every mock service reports mock provenance. The executable form of the central rule in `MOCK_DATA_STRATEGY.md`; a new mock method that forgets provenance fails here. |
-| `FixtureCompletenessTests` | Every sign and category resolves. Prevents "works for Pisces, crashes for Capricorn". Asserts shape, never truth. |
-| `ChartWheelGeometryTests` | Pure maths. The one place a silent visual bug would be invisible in review. |
-| UI tests | Launch smoke, and onboarding through to Today. |
+| `RepositoryTests` | CRUD/migration-sensitive persistence behavior. |
+| Birth-time cases | `.unknown` remains distinguishable from a real clock time. |
+| `LiveWiringTests` | Exercises composition/persistence resource lifetimes. |
+| `TypographyTests` | Bundled Cormorant faces resolve rather than silently falling back. |
+| `AccessibilityTests` | Dynamic Type hierarchy/reflow and hit-target invariants. |
+| `ToneInvarianceTests` | Normal and Roast use the same underlying astrology basis/facts. |
+| `MockProvenanceTests` | Every mock service result is explicitly marked as mock provenance. |
+| `FixtureCompletenessTests` | Required mock shapes/keys resolve without treating fixture values as truth. |
+| `ChartWheelGeometryTests` | Pure geometry/math behavior for the current wheel implementation. |
+| UI tests | Launch and core navigation/onboarding smoke coverage. |
 
-## What is deliberately excluded
+## Deliberately excluded from the mock baseline
 
-- **Any test asserting an astrological value is correct.** There is nothing to be correct against, and writing one would convert prototype content into an engineering fixture — precisely what `TASK_CONVENTIONS.md` forbids.
-- **Snapshot testing.** Needs a third-party dependency. Now that the UI baseline is reconciled and stable the argument against it is weaker than it was, but the goldens would still be recording mock content. Revisit when real services land.
-- **View-model tests that only exercise a mock.** Most models in this phase are `service.call() → assign`; testing them tests the fixture.
-- **Performance, localisation and iPad layout tests.** Nothing to measure and iPad is out of scope.
+- Tests that assert fixture astrology values are scientifically/astrologically correct.
+- Provider contract/golden-value tests before the real calculation layer exists.
+- Snapshot goldens that would accidentally canonize fixture content as calculation truth.
+- iPad layout tests while iPad remains a dedicated later phase.
 
 ## Static checks
 
-Run alongside the suite; neither is a build phase, so `ENABLE_USER_SCRIPT_SANDBOXING` stays on.
+Run alongside the suite:
 
 ```bash
 ./Scripts/check-layering.sh
 ./Scripts/check-nomenclature.sh
 ```
 
-`check-layering.sh` enforces the dependency direction the compiler cannot see in a single target. `check-nomenclature.sh` enforces the naming freeze — historical product names, and claims the product must not make such as a compatibility score or an "account" for what is a local profile.
+`check-layering.sh` enforces dependency direction. `check-nomenclature.sh` protects active product naming and user-facing claims that remain invalid (for example historical product names, fake accounts, token/coin wallets, and misleading absolute compatibility language).
+
+**Compatibility percentages/scores are no longer banned by nomenclature.** Current design authority permits numeric presentation, but tests must not treat illustrative UI percentages as a validated production algorithm.
+
+## Light + Dark UI verification
+
+As current D0–D9 screen families are implemented, UI/accessibility coverage should include:
+
+- representative Light and Dark launches for each finalized family;
+- contrast checks for text/controls separately by appearance;
+- Dynamic Type at accessibility sizes;
+- VoiceOver reading order and semantic labels;
+- Reduce Motion alternatives for hero/reveal motion;
+- verification that decorative artwork does not hide or replace factual content;
+- appearance-specific assets resolving correctly when used.
+
+Pixel snapshots may be reconsidered after the actual screen family is approved and production data is decoupled from its visual fixture. Snapshot tests should protect layout/system regressions, not declare mock astrology values authoritative.
 
 ## When the calculation layer lands
 
-Fixture-shape tests are replaced by validation against independently sourced golden values, recording source, method and version. Design artifact values are not accepted as truth merely because they appear in a mockup.
+Fixture-shape tests are complemented/replaced by validation against independently sourced golden values that record source, methodology and version. Design references are never accepted as astrology truth merely because they appear in an approved screen.
