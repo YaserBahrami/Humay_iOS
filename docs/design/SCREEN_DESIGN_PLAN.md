@@ -29,7 +29,7 @@ docs/design/soulful-reference/
   assets/
 ```
 
-Repository design packages may contain SVG plus compressed high-quality WebP review imagery. Production artwork is exported separately into `Humay/Resources/Assets.xcassets/` only after approval.
+Repository design packages should prefer GitHub-viewable/editable SVG for approved visual references. Production artwork is exported separately into `Humay/Resources/Assets.xcassets/` only after approval.
 
 ## D0 — Visual anchor lock — APPROVED
 
@@ -46,7 +46,7 @@ D0 establishes warm cream vs midnight navy appearance, strong editorial serif + 
 The previous nine-screen onboarding exploration is stale. The current app implements four beats in `OnboardingFlowView.Step`, and D1 follows that product truth.
 
 1. Welcome — **Light/Dark redesigned; ready for review**
-2. Birth Date — **Light/Dark + elements + spec committed; ready for review**
+2. Birth Date — **complete repository package committed; ready for review**
 3. Tradition — **next**
 4. Profile Reveal — pending
 
@@ -63,11 +63,18 @@ Birth time and birth location are not onboarding steps. They are optional later 
 
 Contains:
 
-- `birth-date-light-dark.webp`
-- `birth-date-elements.webp`
-- `README.md`
-- `design-spec.json`
-- `elements/*.svg`
+- `birth-date-light.svg` — individual Light design
+- `birth-date-dark.svg` — individual Dark design
+- `birth-date-light-dark.svg` — comparison/review board
+- `birth-date-elements.svg` — reusable visual-system board
+- `README.md` — complete screen specification
+- `SOURCE.md` — provenance/authority notes
+- `design-spec.json` — machine-readable implementation handoff
+- `elements/birth-date-motif-light.svg`
+- `elements/birth-date-motif-dark.svg`
+- `elements/progress-light.svg`
+- `elements/progress-dark.svg`
+- `elements/README.md`
 
 The Birth Date package is reconciled with the current app behavior: native wheel date picker, 1900-01-01 through today, no birth-time/location collection, back to Welcome and Continue to Tradition.
 
@@ -155,8 +162,8 @@ Finalize wordmark, mark/app icon, launch Light/Dark, final token board, componen
 
 For each new screen/step, store:
 
-- [ ] Light review image
-- [ ] Dark review image
+- [ ] individual Light visual reference
+- [ ] individual Dark visual reference
 - [ ] side-by-side review board
 - [ ] element/component board when the screen introduces reusable treatment
 - [ ] editable reference elements where applicable
@@ -164,6 +171,7 @@ For each new screen/step, store:
 - [ ] structured design spec / handoff data
 - [ ] accessibility notes
 - [ ] sample-data disclaimer
+- [ ] source/provenance notes
 - [ ] links from the relevant design indexes
 
 ## Per-screen approval checklist
