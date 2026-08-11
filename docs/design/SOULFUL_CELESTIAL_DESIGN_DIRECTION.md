@@ -142,17 +142,19 @@ Current product IA remains:
 
 ## 9. Onboarding direction
 
-D1 follows the same visual language as D0:
+D1 must follow the **current four-beat onboarding flow implemented by `OnboardingFlowView.Step`**. The older nine-screen concept is superseded.
 
-1. Welcome — friendly hero illustration, strong serif statement, simple CTA.
-2. Why Humay — three clean value cards.
-3. Birth date — utility-first with one small calendar illustration.
-4. Birth time — utility-first with clock/crescent illustration.
-5. Unknown time — reassuring educational state, no fake precision.
-6. Birth location — simple globe/pin illustration.
-7. Astrology system — three system cards, visually distinct but restrained.
-8. Calculating — simple orbit graphic and progress.
-9. Big Three — strongest reveal, three clear cards and one short summary.
+1. **Welcome** — strongest personality moment: editorial headline, one friendly celestial/object hero, small value cues, simple CTA.
+2. **Birth Date** — utility-first date input with one small playful accent and clear explanation that date alone is enough for the general reading.
+3. **Tradition** — Western / Vedic / Chinese choices presented as distinct restrained cards; selection can be colorful, the layout stays calm.
+4. **Profile Reveal** — second strongest emotional moment; show what the date alone can legitimately reveal and clearly separate later precise chart inputs.
+
+Birth time and birth location are not onboarding steps. They may be added later for precise chart features.
+
+The first revised Welcome Light/Dark pair lives at:
+
+- `soulful-reference/onboarding/light/01-welcome.svg`
+- `soulful-reference/onboarding/dark/01-welcome.svg`
 
 ## 10. Motion
 
