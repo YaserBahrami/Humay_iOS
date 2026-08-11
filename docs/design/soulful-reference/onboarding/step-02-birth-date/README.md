@@ -2,14 +2,16 @@
 
 Status: **LIGHT/DARK DESIGN GENERATED — READY FOR REVIEW**
 
-This is the current design package for the canonical second Humay onboarding beat. It follows the approved D0 Soulful Celestial references and the product behavior already implemented by `OnboardingBirthDateView`.
+This is the complete repository-owned design package for the canonical second Humay onboarding beat. It follows the approved D0 Soulful Celestial references and the product behavior already implemented by `OnboardingBirthDateView`.
 
-## Review images
+## Canonical visual references
 
-- `birth-date-light-dark.webp` — primary side-by-side review board.
-- `birth-date-elements.webp` — component / visual-element review board.
+- `birth-date-light.svg` — full Light screen reference.
+- `birth-date-dark.svg` — full Dark screen reference.
+- `birth-date-light-dark.svg` — side-by-side review board.
+- `birth-date-elements.svg` — reusable component / visual-element board.
 
-The side-by-side board contains the complete Light and Dark screen pair and is the main visual reference for this step. The element board is a visual inventory, not a replacement for the canonical design tokens.
+The SVG references are editable, GitHub-viewable and use canonical Humay tokens. The side-by-side board is the primary review shot; the individual Light/Dark files preserve implementation-level screen detail.
 
 ## Product truth
 
@@ -23,7 +25,7 @@ The Birth Date screen:
 - continues to Tradition;
 - collects date only;
 - does **not** request birth time or birth location;
-- uses a wheel date picker;
+- uses a native wheel date picker;
 - allows dates from 1900-01-01 through the current date;
 - keeps the primary action pinned by the shared onboarding scaffold;
 - remains scrollable at large Dynamic Type sizes.
@@ -40,7 +42,7 @@ The Birth Date screen:
 
 ### Supporting note
 
-The current implementation can keep the screen visually quiet. The reference board uses:
+The approved reference uses:
 
 `Your date is enough to start.`
 
@@ -91,7 +93,7 @@ The screen is deliberately utility-led. Personality comes from the illustration,
 - muted raised selection band;
 - slightly more luminous coral/lavender/gold;
 - calendar + crescent motif remains colorful;
-- the action may carry the stronger coral→lavender emphasis established by the current dark D1 direction.
+- primary action uses the stronger coral→lavender emphasis established by the current dark D1 direction.
 
 ## Typography
 
@@ -101,13 +103,9 @@ Production typography remains governed by `SOULFUL_CELESTIAL_DESIGN_DIRECTION.md
 - SF Pro / system for UI and body copy;
 - SF Mono only where technical values genuinely benefit from monospacing.
 
-The generated element board contains visual font labels from the image-generation pass. Those labels are **non-authoritative**; the project typography rules above are the implementation source of truth.
-
 ## Color authority
 
-Production color tokens remain the canonical values in `SOULFUL_CELESTIAL_DESIGN_DIRECTION.md`. Any hex labels rendered inside the generated element board are visual annotations, not token overrides.
-
-Key canonical values used by this step:
+Production color tokens remain the canonical values in `SOULFUL_CELESTIAL_DESIGN_DIRECTION.md` and are repeated in `design-spec.json` for this handoff.
 
 | Role | Light | Dark |
 |---|---|---|
@@ -123,7 +121,7 @@ Key canonical values used by this step:
 
 ## Reusable elements
 
-`elements/` stores clean vector reference elements extracted conceptually from this step:
+`elements/` stores small standalone vector references:
 
 - `birth-date-motif-light.svg`
 - `birth-date-motif-dark.svg`
@@ -134,7 +132,7 @@ These are documentation/reference assets. They are **not automatically shipping 
 
 ## Accessibility / implementation notes
 
-- keep the native wheel picker semantics and accessibility label;
+- keep native wheel-picker semantics and accessibility labeling;
 - minimum hit target remains 44 pt;
 - do not shrink the editorial heading to force a fixed layout;
 - content must scroll when Dynamic Type requires it;
