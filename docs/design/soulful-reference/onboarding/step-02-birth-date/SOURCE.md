@@ -11,25 +11,32 @@ The Birth Date step was composed from the approved Humay Soulful Celestial Light
 - Daily Horoscope
 - Compatibility
 
-The reference pair preserves the same cream/midnight relationship, editorial hierarchy, soft surfaces, restrained celestial illustration, and disciplined coral/lavender/gold accents.
+The reference set preserves the same cream/midnight relationship, editorial hierarchy, soft surfaces, restrained celestial illustration and disciplined coral/lavender/gold accents.
 
-## Repository review images
+## Repository reference format
 
-The generated review masters were 1448 × 1086. Repository copies are stored as high-quality 1200 × 900 WebP files to keep design history practical inside Git while retaining readable visual detail.
+The approved visual concept was first reviewed as a generated Light/Dark mockup and element board. The repository handoff is stored as clean SVG so the design remains GitHub-viewable, editable and token-correct without depending on opaque raster annotations.
 
-- `birth-date-light-dark.webp` — paired full-screen review
-- `birth-date-elements.webp` — component / element review
+Repository files:
 
-The repository documentation and `design-spec.json` preserve canonical production tokens and copy separately so implementation does not depend on raster annotations.
+- `birth-date-light.svg` — individual Light reference
+- `birth-date-dark.svg` — individual Dark reference
+- `birth-date-light-dark.svg` — paired review board
+- `birth-date-elements.svg` — component / element board
+- `elements/*.svg` — isolated reusable motifs
+- `design-spec.json` — machine-readable behavior/copy/token handoff
 
-## Important authority rule
+The SVG references intentionally reconcile the reviewed concept with Humay's canonical fonts, colors and current onboarding product behavior.
 
-If text rendered inside a generated board conflicts with the project design authority, the following order wins:
+## Authority order
+
+If any historical/generated visual annotation conflicts with repository design authority, the following order wins:
 
 1. `docs/design/DESIGN_AUTHORITY.md`
 2. `docs/design/SOULFUL_CELESTIAL_DESIGN_DIRECTION.md`
 3. this step's `README.md`
 4. this step's `design-spec.json`
-5. visual annotations inside the raster board
+5. the committed SVG visual references
+6. historical/generated raster annotations
 
-This specifically applies to incidental font-family or hex labels that can appear in AI-generated design boards.
+This specifically prevents incidental font-family, color-label or stale-flow text from overriding the app's canonical design system.
