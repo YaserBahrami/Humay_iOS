@@ -1,6 +1,6 @@
 # D1 — Onboarding Reference Set
 
-**Status:** iPhone Steps 01–02 approved; iPad companion designs pending; Step 03 next.
+**Status:** full cross-device reference set authored; awaiting user approval before production implementation.
 
 D1 follows the canonical four-beat product flow:
 
@@ -11,67 +11,47 @@ D1 follows the canonical four-beat product flow:
 
 Birth time and birth location are intentionally not collected during onboarding. They can be added later for features that genuinely require precision.
 
-The old mock-first onboarding implementation was removed in the 2026-08-12 production-baseline reset. These repository references now drive the new implementation rather than documenting an existing screen.
+The old mock-first onboarding implementation was removed in the 2026-08-12 production-baseline reset. These repository references drive the new implementation rather than documenting an existing screen.
 
-## Cross-device rule
+## Approval gate
 
-From this point forward onboarding is designed for:
-
-- iPhone Light + Dark;
-- iPad Light + Dark;
-- iPad portrait + landscape/adaptive behavior.
-
-Existing approved iPhone references remain valid. They need iPad companion references before the corresponding screen is considered cross-device complete.
+Review `REVIEW_INDEX.md` before implementation. Existing iPhone Welcome and Birth Date references remain approved. Newly authored iPad references and Steps 03–04 are `ready for review`, not silently approved.
 
 ## Step 01 — Welcome
 
-Current iPhone references:
-
-- `light/01-welcome.svg`
-- `dark/01-welcome.svg`
-
-Status:
-
-- iPhone Light: approved
-- iPhone Dark: approved
-- iPad Light: pending
-- iPad Dark: pending
-- implementation: pending production rebuild
+- approved iPhone: `light/01-welcome.svg`, `dark/01-welcome.svg`
+- iPad Light/Dark portrait + landscape: `step-01-welcome/welcome-ipad-review.svg`
+- spec/notes: `step-01-welcome/`
 
 ## Step 02 — Birth Date
 
-Repository package:
+- approved iPhone package remains under `step-02-birth-date/`
+- iPad Light/Dark portrait + landscape: `step-02-birth-date/birth-date-ipad-review.svg`
+- spec/notes updated in `step-02-birth-date/`
 
-- `step-02-birth-date/birth-date-light.svg`
-- `step-02-birth-date/birth-date-dark.svg`
-- `step-02-birth-date/birth-date-light-dark.svg`
-- `step-02-birth-date/birth-date-elements.svg`
-- `step-02-birth-date/design-spec.json`
-- `step-02-birth-date/README.md`
-- `step-02-birth-date/SOURCE.md`
-- `step-02-birth-date/elements/`
+## Step 03 — Tradition
 
-Status:
+- iPhone + iPad Light/Dark: `step-03-tradition/tradition-cross-device-review.svg`
+- spec/notes: `step-03-tradition/`
 
-- iPhone Light: approved
-- iPhone Dark: approved
-- iPhone package/elements/spec: committed
-- iPad Light: pending
-- iPad Dark: pending
-- iPad adaptive notes: pending
-- implementation: pending production rebuild
+## Step 04 — Profile Reveal
 
-## Next design work
+- iPhone + iPad Light/Dark: `step-04-profile-reveal/profile-reveal-cross-device-review.svg`
+- spec/notes: `step-04-profile-reveal/`
 
-1. backfill iPad Welcome Light/Dark;
-2. backfill iPad Birth Date Light/Dark + adaptive notes;
-3. design Step 03 Tradition for iPhone + iPad, Light + Dark;
-4. after approval, production implementation may proceed using the full cross-device references.
+## Product invariants preserved
+
+- no Humay account/login step;
+- Birth Date collects date only;
+- Tradition chooses a leading presentation vocabulary and never hides the other systems;
+- Profile Reveal shows only user-entered facts / date-only precision state in the reference;
+- no natal precision is invented;
+- Dark enabled primary actions use the approved Coral → Lavender treatment;
+- iPad uses intentional bounded/two-region composition and collapses toward compact hierarchy in narrower windows.
 
 ## Typography and token authority
 
 Use:
-
 - `../../SOULFUL_CELESTIAL_DESIGN_DIRECTION.md`
 - each step's `README.md`
 - each step's structured design spec.

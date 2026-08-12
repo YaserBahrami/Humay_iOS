@@ -2,92 +2,15 @@
   "id": "onboarding.birthDate",
   "phase": "D1",
   "step": 2,
-  "status": "approvedIPhone_ipadPending",
+  "status": "approvedIPhone_ipadReadyForReview",
   "repositoryAuthority": "main",
-  "route": {
-    "previous": "onboarding.welcome",
-    "next": "onboarding.tradition"
-  },
-  "deviceStatus": {
-    "iphoneLight": "approved",
-    "iphoneDark": "approved",
-    "ipadLight": "pending",
-    "ipadDark": "pending",
-    "ipadAdaptiveNotes": "pending"
-  },
-  "productBehavior": {
-    "input": "birthDate",
-    "picker": "nativeDateInputSemantics",
-    "earliestDate": "1900-01-01",
-    "latestDate": "today",
-    "collectBirthTime": false,
-    "collectBirthLocation": false,
-    "primaryAction": "Continue",
-    "backAction": "Welcome"
-  },
-  "copy": {
-    "stepLabel": "01 · Birth date",
-    "heading": "When were you born?",
-    "supportingReferenceLine": "Your date is enough to start.",
-    "explanation1": "This is all the general reading needs — your Sun sign, your Chinese year and sign-to-sign compatibility all follow from the date alone.",
-    "explanation2": "Birth time and place are not required now. You can add them later in Profile, and they unlock the parts of a chart that genuinely depend on them.",
-    "primaryAction": "Continue"
-  },
-  "sampleFixture": {
-    "date": "1994-03-14"
-  },
-  "typography": {
-    "editorial": "Cormorant Garamond",
-    "ui": "SF Pro / system",
-    "technical": "SF Mono only when useful"
-  },
-  "tokens": {
-    "light": {
-      "ground": "#FBF7F1",
-      "surface": "#FFFDFC",
-      "secondarySurface": "#F7F0E8",
-      "textPrimary": "#151B28",
-      "textSecondary": "#6C6A6C",
-      "hairline": "#E9E0D8",
-      "coral": "#F06F67",
-      "lavender": "#9A82C8",
-      "solarGold": "#D5A253"
-    },
-    "dark": {
-      "ground": "#101725",
-      "surface": "#171F30",
-      "raisedSurface": "#20283A",
-      "textPrimary": "#F5F0EA",
-      "textSecondary": "#B8B2B2",
-      "hairline": "#30394B",
-      "coral": "#F77476",
-      "lavender": "#B06BD4",
-      "solarGold": "#E5AA55"
-    }
-  },
-  "referenceFiles": [
-    "birth-date-light.svg",
-    "birth-date-dark.svg",
-    "birth-date-light-dark.svg",
-    "birth-date-elements.svg"
-  ],
-  "referenceElements": [
-    "elements/birth-date-motif-light.svg",
-    "elements/birth-date-motif-dark.svg",
-    "elements/progress-light.svg",
-    "elements/progress-dark.svg"
-  ],
-  "accessibility": {
-    "minimumTouchTargetPoints": 44,
-    "supportsDynamicTypeReflow": true,
-    "contentMayScroll": true,
-    "colorOnlySelection": false
-  },
-  "notes": [
-    "iPhone Light/Dark are approved; iPad companion references are required before cross-device visual freeze.",
-    "Reference SVGs use the canonical repository design tokens.",
-    "Reference SVG elements are not automatically production assets.",
-    "Keep dark mode intentionally composed rather than inverted.",
-    "The sample date is presentation-only data."
-  ]
+  "route": {"previous": "onboarding.welcome", "next": "onboarding.tradition"},
+  "deviceStatus": {"iphoneLight": "approved", "iphoneDark": "approved", "ipadPortraitLight": "readyForReview", "ipadPortraitDark": "readyForReview", "ipadLandscapeLight": "readyForReview", "ipadLandscapeDark": "readyForReview", "ipadAdaptiveNotes": "defined"},
+  "productBehavior": {"input": "birthDate", "picker": "nativeDateInputSemantics", "earliestDate": "1900-01-01", "latestDate": "today", "collectBirthTime": false, "collectBirthLocation": false, "primaryAction": "Continue", "backAction": "Welcome"},
+  "copy": {"stepLabel": "01 · Birth date", "heading": "When were you born?", "supportingReferenceLine": "Your date is enough to start.", "explanation1": "This is all the general reading needs — your Sun sign, your Chinese year and sign-to-sign compatibility all follow from the date alone.", "explanation2": "Birth time and place are not required now. You can add them later in Profile, and they unlock the parts of a chart that genuinely depend on them.", "primaryAction": "Continue"},
+  "sampleFixture": {"date": "1994-03-14"},
+  "adaptive": {"portrait": "bounded date-picker region with side motif/explanation; long notes below", "landscape": "editorial/precision explanation left; date picker + notes + CTA right", "compact": "collapse toward approved iPhone hierarchy; preserve native date input"},
+  "referenceFiles": ["birth-date-light.svg", "birth-date-dark.svg", "birth-date-light-dark.svg", "birth-date-elements.svg", "birth-date-ipad-review.svg"],
+  "accessibility": {"minimumTouchTargetPoints": 44, "supportsDynamicTypeReflow": true, "contentMayScroll": true, "colorOnlySelection": false},
+  "notes": ["iPhone Light/Dark are approved; iPad companion board is ready for review.", "The sample date is presentation-only data."]
 }

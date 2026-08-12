@@ -1,0 +1,14 @@
+{
+  "id": "onboarding.profileReveal",
+  "phase": "D1",
+  "step": 4,
+  "status": "crossDeviceReadyForReview",
+  "repositoryAuthority": "main",
+  "route": {"previous": "onboarding.tradition", "next": "app.main"},
+  "deviceStatus": {"iphoneLight": "readyForReview", "iphoneDark": "readyForReview", "ipadPortraitLight": "readyForReview", "ipadPortraitDark": "readyForReview", "ipadLandscapeLight": "readyForReview", "ipadLandscapeDark": "readyForReview", "ipadAdaptiveNotes": "defined"},
+  "productBehavior": {"showsEnteredBirthDate": true, "showsSelectedTradition": true, "showsDateOnlyPrecisionState": true, "showsCalculatedNatalFacts": false, "requiresProvider": false, "requiresAccount": false, "primaryAction": "Enter Humay", "backAction": "Tradition"},
+  "copy": {"stepLabel": "03 · Your profile", "heading": "Your starting profile is ready", "supporting": "A simple beginning — no fake precision.", "heroCue": "Ready to meet your sky?", "precisionTitle": "Precision stays optional", "precisionSupporting": "Add birth time and place later only when a feature genuinely needs them.", "primaryAction": "Enter Humay"},
+  "sampleFixture": {"birthDate": "1994-03-14", "leadingTradition": "western"},
+  "referenceFiles": ["profile-reveal-cross-device-review.svg"],
+  "accessibility": {"minimumTouchTargetPoints": 44, "supportsDynamicTypeReflow": true, "userFactsRemainTextual": true}
+}

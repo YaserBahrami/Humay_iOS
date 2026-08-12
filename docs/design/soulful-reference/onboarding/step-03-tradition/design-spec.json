@@ -1,0 +1,13 @@
+{
+  "id": "onboarding.tradition",
+  "phase": "D1",
+  "step": 3,
+  "status": "crossDeviceReadyForReview",
+  "repositoryAuthority": "main",
+  "route": {"previous": "onboarding.birthDate", "next": "onboarding.profileReveal"},
+  "deviceStatus": {"iphoneLight": "readyForReview", "iphoneDark": "readyForReview", "ipadPortraitLight": "readyForReview", "ipadPortraitDark": "readyForReview", "ipadLandscapeLight": "readyForReview", "ipadLandscapeDark": "readyForReview", "ipadAdaptiveNotes": "defined"},
+  "productBehavior": {"choices": ["western", "vedic", "chinese"], "defaultFixture": "western", "selectionMeaning": "leadingVocabularyAndDefaultPresentation", "hidesOtherTraditions": false, "canChangeLater": true, "requiresProvider": false, "collectBirthTime": false, "collectBirthLocation": false, "collectTone": false, "requiresAccount": false, "primaryAction": "Continue", "backAction": "Birth Date"},
+  "copy": {"stepLabel": "02 · Tradition", "heading": "Choose your starting tradition", "supporting": "This sets the language Humay leads with. You can explore the others anytime.", "reassurance": "Your choice is a starting point, not a lock. Change it later from Profile.", "primaryAction": "Continue"},
+  "referenceFiles": ["tradition-cross-device-review.svg"],
+  "accessibility": {"minimumTouchTargetPoints": 44, "supportsDynamicTypeReflow": true, "selectionNotColorOnly": true}
+}
