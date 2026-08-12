@@ -107,8 +107,8 @@ private struct ProfileSettingsSummaryView: View {
                     }
                 }
 
-                Section {
-                    Text("Full Profile and Settings design belongs to D6. This auxiliary shell exposes existing profile facts without adding an unapproved sixth destination.")
+                Section("About your details") {
+                    Text("Birth time and place can stay unknown. Humay only uses them when a feature genuinely needs more precision.")
                         .font(HumayTypography.supporting)
                         .foregroundStyle(Color.humayTextSecondary)
                 }
