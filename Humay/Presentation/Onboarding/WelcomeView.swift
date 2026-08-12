@@ -285,7 +285,7 @@ private struct CosmicCupCompanion: View {
     }
 
     private var coffeeColor: Color {
-        Color(red: 0.35, green: 0.24, blue: 0.16)
+        .humayCosmicCoffee
     }
 
     private var steam: some View {
