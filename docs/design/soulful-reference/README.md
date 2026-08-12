@@ -7,11 +7,13 @@ This directory is the repository-owned visual reference set for the current Huma
 1. [`../DESIGN_AUTHORITY.md`](../DESIGN_AUTHORITY.md)
 2. [`../SOULFUL_CELESTIAL_DESIGN_DIRECTION.md`](../SOULFUL_CELESTIAL_DESIGN_DIRECTION.md)
 3. [`../SCREEN_DESIGN_PLAN.md`](../SCREEN_DESIGN_PLAN.md)
-4. the committed screen packages in this directory
+4. the approved screen package in this directory
+
+Supporting component boards or SVG renderer metadata never override those sources.
 
 ## Cross-device rule
 
-Humay now ships on iPhone and iPad from the same production baseline.
+Humay ships on iPhone and iPad from the same production baseline.
 
 A screen is cross-device complete only when the repository contains:
 
@@ -21,7 +23,7 @@ A screen is cross-device complete only when the repository contains:
 - iPad Dark;
 - adaptive/landscape notes where necessary.
 
-Existing iPhone references remain valid; missing iPad companions are tracked as pending work rather than inferred by stretching the phone layout.
+Existing approved iPhone references remain valid; missing iPad companions are tracked as pending work rather than inferred by stretching the phone layout.
 
 ## D0 — selected anchors
 
@@ -31,7 +33,7 @@ Existing iPhone references remain valid; missing iPad companions are tracked as 
 - Daily Horoscope
 - Compatibility
 
-These establish warm cream / deep navy, editorial serif hierarchy, simple celestial illustration, soft cards and disciplined accent color.
+These establish warm cream / deep navy, Cormorant-led editorial hierarchy, clean system UI typography, simple celestial illustration, soft cards and disciplined accent color.
 
 iPad companion anchors are pending and must preserve the visual language while using iPad width deliberately.
 
@@ -51,15 +53,21 @@ Current status:
 - Tradition — next; design iPhone + iPad together.
 - Profile Reveal — pending; design iPhone + iPad together.
 
-The old mock-first onboarding code was removed in the production reset. These references now lead implementation rather than describe existing code.
+Birth time/place are later Profile inputs, not onboarding beats.
+
+The old mock-first onboarding code and obsolete nine-screen design drafts were removed. Git history is the archive; these current references lead implementation.
 
 ## Components
 
-`components/` contains shared historical/current visual boards. Production components are rebuilt only from approved current references; older component boards do not override a newer screen package.
+`components/` contains supporting visual-language boards. They are not an independent component/token authority. Production components are defined from the current design authority, token file and owning approved screen package.
+
+## Typography note for SVG references
+
+Some generated SVGs may contain renderer fallback font-family names. Production typography is always the canonical Cormorant Garamond + SF Pro/system system described in `SOULFUL_CELESTIAL_DESIGN_DIRECTION.md`.
 
 ## Assets
 
-Reference mockups are not automatically shippable assets. Reusable artwork is isolated, approved and exported deliberately into `Humay/Resources/Assets.xcassets/` during implementation.
+Reference mockups are not automatically shippable assets. Reusable artwork is isolated, approved and exported deliberately into `Humay/Resources/Assets.xcassets/` during implementation. Use the current `assets/ASSET_CATALOG.md` and line/flat illustration guidance.
 
 ## Astrology values
 

@@ -60,7 +60,7 @@ D0 is the approved visual source for the current Soulful Celestial direction. Th
 
 ## Visual rules carried forward
 
-- editorial serif for emotional hierarchy; system typography for utility;
+- Cormorant Garamond for editorial hierarchy; SF Pro/system typography for utility;
 - simple flat/vector or thin-line illustration with very limited facial expressions;
 - cream / midnight foundation with disciplined coral, lavender, gold, blue and sage accents;
 - feature cards generally 18–24 pt radius;
@@ -68,14 +68,18 @@ D0 is the approved visual source for the current Soulful Celestial direction. Th
 - fun in illustration and copy, not through dense decoration;
 - no watercolor, painterly landscapes, 3D emoji, chibi, thick cartoon outlines, neon galaxy backgrounds or default glassmorphism.
 
+## SVG rendering note
+
+The committed SVGs are visual references generated in an environment that may contain fallback `font-family` names such as EB Garamond or Inter. Those declarations are **not production typography tokens**. Production uses the canonical Cormorant Garamond + SF Pro/system roles defined in `SOULFUL_CELESTIAL_DESIGN_DIRECTION.md`.
+
 ## Important IA note
 
-The concept masters used temporary navigation labels during visual exploration. They **do not** replace canonical Humay navigation. Production IA remains `Today / Circle / Sky / Chart / Ask`, with Compatibility reached through Circle and Profile/Settings through the profile entry.
+Concept masters used temporary navigation labels during visual exploration. They **do not** replace canonical Humay navigation. Production IA remains `Today / Circle / Sky / Chart / Ask`, with Compatibility reached through Circle and Profile/Settings through the profile entry.
 
 ## Important data note
 
-All percentages, signs, dates, scores, timing windows and reading text in the anchor art are visual fixtures unless separately validated by Humay's calculation/methodology layer.
+All percentages, signs, dates, scores, timing windows and reading text in anchor art are visual fixtures unless separately validated by Humay's calculation/methodology layer.
 
 ## Master-image handling
 
-The committed anchor images are design references. Reusable shipping artwork must be extracted intentionally, optimized, and exported into `Humay/Resources/Assets.xcassets/` only after approval.
+The committed anchors are design references. Reusable shipping artwork is extracted intentionally, optimized and promoted into `Humay/Resources/Assets.xcassets/` only after approval.
