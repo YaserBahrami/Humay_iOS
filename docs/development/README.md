@@ -42,8 +42,8 @@ Product access/cost authority is [`PRODUCT_ACCESS_MODEL.md`](PRODUCT_ACCESS_MODE
 
 ## Current state
 
-Primary engineering work: **Phase 03 — Onboarding & Local Profile (PROFILE-001–004 implemented; PROFILE-005 TODO)**.
+Primary engineering work: **Phase 03 — Onboarding & Local Profile (PROFILE-001–005 implemented; PROFILE-006 TODO)**.
 
 Parallel architecture work: **Phase 00 — provider/cache/backend/access contracts (IN PROGRESS)**.
 
-Current UI work: **D1 onboarding** — PROFILE-001 through PROFILE-004 production implementation is complete for Welcome, Birth Date, Tradition and Profile Reveal across iPhone/iPad Light/Dark. PROFILE-005 persistence remains TODO.
+Current UI work: **D1 onboarding** — PROFILE-001 through PROFILE-005 production implementation is complete for Welcome, Birth Date, Tradition and Profile Reveal across iPhone/iPad Light/Dark, with local profile/settings persistence and relaunch restore. PROFILE-006 remains TODO.

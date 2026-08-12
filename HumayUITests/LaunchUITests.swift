@@ -7,8 +7,7 @@ final class LaunchUITests: XCTestCase {
     }
 
     func testOnboardingFlowCompletes() {
-        let app = XCUIApplication()
-        app.launch()
+        let app = freshApp()
 
         XCTAssertTrue(
             app.buttons["onboarding.welcome.begin"].waitForExistence(timeout: 3)
@@ -33,9 +32,22 @@ final class LaunchUITests: XCTestCase {
         XCTAssertTrue(app.staticTexts["Humay"].waitForExistence(timeout: 3))
     }
 
+    func testCompletedOnboardingPersistsAcrossRelaunch() {
+        let app = freshApp()
+        completeOnboarding(in: app)
+
+        XCTAssertTrue(app.staticTexts["Humay"].waitForExistence(timeout: 3))
+        app.terminate()
+
+        let relaunchedApp = XCUIApplication()
+        relaunchedApp.launch()
+
+        XCTAssertTrue(relaunchedApp.staticTexts["Humay"].waitForExistence(timeout: 3))
+        XCTAssertFalse(relaunchedApp.buttons["onboarding.welcome.begin"].exists)
+    }
+
     func testBirthDateBackReturnsToWelcome() {
-        let app = XCUIApplication()
-        app.launch()
+        let app = freshApp()
 
         app.buttons["onboarding.welcome.begin"].tap()
         XCTAssertTrue(app.buttons["onboarding.step.back"].waitForExistence(timeout: 3))
@@ -47,8 +59,7 @@ final class LaunchUITests: XCTestCase {
     }
 
     func testCaptureOnboardingEvidence() {
-        let app = XCUIApplication()
-        app.launch()
+        let app = freshApp()
 
         capture(app, named: "01-welcome")
 
@@ -72,8 +83,7 @@ final class LaunchUITests: XCTestCase {
     }
 
     func testCaptureOnboardingLandscapeEvidence() {
-        let app = XCUIApplication()
-        app.launch()
+        let app = freshApp()
 
         XCTAssertTrue(
             app.buttons["onboarding.welcome.begin"].waitForExistence(timeout: 3)
@@ -103,6 +113,32 @@ final class LaunchUITests: XCTestCase {
         capture(app, named: "04-profile-reveal-landscape")
 
         XCUIDevice.shared.orientation = .portrait
+    }
+
+    private func freshApp() -> XCUIApplication {
+        let app = XCUIApplication()
+        app.launchArguments.append("-HumayResetPersistence")
+        app.launch()
+        XCTAssertTrue(
+            app.buttons["onboarding.welcome.begin"].waitForExistence(timeout: 5)
+        )
+        return app
+    }
+
+    private func completeOnboarding(in app: XCUIApplication) {
+        app.buttons["onboarding.welcome.begin"].tap()
+        XCTAssertTrue(
+            app.buttons["onboarding.birthDate.continue"].waitForExistence(timeout: 3)
+        )
+        app.buttons["onboarding.birthDate.continue"].tap()
+        XCTAssertTrue(
+            app.buttons["onboarding.tradition.continue"].waitForExistence(timeout: 3)
+        )
+        app.buttons["onboarding.tradition.continue"].tap()
+        XCTAssertTrue(
+            app.buttons["onboarding.profileReveal.enter"].waitForExistence(timeout: 3)
+        )
+        app.buttons["onboarding.profileReveal.enter"].tap()
     }
 
     private func capture(_ app: XCUIApplication, named name: String) {

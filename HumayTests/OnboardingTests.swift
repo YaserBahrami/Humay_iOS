@@ -95,7 +95,7 @@ struct OnboardingTests {
     }
 
     @Test("Completion creates a date-only profile with selected tradition and main root")
-    func completionCreatesDomainProfile() throws {
+    func completionCreatesDomainProfile() async throws {
         let draft = OnboardingDraftState(now: fixedNow, calendar: fixedCalendar)
         draft.pickerDate = try #require(
             fixedCalendar.date(from: DateComponents(year: 1994, month: 3, day: 14))
@@ -103,9 +103,13 @@ struct OnboardingTests {
         #expect(draft.confirmBirthDate())
         draft.selectedTradition = .chinese
 
-        let environment = AppEnvironment()
+        let environment = AppEnvironment(store: InMemoryUserStateStore())
+        await environment.restore()
         let profile = try #require(draft.makeProfile())
-        environment.completeOnboarding(profile: profile, tradition: draft.selectedTradition)
+        try await environment.completeOnboarding(
+            profile: profile,
+            tradition: draft.selectedTradition
+        )
         let navigation = AppNavigationState(environment: environment)
 
         #expect(profile.displayName.isEmpty)
@@ -116,20 +120,28 @@ struct OnboardingTests {
         #expect(navigation.root == .main)
     }
 
-    @Test("New app environment does not imply persistence")
-    func completionIsVolatile() throws {
-        let firstEnvironment = AppEnvironment()
+    @Test("Completed profile restores into a newly constructed environment")
+    func completionRestoresIntoNewEnvironment() async throws {
+        let store = InMemoryUserStateStore()
+        let firstEnvironment = AppEnvironment(store: store)
+        await firstEnvironment.restore()
         let profile = UserProfile(
             displayName: "",
             birth: BirthDetails(year: 1994, month: 3, day: 14)
         )
-        firstEnvironment.completeOnboarding(profile: profile, tradition: .western)
+        try await firstEnvironment.completeOnboarding(
+            profile: profile,
+            tradition: .western,
+            completedAt: fixedNow
+        )
 
-        let newEnvironment = AppEnvironment()
+        let newEnvironment = AppEnvironment(store: store)
+        await newEnvironment.restore()
 
         #expect(firstEnvironment.hasCompletedOnboarding)
-        #expect(!newEnvironment.hasCompletedOnboarding)
-        #expect(newEnvironment.profile == nil)
+        #expect(newEnvironment.hasCompletedOnboarding)
+        #expect(newEnvironment.profile == profile)
+        #expect(newEnvironment.settings.onboardingCompletedAt == fixedNow)
     }
 
     private var fixedCalendar: Calendar {

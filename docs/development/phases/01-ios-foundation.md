@@ -1,6 +1,6 @@
 # Phase 01 — Apple Platform Foundation
 
-Status: **IN PROGRESS — IOS-001 through IOS-004 complete; IOS-005 not started**
+Status: **IN PROGRESS — IOS-001 through IOS-005 complete; IOS-006 not started**
 
 Depends on:
 - current production baseline reset;
@@ -54,7 +54,7 @@ Implemented foundation state:
 - `HumayApp` remains the explicit App composition boundary and owns `AppEnvironment`;
 - `RootView` remains the intentionally minimal App root surface;
 - stable profile/birth/settings facts remain in Domain without UI or persistence-framework dependencies;
-- Data remains absent until a production data-owning slice requires it; the approved D1 Presentation flow and DesignSystem foundation are now present;
+- Data contains only the current production-owned profile/settings persistence slice;
 - layer enforcement protects Domain independence, prevents UI dependencies in Data, prevents persistence/concrete boundary construction in Presentation and rejects global shared dependency singletons.
 
 Target structure grows deliberately toward:
@@ -142,17 +142,19 @@ Acceptance:
 - no placeholder production content is presented as a completed feature.
 
 ### IOS-005 — Persistence boundary scaffolding
-Status: TODO  
+Status: **DONE — 2026-08-12**
 Depends on: IOS-002
 
-Goal: prepare durable user-data ownership without freezing a speculative schema.
+Goal: establish durable local user-data ownership for the onboarding/profile slice.
 
 Acceptance:
-- repository/storage contracts are introduced only for profile/settings behavior that is actually required by onboarding/profile implementation;
-- persistence errors have explicit handling semantics;
-- no silent production fallback from durable user data to volatile in-memory storage;
-- persistence entities do not leak into Domain/Presentation;
-- schema/versioning is added with the first real persisted slice, not as speculative empty infrastructure.
+- `UserStateStore` covers only the profile/settings aggregate required by current
+  onboarding behavior;
+- `FileUserStateStore` owns a version-1 Codable DTO in Application Support/Humay;
+- actor isolation serializes file IO and atomic writes establish durable ownership
+  before application completion transitions to main;
+- restore, decode, unsupported-schema, save and reset failures are explicit;
+- no volatile production fallback, SwiftData, Core Data, UserDefaults or CloudKit.
 
 ### IOS-006 — Configuration, diagnostics and privacy-safe logging
 Status: TODO  
@@ -187,7 +189,7 @@ Phase 01 does **not** implement:
 - feature-specific access-state UI;
 - D1 onboarding implementation beyond the approved Phase 03 slice; no later feature UI belongs here.
 
-Shared architecture and design-system primitives may be built now. Feature-specific UI follows the design → approve → implement cadence. D1 onboarding is the approved production slice now owned by Phase 03; this phase does not start IOS-005 persistence.
+Shared architecture and design-system primitives may be built now. Feature-specific UI follows the design → approve → implement cadence. D1 onboarding is the approved production slice now owned by Phase 03; IOS-005 local persistence is complete and IOS-006 remains future work.
 
 ## Exit criteria
 
@@ -195,5 +197,5 @@ Shared architecture and design-system primitives may be built now. Feature-speci
 - SwiftUI + Clean Architecture boundaries are enforceable and documented.
 - the production Soulful Celestial Light/Dark design-system foundation exists without old-design residue.
 - root state/navigation composition presents the approved D1 onboarding work.
-- persistence/configuration/testing boundaries are ready without speculative feature architecture.
+- local persistence/configuration/testing boundaries are implemented without speculative feature architecture.
 - no deleted mock-first/provider/old-UI implementation has been reintroduced.

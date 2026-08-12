@@ -6,12 +6,19 @@ struct RootView: View {
     @Environment(AppNavigationState.self) private var navigation
 
     @State private var onboardingDraft = OnboardingDraftState()
+    @State private var saveFailed = false
 
     var body: some View {
         @Bindable var navigation = navigation
 
         Group {
             switch navigation.root {
+            case .restoring:
+                restorationSurface
+
+            case .persistenceFailure:
+                restorationFailureSurface
+
             case .onboarding:
                 OnboardingFlowView(
                     route: $navigation.onboardingRoute,
@@ -31,6 +38,17 @@ struct RootView: View {
                 }
             }
         }
+        .alert("Couldn't save your profile", isPresented: $saveFailed) {
+            Button("Retry") {
+                saveFailed = false
+                completeOnboarding()
+            }
+            Button("Cancel", role: .cancel) {
+                saveFailed = false
+            }
+        } message: {
+            Text("Your entered details are still here. Retry to finish setup.")
+        }
     }
 
     private func completeOnboarding() {
@@ -39,16 +57,45 @@ struct RootView: View {
             return
         }
 
-        environment.completeOnboarding(
-            profile: profile,
-            tradition: onboardingDraft.selectedTradition
-        )
-        navigation.resetRoutes()
+        let tradition = onboardingDraft.selectedTradition
+        Task { @MainActor in
+            do {
+                try await environment.completeOnboarding(
+                    profile: profile,
+                    tradition: tradition
+                )
+                saveFailed = false
+                navigation.resetRoutes()
+            } catch {
+                saveFailed = true
+            }
+        }
+    }
+
+    private var restorationSurface: some View {
+        Color(uiColor: .systemBackground)
+            .ignoresSafeArea()
+    }
+
+    private var restorationFailureSurface: some View {
+        restorationSurface
+            .alert("Couldn't restore your profile", isPresented: .constant(true)) {
+                Button("Retry") {
+                    Task { @MainActor in
+                        await environment.restore()
+                    }
+                }
+            } message: {
+                Text("Your saved profile was not changed. Retry to continue.")
+            }
     }
 }
 
 #Preview("Foundation") {
-    let environment = AppEnvironment()
+    let environment = AppEnvironment(
+        store: UnavailableUserStateStore(),
+        initialRestorationState: .ready
+    )
     let navigation = AppNavigationState(environment: environment)
 
     RootView()

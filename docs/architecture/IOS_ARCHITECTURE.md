@@ -32,7 +32,10 @@ Humay/
 │   ├── Tokens/
 │   └── Typography/
 ├── Domain/
-│   └── Profile/          only stable, already-authoritative user facts/preferences
+│   ├── Profile/          only stable, already-authoritative user facts/preferences
+│   └── Persistence/      aggregate durable-state contract
+├── Data/
+│   └── Persistence/      versioned local profile/settings store
 ├── Presentation/
 │   └── Onboarding/       D1 flow and transient draft state
 └── Resources/
@@ -42,7 +45,7 @@ HumayTests/
 HumayUITests/
 ```
 
-Feature and Data folders are added back deliberately as production slices are implemented. DesignSystem now contains only the approved Soulful Celestial visual foundation. The repository should not recreate broad speculative architecture ahead of approved product work.
+Feature and Data folders are added back deliberately as production slices are implemented. Data now contains only the local persistence slice justified by IOS-005/PROFILE-005. DesignSystem contains only the approved Soulful Celestial visual foundation. The repository should not recreate broad speculative architecture ahead of approved product work.
 
 ## Architecture direction
 
@@ -63,23 +66,39 @@ Rules:
 
 ## Application state
 
-`AppEnvironment` remains small and owns current in-memory profile/settings state. `AppNavigationState` is composed beside it by `HumayApp` and derives the logical root from `AppEnvironment.hasCompletedOnboarding`; it owns only transient route selection and does not persist or duplicate profile/settings truth. D1 onboarding owns its date picker cursor, confirmed date draft and tradition selection inside Presentation. Neither object pretends that provider or persistence services are live services.
+`AppEnvironment` remains small and owns the current profile/settings state plus the
+restore/save boundary injected by `HumayApp`. `AppNavigationState` is composed beside
+it and derives the logical root from restoration state and
+`AppEnvironment.hasCompletedOnboarding`; it owns only transient route selection and
+does not persist or duplicate profile/settings truth. D1 onboarding owns its date
+picker cursor, confirmed date draft and tradition selection inside Presentation.
 
 Feature-specific state should remain feature-local unless multiple routes genuinely need to share it.
 
 ## Persistence
 
-No production persistence schema is committed in the clean baseline.
+IOS-005/PROFILE-005 establish the first real local durable slice. The Domain
+`UserStateStore` contract exposes one aggregate containing `UserProfile?` and
+`AppSettings`; Data maps it to a provider-independent Codable document and owns all
+file details.
 
-This is deliberate: Humay has not shipped, and the previous SwiftData schema encoded several prototype assumptions. Persistence will be introduced when the first approved data-owning slice is implemented.
+`FileUserStateStore` stores schema version 1 at
+`Application Support/Humay/user-state.json`. The document preserves UUID through
+Codable, calendar birth year/month/day components, explicit unknown/not-provided
+birth values, stable enum raw values and the onboarding timestamp. Writes create the
+directory and use Foundation's atomic write option. An actor serializes reads,
+writes and clears.
 
-When introduced:
+Missing file means no persisted state. Read, malformed-payload, unsupported-schema,
+write and clear failures are explicit; a failed restore does not become onboarding,
+and a failed completion does not mutate authoritative in-memory state. The app uses
+an explicit unavailable store if Application Support cannot be composed, never an
+in-memory production fallback.
 
-- version the schema before shipping;
-- store provider-independent values;
-- keep persistence models out of Presentation;
-- define migration ownership explicitly;
-- never silently replace a failed durable store with an in-memory store for user-owned data.
+Version-1 migration logic belongs in the Data decoding boundary when a later schema
+is shipped. No legacy migration is invented because no previous production schema
+shipped. SwiftData, Core Data, UserDefaults and CloudKit are not used here. Private
+iCloud/CloudKit sync and restore remain a later Data-layer concern.
 
 ### Accountless Apple persistence direction
 
@@ -87,7 +106,10 @@ Humay V1 does not require a Humay user account or authentication UI. User-owned 
 
 Private astrology/profile data must not use the public CloudKit database. Transient, non-sync caches may remain local. Precision features may later use an anonymous app/backend identity that is separate from user-facing login. A Humay account boundary is deferred unless cross-platform or server-account features later require it.
 
-This is an architecture direction, not current runtime capability. CloudKit containers, entitlements, SwiftData schemas, persistence adapters and backend identity are not implemented yet; their owning later tasks define them.
+This is an architecture direction, not current sync capability. The local
+Application Support adapter is implemented by IOS-005; CloudKit containers,
+entitlements, sync/restore adapters and backend identity are not implemented yet;
+their owning later tasks define them.
 
 ## Provider boundaries
 
@@ -103,7 +125,8 @@ Canonical product IA remains:
 
 The App layer now owns a small non-visual route boundary:
 
-- root resolves to onboarding or main from `AppEnvironment.hasCompletedOnboarding`;
+- root exposes restoring/persistence-failure bootstrap states, then resolves to
+  onboarding or main from `AppEnvironment.hasCompletedOnboarding`;
 - onboarding route ownership is Welcome, Birth Date, Tradition and Profile Reveal;
 - primary destination ownership is Today, Circle, Sky, Chart and Ask in that order;
 - Calendar is a Sky-owned child route and Compatibility is a Circle-owned child route;
@@ -152,4 +175,8 @@ Use Swift Testing for unit/domain behavior and XCTest for UI tests. Each impleme
 
 ## Not yet built in the clean baseline
 
-Persistence/CloudKit, authentication, backend identity, networking, astrology provider adapters, interpretation provider, visual post-onboarding navigation presenters, StoreKit, advertising, analytics, notification delivery, widgets and feature-specific screens remain unbuilt. The approved D1 onboarding implementation is the current production Presentation slice.
+CloudKit sync/restore, authentication, backend identity, networking, astrology
+provider adapters, interpretation provider, visual post-onboarding navigation
+presenters, StoreKit, advertising, analytics, notification delivery, widgets and
+feature-specific screens remain unbuilt. The approved D1 onboarding implementation
+and local profile/settings persistence are the current production slices.

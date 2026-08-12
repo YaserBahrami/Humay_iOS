@@ -37,13 +37,36 @@ Notification preferences, purchase state, access entitlements, provider state an
 
 ## Persistence
 
-No durable schema is committed yet. Persistence will be designed when the first production data-owning implementation slice lands.
+PROFILE-005 introduces the first production durable slice as a local, versioned
+Codable snapshot. The Domain `UserStateStore` contract owns one aggregate containing
+`UserProfile?` and `AppSettings`; Data owns the DTO mapping and concrete file store.
+
+Schema version 1 is stored at `Application Support/Humay/user-state.json`. The
+document includes only provider-independent profile/settings values: UUID, display
+name, calendar birth year/month/day, explicit birth-time and birth-place states,
+leading tradition, tone and onboarding completion timestamp. It contains no route,
+picker cursor, validation state, appearance state, provider result, cache,
+entitlement or Premium state.
+
+The file store is actor-isolated, creates its app-owned directory before saving and
+uses atomic writes. Missing file returns no persisted state; read/decode failure,
+unsupported schema, write failure and clear failure are explicit errors. Completion
+commits application state only after the durable save succeeds. A failed restore is
+not treated as a fresh user, and production never falls back to an in-memory store.
+
+Future migration logic belongs at the Data decoding boundary. No previous production
+schema shipped, so no legacy migration is included. SwiftData, Core Data, UserDefaults
+and CloudKit are not implemented. Private iCloud/CloudKit sync and restore remain
+planned later.
 
 Humay V1 is accountless. It does not require email/password registration, Sign in with Apple or another Humay login. User-owned profile, preferences and saved-person data are local-first: local app storage is the immediate runtime source, and private iCloud/CloudKit-backed persistence is planned for Apple-device sync and restore. Private astrology/profile data must not use the public CloudKit database. Transient caches that do not need sync may remain local.
 
-CloudKit, SwiftData, persistence schemas, backend identity and authentication are not implemented yet. A later precision-request boundary may use anonymous app/backend identity without changing the user-owned data model into an account model.
+CloudKit sync/restore, backend identity and authentication are not implemented yet.
+The local version-1 persistence schema is implemented by PROFILE-005. A later
+precision-request boundary may use anonymous app/backend identity without changing
+the user-owned data model into an account model.
 
-Before shipping, the chosen persistence layer must:
+Future persistence changes must:
 
 - be versioned;
 - preserve user-owned data reliably;

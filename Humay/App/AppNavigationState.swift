@@ -1,14 +1,23 @@
 import Observation
 
-/// The two logical application roots. This is derived from `AppEnvironment` and is
-/// never persisted as user data.
+/// Logical application roots and bootstrap states. This is derived from
+/// `AppEnvironment` and is never persisted as user data.
 enum AppRootState: String, CaseIterable, Hashable, Sendable {
+    case restoring
     case onboarding
     case main
+    case persistenceFailure
 
     @MainActor
     static func resolve(from environment: AppEnvironment) -> Self {
-        environment.hasCompletedOnboarding ? .main : .onboarding
+        switch environment.restorationState {
+        case .restoring:
+            .restoring
+        case .failed:
+            .persistenceFailure
+        case .ready:
+            environment.hasCompletedOnboarding ? .main : .onboarding
+        }
     }
 }
 
@@ -86,9 +95,10 @@ enum AppAuxiliaryRoute: String, CaseIterable, Hashable, Sendable {
 
 /// App-owned, non-persistent route selection state.
 ///
-/// Root resolution reads only the authoritative `AppEnvironment.hasCompletedOnboarding`
-/// value. The route selections below are transient presentation state and contain no
-/// profile/settings truth, provider state, persistence dependency or feature data.
+/// Root resolution reads the restoration state and authoritative
+/// `AppEnvironment.hasCompletedOnboarding` value. The route selections below are
+/// transient presentation state and contain no profile/settings truth, provider state,
+/// persistence dependency or feature data.
 @Observable
 @MainActor
 final class AppNavigationState {

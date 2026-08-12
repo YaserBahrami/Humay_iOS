@@ -30,7 +30,11 @@ User-owned profile, preferences and saved-person data follow an Apple-platform-n
 - precision requests may later use an anonymous app/backend identity without introducing user login;
 - Humay account infrastructure is deferred unless future cross-platform or server-account features require it.
 
-This records direction only. CloudKit, persistence schemas, backend identity and authentication are not implemented in the current runtime. These choices do not change Free / Rewarded Access / Premium semantics.
+This records direction for sync and account boundaries. PROFILE-005 now provides
+the immediate local version-1 profile/settings source of truth; CloudKit
+sync/restore, backend identity and authentication are not implemented in the
+current runtime. These choices do not change Free / Rewarded Access / Premium
+semantics.
 
 ## 2. Free path
 

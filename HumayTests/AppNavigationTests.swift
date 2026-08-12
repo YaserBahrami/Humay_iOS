@@ -6,9 +6,12 @@ import Testing
 @MainActor
 struct AppNavigationTests {
     @Test("Fresh app state resolves to onboarding")
-    func freshAppStateResolvesToOnboarding() {
-        let environment = AppEnvironment()
+    func freshAppStateResolvesToOnboarding() async {
+        let environment = AppEnvironment(store: InMemoryUserStateStore())
         let navigation = AppNavigationState(environment: environment)
+
+        #expect(navigation.root == .restoring)
+        await environment.restore()
 
         #expect(AppRootState.resolve(from: environment) == .onboarding)
         #expect(navigation.root == .onboarding)
@@ -16,8 +19,8 @@ struct AppNavigationTests {
     }
 
     @Test("Completed profile and settings resolve to main application")
-    func completedProfileAndSettingsResolveToMain() {
-        let environment = completedEnvironment()
+    func completedProfileAndSettingsResolveToMain() async throws {
+        let environment = try await completedEnvironment()
         let navigation = AppNavigationState(environment: environment)
 
         #expect(environment.hasCompletedOnboarding)
@@ -57,24 +60,25 @@ struct AppNavigationTests {
     }
 
     @Test("Development reset returns root resolution to onboarding")
-    func developmentResetReturnsRootResolutionToOnboarding() {
-        let environment = completedEnvironment()
+    func developmentResetReturnsRootResolutionToOnboarding() async throws {
+        let environment = try await completedEnvironment()
         let navigation = AppNavigationState(environment: environment)
         #expect(navigation.root == .main)
 
-        environment.resetForDevelopment()
+        try await environment.resetForDevelopment()
 
         #expect(!environment.hasCompletedOnboarding)
         #expect(navigation.root == .onboarding)
     }
 
-    private func completedEnvironment() -> AppEnvironment {
-        let environment = AppEnvironment()
+    private func completedEnvironment() async throws -> AppEnvironment {
+        let environment = AppEnvironment(store: InMemoryUserStateStore())
+        await environment.restore()
         let profile = UserProfile(
             displayName: "Humay User",
             birth: BirthDetails(year: 1994, month: 3, day: 14)
         )
-        environment.completeOnboarding(profile: profile, tradition: .western)
+        try await environment.completeOnboarding(profile: profile, tradition: .western)
         return environment
     }
 }

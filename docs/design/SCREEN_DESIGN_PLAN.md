@@ -82,7 +82,7 @@ Birth time and birth location are not onboarding steps.
 | Tradition | Light + Dark approved | Light + Dark approved | implemented; evidence captured |
 | Profile Reveal | Light + Dark approved | Light + Dark approved | implemented; evidence captured |
 
-D1 cross-device approval date: **2026-08-12**. Production implementation is `Humay/Presentation/Onboarding/`. Current completion is in-memory only; PROFILE-005 persistence and all later feature families remain TODO.
+D1 cross-device approval date: **2026-08-12**. Production implementation is `Humay/Presentation/Onboarding/`. PROFILE-005 now persists the local profile/settings aggregate and restores the completed root on relaunch; all later feature families remain TODO.
 
 The iPad landscape two-region paths are covered by the UI test. iOS 26.5 simulator landscape screenshot export produced an orientation-rotated framebuffer, so those raw captures are documented but not presented as repository evidence; see [`implementation-evidence/d1-onboarding/README.md`](implementation-evidence/d1-onboarding/README.md).
 

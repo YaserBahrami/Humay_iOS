@@ -4,8 +4,8 @@ Last updated: **2026-08-12**
 
 ## Active priorities
 
-1. Verify and reconcile the implemented D1 onboarding slice PROFILE-001 through PROFILE-004.
-2. Keep **IOS-005 / PROFILE-005 persistence unstarted**; relaunch is intentionally volatile for this slice.
+1. Verify and reconcile the implemented D1 onboarding slice PROFILE-001 through PROFILE-005.
+2. Preserve local durable profile/settings behavior while later feature families remain behind their design gates.
 3. Preserve the completed Soulful Celestial DesignSystem foundation while later feature families remain behind their cross-device design gates.
 4. Continue Phase 00 provider/cache/access architecture in parallel where it does not block the app foundation.
 
@@ -46,7 +46,7 @@ Details: [`../architecture/PRODUCTION_BASELINE_RESET_2026-08-12.md`](../architec
 
 ### Phase 01 — Apple Platform Foundation
 
-**IN PROGRESS. IOS-001 through IOS-004 are complete; IOS-005 is not started.**
+**IN PROGRESS. IOS-001 through IOS-005 are complete; IOS-006 remains TODO.**
 
 Current verified foundation:
 
@@ -59,17 +59,22 @@ Current verified foundation:
 - Domain remains independent of UI and persistence frameworks;
 - DesignSystem contains the approved semantic Light/Dark tokens, Dynamic Type typography, adaptive layout, generic surfaces and primary/quiet button foundations;
 - the DesignSystem showcase exists only in Debug previews for representative iPhone/iPad Light/Dark verification and is not a runtime route;
-- no Data structure exists without current production behavior; the approved D1
-  onboarding Presentation structure is now present;
-- Swift Testing, the UI launch test and architecture/nomenclature checks pass;
+- Data now contains only the production-owned local persistence slice justified by
+  IOS-005/PROFILE-005;
+- Swift Testing, the UI launch test and nomenclature check pass; the layering
+  guard still reports the pre-existing approved-UI color literal in
+  `Humay/Presentation/Onboarding/WelcomeView.swift:288`;
 - no third-party dependency or provider-backed feature UI was added.
 
 The first production feature slice is now implemented separately under Phase 03:
 
 - D1 onboarding is the root experience when `AppNavigationState.root == .onboarding`;
 - the main root remains the minimal Humay foundation placeholder;
-- completion creates an in-memory `UserProfile` with unknown birth time and no birth place;
-- no persistence, provider, networking or account flow is present.
+- completion durably saves a version-1 local `UserProfile`/`AppSettings` snapshot
+  with unknown birth time and no birth place;
+- restore resolves a completed state to the main placeholder; fresh installs and
+  incomplete state resolve to onboarding;
+- no provider, networking, CloudKit or account flow is present.
 
 Foundation scope:
 
@@ -157,6 +162,6 @@ Cadence:
 
 ## Current runtime
 
-The app launches the production four-beat onboarding flow for a fresh `AppEnvironment`. `Enter Humay` completes onboarding only in current in-memory state and resolves the root to the existing minimal semantic Light/Dark Humay placeholder. After terminating/relaunching, onboarding begins again because PROFILE-005 persistence is not implemented.
+The app restores the local user-state snapshot before resolving a meaningful root. A missing file produces fresh four-beat onboarding. `Enter Humay` saves the profile/settings aggregate atomically before resolving the root to the existing minimal semantic Light/Dark Humay placeholder. Terminating and relaunching a completed app restores the main placeholder. Save failures leave the onboarding draft intact and expose a retry alert; restore failures remain distinct from fresh onboarding.
 
-No production astrology provider, interpretation provider, persistence/CloudKit schema, authentication/account flow, backend identity, StoreKit, ads, analytics, notification delivery or post-onboarding feature runtime is wired yet. Profile Reveal uses no provider-backed astrology and displays only the entered birth date, selected leading tradition and date-only/non-precise state.
+The local snapshot is the device source of truth for this slice. It stores only profile/settings, including date components, explicit unknown/not-provided birth values, leading tradition, tone and completion timestamp. No production astrology provider, interpretation provider, CloudKit sync/restore, authentication/account flow, backend identity, StoreKit, ads, analytics, notification delivery or post-onboarding feature runtime is wired yet. Profile Reveal uses no provider-backed astrology and displays only the entered birth date, selected leading tradition and date-only/non-precise state.

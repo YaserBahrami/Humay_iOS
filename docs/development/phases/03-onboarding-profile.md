@@ -1,6 +1,6 @@
 # Phase 03 — Onboarding & Local Profile
 
-Status: **IN PROGRESS — PROFILE-001 through PROFILE-004 DONE 2026-08-12; PROFILE-005 not started**
+Status: **IN PROGRESS — PROFILE-001 through PROFILE-005 DONE 2026-08-12; PROFILE-006 not started**
 
 Depends on:
 - Phase 01 Apple Platform Foundation;
@@ -75,15 +75,21 @@ Acceptance:
 - no astrology provider or calculation is used.
 
 ### PROFILE-005 — Persist profile/settings and onboarding completion
-Status: TODO  
+Status: **DONE — 2026-08-12**
 Depends on: PROFILE-002, PROFILE-003
 
 Acceptance:
-- birth date, leading tradition and onboarding-completion state persist across restart;
-- durable-storage failure is handled explicitly;
-- schema is versioned before shipping;
-- entitlement/Premium state is not embedded in the profile entity;
-- persistence implementation remains inside Data.
+- profile/settings and onboarding completion persist across termination/relaunch;
+- date components, unknown birth time, not-provided birth place, leading tradition,
+  current tone and completion timestamp roundtrip exactly;
+- durable-storage failure is distinct from a fresh install, and save failure leaves
+  draft values available for retry;
+- schema version 1 is explicit and unsupported future versions fail;
+- entitlement/Premium state is absent from the snapshot;
+- the contract remains in Domain, DTO/file implementation remains inside Data and
+  composition remains in App;
+- local Application Support is the current source of truth; private CloudKit sync
+  and restore remain future work.
 
 ### PROFILE-006 — Add optional birth time/place editor in Profile
 Status: TODO  
@@ -109,14 +115,14 @@ Acceptance:
 
 ## Exit criteria
 
-- a user can complete the four-step onboarding without an account — **DONE for PROFILE-001–004**;
+- a user can complete the four-step onboarding without an account — **DONE for PROFILE-001–005**;
 - onboarding asks for birth date and tradition only — **DONE**;
-- profile completion is represented in current in-memory state — **DONE**;
-- durable profile/settings persistence remains PROFILE-005 and is **TODO**;
+- profile completion is represented in current in-memory state after durable save — **DONE**;
+- durable profile/settings persistence is represented by PROFILE-005's version-1 local snapshot and relaunch restore;
 - time/place can be added later without fake defaults — domain semantics preserved; editor remains PROFILE-006;
 - Profile Reveal shows only entered facts and the date-only precision state — **DONE**;
 - iPhone and iPad Light/Dark implementations reconcile with approved D1 references — **DONE for current implementation evidence**.
 
 ### Current implementation boundary
 
-`Enter Humay` calls `AppEnvironment.completeOnboarding(...)`, updates the root to `.main`, and does not write UserDefaults, SwiftData, CloudKit or any other durable store. A newly created `AppEnvironment` starts at Welcome. Do not begin PROFILE-005 or IOS-005 in this slice.
+`Enter Humay` saves through the app-owned `UserStateStore` before `AppNavigationState.root` resolves to `.main`. A newly created environment restores from the injected store; a missing file starts at Welcome, while read/decode failure exposes a persistence-failure state. The local version-1 snapshot uses Application Support and does not use UserDefaults, SwiftData or CloudKit. Do not begin PROFILE-006 or IOS-006 in this slice.
