@@ -4,10 +4,11 @@ Last updated: **2026-08-12**
 
 ## Active priorities
 
-1. Review the captured D2 Today + Circle implementation evidence and close the documented portrait-asset/iPad-reference discrepancies only when approved assets/references exist.
-2. Keep D2 runtime backed by explicit Debug development sample composition until real Free catalog and precision provider contracts are implemented in their owning phases.
-3. Defer backend/API/provider and monetization work; ARCH-007 entitlement, ARCH-008 privacy/security and methodology validation remain prerequisites for production precision rollout.
-4. Do not begin D3 Sky, D4 Chart or D5 Ask UI as part of the completed D2 implementation scope.
+1. Keep the new D3 Sky + Calendar engineering/sample foundation non-visual until an approved D3 iPhone/iPad Light/Dark reference package exists.
+2. Review the captured D2 Today + Circle implementation evidence and close the documented portrait-asset/iPad-reference discrepancies only when approved assets/references exist.
+3. Keep D2 and D3 development content behind explicit Debug composition; Release must expose only safe unavailable/empty states until real owning providers exist.
+4. Defer backend/API/provider and monetization work; ARCH-007 entitlement, ARCH-008 privacy/security and methodology validation remain prerequisites for production precision rollout.
+5. Do not begin D3 production UI, D4 Chart or D5 Ask without their approved visual references.
 
 ## Repository authority
 
@@ -154,6 +155,29 @@ The implementation is under `Humay/Presentation/Today/`, `Humay/Presentation/Cir
 
 Production Free catalog/backend/provider, precision generation, entitlement, monetization and Saved People persistence remain deferred. Phase 05 and Phase 07 therefore remain partial rather than DONE.
 
+### D3 engineering foundation
+
+**D3 — Sky + Calendar is PARTIAL at the non-visual contract/sample layer.**
+
+Implemented:
+
+- Humay-owned `SkySnapshot`, `SkyEvent`, event type/system/relevance/reliability and mutually exclusive timing contracts;
+- validated civil calendar dates, month selections, seven-day weeks and event-bearing month/week content;
+- separate event meaning and astrological-basis fields for future detail presentation;
+- explicit Current Sky, month, week and event-detail loading/loaded/empty/unavailable/offline/failed states;
+- `D3FeatureInput.productionUnavailable` with no sample payload;
+- Debug-only `DevelopmentD3Sample` with deterministic, unverified values and launch-argument state variants;
+- focused Swift Testing for validation, state semantics, deterministic sample composition and Release-safe composition.
+
+Not implemented:
+
+- Current Sky, Calendar or event-detail production SwiftUI;
+- a D3 visual reference package or implementation evidence;
+- a calculation/provider pipeline, networking, caching, persistence or personalization;
+- methodology approval or production event provenance.
+
+No approved D3 references exist under `docs/design/soulful-reference/`; SKY-003, SKY-004 and SKY-005 remain TODO.
+
 ## Backend/API timing
 
 Backend/API implementation follows the UI-first pass for the relevant feature contracts.
@@ -247,6 +271,6 @@ Cadence for user-facing work:
 
 The app restores the local user-state snapshot before resolving a meaningful root. A missing file produces fresh four-beat onboarding. `Enter Humay` saves the profile/settings aggregate atomically before resolving the root to the adaptive Today / Circle / Sky / Chart / Ask shell. Terminating and relaunching a completed app restores that shell. Profile/Settings remains auxiliary from the header. Sky, Chart and Ask remain minimal destination placeholders because D3/D4/D5 are not approved for implementation in this phase. Save failures leave the onboarding draft intact and expose a retry alert; restore failures remain distinct from fresh onboarding.
 
-Debug builds inject `DevelopmentD2Sample` into narrow feature-state inputs. That type and its payload are excluded by `#if DEBUG`; Release injects production-unavailable/empty states and a binary scan found no development sample symbol or sample reading/person/score strings. The local snapshot remains the device source of truth only for current profile/settings; D2-added people are transient UI state and do not expand the persistence schema.
+Debug builds inject `DevelopmentD2Sample` into the implemented D2 runtime. D3 now has a matching `DevelopmentD3Sample` and typed `D3FeatureInput`, but no D3 production screen consumes them before visual approval. Both development sample types are excluded by `#if DEBUG`; their Release compositions contain no sample astrology payload. The local snapshot remains the device source of truth only for current profile/settings; D2-added people and all D3 samples are transient and do not expand the persistence schema.
 
 The ASTRO-001/002/003 types remain provider-independent Domain contracts and are not wired to D2 sample presentation or a calculation provider. No production astrology provider, interpretation provider, backend API, CloudKit sync/restore, authentication, StoreKit, ads, analytics or notification delivery is wired yet.

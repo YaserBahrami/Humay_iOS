@@ -65,7 +65,9 @@ Development sample data is allowed only as explicit development/preview/test con
 
 **D2 — Today + Circle** is implemented with Debug-only development sample data. It includes Today, Daily Horoscope, Circle, a minimal Add Person shell and Compatibility plus explicit Free/precise/cache/offline/error states. Release uses production-unavailable/empty composition and contains no development sample astrology payload.
 
-Backend/API/provider, entitlement/monetization and Saved People persistence remain deferred. D3 Sky, D4 Chart and D5 Ask have not been started by the D2 implementation.
+**D3 — Sky + Calendar** now has a non-visual engineering foundation only: Humay-owned Domain event/timing/calendar contracts, typed Presentation states and Debug-only deterministic sample composition. Release-safe D3 composition exposes unavailable states and no sample payload. No approved D3 cross-device reference package exists, so Current Sky, month/week Calendar and event-detail production UI remain unimplemented.
+
+Backend/API/provider, entitlement/monetization and Saved People persistence remain deferred. D4 Chart and D5 Ask have not been started.
 
 ## Foundation target
 

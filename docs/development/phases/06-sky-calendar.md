@@ -1,6 +1,6 @@
 # Phase 06 — Sky & Calendar
 
-Status: **TODO**
+Status: **IN PROGRESS — non-visual foundation only**
 
 Depends on:
 - Phase 01 platform/design-system foundation;
@@ -13,7 +13,22 @@ Goal: implement current Sky, event calendar and event detail over deterministic 
 ## Tasks
 
 ### SKY-001 — Define sky/event fact contract
-Status: TODO
+Status: PARTIAL
+
+Implemented foundation:
+
+- Humay-owned event identity, type, tradition/system ownership, timing, relevance and reliability;
+- validated civil dates, event intervals, month selections and seven-day week structures;
+- explicit unavailable timing rather than guessed clock values;
+- separate compact event and event-detail meaning/astrological-basis contracts;
+- typed Current Sky, month, week and detail availability/state inputs;
+- Debug-only deterministic/unverified sample composition and Release-unavailable composition.
+
+Still required before DONE:
+
+- production calculation/catalog source and provenance wiring;
+- methodology validation for supported event families;
+- real timezone/location invalidation behavior through the owning data pipeline.
 
 Acceptance:
 - event type, time window, timezone/location relevance, system and provenance are explicit;
@@ -71,3 +86,5 @@ Acceptance:
 - event timing is timezone-safe and sourceable;
 - system-specific terminology remains methodology-aware;
 - shipping Sky/Calendar surfaces reconcile with approved D3 iPhone+iPad Light/Dark references.
+
+The current partial foundation does not satisfy the phase exit criteria. No approved D3 visual references exist, so SKY-003, SKY-004 and SKY-005 remain TODO.

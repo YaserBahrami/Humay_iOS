@@ -82,7 +82,7 @@ Birth time and birth location are not onboarding steps.
 | Tradition | Light + Dark approved | Light + Dark approved | implemented; evidence captured |
 | Profile Reveal | Light + Dark approved | Light + Dark approved | implemented; evidence captured |
 
-D1 cross-device approval date: **2026-08-12**. Production implementation is `Humay/Presentation/Onboarding/`. PROFILE-005 persists the local profile/settings aggregate and restores the completed root on relaunch. D2 is now implemented as a development-sample presentation slice; D3 and later remain unimplemented.
+D1 cross-device approval date: **2026-08-12**. Production implementation is `Humay/Presentation/Onboarding/`. PROFILE-005 persists the local profile/settings aggregate and restores the completed root on relaunch. D2 is now implemented as a development-sample presentation slice. D3 has only a non-visual engineering/sample foundation; D3 production UI and later screen families remain unimplemented.
 
 The iPad landscape two-region paths are covered by the UI test. iOS 26.5 simulator landscape screenshot export produced an orientation-rotated framebuffer, so those raw captures are documented but not presented as repository evidence; see [`implementation-evidence/d1-onboarding/README.md`](implementation-evidence/d1-onboarding/README.md).
 
@@ -123,6 +123,13 @@ The iPad landscape two-region paths are covered by the UI test. iOS 26.5 simulat
 3. Calendar week
 4. Event detail
 5. Required empty/unavailable state
+
+### Current state
+
+- No approved D3 iPhone Light/Dark or iPad Light/Dark references exist in the active reference tree.
+- Non-visual Domain/Presentation contracts and Debug-only deterministic sample states are implemented.
+- Current Sky, month/week Calendar and event-detail SwiftUI remain intentionally unimplemented.
+- SKY-003, SKY-004 and SKY-005 remain TODO; no visual completion or reconciliation is claimed.
 
 ## D4 — Chart + astrology systems
 
