@@ -33,6 +33,18 @@ enum HumayTypography {
         relativeTo: .largeTitle
     )
 
+    static let compatibilityScore = Font.custom(
+        "CormorantGaramond-Regular",
+        size: 72,
+        relativeTo: .largeTitle
+    )
+
+    static let cardTitle = Font.custom(
+        "CormorantGaramond-Regular",
+        size: 28,
+        relativeTo: .title2
+    )
+
     static let body = Font.body
     static let bodyEmphasized = Font.body.weight(.semibold)
     static let supporting = Font.subheadline

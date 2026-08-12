@@ -1,12 +1,18 @@
 import SwiftUI
 
-/// Root presenter for transient onboarding and the existing minimal main placeholder.
+/// Root presenter for transient onboarding and the approved post-onboarding shell.
 struct RootView: View {
     @Environment(AppEnvironment.self) private var environment
     @Environment(AppNavigationState.self) private var navigation
 
     @State private var onboardingDraft = OnboardingDraftState()
     @State private var saveFailed = false
+
+    private let featureInput: D2FeatureInput
+
+    init(featureInput: D2FeatureInput = .productionUnavailable) {
+        self.featureInput = featureInput
+    }
 
     var body: some View {
         @Bindable var navigation = navigation
@@ -27,15 +33,7 @@ struct RootView: View {
                 )
 
             case .main:
-                ZStack {
-                    Color(uiColor: .systemBackground)
-                        .ignoresSafeArea()
-
-                    Text("Humay")
-                        .font(.system(size: 44, weight: .regular, design: .serif))
-                        .foregroundStyle(.primary)
-                        .accessibilityIdentifier("humay.foundation.title")
-                }
+                MainAppView(featureInput: featureInput)
             }
         }
         .alert("Couldn't save your profile", isPresented: $saveFailed) {
@@ -91,14 +89,16 @@ struct RootView: View {
     }
 }
 
-#Preview("Foundation") {
+#if DEBUG
+#Preview("D2 Foundation") {
     let environment = AppEnvironment(
         store: UnavailableUserStateStore(),
         initialRestorationState: .ready
     )
     let navigation = AppNavigationState(environment: environment)
 
-    RootView()
+    RootView(featureInput: DevelopmentD2Sample.makeInput(arguments: []))
         .environment(environment)
         .environment(navigation)
 }
+#endif

@@ -4,6 +4,7 @@ import SwiftUI
 struct HumayApp: App {
     @State private var environment: AppEnvironment
     @State private var navigation: AppNavigationState
+    private let featureInput: D2FeatureInput
 
     init() {
         let store: any UserStateStore
@@ -17,11 +18,16 @@ struct HumayApp: App {
         let environment = AppEnvironment(store: store)
         _environment = State(initialValue: environment)
         _navigation = State(initialValue: AppNavigationState(environment: environment))
+#if DEBUG
+        featureInput = DevelopmentD2Sample.makeInput()
+#else
+        featureInput = .productionUnavailable
+#endif
     }
 
     var body: some Scene {
         WindowGroup {
-            RootView()
+            RootView(featureInput: featureInput)
                 .environment(environment)
                 .environment(navigation)
                 .task {
@@ -43,5 +49,19 @@ struct HumayApp: App {
 #endif
 
         await environment.restore()
+
+#if DEBUG
+        if ProcessInfo.processInfo.arguments.contains("-HumayD2Demo"),
+           !environment.hasCompletedOnboarding {
+            do {
+                try await environment.completeOnboarding(
+                    profile: DevelopmentD2Sample.profile,
+                    tradition: .western
+                )
+            } catch {
+                return
+            }
+        }
+#endif
     }
 }

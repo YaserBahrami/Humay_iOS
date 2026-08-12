@@ -62,6 +62,7 @@ struct DesignSystemFoundationTests {
     @Test("Committed Cormorant Garamond display font loads")
     func cormorantLoads() {
         #expect(UIFont(name: "CormorantGaramond-Regular", size: 24) != nil)
+        #expect(UIFont(name: "CormorantGaramond-Light", size: 24) != nil)
     }
 
     @Test("Interactive and hairline metrics preserve platform minimums")

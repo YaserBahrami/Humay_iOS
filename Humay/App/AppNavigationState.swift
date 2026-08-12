@@ -79,6 +79,13 @@ enum CircleRoute: String, Hashable, Sendable {
     var owningDestination: MainDestination { .circle }
 }
 
+/// Today-owned child route boundary.
+enum TodayRoute: String, Hashable, Sendable {
+    case dailyHoroscope
+
+    var owningDestination: MainDestination { .today }
+}
+
 /// Sky-owned child route boundary. Calendar belongs under Sky.
 enum SkyRoute: String, Hashable, Sendable {
     case calendar
@@ -89,8 +96,10 @@ enum SkyRoute: String, Hashable, Sendable {
 /// Auxiliary routes opened from the profile/header entry. This is deliberately a
 /// separate type from `MainDestination`, so Profile/Settings cannot become a sixth
 /// primary destination by accident.
-enum AppAuxiliaryRoute: String, CaseIterable, Hashable, Sendable {
+enum AppAuxiliaryRoute: String, CaseIterable, Hashable, Sendable, Identifiable {
     case profileSettings
+
+    var id: String { rawValue }
 }
 
 /// App-owned, non-persistent route selection state.

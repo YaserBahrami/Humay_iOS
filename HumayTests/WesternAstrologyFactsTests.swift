@@ -92,7 +92,7 @@ struct WesternAstrologyFactsTests {
             orbDegrees: 0.6
         )
 
-        let result = AstrologyCalculationResult(
+        let result: AstrologyCalculationResult<WesternAstrologyFact> = AstrologyCalculationResult(
             tradition: .western,
             provenance: validProvenance(),
             calculatedAt: Date(timeIntervalSince1970: 1_700_000_000),
@@ -116,7 +116,7 @@ struct WesternAstrologyFactsTests {
             planet: .sun,
             position: try WesternZodiacPosition(longitudeDegrees: 18.2)
         )
-        let result = AstrologyCalculationResult(
+        let result: AstrologyCalculationResult<WesternAstrologyFact> = AstrologyCalculationResult(
             tradition: .western,
             provenance: validProvenance(),
             calculatedAt: .now,
@@ -142,7 +142,7 @@ struct WesternAstrologyFactsTests {
             secondPlanet: .sun,
             orbDegrees: 1
         )
-        let result = AstrologyCalculationResult(
+        let result: AstrologyCalculationResult<WesternAstrologyFact> = AstrologyCalculationResult(
             tradition: .western,
             provenance: validProvenance(),
             calculatedAt: .now,
