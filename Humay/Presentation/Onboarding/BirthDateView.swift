@@ -7,15 +7,30 @@ struct BirthDateView: View {
     let onContinue: () -> Void
 
     @State private var validationMessage: String?
+    @Environment(\.dynamicTypeSize) private var dynamicTypeSize
 
     var body: some View {
         OnboardingScreen { proxy in
+            let compactHeight = proxy.size.height < 700
+            let sectionSpacing = bounded(
+                proxy.size.height * (compactHeight ? 0.012 : 0.016),
+                minimum: 8,
+                maximum: 16
+            )
+
             if proxy.size.width > proxy.size.height {
-                landscapeLayout
+                landscapeLayout(
+                    compactHeight: compactHeight,
+                    sectionSpacing: sectionSpacing
+                )
             } else {
-                portraitLayout
+                portraitLayout(
+                    compactHeight: compactHeight,
+                    sectionSpacing: sectionSpacing
+                )
             }
         }
+        .scrollDisabled(!dynamicTypeSize.isAccessibilitySize)
         .safeAreaInset(edge: .bottom, spacing: 0) {
             primaryAction
                 .frame(maxWidth: .infinity)
@@ -29,8 +44,11 @@ struct BirthDateView: View {
         }
     }
 
-    private var portraitLayout: some View {
-        VStack(alignment: .leading, spacing: HumaySpacing.extraLarge) {
+    private func portraitLayout(
+        compactHeight: Bool,
+        sectionSpacing: CGFloat
+    ) -> some View {
+        VStack(alignment: .leading, spacing: sectionSpacing) {
             OnboardingChrome(
                 stepLabel: "01 · Birth date",
                 progressIndex: 1,
@@ -43,17 +61,20 @@ struct BirthDateView: View {
                 hero: false
             )
 
-            datePickerSurface
+            datePickerSurface(compactHeight: compactHeight)
 
-            explanatoryContent
+            explanatoryContent(compactHeight: compactHeight)
         }
         .frame(maxWidth: 720, alignment: .leading)
         .frame(maxWidth: .infinity, alignment: .center)
     }
 
-    private var landscapeLayout: some View {
-        HStack(alignment: .top, spacing: HumaySpacing.extraExtraLarge) {
-            VStack(alignment: .leading, spacing: HumaySpacing.extraLarge) {
+    private func landscapeLayout(
+        compactHeight: Bool,
+        sectionSpacing: CGFloat
+    ) -> some View {
+        HStack(alignment: .top, spacing: compactHeight ? HumaySpacing.large : HumaySpacing.extraExtraLarge) {
+            VStack(alignment: .leading, spacing: sectionSpacing) {
                 OnboardingChrome(
                     stepLabel: "01 · Birth date",
                     progressIndex: 1,
@@ -66,22 +87,25 @@ struct BirthDateView: View {
                     hero: false
                 )
 
-                BirthDatePrecisionCard()
+                BirthDatePrecisionCard(compactHeight: compactHeight)
             }
             .frame(maxWidth: 420, alignment: .leading)
 
-            VStack(alignment: .leading, spacing: HumaySpacing.extraLarge) {
-                datePickerSurface
-                explanatoryContent
+            VStack(alignment: .leading, spacing: sectionSpacing) {
+                datePickerSurface(compactHeight: compactHeight)
+                explanatoryContent(compactHeight: compactHeight)
             }
             .frame(maxWidth: 620, alignment: .leading)
         }
         .frame(maxWidth: 1120, alignment: .center)
     }
 
-    private var datePickerSurface: some View {
-        HumaySurface(level: .standard, padding: HumaySpacing.medium) {
-            VStack(spacing: HumaySpacing.small) {
+    private func datePickerSurface(compactHeight: Bool) -> some View {
+        HumaySurface(
+            level: .standard,
+            padding: compactHeight ? HumaySpacing.small : HumaySpacing.medium
+        ) {
+            VStack(spacing: compactHeight ? 2 : HumaySpacing.small) {
                 DatePicker(
                     "Birth date",
                     selection: $draft.pickerDate,
@@ -90,22 +114,23 @@ struct BirthDateView: View {
                 )
                 .datePickerStyle(.wheel)
                 .labelsHidden()
-                .frame(minHeight: 220)
+                .frame(height: compactHeight ? 170 : 205)
+                .clipped()
                 .accessibilityLabel("Birth date")
                 .accessibilityValue(draft.pickerDateFormatted())
                 .accessibilityHint("Choose your calendar birth date. Birth time and place are not collected here.")
                 .accessibilityIdentifier("onboarding.birthDate.picker")
 
-                BirthDateMotif()
-                    .frame(height: 112)
+                BirthDateMotif(compactHeight: compactHeight)
+                    .frame(height: compactHeight ? 52 : 82)
             }
         }
     }
 
-    private var explanatoryContent: some View {
-        VStack(alignment: .leading, spacing: HumaySpacing.large) {
+    private func explanatoryContent(compactHeight: Bool) -> some View {
+        VStack(alignment: .leading, spacing: compactHeight ? 7 : HumaySpacing.medium) {
             Text("This is all the general reading needs — your Sun sign, your Chinese year and sign-to-sign compatibility all follow from the date alone.")
-                .font(HumayTypography.supporting)
+                .font(compactHeight ? .caption : HumayTypography.supporting)
                 .foregroundStyle(Color.humayTextPrimary)
                 .fixedSize(horizontal: false, vertical: true)
 
@@ -113,13 +138,13 @@ struct BirthDateView: View {
                 .overlay(Color.humayHairline)
 
             Text("Birth time and place are not required now. You can add them later in Profile, and they unlock the parts of a chart that genuinely depend on them.")
-                .font(HumayTypography.supporting)
+                .font(compactHeight ? .caption : HumayTypography.supporting)
                 .foregroundStyle(Color.humayTextSecondary)
                 .fixedSize(horizontal: false, vertical: true)
 
             if let validationMessage {
                 Text(validationMessage)
-                    .font(HumayTypography.supporting)
+                    .font(.caption)
                     .foregroundStyle(.red)
                     .fixedSize(horizontal: false, vertical: true)
             }
@@ -139,17 +164,23 @@ struct BirthDateView: View {
         }
     }
 
+    private func bounded(_ value: CGFloat, minimum: CGFloat, maximum: CGFloat) -> CGFloat {
+        min(max(value, minimum), maximum)
+    }
+
     private struct BirthDatePrecisionCard: View {
+        let compactHeight: Bool
+
         var body: some View {
-            HumaySurface {
-                VStack(alignment: .leading, spacing: HumaySpacing.small) {
+            HumaySurface(padding: compactHeight ? HumaySpacing.medium : HumaySpacing.extraLarge) {
+                VStack(alignment: .leading, spacing: compactHeight ? 4 : HumaySpacing.small) {
                     Text("Date first.\nPrecision later.")
-                        .font(HumayTypography.editorialTitle)
+                        .font(compactHeight ? HumayTypography.onboardingCardTitle : HumayTypography.editorialTitle)
                         .foregroundStyle(Color.humayTextPrimary)
                         .fixedSize(horizontal: false, vertical: true)
 
                     Text("Time and place stay optional.")
-                        .font(HumayTypography.supporting)
+                        .font(compactHeight ? .caption : HumayTypography.supporting)
                         .foregroundStyle(Color.humayTextSecondary)
                 }
             }
@@ -158,6 +189,8 @@ struct BirthDateView: View {
 }
 
 private struct BirthDateMotif: View {
+    let compactHeight: Bool
+
     @Environment(\.colorScheme) private var colorScheme
 
     var body: some View {
@@ -185,7 +218,8 @@ private struct BirthDateMotif: View {
                 .foregroundStyle(Color.humaySolarGold)
                 .offset(x: 92, y: -39)
         }
-        .frame(maxWidth: .infinity, minHeight: 112)
+        .scaleEffect(compactHeight ? 0.68 : 0.9)
+        .frame(maxWidth: .infinity, minHeight: compactHeight ? 52 : 82)
         .accessibilityHidden(true)
     }
 
@@ -267,7 +301,7 @@ private struct BirthDateMotif: View {
         }
 
         private var faceInk: Color {
-            colorScheme == .light ? .humayTextPrimary : .humayTextPrimary
+            .humayTextPrimary
         }
     }
 }
