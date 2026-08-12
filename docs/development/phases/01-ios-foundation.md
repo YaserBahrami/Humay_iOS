@@ -1,6 +1,6 @@
 # Phase 01 — Apple Platform Foundation
 
-Status: **IN PROGRESS — IOS-001 and IOS-002 complete; IOS-003 not started**
+Status: **IN PROGRESS — IOS-001 through IOS-003 complete; IOS-004 not started**
 
 Depends on:
 - current production baseline reset;
@@ -78,8 +78,19 @@ Acceptance:
 - existing layering checks are updated to enforce the actual structure.
 
 ### IOS-003 — Soulful Celestial design-system foundation
-Status: TODO  
+Status: **DONE — 2026-08-12**  
 Depends on: IOS-001
+
+Implemented foundation state:
+
+- semantic asset-catalog Light/Dark roles for ground, surface, raised surface, primary/secondary text, hairline, coral, lavender, solar gold, celestial blue and sage;
+- Cormorant Garamond wordmark/editorial/expressive roles with Dynamic Type-relative scaling, plus semantic system UI and monospaced roles;
+- approved spacing, compact/surface/feature/pill radii, pixel-aware hairline, subtle Light-only shadow metrics and 44 pt minimum interaction metric;
+- bounded form/readable/expanded content widths, adaptive gutters and a fit-driven stack for iPhone, compact iPad windows and regular-width iPad compositions;
+- native SwiftUI primary and quiet secondary button styles with disabled/pressed states, 56 pt minimum rendered height and Reduce Motion handling;
+- generic standard/raised rounded surfaces using tonal Dark hierarchy;
+- Debug/preview-only iPhone Light/Dark and iPad portrait-Light/landscape-Dark showcase coverage, with no runtime route or RootView change;
+- focused tests for semantic asset availability, Light/Dark contrast, committed custom-font loading, hit-target/hairline metrics and adaptive width behavior.
 
 Scope:
 - semantic Light/Dark color roles from the approved tokens;

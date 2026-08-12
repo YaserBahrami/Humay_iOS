@@ -4,8 +4,8 @@ Last updated: **2026-08-12**
 
 ## Active priorities
 
-1. Continue **Phase 01 — Apple Platform Foundation** after the completed IOS-001 and IOS-002 baseline.
-2. Review IOS-003 through its separate design gate before beginning the Soulful Celestial DesignSystem foundation; IOS-003 is not started.
+1. Continue **Phase 01 — Apple Platform Foundation** after the completed IOS-001 through IOS-003 baseline; IOS-004 is not started.
+2. Preserve the completed Soulful Celestial DesignSystem foundation while feature-specific UI remains behind its cross-device design gate.
 3. Backfill iPad references for approved Welcome + Birth Date.
 4. Design D1 Step 03 Tradition for iPhone + iPad, Light + Dark.
 5. After cross-device approval, implement onboarding from repository references.
@@ -48,7 +48,7 @@ Details: [`../architecture/PRODUCTION_BASELINE_RESET_2026-08-12.md`](../architec
 
 ### Phase 01 — Apple Platform Foundation
 
-**IN PROGRESS. IOS-001 and IOS-002 are complete; IOS-003 is not started.**
+**IN PROGRESS. IOS-001 through IOS-003 are complete; IOS-004 is not started.**
 
 Current verified foundation:
 
@@ -57,7 +57,9 @@ Current verified foundation:
 - Humay naming, shared scheme and centralized Debug/Release xcconfig inheritance remain intact;
 - `HumayApp` explicitly owns the small `AppEnvironment` composition boundary;
 - Domain remains independent of UI and persistence frameworks;
-- no Data, feature Presentation or DesignSystem structure exists without current production behavior;
+- DesignSystem contains the approved semantic Light/Dark tokens, Dynamic Type typography, adaptive layout, generic surfaces and primary/quiet button foundations;
+- the DesignSystem showcase exists only in Debug previews for representative iPhone/iPad Light/Dark verification and is not a runtime route;
+- no Data or feature Presentation structure exists without current production behavior;
 - Swift Testing, the UI launch test and architecture/nomenclature checks pass;
 - no third-party dependency or production feature UI was added.
 
@@ -142,9 +144,11 @@ Cadence:
 - Numeric compatibility presentation is allowed, but visual mock scores do not define methodology.
 - Roast changes expression, not calculated facts.
 - Unknown birth time is never replaced with a fake time.
+- Humay V1 requires no Humay user account, registration, Sign in with Apple or login UI.
+- User-owned data is local-first, with private iCloud/CloudKit sync/restore planned but not implemented; private profile/astrology data does not use public CloudKit.
 
 ## Current runtime
 
-The app currently launches a deliberately minimal semantic Light/Dark Humay placeholder. It is a clean build baseline, not production UI.
+The app still launches the deliberately minimal semantic Light/Dark Humay placeholder. IOS-003 added reusable design infrastructure and a preview-only showcase; it did not redesign RootView or add production feature UI.
 
-No production astrology provider, interpretation provider, persistence schema, StoreKit, ads, analytics, notification delivery or post-onboarding feature runtime is wired yet.
+No production astrology provider, interpretation provider, persistence/CloudKit schema, authentication/account flow, backend identity, StoreKit, ads, analytics, notification delivery or post-onboarding feature runtime is wired yet.

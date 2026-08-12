@@ -17,6 +17,21 @@ The target is near-zero marginal backend/AI cost for Free usage. Free content th
 
 This is a runtime-cost rule, not a claim that preparing/editorially reviewing the catalog has literally zero cost.
 
+### V1 identity and user-owned data
+
+Humay V1 does **not** require a Humay user account. There is no email/password registration, Sign in with Apple, login screen or "already have an account" onboarding path.
+
+User-owned profile, preferences and saved-person data follow an Apple-platform-native persistence direction:
+
+- local app storage is the immediate runtime source;
+- private iCloud/CloudKit-backed persistence is planned for sync and restore across the user's Apple devices;
+- private astrology/profile data must not use the public CloudKit database;
+- transient caches that do not need device sync may remain local;
+- precision requests may later use an anonymous app/backend identity without introducing user login;
+- Humay account infrastructure is deferred unless future cross-platform or server-account features require it.
+
+This records direction only. CloudKit, persistence schemas, backend identity and authentication are not implemented in the current runtime. These choices do not change Free / Rewarded Access / Premium semantics.
+
 ## 2. Free path
 
 ### Daily horoscope

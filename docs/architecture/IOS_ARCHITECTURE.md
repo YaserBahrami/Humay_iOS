@@ -25,6 +25,12 @@ Humay.xcodeproj/
 Config/
 Humay/
 ├── App/                  minimal composition/root
+├── DesignSystem/         semantic SwiftUI presentation infrastructure
+│   ├── Components/
+│   ├── Layout/
+│   ├── Preview/          Debug/preview-only showcase
+│   ├── Tokens/
+│   └── Typography/
 ├── Domain/
 │   └── Profile/          only stable, already-authoritative user facts/preferences
 └── Resources/
@@ -34,7 +40,7 @@ HumayTests/
 HumayUITests/
 ```
 
-Feature, Data and DesignSystem folders are added back deliberately as production slices are implemented. The repository should not recreate broad speculative architecture ahead of approved product work.
+Feature and Data folders are added back deliberately as production slices are implemented. DesignSystem now contains only the approved Soulful Celestial visual foundation. The repository should not recreate broad speculative architecture ahead of approved product work.
 
 ## Architecture direction
 
@@ -73,6 +79,14 @@ When introduced:
 - define migration ownership explicitly;
 - never silently replace a failed durable store with an in-memory store for user-owned data.
 
+### Accountless Apple persistence direction
+
+Humay V1 does not require a Humay user account or authentication UI. User-owned profile, preferences and saved-person data are local-first: local app storage remains the immediate runtime source, with private iCloud/CloudKit-backed persistence planned for Apple-device sync and restore.
+
+Private astrology/profile data must not use the public CloudKit database. Transient, non-sync caches may remain local. Precision features may later use an anonymous app/backend identity that is separate from user-facing login. A Humay account boundary is deferred unless cross-platform or server-account features later require it.
+
+This is an architecture direction, not current runtime capability. CloudKit containers, entitlements, SwiftData schemas, persistence adapters and backend identity are not implemented yet; their owning later tasks define them.
+
 ## Provider boundaries
 
 The former mock astrology runtime was removed. Production horoscope, compatibility, chart, sky and interpretation services are added when the corresponding product methodology/backend phase is ready.
@@ -91,7 +105,7 @@ The routing implementation will be rebuilt when the first post-onboarding applic
 
 Humay follows the system appearance. Light and Dark are first-class compositions.
 
-The previous forced-Light `UIUserInterfaceStyle` and compatibility-mode override were removed. Semantic design tokens will be rebuilt from the approved Soulful Celestial references rather than adapting the old Paper-only design system.
+The previous forced-Light `UIUserInterfaceStyle` and compatibility-mode override were removed. The semantic Soulful Celestial foundation now provides intentional Light/Dark colors, Dynamic Type typography, adaptive layout, generic surfaces and approved button treatments without changing the minimal runtime RootView.
 
 ## Responsive layout requirements
 
@@ -124,4 +138,4 @@ Use Swift Testing for unit/domain behavior and XCTest for UI tests. Each impleme
 
 ## Not yet built in the clean baseline
 
-Production DesignSystem, onboarding implementation, persistence, networking, astrology provider adapters, interpretation provider, post-onboarding navigation, StoreKit, advertising, analytics, notification delivery, widgets and feature-specific screens.
+Onboarding implementation, persistence/CloudKit, authentication, backend identity, networking, astrology provider adapters, interpretation provider, post-onboarding navigation, StoreKit, advertising, analytics, notification delivery, widgets and feature-specific screens.

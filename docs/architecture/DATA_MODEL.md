@@ -39,6 +39,10 @@ Notification preferences, purchase state, access entitlements, provider state an
 
 No durable schema is committed yet. Persistence will be designed when the first production data-owning implementation slice lands.
 
+Humay V1 is accountless. It does not require email/password registration, Sign in with Apple or another Humay login. User-owned profile, preferences and saved-person data are local-first: local app storage is the immediate runtime source, and private iCloud/CloudKit-backed persistence is planned for Apple-device sync and restore. Private astrology/profile data must not use the public CloudKit database. Transient caches that do not need sync may remain local.
+
+CloudKit, SwiftData, persistence schemas, backend identity and authentication are not implemented yet. A later precision-request boundary may use anonymous app/backend identity without changing the user-owned data model into an account model.
+
 Before shipping, the chosen persistence layer must:
 
 - be versioned;
