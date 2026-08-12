@@ -1,67 +1,75 @@
 # Soulful Celestial Asset Catalog
 
-**Status:** design-source catalog; production promotion is explicit.
+**Status:** current design-source catalog; production promotion is explicit.
 
-Humay's richer illustration language uses painterly raster artwork plus a small number of reusable vector/system primitives. Do not treat a screenshot crop as a shipping asset automatically.
+Humay's approved illustration language is **simple line/flat celestial art with restrained color blocking and minimal shading**. The previous painterly/watercolor asset exploration is superseded and must not be used for production implementation.
 
-## D0 artwork families
+Do not treat screenshot crops as shipping assets.
 
-The first visual anchors identify these reusable art families:
+## Current reusable art families
 
-| ID | Artwork | Likely reuse | Shipping form |
+These are design categories, not a promise that each becomes a raster asset:
+
+| ID | Motif | Typical use | Preferred shipping form |
 |---|---|---|---|
-| `ART-TODAY-COSMIC-LANDSCAPE` | twilight celestial valley / cosmic-weather hero | Today hero, share derivatives | optimized raster, appearance-tested |
-| `ART-TODAY-HIGHLIGHT-SUN` | warm sun/cloud highlight illustration | Today highlights/onboarding accents | optimized raster |
-| `ART-LOVE-LOVEBIRDS` | paired birds + blossoms | Love category, relationship accents | optimized raster |
-| `ART-CAREER-MOUNTAIN` | mountain/path/flag | Career category | optimized raster |
-| `ART-FINANCE-ABUNDANCE` | moon/coin botanical pot | Finance category | optimized raster |
-| `ART-HEALTH-MOON` | meditative moon/botanical scene | Health category | optimized raster |
-| `ART-DAILY-SCORPIO` | Scorpio feature illustration | zodiac reading feature | optimized raster |
-| `ART-COMPAT-SUN-MOON` | embracing sun/moon celestial composition | compatibility hero | optimized raster |
-| `ART-COMPAT-LANDSCAPE` | couple viewing celestial landscape | compatibility summary/share | optimized raster |
+| `ART-CELESTIAL-SUN` | friendly restrained sun/sparkles | Today, highlights | SwiftUI/vector or transparent asset |
+| `ART-CELESTIAL-MOON` | crescent/moon with minimal expression | Today, Health, onboarding | SwiftUI/vector or transparent asset |
+| `ART-ORBIT-PLANET` | small planet + orbit line | onboarding, system/category accents | vector/SwiftUI |
+| `ART-COSMIC-COFFEE` | compact coffee/celestial object | Welcome/Roast moments | vector/transparent asset |
+| `ART-CALENDAR-CELESTIAL` | calendar + sun/moon accent | Birth Date | vector/SwiftUI |
+| `ART-COMPAT-SUN-MOON` | paired celestial relationship motif | Compatibility | vector/transparent asset |
+| `ART-ROAST-OBJECT` | one playful celestial/object character | Roast surfaces | vector/transparent asset |
+| `ART-ZODIAC-ACCENT` | simple sign-specific line/flat motif | reading identity | vector/transparent asset |
 
-These names are stable design identifiers. Final file names may gain size/variant suffixes during production export.
+Add new IDs only when an approved screen establishes a reusable motif.
 
-## Reusable non-raster primitives
+## Prefer native/vector primitives
 
-Prefer SwiftUI/SF Symbols/vector drawing for simple primitives rather than baking them into images:
+Use SwiftUI, SF Symbols or vector assets for:
 
-- orbit rings and dotted orbit paths;
-- four-point/eight-point sparkles;
-- small star field accents;
-- category badges/icons where SF Symbols fit;
+- orbit rings and dotted paths;
+- four/eight-point sparkles;
+- sparse star accents;
+- category circles/icons where appropriate;
 - zodiac glyphs when text/vector treatment is sufficient;
-- simple celestial divider marks.
+- dividers/progress marks;
+- simple calendar/sun/moon motifs.
 
-This keeps appearance, tint, accessibility and scale adaptable.
+This keeps tint, accessibility, scale and iPad adaptation flexible.
+
+## Raster-image rule
+
+Raster artwork is allowed only when the approved illustration genuinely needs detail that is impractical to reproduce cleanly as vector/native UI. Do not introduce raster artwork merely because an old concept used it.
 
 ## Light/Dark policy
 
-Do not create a duplicate Dark raster automatically.
+For each approved artwork choose deliberately:
 
-For each approved artwork choose one of:
+1. **one shared transparent/vector asset** when it works on both appearances;
+2. **appearance variants** only when values/composition materially need them;
+3. **native background + foreground asset** when the surface should remain semantic SwiftUI.
 
-1. **same artwork** — asset is already luminous/transparent and works on both grounds;
-2. **appearance variants** — composition/values genuinely require separate Light and Dark exports;
-3. **single transparent foreground** — background/surface is drawn by SwiftUI and the artwork sits above it.
+Dark mode is composed intentionally; do not auto-invert art.
 
-Prefer option 1 or 3 when visual quality is equal.
+## Cross-device policy
+
+Artwork must respond to container space rather than fixed device dimensions. iPad may give hero art more room, but artwork does not scale proportionally just because the canvas is larger.
 
 ## Production checklist
 
 Before moving an item into `Humay/Resources/Assets.xcassets/`:
 
-- [ ] screen family approved in Light and Dark;
-- [ ] crop/composition approved independently from screenshot;
-- [ ] no important text embedded in art;
-- [ ] correct scale and target pixel dimensions chosen;
-- [ ] compression tested on device;
-- [ ] transparency behavior verified if used;
-- [ ] Light/Dark behavior selected intentionally;
-- [ ] VoiceOver semantics handled by UI, not assumed from art;
-- [ ] attribution/licensing/source provenance recorded if artwork is not fully owned/generated for Humay;
-- [ ] asset name mapped back to this catalog/design screen.
+- [ ] owning screen/package approved for required iPhone/iPad Light/Dark states;
+- [ ] asset is truly reusable/shippable rather than a screenshot crop;
+- [ ] no important UI text is embedded in art;
+- [ ] no unvalidated astrology fact is embedded in art;
+- [ ] correct scale/vector/raster form chosen;
+- [ ] Light/Dark behavior verified;
+- [ ] iPhone/iPad layout behavior verified;
+- [ ] VoiceOver semantics are provided by UI where meaningful;
+- [ ] source/licensing/provenance recorded when applicable;
+- [ ] asset name maps back to its approved reference package.
 
 ## Current decision
 
-D0 art remains **reference material** until the anchor pair receives final Dark refinement. No D0 painterly crop should be added to the shipping asset catalog merely because it appears in a concept screenshot.
+The committed D0/D1 mockups are **design references**. Only isolated motifs explicitly approved during implementation are promoted into the shipping asset catalog.

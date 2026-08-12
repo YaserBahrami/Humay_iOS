@@ -3,88 +3,100 @@
 Status: **TODO**
 Depends on: all included shipping phases
 
-Goal: turn the integrated product into a release candidate through correctness, accessibility, performance, privacy, migration and operational validation.
+Goal: turn the integrated iPhone+iPad product into a release candidate through correctness, accessibility, performance, privacy, migration, cost and operational validation.
 
 ## Tasks
 
-### RC-001 — Full accessibility audit
+### RC-001 — Full cross-device accessibility audit
 Status: TODO
 
 Acceptance:
-- Dynamic Type, VoiceOver order/labels, chart alternatives, contrast, Reduce Motion and hit targets are validated.
-- Astrology glyphs have useful spoken labels.
+- Dynamic Type, VoiceOver order/labels, chart alternatives, contrast, Reduce Motion and hit targets are validated;
+- astrology glyphs have useful spoken labels;
+- representative iPhone/iPad layouts, including relevant iPad landscape/compact windows, are covered;
+- pointer/keyboard behavior is functional where native platform behavior provides it.
 
 ### RC-002 — Performance and responsiveness audit
 Status: TODO
 
 Acceptance:
-- Launch, tab switching, Chart/Today/Sky loading and long lists meet documented targets.
-- Expensive calculation/interpretation work does not block the main actor.
-- Cache behavior is measured, not assumed.
+- launch, navigation, Chart/Today/Sky loading and long lists meet documented targets;
+- expensive calculation/interpretation work does not block the main actor;
+- cache behavior is measured, not assumed;
+- iPad layouts do not introduce avoidable rendering/layout regressions.
 
 ### RC-003 — Offline/failure/recovery audit
 Status: TODO
 
 Acceptance:
-- Network loss, provider failure, calculation failure, ad failure and store failure have user-safe states.
-- Cached data is labeled/handled consistently.
+- network loss, provider failure, calculation failure, ad failure and store failure have user-safe states;
+- cached data is labeled/handled consistently;
+- durable user-data failures do not silently become volatile storage.
 
 ### RC-004 — Persistence and migration audit
 Status: TODO
 
 Acceptance:
-- Local profile/saved people/reward unlock migrations are tested from every released schema version created during development.
-- Corrupt/partial data has a recovery strategy.
+- migrations are tested from every actually shipped schema version;
+- local profile, Saved People and any locally persisted cache/entitlement metadata included in the release have round-trip/migration coverage;
+- corrupt/partial data has a recovery strategy;
+- unknown birth time/place semantics survive migrations.
 
 ### RC-005 — Privacy/security audit
 Status: TODO
 
 Acceptance:
-- Logs do not expose birth/saved-person/private interpretation data unnecessarily.
-- Export/delete/privacy controls match implemented storage.
-- Third-party SDK/data flows are documented.
+- logs do not expose birth/saved-person/private interpretation data unnecessarily;
+- export/delete/privacy controls match implemented storage;
+- third-party SDK/provider data flows are documented;
+- secrets remain server-side where required.
 
 ### RC-006 — Astrology correctness and methodology release gate
 Status: TODO
 
 Acceptance:
-- Every shipping astrology feature identifies its deterministic engine/methodology version.
-- All required METHOD tasks for shipping features are signed off.
-- Gated/unresolved features cannot accidentally appear as production-valid output.
+- every shipping astrology feature identifies deterministic engine/methodology version where relevant;
+- required METHOD tasks for shipping features are signed off;
+- gated/unresolved features cannot appear as production-valid output;
+- design/sample fixtures are not accepted as calculation validation.
 
 ### RC-007 — Monetization/store/ad QA
 Status: TODO
 
 Acceptance:
-- Purchase, restore/recovery, Premium transitions, rewarded success/failure and entitlement persistence are tested in appropriate sandbox/test environments.
-- Free path remains functional without purchase/ad availability.
+- purchase, restore/recovery, Premium transitions, rewarded success/failure and entitlement persistence are tested in appropriate sandbox/test environments;
+- Free path remains functional without purchase/ad availability;
+- cache-first and 0-paid-call Free invariants remain observable.
 
-### RC-008 — End-to-end product QA against frozen design
+### RC-008 — End-to-end product QA against current design authority
 Status: TODO
 
 Acceptance:
-- All five tabs, onboarding, settings, access states and platform surfaces are checked against final archive/authority.
-- Known intentional deviations are documented rather than silently accepted.
+- all included screens/states are checked against `docs/design/DESIGN_AUTHORITY.md`, the owning D-phase and approved packages under `docs/design/soulful-reference/`;
+- iPhone Light/Dark + iPad Light/Dark are checked for every shipping screen family;
+- iPad landscape/adaptive behavior is checked where documented;
+- no deleted `final-archive`, old Paper/minimal, painterly exploration or historical design pass is used as authority;
+- intentional implementation deviations are documented and approved rather than silently accepted.
 
 ### RC-009 — App Store/release documentation and operational checklist
 Status: TODO
 
 Acceptance:
-- Privacy/support/store metadata requirements are prepared.
-- External Humay clearance status is explicitly resolved before brand-dependent public launch.
-- Release checklist, rollback/incident notes and versioning policy are documented.
+- privacy/support/store metadata requirements are prepared;
+- external Humay clearance status is explicitly resolved before brand-dependent public launch;
+- release checklist, rollback/incident notes and versioning policy are documented.
 
 ### RC-010 — Release candidate sign-off
-Status: TODO
+Status: TODO  
 Depends on: RC-001 through RC-009
 
 Acceptance:
-- No unresolved critical defects.
-- Included methodology gates are closed.
-- Documentation/status accurately reflects the build.
+- no unresolved critical defects;
+- included methodology gates are closed;
+- documentation/status accurately reflects the build and current design/product authority.
 
 ## Exit criteria
 
-- Release candidate is technically, visually and methodologically coherent for its included scope.
-- Deferred/gated features are clearly absent or labeled non-production.
-- The repository contains enough current documentation for a new development session to continue without chat history.
+- release candidate is technically, visually and methodologically coherent for its included scope;
+- deferred/gated features are clearly absent or labeled non-production;
+- the repository contains enough current documentation for a new development session to continue without chat history.

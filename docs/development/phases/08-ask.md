@@ -1,9 +1,15 @@
 # Phase 08 — Ask the Stars
 
 Status: **TODO**
-Depends on: Phase 02, Phase 07, ARCH-005, ARCH-007
 
-Goal: implement contextual astrology Q&A over validated structured facts without creating an uncontrolled Free LLM cost path.
+Depends on:
+- Phase 01 platform/design-system foundation;
+- stable structured astrology/context contracts required by the questions Humay supports;
+- ARCH-005 interpretation boundary;
+- ARCH-007 access/entitlement contract;
+- approved D5 cross-device design references before feature-specific UI implementation.
+
+Goal: implement contextual astrology Q&A over validated structured facts without creating an uncontrolled Free paid-model path.
 
 ## Tasks
 
@@ -11,56 +17,61 @@ Goal: implement contextual astrology Q&A over validated structured facts without
 Status: TODO
 
 Acceptance:
-- Includes selected system, relevant structured facts, question, locale/tone and access context.
-- Missing/unsupported calculations are represented explicitly.
+- includes selected system, relevant structured facts, question, locale/tone and access context;
+- missing/unsupported calculations are explicit;
+- only the minimum relevant profile/context data is sent.
 
 ### ASK-002 — Implement Ask orchestration/provider abstraction
-Status: TODO
-Depends on: ASK-001
+Status: TODO  
+Depends on: ASK-001, ARCH-005
 
 Acceptance:
-- DeepSeek V4 Flash is an initial provider choice behind a replaceable interface.
-- Retries/timeouts/errors/idempotency are typed.
-- Interpretation cannot silently invent chart facts.
+- the selected interpretation provider is behind a replaceable Humay interface;
+- retries/timeouts/errors/idempotency are typed;
+- interpretation cannot silently invent chart facts;
+- client code does not hold provider secrets.
 
-### ASK-003 — Implement question/answer UI
-Status: TODO
-Depends on: ASK-002
+### ASK-003 — Implement D5 question/answer UI for iPhone + iPad
+Status: TODO  
+Depends on: ASK-002, approved D5 package
 
 Acceptance:
-- Matches reconciled Humay design.
-- Answer can expose astrological basis/factors.
-- Cached/reopened answer behavior is explicit where applicable.
+- uses current Design Authority and approved D5 references;
+- iPhone Light/Dark and iPad Light/Dark are intentional compositions;
+- long-form conversation width is bounded on iPad;
+- answer can expose the astrological basis/factors actually supplied;
+- cached/reopened answer behavior is explicit where applicable.
 
 ### ASK-004 — Implement safety and unsupported-data behavior
-Status: TODO
+Status: TODO  
 Depends on: ASK-002
 
 Acceptance:
-- Sensitive-life-event constraints are enforced.
-- Unknown-time/methodology limitations reach the context.
-- Unsupported calculation state differs from provider/network failure.
+- sensitive-life-event constraints are enforced;
+- unknown-time/methodology limitations reach the context;
+- unsupported calculation state differs from provider/network failure.
 
 ### ASK-005 — Implement Ask access decision
-Status: TODO
-Depends on: ASK-003
+Status: TODO  
+Depends on: ASK-003, ARCH-007
 
 Acceptance:
-- Access/cache decision happens before any paid model generation.
-- Ordinary Free use cannot cause an uncached paid Ask generation unless a later explicit product budget decision supersedes this rule.
-- Premium access remains configurable by product policy.
+- access/cache decision happens before any paid model generation;
+- ordinary Free use cannot cause an uncached paid Ask generation unless a later explicit product decision changes this rule;
+- Premium behavior remains product-policy driven and cache-first.
 
 ### ASK-006 — Implement rewarded one-question generation
-Status: TODO
-Depends on: ASK-005, MON-004 contract
+Status: TODO  
+Depends on: ASK-005, rewarded-ad/entitlement implementation
 
 Acceptance:
-- One successful rewarded completion authorizes one additional provider-backed question/answer generation.
-- It is single-use, not a bankable balance/token/currency.
-- Ad/provider failure recovery is explicit.
+- one successful rewarded completion authorizes one needed provider-backed question/answer generation;
+- it is single-use, not a bankable balance/token/currency;
+- provider failure recovery is explicit and idempotent.
 
 ## Exit criteria
 
-- Ask only uses supplied/validated astrology context.
-- No uncontrolled Free provider path exists.
-- Safety, insufficient-data, entitlement and provider-failure states are distinct/tested.
+- Ask only interprets supplied/validated astrology context;
+- no uncontrolled Free paid-provider path exists;
+- safety, insufficient-data, entitlement and provider-failure states are distinct/tested;
+- shipping Ask surfaces reconcile with approved D5 iPhone+iPad Light/Dark references.

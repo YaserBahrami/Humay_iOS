@@ -1,7 +1,12 @@
 # Phase 09 — Monetization & Generation Entitlements
 
 Status: **TODO**
-Depends on: Phase 01, feature access contracts from Phases 04–08
+
+Depends on:
+- Phase 01 platform foundation;
+- ARCH-007 entitlement/recovery architecture;
+- implemented provider-backed feature result-key/cache contracts;
+- approved D7 cross-device design references before feature-specific UI implementation.
 
 Goal: implement **Free catalog → Rewarded one-generation access → Premium** while preserving the zero-paid-call Free invariant and cache-first behavior.
 
@@ -11,69 +16,73 @@ Goal: implement **Free catalog → Rewarded one-generation access → Premium** 
 Status: TODO
 
 Acceptance:
-- Free catalog access, valid Premium, rewarded-generation authorization and cached-result availability are distinct concepts.
-- Rewarded Access is not temporary Premium and is not a wallet/currency.
+- Free catalog access, valid Premium, rewarded-generation authorization and cached-result availability are distinct concepts;
+- Rewarded Access is not temporary Premium and is not a wallet/currency;
+- domain types do not expose store/ad SDK objects.
 
 ### MON-002 — Implement Premium purchase-status adapter
-Status: TODO
+Status: TODO  
 Depends on: MON-001, ARCH-007
 
 Acceptance:
-- Store implementation sits behind an interface.
-- Premium entitlement can be refreshed/recovered.
-- No Humay login is required by default.
+- Store implementation sits behind an interface;
+- Premium entitlement can be refreshed/recovered;
+- no Humay login is required by default;
+- purchase state is not embedded in UserProfile.
 
-### MON-003 — Implement Premium/paywall surfaces
-Status: TODO
-Depends on: MON-002
+### MON-003 — Implement D7 Premium/paywall surfaces for iPhone + iPad
+Status: TODO  
+Depends on: MON-002, approved D7 package
 
 Acceptance:
-- Surfaces match the next reconciled design.
-- They explain personalized/precision value without implying Free content is broken or fake.
+- surfaces use current Design Authority + approved D7 references;
+- iPhone Light/Dark and iPad Light/Dark are intentional compositions;
+- they explain personalized/precision value without implying Free content is broken/fake;
 - Free catalog remains usable when purchase infrastructure is unavailable.
 
 ### MON-004 — Implement rewarded-ad provider abstraction
-Status: TODO
+Status: TODO  
 Depends on: MON-001, ARCH-007
 
 Acceptance:
-- Domain/presentation requests a reward outcome, not SDK objects.
-- Cancel/failure paths do not grant generation authorization.
-- Provider choice can change without rewriting features.
+- Domain/Presentation requests a reward outcome rather than SDK objects;
+- cancel/failure paths do not grant generation authorization;
+- provider choice can change without rewriting features.
 
 ### MON-005 — Implement one-generation rewarded authorization
-Status: TODO
-Depends on: MON-004, ARCH-004
+Status: TODO  
+Depends on: MON-004, cache contract
 
 Acceptance:
-- Cache lookup happens before asking for an ad when the exact valid result already exists.
-- Successful reward authorizes exactly one needed provider-backed generation for the selected feature/result key.
-- Successful generated result is cached and reopenable without another generation/ad.
-- A new materially different result key can require another reward.
+- cache lookup occurs before asking for an ad when the exact valid result already exists;
+- successful reward authorizes exactly one needed provider-backed generation for the selected result key;
+- successful result is cached/reopenable without another generation/ad;
+- a materially different result key may require another reward.
 
 ### MON-006 — Implement provider-failure recovery after reward
-Status: TODO
+Status: TODO  
 Depends on: MON-005
 
 Acceptance:
-- User is not stranded after completing an ad when downstream generation fails.
-- Retry/recovery is idempotent and cannot multiply provider calls/rewards.
-- Recovery semantics are documented and tested.
+- user is not stranded after completing an ad when downstream generation fails;
+- retry/recovery is idempotent and cannot multiply provider calls/rewards;
+- recovery semantics are documented and tested.
 
 ### MON-007 — Add entitlement/cost integration tests
-Status: TODO
+Status: TODO  
 Depends on: MON-002 through MON-006
 
 Acceptance:
-- Free catalog requests cause 0 paid provider calls.
-- Cache hits cause 0 new paid provider calls and no redundant reward gate.
-- Premium/reward transitions, ad success/failure and provider recovery are tested.
-- Duplicate client retries cannot duplicate generation.
+- Free catalog requests cause 0 paid provider calls;
+- cache hits cause 0 new paid provider calls and no redundant reward gate;
+- Premium/reward transitions, ad success/failure and provider recovery are tested;
+- duplicate client retries cannot duplicate generation.
 
 ## Exit criteria
 
-- Free runtime cost invariant is enforced.
-- Rewarded Access maps to one required personalized generation, not temporary Premium.
-- Cached results reopen without repeat generation.
-- Premium uses the same cache-first provider pipeline.
-- No account/login dependency exists unless separately approved.
+- Free runtime cost invariant is enforced;
+- Rewarded Access maps to one needed personalized generation, not temporary Premium;
+- cached results reopen without repeat generation;
+- Premium uses the same cache-first provider pipeline;
+- no account/login dependency exists unless separately approved;
+- shipping access surfaces reconcile with approved D7 iPhone+iPad Light/Dark references.

@@ -2,11 +2,13 @@
 
 **Humay** is the product, repository and internal project name.
 
+> **Start every implementation session with [`docs/START_HERE.md`](docs/START_HERE.md).** `main` is the current product/architecture/design authority.
+
 ## Current state
 
 The repository was reset to a **clean production baseline on 2026-08-12** before implementation of the approved Soulful Celestial design.
 
-The old mock-first Presentation, DesignSystem, fixture runtime and premature persistence/provider layers were removed. Git history remains available for reference, but removed prototype code is not current implementation authority.
+The old mock-first Presentation, DesignSystem, fixture runtime and premature persistence/provider layers were removed. Git history remains available for archaeology, but removed prototype code is not current implementation authority.
 
 See [`docs/architecture/PRODUCTION_BASELINE_RESET_2026-08-12.md`](docs/architecture/PRODUCTION_BASELINE_RESET_2026-08-12.md).
 
@@ -24,6 +26,14 @@ xcodebuild -project Humay.xcodeproj -scheme Humay -configuration Debug \
 | Bundle identifier | `online.humay.ios` |
 | Stack | SwiftUI, Swift 6; persistence/provider layers added deliberately by production phase |
 | Architecture | [`docs/architecture/`](docs/architecture/) |
+
+## Current engineering work
+
+**Phase 01 — Apple Platform Foundation is ready to start.** It establishes SwiftUI + Clean Architecture (`App → Presentation → Domain ← Data`), explicit dependency composition, the production Soulful Celestial design-system foundation, cross-device root state/navigation boundaries, and test/config/persistence seams without rebuilding speculative features.
+
+Provider/cache/backend details from Phase 00 continue in parallel where they do not block foundation work.
+
+See [`docs/development/STATUS.md`](docs/development/STATUS.md) and [`docs/development/phases/01-ios-foundation.md`](docs/development/phases/01-ios-foundation.md).
 
 ## Product model
 
@@ -58,7 +68,7 @@ Start here:
 3. [`docs/design/SCREEN_DESIGN_PLAN.md`](docs/design/SCREEN_DESIGN_PLAN.md)
 4. [`docs/design/soulful-reference/`](docs/design/soulful-reference/README.md)
 
-The target feeling is warm, soulful, colorful, charming and premium with editorial typography and restrained celestial illustration.
+The target feeling is warm, soulful, colorful, charming and premium with editorial typography and **restrained simple line/flat celestial illustration**. The old Paper/minimal and painterly/watercolor explorations are superseded.
 
 ### Cross-device rule
 
@@ -74,6 +84,15 @@ A phone layout is not stretched onto iPad.
 
 Existing iPhone Welcome and Birth Date references remain approved. Their iPad companions are the next backfill before those screens are cross-device complete. Step 03 Tradition is designed for both device families from the start.
 
+## Canonical onboarding
+
+1. Welcome
+2. Birth Date
+3. Tradition
+4. Profile Reveal
+
+Birth time and birth location are not onboarding steps. They may be added later from Profile for precision-dependent features.
+
 ## Canonical IA
 
 - Today / Circle / Sky / Chart / Ask
@@ -83,14 +102,14 @@ Existing iPhone Welcome and Birth Date references remain approved. Their iPad co
 
 ## Development cadence
 
-1. design next family for iPhone + iPad, Light + Dark;
+Shared architecture/design-system foundation can proceed now. Feature-specific UI follows:
+
+1. design the family for iPhone + iPad, Light + Dark;
 2. approve;
-3. implement only the approved family;
+3. implement;
 4. capture real iPhone/iPad screenshots;
 5. reconcile code against design;
 6. continue.
-
-Current application source is intentionally minimal until the first approved production slice is implemented.
 
 ## Source-of-truth boundary
 

@@ -1,47 +1,44 @@
 {
   "meta": {
     "name": "Humay Soulful Celestial",
-    "status": "design-reference",
+    "status": "current-design-reference",
     "updated": "2026-08-12",
-    "note": "Starting values. Production colors must pass Light/Dark contrast review before freeze."
+    "authority": "docs/design/SOULFUL_CELESTIAL_DESIGN_DIRECTION.md",
+    "note": "Reference values for the production design-system foundation. Semantic runtime roles must still pass accessibility/contrast verification."
   },
   "color": {
     "light": {
-      "ground": "#FFF8ED",
-      "surface": "#FFFDF8",
-      "ink": "#17213F",
-      "secondaryInk": "#596070",
-      "coral": "#F06C5D",
-      "peach": "#F6AA83",
-      "gold": "#E6A12C",
-      "lavender": "#9B72DA",
-      "plum": "#57305F",
-      "celestialBlue": "#4E8DBE",
-      "sage": "#78966D",
-      "rose": "#D95C78"
+      "ground": "#FBF7F1",
+      "surface": "#FFFDFC",
+      "secondarySurface": "#F7F0E8",
+      "textPrimary": "#151B28",
+      "textSecondary": "#6C6A6C",
+      "hairline": "#E9E0D8",
+      "coral": "#F06F67",
+      "softPeach": "#F7C7B8",
+      "lavender": "#9A82C8",
+      "softLavender": "#E8E0F1",
+      "solarGold": "#D5A253",
+      "celestialBlue": "#6B9FC1",
+      "sage": "#79A58C"
     },
     "dark": {
-      "ground": "#0D1220",
-      "surface": "#151B2C",
-      "raisedSurface": "#1B2236",
-      "ink": "#F8F1E7",
-      "secondaryInk": "#B7BDCD",
-      "hairline": "#FFFFFF1A",
-      "coral": "#FF7B6D",
-      "peach": "#F5A77D",
-      "gold": "#F0B24A",
-      "lavender": "#AF8AE8",
-      "plum": "#8F628F",
-      "celestialBlue": "#68A7D5",
-      "sage": "#91AD84",
-      "rose": "#EA7690"
+      "ground": "#101725",
+      "surface": "#171F30",
+      "raisedSurface": "#20283A",
+      "textPrimary": "#F5F0EA",
+      "textSecondary": "#B8B2B2",
+      "hairline": "#30394B",
+      "coral": "#F77476",
+      "lavender": "#B06BD4",
+      "solarGold": "#E5AA55",
+      "celestialBlue": "#71A9D0",
+      "sage": "#77B39A"
     }
   },
   "radius": {
-    "compact": 14,
-    "card": 20,
-    "feature": 24,
-    "hero": 28,
+    "compactRange": "14-18",
+    "featureRange": "18-24",
     "pill": 999
   },
   "spacing": {
@@ -50,16 +47,22 @@
     "m": 12,
     "l": 16,
     "xl": 24,
-    "xxl": 32
+    "xxl": 32,
+    "note": "Screen gutters and max content widths are adaptive semantic values, not fixed device constants."
   },
   "illustrationIntensity": {
-    "A": "one hero/emotional focal point per screen",
-    "B": "illustrated feature/category card",
+    "A": "one major emotional illustration moment on selected hero screens",
+    "B": "one compact line/flat illustrated feature/category motif",
     "C": "quiet utility surface; illustration normally omitted"
   },
   "type": {
     "display": "Cormorant Garamond",
     "ui": "SF Pro / system",
     "technical": "SF Mono / system"
+  },
+  "devices": {
+    "iphone": "portrait-first",
+    "ipad": "portrait + landscape + adaptive compact/regular widths",
+    "rule": "Do not proportionally scale the iPhone composition onto iPad."
   }
 }

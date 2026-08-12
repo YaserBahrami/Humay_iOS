@@ -1,9 +1,14 @@
 # Phase 06 — Sky & Calendar
 
 Status: **TODO**
-Depends on: Phase 02, Phase 05
 
-Goal: implement current sky, event calendar and event detail over deterministically calculated astronomical/astrological timing facts.
+Depends on:
+- Phase 01 platform/design-system foundation;
+- relevant Phase 02 deterministic sky/timing facts;
+- required Phase 00 cache/backend contracts;
+- approved D3 cross-device design references before feature-specific UI implementation.
+
+Goal: implement current Sky, event calendar and event detail over deterministic astronomical/astrological timing facts without coupling the UI to provider-native models.
 
 ## Tasks
 
@@ -11,50 +16,58 @@ Goal: implement current sky, event calendar and event detail over deterministica
 Status: TODO
 
 Acceptance:
-- Event type, time window, timezone/location relevance, system and provenance are explicit.
-- Exact clock times appear only when deterministically calculated.
+- event type, time window, timezone/location relevance, system and provenance are explicit;
+- exact clock times appear only when deterministically calculated;
+- unsupported/methodology-gated events are typed rather than guessed.
 
 ### SKY-002 — Implement current Sky data pipeline
-Status: TODO
+Status: TODO  
 Depends on: SKY-001
 
 Acceptance:
-- Refresh/cache/offline behavior is defined.
-- User location/timezone changes invalidate affected facts correctly.
+- refresh/cache/offline behavior follows current architecture;
+- user timezone/location changes invalidate affected facts correctly;
+- Presentation receives Humay-owned models, not vendor responses.
 
-### SKY-003 — Implement Sky current view
-Status: TODO
-Depends on: SKY-002
-
-Acceptance:
-- Matches final archive hierarchy and basis disclosure conventions.
-
-### SKY-004 — Implement Calendar month/week views
-Status: TODO
-Depends on: SKY-002
+### SKY-003 — Implement D3 Current Sky UI for iPhone + iPad
+Status: TODO  
+Depends on: SKY-002, approved D3 package
 
 Acceptance:
-- Calendar is nested under Sky, never promoted to a sixth root tab.
-- Month/week navigation and empty states are tested.
+- uses current Design Authority and approved D3 reference package;
+- iPhone Light/Dark and iPad Light/Dark are intentional compositions;
+- basis/availability disclosure matches the facts actually supplied;
+- no deleted final-archive/old design artifact is used as authority.
+
+### SKY-004 — Implement D3 Calendar month/week views
+Status: TODO  
+Depends on: SKY-002, approved D3 package
+
+Acceptance:
+- Calendar remains nested under Sky, never a sixth root tab;
+- month/week navigation and empty/unavailable states are tested;
+- iPad uses available width according to the approved adaptive composition.
 
 ### SKY-005 — Implement event detail and interpretation
-Status: TODO
+Status: TODO  
 Depends on: SKY-003, SKY-004, ARCH-005
 
 Acceptance:
-- Meaning and Astrological basis are separated.
-- Deeper event interpretation can participate in persistent rewarded unlocks later.
+- Meaning and Astrological basis remain distinct;
+- interpretation consumes only structured facts;
+- access/caching follows product contracts when a deeper provider-backed result is offered.
 
 ### SKY-006 — Add methodology-aware system behavior
-Status: TODO
+Status: TODO  
 Depends on: SKY-005
 
 Acceptance:
-- Cross-system event concepts are not flattened into a universal Western transit model.
-- Features requiring METHOD-009 stay gated.
+- cross-system event concepts are not flattened into a universal Western transit model;
+- features requiring unresolved methodology remain gated.
 
 ## Exit criteria
 
-- Current Sky and Calendar work for supported Western production facts.
-- Event timing is deterministic and timezone-safe.
-- System-specific timing terminology remains honest and methodology-gated where needed.
+- Current Sky and Calendar work for supported deterministic facts;
+- event timing is timezone-safe and sourceable;
+- system-specific terminology remains methodology-aware;
+- shipping Sky/Calendar surfaces reconcile with approved D3 iPhone+iPad Light/Dark references.

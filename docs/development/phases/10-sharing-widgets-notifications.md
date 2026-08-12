@@ -1,70 +1,80 @@
 # Phase 10 — Sharing, Widgets & Notifications
 
 Status: **TODO**
-Depends on: Phases 05–09
+
+Depends on:
+- owning feature surfaces/data contracts;
+- current privacy/access architecture;
+- approved D8 references before user-facing platform-surface implementation.
 
 Goal: extend validated Humay content to system surfaces without leaking locked content, private saved-person data or Roast tone into notifications.
 
 ## Tasks
 
-### PLATFORM-001 — Implement share-card rendering
-Status: TODO
+### PLATFORM-001 — Implement D8 share-card rendering
+Status: TODO  
+Depends on: approved D8 package + owning feature
 
 Acceptance:
-- Uses frozen Humay share treatment.
-- Share output contains only already-visible/unlocked content.
-- Another person's private placements are not exposed by default.
+- uses current Design Authority and approved D8 share system;
+- share output contains only already-visible/unlocked content;
+- another person's private placements are not exposed by default;
+- layout works for the approved export sizes without embedding stale UI screenshots.
 
 ### PLATFORM-002 — Implement system share sheet integration
-Status: TODO
+Status: TODO  
 Depends on: PLATFORM-001
 
 Acceptance:
-- Export works from supported reading surfaces.
-- Failure/cancel leaves app state unchanged.
+- export works from supported reading surfaces;
+- failure/cancel leaves app state unchanged.
 
 ### PLATFORM-003 — Implement widget data contract and timeline behavior
 Status: TODO
 
 Acceptance:
-- Widget consumes compact presentation data, not raw engine/vendor models.
-- Loading/stale/unavailable states are explicit.
-- Widget never bypasses access rules.
+- widget consumes compact Humay presentation data, not raw engine/vendor models;
+- loading/stale/unavailable states are explicit;
+- widget never bypasses access rules.
 
-### PLATFORM-004 — Implement widget layouts
-Status: TODO
-Depends on: PLATFORM-003
+### PLATFORM-004 — Implement D8 widget layouts
+Status: TODO  
+Depends on: PLATFORM-003, approved D8 package
 
 Acceptance:
-- Representative frozen widget sizes/styles are respected.
-- Dynamic Type/accessibility constraints appropriate to widgets are covered.
+- uses the current approved widget family rather than historical/frozen archive artifacts;
+- supported widget families/sizes are explicitly documented;
+- accessibility/content-density constraints appropriate to widgets are covered.
 
 ### PLATFORM-005 — Define notification scheduling/delivery architecture
-Status: TODO
-Depends on: ARCH-006
+Status: TODO  
+Depends on: ARCH-006/privacy architecture
 
 Acceptance:
-- Local vs remote delivery follows architecture decision.
-- Permission request timing is contextual, not launch spam.
+- local vs remote delivery follows current architecture decision;
+- permission request timing is contextual, not launch spam;
+- notification inputs do not require exposing provider secrets or unnecessary private data to the client.
 
 ### PLATFORM-006 — Implement notification content/routing
-Status: TODO
+Status: TODO  
 Depends on: PLATFORM-005
 
 Acceptance:
-- Notifications are always Normal tone; no Roast toggle/path exists.
-- No urgency/FOMO language.
-- Deep links land on the intended supported surface.
+- notifications use Normal-register copy; no Roast notification path exists unless product policy changes;
+- no urgency/FOMO language;
+- deep links land on the intended supported route;
+- routing remains consistent on iPhone and iPad.
 
 ### PLATFORM-007 — Add privacy/access tests for platform surfaces
-Status: TODO
+Status: TODO  
 Depends on: PLATFORM-001 through PLATFORM-006
 
 Acceptance:
-- Locked content, saved-person privacy and notification-tone rules are covered by tests.
+- locked content, saved-person privacy and notification-tone rules are covered by tests.
 
 ## Exit criteria
 
-- Sharing, widgets and notifications respect entitlement/privacy boundaries.
-- Roast remains in-app only.
-- Deep-link behavior integrates cleanly with root navigation.
+- sharing, widgets and notifications respect entitlement/privacy boundaries;
+- platform-surface visuals use current D8 authority;
+- Roast remains in-app only under current policy;
+- deep-link behavior integrates cleanly with root navigation.
