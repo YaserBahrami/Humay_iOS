@@ -16,6 +16,14 @@ struct BirthDateView: View {
                 portraitLayout
             }
         }
+        .safeAreaInset(edge: .bottom, spacing: 0) {
+            primaryAction
+                .frame(maxWidth: .infinity)
+                .padding(.horizontal, HumaySpacing.large)
+                .padding(.top, HumaySpacing.small)
+                .padding(.bottom, HumaySpacing.small)
+                .background(Color.humayGround)
+        }
         .onChange(of: draft.pickerDate) { _, _ in
             validationMessage = nil
         }
@@ -38,8 +46,6 @@ struct BirthDateView: View {
             datePickerSurface
 
             explanatoryContent
-
-            primaryAction
         }
         .frame(maxWidth: 720, alignment: .leading)
         .frame(maxWidth: .infinity, alignment: .center)
@@ -67,7 +73,6 @@ struct BirthDateView: View {
             VStack(alignment: .leading, spacing: HumaySpacing.extraLarge) {
                 datePickerSurface
                 explanatoryContent
-                primaryAction
             }
             .frame(maxWidth: 620, alignment: .leading)
         }
@@ -132,7 +137,6 @@ struct BirthDateView: View {
                 validationMessage = "Choose a date between January 1, 1900 and today."
             }
         }
-        .frame(maxWidth: .infinity, alignment: .center)
     }
 
     private struct BirthDatePrecisionCard: View {
@@ -153,8 +157,6 @@ struct BirthDateView: View {
     }
 }
 
-/// Calendar companion reconstructed from the approved Step 02 motif rather than
-/// a row of unrelated system symbols.
 private struct BirthDateMotif: View {
     @Environment(\.colorScheme) private var colorScheme
 
