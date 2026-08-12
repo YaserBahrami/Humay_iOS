@@ -20,7 +20,7 @@
 
 The old generated mock-first application was removed before production development. The Xcode project remains intentionally small, with the first production feature slice now implemented.
 
-Current engineering work is **Phase 03 — Onboarding & Local Profile**, covering the approved onboarding slice PROFILE-001 through PROFILE-005. Phase 01 IOS-005 local persistence is complete; provider/cache/backend details from Phase 00 may continue in parallel where they do not block the app foundation.
+Current engineering work is **Phase 03 — Onboarding & Local Profile**, covering the approved onboarding slice PROFILE-001 through PROFILE-005. Phase 01 IOS-005 local persistence and IOS-006 diagnostics are complete; IOS-007 remains TODO. Provider/cache/backend details from Phase 00 may continue in parallel where they do not block the app foundation.
 
 Foundation target:
 
@@ -34,6 +34,8 @@ Foundation target:
 - no speculative feature implementation ahead of approved design references.
 - production onboarding Presentation for the approved D1 four-beat flow;
 - profile completion in the app-owned version-1 local snapshot until future private sync work.
+- build/deployment/version settings remain project metadata; no runtime backend/provider configuration exists yet;
+- application diagnostics use finite privacy-safe OSLog events with no raw profile/birth/provider payload logging.
 
 See [`development/phases/01-ios-foundation.md`](development/phases/01-ios-foundation.md).
 

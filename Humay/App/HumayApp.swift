@@ -10,7 +10,7 @@ struct HumayApp: App {
         do {
             store = try FileUserStateStore()
         } catch {
-            HumayLog.persistenceFailure("application support unavailable")
+            HumayLog.application(.durableStorageUnavailable)
             store = UnavailableUserStateStore()
         }
 

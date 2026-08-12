@@ -53,9 +53,17 @@ final class AppEnvironment {
                 settings = .default
             }
             restorationState = .ready
+        } catch let error as UserStatePersistenceError {
+            restorationState = .failed
+            switch error {
+            case .unsupportedSchema:
+                HumayLog.persistence(.unsupportedSchema)
+            default:
+                HumayLog.persistence(.restoreFailed)
+            }
         } catch {
             restorationState = .failed
-            HumayLog.persistenceFailure("profile restore failed")
+            HumayLog.persistence(.restoreFailed)
         }
     }
 
@@ -86,7 +94,7 @@ final class AppEnvironment {
         do {
             try await userStateStore.save(state)
         } catch {
-            HumayLog.persistenceFailure("profile save failed")
+            HumayLog.persistence(.saveFailed)
             throw error
         }
 
@@ -100,7 +108,7 @@ final class AppEnvironment {
             try await userStateStore.clear()
         } catch {
             restorationState = .failed
-            HumayLog.persistenceFailure("development reset failed")
+            HumayLog.persistence(.clearFailed)
             throw error
         }
 

@@ -1,6 +1,6 @@
 # iOS / iPadOS Architecture
 
-**Status:** production baseline after the 2026-08-12 reset.  
+**Status:** production baseline after the 2026-08-12 reset; IOS-006 diagnostics complete.  
 See [`PRODUCTION_BASELINE_RESET_2026-08-12.md`](PRODUCTION_BASELINE_RESET_2026-08-12.md).
 
 ## Platform
@@ -74,6 +74,33 @@ does not persist or duplicate profile/settings truth. D1 onboarding owns its dat
 picker cursor, confirmed date draft and tradition selection inside Presentation.
 
 Feature-specific state should remain feature-local unless multiple routes genuinely need to share it.
+
+## Configuration and diagnostics
+
+Current configuration ownership is deliberately small:
+
+- deployment, build, Swift and device-family settings remain in `Config/Shared.xcconfig`;
+- bundle/version metadata remains Xcode/project-owned;
+- runtime endpoint, provider, feature-flag and credential configuration does not exist yet;
+- no `AppConfiguration` container, secret value type, API-key field, mutable global configuration or speculative environment enum is needed by the current app.
+
+`HumayLog` is App/application infrastructure and uses OSLog through finite typed
+events. `HumayApplicationLogEvent` currently contains only
+`durableStorageUnavailable`. `HumayPersistenceLogEvent` contains only restore,
+save, clear and unsupported-schema events. Events have no associated values, and
+public operational logging APIs accept no arbitrary strings or raw errors.
+
+The current categories are intentionally limited to application/bootstrap and
+persistence. Categories for future features or providers are added only with a
+real owning runtime. Static operational text is logged without profile, birth,
+UUID, location, timezone, serialized persistence, provider payload, prompt,
+generated reading, token or API-key values. Domain remains independent of OSLog
+and Bundle; Presentation does not own logging infrastructure.
+
+`Scripts/check-diagnostics.sh` checks only production Swift source under `Humay/`
+for `print`, `debugPrint` and narrow obvious client-secret declarations. It does
+not scan tests, documentation or history; it is a focused guard, not a general
+secret scanner.
 
 ## Persistence
 

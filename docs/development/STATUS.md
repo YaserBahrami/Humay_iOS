@@ -4,7 +4,7 @@ Last updated: **2026-08-12**
 
 ## Active priorities
 
-1. Re-run full local verification after the IOS-005 / PROFILE-005 audit cleanup, then proceed to IOS-006.
+1. Keep the IOS-005 / PROFILE-005 audit cleanup and IOS-006 foundation verification green before starting IOS-007.
 2. Preserve local durable profile/settings behavior while later feature families remain behind their design gates.
 3. Preserve the completed Soulful Celestial DesignSystem foundation while later feature families remain behind their cross-device design gates.
 4. Continue Phase 00 provider/cache/access architecture in parallel where it does not block the app foundation.
@@ -46,7 +46,7 @@ Details: [`../architecture/PRODUCTION_BASELINE_RESET_2026-08-12.md`](../architec
 
 ### Phase 01 — Apple Platform Foundation
 
-**IN PROGRESS. IOS-001 through IOS-005 are complete; IOS-006 remains TODO.**
+**IN PROGRESS. IOS-001 through IOS-006 are complete; IOS-007 remains TODO.**
 
 Current foundation:
 
@@ -61,10 +61,18 @@ Current foundation:
 - the DesignSystem showcase exists only in Debug previews for representative iPhone/iPad Light/Dark verification and is not a runtime route;
 - Data now contains only the production-owned local persistence slice justified by
   IOS-005/PROFILE-005;
-- the last full Codex run passed Swift Testing, UI tests and nomenclature; the audit
-  cleanup made persistence errors implementation-neutral, added semantic payload
-  validation/tests and moved the Welcome illustration color literal into
-  `DesignSystem/Tokens`; full local verification must be rerun before IOS-006;
+- the IOS-005 audit cleanup made persistence errors implementation-neutral, added
+  semantic payload validation/tests and moved the Welcome illustration color literal
+  into `DesignSystem/Tokens`; IOS-006 verification now passes Swift Testing, UI
+  tests, representative iPhone/iPad Debug builds, layering, nomenclature,
+  diagnostics and `git diff --check`;
+- IOS-006 keeps build/deployment/version ownership in xcconfig/Xcode metadata and
+  adds no runtime backend/provider configuration or `AppConfiguration` container;
+- IOS-006 centralizes privacy-safe OSLog diagnostics behind finite typed application
+  and persistence events; birth/profile/provider payloads, raw errors and secrets
+  are not logged;
+- `Scripts/check-diagnostics.sh` scans only production Swift under `Humay/` for
+  `print`, `debugPrint` and narrow obvious client-secret declarations;
 - no third-party dependency or provider-backed feature UI was added.
 
 The first production feature slice is now implemented separately under Phase 03:

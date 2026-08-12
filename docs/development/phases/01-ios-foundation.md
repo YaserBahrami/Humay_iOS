@@ -1,6 +1,6 @@
 # Phase 01 — Apple Platform Foundation
 
-Status: **IN PROGRESS — IOS-001 through IOS-005 complete; IOS-006 not started**
+Status: **IN PROGRESS — IOS-001 through IOS-006 complete; IOS-007 not started**
 
 Depends on:
 - current production baseline reset;
@@ -157,14 +157,30 @@ Acceptance:
 - no volatile production fallback, SwiftData, Core Data, UserDefaults or CloudKit.
 
 ### IOS-006 — Configuration, diagnostics and privacy-safe logging
-Status: TODO  
-Depends on: IOS-002
+Status: **DONE — 2026-08-12**  
+Depends on: IOS-002, IOS-005
 
-Acceptance:
-- privacy-safe structured logging remains centralized;
-- environment/configuration boundary exists for app-owned endpoints/flags when needed;
-- secrets are never committed or shipped in client configuration;
-- birth/profile/provider payloads are not logged raw.
+Implemented:
+
+- stable deployment/build settings remain in `Config/Shared.xcconfig`, while bundle/version metadata remains Xcode/project-owned;
+- no `AppConfiguration` container was added because the current app has no runtime endpoint, provider, feature or credential value to own;
+- future runtime service configuration is intentionally deferred until its real feature/provider phase;
+- `HumayLog` uses OSLog through finite typed application and persistence events;
+- only application/bootstrap and persistence categories remain; unused content/navigation loggers and arbitrary public-string APIs were removed;
+- persistence call sites distinguish restore, save, clear and unsupported-schema operations without logging raw errors or payloads;
+- `Scripts/check-diagnostics.sh` checks only production Swift under `Humay/` for `print`, `debugPrint` and narrow obvious client-secret declarations;
+- birth, profile, UUID, location, timezone, serialized persistence, provider, prompt and generated-reading data are not logged;
+- no backend/provider endpoint, credential, secret, networking layer, dependency, runtime flag or UI was added.
+
+Verification:
+
+- representative iPhone Debug build passed;
+- representative iPad Debug build passed;
+- complete Swift Testing target passed;
+- complete XCUITest suite passed on representative iPhone and iPad simulators;
+- `Scripts/check-layering.sh`, `Scripts/check-nomenclature.sh` and `Scripts/check-diagnostics.sh` passed;
+- `git diff --check` passed;
+- production-source privacy search was manually reviewed; domain/model matches are legitimate and no logging call carries them.
 
 ### IOS-007 — Test and verification foundation
 Status: TODO  
@@ -189,7 +205,7 @@ Phase 01 does **not** implement:
 - feature-specific access-state UI;
 - D1 onboarding implementation beyond the approved Phase 03 slice; no later feature UI belongs here.
 
-Shared architecture and design-system primitives may be built now. Feature-specific UI follows the design → approve → implement cadence. D1 onboarding is the approved production slice now owned by Phase 03; IOS-005 local persistence is complete and IOS-006 remains future work.
+Shared architecture and design-system primitives may be built now. Feature-specific UI follows the design → approve → implement cadence. D1 onboarding is the approved production slice now owned by Phase 03; IOS-005 local persistence and IOS-006 diagnostics are complete, while IOS-007 remains TODO.
 
 ## Exit criteria
 
