@@ -31,3 +31,10 @@ enum HumayColorRole: CaseIterable {
         }
     }
 }
+
+extension Color {
+    /// Decorative liquid tone used only by the Welcome companion illustration.
+    /// Literal illustration colors remain centralized with the design tokens rather
+    /// than being embedded in production Presentation code.
+    static let humayCosmicCoffee = Color(red: 0.35, green: 0.24, blue: 0.16)
+}
