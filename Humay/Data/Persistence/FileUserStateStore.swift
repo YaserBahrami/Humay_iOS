@@ -18,7 +18,7 @@ actor FileUserStateStore: UserStateStore {
             for: .applicationSupportDirectory,
             in: .userDomainMask
         ).first else {
-            throw UserStatePersistenceError.applicationSupportUnavailable
+            throw UserStatePersistenceError.unavailable
         }
 
         self.fileURL = applicationSupportURL
@@ -91,7 +91,7 @@ actor FileUserStateStore: UserStateStore {
                 withIntermediateDirectories: true
             )
         } catch {
-            throw UserStatePersistenceError.directoryCreationFailed
+            throw UserStatePersistenceError.writeFailed
         }
 
         do {
@@ -130,19 +130,19 @@ actor FileUserStateStore: UserStateStore {
     }
 }
 
-/// Explicit failure store used only when the app cannot compose Application Support.
+/// Explicit failure store used only when the app cannot compose durable local storage.
 /// It never pretends that user state is empty or durable.
 actor UnavailableUserStateStore: UserStateStore {
     func load() async throws -> UserStateSnapshot? {
-        throw UserStatePersistenceError.applicationSupportUnavailable
+        throw UserStatePersistenceError.unavailable
     }
 
     func save(_: UserStateSnapshot) async throws {
-        throw UserStatePersistenceError.applicationSupportUnavailable
+        throw UserStatePersistenceError.unavailable
     }
 
     func clear() async throws {
-        throw UserStatePersistenceError.applicationSupportUnavailable
+        throw UserStatePersistenceError.unavailable
     }
 }
 
@@ -197,6 +197,10 @@ private struct BirthDetailsRecord: Codable {
     let place: BirthPlaceRecord
 
     init(_ birth: BirthDetails) throws {
+        guard Self.isSupportedBirthDate(year: birth.year, month: birth.month, day: birth.day) else {
+            throw UserStatePersistenceError.invalidPayload
+        }
+
         year = birth.year
         month = birth.month
         day = birth.day
@@ -205,13 +209,48 @@ private struct BirthDetailsRecord: Codable {
     }
 
     func birthDetails() throws -> BirthDetails {
-        BirthDetails(
+        guard Self.isSupportedBirthDate(year: year, month: month, day: day) else {
+            throw UserStatePersistenceError.invalidPayload
+        }
+
+        return BirthDetails(
             year: year,
             month: month,
             day: day,
             time: try time.birthTime(),
             place: try place.birthPlace()
         )
+    }
+
+    private static func isSupportedBirthDate(year: Int, month: Int, day: Int) -> Bool {
+        var calendar = Calendar(identifier: .gregorian)
+        calendar.timeZone = .autoupdatingCurrent
+
+        var components = DateComponents()
+        components.calendar = calendar
+        components.timeZone = calendar.timeZone
+        components.year = year
+        components.month = month
+        components.day = day
+
+        guard let candidate = calendar.date(from: components) else {
+            return false
+        }
+
+        let resolved = calendar.dateComponents([.year, .month, .day], from: candidate)
+        guard resolved.year == year,
+              resolved.month == month,
+              resolved.day == day,
+              let earliest = calendar.date(from: DateComponents(year: 1900, month: 1, day: 1)) else {
+            return false
+        }
+
+        let todayComponents = calendar.dateComponents([.year, .month, .day], from: Date.now)
+        guard let today = calendar.date(from: todayComponents) else {
+            return false
+        }
+
+        return candidate >= earliest && candidate <= today
     }
 }
 
@@ -308,7 +347,12 @@ private struct BirthPlaceRecord: Codable {
             timeZoneIdentifier = nil
 
         case .known(let nameValue, let latitudeValue, let longitudeValue, let timeZone):
-            guard latitudeValue.isFinite, longitudeValue.isFinite else {
+            guard Self.isValidKnownPlace(
+                name: nameValue,
+                latitude: latitudeValue,
+                longitude: longitudeValue,
+                timeZoneIdentifier: timeZone
+            ) else {
                 throw UserStatePersistenceError.invalidPayload
             }
             kind = .known
@@ -335,8 +379,12 @@ private struct BirthPlaceRecord: Codable {
                   let latitude,
                   let longitude,
                   let timeZoneIdentifier,
-                  latitude.isFinite,
-                  longitude.isFinite else {
+                  Self.isValidKnownPlace(
+                    name: name,
+                    latitude: latitude,
+                    longitude: longitude,
+                    timeZoneIdentifier: timeZoneIdentifier
+                  ) else {
                 throw UserStatePersistenceError.invalidPayload
             }
             return .known(
@@ -346,6 +394,21 @@ private struct BirthPlaceRecord: Codable {
                 timeZoneIdentifier: timeZoneIdentifier
             )
         }
+    }
+
+    private static func isValidKnownPlace(
+        name: String,
+        latitude: Double,
+        longitude: Double,
+        timeZoneIdentifier: String
+    ) -> Bool {
+        let normalizedName = name.trimmingCharacters(in: .whitespacesAndNewlines)
+        return !normalizedName.isEmpty
+            && latitude.isFinite
+            && longitude.isFinite
+            && (-90...90).contains(latitude)
+            && (-180...180).contains(longitude)
+            && TimeZone(identifier: timeZoneIdentifier) != nil
     }
 }
 
@@ -370,9 +433,7 @@ private struct SettingsRecord: Codable {
     func appSettings() throws -> AppSettings {
         guard let leadingTradition = AstrologyTradition(rawValue: leadingTradition),
               let tone = Tone(rawValue: tone),
-              onboardingCompletedAt.map(
-                  { $0.isFinite }
-              ) ?? true else {
+              onboardingCompletedAt.map({ $0.isFinite }) ?? true else {
             throw UserStatePersistenceError.invalidPayload
         }
 
