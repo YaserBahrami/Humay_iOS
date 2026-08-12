@@ -4,9 +4,9 @@ Last updated: **2026-08-12**
 
 ## Active priorities
 
-1. Run the post-change IOS-007 foundation verification and the ASTRO-001/ASTRO-002 Swift tests on the latest branch.
-2. Close IOS-007/Phase 01 and mark the implemented ASTRO-001/002 contracts DONE only if that verification is green.
-3. Continue Phase 00 with the cache/offline and interpretation boundaries now that ARCH-001/ARCH-003 are frozen.
+1. Run the post-change IOS-007 foundation verification and the ASTRO-001/002/003 Swift tests on the latest branch.
+2. Close IOS-007/Phase 01 and mark implemented Phase 02 work DONE only where verification and methodology/provider evidence actually satisfy acceptance.
+3. Continue Phase 00 with cache/offline, interpretation and backend responsibilities before wiring any paid provider runtime.
 4. Preserve local durable profile/settings behavior and the approved Soulful Celestial UI while later feature families remain behind their design gates.
 
 ## Repository authority
@@ -101,13 +101,13 @@ Phase 00 remains **IN PROGRESS**, but its first three architecture gates are fro
 
 The calculation provider remains vendor-neutral. Astrologer/RapidAPI, Swiss Ephemeris or another engine may later implement an adapter, but no vendor is frozen and no backend/provider runtime integration was added in this architecture step. Calculation facts remain separate from interpretation text, and ordinary Free serving never invokes the calculation engine.
 
-Next Phase 00 architecture ownership is ARCH-004 result-cache/offline behavior and ARCH-005 interpretation/LLM boundary. Provider-backed feature runtime remains blocked on the relevant unfinished cache/access/privacy/backend contracts.
+Next Phase 00 architecture ownership is ARCH-004 result-cache/offline behavior, ARCH-005 interpretation/LLM boundary and ARCH-006 backend/catalog responsibilities. Provider-backed feature runtime remains blocked on the relevant unfinished cache/access/privacy/backend contracts.
 
 See [`phases/00-technical-architecture.md`](phases/00-technical-architecture.md).
 
 ### Phase 02 — Astrology Calculation Foundation
 
-**IN PROGRESS. ASTRO-001 and ASTRO-002 source contracts are implemented; post-change verification is pending.**
+**IN PROGRESS. ASTRO-001 and ASTRO-002 contracts are implemented; ASTRO-003 now has a partial provider-independent Western normalization/validation foundation.**
 
 Current implementation:
 
@@ -117,11 +117,13 @@ Current implementation:
 - impossible, pre-1900 and future birth dates are rejected at the calculation boundary;
 - `Humay/Domain/Astrology/AstrologyCalculationContracts.swift` defines typed Humay calculation results, fact reliability/availability, provenance and a finite payload-free calculation failure model;
 - `Humay/Domain/Astrology/AstrologyCalculationAdapter.swift` defines independent Western, Vedic and BaZi adapter protocols with explicit tradition ownership and a shared mismatch guard;
-- concrete fact schemas remain deferred to their owning validated calculation tasks instead of being guessed in ASTRO-002;
-- `HumayTests/BirthCalculationInputTests.swift` and `HumayTests/AstrologyCalculationContractTests.swift` cover the calculation input and adapter/result contracts;
+- `Humay/Domain/Astrology/WesternAstrologyFacts.swift` defines the initial ten-body Western planetary vocabulary, tropical longitude normalization/sign derivation, major-aspect result vocabulary and fact-level reliability;
+- `Humay/Domain/Astrology/WesternCalculationValidation.swift` validates normalized Western result structure before feature consumption, including tradition, provenance, duplicate planetary positions and duplicate aspect pairs;
+- Ascendant/house facts are intentionally not frozen while METHOD-001 remains unresolved; no house-system default is inferred from a provider;
+- `HumayTests/BirthCalculationInputTests.swift`, `AstrologyCalculationContractTests.swift` and `WesternAstrologyFactsTests.swift` cover current Domain contracts and structural validation;
 - no concrete provider, API client, endpoint, secret, networking, fallback runtime or UI was added.
 
-ASTRO-001 and ASTRO-002 are not marked DONE until the latest branch passes the canonical foundation verification and complete Swift Testing after these source changes. ASTRO-003 must not silently adopt vendor defaults; it requires validated Western methodology and golden-fixture evidence.
+ASTRO-001/002 remain verification-pending. ASTRO-003 is explicitly **PARTIAL**: a real server-side Western engine/provider, independent golden fixtures, provider-response normalization evidence and methodology-approved house/Ascendant behavior are still required before it can be marked DONE. This work must not be faked inside the iOS client.
 
 See [`phases/02-astrology-engine-foundation.md`](phases/02-astrology-engine-foundation.md).
 
@@ -194,4 +196,4 @@ Cadence for user-facing work:
 
 The app restores the local user-state snapshot before resolving a meaningful root. A missing file produces fresh four-beat onboarding. `Enter Humay` saves the profile/settings aggregate atomically before resolving the root to the existing minimal semantic Light/Dark Humay placeholder. Terminating and relaunching a completed app restores the main placeholder. Save failures leave the onboarding draft intact and expose a retry alert; restore failures remain distinct from fresh onboarding.
 
-The local snapshot is the device source of truth for this slice. It stores only profile/settings, including date components, explicit unknown/not-provided birth values, leading tradition, tone and completion timestamp. The ASTRO-001/002 types are currently validated Domain contracts only and are not wired to a calculation provider. No production astrology provider, interpretation provider, CloudKit sync/restore, authentication/account flow, backend identity, StoreKit, ads, analytics, notification delivery or post-onboarding feature runtime is wired yet. Profile Reveal uses no provider-backed astrology and displays only the entered birth date, selected leading tradition and date-only/non-precise state.
+The local snapshot is the device source of truth for this slice. It stores only profile/settings, including date components, explicit unknown/not-provided birth values, leading tradition, tone and completion timestamp. The ASTRO-001/002/003 types are currently validated Domain contracts only and are not wired to a calculation provider. No production astrology provider, interpretation provider, CloudKit sync/restore, authentication/account flow, backend identity, StoreKit, ads, analytics, notification delivery or post-onboarding feature runtime is wired yet. Profile Reveal uses no provider-backed astrology and displays only the entered birth date, selected leading tradition and date-only/non-precise state.

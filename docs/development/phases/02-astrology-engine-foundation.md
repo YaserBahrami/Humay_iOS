@@ -1,6 +1,6 @@
 # Phase 02 — Astrology Calculation Foundation
 
-Status: **IN PROGRESS — ASTRO-001 and ASTRO-002 implemented; verification pending**
+Status: **IN PROGRESS — ASTRO-001/002 implemented; ASTRO-003 Western normalization foundation implemented; verification/provider validation pending**
 
 Depends on:
 - Phase 01 Apple Platform Foundation;
@@ -65,12 +65,31 @@ Acceptance:
 ASTRO-002 defines the adapter/result contracts only. It does not implement fallback selection: validated equivalence remains an adapter/runtime capability that cannot be claimed before ASTRO-006 evidence exists.
 
 ### ASTRO-003 — Implement validated Western calculation baseline
-Status: TODO  
+Status: **PARTIAL — normalized Western fact/structural-validation foundation implemented; deterministic engine/provider + golden validation pending**  
 Depends on: ASTRO-002
+
+Implemented foundation:
+- `WesternPlanet` defines the initial ten-body Western planetary baseline without speculative nodes/asteroids;
+- `WesternZodiacSign` and `WesternZodiacPosition` normalize tropical longitudes in `[0, 360)` and derive sign/within-sign degree deterministically;
+- `WesternPlanetaryPosition` preserves fact-level reliability;
+- `WesternAspectKind` defines the initial major-aspect result vocabulary without choosing orb thresholds;
+- `WesternAspect` rejects same-body and invalid-orb payloads while preserving reliability;
+- `WesternAstrologyFact` currently exposes planetary positions and aspects only;
+- Ascendant/house facts are deliberately not frozen while METHOD-001 remains open;
+- `WesternCalculationResultValidator` rejects wrong-tradition results, blank provenance, duplicate planetary positions and duplicate planet-pair aspects;
+- focused Swift Testing covers tropical longitude boundaries, reliability propagation and structural result validation.
+
+Still required before ASTRO-003 can be DONE:
+- select/implement a real server-side Western calculation engine/provider behind the frozen Humay adapter boundary;
+- independently validated golden fixtures for planetary positions/aspects;
+- methodology sign-off/validation for any house-system-dependent Ascendant/house output;
+- provider-response normalization tests against real provider/engine payloads;
+- representative timezone/DST/location cases and unknown/approximate-time behavior;
+- no production claim until the latest branch and provider fixtures pass verification.
 
 Scope:
 - planetary positions;
-- Ascendant/houses when time permits;
+- Ascendant/houses when time permits and methodology permits;
 - aspects;
 - relevant event/transit facts required by initial precision features.
 
@@ -117,9 +136,9 @@ Acceptance:
 
 ## Start / verification rule
 
-ASTRO-001 and ASTRO-002 source contracts are implemented because they are non-visual, provider-independent Domain work under the approved ARCH-003 boundary. Neither is marked DONE until the latest branch passes the IOS-007/foundation verification and complete Swift Testing after these source changes.
+ASTRO-001, ASTRO-002 and the provider-independent/structural portion of ASTRO-003 are implemented because they are non-visual Domain work under the approved ARCH-003 boundary. None is marked DONE until the latest branch passes the IOS-007/foundation verification and complete Swift Testing after these source changes.
 
-Do not start a concrete paid-provider/backend runtime from these protocols. Provider-backed runtime remains blocked on the relevant unfinished Phase 00 cache/backend/access/privacy contracts, and ASTRO-003 still requires validated Western methodology/fixture decisions rather than vendor defaults.
+Do not add a concrete paid-provider/backend runtime inside the iOS client. The remaining ASTRO-003 calculation work belongs behind Humay-controlled server infrastructure and remains blocked on the relevant unfinished Phase 00 cache/backend/access/privacy contracts plus real provider/methodology validation.
 
 ## Exit criteria
 
