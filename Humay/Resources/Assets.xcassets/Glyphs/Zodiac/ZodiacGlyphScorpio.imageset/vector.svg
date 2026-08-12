@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+  "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" width="368.64pt" height="368.64pt" viewBox="0 0 368.64 368.64" xmlns="http://www.w3.org/2000/svg" version="1.1">
+ <metadata>
+  <rdf:RDF xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+   <cc:Work>
+    <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
+    <dc:date>2026-08-12T17:57:28.846540</dc:date>
+    <dc:format>image/svg+xml</dc:format>
+    <dc:creator>
+     <cc:Agent>
+      <dc:title>Matplotlib v3.10.8, https://matplotlib.org/</dc:title>
+     </cc:Agent>
+    </dc:creator>
+   </cc:Work>
+  </rdf:RDF>
+ </metadata>
+ <defs>
+  <style type="text/css">*{stroke-linejoin: round; stroke-linecap: butt}</style>
+ </defs>
+ <g id="figure_1">
+  <g id="patch_1">
+   <path d="M 0 368.64 
+L 368.64 368.64 
+L 368.64 0 
+L 0 0 
+L 0 368.64 
+z
+" style="fill: none; opacity: 0"/>
+  </g>
+  <g id="axes_1">
+   <g id="text_1">
+    <!-- ♏ -->
+    <g transform="translate(49.835625 267.10125) scale(3 -3)">
+     <defs>
+      <path id="DejaVuSans-264f" d="M 4000 847 
+Q 4000 500 4161 304 
+Q 4322 109 4600 106 
+L 4878 106 
+L 4878 475 
+L 4891 475 
+L 5525 -66 
+L 4891 -613 
+L 4878 -600 
+L 4878 -231 
+L 4600 -231 
+Q 3966 -231 3753 144 
+Q 3616 375 3591 744 
+L 3525 3213 
+Q 3525 3269 3525 3322 
+Q 3525 4200 3381 4203 
+Q 3200 4200 2992 3861 
+Q 2784 3522 2588 2897 
+L 2588 0 
+L 2116 0 
+L 2116 2881 
+Q 2116 3884 2067 4050 
+Q 2019 4216 1909 4216 
+L 1906 4216 
+L 1903 4216 
+Q 1775 4216 1495 3862 
+Q 1216 3509 1156 2838 
+L 1156 0 
+L 691 0 
+L 691 3403 
+Q 691 3997 216 4594 
+L 659 4594 
+Q 1028 4347 1141 3797 
+Q 1213 4088 1498 4381 
+Q 1784 4675 2000 4675 
+Q 2197 4675 2383 4365 
+Q 2569 4056 2569 3656 
+Q 2694 4028 3003 4351 
+Q 3313 4675 3547 4675 
+Q 3741 4675 3869 4414 
+Q 3997 4153 3997 3469 
+L 3997 2838 
+L 4000 850 
+L 4000 847 
+z
+" transform="scale(0.015625)"/>
+     </defs>
+     <use xlink:href="#DejaVuSans-264f"/>
+    </g>
+   </g>
+  </g>
+ </g>
+</svg>

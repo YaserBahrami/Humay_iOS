@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+  "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" width="368.64pt" height="368.64pt" viewBox="0 0 368.64 368.64" xmlns="http://www.w3.org/2000/svg" version="1.1">
+ <metadata>
+  <rdf:RDF xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+   <cc:Work>
+    <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
+    <dc:date>2026-08-12T17:57:28.908767</dc:date>
+    <dc:format>image/svg+xml</dc:format>
+    <dc:creator>
+     <cc:Agent>
+      <dc:title>Matplotlib v3.10.8, https://matplotlib.org/</dc:title>
+     </cc:Agent>
+    </dc:creator>
+   </cc:Work>
+  </rdf:RDF>
+ </metadata>
+ <defs>
+  <style type="text/css">*{stroke-linejoin: round; stroke-linecap: butt}</style>
+ </defs>
+ <g id="figure_1">
+  <g id="patch_1">
+   <path d="M 0 368.64 
+L 368.64 368.64 
+L 368.64 0 
+L 0 0 
+L 0 368.64 
+z
+" style="fill: none; opacity: 0"/>
+  </g>
+  <g id="axes_1">
+   <g id="text_1">
+    <!-- ♄ -->
+    <g transform="translate(49.835625 267.10125) scale(3 -3)">
+     <defs>
+      <path id="DejaVuSans-2644" d="M 1731 3641 
+L 1400 3641 
+L 1400 4113 
+L 1731 4113 
+L 1731 4675 
+L 2206 4675 
+L 2206 4113 
+L 2763 4113 
+L 2763 3641 
+L 2206 3641 
+L 2206 2431 
+Q 2553 2772 3028 2772 
+Q 3584 2772 3957 2369 
+Q 4331 1966 4331 1381 
+Q 4331 1100 4112 742 
+Q 3894 384 3894 6 
+L 3894 0 
+L 3422 0 
+Q 3422 413 3642 784 
+Q 3863 1156 3863 1381 
+Q 3863 1766 3620 2030 
+Q 3378 2294 3031 2294 
+Q 2688 2294 2447 2028 
+Q 2206 1763 2206 1381 
+L 2206 0 
+L 1731 0 
+L 1731 3641 
+z
+" transform="scale(0.015625)"/>
+     </defs>
+     <use xlink:href="#DejaVuSans-2644"/>
+    </g>
+   </g>
+  </g>
+ </g>
+</svg>
