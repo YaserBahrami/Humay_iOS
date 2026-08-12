@@ -60,15 +60,11 @@
     <text x="74" y="202" class="ui" font-size="10.5" font-weight="650" fill="#C4BDBB">Development sample · not calculated</text>
   </g>
 
-    <g aria-label="Primary Current Sky region">
+    <g aria-label="Primary Current Sky hero">
       <rect x="48" y="232" width="454" height="326" rx="28" fill="url(#hero-gradient)" stroke="#30394B"/>
       <path d="M310 232c-31 76-19 219 92 326h100V232Z" fill="#C17ADB" opacity="0.08"/>
-      <text x="78" y="272" class="label" font-size="10" fill="#C17ADB">ILLUSTRATIVE EDITORIAL</text>
-      <text x="78" y="318" class="editorial" font-size="37" fill="#F7F0E8">A waning Moon</text>
-      <text x="78" y="356" class="editorial" font-size="37" fill="#F7F0E8">sets the rhythm</text>
-      <text x="78" y="394" class="ui" font-size="14" fill="#D1C6C5">Presentation-owned sample copy.</text>
-      <text x="78" y="463" class="ui" font-size="12.5" font-weight="650" fill="#D1C6C5">ASTRONOMICAL · EUROPE/ISTANBUL</text>
-      <text x="78" y="486" class="mono" font-size="12" fill="#D1C6C5">Observed 09:00 TRT</text>
+      <text x="78" y="306" class="editorial" font-size="37" fill="#F7F0E8">A waning Moon</text>
+      <text x="78" y="346" class="editorial" font-size="37" fill="#F7F0E8">sets the rhythm</text>
       <g transform="translate(391 435) scale(0.98)" aria-hidden="true">
     <circle cx="0" cy="0" r="74" fill="#C17ADB" opacity="0.16"/>
     <ellipse cx="0" cy="2" rx="84" ry="32" fill="none" stroke="#78B1D5" stroke-width="2" opacity="0.45" transform="rotate(-16)"/>
@@ -83,26 +79,19 @@
   </g>
     </g>
 
-    <g aria-label="Open Calendar" filter="url(#soft-shadow)">
-      <rect x="48" y="586" width="454" height="118" rx="24" fill="url(#calendar-gradient)" stroke="#30394B"/>
-      <image x="63" y="602" width="86" height="86" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI1MTIiIGhlaWdodD0iNTEyIiB2aWV3Qm94PSIwIDAgNTEyIDUxMiI+PGRlZnM+PC9kZWZzPjxyZWN0IHg9IjEyNyIgeT0iMTIyIiB3aWR0aD0iMjU4IiBoZWlnaHQ9IjI3MCIgcng9IjMwIiBmaWxsPSIjMjAyODNBIiBzdHJva2U9IiNFNUFBNTUiIHN0cm9rZS13aWR0aD0iNiIgb3BhY2l0eT0iMSIgdHJhbnNmb3JtPSIiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIvPjxyZWN0IHg9IjEyNyIgeT0iMTIyIiB3aWR0aD0iMjU4IiBoZWlnaHQ9IjY4IiByeD0iMzAiIGZpbGw9IiM2QjQ1QTkiIHN0cm9rZT0iI0U1QUE1NSIgc3Ryb2tlLXdpZHRoPSI2IiBvcGFjaXR5PSIxIiB0cmFuc2Zvcm09IiIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIi8+PGxpbmUgeDE9IjEyOCIgeTE9IjE5MCIgeDI9IjM4NCIgeTI9IjE5MCIgc3Ryb2tlPSIjRTVBQTU1IiBzdHJva2Utd2lkdGg9IjUiIG9wYWNpdHk9IjEiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIvPjxsaW5lIHgxPSIxODUiIHkxPSI5NSIgeDI9IjE4NSIgeTI9IjE0OCIgc3Ryb2tlPSIjRTVBQTU1IiBzdHJva2Utd2lkdGg9IjkiIG9wYWNpdHk9IjEiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIvPjxsaW5lIHgxPSIyNTUiIHkxPSI5NSIgeDI9IjI1NSIgeTI9IjE0OCIgc3Ryb2tlPSIjRTVBQTU1IiBzdHJva2Utd2lkdGg9IjkiIG9wYWNpdHk9IjEiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIvPjxsaW5lIHgxPSIzMjUiIHkxPSI5NSIgeDI9IjMyNSIgeTI9IjE0OCIgc3Ryb2tlPSIjRTVBQTU1IiBzdHJva2Utd2lkdGg9IjkiIG9wYWNpdHk9IjEiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIvPjxwYXRoIGQ9Ik0gMjU2IDIzNCBDIDI1OCAyNzQgMjYwIDI3NiAzMDAgMjc4IEMgMjYwIDI4MCAyNTggMjgyIDI1NiAzMjIgQyAyNTQgMjgyIDI1MiAyODAgMjEyIDI3OCBDIDI1MiAyNzYgMjU0IDI3NCAyNTYgMjM0IFoiIGZpbGw9IiNFNUFBNTUiIHN0cm9rZT0iI0U1QUE1NSIgc3Ryb2tlLXdpZHRoPSI2IiBvcGFjaXR5PSIxIiB0cmFuc2Zvcm09IiIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIi8+PHBhdGggZD0iTSA5MiA5NCBDIDk0IDEwNCA5NiAxMDYgMTA2IDEwOCBDIDk2IDExMCA5NCAxMTIgOTIgMTIyIEMgOTAgMTEyIDg4IDExMCA3OCAxMDggQyA4OCAxMDYgOTAgMTA0IDkyIDk0IFoiIGZpbGw9Im5vbmUiIHN0cm9rZT0iI0U1QUE1NSIgc3Ryb2tlLXdpZHRoPSIyIiBvcGFjaXR5PSIxIiB0cmFuc2Zvcm09IiIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIi8+PHBhdGggZD0iTSA0MTAgMTI4IEMgNDEyIDEzNCA0MTQgMTM2IDQyMCAxMzggQyA0MTQgMTQwIDQxMiAxNDIgNDEwIDE0OCBDIDQwOCAxNDIgNDA2IDE0MCA0MDAgMTM4IEMgNDA2IDEzNiA0MDggMTM0IDQxMCAxMjggWiIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjRjc3NDc2IiBzdHJva2Utd2lkdGg9IjIiIG9wYWNpdHk9IjEiIHRyYW5zZm9ybT0iIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiLz48cGF0aCBkPSJNIDM5MiAzNTAgQyAzOTQgMzU4IDM5NiAzNjAgNDA0IDM2MiBDIDM5NiAzNjQgMzk0IDM2NiAzOTIgMzc0IEMgMzkwIDM2NiAzODggMzY0IDM4MCAzNjIgQyAzODggMzYwIDM5MCAzNTggMzkyIDM1MCBaIiBmaWxsPSJub25lIiBzdHJva2U9IiNCMDZCRDQiIHN0cm9rZS13aWR0aD0iMiIgb3BhY2l0eT0iMSIgdHJhbnNmb3JtPSIiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIvPjxjaXJjbGUgY3g9IjExNSIgY3k9IjMzMCIgcj0iNCIgZmlsbD0iI0U1QUE1NSIgc3Ryb2tlPSJub25lIiBzdHJva2Utd2lkdGg9IjAiIG9wYWNpdHk9IjEiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIvPjxjaXJjbGUgY3g9IjQyNiIgY3k9IjMwMCIgcj0iMyIgZmlsbD0iI0Y3NzQ3NiIgc3Ryb2tlPSJub25lIiBzdHJva2Utd2lkdGg9IjAiIG9wYWNpdHk9IjEiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIvPjwvc3ZnPg=="/>
-      <text x="156" y="626" class="ui" font-size="18" font-weight="760" fill="#F5F0EA">Calendar</text>
-      <text x="156" y="651" class="ui" font-size="13.5" fill="#C4BDBB">Month, week, and complete timeline</text>
-      <text x="156" y="675" class="ui" font-size="12" font-weight="650" fill="#FF8F8D">OPEN CALENDAR</text>
-      <circle cx="466" cy="645" r="22" fill="#171F30" fill-opacity="0.76"/>
-      <path d="M462 640l5 5-5 5" fill="none" stroke="#F5F0EA" stroke-width="2"/>
+    <g aria-label="Europe/Istanbul, observed at 09:00 TRT">
+      <line x1="48" y1="582" x2="502" y2="582" stroke="#30394B"/>
+      <text x="48" y="608" class="ui" font-size="12.5" fill="#C4BDBB">Europe/Istanbul · Observed 09:00 TRT</text>
     </g>
 
-    <g aria-label="Observation context">
-      <rect x="48" y="730" width="454" height="118" rx="22" fill="#171F30" stroke="#30394B"/>
-      <circle cx="84" cy="766" r="20" fill="#78B1D5" opacity="0.14"/>
-      <circle cx="84" cy="766" r="9" fill="none" stroke="#78B1D5" stroke-width="1.8"/>
-      <path d="M75 766h18M84 757c4 5 4 13 0 18M84 757c-4 5-4 13 0 18" fill="none" stroke="#78B1D5" stroke-width="1.2"/>
-      <text x="116" y="759" class="ui" font-size="15" font-weight="720" fill="#F5F0EA">Observation context</text>
-      <text x="116" y="782" class="ui" font-size="13" fill="#C4BDBB">Times use Europe/Istanbul. Date-only events</text>
-      <text x="116" y="802" class="ui" font-size="13" fill="#C4BDBB">never receive a fabricated clock time.</text>
-      <line x1="76" y1="820" x2="474" y2="820" stroke="#30394B"/>
-      <text x="76" y="839" class="ui" font-size="10.5" fill="#A8A0A1">Context stays factual; it does not become another card wall.</text>
+    <g aria-label="Open Calendar" filter="url(#soft-shadow)">
+      <rect x="48" y="638" width="454" height="118" rx="24" fill="url(#calendar-gradient)" stroke="#30394B"/>
+      <image x="63" y="654" width="86" height="86" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI1MTIiIGhlaWdodD0iNTEyIiB2aWV3Qm94PSIwIDAgNTEyIDUxMiI+PGRlZnM+PC9kZWZzPjxyZWN0IHg9IjEyNyIgeT0iMTIyIiB3aWR0aD0iMjU4IiBoZWlnaHQ9IjI3MCIgcng9IjMwIiBmaWxsPSIjMjAyODNBIiBzdHJva2U9IiNFNUFBNTUiIHN0cm9rZS13aWR0aD0iNiIgb3BhY2l0eT0iMSIgdHJhbnNmb3JtPSIiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIvPjxyZWN0IHg9IjEyNyIgeT0iMTIyIiB3aWR0aD0iMjU4IiBoZWlnaHQ9IjY4IiByeD0iMzAiIGZpbGw9IiM2QjQ1QTkiIHN0cm9rZT0iI0U1QUE1NSIgc3Ryb2tlLXdpZHRoPSI2IiBvcGFjaXR5PSIxIiB0cmFuc2Zvcm09IiIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIi8+PGxpbmUgeDE9IjEyOCIgeTE9IjE5MCIgeDI9IjM4NCIgeTI9IjE5MCIgc3Ryb2tlPSIjRTVBQTU1IiBzdHJva2Utd2lkdGg9IjUiIG9wYWNpdHk9IjEiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIvPjxsaW5lIHgxPSIxODUiIHkxPSI5NSIgeDI9IjE4NSIgeTI9IjE0OCIgc3Ryb2tlPSIjRTVBQTU1IiBzdHJva2Utd2lkdGg9IjkiIG9wYWNpdHk9IjEiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIvPjxsaW5lIHgxPSIyNTUiIHkxPSI5NSIgeDI9IjI1NSIgeTI9IjE0OCIgc3Ryb2tlPSIjRTVBQTU1IiBzdHJva2Utd2lkdGg9IjkiIG9wYWNpdHk9IjEiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIvPjxsaW5lIHgxPSIzMjUiIHkxPSI5NSIgeDI9IjMyNSIgeTI9IjE0OCIgc3Ryb2tlPSIjRTVBQTU1IiBzdHJva2Utd2lkdGg9IjkiIG9wYWNpdHk9IjEiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIvPjxwYXRoIGQ9Ik0gMjU2IDIzNCBDIDI1OCAyNzQgMjYwIDI3NiAzMDAgMjc4IEMgMjYwIDI4MCAyNTggMjgyIDI1NiAzMjIgQyAyNTQgMjgyIDI1MiAyODAgMjEyIDI3OCBDIDI1MiAyNzYgMjU0IDI3NCAyNTYgMjM0IFoiIGZpbGw9IiNFNUFBNTUiIHN0cm9rZT0iI0U1QUE1NSIgc3Ryb2tlLXdpZHRoPSI2IiBvcGFjaXR5PSIxIiB0cmFuc2Zvcm09IiIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIi8+PHBhdGggZD0iTSA5MiA5NCBDIDk0IDEwNCA5NiAxMDYgMTA2IDEwOCBDIDk2IDExMCA5NCAxMTIgOTIgMTIyIEMgOTAgMTEyIDg4IDExMCA3OCAxMDggQyA4OCAxMDYgOTAgMTA0IDkyIDk0IFoiIGZpbGw9Im5vbmUiIHN0cm9rZT0iI0U1QUE1NSIgc3Ryb2tlLXdpZHRoPSIyIiBvcGFjaXR5PSIxIiB0cmFuc2Zvcm09IiIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIi8+PHBhdGggZD0iTSA0MTAgMTI4IEMgNDEyIDEzNCA0MTQgMTM2IDQyMCAxMzggQyA0MTQgMTQwIDQxMiAxNDIgNDEwIDE0OCBDIDQwOCAxNDIgNDA2IDE0MCA0MDAgMTM4IEMgNDA2IDEzNiA0MDggMTM0IDQxMCAxMjggWiIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjRjc3NDc2IiBzdHJva2Utd2lkdGg9IjIiIG9wYWNpdHk9IjEiIHRyYW5zZm9ybT0iIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiLz48cGF0aCBkPSJNIDM5MiAzNTAgQyAzOTQgMzU4IDM5NiAzNjAgNDA0IDM2MiBDIDM5NiAzNjQgMzk0IDM2NiAzOTIgMzc0IEMgMzkwIDM2NiAzODggMzY0IDM4MCAzNjIgQyAzODggMzYwIDM5MCAzNTggMzkyIDM1MCBaIiBmaWxsPSJub25lIiBzdHJva2U9IiNCMDZCRDQiIHN0cm9rZS13aWR0aD0iMiIgb3BhY2l0eT0iMSIgdHJhbnNmb3JtPSIiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIvPjxjaXJjbGUgY3g9IjExNSIgY3k9IjMzMCIgcj0iNCIgZmlsbD0iI0U1QUE1NSIgc3Ryb2tlPSJub25lIiBzdHJva2Utd2lkdGg9IjAiIG9wYWNpdHk9IjEiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIvPjxjaXJjbGUgY3g9IjQyNiIgY3k9IjMwMCIgcj0iMyIgZmlsbD0iI0Y3NzQ3NiIgc3Ryb2tlPSJub25lIiBzdHJva2Utd2lkdGg9IjAiIG9wYWNpdHk9IjEiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIvPjwvc3ZnPg=="/>
+      <text x="156" y="678" class="ui" font-size="18" font-weight="760" fill="#F5F0EA">Calendar</text>
+      <text x="156" y="703" class="ui" font-size="13.5" fill="#C4BDBB">Month, week, and complete timeline</text>
+      <text x="156" y="727" class="ui" font-size="12" font-weight="650" fill="#FF8F8D">OPEN CALENDAR</text>
+      <circle cx="466" cy="697" r="22" fill="#171F30" fill-opacity="0.76"/>
+      <path d="M462 692l5 5-5 5" fill="none" stroke="#F5F0EA" stroke-width="2"/>
     </g>
 
     <text x="534" y="254" class="editorial" font-size="27" fill="#F5F0EA">Happening now</text>
@@ -115,8 +104,8 @@
     <text x="600" y="322" class="ui" font-size="12.5" fill="#C4BDBB">Light softens toward the next phase.</text>
     <text x="600" y="343" class="mono" font-size="11" font-weight="600" fill="#C4BDBB">Exact · Today 18:00 TRT</text>
     <g>
-    <rect x="874" y="329" width="82" height="18" rx="9" fill="#78B1D5" fill-opacity="0.12"/>
-    <text x="915" y="341.5" text-anchor="middle" class="ui" font-size="8.5" font-weight="700" fill="#F5F0EA">Astronomical</text>
+    <rect x="842" y="329" width="82" height="18" rx="9" fill="#78B1D5" fill-opacity="0.12"/>
+    <text x="883" y="341.5" text-anchor="middle" class="ui" font-size="8.5" font-weight="700" fill="#F5F0EA">Astronomical</text>
   </g>
     <path d="M952 323l5 5-5 5" fill="none" stroke="#A8A0A1" stroke-width="2" stroke-linecap="round"/>
     <line x1="600" y1="384" x2="956" y2="384" stroke="#30394B"/>
@@ -127,8 +116,8 @@
     
     <text x="600" y="454" class="mono" font-size="11" font-weight="600" fill="#C4BDBB">Date only · 14 August</text>
     <g>
-    <rect x="898" y="440" width="58" height="18" rx="9" fill="#F77476" fill-opacity="0.12"/>
-    <text x="927" y="452.5" text-anchor="middle" class="ui" font-size="8.5" font-weight="700" fill="#F5F0EA">Western</text>
+    <rect x="866" y="440" width="58" height="18" rx="9" fill="#F77476" fill-opacity="0.12"/>
+    <text x="895" y="452.5" text-anchor="middle" class="ui" font-size="8.5" font-weight="700" fill="#F5F0EA">Western</text>
   </g>
     <path d="M952 441l5 5-5 5" fill="none" stroke="#A8A0A1" stroke-width="2" stroke-linecap="round"/>
     <line x1="600" y1="508" x2="956" y2="508" stroke="#30394B"/>
@@ -139,8 +128,8 @@
     
     <text x="600" y="558" class="mono" font-size="11" font-weight="600" fill="#C4BDBB">Unavailable · timing not supplied</text>
     <g>
-    <rect x="908" y="544" width="48" height="18" rx="9" fill="#C17ADB" fill-opacity="0.12"/>
-    <text x="932" y="556.5" text-anchor="middle" class="ui" font-size="8.5" font-weight="700" fill="#F5F0EA">Vedic</text>
+    <rect x="876" y="544" width="48" height="18" rx="9" fill="#C17ADB" fill-opacity="0.12"/>
+    <text x="900" y="556.5" text-anchor="middle" class="ui" font-size="8.5" font-weight="700" fill="#F5F0EA">Vedic</text>
   </g>
     <path d="M952 554l5 5-5 5" fill="none" stroke="#A8A0A1" stroke-width="2" stroke-linecap="round"/>
     
@@ -154,7 +143,9 @@
       <line x1="579" y1="714" x2="579" y2="881" stroke="#30394B" stroke-width="2"/>
       <circle cx="579" cy="720" r="9" fill="#FF8F8D"/>
       <text x="606" y="716" class="ui" font-size="15" font-weight="720" fill="#F5F0EA">Mercury square Uranus</text>
-      <text x="606" y="739" class="mono" font-size="11" fill="#C4BDBB">Window · Fri 21:00 – Sat 03:00</text>
+      <g aria-label="Mercury square Uranus, Western. From Friday at 21:00 until Saturday at 03:00.">
+        <text x="606" y="739" class="mono" font-size="11" fill="#C4BDBB">Fri 21:00 – Sat 03:00</text>
+      </g>
       <g>
     <rect x="894" y="711" width="58" height="18" rx="9" fill="#F77476" fill-opacity="0.12"/>
     <text x="923" y="723.5" text-anchor="middle" class="ui" font-size="8.5" font-weight="700" fill="#F5F0EA">Western</text>

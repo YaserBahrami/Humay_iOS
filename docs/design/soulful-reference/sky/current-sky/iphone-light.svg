@@ -54,12 +54,11 @@
     <text x="46" y="133" class="ui" font-size="10.5" font-weight="650" fill="#625F62">Development sample · not calculated</text>
   </g>
 
-    <g aria-label="Current celestial hero, illustrative copy">
+    <g aria-label="Current celestial hero">
       <rect x="20" y="150" width="390" height="158" rx="24" fill="url(#hero-gradient)" stroke="#2E3748"/>
       <path d="M280 150c-18 42-10 105 38 158h92V150Z" fill="#9A82C8" opacity="0.08"/>
-      <text x="40" y="177" class="label" font-size="8.5" fill="#9A82C8">ILLUSTRATIVE EDITORIAL</text>
-      <text x="40" y="211" class="editorial" font-size="27" fill="#FFF8F0">A waning Moon</text>
-      <text x="40" y="238" class="editorial" font-size="27" fill="#FFF8F0">sets the rhythm</text>
+      <text x="40" y="205" class="editorial" font-size="27" fill="#FFF8F0">A waning Moon</text>
+      <text x="40" y="234" class="editorial" font-size="27" fill="#FFF8F0">sets the rhythm</text>
       <text x="40" y="269" class="ui" font-size="10.5" fill="#D7D1D1">Astronomical · Europe/Istanbul</text>
       <text x="40" y="287" class="mono" font-size="9.5" fill="#D7D1D1">Observed 09:00 TRT</text>
       <g transform="translate(338 226) scale(0.66)" aria-hidden="true">
@@ -135,7 +134,9 @@
       <text x="43" y="719" text-anchor="middle" class="label" font-size="7" fill="#A83F3C">AUG</text>
       <text x="43" y="740" text-anchor="middle" class="ui" font-size="17" font-weight="750" fill="#151B28">15</text>
       <text x="80" y="720" class="ui" font-size="14" font-weight="700" fill="#151B28">Mercury square Uranus</text>
-      <text x="80" y="740" class="mono" font-size="9.6" fill="#625F62">Window · Fri 21:00 – Sat 03:00</text>
+      <g aria-label="Mercury square Uranus, Western. From Friday at 21:00 until Saturday at 03:00.">
+        <text x="80" y="740" class="mono" font-size="9.6" fill="#625F62">Fri 21:00 – Sat 03:00</text>
+      </g>
       <g>
     <rect x="328" y="726" width="52" height="18" rx="9" fill="#F06F67" fill-opacity="0.12"/>
     <text x="354" y="738.5" text-anchor="middle" class="ui" font-size="8.5" font-weight="700" fill="#151B28">Western</text>

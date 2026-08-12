@@ -20,7 +20,7 @@ The four device references are loaded/default candidates. Approval remains packa
 
 **Lunar Meridian** — a celestial editorial dashboard built around one restrained lunar-orbit hero, compact factual event rows, a distinct nested Calendar entry, and a short upcoming timeline.
 
-The reference demonstrates exact, interval, date-only, and unavailable timing; Astronomical, Western, and Vedic labels; long titles; optional summaries; multiple events; and a sparse day. All event values and editorial copy are illustrative.
+The reference demonstrates exact, interval, date-only, and unavailable timing; Astronomical, Western, and Vedic labels; long titles; optional summaries; multiple events; and a sparse day. Interval text uses a natural start/end range, and observation metadata appears once per composition. All event values and editorial copy are illustrative.
 
 ## Package files
 
@@ -33,14 +33,16 @@ The reference demonstrates exact, interval, date-only, and unavailable timing; A
 - `elements/current-sky-orbit-dark.svg`
 - `adaptive-notes.md`
 - `review-notes.md`
-- `design-spec.md` — unchanged requirements authority
+- `design-spec.md` — requirements authority
 - `generate-references.cjs` — reference-only SVG/PNG generator
 
 ## Approval boundary
 
 - Every new artifact is labeled **REVIEW CANDIDATE — NOT APPROVED**.
-- The hero headline is explicitly illustrative because Domain has no approved editorial-hero contract.
+- The hero headline is illustrative. Its layout role is accepted for this candidate, but its production source is not frozen because Domain has no approved editorial-hero contract.
 - Calendar remains a child route inside Sky.
+- Astronomical, Western, and Vedic methodology labels remain visible and quiet on event rows for this candidate.
+- `IllustrationCalendarCelestial` remains candidate art pending review of the wider Calendar family.
 - `Development sample · not calculated` is visible as a Debug screenshot treatment, not a Release banner proposal.
 - No Current Sky, Calendar, or event-detail production UI is implemented by this package.
 - Existing production assets are not modified or promoted by this package.

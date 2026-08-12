@@ -7,7 +7,7 @@
 The design treats Current Sky as a **celestial editorial dashboard**:
 
 - one lunar-orbit identity moment rather than a sky map;
-- editorial headline paired with explicit observation context;
+- editorial headline paired with one quiet factual observation disclosure;
 - quiet, factual event rows instead of one illustrated card per event;
 - a warm, visually distinct Calendar route inside Sky;
 - a short timeline that signals there is more depth without becoming an endless feed.
@@ -24,7 +24,7 @@ Happening now uses one shared surface with three rows. Coming up drops the outer
 
 ### iPad
 
-The header spans both regions. Hero, Calendar, and observation context form the primary column. Happening now and Coming up form the secondary column. The columns use comparable visual weight without mirroring each other mechanically.
+The header spans both regions. Hero, a one-line observation footer, and Calendar form the primary column. Happening now and Coming up form the secondary column. The large Observation Context card was removed; timezone and freshness now appear once between the hero and Calendar. The sample has no location, so the footer does not invent one. The columns use comparable visual weight without mirroring each other mechanically.
 
 ## Light and Dark composition
 
@@ -50,11 +50,24 @@ The header spans both regions. Hero, Calendar, and observation context form the 
 | Form | Reference example | Presentation rule |
 |---|---|---|
 | Exact instant | `Exact · Today 18:00 TRT` | Clock time plus timezone context. |
-| Interval | `Window · Fri 21:00 – Sat 03:00` | Start and end remain visible. |
+| Interval | `Fri 21:00 – Sat 03:00` | Start and end remain visible without a technical interval label. |
 | Date-only | `Date only · 14 August` | No clock time is fabricated. |
 | Unavailable | `Unavailable · timing not supplied` | Explicit explanation replaces blank space. |
 
-Astronomical, Western, and Vedic appear as quiet text badges. Color helps scan, but the label carries the meaning. The badge location may move below the title at large Dynamic Type sizes.
+Astronomical, Western, and Vedic remain visible as quiet text badges on every event row for this candidate. Current Sky can mix systems, so methodology clarity outweighs conditional hiding until real content behavior exists. Color helps scan, but the text label carries the meaning. The badge may move below the title at large Dynamic Type sizes.
+
+## Hero copy contract
+
+The hero headline is approved only as a layout role within this review candidate; that limited decision does not approve the package or freeze production copy. Its future production source remains open. Implementation must not derive astrology claims arbitrarily. Later content may come from a Humay-owned presentation projection or an approved interpretation/catalog source.
+
+## Resolved for the current candidate
+
+- Lunar Meridian visual direction retained.
+- Methodology labels remain visible on event rows.
+- “Window” interval label removed.
+- Observation context reduced to quiet secondary metadata.
+- Calendar illustration retained as a candidate pending Calendar-family review.
+- Internal engineering and design language removed from product surfaces.
 
 ## Content stress test represented
 
@@ -72,7 +85,7 @@ Astronomical, Western, and Vedic appear as quiet text badges. Color helps scan, 
 | Candidate | Decision for this reference | Reason |
 |---|---|---|
 | `IllustrationCurrentSky` | Rejected for hero | Pleasant but reads as generic placeholder art; lacks the editorial focal structure needed for D3.1. |
-| `IllustrationCalendarCelestial` | Reused in Calendar entry | Clear semantics, compact silhouette, and strong Light/Dark variants. Reuse remains a review candidate, not production approval. |
+| `IllustrationCalendarCelestial` | Retained as candidate in Calendar entry | Clear semantics, compact silhouette, and strong Light/Dark variants. Ownership remains open until the wider Calendar family is reviewed. |
 | `IllustrationCelestialMoon` / `IllustrationCelestialSun` | Not used | Friendly Level-B art, but a face in the main hero would make the loaded dashboard too cute. |
 | `IllustrationFullMoon` / `IllustrationNewMoon` | Reserved | Suitable only when supplied event data supports the specific phase. |
 | `IllustrationRetrograde` / `IllustrationEclipse` / `IllustrationMeteorShower` | Reserved | Too prominent for default rows; useful only for an owning event or later detail surface. |
@@ -94,8 +107,9 @@ The “lunar meridian” art is a restrained symbolic orbit composition. It is n
 - Empty: legitimate quiet result with Calendar as the existing useful route.
 - Unavailable: explicit methodology/source limitation, no blank card.
 - Offline with cache: loaded content remains visible with persistent saved-time disclosure.
-- Offline without cache: reconnect copy, visually distinct from a sparse/empty sky.
-- Failed: distinct error language. No retry button is promised until the future pipeline owns recovery.
+- Offline without cache: “No saved sky available” and “Reconnect to view current events.” It remains visually distinct from a sparse/empty sky.
+- Failed: “Sky couldn’t load” and “The current sky couldn’t be loaded.” No retry button is promised until the future pipeline owns recovery.
+- Any rationale for the absent action sits in the state board’s external annotation area, outside the simulated product surface.
 
 See [states.svg](states.svg) for the board.
 
@@ -108,6 +122,7 @@ See [states.svg](states.svg) for the board.
 - [x] Static contrast audit: Light primary/ground 16.14:1, Light secondary/ground 5.90:1, Dark primary/ground 15.82:1, and Dark secondary/ground 9.68:1.
 - [x] Small Light accent metadata uses contrast-safe tonal variants (5.40:1–6.48:1) while preserving the approved accent hue; Dark accent text ranges from 5.55:1–8.01:1 on event surfaces.
 - [x] VoiceOver reading order and combined row labels are defined in `adaptive-notes.md`.
+- [x] The interval fixture reads as “From Friday at 21:00 until Saturday at 03:00” in VoiceOver rather than exposing “Window.”
 - [x] Decorative hero art has no factual responsibility and should be hidden from VoiceOver.
 - [x] Dynamic Type reflow rules preserve timing, methodology, and long titles.
 - [x] Reduce Motion leaves a complete static composition.
@@ -116,15 +131,10 @@ See [states.svg](states.svg) for the board.
 
 No numerical HIG score is assigned.
 
-## Unresolved review decisions
+## Unresolved or deferred
 
-1. Is the Lunar Meridian hero emotionally strong enough, or should the art become slightly more playful?
-2. Should future hero copy derive from the highest-priority event or use a separate presentation-owned editorial contract?
-3. Should methodology labels show on every row, or only where omission would conflate systems?
-4. Is “Window” the preferred user-facing interval label?
-5. Should observation context remain a distinct iPad card and a hero line on iPhone, or use one shared placement?
-6. Does Calendar need month-preview content after the Calendar family is designed, or is the direct entry stronger?
-7. When a real pipeline exists, which failed states support Retry, and which require passive guidance?
-8. Is `IllustrationCalendarCelestial` sufficiently distinct from its onboarding use to reuse here?
+1. Production source of the hero editorial copy.
+2. Exact recovery actions once `SKY-002` exists.
+3. Final Calendar-family behavior and artwork ownership.
 
 Only the product owner can resolve visual approval. No production implementation should begin from this candidate before that review.

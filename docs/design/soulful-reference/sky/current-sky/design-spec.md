@@ -143,7 +143,7 @@ The package must address every state below, even when several share one componen
 | Unavailable | May share the empty-state shell, but must remain semantically distinct because methodology, timezone, location, or source availability may require different guidance. |
 | Offline with cached content | May share the loaded layout. Add a persistent, quiet cached/offline disclosure and avoid implying freshness. |
 | Offline with no cached content | May share the unavailable/error status shell, but needs explicit offline recovery copy and must not resemble an empty celestial day. |
-| Failed/error | Distinct recovery treatment with a clear retry path. It may reuse the status shell but must not be conflated with unsupported methodology or legitimate empty content. |
+| Failed/error | Distinct recovery treatment. It may reuse the status shell but must not be conflated with unsupported methodology or legitimate empty content. Show an action only when a future pipeline contract exposes one. |
 
 At minimum, create a dedicated state board or annotated reference covering loading, empty, unavailable, both offline variants, and failed/error. The four main references may remain loaded/default. State annotations must explain appearance and compact/regular adaptation rather than requiring four full screenshots for every state unless review finds a meaningful compositional difference.
 
@@ -230,7 +230,7 @@ The approved package must account for:
 - Reduce Motion behavior for any future orbit, sparkle, or entrance motion;
 - safe areas, native back behavior, iPad pointer, and keyboard navigation.
 
-The HIG review target is 10/10. Current Current Sky visual score is 0/10 because no references exist yet, not because an interface was reviewed and failed. Reaching 10/10 requires approved references that satisfy safe areas, touch targets, Dark Mode, Dynamic Type, VoiceOver, native navigation, semantic color, native controls, standard gestures, and appropriate system/vector icon use.
+The HIG review remains qualitative at this stage. Approved references must satisfy safe areas, touch targets, Dark Mode, Dynamic Type, VoiceOver, native navigation, semantic color, native controls, standard gestures, and appropriate system/vector icon use. No numerical HIG score is assigned to static references.
 
 ## 11. Existing asset audit
 
@@ -281,19 +281,21 @@ DevelopmentD3Sample exists only to exercise typed states and future UI behavior.
 - Debug screenshots must disclose sample content visibly.
 - Release must contain no sample astrology payload.
 
-## 13. Design risks and unresolved product questions
+## 13. Candidate decisions and deferred product questions
 
-Resolve or explicitly defer these during visual review:
+Resolved for the current review candidate:
 
-1. **Hero content contract:** current Domain contracts expose a snapshot and events, but no dedicated editorial hero headline or celestial-character field. Decide whether the hero derives from a selected event or needs a future Humay-owned presentation contract; do not encode sample copy as the answer.
-2. **Current versus upcoming grouping:** SkySnapshot carries events without a frozen grouping or display limit. Define design behavior for ordering, current relevance, and the concise upcoming cutoff without turning it into provider logic.
-3. **System-label policy:** decide when astronomical/Western/Vedic labels are always visible, conditionally visible, or grouped, while preserving methodology clarity.
-4. **Reliability copy:** define user-facing wording for approximate and unavailable states. Keep unverified wording development-only and visible in Debug.
-5. **Observation context:** decide when timezone and location appear in the hero, event row, or detail entry so exact timing is not misleading.
-6. **Calendar entry behavior:** Calendar ownership is fixed under Sky, but the visual pass still needs to choose prominence and default month/week language.
-7. **Recovery actions:** retry, refresh, and settings/location guidance depend on future pipeline capabilities. References must not promise actions that contracts cannot later support.
-8. **Asset suitability:** IllustrationCurrentSky and other existing celestial art may be too generic or too prominent for the final hero. Approval must judge the composition, not reward reuse.
-9. **Long and localized content:** references must stress-test long event names, missing summaries, multiple methodologies, accessibility text sizes, and constrained iPad windows.
+- Astronomical, Western, and Vedic labels remain visible on event rows.
+- Intervals use natural start/end text rather than “Window.”
+- Observation context is one quiet secondary disclosure and is not repeated.
+- `IllustrationCalendarCelestial` remains candidate art pending Calendar-family review.
+- Long titles, missing summaries, mixed timing, mixed methodology, and constrained layouts remain represented in the references.
+
+Deferred beyond this visual pass:
+
+1. **Hero content contract:** current Domain contracts expose a snapshot and events, but no dedicated editorial hero headline or celestial-character field. The future source may be a Humay-owned presentation projection or an approved interpretation/catalog source; implementation must not derive astrology claims arbitrarily.
+2. **Recovery actions:** exact retry, refresh, settings, or passive-guidance behavior depends on `SKY-002`. References do not promise unsupported actions.
+3. **Calendar family:** final month/week behavior and artwork ownership remain open until the wider Calendar family is designed.
 
 ## 14. Visual review checklist
 

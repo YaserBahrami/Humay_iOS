@@ -266,12 +266,11 @@ function phoneReference(mode) {
     </g>
     ${sampleNotice(20, 116, theme)}
 
-    <g aria-label="Current celestial hero, illustrative copy">
+    <g aria-label="Current celestial hero">
       <rect x="20" y="150" width="390" height="158" rx="24" fill="url(#hero-gradient)" stroke="${mode === "light" ? "#2E3748" : theme.hairline}"/>
       <path d="M280 150c-18 42-10 105 38 158h92V150Z" fill="${theme.lavender}" opacity="0.08"/>
-      <text x="40" y="177" class="label" font-size="8.5" fill="${theme.lavender}">ILLUSTRATIVE EDITORIAL</text>
-      <text x="40" y="211" class="editorial" font-size="27" fill="${theme.heroText}">A waning Moon</text>
-      <text x="40" y="238" class="editorial" font-size="27" fill="${theme.heroText}">sets the rhythm</text>
+      <text x="40" y="205" class="editorial" font-size="27" fill="${theme.heroText}">A waning Moon</text>
+      <text x="40" y="234" class="editorial" font-size="27" fill="${theme.heroText}">sets the rhythm</text>
       <text x="40" y="269" class="ui" font-size="10.5" fill="${theme.heroSecondary}">Astronomical · Europe/Istanbul</text>
       <text x="40" y="287" class="mono" font-size="9.5" fill="${theme.heroSecondary}">Observed 09:00 TRT</text>
       ${celestialArt(338, 226, 0.66, theme, mode)}
@@ -298,7 +297,9 @@ function phoneReference(mode) {
       <text x="43" y="719" text-anchor="middle" class="label" font-size="7" fill="${theme.coralText}">AUG</text>
       <text x="43" y="740" text-anchor="middle" class="ui" font-size="17" font-weight="750" fill="${theme.ink}">15</text>
       <text x="80" y="720" class="ui" font-size="14" font-weight="700" fill="${theme.ink}">Mercury square Uranus</text>
-      <text x="80" y="740" class="mono" font-size="9.6" fill="${theme.secondary}">Window · Fri 21:00 – Sat 03:00</text>
+      <g aria-label="Mercury square Uranus, Western. From Friday at 21:00 until Saturday at 03:00.">
+        <text x="80" y="740" class="mono" font-size="9.6" fill="${theme.secondary}">Fri 21:00 – Sat 03:00</text>
+      </g>
       ${badge(328, 726, "Western", theme, theme.coral, 52)}
 
       <rect x="20" y="768" width="46" height="48" rx="14" fill="${theme.secondarySurface}" stroke="${theme.hairline}"/>
@@ -353,7 +354,7 @@ function iPadEventRow({ x, y, width, height, type, titleLines, summary, timing, 
     ${title}
     ${summaryText}
     <text x="${textX}" y="${detailY}" class="mono" font-size="11" font-weight="600" fill="${theme.secondary}">${escapeText(timing)}</text>
-    ${badge(x + width - systemWidth - 20, detailY - 14, system, theme, accent, systemWidth)}
+    ${badge(x + width - systemWidth - 52, detailY - 14, system, theme, accent, systemWidth)}
     <path d="M${x + width - 24} ${iconY - 5}l5 5-5 5" fill="none" stroke="${theme.tertiary}" stroke-width="2" stroke-linecap="round"/>
     ${isLast ? "" : `<line x1="${textX}" y1="${y + height}" x2="${x + width - 20}" y2="${y + height}" stroke="${theme.hairline}"/>`}
   </g>`;
@@ -374,38 +375,27 @@ function iPadReference(mode) {
     </g>
     ${sampleNotice(48, 185, theme, true)}
 
-    <g aria-label="Primary Current Sky region">
+    <g aria-label="Primary Current Sky hero">
       <rect x="48" y="232" width="454" height="326" rx="28" fill="url(#hero-gradient)" stroke="${mode === "light" ? "#2E3748" : theme.hairline}"/>
       <path d="M310 232c-31 76-19 219 92 326h100V232Z" fill="${theme.lavender}" opacity="0.08"/>
-      <text x="78" y="272" class="label" font-size="10" fill="${theme.lavender}">ILLUSTRATIVE EDITORIAL</text>
-      <text x="78" y="318" class="editorial" font-size="37" fill="${theme.heroText}">A waning Moon</text>
-      <text x="78" y="356" class="editorial" font-size="37" fill="${theme.heroText}">sets the rhythm</text>
-      <text x="78" y="394" class="ui" font-size="14" fill="${theme.heroSecondary}">Presentation-owned sample copy.</text>
-      <text x="78" y="463" class="ui" font-size="12.5" font-weight="650" fill="${theme.heroSecondary}">ASTRONOMICAL · EUROPE/ISTANBUL</text>
-      <text x="78" y="486" class="mono" font-size="12" fill="${theme.heroSecondary}">Observed 09:00 TRT</text>
+      <text x="78" y="306" class="editorial" font-size="37" fill="${theme.heroText}">A waning Moon</text>
+      <text x="78" y="346" class="editorial" font-size="37" fill="${theme.heroText}">sets the rhythm</text>
       ${celestialArt(391, 435, 0.98, theme, mode)}
     </g>
 
-    <g aria-label="Open Calendar" filter="url(#soft-shadow)">
-      <rect x="48" y="586" width="454" height="118" rx="24" fill="url(#calendar-gradient)" stroke="${theme.hairline}"/>
-      <image x="63" y="602" width="86" height="86" href="${calendarDataUri(mode)}"/>
-      <text x="156" y="626" class="ui" font-size="18" font-weight="760" fill="${theme.ink}">Calendar</text>
-      <text x="156" y="651" class="ui" font-size="13.5" fill="${theme.secondary}">Month, week, and complete timeline</text>
-      <text x="156" y="675" class="ui" font-size="12" font-weight="650" fill="${theme.coralText}">OPEN CALENDAR</text>
-      <circle cx="466" cy="645" r="22" fill="${theme.surface}" fill-opacity="0.76"/>
-      <path d="M462 640l5 5-5 5" fill="none" stroke="${theme.ink}" stroke-width="2"/>
+    <g aria-label="Europe/Istanbul, observed at 09:00 TRT">
+      <line x1="48" y1="582" x2="502" y2="582" stroke="${theme.hairline}"/>
+      <text x="48" y="608" class="ui" font-size="12.5" fill="${theme.secondary}">Europe/Istanbul · Observed 09:00 TRT</text>
     </g>
 
-    <g aria-label="Observation context">
-      <rect x="48" y="730" width="454" height="118" rx="22" fill="${theme.surface}" stroke="${theme.hairline}"/>
-      <circle cx="84" cy="766" r="20" fill="${theme.blue}" opacity="0.14"/>
-      <circle cx="84" cy="766" r="9" fill="none" stroke="${theme.blue}" stroke-width="1.8"/>
-      <path d="M75 766h18M84 757c4 5 4 13 0 18M84 757c-4 5-4 13 0 18" fill="none" stroke="${theme.blue}" stroke-width="1.2"/>
-      <text x="116" y="759" class="ui" font-size="15" font-weight="720" fill="${theme.ink}">Observation context</text>
-      <text x="116" y="782" class="ui" font-size="13" fill="${theme.secondary}">Times use Europe/Istanbul. Date-only events</text>
-      <text x="116" y="802" class="ui" font-size="13" fill="${theme.secondary}">never receive a fabricated clock time.</text>
-      <line x1="76" y1="820" x2="474" y2="820" stroke="${theme.hairline}"/>
-      <text x="76" y="839" class="ui" font-size="10.5" fill="${theme.tertiary}">Context stays factual; it does not become another card wall.</text>
+    <g aria-label="Open Calendar" filter="url(#soft-shadow)">
+      <rect x="48" y="638" width="454" height="118" rx="24" fill="url(#calendar-gradient)" stroke="${theme.hairline}"/>
+      <image x="63" y="654" width="86" height="86" href="${calendarDataUri(mode)}"/>
+      <text x="156" y="678" class="ui" font-size="18" font-weight="760" fill="${theme.ink}">Calendar</text>
+      <text x="156" y="703" class="ui" font-size="13.5" fill="${theme.secondary}">Month, week, and complete timeline</text>
+      <text x="156" y="727" class="ui" font-size="12" font-weight="650" fill="${theme.coralText}">OPEN CALENDAR</text>
+      <circle cx="466" cy="697" r="22" fill="${theme.surface}" fill-opacity="0.76"/>
+      <path d="M462 692l5 5-5 5" fill="none" stroke="${theme.ink}" stroke-width="2"/>
     </g>
 
     <text x="${rightX}" y="254" class="editorial" font-size="27" fill="${theme.ink}">Happening now</text>
@@ -424,7 +414,9 @@ function iPadReference(mode) {
       <line x1="${rightX + 45}" y1="714" x2="${rightX + 45}" y2="881" stroke="${theme.hairline}" stroke-width="2"/>
       <circle cx="${rightX + 45}" cy="720" r="9" fill="${theme.coralText}"/>
       <text x="${rightX + 72}" y="716" class="ui" font-size="15" font-weight="720" fill="${theme.ink}">Mercury square Uranus</text>
-      <text x="${rightX + 72}" y="739" class="mono" font-size="11" fill="${theme.secondary}">Window · Fri 21:00 – Sat 03:00</text>
+      <g aria-label="Mercury square Uranus, Western. From Friday at 21:00 until Saturday at 03:00.">
+        <text x="${rightX + 72}" y="739" class="mono" font-size="11" fill="${theme.secondary}">Fri 21:00 – Sat 03:00</text>
+      </g>
       ${badge(rightX + rightWidth - 82, 711, "Western", theme, theme.coral, 58)}
       <line x1="${rightX + 72}" y1="762" x2="${rightX + rightWidth - 20}" y2="762" stroke="${theme.hairline}"/>
 
@@ -516,9 +508,9 @@ function statePanel({ x, y, width, height, mode, index, name, kind, title, detai
     component = `<rect x="${x + 24}" y="${componentY}" width="${width - 48}" height="${componentHeight}" rx="20" fill="${theme.surface}" stroke="${theme.hairline}"/>
       ${stateIcon(kind, x + width / 2, componentY + 61, theme)}
       <text x="${x + width / 2}" y="${componentY + 111}" text-anchor="middle" class="editorial" font-size="25" fill="${theme.ink}">${escapeText(title)}</text>
-      <text x="${x + width / 2}" y="${componentY + 143}" text-anchor="middle" class="ui" font-size="12.5" fill="${theme.secondary}">${escapeText(detail[0])}</text>
-      ${detail[1] ? `<text x="${x + width / 2}" y="${componentY + 162}" text-anchor="middle" class="ui" font-size="12.5" fill="${theme.secondary}">${escapeText(detail[1])}</text>` : ""}
-      ${kind === "empty" ? `<rect x="${x + width / 2 - 70}" y="${componentY + 178}" width="140" height="36" rx="18" fill="${theme.secondarySurface}"/><text x="${x + width / 2}" y="${componentY + 201}" text-anchor="middle" class="ui" font-size="12.5" font-weight="700" fill="${theme.ink}">Open Calendar</text>` : ""}`;
+      <text x="${x + width / 2}" y="${componentY + 143}" text-anchor="middle" class="ui" font-size="12.5" fill="${theme.secondary}">${escapeText(detail[0])}</text>${detail[1] ? `
+      <text x="${x + width / 2}" y="${componentY + 162}" text-anchor="middle" class="ui" font-size="12.5" fill="${theme.secondary}">${escapeText(detail[1])}</text>` : ""}${kind === "empty" ? `
+      <rect x="${x + width / 2 - 70}" y="${componentY + 172}" width="140" height="44" rx="22" fill="${theme.secondarySurface}"/><text x="${x + width / 2}" y="${componentY + 199}" text-anchor="middle" class="ui" font-size="12.5" font-weight="700" fill="${theme.ink}">Open Calendar</text>` : ""}`;
   }
 
   return `<g>
@@ -527,7 +519,6 @@ function statePanel({ x, y, width, height, mode, index, name, kind, title, detai
     <text x="${x + width - 24}" y="${y + 31}" text-anchor="end" class="label" font-size="8" fill="${theme.tertiary}">${darkLabel}</text>
     <text x="${x + 24}" y="${y + 63}" class="ui" font-size="13" fill="${theme.secondary}">${escapeText(note)}</text>
     ${component}
-    ${kind === "failed" ? `<text x="${x + 24}" y="${y + height - 18}" class="ui" font-size="10" fill="${theme.tertiary}">Action slot stays empty until the future pipeline exposes recovery.</text>` : ""}
   </g>`;
 }
 
@@ -538,8 +529,8 @@ function stateBoard() {
     { name: "Empty", kind: "empty", mode: "dark", title: "Quiet sky right now", detail: ["No notable events are available", "for this period."], note: "Legitimate empty result; Calendar remains useful." },
     { name: "Unavailable", kind: "unavailable", mode: "light", title: "Current Sky unavailable", detail: ["This methodology or source", "isn’t available yet."], note: "Deliberate limitation, not missing UI." },
     { name: "Offline + cached", kind: "offline", mode: "dark", title: "", detail: [], note: "Loaded structure remains; freshness disclosure persists.", cached: true },
-    { name: "Offline + no cache", kind: "offline", mode: "light", title: "No saved sky available", detail: ["Reconnect to view current events.", "No recovery promise is invented."], note: "Distinct from a valid empty celestial day." },
-    { name: "Failed / error", kind: "failed", mode: "dark", title: "Sky couldn’t load", detail: ["The request ended without", "usable Current Sky content."], note: "Failure stays distinct; recovery remains contract-led." }
+    { name: "Offline + no cache", kind: "offline", mode: "light", title: "No saved sky available", detail: ["Reconnect to view current events."], note: "Distinct from a valid empty celestial day." },
+    { name: "Failed / error", kind: "failed", mode: "dark", title: "Sky couldn’t load", detail: ["The current sky couldn’t be loaded."], note: "No action shown; recovery remains contract-led." }
   ];
   const panelMarkup = panels.map((panel, index) => statePanel({
     ...panel,
@@ -558,7 +549,7 @@ function stateBoard() {
     body: `<rect width="1440" height="1120" fill="#EFE9E2"/>
       <text x="48" y="63" class="label" font-size="11" fill="${boardTheme.coralText}">D3.1 · REVIEW CANDIDATE — NOT APPROVED</text>
       <text x="48" y="111" class="editorial" font-size="43" fill="${boardTheme.ink}">Current Sky state language</text>
-      <text x="48" y="140" class="ui" font-size="15" fill="${boardTheme.secondary}">One quiet component family; semantics change through icon, title, copy, and freshness—not color alone.</text>
+      <text x="48" y="140" class="ui" font-size="15" fill="${boardTheme.secondary}">External notes sit above each simulated product surface; user-facing semantics never depend on color alone.</text>
       ${panelMarkup}
       <text x="1392" y="1090" text-anchor="end" class="ui" font-size="11" fill="${boardTheme.tertiary}">Mixed Light/Dark examples · compact-width components shown</text>`
   });
