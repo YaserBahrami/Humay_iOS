@@ -4,7 +4,7 @@ Last updated: **2026-08-12**
 
 ## Active priorities
 
-1. Verify and reconcile the implemented D1 onboarding slice PROFILE-001 through PROFILE-005.
+1. Re-run full local verification after the IOS-005 / PROFILE-005 audit cleanup, then proceed to IOS-006.
 2. Preserve local durable profile/settings behavior while later feature families remain behind their design gates.
 3. Preserve the completed Soulful Celestial DesignSystem foundation while later feature families remain behind their cross-device design gates.
 4. Continue Phase 00 provider/cache/access architecture in parallel where it does not block the app foundation.
@@ -48,9 +48,9 @@ Details: [`../architecture/PRODUCTION_BASELINE_RESET_2026-08-12.md`](../architec
 
 **IN PROGRESS. IOS-001 through IOS-005 are complete; IOS-006 remains TODO.**
 
-Current verified foundation:
+Current foundation:
 
-- representative iPhone and iPad Debug simulator builds pass;
+- representative iPhone and iPad Debug simulator builds passed before the audit cleanup;
 - Swift 6 complete strict concurrency, iOS/iPadOS 18.0 and device families `1,2` remain effective;
 - Humay naming, shared scheme and centralized Debug/Release xcconfig inheritance remain intact;
 - `HumayApp` explicitly owns the small `AppEnvironment` composition boundary;
@@ -61,9 +61,10 @@ Current verified foundation:
 - the DesignSystem showcase exists only in Debug previews for representative iPhone/iPad Light/Dark verification and is not a runtime route;
 - Data now contains only the production-owned local persistence slice justified by
   IOS-005/PROFILE-005;
-- Swift Testing, the UI launch test and nomenclature check pass; the prior layering
-  violation from the Welcome illustration color literal has been reconciled by moving
-  that literal into `DesignSystem/Tokens`;
+- the last full Codex run passed Swift Testing, UI tests and nomenclature; the audit
+  cleanup made persistence errors implementation-neutral, added semantic payload
+  validation/tests and moved the Welcome illustration color literal into
+  `DesignSystem/Tokens`; full local verification must be rerun before IOS-006;
 - no third-party dependency or provider-backed feature UI was added.
 
 The first production feature slice is now implemented separately under Phase 03:
