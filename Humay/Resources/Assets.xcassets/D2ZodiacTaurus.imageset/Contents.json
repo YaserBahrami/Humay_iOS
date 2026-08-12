@@ -1,0 +1,22 @@
+{
+  "images": [
+    {
+      "filename": "D2ZodiacTaurus-light.pdf",
+      "idiom": "universal"
+    },
+    {
+      "appearances": [
+        {
+          "appearance": "luminosity",
+          "value": "dark"
+        }
+      ],
+      "filename": "D2ZodiacTaurus-dark.pdf",
+      "idiom": "universal"
+    }
+  ],
+  "info": {
+    "author": "xcode",
+    "version": 1
+  }
+}
