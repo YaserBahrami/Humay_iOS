@@ -23,15 +23,19 @@ struct D2WordmarkHeader: View {
     let profileName: String
     let profileAction: () -> Void
 
+    @Environment(\.colorScheme) private var colorScheme
+
     var body: some View {
         HStack(spacing: HumaySpacing.large) {
             if let title {
                 Text(title)
                     .font(HumayTypography.editorialTitle)
+                    .foregroundStyle(Color.humayTextPrimary)
                     .accessibilityAddTraits(.isHeader)
             } else {
                 Text("humay")
                     .font(HumayTypography.wordmark)
+                    .foregroundStyle(wordmarkColor)
                     .accessibilityLabel("Humay")
                     .accessibilityAddTraits(.isHeader)
                     .accessibilityIdentifier("main.today.wordmark")
@@ -40,7 +44,7 @@ struct D2WordmarkHeader: View {
             Spacer(minLength: HumaySpacing.medium)
 
             Button(action: profileAction) {
-                profileArtwork
+                profileFallback
                     .frame(width: 44, height: 44)
                     .clipShape(Circle())
                     .overlay(Circle().stroke(Color.humayHairline))
@@ -52,22 +56,10 @@ struct D2WordmarkHeader: View {
             .accessibilityIdentifier("main.profile.button")
         }
         .frame(minHeight: HumayMetrics.minimumHitTarget)
-        .foregroundStyle(Color.humayTextPrimary)
     }
 
-    @ViewBuilder
-    private var profileArtwork: some View {
-#if DEBUG
-        if profileName.caseInsensitiveCompare("Yaser") == .orderedSame {
-            Image(D2Artwork.sampleMale)
-                .resizable()
-                .scaledToFill()
-        } else {
-            profileFallback
-        }
-#else
-        profileFallback
-#endif
+    private var wordmarkColor: Color {
+        colorScheme == .dark ? .humayCoral : .humayTextPrimary
     }
 
     private var profileFallback: some View {
@@ -76,8 +68,8 @@ struct D2WordmarkHeader: View {
                 .fill(
                     LinearGradient(
                         colors: [
-                            Color.humayCelestialBlue.opacity(0.75),
-                            Color.humayLavender.opacity(0.85)
+                            Color.humayCelestialBlue.opacity(0.72),
+                            Color.humayLavender.opacity(0.86)
                         ],
                         startPoint: .topLeading,
                         endPoint: .bottomTrailing
@@ -207,7 +199,7 @@ struct HumayCosmicSurface<Content: View>: View {
             .overlay {
                 RoundedRectangle(cornerRadius: HumayRadius.surface)
                     .strokeBorder(
-                        Color.humayHairline.opacity(colorScheme == .light ? 0.35 : 1),
+                        Color.humayHairline.opacity(colorScheme == .light ? 0.30 : 0.75),
                         lineWidth: HumayMetrics.hairline(displayScale: displayScale)
                     )
             }
@@ -216,7 +208,7 @@ struct HumayCosmicSurface<Content: View>: View {
     private var background: some ShapeStyle {
         LinearGradient(
             colors: colorScheme == .light
-                ? [Color.humayTextPrimary, Color.humayTextPrimary.opacity(0.92)]
+                ? [Color.humayTextPrimary, Color.humayTextPrimary.opacity(0.93)]
                 : [Color.humayRaisedSurface, Color.humaySurface],
             startPoint: .topLeading,
             endPoint: .bottomTrailing
@@ -238,7 +230,17 @@ struct HumayCategoryIcon: View {
             .font(.system(size: size * 0.36, weight: .semibold))
             .foregroundStyle(accent.color)
             .frame(width: size, height: size)
-            .background(accent.color.opacity(0.16), in: Circle())
+            .background(
+                LinearGradient(
+                    colors: [
+                        accent.color.opacity(0.20),
+                        accent.color.opacity(0.10)
+                    ],
+                    startPoint: .topLeading,
+                    endPoint: .bottomTrailing
+                ),
+                in: Circle()
+            )
             .accessibilityHidden(true)
     }
 }
@@ -249,26 +251,11 @@ struct CirclePersonMedallion: View {
     var size: CGFloat = 88
 
     var body: some View {
-        portraitArtwork
+        portraitFallback
             .frame(width: size, height: size)
             .clipShape(Circle())
             .overlay(Circle().stroke(accent.color.opacity(0.34), lineWidth: 1))
             .accessibilityHidden(true)
-    }
-
-    @ViewBuilder
-    private var portraitArtwork: some View {
-#if DEBUG
-        if let assetName = D2Artwork.samplePortraitName(for: person) {
-            Image(assetName)
-                .resizable()
-                .scaledToFill()
-        } else {
-            portraitFallback
-        }
-#else
-        portraitFallback
-#endif
     }
 
     private var portraitFallback: some View {
@@ -276,18 +263,27 @@ struct CirclePersonMedallion: View {
             Circle()
                 .fill(
                     LinearGradient(
-                        colors: [accent.color.opacity(0.75), Color.humayRaisedSurface],
+                        colors: [accent.color.opacity(0.72), Color.humayRaisedSurface],
                         startPoint: .topLeading,
                         endPoint: .bottomTrailing
                     )
                 )
 
-            Image(systemName: "person.crop.circle.fill")
-                .resizable()
-                .scaledToFit()
-                .foregroundStyle(Color.humayTextPrimary.opacity(0.84))
-                .padding(size * 0.08)
+            Text(personInitials)
+                .font(.system(size: size * 0.30, weight: .semibold, design: .rounded))
+                .foregroundStyle(Color.humayTextPrimary)
         }
+    }
+
+    private var personInitials: String {
+        person.name
+            .split(whereSeparator: \.isWhitespace)
+            .prefix(2)
+            .compactMap(\.first)
+            .map(String.init)
+            .joined()
+            .uppercased()
+            .nonempty ?? "H"
     }
 }
 
@@ -304,8 +300,8 @@ struct OrbitPlanetArt: View {
     var body: some View {
         D2ArtworkImage(name: D2Artwork.cosmicPlanet)
             .frame(
-                width: compact ? 82 : 122,
-                height: compact ? 64 : 92
+                width: compact ? 108 : 132,
+                height: compact ? 78 : 98
             )
     }
 }
@@ -313,21 +309,21 @@ struct OrbitPlanetArt: View {
 struct CrystalBallArt: View {
     var body: some View {
         D2ArtworkImage(name: D2Artwork.crystalBall)
-            .frame(width: 76, height: 82)
+            .frame(width: 86, height: 86)
     }
 }
 
 struct RoastFireArt: View {
     var body: some View {
-        D2ArtworkImage(name: D2Artwork.roastFire)
-            .frame(width: 82, height: 72)
+        D2ArtworkImage(name: D2Artwork.roastMode)
+            .frame(width: 88, height: 76)
     }
 }
 
 struct RoastPlanetArt: View {
     var body: some View {
-        D2ArtworkImage(name: D2Artwork.roastPlanet)
-            .frame(width: 90, height: 72)
+        D2ArtworkImage(name: D2Artwork.roastMode)
+            .frame(width: 90, height: 78)
     }
 }
 
@@ -338,6 +334,14 @@ struct ZodiacSignArt: View {
     var body: some View {
         D2ArtworkImage(name: sign.d2ArtworkAssetName)
             .frame(width: size, height: size)
+    }
+}
+
+struct HumayIllustration: View {
+    let name: String
+
+    var body: some View {
+        D2ArtworkImage(name: name)
     }
 }
 
@@ -353,55 +357,38 @@ private struct D2ArtworkImage: View {
 }
 
 enum D2Artwork {
-    static let todayCoffee = "D2TodayCoffee"
-    static let cosmicPlanet = "D2CosmicPlanet"
-    static let crystalBall = "D2CrystalBall"
-    static let roastFire = "D2RoastFire"
-    static let roastPlanet = "D2RoastPlanet"
-    static let sampleMale = "D2SampleMale"
-    static let sampleFemale = "D2SampleFemale"
+    static let todayCoffee = "IllustrationCosmicCoffee"
+    static let cosmicPlanet = "IllustrationCosmicWeather"
+    static let crystalBall = "IllustrationDailyTipCrystalBall"
+    static let roastMode = "IllustrationRoastMode"
 
     static let decorativeAssetNames = [
         todayCoffee,
         cosmicPlanet,
         crystalBall,
-        roastFire,
-        roastPlanet,
-        sampleMale,
-        sampleFemale
+        roastMode
     ]
 
     static var allAdaptiveAssetNames: [String] {
         decorativeAssetNames + WesternZodiacSign.allCases.map(\.d2ArtworkAssetName)
-    }
-
-    static func samplePortraitName(for person: CirclePerson) -> String? {
-        switch person.id.uuidString.lowercased() {
-        case "11111111-1111-4111-8111-111111111111":
-            sampleMale
-        case "22222222-2222-4222-8222-222222222222":
-            sampleFemale
-        default:
-            nil
-        }
     }
 }
 
 extension WesternZodiacSign {
     var d2ArtworkAssetName: String {
         switch self {
-        case .aries: "D2ZodiacAries"
-        case .taurus: "D2ZodiacTaurus"
-        case .gemini: "D2ZodiacGemini"
-        case .cancer: "D2ZodiacCancer"
-        case .leo: "D2ZodiacLeo"
-        case .virgo: "D2ZodiacVirgo"
-        case .libra: "D2ZodiacLibra"
-        case .scorpio: "D2ZodiacScorpio"
-        case .sagittarius: "D2ZodiacSagittarius"
-        case .capricorn: "D2ZodiacCapricorn"
-        case .aquarius: "D2ZodiacAquarius"
-        case .pisces: "D2ZodiacPisces"
+        case .aries: "ZodiacAries"
+        case .taurus: "ZodiacTaurus"
+        case .gemini: "ZodiacGemini"
+        case .cancer: "ZodiacCancer"
+        case .leo: "ZodiacLeo"
+        case .virgo: "ZodiacVirgo"
+        case .libra: "ZodiacLibra"
+        case .scorpio: "ZodiacScorpio"
+        case .sagittarius: "ZodiacSagittarius"
+        case .capricorn: "ZodiacCapricorn"
+        case .aquarius: "ZodiacAquarius"
+        case .pisces: "ZodiacPisces"
         }
     }
 }
