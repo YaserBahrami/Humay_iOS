@@ -229,8 +229,6 @@ private struct ProfileRevealHero: View {
     let height: CGFloat
     let compact: Bool
 
-    @Environment(\.colorScheme) private var colorScheme
-
     var body: some View {
         let verticalPadding: CGFloat = compact ? 8 : 12
         let titleBudget: CGFloat = compact ? 34 : 44
@@ -238,10 +236,7 @@ private struct ProfileRevealHero: View {
         let artworkHeight = max(height - (verticalPadding * 2) - titleBudget - spacing, 82)
 
         VStack(spacing: spacing) {
-            Image("ProfileRevealConstellationPath")
-                .renderingMode(.original)
-                .resizable()
-                .scaledToFit()
+            HumayIllustration(name: "IllustrationProfileReveal")
                 .frame(maxWidth: .infinity)
                 .frame(height: artworkHeight)
                 .accessibilityHidden(true)
@@ -257,17 +252,13 @@ private struct ProfileRevealHero: View {
         .padding(.vertical, verticalPadding)
         .frame(height: height)
         .frame(maxWidth: .infinity)
-        .background(heroSurface, in: RoundedRectangle(cornerRadius: HumayRadius.feature))
+        .background(Color.humayRaisedSurface, in: RoundedRectangle(cornerRadius: HumayRadius.feature))
         .overlay {
             RoundedRectangle(cornerRadius: HumayRadius.feature)
                 .stroke(Color.humayHairline, lineWidth: 1)
         }
         .accessibilityElement(children: .contain)
         .accessibilityIdentifier("onboarding.profileReveal.hero")
-    }
-
-    private var heroSurface: Color {
-        colorScheme == .light ? .humayRaisedSurface : .humayRaisedSurface
     }
 }
 
