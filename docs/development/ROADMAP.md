@@ -2,24 +2,32 @@
 
 This roadmap is dependency-driven rather than date-driven. Product/access authority is [`PRODUCT_ACCESS_MODEL.md`](PRODUCT_ACCESS_MODEL.md). Visual work is governed by [`../design/DESIGN_AUTHORITY.md`](../design/DESIGN_AUTHORITY.md) and [`../design/SCREEN_DESIGN_PLAN.md`](../design/SCREEN_DESIGN_PLAN.md).
 
-The old mock-first runtime was removed during the 2026-08-12 production-baseline reset. Production implementation now starts from a minimal iPhone + iPad project foundation.
+The old mock-first runtime was removed during the 2026-08-12 production-baseline reset. Production implementation starts from a minimal iPhone + iPad foundation.
 
 ## Shipping phase summary
 
 | Phase | Name | Primary outcome | Depends on |
 |---|---|---|---|
-| 00 | Technical Architecture | Two-path content architecture, provider/cache contracts and implementation plan | Product/access + visual authority |
-| 01 | Apple Platform Foundation | iPhone+iPad app shell, cross-device design system, navigation, persistence/test scaffolding | 00 + approved visual system |
-| 02 | Astrology Calculation Foundation | Typed provider-independent calculation contracts, validation/provenance and precision adapters | 00–01 |
-| 03 | Onboarding & Local Profile | Four-beat onboarding, birth-date capture, local profile persistence | 01–02 + D1 |
-| 04 | Chart | Provider-backed natal chart with Rewarded/Premium access and cache | 02–03 + D4 |
-| 05 | Today | Free catalog + precise personalized Today upgrade | 02–04 + D2 |
-| 06 | Sky & Calendar | Current sky/event calendar and appropriate caching | 02–05 + D3 |
-| 07 | Circle & Compatibility | Saved People, free 144-key Western compatibility, precise upgrade | 02–06 + D2 |
-| 08 | Ask the Stars | Contextual provider-backed Q&A with explicit access/cost/safety boundary | 02–07 + D5 |
-| 09 | Monetization & Generation Entitlements | Rewarded one-generation semantics, Premium, cache-aware access | 01–08 + D7 |
-| 10 | Sharing, Widgets & Notifications | Share cards, widgets, Normal-register notifications | 05–09 + D8 |
-| 11 | Hardening & Release | Cross-device accessibility, performance, privacy, cost controls, QA and launch readiness | all phases + D9 |
+| 00 | Technical Architecture | Free/precision provider, backend, cache, entitlement, privacy and cost contracts | Product/access + visual authority |
+| 01 | Apple Platform Foundation | SwiftUI + Clean Architecture app shell, cross-device design-system foundation, root navigation/state, test/config/persistence boundaries | Phase 00 foundation start gate + current design authority |
+| 02 | Astrology Calculation Foundation | Typed provider-independent calculation contracts, validation/provenance and precision adapters | relevant Phase 00 provider contracts + Phase 01 |
+| 03 | Onboarding & Local Profile | Four-beat onboarding, birth-date/tradition capture, local profile persistence, later optional time/place editing | Phase 01 + approved D1 + required reveal methodology |
+| 04 | Chart | Provider-backed natal chart with Rewarded/Premium access and cache | Phase 02 + Phase 03 + D4 |
+| 05 | Today | Free catalog + precise personalized Today upgrade | Phase 02 + profile foundation + D2 |
+| 06 | Sky & Calendar | Current sky/event calendar and appropriate caching | Phase 02 + D3 |
+| 07 | Circle & Compatibility | Saved People, free 144-key Western compatibility, precise upgrade | profile foundation + relevant Phase 02 contracts + D2 |
+| 08 | Ask the Stars | Contextual provider-backed Q&A with explicit access/cost/safety boundary | relevant provider/context foundations + D5 |
+| 09 | Monetization & Generation Entitlements | Rewarded one-generation semantics, Premium, cache-aware access | Phase 00 entitlement contract + implemented provider-backed features + D7 |
+| 10 | Sharing, Widgets & Notifications | Share cards, widgets, Normal-register notifications | owning feature phases + D8 |
+| 11 | Hardening & Release | Cross-device accessibility, performance, privacy, cost controls, QA and launch readiness | all shipping phases + D9 |
+
+Phase numbers express ownership, not an artificial requirement that every earlier feature be finished before any later independent slice can begin. Explicit task dependencies inside phase files are authoritative.
+
+## Parallel-work rule
+
+Phase 01 platform foundation may proceed while unfinished provider/backend details remain in Phase 00, because the current Clean Architecture, product-access, device and design boundaries are already sufficient for that work.
+
+Provider-backed feature implementation may not invent unresolved Phase 00 contracts.
 
 ## Visual design track — iPhone + iPad, Light + Dark
 
@@ -36,11 +44,11 @@ The old mock-first runtime was removed during the 2026-08-12 production-baseline
 | D8 | Sharing + Widgets + States | Share system, widget family, loading/empty/error/offline references |
 | D9 | Brand + Handoff | Light/Dark brand behavior, launch, token boards, asset catalog, iPhone/iPad contact sheets and reconciliation |
 
-Every shipping screen requires iPhone Light/Dark + iPad Light/Dark. iPad landscape/adaptive behavior must be documented when the composition changes.
+Every shipping screen requires iPhone Light/Dark + iPad Light/Dark. iPad landscape/adaptive behavior must be documented when composition changes.
 
 ## Design → implementation rule
 
-Architecture/provider work may continue while design is in progress. User-facing production UI follows this cadence:
+Architecture and shared foundation work may continue while screen design is in progress. Feature-specific production UI follows this cadence:
 
 1. design next family for iPhone+iPad, Light+Dark;
 2. approve;
@@ -49,7 +57,7 @@ Architecture/provider work may continue while design is in progress. User-facing
 5. reconcile implementation;
 6. continue.
 
-Do not let production UI get ahead of approved cross-device references.
+Do not let feature-specific production UI get ahead of approved cross-device references.
 
 ## Product architecture invariant
 
@@ -64,25 +72,25 @@ No engineering phase or UI design may blur this boundary.
 
 ### Milestone A — Architecture + foundation
 
-Complete Phases 00–03 and D0–D1.
+Complete the Phase 01 platform foundation, required Phase 00 architecture contracts, Phase 03 onboarding/profile slice, and D0–D1 cross-device design requirements.
 
-Expected result: cross-device design-system/app foundation, profile/birth storage, backend/provider/cache boundaries and approved four-step onboarding on iPhone+iPad in both appearances.
+Expected result: buildable iPhone+iPad foundation, current design system, durable profile/birth storage, backend/provider/cache boundaries and approved four-step onboarding.
 
 ### Milestone B — Core value build
 
-Complete supported portions of Phases 04–06 and D2–D4.
+Complete supported Chart/Today/Sky slices and D2–D4.
 
 Expected result: Rewarded/Premium Chart, Free/precise Today, validated Sky/Calendar sources and approved core UI across iPhone+iPad.
 
 ### Milestone C — Relationship + contextual build
 
-Complete supported portions of Phases 07–08 and D2/D5.
+Complete Circle/Compatibility and Ask with D2/D5.
 
 Expected result: Saved People, free Western 12×12 compatibility, precise compatibility and Ask over structured context.
 
 ### Milestone D — Monetized beta
 
-Complete Phases 09–10 and D6–D8.
+Complete monetization plus sharing/widgets/notifications and D6–D8.
 
 Expected result: Free/Rewarded/Premium behavior, cached reopening, settings, sharing/widgets/notifications and access UI in both appearances and device families.
 
@@ -92,7 +100,7 @@ Complete Phase 11, D9 and all methodology gates for included production features
 
 ## Dependency rules
 
-- Free content generation/publishing is backend/content-pipeline responsibility, not an on-device LLM feature.
+- Free content generation/publishing is a backend/content-pipeline responsibility, not an on-device LLM feature.
 - Calculation facts and interpretation text are separately versioned/cacheable.
 - No interpretation model may fabricate calculation facts.
 - Preview/sample values are never production truth.

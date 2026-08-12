@@ -1,14 +1,14 @@
 # Humay Cross-Device Screen Design Plan
 
 **Status:** Current and only screen-design plan  
-**Active branch:** `design/soulful-light-dark`  
+**Repository authority:** `main`  
 **Visual authority:** [`SOULFUL_CELESTIAL_DESIGN_DIRECTION.md`](SOULFUL_CELESTIAL_DESIGN_DIRECTION.md)
 
 ## Goal
 
 Design every Humay product surface in the selected Soulful Celestial direction and produce an intentional cross-device reference set before final implementation is frozen.
 
-Every shipping screen now requires:
+Every shipping screen requires:
 
 - iPhone Light;
 - iPhone Dark;
@@ -50,6 +50,8 @@ screen-name/
   elements/
 ```
 
+Only current/approved references belong in the active reference tree. Superseded screen drafts should be removed; git history is the archive.
+
 ## D0 — Visual anchor lock
 
 | Screen | iPhone | iPad | Status |
@@ -75,8 +77,8 @@ Birth time and birth location are not onboarding steps.
 
 | Step | iPhone | iPad | Status |
 |---|---|---|---|
-| Welcome | Light + Dark approved | pending | backfill iPad before cross-device implementation freeze |
-| Birth Date | Light + Dark approved + documented package | pending | backfill iPad before cross-device implementation freeze |
+| Welcome | Light + Dark approved | pending | backfill iPad before cross-device visual freeze |
+| Birth Date | Light + Dark approved + documented package | pending | backfill iPad before cross-device visual freeze |
 | Tradition | next | next | design iPhone + iPad together |
 | Profile Reveal | pending | pending | design iPhone + iPad together |
 
@@ -189,4 +191,4 @@ Finalize wordmark, mark/app icon, launch Light/Dark, final token board, componen
 6. commit implementation evidence and notes;
 7. move to the next family.
 
-Do not let production UI implementation get ahead of approved cross-device references.
+Architecture and shared foundation work may proceed before every screen is designed, but **feature-specific production UI must not get ahead of approved cross-device references**.

@@ -2,15 +2,22 @@
   "id": "onboarding.birthDate",
   "phase": "D1",
   "step": 2,
-  "status": "readyForReview",
-  "branch": "design/soulful-light-dark",
+  "status": "approvedIPhone_ipadPending",
+  "repositoryAuthority": "main",
   "route": {
     "previous": "onboarding.welcome",
     "next": "onboarding.tradition"
   },
+  "deviceStatus": {
+    "iphoneLight": "approved",
+    "iphoneDark": "approved",
+    "ipadLight": "pending",
+    "ipadDark": "pending",
+    "ipadAdaptiveNotes": "pending"
+  },
   "productBehavior": {
     "input": "birthDate",
-    "picker": "nativeWheelDatePicker",
+    "picker": "nativeDateInputSemantics",
     "earliestDate": "1900-01-01",
     "latestDate": "today",
     "collectBirthTime": false,
@@ -77,6 +84,7 @@
     "colorOnlySelection": false
   },
   "notes": [
+    "iPhone Light/Dark are approved; iPad companion references are required before cross-device visual freeze.",
     "Reference SVGs use the canonical repository design tokens.",
     "Reference SVG elements are not automatically production assets.",
     "Keep dark mode intentionally composed rather than inverted.",

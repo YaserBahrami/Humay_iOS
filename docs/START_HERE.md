@@ -1,0 +1,75 @@
+# Humay — Start Here
+
+**Status:** current production documentation index as of 2026-08-12.
+
+`main` is the repository source of truth. Feature branches are temporary implementation workspaces and must not become separate product/design authorities.
+
+## Read in this order
+
+1. [`development/STATUS.md`](development/STATUS.md) — what is active now.
+2. [`development/ROADMAP.md`](development/ROADMAP.md) — dependency-driven implementation sequence.
+3. [`development/PRODUCT_ACCESS_MODEL.md`](development/PRODUCT_ACCESS_MODEL.md) — Free / Rewarded Access / Premium cost and entitlement rules.
+4. [`architecture/IOS_ARCHITECTURE.md`](architecture/IOS_ARCHITECTURE.md) — SwiftUI + Clean Architecture boundaries for iPhone and iPad.
+5. [`design/DESIGN_AUTHORITY.md`](design/DESIGN_AUTHORITY.md) — exclusive visual/product-device authority.
+6. [`design/SOULFUL_CELESTIAL_DESIGN_DIRECTION.md`](design/SOULFUL_CELESTIAL_DESIGN_DIRECTION.md) — current visual system.
+7. [`design/SCREEN_DESIGN_PLAN.md`](design/SCREEN_DESIGN_PLAN.md) — D0–D9 screen/design sequence.
+8. The approved screen package under [`design/soulful-reference/`](design/soulful-reference/README.md) for the feature being implemented.
+9. [`development/METHODOLOGY_TRACK.md`](development/METHODOLOGY_TRACK.md) when a feature depends on astrology conventions that are not yet signed off.
+
+## Current implementation state
+
+The old generated mock-first application was removed before production development. The Xcode project is intentionally small and ready for a clean production foundation.
+
+Current engineering work is **Phase 01 — Apple Platform Foundation**, while provider/cache/backend details from Phase 00 may continue in parallel where they do not block the app foundation.
+
+Foundation target:
+
+- Swift 6 + strict concurrency;
+- SwiftUI;
+- Clean Architecture dependency direction: `App → Presentation → Domain ← Data`;
+- explicit composition/dependency injection;
+- iPhone + iPad from the start;
+- intentional Light + Dark appearance;
+- no vendor/provider models in Presentation or Domain;
+- no speculative feature implementation ahead of approved design references.
+
+See [`development/phases/01-ios-foundation.md`](development/phases/01-ios-foundation.md).
+
+## Current design state
+
+The only active direction is **Soulful Celestial — cosmic editorial with selective cute line/flat celestial illustration**.
+
+Canonical onboarding is exactly four beats:
+
+1. Welcome
+2. Birth Date
+3. Tradition
+4. Profile Reveal
+
+Birth time and birth location are not onboarding steps. They can be added later from Profile for precision-dependent features.
+
+Current approved references:
+
+- D0 iPhone Light/Dark anchors: Today, Daily Horoscope, Compatibility;
+- D1 Welcome iPhone Light/Dark;
+- D1 Birth Date iPhone Light/Dark + repository package.
+
+Before production visual freeze, each shipping screen requires iPhone Light/Dark + iPad Light/Dark and adaptive/landscape notes where needed.
+
+## Do not use as authority
+
+Do not restore or follow:
+
+- deleted mock-first Presentation/DesignSystem/provider code;
+- deleted nine-screen onboarding drafts;
+- old Paper/minimal UI assumptions;
+- old painterly/watercolor design explorations;
+- historical branch names;
+- historical Claude/design-pass references;
+- sample astrology values shown only for layout.
+
+Git history exists for archaeology only. If history conflicts with the current documents above, the current documents win.
+
+## Documentation rule
+
+When a product, architecture, access or design decision changes, update the authoritative document and `development/STATUS.md` in the same change. Do not create a parallel plan to preserve an obsolete decision.

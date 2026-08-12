@@ -2,15 +2,18 @@
 
 Status: **CURRENT PRODUCT DECISION**
 
-Decision date: **2026-08-11**
+Decision date: **2026-08-11**  
+Reconciled with the current Soulful Celestial roadmap/design authority: **2026-08-12**
 
-This document defines the current product/access model and the cost boundary that engineering and the next Claude Design revision must follow. Where an older design pass conflicts with this document on Free/Rewarded/Premium behavior, this document wins until the design is revised.
+This document defines the current product/access model and cost boundary for product design, app architecture and backend/provider implementation.
+
+If a visual reference or implementation detail conflicts with this document on Free / Rewarded Access / Premium behavior, this document wins and the conflicting artifact must be corrected.
 
 ## 1. Core principle
 
 **A Free user must not cause a paid astrology-calculation or paid LLM request during normal use.**
 
-The target is near-zero marginal backend/AI cost for Free usage. Free content therefore comes from finite, pre-generated, versioned catalogs served from Humay's backend/cache.
+The target is near-zero marginal backend/AI cost for Free usage. Free content therefore comes from finite, pre-generated, versioned catalogs served from Humay-owned backend/static/cache storage.
 
 This is a runtime-cost rule, not a claim that preparing/editorially reviewing the catalog has literally zero cost.
 
@@ -22,18 +25,18 @@ Free daily horoscope is intentionally coarse.
 
 - It uses birth date/system category only for the reading key.
 - Birth hour and birth location are not used to calculate a Free natal chart.
-- Humay may still collect/store time/location for later precision features when the user provides them.
+- Humay may store time/location later when the user explicitly adds them for precision-dependent features.
 - The UI must describe Free readings as limited/coarse rather than natal-level personalized astrology.
 
 For Western astrology:
 
 - key by the 12 Sun signs;
 - 12 daily horoscope entries per date/content variant are sufficient;
-- content can contain the product's supported sections, but all sections must remain consistent with the same coarse sign-based basis.
+- content sections must remain consistent with the same coarse sign-based basis.
 
 For Vedic/Chinese/other systems:
 
-- use finite catalog buckets only where the methodology is valid from the available coarse inputs;
+- use finite catalog buckets only where methodology validates the available coarse inputs;
 - exact bucket definitions/cardinality remain methodology decisions;
 - do not invent a Vedic or BaZi shortcut merely to force the same 12-sign model.
 
@@ -47,13 +50,13 @@ Free compatibility is a coarse Sun-sign pairing product:
 
 ### Catalog generation
 
-- Catalog content is generated ahead of runtime, currently planned as ChatGPT-assisted batch content generation plus review/versioning.
-- Generated catalog content is stored/published to Humay's backend/static data layer.
+- Catalog content is generated ahead of runtime, with AI-assisted batch generation permitted as an editorial/content-production tool.
+- Generated catalog content is reviewed/versioned and stored/published to Humay-owned backend/static storage.
 - Runtime Free requests read only Humay-owned stored/cached data.
-- Catalog content must include generation/content version, locale, system, date/period and tone/variant identifiers as needed.
+- Catalog content includes the version dimensions needed to invalidate or reproduce it: locale, system/bucket, date/period and tone/variant where applicable.
 - Free serving must continue to work if external astrology/LLM providers are unavailable.
 
-## 3. Precision/personalized path
+## 3. Precision / personalized path
 
 Provider-backed features are available through **Rewarded Access or Premium**, not ordinary Free runtime requests.
 
@@ -66,16 +69,16 @@ Examples include:
 - provider-backed Ask answers;
 - other features that require individual chart/timing calculations or uncached model generation.
 
-### Initial provider strategy
+### Initial provider direction
 
-The initial implementation direction is:
+The current initial direction is:
 
-1. **Astrology calculation provider:** Astrologer API (currently the RapidAPI option under evaluation/selection) produces structured calculation facts.
-2. **Interpretation provider:** DeepSeek V4 Flash produces interpretation/expression from structured facts.
+1. **Astrology calculation provider:** a structured astrology service (the Astrologer/RapidAPI option remains under evaluation) produces calculation facts.
+2. **Interpretation provider:** DeepSeek V4 Flash is the current low-cost interpretation direction, behind a replaceable interface.
 3. **Humay backend:** owns secrets, orchestration, access checks, cache lookup/write, versioning, normalization and provider failure handling.
-4. **iOS app:** never receives provider secrets and never calls paid providers directly.
+4. **Apple app:** never receives provider secrets and never calls paid providers directly.
 
-Providers must remain replaceable behind interfaces; product/domain models must not depend on vendor response shapes.
+Provider choices are implementation decisions behind Humay-owned contracts. Domain and Presentation models must not depend on vendor response shapes.
 
 ## 4. Rewarded Access semantics
 
@@ -83,19 +86,19 @@ A rewarded ad grants **one provider-backed generation for the selected feature/r
 
 Rules:
 
-- check the Humay cache before consuming a reward or calling providers;
-- if the exact valid result is already cached for that user/input/result key, reopen it without another provider generation;
+- check Humay cache before consuming a reward or calling providers;
+- if the exact valid result is already cached, reopen it without another generation;
 - if generation is needed, a successfully completed rewarded ad authorizes that one generation;
-- after successful generation, cache the result so reopening the same result does not require another ad/provider call;
+- after successful generation, cache the result so reopening does not require another ad/provider call;
 - a materially different input, date/period, person pair, question or methodology/version may be a new generation key;
 - failed/cancelled ads grant nothing;
-- provider failure after a valid reward needs an explicit recovery policy in architecture so the user is not unfairly charged with no result.
+- provider failure after a valid reward requires fair, idempotent recovery so the user is not left with no result and a consumed opportunity.
 
 Rewarded Access is not temporary Premium and is not a bankable coin/token wallet.
 
 ## 5. Premium semantics
 
-Premium provides access to provider-backed personalized features while the subscription entitlement is valid.
+Premium provides access to included provider-backed personalized features while the subscription entitlement is valid.
 
 Rules:
 
@@ -103,22 +106,22 @@ Rules:
 - do not regenerate identical valid results unnecessarily;
 - Premium removes the per-generation rewarded-ad requirement for included features;
 - provider/rate/abuse limits may exist as operational safeguards but must not be presented as arbitrary hidden astrology limits;
-- behavior for viewing previously generated cached Premium results after subscription expiry remains a product decision to finalize before implementation.
+- behavior for viewing previously generated cached Premium results after subscription expiry remains a product decision to finalize before entitlement implementation.
 
 ## 6. Cache model
 
 The exact storage technology is an architecture choice, but cache identity must be explicit.
 
-A result key should include only the dimensions that can change the result, for example:
+A result key includes only dimensions that can change the result, for example:
 
 - feature type;
-- normalized relevant birth inputs/person IDs or their privacy-safe hash;
+- normalized relevant birth inputs/person IDs or a privacy-safe identity/hash;
 - selected astrology system/methodology version;
 - date/period/event context when relevant;
 - calculation-provider/version provenance;
 - interpretation prompt/model version;
 - locale;
-- Normal/Roast expression variant when the text differs.
+- Normal/Roast expression variant when text differs.
 
 Calculation facts and interpretation text should be separable so a tone/copy change does not require paying to recalculate astrology.
 
@@ -127,11 +130,11 @@ Calculation facts and interpretation text should be separable so a tone/copy cha
 - Normal and Roast use the same underlying astrology facts.
 - Roast must not change calculated meaning to manufacture jokes.
 - Calculation results should be cached independently from tone where practical.
-- Notifications remain Normal-only.
+- Notifications remain Normal-register copy unless product policy is explicitly changed.
 
 ## 8. Cost invariants
 
-Engineering tests/observability should make these invariants measurable:
+Engineering tests/observability must make these invariants measurable:
 
 - a normal Free catalog request makes **0 paid provider calls**;
 - a Free cache miss falls back to Humay-owned stored catalog content/error behavior, not a paid provider;
@@ -147,12 +150,12 @@ Birth date/time/location and saved-person data are sensitive product data even w
 - send only fields required for the requested precision feature;
 - keep provider secrets server-side;
 - redact sensitive inputs from logs;
-- define retention/deletion/export policy before production;
+- define retention/deletion/export policy before production provider rollout;
 - do not send Free users' full birth data to paid providers merely to serve a coarse catalog reading.
 
-## 10. Design implications for next Claude pass
+## 10. Current design implications
 
-The next design revision must explicitly represent:
+The current D0–D9 design program must represent, where relevant:
 
 - Free coarse/sign-based Today vs precise personalized Today;
 - Chart as a precision feature rather than a Free natal-chart baseline;
@@ -161,6 +164,6 @@ The next design revision must explicitly represent:
 - Premium access to provider-backed personalization;
 - clear limited-accuracy/basis disclosure for Free content;
 - cache/reopen states that do not repeatedly ask for ads;
-- failure/retry states when ad completion succeeds but provider generation fails.
+- failure/retry states when reward completion succeeds but provider generation fails.
 
-Until that design revision is complete, Pass 6.1 remains the visual/IA baseline but not the final authority for these access states.
+These access semantics are implemented only when their owning feature/monetization phases begin; the Apple-platform foundation must preserve the boundary without prematurely building feature-specific access UI.

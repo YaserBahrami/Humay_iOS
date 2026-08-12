@@ -2,9 +2,9 @@
 
 **Status:** Current and exclusive design authority  
 **Effective:** 2026-08-12  
-**Design branch:** `design/soulful-light-dark`
+**Repository authority:** `main`
 
-This branch contains one current design program only.
+`main` contains one current design program only. Temporary feature/design branches must merge back here and must not become separate authorities.
 
 ## 1. Authority order
 
@@ -44,15 +44,17 @@ The selected Humay style is **cosmic editorial with selective cute illustration*
 
 The D0 Today, Daily Horoscope and Compatibility references under `soulful-reference/anchors/` define the visual source of truth.
 
+The old Paper/minimal direction and painterly/watercolor explorations are superseded and must not be used for implementation.
+
 ## 4. Appearance requirement
 
 Every shipping screen requires deliberate Light and Dark treatment. Dark mode is not inversion: it uses midnight grounds, tonal card elevation, warm light text and slightly brighter accents.
 
-The application must follow the system appearance by default. Do not hard-force Light or Dark globally.
+The application follows the system appearance by default. Do not hard-force Light or Dark globally.
 
 ## 5. Device requirement — iPhone + iPad
 
-**iPhone and iPad are first-class shipping platforms from this baseline forward.** iPad is no longer a later port.
+**iPhone and iPad are first-class shipping platforms from this baseline forward.**
 
 Every approved screen family must account for:
 
@@ -66,7 +68,7 @@ A phone layout must not simply be stretched across an iPad canvas. iPad should u
 
 ### Design-reference minimum
 
-Before a screen is considered ready for final implementation, the repository must contain:
+Before a screen is considered ready for final visual implementation, the repository must contain:
 
 1. iPhone Light reference;
 2. iPhone Dark reference;
@@ -118,7 +120,7 @@ Mock dates, signs, scores and readings in visual references are illustrative. Pr
 
 The old mock-first Presentation, DesignSystem and mock provider implementation were removed on 2026-08-12 before production UI implementation. The Xcode/project foundation was retained and now targets iPhone + iPad.
 
-Production implementation now proceeds only from approved repository references, family by family.
+Production implementation proceeds only from approved repository references, family by family.
 
 ## 12. Current design status
 

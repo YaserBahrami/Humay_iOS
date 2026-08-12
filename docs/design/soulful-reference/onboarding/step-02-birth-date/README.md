@@ -1,17 +1,27 @@
 # D1 Step 02 — Birth Date
 
-Status: **LIGHT/DARK DESIGN GENERATED — READY FOR REVIEW**
+Status: **iPhone Light/Dark approved; iPad companions pending**
 
-This is the complete repository-owned design package for the canonical second Humay onboarding beat. It follows the approved D0 Soulful Celestial references and the product behavior already implemented by `OnboardingBirthDateView`.
+This is the repository-owned design package for the canonical second Humay onboarding beat. It follows the approved D0 Soulful Celestial references and current product behavior.
 
 ## Canonical visual references
 
-- `birth-date-light.svg` — full Light screen reference.
-- `birth-date-dark.svg` — full Dark screen reference.
-- `birth-date-light-dark.svg` — side-by-side review board.
+- `birth-date-light.svg` — iPhone Light reference.
+- `birth-date-dark.svg` — iPhone Dark reference.
+- `birth-date-light-dark.svg` — side-by-side iPhone review board.
 - `birth-date-elements.svg` — reusable component / visual-element board.
 
-The SVG references are editable, GitHub-viewable and use canonical Humay tokens. The side-by-side board is the primary review shot; the individual Light/Dark files preserve implementation-level screen detail.
+The SVG references are editable, GitHub-viewable and use canonical Humay tokens. The side-by-side board is the primary iPhone review shot.
+
+## Cross-device status
+
+- iPhone Light: approved
+- iPhone Dark: approved
+- iPad Light: pending
+- iPad Dark: pending
+- iPad adaptive/landscape notes: pending
+
+Do not treat the iPhone canvas as an iPad layout. The iPad companion design must use a bounded content composition and preserve native date-picker ergonomics.
 
 ## Product truth
 
@@ -25,10 +35,12 @@ The Birth Date screen:
 - continues to Tradition;
 - collects date only;
 - does **not** request birth time or birth location;
-- uses a native wheel date picker;
-- allows dates from 1900-01-01 through the current date;
-- keeps the primary action pinned by the shared onboarding scaffold;
-- remains scrollable at large Dynamic Type sizes.
+- uses native date-input semantics;
+- allows dates from 1900-01-01 through the current date unless product policy changes;
+- keeps Continue clearly reachable;
+- remains scrollable/reflowable at large Dynamic Type sizes.
+
+Birth time and place may be added later from Profile for precision-dependent features.
 
 ## Canonical copy
 
@@ -42,11 +54,7 @@ The Birth Date screen:
 
 ### Supporting note
 
-The approved reference uses:
-
 `Your date is enough to start.`
-
-This line is presentation copy and should only be added to production if retained during implementation reconciliation.
 
 ### Explanation 1
 
@@ -60,17 +68,19 @@ This line is presentation copy and should only be added to production if retaine
 
 `Continue`
 
+Copy remains subject to product/methodology reconciliation if a statement becomes too broad for a specific tradition, but no implementation should silently add a time/location onboarding step.
+
 ## Layout hierarchy
 
 1. top chrome — back control + compact step label + subtle progress treatment;
 2. large editorial question;
-3. wheel date picker on a quiet contained surface;
+3. date picker on a quiet contained surface;
 4. one restrained calendar/celestial illustration;
 5. hairline divider;
-6. two explanatory notes with small sun/moon accents;
+6. explanatory notes;
 7. primary Continue action.
 
-The screen is deliberately utility-led. Personality comes from the illustration, typography and disciplined accent color rather than decoration around every control.
+The screen is deliberately utility-led. Personality comes from illustration, typography and disciplined accent color rather than decoration around every control.
 
 ## Appearance
 
@@ -80,10 +90,8 @@ The screen is deliberately utility-led. Personality comes from the illustration,
 - ivory picker surface;
 - dark ink headline/body;
 - pale warm selection band;
-- coral sun accent;
-- lavender secondary accent;
-- solar-gold illustration accent;
-- very soft hairlines and no heavy shadow.
+- coral/lavender/solar-gold accents;
+- soft hairlines and no heavy shadow.
 
 ### Dark
 
@@ -92,12 +100,9 @@ The screen is deliberately utility-led. Personality comes from the illustration,
 - warm ivory type;
 - muted raised selection band;
 - slightly more luminous coral/lavender/gold;
-- calendar + crescent motif remains colorful;
-- primary action uses the stronger coral→lavender emphasis established by the current dark D1 direction.
+- intentionally composed dark treatment rather than inversion.
 
 ## Typography
-
-Production typography remains governed by `SOULFUL_CELESTIAL_DESIGN_DIRECTION.md`:
 
 - Cormorant Garamond for large editorial hierarchy;
 - SF Pro / system for UI and body copy;
@@ -105,7 +110,7 @@ Production typography remains governed by `SOULFUL_CELESTIAL_DESIGN_DIRECTION.md
 
 ## Color authority
 
-Production color tokens remain the canonical values in `SOULFUL_CELESTIAL_DESIGN_DIRECTION.md` and are repeated in `design-spec.json` for this handoff.
+Production tokens remain governed by `SOULFUL_CELESTIAL_DESIGN_DIRECTION.md` and are repeated in `design-spec.json` for this handoff.
 
 | Role | Light | Dark |
 |---|---|---|
@@ -121,23 +126,23 @@ Production color tokens remain the canonical values in `SOULFUL_CELESTIAL_DESIGN
 
 ## Reusable elements
 
-`elements/` stores small standalone vector references:
+`elements/` stores standalone vector references:
 
 - `birth-date-motif-light.svg`
 - `birth-date-motif-dark.svg`
 - `progress-light.svg`
 - `progress-dark.svg`
 
-These are documentation/reference assets. They are **not automatically shipping assets**. Promote approved production artwork separately to `Humay/Resources/Assets.xcassets/`.
+These are documentation/reference assets, not automatically shipping assets. Promote approved production artwork separately to `Humay/Resources/Assets.xcassets/`.
 
 ## Accessibility / implementation notes
 
-- keep native wheel-picker semantics and accessibility labeling;
+- preserve native date-picker accessibility semantics;
 - minimum hit target remains 44 pt;
 - do not shrink the editorial heading to force a fixed layout;
-- content must scroll when Dynamic Type requires it;
+- content scrolls/reflows when Dynamic Type requires it;
 - color cannot be the only indicator of selection;
-- use text labels for date values rather than relying on illustration;
+- date values remain available as text, never illustration-only;
 - preserve the explicit no-fake-precision explanation about birth time/place.
 
 ## Sample-data note

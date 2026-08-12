@@ -1,7 +1,9 @@
 # Source Metadata — D1 Step 02 Birth Date
 
 Generated: **2026-08-12**  
-Branch: `design/soulful-light-dark`
+Current repository authority: `main`
+
+The design was originally developed on a temporary design branch and merged into `main`. The historical branch name is not an implementation authority.
 
 ## Visual source
 
@@ -15,22 +17,22 @@ The reference set preserves the same cream/midnight relationship, editorial hier
 
 ## Repository reference format
 
-The approved visual concept was first reviewed as a generated Light/Dark mockup and element board. The repository handoff is stored as clean SVG so the design remains GitHub-viewable, editable and token-correct without depending on opaque raster annotations.
+The approved iPhone concept is stored as clean SVG so the design remains GitHub-viewable, editable and token-correct without depending on opaque raster annotations.
 
 Repository files:
 
-- `birth-date-light.svg` — individual Light reference
-- `birth-date-dark.svg` — individual Dark reference
-- `birth-date-light-dark.svg` — paired review board
+- `birth-date-light.svg` — iPhone Light reference
+- `birth-date-dark.svg` — iPhone Dark reference
+- `birth-date-light-dark.svg` — paired iPhone review board
 - `birth-date-elements.svg` — component / element board
 - `elements/*.svg` — isolated reusable motifs
 - `design-spec.json` — machine-readable behavior/copy/token handoff
 
-The SVG references intentionally reconcile the reviewed concept with Humay's canonical fonts, colors and current onboarding product behavior.
+The iPad companion references are still pending and must be added before this screen is cross-device complete.
 
 ## Authority order
 
-If any historical/generated visual annotation conflicts with repository design authority, the following order wins:
+If any historical/generated annotation conflicts with repository design authority, use:
 
 1. `docs/design/DESIGN_AUTHORITY.md`
 2. `docs/design/SOULFUL_CELESTIAL_DESIGN_DIRECTION.md`
@@ -39,4 +41,4 @@ If any historical/generated visual annotation conflicts with repository design a
 5. the committed SVG visual references
 6. historical/generated raster annotations
 
-This specifically prevents incidental font-family, color-label or stale-flow text from overriding the app's canonical design system.
+This prevents incidental font, color, flow or branch metadata from overriding the current design system.

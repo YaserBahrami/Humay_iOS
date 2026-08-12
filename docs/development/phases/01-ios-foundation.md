@@ -1,9 +1,26 @@
-# Phase 01 — iOS Foundation
+# Phase 01 — Apple Platform Foundation
 
-Status: **TODO**  
-Depends on: Phase 00
+Status: **READY TO START**
 
-Goal: produce a clean, buildable Humay app shell with the approved navigation/visual system, persistence/test scaffolding and no vendor-specific astrology logic.
+Depends on:
+- current production baseline reset;
+- Phase 00 foundation start gate in [`00-technical-architecture.md`](00-technical-architecture.md);
+- current [`../../architecture/IOS_ARCHITECTURE.md`](../../architecture/IOS_ARCHITECTURE.md);
+- current [`../../design/DESIGN_AUTHORITY.md`](../../design/DESIGN_AUTHORITY.md).
+
+Goal: establish a clean, buildable **SwiftUI + Clean Architecture** foundation for Humay on iPhone and iPad without restoring prototype feature code or inventing unapproved feature UI.
+
+## Architecture rule
+
+Dependency direction:
+
+```text
+App → Presentation → Domain ← Data
+```
+
+Concrete provider/persistence implementations are wired only at the composition boundary. Domain stays UI/persistence-framework neutral where practical. Presentation never imports vendor SDK models or persistence entities.
+
+Do not create abstractions merely to satisfy a folder diagram; introduce protocols/use cases when they protect a real boundary or behavior.
 
 ## Tasks
 
@@ -11,84 +28,132 @@ Goal: produce a clean, buildable Humay app shell with the approved navigation/vi
 Status: TODO
 
 Acceptance:
-- iPhone app builds on the supported deployment target.
-- Product, target, scheme and internal naming use **Humay**.
-- Debug/Release configuration and a CI-ready build command exist.
-- Existing mock-first project work is reconciled rather than blindly duplicated.
+- Debug build succeeds for a representative iPhone simulator.
+- Debug build succeeds for a representative iPad simulator.
+- iOS/iPadOS minimum target remains 18.0.
+- `TARGETED_DEVICE_FAMILY = 1,2` remains effective.
+- product, target, scheme and internal naming use **Humay**.
+- Debug/Release configuration remains centralized and understandable.
+- no third-party dependency is added without a current requirement.
 
-### IOS-002 — Module/folder structure and dependency injection
+### IOS-002 — Clean Architecture source structure and composition
 Status: TODO  
 Depends on: IOS-001
 
-Acceptance:
-- Structure matches `IOS_ARCHITECTURE.md`.
-- Feature code cannot reach concrete backend/provider services without interfaces/composition root.
+Target structure grows deliberately toward:
 
-### IOS-003 — Production Humay design-system foundation
+```text
+Humay/
+├── App/              composition root, root state/routing
+├── Domain/           entities, value types, use-case/repository contracts
+├── Data/             concrete persistence/network/provider implementations
+├── Presentation/     SwiftUI feature presentation/state
+├── DesignSystem/     semantic tokens + reusable visual primitives
+└── Resources/
+```
+
+Acceptance:
+- layering matches `IOS_ARCHITECTURE.md`;
+- dependency creation is explicit at an App/composition boundary;
+- Presentation cannot construct concrete Data/provider implementations;
+- no service locator/global singleton is introduced as the primary DI mechanism;
+- no feature-specific domain family is created before a real production use case needs it;
+- existing layering checks are updated to enforce the actual structure.
+
+### IOS-003 — Soulful Celestial design-system foundation
 Status: TODO  
 Depends on: IOS-001
 
 Scope:
-- semantic Light/Dark colors/surfaces;
-- typography roles;
-- spacing/radius/border/elevation primitives;
-- icon/glyph treatment;
-- illustration hooks/assets;
-- motion/reduced-motion primitives.
+- semantic Light/Dark color roles from the approved tokens;
+- typography roles using Cormorant Garamond + system UI typography;
+- spacing, radius, hairline and elevation primitives;
+- minimum hit-target/accessibility metrics;
+- adaptive content-width/layout primitives for iPhone/iPad;
+- reusable primary/secondary button foundations only where already established by approved references;
+- motion/reduced-motion hooks when a concrete component needs them.
 
 Acceptance:
-- Light/Dark semantic tokens are centralized.
-- Components match `docs/design/DESIGN_AUTHORITY.md` and `SOULFUL_CELESTIAL_DESIGN_DIRECTION.md`.
-- Representative previews/tests exist.
+- no old Paper/minimal tokens return;
+- no global forced appearance;
+- Light and Dark are intentionally composed;
+- iPad layout uses container width/size class rather than stretched phone constants;
+- Dynamic Type is supported from the component foundation;
+- representative iPhone/iPad Light/Dark previews exist for tokens/primitives.
 
-### IOS-004 — Root navigation shell
+Do not prebuild every future feature card, access gate or settings row in this phase.
+
+### IOS-004 — Root application state and navigation boundary
 Status: TODO  
-Depends on: IOS-002, IOS-003
-
-Acceptance:
-- Today / Circle / Sky / Chart / Ask are the primary tabs.
-- Calendar is nested under Sky.
-- Profile/Settings entry is available from the header.
-- Per-tab navigation state follows the architecture contract.
-
-### IOS-005 — Shared UI components and access/state surfaces
-Status: TODO  
-Depends on: IOS-003
+Depends on: IOS-002
 
 Scope:
-- app/section headers;
-- insight cards/basis disclosure;
-- buttons/controls/sheets;
-- loading/empty/error/unavailable;
-- Free coarse-content disclosure;
-- Rewarded generation/Premium/cached-result states.
+- first-launch/onboarding vs main-app root state;
+- route types/ownership needed by currently approved work;
+- future main IA represented without implementing fake feature screens;
+- adaptive navigation strategy capable of iPhone/iPad presentation.
 
 Acceptance:
-- Components support Dynamic Type and VoiceOver from the start.
-- Access components do not embed ad/provider SDK types.
-- Final visual polish follows the relevant approved D-phase Light/Dark references.
+- canonical IA remains Today / Circle / Sky / Chart / Ask;
+- Calendar ownership remains under Sky;
+- Profile/Settings remains a header/profile route;
+- routing does not depend on concrete providers/persistence;
+- iPad can choose platform-appropriate presentation without changing route ownership;
+- no placeholder production content is presented as a completed feature.
 
-### IOS-006 — Persistence/test scaffolding
+### IOS-005 — Persistence boundary scaffolding
+Status: TODO  
+Depends on: IOS-002
+
+Goal: prepare durable user-data ownership without freezing a speculative schema.
+
+Acceptance:
+- repository/storage contracts are introduced only for profile/settings behavior that is actually required by onboarding/profile implementation;
+- persistence errors have explicit handling semantics;
+- no silent production fallback from durable user data to volatile in-memory storage;
+- persistence entities do not leak into Domain/Presentation;
+- schema/versioning is added with the first real persisted slice, not as speculative empty infrastructure.
+
+### IOS-006 — Configuration, diagnostics and privacy-safe logging
 Status: TODO  
 Depends on: IOS-002
 
 Acceptance:
-- Persistence/repository interfaces support local profile and cached-result metadata.
-- Unit/UI test targets build.
-- Test fixtures remain separate from production calculation truth.
+- privacy-safe structured logging remains centralized;
+- environment/configuration boundary exists for app-owned endpoints/flags when needed;
+- secrets are never committed or shipped in client configuration;
+- birth/profile/provider payloads are not logged raw.
 
-### IOS-007 — Diagnostics and configuration foundation
+### IOS-007 — Test and verification foundation
 Status: TODO  
-Depends on: IOS-002
+Depends on: IOS-001 through IOS-006 as applicable
 
 Acceptance:
-- Privacy-safe structured logging.
-- Environment/config abstraction for backend endpoints, flags and dev fixtures.
-- No paid-provider secrets are committed or shipped.
+- Swift Testing unit target builds/runs;
+- XCUITest target builds/runs;
+- layer/nomenclature scripts pass;
+- representative iPhone and iPad build commands are documented;
+- design-system primitives have focused behavior/accessibility tests where useful;
+- no obsolete prototype test is restored merely for coverage count.
+
+## Explicitly out of scope
+
+Phase 01 does **not** implement:
+
+- Today/Circle/Sky/Chart/Ask feature screens;
+- provider-backed astrology;
+- Free catalog runtime;
+- monetization/ad/StoreKit behavior;
+- feature-specific access-state UI;
+- onboarding screen visuals before their required cross-device references are approved.
+
+Shared architecture and design-system primitives may be built now. Feature-specific UI follows the design → approve → implement cadence.
 
 ## Exit criteria
 
-- Humay builds and launches on the supported iPhone target.
-- Navigation/core visual system matches the single current design authority.
-- Access-state primitives exist without vendor coupling.
-- Accessibility and architecture boundaries are in place before production feature work.
+- Humay builds and launches on representative iPhone and iPad simulators.
+- SwiftUI + Clean Architecture boundaries are enforceable and documented.
+- the production Soulful Celestial Light/Dark design-system foundation exists without old-design residue.
+- root state/navigation composition is ready for approved onboarding work.
+- persistence/configuration/testing boundaries are ready without speculative feature architecture.
+- no deleted mock-first/provider/old-UI implementation has been reintroduced.
