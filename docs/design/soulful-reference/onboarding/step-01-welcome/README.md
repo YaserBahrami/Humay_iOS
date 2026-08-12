@@ -1,10 +1,10 @@
 # D1 Step 01 — Welcome
 
-Status: **iPhone Light/Dark approved; iPad companion references ready for review**
+Status: **APPROVED — iPhone + iPad Light/Dark, 2026-08-12**
 
-Existing approved iPhone references remain `../light/01-welcome.svg` and `../dark/01-welcome.svg`.
+Approved iPhone references are `../light/01-welcome.svg` and `../dark/01-welcome.svg`.
 
-The new iPad companion review board is `welcome-ipad-review.svg`. It contains Portrait Light/Dark and Landscape Light/Dark compositions plus the compact-width adaptation rule.
+Approved iPad companion board is `welcome-ipad-review.svg`. It contains Portrait Light/Dark and Landscape Light/Dark compositions plus the compact-width adaptation rule.
 
 ## Product truth
 

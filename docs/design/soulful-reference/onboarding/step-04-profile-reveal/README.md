@@ -1,8 +1,8 @@
 # D1 Step 04 — Profile Reveal
 
-Status: **cross-device Light/Dark references ready for review**
+Status: **APPROVED — iPhone + iPad Light/Dark, 2026-08-12**
 
-Review board: `profile-reveal-cross-device-review.svg`.
+Approved board: `profile-reveal-cross-device-review.svg`.
 
 ## Product truth
 

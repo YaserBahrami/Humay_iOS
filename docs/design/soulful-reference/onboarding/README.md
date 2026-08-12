@@ -1,6 +1,6 @@
 # D1 — Onboarding Reference Set
 
-**Status:** full cross-device reference set authored; awaiting user approval before production implementation.
+**Status:** APPROVED cross-device reference set — 2026-08-12; ready for production implementation.
 
 D1 follows the canonical four-beat product flow:
 
@@ -15,28 +15,28 @@ The old mock-first onboarding implementation was removed in the 2026-08-12 produ
 
 ## Approval gate
 
-Review `REVIEW_INDEX.md` before implementation. Existing iPhone Welcome and Birth Date references remain approved. Newly authored iPad references and Steps 03–04 are `ready for review`, not silently approved.
+The complete D1 set was explicitly approved by the user on 2026-08-12. `REVIEW_INDEX.md` records the approved references and implementation invariants.
 
 ## Step 01 — Welcome
 
 - approved iPhone: `light/01-welcome.svg`, `dark/01-welcome.svg`
-- iPad Light/Dark portrait + landscape: `step-01-welcome/welcome-ipad-review.svg`
+- approved iPad Light/Dark portrait + landscape: `step-01-welcome/welcome-ipad-review.svg`
 - spec/notes: `step-01-welcome/`
 
 ## Step 02 — Birth Date
 
 - approved iPhone package remains under `step-02-birth-date/`
-- iPad Light/Dark portrait + landscape: `step-02-birth-date/birth-date-ipad-review.svg`
-- spec/notes updated in `step-02-birth-date/`
+- approved iPad Light/Dark portrait + landscape: `step-02-birth-date/birth-date-ipad-review.svg`
+- spec/notes: `step-02-birth-date/`
 
 ## Step 03 — Tradition
 
-- iPhone + iPad Light/Dark: `step-03-tradition/tradition-cross-device-review.svg`
+- approved iPhone + iPad Light/Dark: `step-03-tradition/tradition-cross-device-review.svg`
 - spec/notes: `step-03-tradition/`
 
 ## Step 04 — Profile Reveal
 
-- iPhone + iPad Light/Dark: `step-04-profile-reveal/profile-reveal-cross-device-review.svg`
+- approved iPhone + iPad Light/Dark: `step-04-profile-reveal/profile-reveal-cross-device-review.svg`
 - spec/notes: `step-04-profile-reveal/`
 
 ## Product invariants preserved
