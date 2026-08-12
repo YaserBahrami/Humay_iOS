@@ -132,7 +132,7 @@ private struct ProfileRevealHero: View {
 
     var body: some View {
         VStack(spacing: HumaySpacing.large) {
-            Image("ProfileRevealHuma")
+            Image("ProfileRevealConstellationPath")
                 .renderingMode(.original)
                 .resizable()
                 .scaledToFit()

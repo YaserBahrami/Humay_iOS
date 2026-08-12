@@ -1,7 +1,7 @@
 {
   "images" : [
     {
-      "filename" : "profile-reveal-huma-light.svg",
+      "filename" : "profile-reveal-constellation-light.svg",
       "idiom" : "universal"
     },
     {
@@ -11,7 +11,7 @@
           "value" : "dark"
         }
       ],
-      "filename" : "profile-reveal-huma-dark.svg",
+      "filename" : "profile-reveal-constellation-dark.svg",
       "idiom" : "universal"
     }
   ],
