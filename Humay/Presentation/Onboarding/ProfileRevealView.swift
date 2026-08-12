@@ -255,7 +255,8 @@ private struct ProfileRevealHero: View {
         }
         .padding(.horizontal, compact ? HumaySpacing.medium : HumaySpacing.large)
         .padding(.vertical, verticalPadding)
-        .frame(maxWidth: .infinity, height: height)
+        .frame(height: height)
+        .frame(maxWidth: .infinity)
         .background(heroSurface, in: RoundedRectangle(cornerRadius: HumayRadius.feature))
         .overlay {
             RoundedRectangle(cornerRadius: HumayRadius.feature)
