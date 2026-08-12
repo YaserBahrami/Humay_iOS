@@ -51,12 +51,14 @@ struct CircleView: View {
         case .loading:
             HumaySurface(level: .raised) {
                 VStack(spacing: HumaySpacing.large) {
+                    HumayIllustration(name: "IllustrationTodayTogether")
+                        .frame(width: 132, height: 98)
                     ProgressView()
                         .controlSize(.large)
                         .tint(Color.humayLavender)
                     Text("Opening your Circle…")
                         .font(HumayTypography.cardTitle)
-                    Text("Development loading state. No data source is being contacted.")
+                    Text("Gathering the people you keep close.")
                         .font(HumayTypography.supporting)
                         .foregroundStyle(Color.humayTextSecondary)
                 }
@@ -100,14 +102,20 @@ struct CircleView: View {
 
     @ViewBuilder
     private func loadedContent(people: [CirclePerson], availableWidth: CGFloat) -> some View {
-        VStack(alignment: .leading, spacing: HumaySpacing.small) {
-            Text("Your cosmic circle")
-                .font(HumayTypography.heroTitle)
-                .accessibilityAddTraits(.isHeader)
-            Text("Keep the people who matter close, then explore connection with honest precision labels.")
-                .font(HumayTypography.body)
-                .foregroundStyle(Color.humayTextSecondary)
-                .fixedSize(horizontal: false, vertical: true)
+        HStack(alignment: .center, spacing: HumaySpacing.large) {
+            VStack(alignment: .leading, spacing: HumaySpacing.small) {
+                Text("Your cosmic circle")
+                    .font(HumayTypography.heroTitle)
+                    .accessibilityAddTraits(.isHeader)
+                Text("Keep the people who matter close, then explore how your energies meet.")
+                    .font(HumayTypography.body)
+                    .foregroundStyle(Color.humayTextSecondary)
+                    .fixedSize(horizontal: false, vertical: true)
+            }
+            .frame(maxWidth: .infinity, alignment: .leading)
+
+            HumayIllustration(name: "IllustrationTodayTogether")
+                .frame(width: availableWidth >= 820 ? 150 : 104, height: availableWidth >= 820 ? 116 : 84)
         }
 
         if availableWidth >= 820 {
@@ -121,8 +129,6 @@ struct CircleView: View {
             peopleSection(people)
             compatibilityEntry(people)
         }
-
-        D2SampleNotice(source: source)
     }
 
     private func peopleSection(_ people: [CirclePerson]) -> some View {
@@ -196,9 +202,9 @@ struct CircleView: View {
                 source: source
             )
         } label: {
-            HumayCosmicSurface {
+            HumaySurface {
                 VStack(alignment: .leading, spacing: HumaySpacing.large) {
-                    HStack(alignment: .top, spacing: HumaySpacing.medium) {
+                    HStack(alignment: .center, spacing: HumaySpacing.medium) {
                         VStack(alignment: .leading, spacing: HumaySpacing.small) {
                             Text("Compatibility")
                                 .font(HumayTypography.utility)
@@ -207,19 +213,18 @@ struct CircleView: View {
                                 .foregroundStyle(Color.humayCoral)
                             Text("See how two energies meet")
                                 .font(HumayTypography.cardTitle)
+                                .foregroundStyle(Color.humayTextPrimary)
                                 .fixedSize(horizontal: false, vertical: true)
                         }
+                        .frame(maxWidth: .infinity, alignment: .leading)
 
-                        Spacer(minLength: HumaySpacing.small)
-
-                        Image(systemName: "heart.circle.fill")
-                            .font(.system(size: 50))
-                            .foregroundStyle(Color.humayCoral)
-                            .accessibilityHidden(true)
+                        HumayIllustration(name: "IllustrationCompatibilityPair")
+                            .frame(width: 110, height: 84)
                     }
 
-                    Text("Start with a coarse Western Sun-sign pair. Precise synastry stays a separate future provider-backed path.")
+                    Text("Start with a simple Sun-sign connection. Deeper compatibility can use precise birth details when they are available.")
                         .font(HumayTypography.supporting)
+                        .foregroundStyle(Color.humayTextSecondary)
                         .fixedSize(horizontal: false, vertical: true)
 
                     Label(
@@ -227,6 +232,7 @@ struct CircleView: View {
                         systemImage: "arrow.right"
                     )
                     .font(HumayTypography.control)
+                    .foregroundStyle(Color.humayCoral)
                     .frame(minHeight: HumayMetrics.minimumHitTarget)
                 }
             }
@@ -240,14 +246,12 @@ struct CircleView: View {
     private var emptyState: some View {
         HumaySurface(level: .raised) {
             VStack(spacing: HumaySpacing.large) {
-                Image(systemName: "person.2.badge.plus")
-                    .font(.largeTitle)
-                    .foregroundStyle(Color.humayLavender)
-                    .accessibilityHidden(true)
+                HumayIllustration(name: "IllustrationTodayTogether")
+                    .frame(width: 154, height: 108)
                 Text("Your Circle starts here")
                     .font(HumayTypography.cardTitle)
                     .accessibilityAddTraits(.isHeader)
-                Text("Add someone’s basic birth details. Exact time and location stay optional and unknown stays honest.")
+                Text("Add someone’s basic birth details. Exact time and location can stay unknown until a feature genuinely needs them.")
                     .font(HumayTypography.body)
                     .foregroundStyle(Color.humayTextSecondary)
                     .multilineTextAlignment(.center)
@@ -290,7 +294,7 @@ private struct CirclePersonDetailView: View {
                 }
 
                 Section {
-                    Text("This D2 shell does not persist or calculate new person data. Full editing and storage remain owned by CIRCLE-001 and later approved UI.")
+                    Text("Birth time and place can remain unknown. Humay only needs them for features whose accuracy genuinely depends on them.")
                         .font(HumayTypography.supporting)
                         .foregroundStyle(Color.humayTextSecondary)
                 }
