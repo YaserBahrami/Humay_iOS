@@ -51,7 +51,7 @@ struct CircleView: View {
         case .loading:
             HumaySurface(level: .raised) {
                 VStack(spacing: HumaySpacing.large) {
-                    HumayIllustration(name: "IllustrationTodayTogether")
+                    HumayIllustration(name: D2Artwork.todayTogether)
                         .frame(width: 132, height: 98)
                     ProgressView()
                         .controlSize(.large)
@@ -114,7 +114,7 @@ struct CircleView: View {
             }
             .frame(maxWidth: .infinity, alignment: .leading)
 
-            HumayIllustration(name: "IllustrationTodayTogether")
+            HumayIllustration(name: D2Artwork.todayTogether)
                 .frame(width: availableWidth >= 820 ? 150 : 104, height: availableWidth >= 820 ? 116 : 84)
         }
 
@@ -218,7 +218,7 @@ struct CircleView: View {
                         }
                         .frame(maxWidth: .infinity, alignment: .leading)
 
-                        HumayIllustration(name: "IllustrationCompatibilityPair")
+                        HumayIllustration(name: D2Artwork.compatibilityPair)
                             .frame(width: 110, height: 84)
                     }
 
@@ -246,7 +246,7 @@ struct CircleView: View {
     private var emptyState: some View {
         HumaySurface(level: .raised) {
             VStack(spacing: HumaySpacing.large) {
-                HumayIllustration(name: "IllustrationTodayTogether")
+                HumayIllustration(name: D2Artwork.todayTogether)
                     .frame(width: 154, height: 108)
                 Text("Your Circle starts here")
                     .font(HumayTypography.cardTitle)

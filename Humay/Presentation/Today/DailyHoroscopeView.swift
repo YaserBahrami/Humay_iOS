@@ -31,6 +31,7 @@ struct DailyHoroscopeView: View {
         }
         .background(Color.humayGround.ignoresSafeArea())
         .foregroundStyle(Color.humayTextPrimary)
+        .navigationTitle("Daily Horoscope")
         .navigationBarTitleDisplayMode(.inline)
         .toolbar {
             ToolbarItem(placement: .principal) {

@@ -44,6 +44,7 @@ This is a simulator evidence limitation, not an app bootstrap or UI-test failure
 ## Known visual discrepancies
 
 - The approved composites use portrait photography. No approved, licensed portrait asset was supplied for production, so D2 uses accessible native person medallions and initials.
+- The artwork refresh retired the two sample portrait assets above and replaced separate roast-fire/roast-planet assets with one approved `IllustrationRoastMode`; the former 19-asset test count was therefore obsolete.
 - Celestial art is implemented as lightweight native vector/SF Symbol composition rather than copying raster art from the reference composites.
 - The shipping shell uses the task-authoritative Today / Circle / Sky / Chart / Ask IA and iOS 26 native adaptive tabs; the older labels and custom tab treatment visible in the composites are not reproduced.
 - Free/precise and development-sample disclosures add vertical content absent from parts of the visual composites. They are required to avoid presenting sample astrology as calculated truth.

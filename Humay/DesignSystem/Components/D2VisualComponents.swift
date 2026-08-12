@@ -361,16 +361,20 @@ enum D2Artwork {
     static let cosmicPlanet = "IllustrationCosmicWeather"
     static let crystalBall = "IllustrationDailyTipCrystalBall"
     static let roastMode = "IllustrationRoastMode"
+    static let todayTogether = "IllustrationTodayTogether"
+    static let compatibilityPair = "IllustrationCompatibilityPair"
 
-    static let decorativeAssetNames = [
+    static let requiredScreenAssetNames = [
         todayCoffee,
         cosmicPlanet,
         crystalBall,
-        roastMode
+        roastMode,
+        todayTogether,
+        compatibilityPair
     ]
 
     static var allAdaptiveAssetNames: [String] {
-        decorativeAssetNames + WesternZodiacSign.allCases.map(\.d2ArtworkAssetName)
+        requiredScreenAssetNames + WesternZodiacSign.allCases.map(\.d2ArtworkAssetName)
     }
 }
 

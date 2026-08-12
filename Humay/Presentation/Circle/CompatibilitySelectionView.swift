@@ -37,7 +37,7 @@ struct CompatibilitySelectionView: View {
                         }
                         .frame(maxWidth: .infinity, alignment: .leading)
 
-                        HumayIllustration(name: "IllustrationCompatibilityPair")
+                        HumayIllustration(name: D2Artwork.compatibilityPair)
                             .frame(width: 118, height: 88)
                     }
 

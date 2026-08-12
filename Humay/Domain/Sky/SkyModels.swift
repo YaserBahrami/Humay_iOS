@@ -167,6 +167,32 @@ struct SkyEvent: Identifiable, Sendable, Hashable {
     let timing: SkyEventTiming
     let relevance: SkyEventRelevance
     let reliability: SkyEventReliability
+
+    init(
+        id: SkyEventID,
+        type: SkyEventType,
+        system: SkyEventSystem,
+        title: String,
+        summary: String?,
+        timing: SkyEventTiming,
+        relevance: SkyEventRelevance,
+        reliability: SkyEventReliability
+    ) throws {
+        if case .traditionSpecific(let tradition) = type {
+            guard system == .astrological(tradition) else {
+                throw SkyContractValidationError.incompatibleEventSystem
+            }
+        }
+
+        self.id = id
+        self.type = type
+        self.system = system
+        self.title = title
+        self.summary = summary
+        self.timing = timing
+        self.relevance = relevance
+        self.reliability = reliability
+    }
 }
 
 /// Detail keeps interpretation and factual basis separate. Neither is allowed to
@@ -267,6 +293,7 @@ enum SkyContractValidationError: Error, Equatable, Sendable {
     case invalidCalendarMonth
     case invalidTimeZoneIdentifier
     case invalidTimeInterval
+    case incompatibleEventSystem
     case emptyLoadedContent
     case calendarDateOutsideSelection
     case duplicateCalendarDate

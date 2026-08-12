@@ -43,11 +43,33 @@ struct DesignSystemFoundationTests {
     func d2ArtworkExists() {
         let allAssetNames = D2Artwork.allAdaptiveAssetNames
         let zodiacAssetNames = WesternZodiacSign.allCases.map(\.d2ArtworkAssetName)
+        let expectedScreenAssetNames = [
+            "IllustrationCosmicCoffee",
+            "IllustrationCosmicWeather",
+            "IllustrationDailyTipCrystalBall",
+            "IllustrationRoastMode",
+            "IllustrationTodayTogether",
+            "IllustrationCompatibilityPair"
+        ]
+        let expectedZodiacAssetNames: Set = [
+            "ZodiacAries",
+            "ZodiacTaurus",
+            "ZodiacGemini",
+            "ZodiacCancer",
+            "ZodiacLeo",
+            "ZodiacVirgo",
+            "ZodiacLibra",
+            "ZodiacScorpio",
+            "ZodiacSagittarius",
+            "ZodiacCapricorn",
+            "ZodiacAquarius",
+            "ZodiacPisces"
+        ]
 
-        #expect(allAssetNames.count == 19)
-        #expect(Set(allAssetNames).count == 19)
-        #expect(zodiacAssetNames.count == 12)
-        #expect(Set(zodiacAssetNames).count == 12)
+        #expect(D2Artwork.requiredScreenAssetNames == expectedScreenAssetNames)
+        #expect(Set(zodiacAssetNames) == expectedZodiacAssetNames)
+        #expect(allAssetNames == expectedScreenAssetNames + zodiacAssetNames)
+        #expect(Set(allAssetNames).count == allAssetNames.count)
 
         for assetName in allAssetNames {
             let lightImage = UIImage(

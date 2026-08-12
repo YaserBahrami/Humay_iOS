@@ -151,6 +151,8 @@ struct CompatibilityView: View {
         availableWidth: CGFloat,
         showAccessCard: Bool
     ) -> some View {
+        basisBanner(result)
+
         if availableWidth >= 820 {
             HStack(alignment: .top, spacing: HumaySpacing.extraExtraLarge) {
                 VStack(spacing: HumaySpacing.extraLarge) {
@@ -170,6 +172,28 @@ struct CompatibilityView: View {
             metricsCard(result.metrics)
             ourTakeCard(result.ourTake)
             if showAccessCard { preciseAccessCard }
+        }
+    }
+
+    private func basisBanner(_ result: DisplayResult) -> some View {
+        switch result.basis {
+        case .free(let key):
+            D2StatusBanner(
+                symbol: "sun.max.fill",
+                title: "Free · Sun-sign pair",
+                detail: "\(key.first.displayName) × \(key.second.displayName) catalog · not natal synastry.",
+                accent: .gold
+            )
+            .accessibilityIdentifier("compatibility.basis.free")
+
+        case .precise:
+            D2StatusBanner(
+                symbol: "scope",
+                title: "Precise presentation sample",
+                detail: "Development only · no provider calculation or synastry generation.",
+                accent: .lavender
+            )
+            .accessibilityIdentifier("compatibility.basis.precise")
         }
     }
 

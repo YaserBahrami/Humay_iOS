@@ -4,12 +4,248 @@ import Testing
 
 @Suite("D3 Sky and Calendar contracts")
 struct D3FeatureModelTests {
-    @Test("Calendar dates and intervals reject invalid values")
-    func invalidDateAndTimingAreRejected() throws {
+    @Test("Calendar dates and month selections reject months 0 and 13")
+    func calendarMonthBoundsAreValidated() {
+        for invalidMonth in [0, 13] {
+            #expect(throws: SkyContractValidationError.invalidCalendarMonth) {
+                try SkyCalendarMonthID(year: 2026, month: invalidMonth)
+            }
+            #expect(throws: SkyContractValidationError.invalidCalendarDate) {
+                try SkyCalendarDate(year: 2026, month: invalidMonth, day: 1)
+            }
+        }
+    }
+
+    @Test("Calendar dates reject invalid civil dates")
+    func invalidCivilDatesAreRejected() {
         #expect(throws: SkyContractValidationError.invalidCalendarDate) {
             try SkyCalendarDate(year: 2026, month: 2, day: 30)
         }
+        #expect(throws: SkyContractValidationError.invalidCalendarDate) {
+            try SkyCalendarDate(year: 2026, month: 4, day: 31)
+        }
+    }
 
+    @Test("Observation context validates timezone identifiers")
+    func observationTimeZonesAreValidated() throws {
+        #expect(throws: SkyContractValidationError.invalidTimeZoneIdentifier) {
+            try SkyObservationContext(timeZoneIdentifier: "Mars/Olympus_Mons")
+        }
+
+        let context = try SkyObservationContext(
+            timeZoneIdentifier: "Europe/Istanbul",
+            locationName: "Istanbul"
+        )
+        #expect(context.timeZoneIdentifier == "Europe/Istanbul")
+        #expect(context.locationName == "Istanbul")
+    }
+
+    @Test("Calendar month rejects dates outside its selection")
+    func monthRejectsDateOutsideSelection() throws {
+        let context = try testContext()
+        let selection = try SkyCalendarMonthID(year: 2026, month: 8)
+        let outsideDay = SkyCalendarDay(
+            date: try testDate(year: 2026, month: 9, day: 1),
+            events: [try testEvent()]
+        )
+
+        #expect(throws: SkyContractValidationError.calendarDateOutsideSelection) {
+            try SkyCalendarMonth(
+                selection: selection,
+                context: context,
+                days: [outsideDay]
+            )
+        }
+    }
+
+    @Test("Calendar month rejects duplicate and out-of-order dates")
+    func monthRejectsDuplicateAndOutOfOrderDates() throws {
+        let context = try testContext()
+        let selection = try SkyCalendarMonthID(year: 2026, month: 8)
+        let event = try testEvent()
+        let day12 = SkyCalendarDay(
+            date: try testDate(year: 2026, month: 8, day: 12),
+            events: [event]
+        )
+        let day14 = SkyCalendarDay(
+            date: try testDate(year: 2026, month: 8, day: 14),
+            events: []
+        )
+
+        #expect(throws: SkyContractValidationError.duplicateCalendarDate) {
+            try SkyCalendarMonth(
+                selection: selection,
+                context: context,
+                days: [day12, day12]
+            )
+        }
+        #expect(throws: SkyContractValidationError.calendarDatesOutOfOrder) {
+            try SkyCalendarMonth(
+                selection: selection,
+                context: context,
+                days: [day14, day12]
+            )
+        }
+    }
+
+    @Test("Loaded calendar month requires an event-bearing day")
+    func monthRejectsNoEventBearingDay() throws {
+        let context = try testContext()
+        let selection = try SkyCalendarMonthID(year: 2026, month: 8)
+        let emptyDay = SkyCalendarDay(
+            date: try testDate(year: 2026, month: 8, day: 12),
+            events: []
+        )
+
+        #expect(throws: SkyContractValidationError.emptyLoadedContent) {
+            try SkyCalendarMonth(
+                selection: selection,
+                context: context,
+                days: [emptyDay]
+            )
+        }
+    }
+
+    @Test("Valid calendar month succeeds")
+    func validMonthSucceeds() throws {
+        let context = try testContext()
+        let selection = try SkyCalendarMonthID(year: 2026, month: 8)
+        let days = [
+            SkyCalendarDay(
+                date: try testDate(year: 2026, month: 8, day: 12),
+                events: [try testEvent()]
+            ),
+            SkyCalendarDay(
+                date: try testDate(year: 2026, month: 8, day: 14),
+                events: []
+            )
+        ]
+
+        let month = try SkyCalendarMonth(
+            selection: selection,
+            context: context,
+            days: days
+        )
+        #expect(month.selection == selection)
+        #expect(month.days == days)
+    }
+
+    @Test("Calendar week requires exactly seven days")
+    func weekRequiresSevenDays() throws {
+        let context = try testContext()
+        let start = try testDate(year: 2026, month: 8, day: 10)
+        let event = try testEvent()
+
+        #expect(throws: SkyContractValidationError.invalidCalendarWeek) {
+            try SkyCalendarWeek(
+                startDate: start,
+                context: context,
+                days: try weekDays(start: start, count: 6, event: event)
+            )
+        }
+        #expect(throws: SkyContractValidationError.invalidCalendarWeek) {
+            try SkyCalendarWeek(
+                startDate: start,
+                context: context,
+                days: try weekDays(start: start, count: 8, event: event)
+            )
+        }
+    }
+
+    @Test("Calendar week rejects non-contiguous dates and incorrect start date")
+    func weekValidatesSequenceAndStart() throws {
+        let context = try testContext()
+        let start = try testDate(year: 2026, month: 8, day: 10)
+        let event = try testEvent()
+        var nonContiguous = try weekDays(start: start, count: 7, event: event)
+        nonContiguous[3] = SkyCalendarDay(
+            date: try testDate(year: 2026, month: 8, day: 14),
+            events: []
+        )
+
+        #expect(throws: SkyContractValidationError.invalidCalendarWeek) {
+            try SkyCalendarWeek(
+                startDate: start,
+                context: context,
+                days: nonContiguous
+            )
+        }
+
+        let wrongDays = try weekDays(
+            start: try testDate(year: 2026, month: 8, day: 11),
+            count: 7,
+            event: event
+        )
+        #expect(throws: SkyContractValidationError.invalidCalendarWeek) {
+            try SkyCalendarWeek(
+                startDate: start,
+                context: context,
+                days: wrongDays
+            )
+        }
+    }
+
+    @Test("Valid calendar week can cross a month boundary")
+    func validWeekCrossesMonthBoundary() throws {
+        let context = try testContext()
+        let start = try testDate(year: 2026, month: 8, day: 29)
+        let days = try weekDays(start: start, count: 7, event: try testEvent())
+
+        let week = try SkyCalendarWeek(
+            startDate: start,
+            context: context,
+            days: days
+        )
+        let expectedEnd = try testDate(year: 2026, month: 9, day: 4)
+        #expect(week.days.first?.date == start)
+        #expect(week.days.last?.date == expectedEnd)
+    }
+
+    @Test("Loaded seven-day week requires an event-bearing day")
+    func weekRejectsNoEventBearingDay() throws {
+        let context = try testContext()
+        let start = try testDate(year: 2026, month: 8, day: 10)
+
+        #expect(throws: SkyContractValidationError.emptyLoadedContent) {
+            try SkyCalendarWeek(
+                startDate: start,
+                context: context,
+                days: try weekDays(start: start, count: 7, event: nil)
+            )
+        }
+    }
+
+    @Test("Sky events validate tradition and system ownership")
+    func eventSystemOwnershipIsValidated() throws {
+        let astronomical = try testEvent(
+            type: .lunarPhase,
+            system: .astronomical
+        )
+        #expect(astronomical.system == .astronomical)
+
+        let vedic = try testEvent(
+            type: .traditionSpecific(.vedic),
+            system: .astrological(.vedic)
+        )
+        #expect(vedic.type == .traditionSpecific(.vedic))
+        #expect(vedic.system == .astrological(.vedic))
+
+        #expect(throws: SkyContractValidationError.incompatibleEventSystem) {
+            try testEvent(
+                type: .traditionSpecific(.vedic),
+                system: .astrological(.western)
+            )
+        }
+        #expect(throws: SkyContractValidationError.incompatibleEventSystem) {
+            try testEvent(
+                type: .traditionSpecific(.vedic),
+                system: .astronomical
+            )
+        }
+    }
+
+    @Test("Event timing keeps interval date-only instant and unavailable states distinct")
+    func eventTimingIsValidatedAndExplicit() throws {
         let instant = Date(timeIntervalSince1970: 1_786_464_000)
         #expect(throws: SkyContractValidationError.invalidTimeInterval) {
             try SkyEventInterval(start: instant, end: instant)
@@ -17,18 +253,26 @@ struct D3FeatureModelTests {
         #expect(throws: SkyContractValidationError.invalidTimeInterval) {
             try SkyEventInterval(start: instant, end: instant.addingTimeInterval(-1))
         }
+
+        let interval = try SkyEventInterval(
+            start: instant,
+            end: instant.addingTimeInterval(60)
+        )
+        #expect(interval.start == instant)
+        #expect(interval.end == instant.addingTimeInterval(60))
+
+        let civilDate = try testDate(year: 2026, month: 8, day: 12)
+        let dateOnly = SkyEventTiming.dateOnly(civilDate)
+        let exactInstant = SkyEventTiming.instant(instant)
+        #expect(dateOnly != exactInstant)
+        #expect(SkyEventTiming.unavailable(.methodologyNotApproved) == .unavailable(
+            .methodologyNotApproved
+        ))
     }
 
-    @Test("Unknown event time remains explicitly unavailable")
-    func unavailableTimingIsExplicit() {
-        let timing = SkyEventTiming.unavailable(.methodologyNotApproved)
-        #expect(timing == .unavailable(.methodologyNotApproved))
-    }
-
-    @Test("Loaded contracts reject empty or structurally invalid content")
-    func loadedContractValidation() throws {
-        let context = try SkyObservationContext(timeZoneIdentifier: "Europe/Istanbul")
-        let august = try SkyCalendarMonthID(year: 2026, month: 8)
+    @Test("Loaded snapshot rejects empty content")
+    func loadedSnapshotRejectsEmptyContent() throws {
+        let context = try testContext()
 
         #expect(throws: SkyContractValidationError.emptyLoadedContent) {
             try SkySnapshot(
@@ -36,19 +280,6 @@ struct D3FeatureModelTests {
                 context: context,
                 events: []
             )
-        }
-
-        #expect(throws: SkyContractValidationError.emptyLoadedContent) {
-            try SkyCalendarMonth(
-                selection: august,
-                context: context,
-                days: []
-            )
-        }
-
-        let start = try SkyCalendarDate(year: 2026, month: 8, day: 10)
-        #expect(throws: SkyContractValidationError.invalidCalendarWeek) {
-            try SkyCalendarWeek(startDate: start, context: context, days: [])
         }
     }
 
@@ -150,4 +381,61 @@ struct D3FeatureModelTests {
         ))
     }
 #endif
+
+    private func testContext() throws -> SkyObservationContext {
+        try SkyObservationContext(timeZoneIdentifier: "Europe/Istanbul")
+    }
+
+    private func testDate(year: Int, month: Int, day: Int) throws -> SkyCalendarDate {
+        try SkyCalendarDate(year: year, month: month, day: day)
+    }
+
+    private func testEvent(
+        type: SkyEventType = .lunarPhase,
+        system: SkyEventSystem = .astronomical
+    ) throws -> SkyEvent {
+        let id = try #require(SkyEventID(rawValue: "test.sky.event"))
+        return try SkyEvent(
+            id: id,
+            type: type,
+            system: system,
+            title: "Test event",
+            summary: nil,
+            timing: .unavailable(.calculationUnavailable),
+            relevance: .global,
+            reliability: .unverified
+        )
+    }
+
+    private func weekDays(
+        start: SkyCalendarDate,
+        count: Int,
+        event: SkyEvent?
+    ) throws -> [SkyCalendarDay] {
+        try (0..<count).map { offset in
+            SkyCalendarDay(
+                date: try adding(days: offset, to: start),
+                events: offset == 0 ? event.map { [$0] } ?? [] : []
+            )
+        }
+    }
+
+    private func adding(days: Int, to date: SkyCalendarDate) throws -> SkyCalendarDate {
+        var calendar = Calendar(identifier: .gregorian)
+        calendar.timeZone = TimeZone(secondsFromGMT: 0)!
+        let foundationDate = try #require(calendar.date(from: DateComponents(
+            year: date.year,
+            month: date.month,
+            day: date.day
+        )))
+        let shiftedDate = try #require(
+            calendar.date(byAdding: .day, value: days, to: foundationDate)
+        )
+        let components = calendar.dateComponents([.year, .month, .day], from: shiftedDate)
+        return try SkyCalendarDate(
+            year: try #require(components.year),
+            month: try #require(components.month),
+            day: try #require(components.day)
+        )
+    }
 }

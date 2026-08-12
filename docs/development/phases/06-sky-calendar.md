@@ -39,6 +39,8 @@ Acceptance:
 Status: TODO  
 Depends on: SKY-001
 
+This later production provider/cache integration is not a prerequisite for SKY-003 or SKY-004.
+
 Acceptance:
 - refresh/cache/offline behavior follows current architecture;
 - user timezone/location changes invalidate affected facts correctly;
@@ -46,20 +48,22 @@ Acceptance:
 
 ### SKY-003 — Implement D3 Current Sky UI for iPhone + iPad
 Status: TODO  
-Depends on: SKY-002, approved D3 package
+Depends on: sufficient SKY-001 feature/domain contracts, approved D3 package
 
 Acceptance:
 - uses current Design Authority and approved D3 reference package;
+- can use explicit Debug-only development sample data before SKY-002 is complete;
 - iPhone Light/Dark and iPad Light/Dark are intentional compositions;
 - basis/availability disclosure matches the facts actually supplied;
 - no deleted final-archive/old design artifact is used as authority.
 
 ### SKY-004 — Implement D3 Calendar month/week views
 Status: TODO  
-Depends on: SKY-002, approved D3 package
+Depends on: sufficient SKY-001 feature/domain contracts, approved D3 package
 
 Acceptance:
 - Calendar remains nested under Sky, never a sixth root tab;
+- can use explicit Debug-only development sample data before SKY-002 is complete;
 - month/week navigation and empty/unavailable states are tested;
 - iPad uses available width according to the approved adaptive composition.
 

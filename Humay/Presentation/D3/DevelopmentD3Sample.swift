@@ -18,38 +18,44 @@ enum DevelopmentD3Sample {
         try SkyObservationContext(timeZoneIdentifier: "Europe/Istanbul")
     }
 
-    static let lunarEvent = SkyEvent(
-        id: lunarEventID,
-        type: .lunarPhase,
-        system: .astronomical,
-        title: "Lunar phase",
-        summary: "Deterministic sample copy for future layout testing.",
-        timing: .instant(instant(day: 12, hour: 18)),
-        relevance: .timeZone,
-        reliability: .unverified
-    )
+    static let lunarEvent = require {
+        try SkyEvent(
+            id: lunarEventID,
+            type: .lunarPhase,
+            system: .astronomical,
+            title: "Lunar phase",
+            summary: "Deterministic sample copy for future layout testing.",
+            timing: .instant(instant(day: 12, hour: 18)),
+            relevance: .timeZone,
+            reliability: .unverified
+        )
+    }
 
-    static let ingressEvent = SkyEvent(
-        id: ingressEventID,
-        type: .planetaryIngress,
-        system: .astrological(.western),
-        title: "Planetary ingress",
-        summary: "Illustrative event content; no calculation is implied.",
-        timing: .dateOnly(date(year: 2026, month: 8, day: 14)),
-        relevance: .global,
-        reliability: .unverified
-    )
+    static let ingressEvent = require {
+        try SkyEvent(
+            id: ingressEventID,
+            type: .planetaryIngress,
+            system: .astrological(.western),
+            title: "Planetary ingress",
+            summary: "Illustrative event content; no calculation is implied.",
+            timing: .dateOnly(date(year: 2026, month: 8, day: 14)),
+            relevance: .global,
+            reliability: .unverified
+        )
+    }
 
-    static let gatedEvent = SkyEvent(
-        id: gatedEventID,
-        type: .traditionSpecific(.vedic),
-        system: .astrological(.vedic),
-        title: "Methodology-gated event",
-        summary: nil,
-        timing: .unavailable(.methodologyNotApproved),
-        relevance: .location,
-        reliability: .unverified
-    )
+    static let gatedEvent = require {
+        try SkyEvent(
+            id: gatedEventID,
+            type: .traditionSpecific(.vedic),
+            system: .astrological(.vedic),
+            title: "Methodology-gated event",
+            summary: nil,
+            timing: .unavailable(.methodologyNotApproved),
+            relevance: .location,
+            reliability: .unverified
+        )
+    }
 
     static let snapshot = require {
         try SkySnapshot(
