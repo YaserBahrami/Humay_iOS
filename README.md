@@ -1,12 +1,14 @@
-# Humay iOS
+# Humay iOS + iPadOS
 
-**Humay** is the product, repository and internal project name for this iOS application.
+**Humay** is the product, repository and internal project name.
 
 ## Current state
 
-A mock-first iOS application exists and runs with five primary tabs, complete main flows, a reusable design system and fixture content behind replaceable service protocols. It was built ahead of the normal Phase 00 production gate by explicit direction; that exception is recorded in [`docs/development/DEVIATIONS.md`](docs/development/DEVIATIONS.md).
+The repository was reset to a **clean production baseline on 2026-08-12** before implementation of the approved Soulful Celestial design.
 
-> **Every astrological value currently shown by the app is illustrative fixture content.** Nothing is calculated from an ephemeris and no astrology/interpretation provider is connected. See [`docs/architecture/MOCK_DATA_STRATEGY.md`](docs/architecture/MOCK_DATA_STRATEGY.md).
+The old mock-first Presentation, DesignSystem, fixture runtime and premature persistence/provider layers were removed. Git history remains available for reference, but removed prototype code is not current implementation authority.
+
+See [`docs/architecture/PRODUCTION_BASELINE_RESET_2026-08-12.md`](docs/architecture/PRODUCTION_BASELINE_RESET_2026-08-12.md).
 
 ```bash
 xcodebuild -project Humay.xcodeproj -scheme Humay -configuration Debug \
@@ -15,18 +17,19 @@ xcodebuild -project Humay.xcodeproj -scheme Humay -configuration Debug \
 
 | | |
 |---|---|
-| Minimum target | iOS 18.0, iPhone, portrait |
+| Minimum target | iOS / iPadOS 18.0 |
+| Devices | iPhone + iPad |
+| iPhone | portrait-first |
+| iPad | portrait + landscape, adaptive widths |
 | Bundle identifier | `online.humay.ios` |
-| Stack | SwiftUI, SwiftData (versioned from V1), Swift 6 |
+| Stack | SwiftUI, Swift 6; persistence/provider layers added deliberately by production phase |
 | Architecture | [`docs/architecture/`](docs/architecture/) |
 
-Not yet connected: production networking, astrology providers, interpretation providers, authentication, StoreKit, advertising, analytics, widgets, notification delivery or iPad layouts.
-
-## Current product model
+## Product model
 
 Humay has two content paths.
 
-### 1. Free catalog — near-zero marginal runtime cost
+### Free catalog — near-zero marginal runtime cost
 
 - Free daily horoscope is coarse pre-generated content rather than a natal chart.
 - Western daily horoscope uses the 12 Sun signs.
@@ -34,20 +37,19 @@ Humay has two content paths.
 - Other systems use finite coarse catalogs only when methodology validates that model.
 - Ordinary Free runtime requests must not call paid astrology or LLM providers.
 
-### 2. Precision/personalized — Rewarded Access or Premium
+### Precision / personalized — Rewarded Access or Premium
 
-- Natal chart, precise personalized horoscope, precise compatibility and other provider-backed features use the precision path.
-- The initial provider direction is a structured astrology calculation service behind a replaceable adapter plus DeepSeek V4 Flash for interpretation/expression.
+- Natal chart, precise horoscope, precise compatibility and other provider-backed features use the precision path.
+- Structured astrology calculation and interpretation providers remain behind replaceable production boundaries.
 - Provider calls are server-side and cache-first.
 - One rewarded completion authorizes one needed generation for a selected result key after cache checks.
-- Successfully generated results are cached/reopenable according to the access contract.
 - Premium uses the same cache-first path without a rewarded ad for each included generation while entitlement is valid.
 
 See [`docs/development/PRODUCT_ACCESS_MODEL.md`](docs/development/PRODUCT_ACCESS_MODEL.md).
 
 ## Current design program
 
-Humay has one current design authority: **Soulful Celestial, Light + Dark**.
+Humay has one design authority: **Soulful Celestial, Light + Dark**.
 
 Start here:
 
@@ -56,31 +58,45 @@ Start here:
 3. [`docs/design/SCREEN_DESIGN_PLAN.md`](docs/design/SCREEN_DESIGN_PLAN.md)
 4. [`docs/design/soulful-reference/`](docs/design/soulful-reference/README.md)
 
-The target feeling is soulful, colorful, charming and premium with painterly celestial artwork, expressive editorial typography and restrained cute/playful moments. Every shipping screen family requires an intentional Light + Dark pair before final visual freeze.
+The target feeling is warm, soulful, colorful, charming and premium with editorial typography and restrained celestial illustration.
 
-Canonical primary IA remains:
+### Cross-device rule
+
+Every shipping screen is designed and reviewed for:
+
+- iPhone Light;
+- iPhone Dark;
+- iPad Light;
+- iPad Dark;
+- iPad landscape/adaptive behavior when needed.
+
+A phone layout is not stretched onto iPad.
+
+Existing iPhone Welcome and Birth Date references remain approved. Their iPad companions are the next backfill before those screens are cross-device complete. Step 03 Tradition is designed for both device families from the start.
+
+## Canonical IA
 
 - Today / Circle / Sky / Chart / Ask
 - Calendar nested under Sky
 - Profile / Settings through the header/profile entry
 - Compatibility through Circle/people flows
 
-## Development plan
+## Development cadence
 
-Start engineering sessions with:
+1. design next family for iPhone + iPad, Light + Dark;
+2. approve;
+3. implement only the approved family;
+4. capture real iPhone/iPad screenshots;
+5. reconcile code against design;
+6. continue.
 
-1. [`docs/development/STATUS.md`](docs/development/STATUS.md)
-2. [`docs/development/PRODUCT_ACCESS_MODEL.md`](docs/development/PRODUCT_ACCESS_MODEL.md)
-3. [`docs/development/ROADMAP.md`](docs/development/ROADMAP.md)
-4. the active phase file under [`docs/development/phases/`](docs/development/phases/)
-
-Current engineering phase: **Phase 00 — Technical Architecture & Implementation Planning**. The completed mock-first Phase 01M remains a structural/accessibility test bed but is not current visual authority.
+Current application source is intentionally minimal until the first approved production slice is implemented.
 
 ## Source-of-truth boundary
 
 Exact astronomical/astrological facts are never invented by an interpretation model. Precision features consume structured calculated facts from the astrology calculation layer; interpretation consumes those facts and produces user-facing meaning/expression.
 
-Free catalog content is intentionally coarse and must disclose its basis. Any methodology choice that changes calculated output requires domain validation/sign-off.
+Free catalog content is intentionally coarse and must disclose its basis. Unknown birth time must never be replaced with a hidden fake time.
 
 ## Brand status
 

@@ -4,98 +4,104 @@ Last updated: **2026-08-12**
 
 ## Active priorities
 
-Humay has two parallel priorities:
+1. **Production baseline is clean and cross-device.**
+2. **Backfill iPad references for approved Welcome + Birth Date.**
+3. **Design D1 Step 03 Tradition for iPhone + iPad, Light + Dark.**
+4. After approval, implement onboarding from the repository references rather than the removed prototype UI.
+5. Continue Phase 00 provider/cache/access architecture in parallel where it does not depend on unfinished UI.
 
-1. **D1 review — current Light/Dark onboarding reference set**
-2. **Phase 00 — Technical Architecture & Implementation Planning**
+## Production baseline
 
-Architecture work that does not depend on final appearance may continue while screen designs are produced phase by phase.
+The old mock-first application implementation was removed on 2026-08-12 before production UI work.
 
-## Visual design status
+Retained:
 
-**Active branch:** `design/soulful-light-dark`
+- Xcode project/scheme/configuration;
+- Swift 6 strict-concurrency foundation;
+- bundle/signing settings;
+- core profile/birth semantics;
+- fonts/assets shell;
+- test targets;
+- design/product/methodology documentation.
 
-Current and exclusive visual authority:
+Removed:
+
+- old Presentation layer;
+- old Paper-only DesignSystem;
+- mock astrology runtime and fixture catalogs;
+- premature persistence schema/repositories;
+- speculative Chart/Sky/Circle/Ask domain/service implementation;
+- prototype navigation and tests tied to removed screens.
+
+Details: [`../architecture/PRODUCTION_BASELINE_RESET_2026-08-12.md`](../architecture/PRODUCTION_BASELINE_RESET_2026-08-12.md).
+
+## Device scope
+
+Humay now targets **iPhone + iPad** from the start.
+
+- Minimum: iOS / iPadOS 18.0.
+- iPhone: portrait-first.
+- iPad: portrait + landscape.
+- Adaptive layouts must support regular/compact widths and narrower multitasking windows where applicable.
+- `TARGETED_DEVICE_FAMILY = 1,2`.
+
+The old "iPad later" statement is superseded.
+
+## Visual design authority
+
+Active branch: `design/soulful-light-dark`
+
+Current and exclusive authority:
 
 - [`../design/DESIGN_AUTHORITY.md`](../design/DESIGN_AUTHORITY.md)
 - [`../design/SOULFUL_CELESTIAL_DESIGN_DIRECTION.md`](../design/SOULFUL_CELESTIAL_DESIGN_DIRECTION.md)
 - [`../design/SCREEN_DESIGN_PLAN.md`](../design/SCREEN_DESIGN_PLAN.md)
 - [`../design/soulful-reference/`](../design/soulful-reference/README.md)
 
-There are no alternate design plans on this branch.
+### D0
 
-### D0 — Visual anchor lock
+iPhone Light/Dark anchors approved for Today, Daily Horoscope and Compatibility. iPad companion anchors are pending.
 
-**APPROVED STYLE SOURCE.** Light/Dark references are committed for:
+### D1
 
-- Today / Home
-- Daily Horoscope / reading detail
-- Compatibility
+Canonical onboarding:
 
-The selected direction is cosmic editorial: warm cream / deep navy, expressive serif hierarchy, simple line/flat cute celestial illustration, soft rounded cards, sparse star/orbit decoration and disciplined coral/lavender/gold/blue/sage accents. The painterly/watercolor exploration is no longer the current direction.
+1. Welcome
+2. Birth Date
+3. Tradition
+4. Profile Reveal
 
-### D1 — Onboarding
+Current status:
 
-**GENERATED / REVIEW NEXT.** Nine screens × Light/Dark are committed under `docs/design/soulful-reference/onboarding/`, with shared component/illustration boards.
+- Welcome iPhone Light/Dark: approved; iPad pending.
+- Birth Date iPhone Light/Dark + package: approved; iPad pending.
+- Tradition: next, designed for iPhone + iPad together.
+- Profile Reveal: pending, designed for iPhone + iPad together.
 
-D1 must be reviewed against D0 before it is marked approved or used as the source for D2.
+## Implementation gate
 
-### Next design phase after approval
+A production screen should not be visually frozen until the repository contains iPhone Light/Dark + iPad Light/Dark references and any necessary iPad adaptive/landscape notes.
 
-**D2 — Today + Circle.** Then D3–D9 proceed through Sky, Chart, Ask, Settings, Monetization, Sharing/Widgets/States and final brand/production handoff.
+Development cadence:
 
-## Phase 00 — Architecture
-
-Phase 00 remains **IN PROGRESS**.
-
-Current architecture work defines:
-
-1. on-device/backend/provider data flow and failure boundaries;
-2. calculation-provider adapter/output contract and validation;
-3. local + backend cache identity, retention and offline behavior;
-4. interpretation contract, provenance and Normal/Roast separation;
-5. Free catalog generation/review/publication pipeline;
-6. rewarded one-generation entitlement, Premium and provider-failure recovery;
-7. privacy/security boundary for birth/saved-person data.
+**design → approve → implement → capture real cross-device screenshots → reconcile → continue**.
 
 ## Binding product decisions
 
-- Product/repository/internal name is **Humay**.
-- Primary IA is **Today / Circle / Sky / Chart / Ask**.
-- Calendar is nested under Sky; Profile/Settings is reached through the header/profile entry.
+- Product/repository/internal name is Humay.
+- Primary IA is Today / Circle / Sky / Chart / Ask.
 - Ordinary Free usage must not trigger paid astrology or LLM calls.
-- Free Western daily horoscope uses finite pre-generated Sun-sign catalog content.
-- Free Western compatibility uses 12 × 12 = 144 sign-pair catalog keys.
+- Free Western daily horoscope uses finite Sun-sign catalog content.
+- Free Western compatibility uses 12 × 12 sign-pair catalog keys.
 - Free has no natal-chart calculation.
 - Personalized/precision features use Rewarded Access or Premium.
 - Precision is cache-first and server-side.
-- One rewarded completion authorizes one needed provider-backed generation for the selected result key after cache checks.
-- Numeric compatibility presentation is allowed, but mock percentages do not define production scoring methodology.
-- Roast is in-app expression only; notifications remain Normal register.
+- Numeric compatibility presentation is allowed, but visual mock scores do not define methodology.
+- Roast changes expression, not calculated facts.
+- Unknown birth time is never replaced with a fake time.
 
-## Phase 01M — Completed mock-first application
+## Current runtime
 
-The existing app builds, launches and exposes major flows over fixture content. It remains useful for:
+The app currently launches a deliberately minimal semantic Light/Dark Humay placeholder. This is not production UI; it exists only to keep the cleaned project buildable while approved screens are implemented one family at a time.
 
-- route/flow coverage;
-- mock domain/service boundaries;
-- Dynamic Type and accessibility behavior;
-- reusable implementation lessons.
-
-It is **not current visual authority**. Do not use the existing visual treatment to override the D0–D9 references.
-
-Every astrological value in the mock-first application remains fixture content and is not calculation truth.
-
-## Implementation constraints
-
-- Bundle identifier `online.humay.ios`.
-- Minimum deployment target iOS 18.0.
-- V1 targets iPhone portrait; iPad is a dedicated later phase.
-- Persistence uses SwiftData with versioned schema/migration planning from V1.
-- Swift 6 remains the implementation language.
-- Dynamic Type hierarchy/reflow behavior remains binding.
-- No hidden fake birth time may substitute for unknown input.
-
-## Active blockers
-
-No blocker prevents current design work or Phase 00 architecture planning.
+No production astrology provider, interpretation provider, persistence schema, StoreKit, ads, analytics, notification delivery or post-onboarding feature runtime is wired yet.
