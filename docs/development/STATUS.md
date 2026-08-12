@@ -4,10 +4,10 @@ Last updated: **2026-08-12**
 
 ## Active priorities
 
-1. Run the post-change IOS-007 verification contract and close Phase 01 only if the latest commit passes on representative iPhone and iPad destinations.
-2. Continue Phase 00 with the cache/offline and interpretation boundaries now that ARCH-001/ARCH-003 are frozen.
-3. Preserve local durable profile/settings behavior while later feature families remain behind their design gates.
-4. Preserve the completed Soulful Celestial DesignSystem foundation while later feature families remain behind their cross-device design gates.
+1. Run the post-change IOS-007 foundation verification and the new ASTRO-001 Swift tests on the latest branch.
+2. Close IOS-007/Phase 01 and mark ASTRO-001 DONE only if that verification is green.
+3. Continue Phase 00 with the cache/offline and interpretation boundaries now that ARCH-001/ARCH-003 are frozen.
+4. Preserve local durable profile/settings behavior and the approved Soulful Celestial UI while later feature families remain behind their design gates.
 
 ## Repository authority
 
@@ -63,10 +63,10 @@ Current foundation:
 - IOS-006 keeps build/deployment/version ownership in xcconfig/Xcode metadata and adds no runtime backend/provider configuration or `AppConfiguration` container;
 - IOS-006 centralizes privacy-safe OSLog diagnostics behind finite typed application and persistence events; birth/profile/provider payloads, raw errors and secrets are not logged;
 - IOS-007 adds `Scripts/verify-foundation.sh` and [`VERIFICATION.md`](VERIFICATION.md) as the canonical repository/local Xcode verification contract;
-- the IOS-007 coverage audit found the persistence-failure root already covered by persistence tests, so no duplicate navigation test was added; the only new test invariant is the approved 56 pt primary-control minimum height, with rendered UI unchanged;
+- the IOS-007 coverage audit found the persistence-failure root already covered by persistence tests, so no duplicate navigation test was added; the only new IOS-007 test invariant is the approved 56 pt primary-control minimum height, with rendered UI unchanged;
 - no third-party dependency, CI workflow or provider-backed feature UI was added.
 
-Because IOS-007 changes production/test source, its local verification must be rerun after the latest commit before IOS-007 or Phase 01 is marked DONE. The GitHub editing environment used for the implementation cannot run Xcode/simulator commands, so the earlier IOS-006 pass is not treated as proof for the new commit.
+Because IOS-007 changed production/test source, its local verification must be rerun after the latest commit before IOS-007 or Phase 01 is marked DONE. The GitHub editing environment used for implementation cannot run Xcode/simulator commands, so earlier passes are not treated as proof for the current branch.
 
 The first production feature slice is implemented separately under Phase 03:
 
@@ -93,19 +93,37 @@ See [`phases/01-ios-foundation.md`](phases/01-ios-foundation.md) and [`VERIFICAT
 
 ### Phase 00 — Technical Architecture
 
-Phase 00 remains **IN PROGRESS**, but its first three architecture gates are now frozen:
+Phase 00 remains **IN PROGRESS**, but its first three architecture gates are frozen:
 
 - **ARCH-001 complete:** [`../architecture/SYSTEM_ARCHITECTURE.md`](../architecture/SYSTEM_ARCHITECTURE.md) defines separate Free and precision flows, trust boundaries and explicit failure behavior; a missing Free catalog item can never fall through to paid generation.
 - **ARCH-002 complete:** `IOS_ARCHITECTURE.md` owns the Apple `App → Presentation → Domain ← Data` boundary.
 - **ARCH-003 complete:** [`../architecture/ASTROLOGY_ENGINE.md`](../architecture/ASTROLOGY_ENGINE.md) defines provider-independent Western/Vedic/BaZi calculation adapters, normalized facts, reliability/provenance/versioning and validated fallback rules.
 
-The calculation provider is still vendor-neutral. Astrologer/RapidAPI, Swiss Ephemeris or another engine may later implement an adapter, but no vendor is frozen and no iOS/backend runtime integration was added in this architecture step. Calculation facts remain separate from interpretation text, and ordinary Free serving never invokes the calculation engine.
+The calculation provider remains vendor-neutral. Astrologer/RapidAPI, Swiss Ephemeris or another engine may later implement an adapter, but no vendor is frozen and no backend/provider runtime integration was added in this architecture step. Calculation facts remain separate from interpretation text, and ordinary Free serving never invokes the calculation engine.
 
 Next Phase 00 architecture ownership is ARCH-004 result-cache/offline behavior and ARCH-005 interpretation/LLM boundary. Provider-backed feature runtime remains blocked on the relevant unfinished cache/access/privacy/backend contracts.
 
-Phase 02 source implementation also still depends on Phase 01 completion. Once IOS-007 verification closes Phase 01, ASTRO-001 may reconcile concrete shared calculation inputs with the existing `BirthDetails` semantics under the frozen ARCH-003 contract.
-
 See [`phases/00-technical-architecture.md`](phases/00-technical-architecture.md).
+
+### Phase 02 — Astrology Calculation Foundation
+
+**IN PROGRESS. ASTRO-001 source is implemented; post-change verification is pending.**
+
+Current implementation:
+
+- `Humay/Domain/Astrology/BirthCalculationInput.swift` introduces the provider-independent calculation-input boundary;
+- it wraps the existing `BirthDetails` model instead of creating a parallel user/birth model;
+- exact, approximate and unknown birth time remain explicit and unchanged;
+- approximate time requires positive uncertainty rather than being silently treated as exact;
+- missing place remains explicit; known place validation requires a nonblank name, finite bounded coordinates and a real timezone identifier;
+- impossible, pre-1900 and future birth dates are rejected at the calculation boundary;
+- `AstrologyTradition` is carried explicitly while vendor/methodology-specific settings remain deferred to their owning methodology/adapter tasks;
+- `HumayTests/BirthCalculationInputTests.swift` covers preservation and invalid-input cases;
+- no provider, API client, endpoint, secret, networking or UI was added.
+
+ASTRO-001 is not marked DONE until the latest branch passes the canonical foundation verification and complete Swift Testing after this source change. ASTRO-002 must not begin before that acceptance gate closes.
+
+See [`phases/02-astrology-engine-foundation.md`](phases/02-astrology-engine-foundation.md).
 
 ## Device scope
 
@@ -150,7 +168,7 @@ Birth time and birth location are not onboarding steps.
 
 ## Implementation gate
 
-Shared architecture/design-system foundation may proceed now. A feature-specific production screen is not visually frozen until its repository package contains iPhone Light/Dark + iPad Light/Dark references and required adaptive notes.
+Shared architecture/design-system/foundation work may proceed without a visual mock when it has no user-facing UI. A feature-specific production screen is not visually frozen until its repository package contains iPhone Light/Dark + iPad Light/Dark references and required adaptive notes.
 
 Cadence:
 
@@ -176,4 +194,4 @@ Cadence:
 
 The app restores the local user-state snapshot before resolving a meaningful root. A missing file produces fresh four-beat onboarding. `Enter Humay` saves the profile/settings aggregate atomically before resolving the root to the existing minimal semantic Light/Dark Humay placeholder. Terminating and relaunching a completed app restores the main placeholder. Save failures leave the onboarding draft intact and expose a retry alert; restore failures remain distinct from fresh onboarding.
 
-The local snapshot is the device source of truth for this slice. It stores only profile/settings, including date components, explicit unknown/not-provided birth values, leading tradition, tone and completion timestamp. No production astrology provider, interpretation provider, CloudKit sync/restore, authentication/account flow, backend identity, StoreKit, ads, analytics, notification delivery or post-onboarding feature runtime is wired yet. Profile Reveal uses no provider-backed astrology and displays only the entered birth date, selected leading tradition and date-only/non-precise state.
+The local snapshot is the device source of truth for this slice. It stores only profile/settings, including date components, explicit unknown/not-provided birth values, leading tradition, tone and completion timestamp. `BirthCalculationInput` is currently only a validated Domain boundary and is not wired to a calculation provider. No production astrology provider, interpretation provider, CloudKit sync/restore, authentication/account flow, backend identity, StoreKit, ads, analytics, notification delivery or post-onboarding feature runtime is wired yet. Profile Reveal uses no provider-backed astrology and displays only the entered birth date, selected leading tradition and date-only/non-precise state.

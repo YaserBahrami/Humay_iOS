@@ -1,6 +1,6 @@
 # Phase 02 — Astrology Calculation Foundation
 
-Status: **TODO — ARCH-003 complete; Phase 01 verification remains the start gate**
+Status: **IN PROGRESS — ASTRO-001 implemented; verification pending**
 
 Depends on:
 - Phase 01 Apple Platform Foundation;
@@ -13,19 +13,31 @@ Architecture authority:
 
 Goal: establish trustworthy deterministic astrology facts and validation infrastructure before production features depend on them.
 
-The calculation-provider strategy is now frozen at the Humay-contract level: provider adapters are server-side/vendor-independent, normalized facts retain reliability/provenance/versioning, and interpretation remains a separate downstream boundary. No concrete provider vendor is selected by this phase plan.
+The calculation-provider strategy is frozen at the Humay-contract level: provider adapters are server-side/vendor-independent, normalized facts retain reliability/provenance/versioning, and interpretation remains a separate downstream boundary. No concrete provider vendor is selected by this phase plan.
 
 ## Tasks
 
 ### ASTRO-001 — Confirm shared birth/location/time calculation inputs
-Status: TODO
-Depends on: Phase 01 completion
+Status: **IMPLEMENTED — post-change verification pending**  
+Depends on: Phase 01 completion for acceptance
+
+Implemented:
+- `BirthCalculationInput` wraps the existing `BirthDetails` model instead of copying profile facts into a parallel calculation-user model;
+- the calculation boundary preserves explicit `.exact`, `.approximate` and `.unknown` birth-time states;
+- approximate time must carry positive uncertainty and is never promoted to exact;
+- `.notProvided` birth place remains valid for date-only/limited calculations;
+- known place validation requires a nonblank name, finite bounded coordinates and a valid timezone identifier;
+- birth-date validation rejects impossible dates, dates before the current product-supported 1900 lower bound and future dates;
+- selected `AstrologyTradition` is carried explicitly without introducing vendor-native methodology fields;
+- focused Swift Testing coverage verifies preservation and rejection rules.
 
 Acceptance:
 - reuses current `BirthDetails` semantics where appropriate rather than inventing a parallel user model;
 - date, exact/unknown/approximate time, timezone and location are modeled explicitly;
 - unknown-time uncertainty propagates rather than collapsing to a fake default time;
 - concrete Swift/domain types reconcile with `ASTROLOGY_ENGINE.md` instead of provider-native input models.
+
+ASTRO-001 is not marked DONE until the latest branch passes the local Phase 01/foundation verification plus the complete Swift Testing target after this source change.
 
 ### ASTRO-002 — Implement calculation adapter/protocol layer
 Status: TODO  
@@ -89,11 +101,11 @@ Acceptance:
 - Presentation does not know engine/vendor internals;
 - unavailable/uncertain facts are typed explicitly.
 
-## Start rule
+## Start / verification rule
 
-Do not begin Phase 02 source/runtime work until Phase 01 is actually closed by the IOS-007 post-change verification run. Architecture/documentation may continue in parallel.
+ASTRO-001 source is now staged because its technical design is approved and it has no provider/runtime/UI dependency. It still depends on Phase 01 completion for acceptance: do not mark ASTRO-001 DONE or begin ASTRO-002 until the latest branch passes the IOS-007/foundation verification and the new calculation-input tests.
 
-Once Phase 01 closes, ASTRO-001 is the next calculation-source task. ASTRO-002 may use the already-complete ARCH-003 contract, but provider-backed feature runtime must still wait for every additional relevant Phase 00 cache/backend/access/privacy contract.
+Provider-backed runtime remains blocked on the relevant unfinished Phase 00 cache/backend/access/privacy contracts even after ASTRO-001 is verified.
 
 ## Exit criteria
 
