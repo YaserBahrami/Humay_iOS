@@ -19,10 +19,12 @@ protocol UserStateStore: Sendable {
     func clear() async throws
 }
 
-/// Stable operation-level failures exposed by persistence implementations.
+/// Stable, implementation-neutral failures exposed across the persistence boundary.
+///
+/// Concrete storage details such as Application Support paths or directory creation
+/// remain Data-layer concerns and must not leak into Domain.
 enum UserStatePersistenceError: Error, Equatable, Sendable {
-    case applicationSupportUnavailable
-    case directoryCreationFailed
+    case unavailable
     case readFailed
     case writeFailed
     case clearFailed
