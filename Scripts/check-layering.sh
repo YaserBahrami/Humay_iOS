@@ -27,11 +27,31 @@ report "Domain must not import SwiftData" \
 report "Domain must not import UIKit" \
   "$(grep -rn '^import UIKit' Humay/Domain/ 2>/dev/null)"
 
-# Persistence must not leak into views/app composition.
-report "Presentation/App must not import SwiftData" \
-  "$(grep -rn '^import SwiftData' Humay/Presentation/ Humay/App/ 2>/dev/null)"
+# Data implementations may depend on Domain, but never on UI frameworks.
+report "Data must not import SwiftUI" \
+  "$(grep -rn '^import SwiftUI' Humay/Data/ 2>/dev/null)"
+report "Data must not import UIKit" \
+  "$(grep -rn '^import UIKit' Humay/Data/ 2>/dev/null)"
+
+# Persistence implementations are composed by App and must not leak into Presentation.
+report "Presentation must not import SwiftData" \
+  "$(grep -rn '^import SwiftData' Humay/Presentation/ 2>/dev/null)"
 report "No view may use @Query" \
   "$(grep -rn '@Query' Humay/Presentation/ Humay/App/ 2>/dev/null)"
+
+# Presentation receives boundary abstractions/state. Concrete boundary implementations
+# are created only by App composition. This naming guard is intentionally narrow so it
+# does not invent requirements for providers or repositories that do not exist yet.
+report "Presentation must not construct concrete boundary implementations" \
+  "$(grep -rnE '\b[A-Z][A-Za-z0-9]*(Adapter|Client|Provider|Repository)\(' Humay/Presentation/ --include='*.swift' 2>/dev/null)"
+
+# The composition boundary uses explicit ownership rather than a global service locator.
+# Keep this focused on dependency-container patterns so unrelated framework-style shared
+# instances are not prohibited by accident.
+report "Production dependencies must not use a service locator" \
+  "$(grep -rnE '\b(class|struct|actor|enum)[[:space:]]+(ServiceLocator|DependencyContainer|DependencyRegistry|AppDependencies)\b' Humay/ --include='*.swift' 2>/dev/null)"
+report "AppEnvironment must not become a global shared singleton" \
+  "$(grep -rnE 'static[[:space:]]+let[[:space:]]+shared[[:space:]]*=[[:space:]]*AppEnvironment\b' Humay/ --include='*.swift' 2>/dev/null)"
 
 # Prototype providers/fixtures must never become the production runtime by accident.
 report "Production source must not name Mock* service/provider implementations" \

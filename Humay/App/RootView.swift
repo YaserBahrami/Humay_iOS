@@ -19,11 +19,6 @@ struct RootView: View {
     }
 }
 
-#Preview("iPhone") {
+#Preview("Foundation") {
     RootView()
-}
-
-#Preview("iPad") {
-    RootView()
-        .previewDevice("iPad Pro 13-inch (M4)")
 }

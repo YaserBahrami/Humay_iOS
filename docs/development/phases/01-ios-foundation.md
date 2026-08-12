@@ -1,6 +1,6 @@
 # Phase 01 — Apple Platform Foundation
 
-Status: **READY TO START**
+Status: **IN PROGRESS — IOS-001 and IOS-002 complete; IOS-003 not started**
 
 Depends on:
 - current production baseline reset;
@@ -25,7 +25,16 @@ Do not create abstractions merely to satisfy a folder diagram; introduce protoco
 ## Tasks
 
 ### IOS-001 — Production project/build baseline
-Status: TODO
+Status: **DONE — 2026-08-12**
+
+Verified without changing signing or unrelated project settings:
+
+- Swift 6 with complete strict concurrency remains centralized in `Config/Shared.xcconfig`;
+- minimum deployment remains iOS/iPadOS 18.0 with `TARGETED_DEVICE_FAMILY = 1,2`;
+- project, product, target and shared scheme naming remains Humay;
+- Debug and Release continue to inherit the shared xcconfig baseline;
+- no third-party package dependency was added;
+- representative iPhone and iPad Debug simulator builds pass.
 
 Acceptance:
 - Debug build succeeds for a representative iPhone simulator.
@@ -37,8 +46,16 @@ Acceptance:
 - no third-party dependency is added without a current requirement.
 
 ### IOS-002 — Clean Architecture source structure and composition
-Status: TODO  
+Status: **DONE — 2026-08-12**
 Depends on: IOS-001
+
+Implemented foundation state:
+
+- `HumayApp` remains the explicit App composition boundary and owns `AppEnvironment`;
+- `RootView` remains the intentionally minimal App root surface;
+- stable profile/birth/settings facts remain in Domain without UI or persistence-framework dependencies;
+- Data, feature Presentation and DesignSystem directories remain absent until production behavior requires them;
+- layer enforcement protects Domain independence, prevents UI dependencies in Data, prevents persistence/concrete boundary construction in Presentation and rejects global shared dependency singletons.
 
 Target structure grows deliberately toward:
 

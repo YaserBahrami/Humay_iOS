@@ -4,8 +4,8 @@ Last updated: **2026-08-12**
 
 ## Active priorities
 
-1. **Start Phase 01 — Apple Platform Foundation** on a temporary feature branch from `main`.
-2. Build the SwiftUI + Clean Architecture foundation for iPhone and iPad without restoring prototype feature code.
+1. Continue **Phase 01 — Apple Platform Foundation** after the completed IOS-001 and IOS-002 baseline.
+2. Review IOS-003 through its separate design gate before beginning the Soulful Celestial DesignSystem foundation; IOS-003 is not started.
 3. Backfill iPad references for approved Welcome + Birth Date.
 4. Design D1 Step 03 Tradition for iPhone + iPad, Light + Dark.
 5. After cross-device approval, implement onboarding from repository references.
@@ -48,7 +48,18 @@ Details: [`../architecture/PRODUCTION_BASELINE_RESET_2026-08-12.md`](../architec
 
 ### Phase 01 — Apple Platform Foundation
 
-**READY TO START.**
+**IN PROGRESS. IOS-001 and IOS-002 are complete; IOS-003 is not started.**
+
+Current verified foundation:
+
+- representative iPhone and iPad Debug simulator builds pass;
+- Swift 6 complete strict concurrency, iOS/iPadOS 18.0 and device families `1,2` remain effective;
+- Humay naming, shared scheme and centralized Debug/Release xcconfig inheritance remain intact;
+- `HumayApp` explicitly owns the small `AppEnvironment` composition boundary;
+- Domain remains independent of UI and persistence frameworks;
+- no Data, feature Presentation or DesignSystem structure exists without current production behavior;
+- Swift Testing, the UI launch test and architecture/nomenclature checks pass;
+- no third-party dependency or production feature UI was added.
 
 Foundation scope:
 
