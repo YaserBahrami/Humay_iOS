@@ -9,6 +9,9 @@ Depends on:
 Architecture authority:
 - [`../../architecture/SYSTEM_ARCHITECTURE.md`](../../architecture/SYSTEM_ARCHITECTURE.md)
 - [`../../architecture/ASTROLOGY_ENGINE.md`](../../architecture/ASTROLOGY_ENGINE.md)
+- [`../../architecture/RESULT_CACHE_OFFLINE.md`](../../architecture/RESULT_CACHE_OFFLINE.md)
+- [`../../architecture/INTERPRETATION_LAYER.md`](../../architecture/INTERPRETATION_LAYER.md)
+- [`../../architecture/BACKEND.md`](../../architecture/BACKEND.md)
 - [`../../architecture/DATA_MODEL.md`](../../architecture/DATA_MODEL.md)
 
 Goal: establish trustworthy deterministic astrology facts and validation infrastructure before production features depend on them.
@@ -122,7 +125,7 @@ Depends on: ASTRO-003
 Acceptance:
 - multiple birth locations, DST/timezone cases, unknown-time cases and boundary cases are covered;
 - fixtures record source/method/version;
-- design artifact values are never accepted merely because they appear in mockups;
+- design/sample values are never accepted merely because they appear in mockups;
 - any claimed fallback/cross-provider equivalence has fixture evidence.
 
 ### ASTRO-007 — Define stable feature-facing astrology fact contracts
@@ -134,11 +137,15 @@ Acceptance:
 - Presentation does not know engine/vendor internals;
 - unavailable/uncertain facts are typed explicitly.
 
-## Start / verification rule
+## Current sequencing rule
 
-ASTRO-001, ASTRO-002 and the provider-independent/structural portion of ASTRO-003 are implemented because they are non-visual Domain work under the approved ARCH-003 boundary. None is marked DONE until the latest branch passes the IOS-007/foundation verification and complete Swift Testing after these source changes.
+ASTRO-001, ASTRO-002 and the provider-independent/structural portion of ASTRO-003 are implemented because they are non-visual Domain work under the approved architecture boundary. None is marked DONE until the latest branch passes the IOS-007/foundation verification and complete Swift Testing after these source changes.
 
-Do not add a concrete paid-provider/backend runtime inside the iOS client. The remaining ASTRO-003 calculation work belongs behind Humay-controlled server infrastructure and remains blocked on the relevant unfinished Phase 00 cache/backend/access/privacy contracts plus real provider/methodology validation.
+ARCH-004/005/006 now define cache/offline, interpretation and backend responsibilities. The remaining real-provider portion of ASTRO-003 is intentionally **deferred while core UI is designed and implemented with development sample data**.
+
+Development sample data may exercise typed Western facts/readings in approved screens, but it is not golden-fixture evidence and must not ship as production provider output.
+
+When backend/API work begins, the real Western engine/provider remains server-side and must also satisfy ARCH-007 entitlement, ARCH-008 privacy/security and relevant methodology validation before production paid-provider rollout.
 
 ## Exit criteria
 

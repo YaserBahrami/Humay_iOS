@@ -4,10 +4,10 @@ Last updated: **2026-08-12**
 
 ## Active priorities
 
-1. Run the post-change IOS-007 foundation verification and the ASTRO-001/002/003 Swift tests on the latest branch.
-2. Close IOS-007/Phase 01 and mark implemented Phase 02 work DONE only where verification and methodology/provider evidence actually satisfy acceptance.
-3. Continue Phase 00 with cache/offline, interpretation and backend responsibilities before wiring any paid provider runtime.
-4. Preserve local durable profile/settings behavior and the approved Soulful Celestial UI while later feature families remain behind their design gates.
+1. Run the post-change IOS-007 foundation verification and ASTRO-001/002/003 Swift tests on the latest branch.
+2. Begin the next approved **UI-first** pass: design/approve D2 Today + Circle across iPhone/iPad Light/Dark, then implement those real SwiftUI states using development sample data.
+3. Continue the same UI-first approach for the next core feature families before wiring production backend/API providers.
+4. Defer concrete backend/API/provider integration until the corresponding UI/feature contracts are stable; before paid-provider rollout, finish ARCH-007 entitlement and ARCH-008 privacy/security contracts and required methodology validation.
 
 ## Repository authority
 
@@ -40,6 +40,8 @@ Removed:
 - speculative Chart/Sky/Circle/Ask implementation;
 - prototype navigation and tests tied to removed screens.
 
+The new UI-first workflow does **not** restore that deleted mock-provider architecture. Approved screens may use explicit development sample data through Humay-owned contracts until real Data/API adapters are connected.
+
 Details: [`../architecture/PRODUCTION_BASELINE_RESET_2026-08-12.md`](../architecture/PRODUCTION_BASELINE_RESET_2026-08-12.md).
 
 ## Engineering track
@@ -54,78 +56,114 @@ Current foundation:
 - Swift 6 complete strict concurrency, iOS/iPadOS 18.0 and device families `1,2` remain effective;
 - Humay naming, shared scheme and centralized Debug/Release xcconfig inheritance remain intact;
 - `HumayApp` explicitly owns the small `AppEnvironment` composition boundary;
-- `HumayApp` explicitly composes the transient `AppNavigationState` root/route boundary without persisting routing state or adding later feature UI;
+- `HumayApp` explicitly composes the transient `AppNavigationState` root/route boundary without persisting routing state;
 - Domain remains independent of UI and persistence frameworks;
 - DesignSystem contains the approved semantic Light/Dark tokens, Dynamic Type typography, adaptive layout, generic surfaces and primary/quiet button foundations;
-- the DesignSystem showcase exists only in Debug previews for representative iPhone/iPad Light/Dark verification and is not a runtime route;
 - Data contains only the production-owned local persistence slice justified by IOS-005/PROFILE-005;
-- IOS-005 persistence errors are implementation-neutral and its local snapshot validates semantic payload invariants;
-- IOS-006 keeps build/deployment/version ownership in xcconfig/Xcode metadata and adds no runtime backend/provider configuration or `AppConfiguration` container;
-- IOS-006 centralizes privacy-safe OSLog diagnostics behind finite typed application and persistence events; birth/profile/provider payloads, raw errors and secrets are not logged;
+- IOS-006 centralizes privacy-safe OSLog diagnostics behind finite typed application/persistence events;
 - IOS-007 adds `Scripts/verify-foundation.sh` and [`VERIFICATION.md`](VERIFICATION.md) as the canonical repository/local Xcode verification contract;
-- the IOS-007 coverage audit found the persistence-failure root already covered by persistence tests, so no duplicate navigation test was added; the only new IOS-007 test invariant is the approved 56 pt primary-control minimum height, with rendered UI unchanged;
-- no third-party dependency, CI workflow or provider-backed feature UI was added.
+- no third-party dependency or CI workflow is configured.
 
-Because IOS-007 changed production/test source, its local verification must be rerun after the latest commit before IOS-007 or Phase 01 is marked DONE. The GitHub editing environment used for implementation cannot run Xcode/simulator commands, so earlier passes are not treated as proof for the current branch.
-
-The first production feature slice is implemented separately under Phase 03:
-
-- D1 onboarding is the root experience when `AppNavigationState.root == .onboarding`;
-- the main root remains the minimal Humay foundation placeholder;
-- completion durably saves a version-1 local `UserProfile`/`AppSettings` snapshot with unknown birth time and no birth place;
-- restore resolves a completed state to the main placeholder; fresh installs and incomplete state resolve to onboarding;
-- no provider, networking, CloudKit or account flow is present.
-
-Foundation scope:
-
-- SwiftUI application shell;
-- Clean Architecture boundaries: `App → Presentation → Domain ← Data`;
-- explicit dependency composition;
-- production Soulful Celestial semantic design tokens/primitives;
-- iPhone + iPad adaptive layout foundations;
-- Light + Dark from the start;
-- root routing/state boundaries without speculative feature UI;
-- durable local profile/settings persistence;
-- privacy-safe diagnostics;
-- deterministic test and verification ownership.
-
-See [`phases/01-ios-foundation.md`](phases/01-ios-foundation.md) and [`VERIFICATION.md`](VERIFICATION.md).
+Because source/tests changed after the last verified IOS-006 run, the latest branch still needs the documented local verification before IOS-007 or Phase 01 is marked DONE.
 
 ### Phase 00 — Technical Architecture
 
-Phase 00 remains **IN PROGRESS**, but its first three architecture gates are frozen:
+Phase 00 remains **IN PROGRESS**, but **ARCH-001 through ARCH-006 are now complete**.
 
-- **ARCH-001 complete:** [`../architecture/SYSTEM_ARCHITECTURE.md`](../architecture/SYSTEM_ARCHITECTURE.md) defines separate Free and precision flows, trust boundaries and explicit failure behavior; a missing Free catalog item can never fall through to paid generation.
-- **ARCH-002 complete:** `IOS_ARCHITECTURE.md` owns the Apple `App → Presentation → Domain ← Data` boundary.
-- **ARCH-003 complete:** [`../architecture/ASTROLOGY_ENGINE.md`](../architecture/ASTROLOGY_ENGINE.md) defines provider-independent Western/Vedic/BaZi calculation adapters, normalized facts, reliability/provenance/versioning and validated fallback rules.
+Frozen architecture:
 
-The calculation provider remains vendor-neutral. Astrologer/RapidAPI, Swiss Ephemeris or another engine may later implement an adapter, but no vendor is frozen and no backend/provider runtime integration was added in this architecture step. Calculation facts remain separate from interpretation text, and ordinary Free serving never invokes the calculation engine.
+- **ARCH-001:** [`../architecture/SYSTEM_ARCHITECTURE.md`](../architecture/SYSTEM_ARCHITECTURE.md) — separate Free and precision trust/cost paths.
+- **ARCH-002:** [`../architecture/IOS_ARCHITECTURE.md`](../architecture/IOS_ARCHITECTURE.md) — Apple `App → Presentation → Domain ← Data` boundary.
+- **ARCH-003:** [`../architecture/ASTROLOGY_ENGINE.md`](../architecture/ASTROLOGY_ENGINE.md) — provider-independent Western/Vedic/BaZi calculation contracts, reliability/provenance/versioning and validated fallback rules.
+- **ARCH-004:** [`../architecture/RESULT_CACHE_OFFLINE.md`](../architecture/RESULT_CACHE_OFFLINE.md) — separate calculation/interpretation cache identities, authoritative server precision cache/idempotency and explicit offline behavior.
+- **ARCH-005:** [`../architecture/INTERPRETATION_LAYER.md`](../architecture/INTERPRETATION_LAYER.md) — structured interpretation input/output, prompt/model/safety provenance, retries/idempotency and the rule that LLMs never invent calculation facts.
+- **ARCH-006:** [`../architecture/BACKEND.md`](../architecture/BACKEND.md) — Free catalog generation/publishing/serving, precision orchestration, reference data, provider adapter and observability responsibilities.
 
-Next Phase 00 architecture ownership is ARCH-004 result-cache/offline behavior, ARCH-005 interpretation/LLM boundary and ARCH-006 backend/catalog responsibilities. Provider-backed feature runtime remains blocked on the relevant unfinished cache/access/privacy/backend contracts.
+Still open:
 
-See [`phases/00-technical-architecture.md`](phases/00-technical-architecture.md).
+- ARCH-007 — Rewarded/Premium entitlement architecture;
+- ARCH-008 — privacy/security/retention/deletion/provider transmission;
+- ARCH-009 — provider/cache/idempotency/cost validation completion;
+- ARCH-010 — final roadmap/repo closure after those remaining contracts.
+
+No concrete calculation provider, interpretation provider, database or hosting vendor is frozen yet.
 
 ### Phase 02 — Astrology Calculation Foundation
 
-**IN PROGRESS. ASTRO-001 and ASTRO-002 contracts are implemented; ASTRO-003 now has a partial provider-independent Western normalization/validation foundation.**
+**IN PROGRESS. ASTRO-001 and ASTRO-002 contracts are implemented; ASTRO-003 has a partial provider-independent Western normalization/validation foundation.**
 
 Current implementation:
 
-- `Humay/Domain/Astrology/BirthCalculationInput.swift` introduces the provider-independent calculation-input boundary and wraps the existing `BirthDetails` model instead of creating a parallel user/birth model;
-- exact, approximate and unknown birth time remain explicit and unchanged; approximate time requires positive uncertainty rather than being silently treated as exact;
-- missing place remains explicit; known place validation requires a nonblank name, finite bounded coordinates and a real timezone identifier;
-- impossible, pre-1900 and future birth dates are rejected at the calculation boundary;
-- `Humay/Domain/Astrology/AstrologyCalculationContracts.swift` defines typed Humay calculation results, fact reliability/availability, provenance and a finite payload-free calculation failure model;
-- `Humay/Domain/Astrology/AstrologyCalculationAdapter.swift` defines independent Western, Vedic and BaZi adapter protocols with explicit tradition ownership and a shared mismatch guard;
-- `Humay/Domain/Astrology/WesternAstrologyFacts.swift` defines the initial ten-body Western planetary vocabulary, tropical longitude normalization/sign derivation, major-aspect result vocabulary and fact-level reliability;
-- `Humay/Domain/Astrology/WesternCalculationValidation.swift` validates normalized Western result structure before feature consumption, including tradition, provenance, duplicate planetary positions and duplicate aspect pairs;
-- Ascendant/house facts are intentionally not frozen while METHOD-001 remains unresolved; no house-system default is inferred from a provider;
-- `HumayTests/BirthCalculationInputTests.swift`, `AstrologyCalculationContractTests.swift` and `WesternAstrologyFactsTests.swift` cover current Domain contracts and structural validation;
-- no concrete provider, API client, endpoint, secret, networking, fallback runtime or UI was added.
+- `BirthCalculationInput` reuses `BirthDetails` and validates date/time/place semantics without fake defaults;
+- typed calculation result, reliability, provenance and finite failure contracts exist;
+- independent Western, Vedic and BaZi adapter protocols exist;
+- the initial Western ten-body/tropical longitude/major-aspect vocabulary and structural result validation exist;
+- Ascendant/houses remain gated by unresolved METHOD-001 rather than inheriting a provider default;
+- focused Swift Testing covers current contracts;
+- no concrete provider, API client, endpoint, secret or networking runtime is present.
 
-ASTRO-001/002 remain verification-pending. ASTRO-003 is explicitly **PARTIAL**: a real server-side Western engine/provider, independent golden fixtures, provider-response normalization evidence and methodology-approved house/Ascendant behavior are still required before it can be marked DONE. This work must not be faked inside the iOS client.
+ASTRO-001/002 remain verification-pending. ASTRO-003 remains **PARTIAL** until a real server-side engine/provider is independently validated with golden fixtures and methodology-sensitive outputs are approved.
+
+Under the new implementation order, that provider work is intentionally deferred while the core UI is designed/implemented against development sample data.
 
 See [`phases/02-astrology-engine-foundation.md`](phases/02-astrology-engine-foundation.md).
+
+### Phase 03 — Onboarding & Local Profile
+
+The approved D1 onboarding slice PROFILE-001 through PROFILE-005 is implemented:
+
+- Welcome → Birth Date → Tradition → Profile Reveal;
+- completion durably stores local `UserProfile`/`AppSettings` schema v1;
+- onboarding does not ask for birth time/location;
+- restore resolves completed state to the current minimal main placeholder;
+- no provider, networking, CloudKit or account flow is present.
+
+Birth-time/place editing remains a later Profile/Settings UI task and requires its own UI approval.
+
+## UI-first development plan
+
+The next development emphasis is user-facing UI, not backend provider code.
+
+For each core family:
+
+1. generate iPhone Light/Dark + iPad Light/Dark design references;
+2. obtain approval;
+3. implement the real SwiftUI hierarchy and feature state model;
+4. inject explicit **development sample data** conforming to Humay-owned contracts;
+5. cover the approved loaded/loading/cache/offline/limited/error/access states;
+6. capture real cross-device simulator screenshots and reconcile;
+7. only later replace the development source with real Data/API adapters.
+
+Development sample data is never production truth, methodology evidence or a shipping provider fallback. Release runtime must not present sample personalized astrology as real output.
+
+### Next visual family
+
+**D2 — Today + Circle** is the next UI design gate.
+
+It should establish:
+
+- the first real main-root Today experience;
+- Free/coarse vs precision Today states;
+- Circle/Saved People foundations;
+- coarse compatibility vs precise-upgrade states;
+- cache/reopen/loading/offline/error states needed by the new architecture;
+- iPhone/iPad Light/Dark and adaptive behavior.
+
+After D2 approval, implement it with development sample data before backend/API work.
+
+## Backend/API timing
+
+Backend/API implementation follows the UI-first pass for the relevant feature contracts.
+
+When it begins, it must:
+
+- use Humay-owned API contracts rather than vendor-shaped UI models;
+- implement Free catalog and precision paths separately;
+- use authoritative server cache/idempotency;
+- keep provider secrets server-side;
+- finish ARCH-007/008 before production rewarded/Premium provider rollout;
+- validate real calculation providers independently from mock/design values;
+- replace sample sources at the app Data/composition boundary without redesigning Presentation.
 
 ## Device scope
 
@@ -163,18 +201,18 @@ Current status:
 
 - complete cross-device D1 package approved 2026-08-12;
 - Welcome, Birth Date, Tradition and Profile Reveal production UI implemented;
-- actual Light/Dark simulator evidence captured under `docs/design/implementation-evidence/d1-onboarding/`; the iPad landscape screenshot-export limitation is documented there;
+- actual Light/Dark simulator evidence captured under `docs/design/implementation-evidence/d1-onboarding/`;
 - compact iPad windows collapse toward the compact hierarchy and iPad landscape uses adaptive two-region compositions where defined.
 
 Birth time and birth location are not onboarding steps.
 
 ## Implementation gate
 
-Shared architecture/design-system/foundation work may proceed without a visual mock when it has no user-facing UI. User-facing UI must be designed and approved before implementation. A feature-specific production screen is not visually frozen until its repository package contains iPhone Light/Dark + iPad Light/Dark references and required adaptive notes.
+Non-visual architecture/domain/foundation work may proceed without a visual mock. **Every user-facing UI must be designed and approved before implementation.**
 
 Cadence for user-facing work:
 
-**UI design → approve → implement → capture real cross-device screenshots → reconcile → continue**.
+**UI design → approve → implement with real state structure + development sample data → capture real cross-device screenshots → reconcile → continue.**
 
 ## Binding product decisions
 
@@ -186,7 +224,7 @@ Cadence for user-facing work:
 - Free has no natal-chart calculation.
 - Personalized/precision features use Rewarded Access or Premium.
 - Precision is cache-first and server-side.
-- Numeric compatibility presentation is allowed, but visual mock scores do not define methodology.
+- Numeric compatibility presentation is allowed, but visual/sample scores do not define methodology.
 - Roast changes expression, not calculated facts.
 - Unknown birth time is never replaced with a fake time.
 - Humay V1 requires no Humay user account, registration, Sign in with Apple or login UI.
@@ -196,4 +234,4 @@ Cadence for user-facing work:
 
 The app restores the local user-state snapshot before resolving a meaningful root. A missing file produces fresh four-beat onboarding. `Enter Humay` saves the profile/settings aggregate atomically before resolving the root to the existing minimal semantic Light/Dark Humay placeholder. Terminating and relaunching a completed app restores the main placeholder. Save failures leave the onboarding draft intact and expose a retry alert; restore failures remain distinct from fresh onboarding.
 
-The local snapshot is the device source of truth for this slice. It stores only profile/settings, including date components, explicit unknown/not-provided birth values, leading tradition, tone and completion timestamp. The ASTRO-001/002/003 types are currently validated Domain contracts only and are not wired to a calculation provider. No production astrology provider, interpretation provider, CloudKit sync/restore, authentication/account flow, backend identity, StoreKit, ads, analytics, notification delivery or post-onboarding feature runtime is wired yet. Profile Reveal uses no provider-backed astrology and displays only the entered birth date, selected leading tradition and date-only/non-precise state.
+The local snapshot remains the device source of truth for current profile/settings. The ASTRO-001/002/003 types are Domain contracts only and are not wired to a calculation provider. No production astrology provider, interpretation provider, backend API, CloudKit sync/restore, authentication, StoreKit, ads, analytics or notification delivery is wired yet.
