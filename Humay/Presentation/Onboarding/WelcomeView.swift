@@ -4,19 +4,32 @@ struct WelcomeView: View {
     let onBegin: () -> Void
 
     @Environment(\.horizontalSizeClass) private var horizontalSizeClass
-
-    private var portraitSpacing: CGFloat {
-        horizontalSizeClass == .compact ? HumaySpacing.large : HumaySpacing.extraLarge
-    }
+    @Environment(\.dynamicTypeSize) private var dynamicTypeSize
 
     var body: some View {
         OnboardingScreen { proxy in
+            let compactHeight = proxy.size.height < 700
+            let sectionSpacing = bounded(
+                proxy.size.height * (compactHeight ? 0.012 : 0.016),
+                minimum: 8,
+                maximum: 16
+            )
+
             if proxy.size.width > proxy.size.height {
-                landscapeLayout
+                landscapeLayout(sectionSpacing: sectionSpacing)
             } else {
-                portraitLayout
+                portraitLayout(
+                    sectionSpacing: sectionSpacing,
+                    heroHeight: bounded(
+                        proxy.size.height * (compactHeight ? 0.22 : 0.25),
+                        minimum: 140,
+                        maximum: 220
+                    ),
+                    compactHeight: compactHeight
+                )
             }
         }
+        .scrollDisabled(!dynamicTypeSize.isAccessibilitySize)
         .safeAreaInset(edge: .bottom, spacing: 0) {
             primaryAction
                 .frame(maxWidth: .infinity)
@@ -27,34 +40,39 @@ struct WelcomeView: View {
         }
     }
 
-    private var portraitLayout: some View {
-        VStack(alignment: .leading, spacing: portraitSpacing) {
+    private func portraitLayout(
+        sectionSpacing: CGFloat,
+        heroHeight: CGFloat,
+        compactHeight: Bool
+    ) -> some View {
+        VStack(alignment: .leading, spacing: sectionSpacing) {
             OnboardingChrome(
                 stepLabel: nil,
                 progressIndex: 0,
                 onBack: nil
             )
 
-            VStack(alignment: .leading, spacing: portraitSpacing) {
-                OnboardingTitleBlock(
-                    title: "Read the sky. Keep the fun.",
-                    supporting: "Astrology that feels human — with the reasoning close enough to open whenever you want it.",
-                    hero: true
-                )
-                .frame(maxWidth: horizontalSizeClass == .compact ? 300 : .infinity, alignment: .leading)
+            OnboardingTitleBlock(
+                title: "Read the sky. Keep the fun.",
+                supporting: "Astrology that feels human — with the reasoning close enough to open whenever you want it.",
+                hero: true
+            )
+            .frame(maxWidth: horizontalSizeClass == .compact ? 300 : .infinity, alignment: .leading)
 
-                WelcomeHeroCard()
+            WelcomeHeroCard(
+                height: heroHeight,
+                compactHeight: compactHeight
+            )
 
-                featureCues
-            }
-            .frame(maxWidth: 720, alignment: .leading)
-            .frame(maxWidth: .infinity, alignment: .center)
+            featureCues(compactHeight: compactHeight)
         }
+        .frame(maxWidth: 720, alignment: .leading)
+        .frame(maxWidth: .infinity, alignment: .center)
     }
 
-    private var landscapeLayout: some View {
+    private func landscapeLayout(sectionSpacing: CGFloat) -> some View {
         HStack(alignment: .top, spacing: HumaySpacing.extraExtraLarge) {
-            VStack(alignment: .leading, spacing: HumaySpacing.extraLarge) {
+            VStack(alignment: .leading, spacing: sectionSpacing) {
                 OnboardingChrome(
                     stepLabel: nil,
                     progressIndex: 0,
@@ -67,12 +85,12 @@ struct WelcomeView: View {
                     hero: false
                 )
 
-                featureCues
+                featureCues(compactHeight: false)
             }
             .frame(maxWidth: 420, alignment: .leading)
 
-            WelcomeHeroCard()
-                .frame(maxWidth: .infinity, minHeight: 360)
+            WelcomeHeroCard(height: 340, compactHeight: false)
+                .frame(maxWidth: .infinity)
         }
         .frame(maxWidth: 1120, alignment: .center)
     }
@@ -85,8 +103,8 @@ struct WelcomeView: View {
         )
     }
 
-    private var featureCues: some View {
-        VStack(alignment: .leading, spacing: HumaySpacing.large) {
+    private func featureCues(compactHeight: Bool) -> some View {
+        VStack(alignment: .leading, spacing: compactHeight ? 6 : HumaySpacing.medium) {
             OnboardingFeatureCue(
                 symbol: "sun.max",
                 tint: .humayCoral,
@@ -109,13 +127,20 @@ struct WelcomeView: View {
             )
         }
     }
+
+    private func bounded(_ value: CGFloat, minimum: CGFloat, maximum: CGFloat) -> CGFloat {
+        min(max(value, minimum), maximum)
+    }
 }
 
 private struct WelcomeHeroCard: View {
+    let height: CGFloat
+    let compactHeight: Bool
+
     @Environment(\.colorScheme) private var colorScheme
     @Environment(\.horizontalSizeClass) private var horizontalSizeClass
 
-    private var isCompact: Bool { horizontalSizeClass == .compact }
+    private var isCompactWidth: Bool { horizontalSizeClass == .compact }
 
     var body: some View {
         ZStack(alignment: .topLeading) {
@@ -128,8 +153,8 @@ private struct WelcomeHeroCard: View {
                     )
                 )
 
-            HStack(alignment: .bottom, spacing: HumaySpacing.small) {
-                VStack(alignment: .leading, spacing: HumaySpacing.medium) {
+            HStack(alignment: .center, spacing: compactHeight ? 4 : HumaySpacing.small) {
+                VStack(alignment: .leading, spacing: compactHeight ? 5 : HumaySpacing.medium) {
                     Text("YOUR COSMIC COMPANION")
                         .font(HumayTypography.utility)
                         .foregroundStyle(Color.humayCoral)
@@ -141,23 +166,26 @@ private struct WelcomeHeroCard: View {
                         .fixedSize(horizontal: false, vertical: true)
 
                     Text("A little perspective. Zero cosmic homework.")
-                        .font(HumayTypography.supporting)
+                        .font(compactHeight ? .caption : HumayTypography.supporting)
                         .foregroundStyle(heroText.opacity(0.78))
                         .fixedSize(horizontal: false, vertical: true)
                 }
                 .frame(
-                    maxWidth: isCompact ? 225 : 520,
+                    maxWidth: isCompactWidth ? (compactHeight ? 210 : 225) : 520,
                     alignment: .leading
                 )
 
                 CosmicCupCompanion()
-                    .frame(width: isCompact ? 108 : 180, height: isCompact ? 146 : 190)
-                    .scaleEffect(isCompact ? 0.78 : 1)
+                    .frame(
+                        width: compactHeight ? 78 : (isCompactWidth ? 108 : 180),
+                        height: compactHeight ? 96 : (isCompactWidth ? 146 : 190)
+                    )
+                    .scaleEffect(compactHeight ? 0.52 : (isCompactWidth ? 0.78 : 1))
             }
-            .padding(isCompact ? HumaySpacing.medium : HumaySpacing.extraLarge)
-            .frame(maxWidth: .infinity, alignment: .leading)
+            .padding(compactHeight ? 10 : (isCompactWidth ? HumaySpacing.medium : HumaySpacing.extraLarge))
+            .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .leading)
         }
-        .frame(minHeight: isCompact ? 220 : 250)
+        .frame(height: height)
         .clipShape(RoundedRectangle(cornerRadius: HumayRadius.feature))
         .shadow(
             color: colorScheme == .light ? .black.opacity(HumayElevation.subtleShadowOpacity) : .clear,
@@ -180,8 +208,6 @@ private struct WelcomeHeroCard: View {
     }
 }
 
-/// Friendly tea-cup companion derived from the approved D1 Welcome reference.
-/// It stays deliberately object-like rather than becoming a mascot character.
 private struct CosmicCupCompanion: View {
     @Environment(\.colorScheme) private var colorScheme
 
