@@ -25,14 +25,20 @@ struct CompatibilitySelectionView: View {
         GeometryReader { proxy in
             ScrollView {
                 VStack(alignment: .leading, spacing: HumaySpacing.extraLarge) {
-                    VStack(alignment: .leading, spacing: HumaySpacing.small) {
-                        Text("Choose two people")
-                            .font(HumayTypography.heroTitle)
-                            .accessibilityAddTraits(.isHeader)
-                        Text("Free compatibility uses only the selected Western Sun-sign pair. It is not natal synastry.")
-                            .font(HumayTypography.body)
-                            .foregroundStyle(Color.humayTextSecondary)
-                            .fixedSize(horizontal: false, vertical: true)
+                    HStack(alignment: .center, spacing: HumaySpacing.large) {
+                        VStack(alignment: .leading, spacing: HumaySpacing.small) {
+                            Text("Choose two people")
+                                .font(HumayTypography.heroTitle)
+                                .accessibilityAddTraits(.isHeader)
+                            Text("Start with a simple Sun-sign connection. Precise compatibility can go deeper when enough birth details are available.")
+                                .font(HumayTypography.body)
+                                .foregroundStyle(Color.humayTextSecondary)
+                                .fixedSize(horizontal: false, vertical: true)
+                        }
+                        .frame(maxWidth: .infinity, alignment: .leading)
+
+                        HumayIllustration(name: "IllustrationCompatibilityPair")
+                            .frame(width: 118, height: 88)
                     }
 
                     LazyVGrid(
@@ -65,8 +71,6 @@ struct CompatibilitySelectionView: View {
                             .font(HumayTypography.supporting)
                             .foregroundStyle(Color.humayTextSecondary)
                     }
-
-                    D2SampleNotice(source: source)
                 }
                 .frame(maxWidth: HumayContentWidth.readable.rawValue)
                 .frame(maxWidth: .infinity, alignment: .top)
@@ -91,7 +95,7 @@ struct CompatibilitySelectionView: View {
         guard selected == Set(pairFromState?.ids ?? []) else {
             return .failed(
                 pair: CompatibilityPair(first: selectedPeople[0], second: selectedPeople[1]),
-                message: "No development result exists for this pair."
+                message: "Compatibility is not available for this pair yet."
             )
         }
         return state
