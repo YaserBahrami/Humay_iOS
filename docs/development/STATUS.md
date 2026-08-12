@@ -61,9 +61,9 @@ Current verified foundation:
 - the DesignSystem showcase exists only in Debug previews for representative iPhone/iPad Light/Dark verification and is not a runtime route;
 - Data now contains only the production-owned local persistence slice justified by
   IOS-005/PROFILE-005;
-- Swift Testing, the UI launch test and nomenclature check pass; the layering
-  guard still reports the pre-existing approved-UI color literal in
-  `Humay/Presentation/Onboarding/WelcomeView.swift:288`;
+- Swift Testing, the UI launch test and nomenclature check pass; the prior layering
+  violation from the Welcome illustration color literal has been reconciled by moving
+  that literal into `DesignSystem/Tokens`;
 - no third-party dependency or provider-backed feature UI was added.
 
 The first production feature slice is now implemented separately under Phase 03:
