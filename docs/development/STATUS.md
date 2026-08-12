@@ -5,9 +5,9 @@ Last updated: **2026-08-12**
 ## Active priorities
 
 1. Run the post-change IOS-007 verification contract and close Phase 01 only if the latest commit passes on representative iPhone and iPad destinations.
-2. Preserve local durable profile/settings behavior while later feature families remain behind their design gates.
-3. Preserve the completed Soulful Celestial DesignSystem foundation while later feature families remain behind their cross-device design gates.
-4. Continue Phase 00 provider/cache/access architecture in parallel where it does not block the app foundation.
+2. Continue Phase 00 with the cache/offline and interpretation boundaries now that ARCH-001/ARCH-003 are frozen.
+3. Preserve local durable profile/settings behavior while later feature families remain behind their design gates.
+4. Preserve the completed Soulful Celestial DesignSystem foundation while later feature families remain behind their cross-device design gates.
 
 ## Repository authority
 
@@ -93,7 +93,17 @@ See [`phases/01-ios-foundation.md`](phases/01-ios-foundation.md) and [`VERIFICAT
 
 ### Phase 00 — Technical Architecture
 
-Provider/cache/backend/privacy architecture remains **IN PROGRESS in parallel**. Phase 01 foundation does not require every provider-specific Phase 00 document to be finished first; it does require the current product-access, iOS architecture, clean-baseline and design-authority contracts.
+Phase 00 remains **IN PROGRESS**, but its first three architecture gates are now frozen:
+
+- **ARCH-001 complete:** [`../architecture/SYSTEM_ARCHITECTURE.md`](../architecture/SYSTEM_ARCHITECTURE.md) defines separate Free and precision flows, trust boundaries and explicit failure behavior; a missing Free catalog item can never fall through to paid generation.
+- **ARCH-002 complete:** `IOS_ARCHITECTURE.md` owns the Apple `App → Presentation → Domain ← Data` boundary.
+- **ARCH-003 complete:** [`../architecture/ASTROLOGY_ENGINE.md`](../architecture/ASTROLOGY_ENGINE.md) defines provider-independent Western/Vedic/BaZi calculation adapters, normalized facts, reliability/provenance/versioning and validated fallback rules.
+
+The calculation provider is still vendor-neutral. Astrologer/RapidAPI, Swiss Ephemeris or another engine may later implement an adapter, but no vendor is frozen and no iOS/backend runtime integration was added in this architecture step. Calculation facts remain separate from interpretation text, and ordinary Free serving never invokes the calculation engine.
+
+Next Phase 00 architecture ownership is ARCH-004 result-cache/offline behavior and ARCH-005 interpretation/LLM boundary. Provider-backed feature runtime remains blocked on the relevant unfinished cache/access/privacy/backend contracts.
+
+Phase 02 source implementation also still depends on Phase 01 completion. Once IOS-007 verification closes Phase 01, ASTRO-001 may reconcile concrete shared calculation inputs with the existing `BirthDetails` semantics under the frozen ARCH-003 contract.
 
 See [`phases/00-technical-architecture.md`](phases/00-technical-architecture.md).
 

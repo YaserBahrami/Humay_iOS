@@ -9,19 +9,23 @@
 1. [`development/STATUS.md`](development/STATUS.md) — what is active now.
 2. [`development/ROADMAP.md`](development/ROADMAP.md) — dependency-driven implementation sequence.
 3. [`development/PRODUCT_ACCESS_MODEL.md`](development/PRODUCT_ACCESS_MODEL.md) — Free / Rewarded Access / Premium cost and entitlement rules.
-4. [`architecture/IOS_ARCHITECTURE.md`](architecture/IOS_ARCHITECTURE.md) — SwiftUI + Clean Architecture boundaries for iPhone and iPad.
-5. [`development/VERIFICATION.md`](development/VERIFICATION.md) — canonical repository, build and test verification commands.
-6. [`design/DESIGN_AUTHORITY.md`](design/DESIGN_AUTHORITY.md) — exclusive visual/product-device authority.
-7. [`design/SOULFUL_CELESTIAL_DESIGN_DIRECTION.md`](design/SOULFUL_CELESTIAL_DESIGN_DIRECTION.md) — current visual system.
-8. [`design/SCREEN_DESIGN_PLAN.md`](design/SCREEN_DESIGN_PLAN.md) — D0–D9 screen/design sequence.
-9. The approved screen package under [`design/soulful-reference/`](design/soulful-reference/README.md) for the feature being implemented.
-10. [`development/METHODOLOGY_TRACK.md`](development/METHODOLOGY_TRACK.md) when a feature depends on astrology conventions that are not yet signed off.
+4. [`architecture/SYSTEM_ARCHITECTURE.md`](architecture/SYSTEM_ARCHITECTURE.md) — Free vs precision system/deployment/trust boundaries.
+5. [`architecture/ASTROLOGY_ENGINE.md`](architecture/ASTROLOGY_ENGINE.md) — provider-independent calculation, provenance and fallback contract.
+6. [`architecture/IOS_ARCHITECTURE.md`](architecture/IOS_ARCHITECTURE.md) — SwiftUI + Clean Architecture boundaries for iPhone and iPad.
+7. [`development/VERIFICATION.md`](development/VERIFICATION.md) — canonical repository, build and test verification commands.
+8. [`design/DESIGN_AUTHORITY.md`](design/DESIGN_AUTHORITY.md) — exclusive visual/product-device authority.
+9. [`design/SOULFUL_CELESTIAL_DESIGN_DIRECTION.md`](design/SOULFUL_CELESTIAL_DESIGN_DIRECTION.md) — current visual system.
+10. [`design/SCREEN_DESIGN_PLAN.md`](design/SCREEN_DESIGN_PLAN.md) — D0–D9 screen/design sequence.
+11. The approved screen package under [`design/soulful-reference/`](design/soulful-reference/README.md) for the feature being implemented.
+12. [`development/METHODOLOGY_TRACK.md`](development/METHODOLOGY_TRACK.md) when a feature depends on astrology conventions that are not yet signed off.
 
 ## Current implementation state
 
 The old generated mock-first application was removed before production development. The Xcode project remains intentionally small, with the first production feature slice now implemented.
 
-Current engineering work is **Phase 03 — Onboarding & Local Profile**, covering the approved onboarding slice PROFILE-001 through PROFILE-005. Phase 01 IOS-001 through IOS-006 are complete; IOS-007 implementation is present and awaits its post-change local verification before Phase 01 can close. Provider/cache/backend details from Phase 00 may continue in parallel where they do not block the app foundation.
+Current engineering work is **Phase 03 — Onboarding & Local Profile**, covering the approved onboarding slice PROFILE-001 through PROFILE-005. Phase 01 IOS-001 through IOS-006 are complete; IOS-007 implementation is present and awaits its post-change local verification before Phase 01 can close.
+
+Phase 00 architecture continues in parallel. ARCH-001 system/deployment boundaries and ARCH-003 provider-independent astrology calculation strategy are now frozen. No backend/provider runtime was added: hosting vendor, calculation provider, interpretation provider and concrete API endpoints remain intentionally unfrozen until their owning tasks.
 
 Foundation target:
 
@@ -37,9 +41,14 @@ Foundation target:
 - profile completion in the app-owned version-1 local snapshot until future private sync work;
 - build/deployment/version settings remain project metadata; no runtime backend/provider configuration exists yet;
 - application diagnostics use finite privacy-safe OSLog events with no raw profile/birth/provider payload logging;
-- `Scripts/verify-foundation.sh` plus [`development/VERIFICATION.md`](development/VERIFICATION.md) define the canonical local foundation verification contract.
+- `Scripts/verify-foundation.sh` plus [`development/VERIFICATION.md`](development/VERIFICATION.md) define the canonical local foundation verification contract;
+- Free catalog and precision paths are system-level separate cost/trust paths;
+- precision calculation returns normalized versioned facts before any interpretation layer.
 
-See [`development/phases/01-ios-foundation.md`](development/phases/01-ios-foundation.md).
+See:
+
+- [`development/phases/00-technical-architecture.md`](development/phases/00-technical-architecture.md)
+- [`development/phases/01-ios-foundation.md`](development/phases/01-ios-foundation.md)
 
 ## Current design state
 

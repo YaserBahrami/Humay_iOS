@@ -29,6 +29,14 @@ Phase 01 platform foundation may proceed while unfinished provider/backend detai
 
 Provider-backed feature implementation may not invent unresolved Phase 00 contracts.
 
+### Current architecture gate — 2026-08-12
+
+- ARCH-001 is complete in [`../architecture/SYSTEM_ARCHITECTURE.md`](../architecture/SYSTEM_ARCHITECTURE.md): Free catalog and precision are separate logical cost/trust paths, and a Free miss cannot fall through to paid generation.
+- ARCH-003 is complete in [`../architecture/ASTROLOGY_ENGINE.md`](../architecture/ASTROLOGY_ENGINE.md): calculation adapters are provider-independent, facts are typed/versioned/provenanced, unknown-time uncertainty is preserved, and provider fallback requires validated methodology equivalence.
+- No calculation/interpretation/hosting vendor is frozen by those documents and no provider runtime has been implemented.
+- Phase 02 source work still waits for Phase 01 completion. Once IOS-007 verification closes Phase 01, ASTRO-001 is the first calculation task that may begin.
+- ARCH-004/ARCH-005/ARCH-006/ARCH-007/ARCH-008 remain required before their corresponding cache, interpretation, backend, entitlement and privacy-dependent runtime slices are implemented.
+
 ## Visual design track — iPhone + iPad, Light + Dark
 
 | Design phase | Scope | Outcome |
