@@ -5,6 +5,7 @@ struct CompatibilityView: View {
     let precisePreview: PreciseCompatibilityResult?
     let source: D2ContentSource
 
+    @Environment(\.colorScheme) private var colorScheme
     @State private var previewOverride: PreciseCompatibilityResult?
     @State private var showUnlockInfo = false
 
@@ -39,7 +40,7 @@ struct CompatibilityView: View {
         .alert("Precise compatibility is not connected", isPresented: $showUnlockInfo) {
             Button("OK", role: .cancel) {}
         } message: {
-            Text("StoreKit, rewarded access and provider-backed synastry are intentionally outside this UI-first phase.")
+            Text("Provider-backed synastry will be connected with its access flow.")
         }
     }
 
@@ -69,7 +70,7 @@ struct CompatibilityView: View {
                         .tint(Color.humayLavender)
                     Text("Reading the connection…")
                         .font(HumayTypography.cardTitle)
-                    Text("Development loading state. No provider work is running.")
+                    Text("Looking at how these two energies meet.")
                         .font(HumayTypography.supporting)
                         .foregroundStyle(Color.humayTextSecondary)
                 }
@@ -81,16 +82,10 @@ struct CompatibilityView: View {
             loaded(
                 DisplayResult(free: result),
                 availableWidth: availableWidth,
-                showAccessCard: true
+                showAccessCard: false
             )
 
         case .preciseLocked(let freeResult):
-            D2StatusBanner(
-                symbol: "lock.fill",
-                title: "Precise compatibility locked",
-                detail: "The Free Sun-sign result remains available below. Precise synastry needs future access and provider work.",
-                accent: .lavender
-            )
             loaded(
                 DisplayResult(free: freeResult),
                 availableWidth: availableWidth,
@@ -108,7 +103,7 @@ struct CompatibilityView: View {
             D2StatusBanner(
                 symbol: "clock.arrow.circlepath",
                 title: "Saved result reopened",
-                detail: "Cached \(savedAt.formatted(date: .abbreviated, time: .shortened)); no new generation was started.",
+                detail: "Cached \(savedAt.formatted(date: .abbreviated, time: .shortened)).",
                 accent: .sage
             )
             loaded(
@@ -123,7 +118,7 @@ struct CompatibilityView: View {
                 title: "Offline",
                 detail: cached == nil
                     ? "No saved compatibility result can be reopened."
-                    : "Showing a saved development result. No generation is being attempted.",
+                    : "Showing your saved compatibility result.",
                 accent: .gold
             )
             if let cached {
@@ -156,14 +151,11 @@ struct CompatibilityView: View {
         availableWidth: CGFloat,
         showAccessCard: Bool
     ) -> some View {
-        basisBanner(result)
-
         if availableWidth >= 820 {
-            HStack(alignment: .top, spacing: HumaySpacing.extraLarge) {
+            HStack(alignment: .top, spacing: HumaySpacing.extraExtraLarge) {
                 VStack(spacing: HumaySpacing.extraLarge) {
                     compatibilityHero(result)
                     if showAccessCard { preciseAccessCard }
-                    D2SampleNotice(source: source)
                 }
                 .frame(maxWidth: .infinity, alignment: .top)
 
@@ -178,29 +170,6 @@ struct CompatibilityView: View {
             metricsCard(result.metrics)
             ourTakeCard(result.ourTake)
             if showAccessCard { preciseAccessCard }
-            D2SampleNotice(source: source)
-        }
-    }
-
-    private func basisBanner(_ result: DisplayResult) -> some View {
-        switch result.basis {
-        case .free(let key):
-            D2StatusBanner(
-                symbol: "sun.max.fill",
-                title: "Free · Sun-sign pair",
-                detail: "\(key.first.displayName) × \(key.second.displayName) catalog · not natal synastry.",
-                accent: .gold
-            )
-            .accessibilityIdentifier("compatibility.basis.free")
-
-        case .precise:
-            D2StatusBanner(
-                symbol: "scope",
-                title: "Precise presentation sample",
-                detail: "Development only · no provider calculation or synastry generation.",
-                accent: .lavender
-            )
-            .accessibilityIdentifier("compatibility.basis.precise")
         }
     }
 
@@ -212,10 +181,14 @@ struct CompatibilityView: View {
                 Image(systemName: "heart")
                     .font(.title2)
                     .foregroundStyle(Color.humayCoral)
-                Capsule()
-                    .stroke(style: StrokeStyle(lineWidth: 1.5, dash: [4, 5]))
-                    .foregroundStyle(Color.humayCoral)
-                    .frame(maxWidth: 110, maxHeight: 1)
+
+                HStack(spacing: 5) {
+                    ForEach(0..<5, id: \.self) { _ in
+                        Capsule()
+                            .fill(Color.humayCoral.opacity(0.82))
+                            .frame(width: 6, height: 1.5)
+                    }
+                }
             }
             .frame(maxWidth: .infinity)
             .padding(.top, HumaySpacing.extraLarge)
@@ -235,13 +208,7 @@ struct CompatibilityView: View {
                 .font(HumayTypography.compatibilityScore)
                 .tracking(-2)
                 .monospacedDigit()
-                .foregroundStyle(
-                    LinearGradient(
-                        colors: [Color.humayLavender, Color.humayCoral],
-                        startPoint: .leading,
-                        endPoint: .trailing
-                    )
-                )
+                .foregroundStyle(scoreGradient)
                 .accessibilityLabel("Compatibility score")
                 .accessibilityValue("\(result.overallScore.value) percent")
                 .accessibilityIdentifier("compatibility.score")
@@ -252,19 +219,38 @@ struct CompatibilityView: View {
 
             Text(result.shortSummary)
                 .font(HumayTypography.supporting)
+                .foregroundStyle(summaryTextColor)
                 .multilineTextAlignment(.center)
                 .padding(.horizontal, HumaySpacing.large)
                 .padding(.vertical, HumaySpacing.small)
-                .background(Color.humayLavender.opacity(0.18), in: Capsule())
+                .background(summaryBackground, in: Capsule())
                 .fixedSize(horizontal: false, vertical: true)
         }
         .frame(maxWidth: .infinity)
         .padding(.vertical, HumaySpacing.small)
     }
 
+    private var scoreGradient: LinearGradient {
+        LinearGradient(
+            colors: colorScheme == .light
+                ? [Color.humayTextPrimary, Color.humayTextPrimary]
+                : [Color.humayLavender, Color.humayCoral],
+            startPoint: .leading,
+            endPoint: .trailing
+        )
+    }
+
+    private var summaryBackground: Color {
+        colorScheme == .light ? .humayTextPrimary : .humayLavender.opacity(0.28)
+    }
+
+    private var summaryTextColor: Color {
+        colorScheme == .light ? .humayGround : .humayTextPrimary
+    }
+
     private func personIdentity(_ person: CirclePerson, accent: HumayAccent) -> some View {
         VStack(spacing: HumaySpacing.small) {
-            CirclePersonMedallion(person: person, accent: accent, size: 88)
+            CirclePersonMedallion(person: person, accent: accent, size: 96)
             Text(person.name)
                 .font(HumayTypography.bodyEmphasized)
                 .lineLimit(2)
@@ -277,39 +263,51 @@ struct CompatibilityView: View {
     }
 
     private func metricsCard(_ metrics: [CompatibilityMetric]) -> some View {
-        HumaySurface {
-            VStack(alignment: .leading, spacing: HumaySpacing.extraLarge) {
-                Text("Connection strengths")
-                    .font(.title3.weight(.semibold))
-                    .accessibilityAddTraits(.isHeader)
+        VStack(alignment: .leading, spacing: HumaySpacing.extraLarge) {
+            ForEach(metrics) { metric in
+                HStack(spacing: HumaySpacing.medium) {
+                    Image(systemName: metric.kind.symbol)
+                        .font(.body.weight(.semibold))
+                        .foregroundStyle(metric.kind.accent.color)
+                        .frame(width: 28, height: 28)
+                        .accessibilityHidden(true)
 
-                ForEach(metrics) { metric in
-                    VStack(alignment: .leading, spacing: HumaySpacing.small) {
-                        HStack(spacing: HumaySpacing.medium) {
-                            Image(systemName: metric.kind.symbol)
-                                .font(.body.weight(.semibold))
-                                .foregroundStyle(metric.kind.accent.color)
-                                .frame(width: 28, height: 28)
-                                .accessibilityHidden(true)
+                    Text(metric.kind.displayName)
+                        .font(HumayTypography.supporting)
+                        .frame(minWidth: 112, alignment: .leading)
 
-                            Text(metric.kind.displayName)
-                                .font(HumayTypography.supporting)
-                                .frame(maxWidth: .infinity, alignment: .leading)
+                    GeometryReader { geometry in
+                        ZStack(alignment: .leading) {
+                            Capsule()
+                                .fill(Color.humayHairline.opacity(0.80))
 
-                            Text("\(metric.score.value)%")
-                                .font(.subheadline.weight(.semibold))
-                                .monospacedDigit()
+                            Capsule()
+                                .fill(
+                                    LinearGradient(
+                                        colors: [metric.kind.accent.color, Color.humayCoral],
+                                        startPoint: .leading,
+                                        endPoint: .trailing
+                                    )
+                                )
+                                .frame(
+                                    width: geometry.size.width * CGFloat(metric.score.value) / 100
+                                )
                         }
-
-                        ProgressView(value: Double(metric.score.value), total: 100)
-                            .tint(metric.kind.accent.color)
-                            .accessibilityLabel(metric.kind.displayName)
-                            .accessibilityValue("\(metric.score.value) percent")
                     }
-                    .accessibilityElement(children: .combine)
+                    .frame(height: 6)
+
+                    Text("\(metric.score.value)%")
+                        .font(.subheadline.weight(.semibold))
+                        .monospacedDigit()
+                        .frame(width: 42, alignment: .trailing)
                 }
+                .frame(minHeight: 38)
+                .accessibilityElement(children: .combine)
+                .accessibilityLabel(metric.kind.displayName)
+                .accessibilityValue("\(metric.score.value) percent")
             }
         }
+        .padding(.vertical, HumaySpacing.small)
         .accessibilityIdentifier("compatibility.metrics")
     }
 
@@ -332,7 +330,9 @@ struct CompatibilityView: View {
         .padding(HumaySpacing.extraLarge)
         .background(
             LinearGradient(
-                colors: [Color.humayRaisedSurface, Color.humayCoral.opacity(0.12)],
+                colors: colorScheme == .light
+                    ? [Color.humaySurface, Color.humaySolarGold.opacity(0.12)]
+                    : [Color.humayRaisedSurface, Color.humayCoral.opacity(0.12)],
                 startPoint: .leading,
                 endPoint: .trailing
             ),
@@ -352,7 +352,7 @@ struct CompatibilityView: View {
                 Label("Precise Compatibility", systemImage: "lock.fill")
                     .font(HumayTypography.bodyEmphasized)
                     .foregroundStyle(Color.humayLavender)
-                Text("Future precise synastry uses validated personal chart facts. It stays separate from this 12 × 12 Sun-sign catalog result.")
+                Text("Unlock precise synastry when personalized chart generation is available.")
                     .font(HumayTypography.supporting)
                     .foregroundStyle(Color.humayTextSecondary)
                     .fixedSize(horizontal: false, vertical: true)
@@ -363,7 +363,7 @@ struct CompatibilityView: View {
                 .accessibilityIdentifier("compatibility.precise.unlock")
 
                 if source.isDevelopmentSample, let precisePreview {
-                    Button("Preview development result") {
+                    Button("Preview precise layout") {
                         previewOverride = precisePreview
                     }
                     .font(HumayTypography.control)
