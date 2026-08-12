@@ -21,7 +21,7 @@ struct HumayButtonStyle: ButtonStyle {
             .padding(.horizontal, HumaySpacing.extraLarge)
             .padding(.vertical, HumaySpacing.medium)
             .frame(minWidth: HumayMetrics.minimumHitTarget, minHeight: 56)
-            .background(backgroundColor, in: Capsule())
+            .background(backgroundStyle, in: Capsule())
             .overlay {
                 if kind == .secondary {
                     Capsule()
@@ -40,14 +40,24 @@ struct HumayButtonStyle: ButtonStyle {
             )
     }
 
-    private var backgroundColor: Color {
-        guard isEnabled else { return .humayHairline }
+    private var backgroundStyle: AnyShapeStyle {
+        guard isEnabled else { return AnyShapeStyle(Color.humayHairline) }
 
-        return switch kind {
+        switch kind {
         case .primary:
-            colorScheme == .light ? Color.humayTextPrimary : Color.humayCoral
+            if colorScheme == .light {
+                return AnyShapeStyle(Color.humayTextPrimary)
+            }
+
+            return AnyShapeStyle(
+                LinearGradient(
+                    colors: [.humayCoral, .humayLavender],
+                    startPoint: .leading,
+                    endPoint: .trailing
+                )
+            )
         case .secondary:
-            Color.humaySurface
+            return AnyShapeStyle(Color.humaySurface)
         }
     }
 
@@ -56,7 +66,7 @@ struct HumayButtonStyle: ButtonStyle {
 
         return switch kind {
         case .primary:
-            // Midnight text keeps the approved dark coral treatment above 4.5:1.
+            // Dark foreground remains readable across both approved gradient endpoints.
             Color.humayGround
         case .secondary:
             Color.humayTextPrimary

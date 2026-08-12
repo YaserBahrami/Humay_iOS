@@ -3,6 +3,8 @@ import SwiftUI
 
 /// Preview-only visual harness. It is intentionally not reachable from runtime UI.
 private struct HumayDesignSystemShowcase: View {
+    @Environment(\.colorScheme) private var colorScheme
+
     private let palette: [(String, Color)] = [
         ("Ground", .humayGround),
         ("Surface", .humaySurface),
@@ -97,6 +99,12 @@ private struct HumayDesignSystemShowcase: View {
 
             Button("Primary action") {}
                 .buttonStyle(.humayPrimary)
+
+            if colorScheme == .dark {
+                Text("Dark primary: HumayCoral to HumayLavender")
+                    .font(HumayTypography.supporting)
+                    .foregroundStyle(Color.humayTextSecondary)
+            }
 
             Button("Secondary action") {}
                 .buttonStyle(.humaySecondary)

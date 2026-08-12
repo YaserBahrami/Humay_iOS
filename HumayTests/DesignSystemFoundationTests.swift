@@ -46,7 +46,8 @@ struct DesignSystemFoundationTests {
             ("HumayTextSecondary", "HumayGround", lightTraits),
             ("HumayTextPrimary", "HumayGround", darkTraits),
             ("HumayTextSecondary", "HumayGround", darkTraits),
-            ("HumayGround", "HumayCoral", darkTraits)
+            ("HumayGround", "HumayCoral", darkTraits),
+            ("HumayGround", "HumayLavender", darkTraits)
         ]
 
         for (foreground, background, traits) in combinations {
