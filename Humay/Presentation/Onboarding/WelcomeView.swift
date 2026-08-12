@@ -17,6 +17,14 @@ struct WelcomeView: View {
                 portraitLayout
             }
         }
+        .safeAreaInset(edge: .bottom, spacing: 0) {
+            primaryAction
+                .frame(maxWidth: .infinity)
+                .padding(.horizontal, HumaySpacing.large)
+                .padding(.top, HumaySpacing.small)
+                .padding(.bottom, HumaySpacing.small)
+                .background(Color.humayGround)
+        }
     }
 
     private var portraitLayout: some View {
@@ -38,13 +46,6 @@ struct WelcomeView: View {
                 WelcomeHeroCard()
 
                 featureCues
-
-                OnboardingPrimaryAction(
-                    title: "Begin",
-                    identifier: "onboarding.welcome.begin",
-                    action: onBegin
-                )
-                .frame(maxWidth: .infinity, alignment: .center)
             }
             .frame(maxWidth: 720, alignment: .leading)
             .frame(maxWidth: .infinity, alignment: .center)
@@ -67,12 +68,6 @@ struct WelcomeView: View {
                 )
 
                 featureCues
-
-                OnboardingPrimaryAction(
-                    title: "Begin",
-                    identifier: "onboarding.welcome.begin",
-                    action: onBegin
-                )
             }
             .frame(maxWidth: 420, alignment: .leading)
 
@@ -80,6 +75,14 @@ struct WelcomeView: View {
                 .frame(maxWidth: .infinity, minHeight: 360)
         }
         .frame(maxWidth: 1120, alignment: .center)
+    }
+
+    private var primaryAction: some View {
+        OnboardingPrimaryAction(
+            title: "Begin",
+            identifier: "onboarding.welcome.begin",
+            action: onBegin
+        )
     }
 
     private var featureCues: some View {
