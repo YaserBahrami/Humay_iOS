@@ -17,6 +17,14 @@ struct TraditionView: View {
                 portraitLayout
             }
         }
+        .safeAreaInset(edge: .bottom, spacing: 0) {
+            primaryAction
+                .frame(maxWidth: .infinity)
+                .padding(.horizontal, HumaySpacing.large)
+                .padding(.top, HumaySpacing.small)
+                .padding(.bottom, HumaySpacing.small)
+                .background(Color.humayGround)
+        }
     }
 
     private var portraitLayout: some View {
@@ -36,8 +44,6 @@ struct TraditionView: View {
             optionCards
 
             reassurance
-
-            primaryAction
         }
         .frame(maxWidth: 960, alignment: .leading)
         .frame(maxWidth: .infinity, alignment: .center)
@@ -62,11 +68,8 @@ struct TraditionView: View {
             }
             .frame(maxWidth: 420, alignment: .leading)
 
-            VStack(alignment: .leading, spacing: HumaySpacing.extraLarge) {
-                optionCardsStacked
-                primaryAction
-            }
-            .frame(maxWidth: 620, alignment: .leading)
+            optionCardsStacked
+                .frame(maxWidth: 620, alignment: .leading)
         }
         .frame(maxWidth: 1120, alignment: .center)
     }
@@ -133,7 +136,6 @@ struct TraditionView: View {
             identifier: "onboarding.tradition.continue",
             action: onContinue
         )
-        .frame(maxWidth: .infinity, alignment: .center)
     }
 }
 
