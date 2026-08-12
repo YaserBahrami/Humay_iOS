@@ -193,19 +193,7 @@ struct DailyHoroscopeView: View {
             }
             .frame(maxWidth: .infinity, alignment: .leading)
 
-            ZStack {
-                Circle()
-                    .stroke(Color.humaySolarGold.opacity(0.5), lineWidth: 2)
-                    .frame(width: 64, height: 64)
-                Image(systemName: "pawprint.fill")
-                    .font(.title)
-                    .foregroundStyle(Color.humaySolarGold)
-                Image(systemName: "sparkles")
-                    .font(.caption)
-                    .foregroundStyle(Color.humayCoral)
-                    .offset(x: 34, y: -25)
-            }
-            .accessibilityHidden(true)
+            ZodiacSignArt(sign: reading.sign, size: 76)
         }
         .accessibilityElement(children: .combine)
         .accessibilityLabel("\(reading.sign.displayName), \(reading.sign.dateRange), \(reading.date.formatted(date: .long, time: .omitted))")

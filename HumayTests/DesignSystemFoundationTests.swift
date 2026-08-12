@@ -39,6 +39,33 @@ struct DesignSystemFoundationTests {
         }
     }
 
+    @Test("D2 artwork resolves for Light and Dark, including all twelve zodiac signs")
+    func d2ArtworkExists() {
+        let allAssetNames = D2Artwork.allAdaptiveAssetNames
+        let zodiacAssetNames = WesternZodiacSign.allCases.map(\.d2ArtworkAssetName)
+
+        #expect(allAssetNames.count == 19)
+        #expect(Set(allAssetNames).count == 19)
+        #expect(zodiacAssetNames.count == 12)
+        #expect(Set(zodiacAssetNames).count == 12)
+
+        for assetName in allAssetNames {
+            let lightImage = UIImage(
+                named: assetName,
+                in: .main,
+                compatibleWith: lightTraits
+            )
+            let darkImage = UIImage(
+                named: assetName,
+                in: .main,
+                compatibleWith: darkTraits
+            )
+
+            #expect(lightImage != nil, "Missing Light artwork: \(assetName)")
+            #expect(darkImage != nil, "Missing Dark artwork: \(assetName)")
+        }
+    }
+
     @Test("Text and primary action combinations meet normal-text contrast")
     func semanticContrast() throws {
         let combinations = [

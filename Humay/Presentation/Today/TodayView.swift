@@ -237,7 +237,7 @@ struct TodayView: View {
                 }
                 .frame(maxWidth: .infinity, alignment: .leading)
 
-                RoastPlanetArt()
+                RoastFireArt()
 
                 Image(systemName: "arrow.right")
                     .frame(width: 44, height: 44)

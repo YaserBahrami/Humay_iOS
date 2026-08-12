@@ -40,26 +40,11 @@ struct D2WordmarkHeader: View {
             Spacer(minLength: HumaySpacing.medium)
 
             Button(action: profileAction) {
-                ZStack {
-                    Circle()
-                        .fill(
-                            LinearGradient(
-                                colors: [
-                                    Color.humayCelestialBlue.opacity(0.75),
-                                    Color.humayLavender.opacity(0.85)
-                                ],
-                                startPoint: .topLeading,
-                                endPoint: .bottomTrailing
-                            )
-                        )
-
-                    Text(initials)
-                        .font(.subheadline.weight(.bold))
-                        .foregroundStyle(Color.humayTextPrimary)
-                }
-                .frame(width: 44, height: 44)
-                .overlay(Circle().stroke(Color.humayHairline))
-                .contentShape(Circle())
+                profileArtwork
+                    .frame(width: 44, height: 44)
+                    .clipShape(Circle())
+                    .overlay(Circle().stroke(Color.humayHairline))
+                    .contentShape(Circle())
             }
             .buttonStyle(.plain)
             .accessibilityLabel("Profile and settings")
@@ -68,6 +53,41 @@ struct D2WordmarkHeader: View {
         }
         .frame(minHeight: HumayMetrics.minimumHitTarget)
         .foregroundStyle(Color.humayTextPrimary)
+    }
+
+    @ViewBuilder
+    private var profileArtwork: some View {
+#if DEBUG
+        if profileName.caseInsensitiveCompare("Yaser") == .orderedSame {
+            Image(D2Artwork.sampleMale)
+                .resizable()
+                .scaledToFill()
+        } else {
+            profileFallback
+        }
+#else
+        profileFallback
+#endif
+    }
+
+    private var profileFallback: some View {
+        ZStack {
+            Circle()
+                .fill(
+                    LinearGradient(
+                        colors: [
+                            Color.humayCelestialBlue.opacity(0.75),
+                            Color.humayLavender.opacity(0.85)
+                        ],
+                        startPoint: .topLeading,
+                        endPoint: .bottomTrailing
+                    )
+                )
+
+            Text(initials)
+                .font(.subheadline.weight(.bold))
+                .foregroundStyle(Color.humayTextPrimary)
+        }
     }
 
     private var initials: String {
@@ -229,6 +249,29 @@ struct CirclePersonMedallion: View {
     var size: CGFloat = 88
 
     var body: some View {
+        portraitArtwork
+            .frame(width: size, height: size)
+            .clipShape(Circle())
+            .overlay(Circle().stroke(accent.color.opacity(0.34), lineWidth: 1))
+            .accessibilityHidden(true)
+    }
+
+    @ViewBuilder
+    private var portraitArtwork: some View {
+#if DEBUG
+        if let assetName = D2Artwork.samplePortraitName(for: person) {
+            Image(assetName)
+                .resizable()
+                .scaledToFill()
+        } else {
+            portraitFallback
+        }
+#else
+        portraitFallback
+#endif
+    }
+
+    private var portraitFallback: some View {
         ZStack {
             Circle()
                 .fill(
@@ -239,53 +282,19 @@ struct CirclePersonMedallion: View {
                     )
                 )
 
-            Circle()
-                .fill(Color.humaySurface.opacity(0.38))
-                .frame(width: size * 0.62, height: size * 0.62)
-                .offset(y: size * 0.18)
-
-            Image(systemName: "person.fill")
-                .font(.system(size: size * 0.42, weight: .regular))
+            Image(systemName: "person.crop.circle.fill")
+                .resizable()
+                .scaledToFit()
                 .foregroundStyle(Color.humayTextPrimary.opacity(0.84))
-                .offset(y: size * 0.1)
-
-            Text(person.initials)
-                .font(.caption2.weight(.heavy))
-                .foregroundStyle(Color.humayTextPrimary)
-                .padding(5)
-                .background(Color.humaySurface.opacity(0.9), in: Capsule())
-                .offset(x: size * 0.29, y: -size * 0.3)
+                .padding(size * 0.08)
         }
-        .frame(width: size, height: size)
-        .clipShape(Circle())
-        .overlay(Circle().stroke(Color.humayHairline, lineWidth: 1))
-        .accessibilityHidden(true)
     }
 }
 
 struct CelestialCoffeeArt: View {
     var body: some View {
-        ZStack {
-            Image(systemName: "cup.and.saucer.fill")
-                .font(.system(size: 64, weight: .regular))
-                .foregroundStyle(Color.humaySolarGold)
-
-            Image(systemName: "wind")
-                .font(.system(size: 26, weight: .light))
-                .foregroundStyle(Color.humayLavender)
-                .offset(y: -44)
-
-            Image(systemName: "sparkles")
-                .foregroundStyle(Color.humayCoral)
-                .offset(x: 52, y: -28)
-
-            Image(systemName: "moon.fill")
-                .font(.caption)
-                .foregroundStyle(Color.humayCelestialBlue)
-                .offset(x: -52, y: -34)
-        }
-        .frame(width: 142, height: 126)
-        .accessibilityHidden(true)
+        D2ArtworkImage(name: D2Artwork.todayCoffee)
+            .frame(width: 142, height: 126)
     }
 }
 
@@ -293,60 +302,107 @@ struct OrbitPlanetArt: View {
     var compact = false
 
     var body: some View {
-        ZStack {
-            Circle()
-                .fill(
-                    LinearGradient(
-                        colors: [Color.humayLavender, Color.humayCelestialBlue],
-                        startPoint: .topLeading,
-                        endPoint: .bottomTrailing
-                    )
-                )
-                .frame(width: compact ? 44 : 66, height: compact ? 44 : 66)
-
-            Ellipse()
-                .stroke(Color.humaySolarGold, lineWidth: 2)
-                .frame(width: compact ? 76 : 112, height: compact ? 24 : 36)
-                .rotationEffect(.degrees(-18))
-
-            Circle()
-                .fill(Color.humayCoral)
-                .frame(width: compact ? 5 : 7, height: compact ? 5 : 7)
-                .offset(x: compact ? 27 : 42, y: compact ? -8 : -12)
-        }
-        .frame(width: compact ? 82 : 122, height: compact ? 64 : 92)
-        .accessibilityHidden(true)
+        D2ArtworkImage(name: D2Artwork.cosmicPlanet)
+            .frame(
+                width: compact ? 82 : 122,
+                height: compact ? 64 : 92
+            )
     }
 }
 
 struct CrystalBallArt: View {
     var body: some View {
-        ZStack {
-            Circle()
-                .stroke(Color.humayLavender, lineWidth: 2)
-                .frame(width: 58, height: 58)
-            Image(systemName: "sparkles")
-                .foregroundStyle(Color.humayCoral)
-            Capsule()
-                .fill(Color.humayLavender.opacity(0.55))
-                .frame(width: 64, height: 10)
-                .offset(y: 34)
-        }
-        .frame(width: 76, height: 82)
-        .accessibilityHidden(true)
+        D2ArtworkImage(name: D2Artwork.crystalBall)
+            .frame(width: 76, height: 82)
+    }
+}
+
+struct RoastFireArt: View {
+    var body: some View {
+        D2ArtworkImage(name: D2Artwork.roastFire)
+            .frame(width: 82, height: 72)
     }
 }
 
 struct RoastPlanetArt: View {
     var body: some View {
-        ZStack {
-            OrbitPlanetArt(compact: true)
-            Image(systemName: "sunglasses.fill")
-                .font(.system(size: 20, weight: .bold))
-                .foregroundStyle(Color.humayTextPrimary)
+        D2ArtworkImage(name: D2Artwork.roastPlanet)
+            .frame(width: 90, height: 72)
+    }
+}
+
+struct ZodiacSignArt: View {
+    let sign: WesternZodiacSign
+    var size: CGFloat = 76
+
+    var body: some View {
+        D2ArtworkImage(name: sign.d2ArtworkAssetName)
+            .frame(width: size, height: size)
+    }
+}
+
+private struct D2ArtworkImage: View {
+    let name: String
+
+    var body: some View {
+        Image(name)
+            .resizable()
+            .scaledToFit()
+            .accessibilityHidden(true)
+    }
+}
+
+enum D2Artwork {
+    static let todayCoffee = "D2TodayCoffee"
+    static let cosmicPlanet = "D2CosmicPlanet"
+    static let crystalBall = "D2CrystalBall"
+    static let roastFire = "D2RoastFire"
+    static let roastPlanet = "D2RoastPlanet"
+    static let sampleMale = "D2SampleMale"
+    static let sampleFemale = "D2SampleFemale"
+
+    static let decorativeAssetNames = [
+        todayCoffee,
+        cosmicPlanet,
+        crystalBall,
+        roastFire,
+        roastPlanet,
+        sampleMale,
+        sampleFemale
+    ]
+
+    static var allAdaptiveAssetNames: [String] {
+        decorativeAssetNames + WesternZodiacSign.allCases.map(\.d2ArtworkAssetName)
+    }
+
+    static func samplePortraitName(for person: CirclePerson) -> String? {
+        switch person.id.uuidString.lowercased() {
+        case "11111111-1111-4111-8111-111111111111":
+            sampleMale
+        case "22222222-2222-4222-8222-222222222222":
+            sampleFemale
+        default:
+            nil
         }
-        .frame(width: 90, height: 72)
-        .accessibilityHidden(true)
+    }
+}
+
+extension WesternZodiacSign {
+    var d2ArtworkAssetName: String {
+        switch self {
+        case .aries: "D2ZodiacAries"
+        case .taurus: "D2ZodiacTaurus"
+        case .gemini: "D2ZodiacGemini"
+        case .cancer: "D2ZodiacCancer"
+        case .leo: "D2ZodiacLeo"
+        case .virgo: "D2ZodiacVirgo"
+        case .libra: "D2ZodiacLibra"
+        case .scorpio: "D2ZodiacScorpio"
+        case .sagittarius: "D2ZodiacSagittarius"
+        case .capricorn: "D2ZodiacCapricorn"
+        case .aquarius: "D2ZodiacAquarius"
+        case .pisces: "D2ZodiacPisces"
+        }
     }
 }
 
