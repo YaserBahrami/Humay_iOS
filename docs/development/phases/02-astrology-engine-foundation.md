@@ -1,6 +1,6 @@
 # Phase 02 — Astrology Calculation Foundation
 
-Status: **IN PROGRESS — ASTRO-001 implemented; verification pending**
+Status: **IN PROGRESS — ASTRO-001 and ASTRO-002 implemented; verification pending**
 
 Depends on:
 - Phase 01 Apple Platform Foundation;
@@ -37,11 +37,23 @@ Acceptance:
 - unknown-time uncertainty propagates rather than collapsing to a fake default time;
 - concrete Swift/domain types reconcile with `ASTROLOGY_ENGINE.md` instead of provider-native input models.
 
-ASTRO-001 is not marked DONE until the latest branch passes the local Phase 01/foundation verification plus the complete Swift Testing target after this source change.
+ASTRO-001 is not marked DONE until the latest branch passes the local foundation verification plus the complete Swift Testing target after the current Phase 02 source changes.
 
 ### ASTRO-002 — Implement calculation adapter/protocol layer
-Status: TODO  
+Status: **IMPLEMENTED — post-change verification pending**  
 Depends on: ASTRO-001, ARCH-003
+
+Implemented:
+- `AstrologyCalculationAdapter` is a framework-neutral Domain protocol with an associated typed Humay fact contract;
+- `WesternCalculationAdapter`, `VedicCalculationAdapter` and `BaZiCalculationAdapter` provide independent methodology-family boundaries without choosing a vendor;
+- each adapter has an explicit tradition and a shared guard that rejects cross-tradition reinterpretation;
+- `AstrologyCalculationResult<Fact>` carries typed normalized facts, calculation time and Humay-owned provenance;
+- `AstrologyCalculationFact` requires fact-level reliability without freezing the concrete Western/Vedic/BaZi fact schema before the owning tasks;
+- reliability distinguishes reliable, uncertain and unavailable facts with typed reasons;
+- provenance retains calculation-contract, methodology, adapter, engine and configuration version dimensions without exposing vendor-native response objects;
+- `AstrologyCalculationError` is a finite Humay-owned payload-free failure surface rather than a raw vendor/network error passthrough;
+- focused Swift Testing verifies typed results, provenance/reliability preservation, independent tradition boundaries, tradition mismatch rejection and the finite failure surface;
+- no concrete provider, networking, endpoint, credential, backend client or UI was added.
 
 Acceptance:
 - Western, Vedic and Chinese/BaZi calculations can have independent adapters;
@@ -49,6 +61,8 @@ Acceptance:
 - calculation reliability, provenance and version are retained;
 - provider secrets and paid calls remain server-side under the current architecture;
 - fallback is not permitted unless the candidate adapter passes the contract/methodology validation requirements defined by `ASTROLOGY_ENGINE.md`.
+
+ASTRO-002 defines the adapter/result contracts only. It does not implement fallback selection: validated equivalence remains an adapter/runtime capability that cannot be claimed before ASTRO-006 evidence exists.
 
 ### ASTRO-003 — Implement validated Western calculation baseline
 Status: TODO  
@@ -103,9 +117,9 @@ Acceptance:
 
 ## Start / verification rule
 
-ASTRO-001 source is now staged because its technical design is approved and it has no provider/runtime/UI dependency. It still depends on Phase 01 completion for acceptance: do not mark ASTRO-001 DONE or begin ASTRO-002 until the latest branch passes the IOS-007/foundation verification and the new calculation-input tests.
+ASTRO-001 and ASTRO-002 source contracts are implemented because they are non-visual, provider-independent Domain work under the approved ARCH-003 boundary. Neither is marked DONE until the latest branch passes the IOS-007/foundation verification and complete Swift Testing after these source changes.
 
-Provider-backed runtime remains blocked on the relevant unfinished Phase 00 cache/backend/access/privacy contracts even after ASTRO-001 is verified.
+Do not start a concrete paid-provider/backend runtime from these protocols. Provider-backed runtime remains blocked on the relevant unfinished Phase 00 cache/backend/access/privacy contracts, and ASTRO-003 still requires validated Western methodology/fixture decisions rather than vendor defaults.
 
 ## Exit criteria
 

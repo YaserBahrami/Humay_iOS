@@ -4,8 +4,8 @@ Last updated: **2026-08-12**
 
 ## Active priorities
 
-1. Run the post-change IOS-007 foundation verification and the new ASTRO-001 Swift tests on the latest branch.
-2. Close IOS-007/Phase 01 and mark ASTRO-001 DONE only if that verification is green.
+1. Run the post-change IOS-007 foundation verification and the ASTRO-001/ASTRO-002 Swift tests on the latest branch.
+2. Close IOS-007/Phase 01 and mark the implemented ASTRO-001/002 contracts DONE only if that verification is green.
 3. Continue Phase 00 with the cache/offline and interpretation boundaries now that ARCH-001/ARCH-003 are frozen.
 4. Preserve local durable profile/settings behavior and the approved Soulful Celestial UI while later feature families remain behind their design gates.
 
@@ -107,21 +107,21 @@ See [`phases/00-technical-architecture.md`](phases/00-technical-architecture.md)
 
 ### Phase 02 — Astrology Calculation Foundation
 
-**IN PROGRESS. ASTRO-001 source is implemented; post-change verification is pending.**
+**IN PROGRESS. ASTRO-001 and ASTRO-002 source contracts are implemented; post-change verification is pending.**
 
 Current implementation:
 
-- `Humay/Domain/Astrology/BirthCalculationInput.swift` introduces the provider-independent calculation-input boundary;
-- it wraps the existing `BirthDetails` model instead of creating a parallel user/birth model;
-- exact, approximate and unknown birth time remain explicit and unchanged;
-- approximate time requires positive uncertainty rather than being silently treated as exact;
+- `Humay/Domain/Astrology/BirthCalculationInput.swift` introduces the provider-independent calculation-input boundary and wraps the existing `BirthDetails` model instead of creating a parallel user/birth model;
+- exact, approximate and unknown birth time remain explicit and unchanged; approximate time requires positive uncertainty rather than being silently treated as exact;
 - missing place remains explicit; known place validation requires a nonblank name, finite bounded coordinates and a real timezone identifier;
 - impossible, pre-1900 and future birth dates are rejected at the calculation boundary;
-- `AstrologyTradition` is carried explicitly while vendor/methodology-specific settings remain deferred to their owning methodology/adapter tasks;
-- `HumayTests/BirthCalculationInputTests.swift` covers preservation and invalid-input cases;
-- no provider, API client, endpoint, secret, networking or UI was added.
+- `Humay/Domain/Astrology/AstrologyCalculationContracts.swift` defines typed Humay calculation results, fact reliability/availability, provenance and a finite payload-free calculation failure model;
+- `Humay/Domain/Astrology/AstrologyCalculationAdapter.swift` defines independent Western, Vedic and BaZi adapter protocols with explicit tradition ownership and a shared mismatch guard;
+- concrete fact schemas remain deferred to their owning validated calculation tasks instead of being guessed in ASTRO-002;
+- `HumayTests/BirthCalculationInputTests.swift` and `HumayTests/AstrologyCalculationContractTests.swift` cover the calculation input and adapter/result contracts;
+- no concrete provider, API client, endpoint, secret, networking, fallback runtime or UI was added.
 
-ASTRO-001 is not marked DONE until the latest branch passes the canonical foundation verification and complete Swift Testing after this source change. ASTRO-002 must not begin before that acceptance gate closes.
+ASTRO-001 and ASTRO-002 are not marked DONE until the latest branch passes the canonical foundation verification and complete Swift Testing after these source changes. ASTRO-003 must not silently adopt vendor defaults; it requires validated Western methodology and golden-fixture evidence.
 
 See [`phases/02-astrology-engine-foundation.md`](phases/02-astrology-engine-foundation.md).
 
@@ -168,11 +168,11 @@ Birth time and birth location are not onboarding steps.
 
 ## Implementation gate
 
-Shared architecture/design-system/foundation work may proceed without a visual mock when it has no user-facing UI. A feature-specific production screen is not visually frozen until its repository package contains iPhone Light/Dark + iPad Light/Dark references and required adaptive notes.
+Shared architecture/design-system/foundation work may proceed without a visual mock when it has no user-facing UI. User-facing UI must be designed and approved before implementation. A feature-specific production screen is not visually frozen until its repository package contains iPhone Light/Dark + iPad Light/Dark references and required adaptive notes.
 
-Cadence:
+Cadence for user-facing work:
 
-**design → approve → implement → capture real cross-device screenshots → reconcile → continue**.
+**UI design → approve → implement → capture real cross-device screenshots → reconcile → continue**.
 
 ## Binding product decisions
 
@@ -194,4 +194,4 @@ Cadence:
 
 The app restores the local user-state snapshot before resolving a meaningful root. A missing file produces fresh four-beat onboarding. `Enter Humay` saves the profile/settings aggregate atomically before resolving the root to the existing minimal semantic Light/Dark Humay placeholder. Terminating and relaunching a completed app restores the main placeholder. Save failures leave the onboarding draft intact and expose a retry alert; restore failures remain distinct from fresh onboarding.
 
-The local snapshot is the device source of truth for this slice. It stores only profile/settings, including date components, explicit unknown/not-provided birth values, leading tradition, tone and completion timestamp. `BirthCalculationInput` is currently only a validated Domain boundary and is not wired to a calculation provider. No production astrology provider, interpretation provider, CloudKit sync/restore, authentication/account flow, backend identity, StoreKit, ads, analytics, notification delivery or post-onboarding feature runtime is wired yet. Profile Reveal uses no provider-backed astrology and displays only the entered birth date, selected leading tradition and date-only/non-precise state.
+The local snapshot is the device source of truth for this slice. It stores only profile/settings, including date components, explicit unknown/not-provided birth values, leading tradition, tone and completion timestamp. The ASTRO-001/002 types are currently validated Domain contracts only and are not wired to a calculation provider. No production astrology provider, interpretation provider, CloudKit sync/restore, authentication/account flow, backend identity, StoreKit, ads, analytics, notification delivery or post-onboarding feature runtime is wired yet. Profile Reveal uses no provider-backed astrology and displays only the entered birth date, selected leading tradition and date-only/non-precise state.

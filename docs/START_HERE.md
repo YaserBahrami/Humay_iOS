@@ -21,13 +21,13 @@
 
 ## Current implementation state
 
-The old generated mock-first application was removed before production development. The Xcode project remains intentionally small, with the first production feature slice implemented and the first provider-independent astrology input boundary now staged.
+The old generated mock-first application was removed before production development. The Xcode project remains intentionally small, with the first production feature slice implemented and the first provider-independent astrology calculation contracts now staged.
 
 Current UI engineering remains **Phase 03 — Onboarding & Local Profile**, covering PROFILE-001 through PROFILE-005. Phase 01 IOS-001 through IOS-006 are complete; IOS-007 implementation is present and awaits its post-change local verification before Phase 01 can close.
 
 Phase 00 architecture continues in parallel. ARCH-001 system/deployment boundaries and ARCH-003 provider-independent astrology calculation strategy are frozen. No backend/provider runtime was added: hosting vendor, calculation provider, interpretation provider and concrete API endpoints remain intentionally unfrozen until their owning tasks.
 
-Phase 02 ASTRO-001 source is now implemented under `Humay/Domain/Astrology/BirthCalculationInput.swift`. It reuses `BirthDetails`, preserves exact/approximate/unknown time and known/not-provided place semantics, validates calculation-boundary input and has focused unit tests. It is not marked DONE until the latest foundation/Xcode verification and complete Swift Testing pass after this source change. ASTRO-002 has not started.
+Phase 02 ASTRO-001 and ASTRO-002 source contracts are implemented under `Humay/Domain/Astrology/`. `BirthCalculationInput` reuses `BirthDetails` and validates exact/approximate/unknown time plus known/not-provided place semantics. The calculation contract layer adds typed result/provenance/reliability/failure models and independent Western/Vedic/BaZi adapter protocols without choosing a provider or adding networking. These tasks are not marked DONE until the latest foundation/Xcode verification and complete Swift Testing pass after the source changes.
 
 Foundation target:
 
@@ -45,7 +45,7 @@ Foundation target:
 - application diagnostics use finite privacy-safe OSLog events with no raw profile/birth/provider payload logging;
 - `Scripts/verify-foundation.sh` plus [`development/VERIFICATION.md`](development/VERIFICATION.md) define the canonical local foundation verification contract;
 - Free catalog and precision paths are system-level separate cost/trust paths;
-- precision calculation inputs and future outputs are normalized Humay Domain contracts before any interpretation layer.
+- precision calculation inputs and outputs are normalized Humay Domain contracts before any interpretation layer.
 
 See:
 
@@ -75,7 +75,7 @@ Current approved references:
 
 The D1 onboarding UI is implemented under `Humay/Presentation/Onboarding/`. A fresh install restores no state and starts at Welcome. A completed profile/settings aggregate is restored from the version-1 local snapshot on relaunch.
 
-Before production visual freeze, each shipping screen requires iPhone Light/Dark + iPad Light/Dark and adaptive/landscape notes where needed. Technical/domain tasks without user-facing UI use the approved technical-design gate instead of inventing mock screens.
+Before production visual freeze, each shipping screen requires iPhone Light/Dark + iPad Light/Dark and adaptive/landscape notes where needed. User-facing UI must be designed and approved before implementation; non-visual architecture/domain/foundation work does not require an invented UI design gate.
 
 ## Do not use as authority
 
