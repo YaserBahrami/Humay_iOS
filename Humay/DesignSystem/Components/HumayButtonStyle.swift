@@ -20,7 +20,10 @@ struct HumayButtonStyle: ButtonStyle {
             .multilineTextAlignment(.center)
             .padding(.horizontal, HumaySpacing.extraLarge)
             .padding(.vertical, HumaySpacing.medium)
-            .frame(minWidth: HumayMetrics.minimumHitTarget, minHeight: 56)
+            .frame(
+                minWidth: HumayMetrics.minimumHitTarget,
+                minHeight: HumayMetrics.primaryControlMinimumHeight
+            )
             .background(backgroundStyle, in: buttonShape)
             .overlay {
                 if kind == .secondary {

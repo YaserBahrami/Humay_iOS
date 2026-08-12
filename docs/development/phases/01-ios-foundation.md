@@ -1,6 +1,6 @@
 # Phase 01 — Apple Platform Foundation
 
-Status: **IN PROGRESS — IOS-001 through IOS-006 complete; IOS-007 not started**
+Status: **IN PROGRESS — IOS-001 through IOS-006 complete; IOS-007 implemented, local verification pending**
 
 Depends on:
 - current production baseline reset;
@@ -90,7 +90,7 @@ Implemented foundation state:
 - native SwiftUI primary and quiet secondary button styles with disabled/pressed states, 56 pt minimum rendered height and Reduce Motion handling;
 - generic standard/raised rounded surfaces using tonal Dark hierarchy;
 - Debug/preview-only iPhone Light/Dark and iPad portrait-Light/landscape-Dark showcase coverage, with no runtime route or RootView change;
-- focused tests for semantic asset availability, Light/Dark contrast, committed custom-font loading, hit-target/hairline metrics and adaptive width behavior.
+- focused tests for semantic asset availability, Light/Dark contrast, committed custom-font loading, hit-target/control-height/hairline metrics and adaptive width behavior.
 
 Scope:
 - semantic Light/Dark color roles from the approved tokens;
@@ -183,16 +183,27 @@ Verification:
 - production-source privacy search was manually reviewed; domain/model matches are legitimate and no logging call carries them.
 
 ### IOS-007 — Test and verification foundation
-Status: TODO  
+Status: **IMPLEMENTED — local verification pending**  
 Depends on: IOS-001 through IOS-006 as applicable
 
-Acceptance:
+Implemented:
+
+- `Scripts/verify-foundation.sh` is the canonical repository-local verification entry point and orchestrates layering, nomenclature, diagnostics and `git diff --check` without simulator-specific assumptions;
+- [`../VERIFICATION.md`](../VERIFICATION.md) documents representative iPhone/iPad Debug builds, Swift Testing, XCUITest, simulator destination selection and infrastructure-failure handling;
+- the coverage audit confirmed that persistence-failure root resolution, onboarding semantics, durable restore/reset behavior, typed logging and terminate/relaunch behavior were already covered, so duplicate tests were not added merely for count;
+- the approved 56 pt primary-control minimum height is represented as a DesignSystem metric and covered beside the 44 pt minimum interaction target without changing rendered UI;
+- existing onboarding, persistence, logging and essential relaunch UI coverage remains the foundation suite;
+- no screenshot/pixel tests, obsolete prototype tests, CI workflow or speculative feature tests were added.
+
+Acceptance still requires verification after this latest source/test change:
+
 - Swift Testing unit target builds/runs;
-- XCUITest target builds/runs;
-- layer/nomenclature scripts pass;
-- representative iPhone and iPad build commands are documented;
-- design-system primitives have focused behavior/accessibility tests where useful;
-- no obsolete prototype test is restored merely for coverage count.
+- XCUITest target builds/runs on representative iPhone and iPad destinations;
+- layering, nomenclature, diagnostics and canonical foundation verification pass;
+- representative iPhone and iPad Debug builds pass;
+- `git diff --check` passes.
+
+Phase 01 must remain IN PROGRESS until those post-change commands are run locally. The repository/GitHub editing environment used for this implementation cannot execute Xcode or simulator tests, so prior IOS-006 results are not represented as proof for the new IOS-007 commit.
 
 ## Explicitly out of scope
 
@@ -205,7 +216,7 @@ Phase 01 does **not** implement:
 - feature-specific access-state UI;
 - D1 onboarding implementation beyond the approved Phase 03 slice; no later feature UI belongs here.
 
-Shared architecture and design-system primitives may be built now. Feature-specific UI follows the design → approve → implement cadence. D1 onboarding is the approved production slice now owned by Phase 03; IOS-005 local persistence and IOS-006 diagnostics are complete, while IOS-007 remains TODO.
+Shared architecture and design-system primitives may be built now. Feature-specific UI follows the design → approve → implement cadence. D1 onboarding is the approved production slice now owned by Phase 03; IOS-005 local persistence and IOS-006 diagnostics are complete, while IOS-007 awaits its post-change verification run.
 
 ## Exit criteria
 
@@ -215,3 +226,5 @@ Shared architecture and design-system primitives may be built now. Feature-speci
 - root state/navigation composition presents the approved D1 onboarding work.
 - local persistence/configuration/testing boundaries are implemented without speculative feature architecture.
 - no deleted mock-first/provider/old-UI implementation has been reintroduced.
+
+**Phase 01 closes only after the IOS-007 verification commands pass after the latest commit.**

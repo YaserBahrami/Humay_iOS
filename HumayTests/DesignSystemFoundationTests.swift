@@ -67,6 +67,8 @@ struct DesignSystemFoundationTests {
     @Test("Interactive and hairline metrics preserve platform minimums")
     func interactionMetrics() {
         #expect(HumayMetrics.minimumHitTarget == 44)
+        #expect(HumayMetrics.primaryControlMinimumHeight == 56)
+        #expect(HumayMetrics.primaryControlMinimumHeight >= HumayMetrics.minimumHitTarget)
         #expect(HumayMetrics.hairline(displayScale: 2) == 0.5)
         #expect(HumayMetrics.hairline(displayScale: 3) < 0.34)
     }

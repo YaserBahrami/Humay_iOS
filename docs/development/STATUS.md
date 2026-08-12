@@ -4,7 +4,7 @@ Last updated: **2026-08-12**
 
 ## Active priorities
 
-1. Keep the IOS-005 / PROFILE-005 audit cleanup and IOS-006 foundation verification green before starting IOS-007.
+1. Run the post-change IOS-007 verification contract and close Phase 01 only if the latest commit passes on representative iPhone and iPad destinations.
 2. Preserve local durable profile/settings behavior while later feature families remain behind their design gates.
 3. Preserve the completed Soulful Celestial DesignSystem foundation while later feature families remain behind their cross-device design gates.
 4. Continue Phase 00 provider/cache/access architecture in parallel where it does not block the app foundation.
@@ -46,43 +46,34 @@ Details: [`../architecture/PRODUCTION_BASELINE_RESET_2026-08-12.md`](../architec
 
 ### Phase 01 — Apple Platform Foundation
 
-**IN PROGRESS. IOS-001 through IOS-006 are complete; IOS-007 remains TODO.**
+**IN PROGRESS. IOS-001 through IOS-006 are complete; IOS-007 is implemented and awaiting post-change local verification.**
 
 Current foundation:
 
-- representative iPhone and iPad Debug simulator builds passed before the audit cleanup;
+- the most recent completed verification run (IOS-006) passed representative iPhone/iPad Debug builds, Swift Testing, XCUITest, layering, nomenclature, diagnostics and `git diff --check`;
 - Swift 6 complete strict concurrency, iOS/iPadOS 18.0 and device families `1,2` remain effective;
 - Humay naming, shared scheme and centralized Debug/Release xcconfig inheritance remain intact;
 - `HumayApp` explicitly owns the small `AppEnvironment` composition boundary;
-- `HumayApp` explicitly composes the transient `AppNavigationState` root/route
-  boundary without persisting routing state or adding later feature UI;
+- `HumayApp` explicitly composes the transient `AppNavigationState` root/route boundary without persisting routing state or adding later feature UI;
 - Domain remains independent of UI and persistence frameworks;
 - DesignSystem contains the approved semantic Light/Dark tokens, Dynamic Type typography, adaptive layout, generic surfaces and primary/quiet button foundations;
 - the DesignSystem showcase exists only in Debug previews for representative iPhone/iPad Light/Dark verification and is not a runtime route;
-- Data now contains only the production-owned local persistence slice justified by
-  IOS-005/PROFILE-005;
-- the IOS-005 audit cleanup made persistence errors implementation-neutral, added
-  semantic payload validation/tests and moved the Welcome illustration color literal
-  into `DesignSystem/Tokens`; IOS-006 verification now passes Swift Testing, UI
-  tests, representative iPhone/iPad Debug builds, layering, nomenclature,
-  diagnostics and `git diff --check`;
-- IOS-006 keeps build/deployment/version ownership in xcconfig/Xcode metadata and
-  adds no runtime backend/provider configuration or `AppConfiguration` container;
-- IOS-006 centralizes privacy-safe OSLog diagnostics behind finite typed application
-  and persistence events; birth/profile/provider payloads, raw errors and secrets
-  are not logged;
-- `Scripts/check-diagnostics.sh` scans only production Swift under `Humay/` for
-  `print`, `debugPrint` and narrow obvious client-secret declarations;
-- no third-party dependency or provider-backed feature UI was added.
+- Data contains only the production-owned local persistence slice justified by IOS-005/PROFILE-005;
+- IOS-005 persistence errors are implementation-neutral and its local snapshot validates semantic payload invariants;
+- IOS-006 keeps build/deployment/version ownership in xcconfig/Xcode metadata and adds no runtime backend/provider configuration or `AppConfiguration` container;
+- IOS-006 centralizes privacy-safe OSLog diagnostics behind finite typed application and persistence events; birth/profile/provider payloads, raw errors and secrets are not logged;
+- IOS-007 adds `Scripts/verify-foundation.sh` and [`VERIFICATION.md`](VERIFICATION.md) as the canonical repository/local Xcode verification contract;
+- the IOS-007 coverage audit found the persistence-failure root already covered by persistence tests, so no duplicate navigation test was added; the only new test invariant is the approved 56 pt primary-control minimum height, with rendered UI unchanged;
+- no third-party dependency, CI workflow or provider-backed feature UI was added.
 
-The first production feature slice is now implemented separately under Phase 03:
+Because IOS-007 changes production/test source, its local verification must be rerun after the latest commit before IOS-007 or Phase 01 is marked DONE. The GitHub editing environment used for the implementation cannot run Xcode/simulator commands, so the earlier IOS-006 pass is not treated as proof for the new commit.
+
+The first production feature slice is implemented separately under Phase 03:
 
 - D1 onboarding is the root experience when `AppNavigationState.root == .onboarding`;
 - the main root remains the minimal Humay foundation placeholder;
-- completion durably saves a version-1 local `UserProfile`/`AppSettings` snapshot
-  with unknown birth time and no birth place;
-- restore resolves a completed state to the main placeholder; fresh installs and
-  incomplete state resolve to onboarding;
+- completion durably saves a version-1 local `UserProfile`/`AppSettings` snapshot with unknown birth time and no birth place;
+- restore resolves a completed state to the main placeholder; fresh installs and incomplete state resolve to onboarding;
 - no provider, networking, CloudKit or account flow is present.
 
 Foundation scope:
@@ -94,9 +85,11 @@ Foundation scope:
 - iPhone + iPad adaptive layout foundations;
 - Light + Dark from the start;
 - root routing/state boundaries without speculative feature UI;
-- persistence/configuration/testing boundaries prepared without premature feature schemas.
+- durable local profile/settings persistence;
+- privacy-safe diagnostics;
+- deterministic test and verification ownership.
 
-See [`phases/01-ios-foundation.md`](phases/01-ios-foundation.md).
+See [`phases/01-ios-foundation.md`](phases/01-ios-foundation.md) and [`VERIFICATION.md`](VERIFICATION.md).
 
 ### Phase 00 — Technical Architecture
 

@@ -1,6 +1,6 @@
 # iOS / iPadOS Architecture
 
-**Status:** production baseline after the 2026-08-12 reset; IOS-006 diagnostics complete.  
+**Status:** production baseline after the 2026-08-12 reset; IOS-007 implementation present, local verification pending.  
 See [`PRODUCTION_BASELINE_RESET_2026-08-12.md`](PRODUCTION_BASELINE_RESET_2026-08-12.md).
 
 ## Platform
@@ -43,6 +43,7 @@ Humay/
     └── Fonts/
 HumayTests/
 HumayUITests/
+Scripts/
 ```
 
 Feature and Data folders are added back deliberately as production slices are implemented. Data now contains only the local persistence slice justified by IOS-005/PROFILE-005. DesignSystem contains only the approved Soulful Celestial visual foundation. The repository should not recreate broad speculative architecture ahead of approved product work.
@@ -196,9 +197,24 @@ See:
 - [`../design/SOULFUL_CELESTIAL_DESIGN_DIRECTION.md`](../design/SOULFUL_CELESTIAL_DESIGN_DIRECTION.md)
 - [`../design/SCREEN_DESIGN_PLAN.md`](../design/SCREEN_DESIGN_PLAN.md)
 
-## Testing direction
+## Testing and verification
 
-Use Swift Testing for unit/domain behavior and XCTest for UI tests. Each implemented screen family should eventually be exercised on representative iPhone and iPad destinations, with Light/Dark and accessibility coverage appropriate to the feature.
+Use Swift Testing for unit/domain/foundation behavior and XCTest for UI tests. The current suite intentionally covers high-value invariants rather than implementation details or screenshot pixels.
+
+Current ownership includes:
+
+- App/root/navigation invariants, including restoring, onboarding, main and persistence-failure roots;
+- onboarding date/tradition/profile semantics;
+- versioned local persistence and failure behavior using isolated test stores/directories;
+- DesignSystem semantic colors, contrast, custom font availability, adaptive widths and minimum interaction/control metrics;
+- finite privacy-safe logging events;
+- essential XCUITest flows for fresh onboarding, back navigation, completion and terminate/relaunch persistence.
+
+`Scripts/verify-foundation.sh` is the canonical repository-local static entry point. It runs layering, nomenclature, diagnostics and `git diff --check` without choosing a simulator. Representative iPhone/iPad build and Xcode test commands are documented in [`../development/VERIFICATION.md`](../development/VERIFICATION.md), where simulator destinations are selected from the developer machine rather than hard-coded into the repository.
+
+A source/test change invalidates an earlier verification claim until the relevant commands are rerun. Simulator runner failures that occur before app/test bootstrap are recorded separately from product/test assertion failures and must not be worked around by changing production behavior.
+
+No GitHub Actions or other CI workflow is configured by this foundation phase.
 
 ## Not yet built in the clean baseline
 
