@@ -1,31 +1,48 @@
 # D3.1 — Current Sky
 
-**Status:** requirements prepared; visual references not created or approved.
+**Status:** REVIEW CANDIDATE — NOT APPROVED
 
-This package defines the handoff for the Current Sky visual-design pass. [design-spec.md](design-spec.md) is the working specification. There are intentionally no final reference images in this package yet.
+This package is the first complete visual-reference candidate for Current Sky. It defines presentation for product-owner review only. It does not approve D3, authorize production SwiftUI, or complete `SKY-003`.
 
-## Required reference set
+## Review first
 
-Current Sky requires all of the following before approval:
+1. [iPhone Light preview](iphone-light.png) and [editable SVG](iphone-light.svg)
+2. [iPhone Dark preview](iphone-dark.png) and [editable SVG](iphone-dark.svg)
+3. [iPad Light preview](ipad-light.png) and [editable SVG](ipad-light.svg)
+4. [iPad Dark preview](ipad-dark.png) and [editable SVG](ipad-dark.svg)
+5. [Current Sky state board](states.png) and [editable SVG](states.svg)
+6. [Adaptive layout notes](adaptive-notes.md)
+7. [Reference-specific review notes](review-notes.md)
 
-- [ ] iPhone Light
-- [ ] iPhone Dark
-- [ ] iPad Light
-- [ ] iPad Dark
-- [ ] iPad landscape/adaptive notes
-- [ ] compact-width fallback behavior
-- [ ] state-reference coverage recorded
-- [ ] accessibility risks reviewed
-- [ ] final review outcome recorded
+The four device references are loaded/default candidates. Approval remains package-wide: one device or appearance cannot become implementation authority while another remains unresolved.
 
-Approval is package-wide. One device or appearance cannot be approved as the implementation source while another remains missing.
+## Concept
 
-## Design and implementation gates
+**Lunar Meridian** — a celestial editorial dashboard built around one restrained lunar-orbit hero, compact factual event rows, a distinct nested Calendar entry, and a short upcoming timeline.
 
-1. Create the four main visual references from [design-spec.md](design-spec.md).
-2. Review hierarchy, semantics, adaptation, accessibility, assets, and sample disclosures.
-3. Record approval only after all four main references and adaptive notes are accepted.
-4. Implement Current Sky SwiftUI only after that approval.
-5. Capture real iPhone/iPad implementation evidence and reconcile it in a later task.
+The reference demonstrates exact, interval, date-only, and unavailable timing; Astronomical, Western, and Vedic labels; long titles; optional summaries; multiple events; and a sparse day. All event values and editorial copy are illustrative.
 
-Until then, the existing Sky placeholder remains unchanged. This package does not authorize CurrentSkyView, Calendar UI, event-detail UI, new routes, provider integration, caching, or persistence.
+## Package files
+
+- `iphone-light.svg` / `.png`
+- `iphone-dark.svg` / `.png`
+- `ipad-light.svg` / `.png`
+- `ipad-dark.svg` / `.png`
+- `states.svg` / `.png`
+- `elements/current-sky-orbit-light.svg`
+- `elements/current-sky-orbit-dark.svg`
+- `adaptive-notes.md`
+- `review-notes.md`
+- `design-spec.md` — unchanged requirements authority
+- `generate-references.cjs` — reference-only SVG/PNG generator
+
+## Approval boundary
+
+- Every new artifact is labeled **REVIEW CANDIDATE — NOT APPROVED**.
+- The hero headline is explicitly illustrative because Domain has no approved editorial-hero contract.
+- Calendar remains a child route inside Sky.
+- `Development sample · not calculated` is visible as a Debug screenshot treatment, not a Release banner proposal.
+- No Current Sky, Calendar, or event-detail production UI is implemented by this package.
+- Existing production assets are not modified or promoted by this package.
+
+The next action is product-owner review of the four Current Sky references.
