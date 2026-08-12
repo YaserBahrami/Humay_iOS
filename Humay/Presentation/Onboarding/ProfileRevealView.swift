@@ -132,37 +132,9 @@ private struct ProfileRevealHero: View {
 
     var body: some View {
         VStack(spacing: HumaySpacing.large) {
-            ZStack {
-                Circle()
-                    .stroke(Color.humayLavender.opacity(0.42), lineWidth: 1)
-                    .frame(width: 230, height: 230)
-                    .rotationEffect(.degrees(20))
-
-                Circle()
-                    .stroke(Color.humayCoral.opacity(0.55), lineWidth: 1)
-                    .frame(width: 170, height: 170)
-                    .rotationEffect(.degrees(-24))
-
-                Circle()
-                    .fill(Color.humaySolarGold.opacity(0.22))
-                    .frame(width: 124, height: 124)
-
-                Image(systemName: colorScheme == .light ? "sun.max.fill" : "moon.fill")
-                    .font(.system(size: 52, weight: .light))
-                    .foregroundStyle(Color.humaySolarGold)
-
-                Image(systemName: "sparkle")
-                    .font(.system(size: 17, weight: .medium))
-                    .foregroundStyle(Color.humayCoral)
-                    .offset(x: 96, y: -72)
-
-                Image(systemName: "sparkle")
-                    .font(.system(size: 12, weight: .medium))
-                    .foregroundStyle(Color.humayLavender)
-                    .offset(x: -98, y: 60)
-            }
-            .frame(height: 250)
-            .accessibilityHidden(true)
+            ProfileMedallion()
+                .frame(height: 250)
+                .accessibilityHidden(true)
 
             Text("Ready to meet your sky?")
                 .font(HumayTypography.editorialTitle)
@@ -172,13 +144,142 @@ private struct ProfileRevealHero: View {
         }
         .frame(maxWidth: .infinity)
         .padding(HumaySpacing.extraLarge)
-        .background(Color.humaySurface, in: RoundedRectangle(cornerRadius: HumayRadius.feature))
+        .background(heroSurface, in: RoundedRectangle(cornerRadius: HumayRadius.feature))
         .overlay {
             RoundedRectangle(cornerRadius: HumayRadius.feature)
                 .stroke(Color.humayHairline, lineWidth: 1)
         }
         .accessibilityElement(children: .contain)
         .accessibilityIdentifier("onboarding.profileReveal.hero")
+    }
+
+    private var heroSurface: Color {
+        colorScheme == .light ? .humayRaisedSurface : .humayRaisedSurface
+    }
+}
+
+/// Decorative human-centered medallion from the approved Profile Reveal board.
+/// It represents “you” without asserting any calculated astrological fact.
+private struct ProfileMedallion: View {
+    @Environment(\.colorScheme) private var colorScheme
+
+    var body: some View {
+        ZStack {
+            Ellipse()
+                .stroke(Color.humayLavender.opacity(colorScheme == .light ? 0.52 : 0.62), lineWidth: 1.4)
+                .frame(width: 242, height: 156)
+                .rotationEffect(.degrees(-6))
+
+            Ellipse()
+                .stroke(Color.humayCoral.opacity(colorScheme == .light ? 0.48 : 0.58), lineWidth: 1.4)
+                .frame(width: 158, height: 232)
+                .rotationEffect(.degrees(24))
+
+            Circle()
+                .fill(Color.humaySurface)
+                .frame(width: 132, height: 132)
+                .overlay {
+                    Circle()
+                        .stroke(Color.humayHairline, lineWidth: 1)
+                }
+
+            Circle()
+                .fill(faceColor)
+                .frame(width: 92, height: 92)
+
+            ProfileHairShape()
+                .fill(hairColor)
+                .frame(width: 94, height: 62)
+                .offset(y: -22)
+
+            HStack(spacing: 24) {
+                Circle()
+                    .fill(faceInk)
+                    .frame(width: 5, height: 5)
+                Circle()
+                    .fill(faceInk)
+                    .frame(width: 5, height: 5)
+            }
+            .offset(y: 10)
+
+            Canvas { context, size in
+                var smile = Path()
+                smile.move(to: CGPoint(x: 2, y: 2))
+                smile.addQuadCurve(
+                    to: CGPoint(x: size.width - 2, y: 2),
+                    control: CGPoint(x: size.width / 2, y: size.height)
+                )
+                context.stroke(
+                    smile,
+                    with: .color(faceInk),
+                    style: StrokeStyle(lineWidth: 1.7, lineCap: .round)
+                )
+            }
+            .frame(width: 22, height: 10)
+            .offset(y: 26)
+
+            Circle()
+                .fill(Color.humaySolarGold)
+                .frame(width: 8, height: 8)
+                .offset(x: 104, y: 16)
+
+            Circle()
+                .fill(Color.humayCelestialBlue)
+                .frame(width: 7, height: 7)
+                .offset(x: -88, y: -57)
+
+            Image(systemName: "sparkle")
+                .font(.system(size: 17, weight: .medium))
+                .foregroundStyle(Color.humayCoral)
+                .offset(x: 98, y: -78)
+
+            Image(systemName: "sparkle")
+                .font(.system(size: 12, weight: .medium))
+                .foregroundStyle(Color.humayLavender)
+                .offset(x: -104, y: 62)
+        }
+        .frame(width: 270, height: 250)
+    }
+
+    private var faceColor: Color {
+        Color(red: 0.957, green: 0.843, blue: 0.741)
+    }
+
+    private var hairColor: Color {
+        Color(red: 0.545, green: 0.365, blue: 0.282)
+    }
+
+    private var faceInk: Color {
+        colorScheme == .light ? .humayTextPrimary : .humayGround
+    }
+}
+
+private struct ProfileHairShape: Shape {
+    func path(in rect: CGRect) -> Path {
+        var path = Path()
+        path.move(to: CGPoint(x: rect.minX + rect.width * 0.08, y: rect.maxY * 0.72))
+        path.addCurve(
+            to: CGPoint(x: rect.midX, y: rect.minY + rect.height * 0.08),
+            control1: CGPoint(x: rect.minX + rect.width * 0.15, y: rect.minY + rect.height * 0.15),
+            control2: CGPoint(x: rect.minX + rect.width * 0.36, y: rect.minY)
+        )
+        path.addCurve(
+            to: CGPoint(x: rect.maxX - rect.width * 0.05, y: rect.maxY * 0.75),
+            control1: CGPoint(x: rect.maxX - rect.width * 0.24, y: rect.minY),
+            control2: CGPoint(x: rect.maxX - rect.width * 0.04, y: rect.minY + rect.height * 0.30)
+        )
+        path.addCurve(
+            to: CGPoint(x: rect.midX + rect.width * 0.08, y: rect.minY + rect.height * 0.34),
+            control1: CGPoint(x: rect.maxX - rect.width * 0.22, y: rect.maxY * 0.57),
+            control2: CGPoint(x: rect.maxX - rect.width * 0.34, y: rect.minY + rect.height * 0.46)
+        )
+        path.addCurve(
+            to: CGPoint(x: rect.minX + rect.width * 0.08, y: rect.maxY * 0.72),
+            control1: CGPoint(x: rect.midX - rect.width * 0.15, y: rect.minY + rect.height * 0.52),
+            control2: CGPoint(x: rect.minX + rect.width * 0.28, y: rect.maxY * 0.64)
+        )
+        path.closeSubpath()
+        return path
     }
 }
 

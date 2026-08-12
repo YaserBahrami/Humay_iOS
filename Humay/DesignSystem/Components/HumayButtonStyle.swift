@@ -21,23 +21,30 @@ struct HumayButtonStyle: ButtonStyle {
             .padding(.horizontal, HumaySpacing.extraLarge)
             .padding(.vertical, HumaySpacing.medium)
             .frame(minWidth: HumayMetrics.minimumHitTarget, minHeight: 56)
-            .background(backgroundStyle, in: Capsule())
+            .background(backgroundStyle, in: buttonShape)
             .overlay {
                 if kind == .secondary {
-                    Capsule()
+                    buttonShape
                         .strokeBorder(
                             Color.humayHairline,
                             lineWidth: HumayMetrics.hairline(displayScale: displayScale)
                         )
                 }
             }
-            .contentShape(Capsule())
+            .contentShape(buttonShape)
             .opacity(isEnabled ? 1 : 0.55)
             .scaleEffect(configuration.isPressed && !reduceMotion ? 0.985 : 1)
             .animation(
                 reduceMotion ? nil : .easeOut(duration: 0.12),
                 value: configuration.isPressed
             )
+    }
+
+    private var buttonShape: RoundedRectangle {
+        RoundedRectangle(
+            cornerRadius: HumayRadius.compact,
+            style: .continuous
+        )
     }
 
     private var backgroundStyle: AnyShapeStyle {
