@@ -8,6 +8,7 @@ struct TodayView: View {
     let profileName: String
     let openProfile: () -> Void
 
+    @Environment(\.colorScheme) private var colorScheme
     @State private var showRoastInfo = false
 
     var body: some View {
@@ -25,7 +26,7 @@ struct TodayView: View {
                 .frame(maxWidth: HumayContentWidth.expanded.rawValue)
                 .frame(maxWidth: .infinity, alignment: .top)
                 .padding(.horizontal, HumayLayout.screenGutter(for: proxy.size.width))
-                .padding(.top, HumaySpacing.large)
+                .padding(.top, HumaySpacing.medium)
                 .padding(.bottom, HumaySpacing.extraExtraLarge)
             }
             .scrollIndicators(.hidden)
@@ -64,7 +65,7 @@ struct TodayView: View {
                 title: "Offline",
                 detail: cached == nil
                     ? "No saved Today content is available."
-                    : "Showing saved development content while offline.",
+                    : "Showing saved content while offline.",
                 accent: .gold
             )
             if let cached {
@@ -73,7 +74,7 @@ struct TodayView: View {
                 D2UnavailableState(
                     symbol: "moon.zzz",
                     title: "Today is unavailable",
-                    detail: "Reconnect to open a current reading. No precision request will be started as a fallback."
+                    detail: "Reconnect to open a current reading."
                 )
             }
 
@@ -99,7 +100,6 @@ struct TodayView: View {
                 VStack(alignment: .leading, spacing: HumaySpacing.extraLarge) {
                     highlights(content)
                     roastCard(content)
-                    D2SampleNotice(source: source)
                 }
                 .frame(maxWidth: .infinity, alignment: .topLeading)
             }
@@ -109,13 +109,12 @@ struct TodayView: View {
                 cosmicInsight(content)
                 highlights(content)
                 roastCard(content)
-                D2SampleNotice(source: source)
             }
         }
     }
 
     private func greeting(_ content: TodayContent) -> some View {
-        HStack(alignment: .center, spacing: HumaySpacing.small) {
+        HStack(alignment: .bottom, spacing: HumaySpacing.small) {
             VStack(alignment: .leading, spacing: HumaySpacing.medium) {
                 Text(content.greeting)
                     .font(HumayTypography.editorialTitle)
@@ -124,13 +123,14 @@ struct TodayView: View {
 
                 Text(content.introduction)
                     .font(HumayTypography.body)
-                    .foregroundStyle(Color.humayTextSecondary)
+                    .foregroundStyle(Color.humayTextPrimary.opacity(0.90))
                     .fixedSize(horizontal: false, vertical: true)
             }
             .frame(maxWidth: .infinity, alignment: .leading)
 
             CelestialCoffeeArt()
-                .frame(maxWidth: 132)
+                .frame(maxWidth: 128)
+                .offset(y: 2)
         }
         .accessibilityElement(children: .combine)
         .accessibilityIdentifier("today.greeting")
@@ -145,7 +145,7 @@ struct TodayView: View {
             )
         } label: {
             HumayCosmicSurface(padding: HumaySpacing.large) {
-                HStack(spacing: HumaySpacing.large) {
+                HStack(spacing: HumaySpacing.medium) {
                     VStack(alignment: .leading, spacing: HumaySpacing.small) {
                         Text("Cosmic Weather")
                             .font(HumayTypography.utility)
@@ -160,6 +160,7 @@ struct TodayView: View {
                     .frame(maxWidth: .infinity, alignment: .leading)
 
                     OrbitPlanetArt(compact: true)
+                        .frame(maxWidth: 112)
                 }
             }
         }
@@ -191,7 +192,7 @@ struct TodayView: View {
                                     .font(HumayTypography.bodyEmphasized)
                                 Text(highlight.text)
                                     .font(HumayTypography.supporting)
-                                    .foregroundStyle(Color.humayTextSecondary)
+                                    .foregroundStyle(Color.humayTextPrimary.opacity(0.88))
                                     .fixedSize(horizontal: false, vertical: true)
                             }
                             .frame(maxWidth: .infinity, alignment: .leading)
@@ -200,6 +201,7 @@ struct TodayView: View {
                                 .font(.footnote.weight(.semibold))
                                 .foregroundStyle(Color.humayTextSecondary)
                                 .frame(width: 44, height: 44)
+                                .background(Color.humayRaisedSurface.opacity(0.70), in: Circle())
                                 .accessibilityHidden(true)
                         }
                         .padding(.horizontal, HumaySpacing.large)
@@ -224,12 +226,13 @@ struct TodayView: View {
         Button {
             showRoastInfo = true
         } label: {
-            HStack(spacing: HumaySpacing.large) {
+            HStack(spacing: HumaySpacing.medium) {
                 VStack(alignment: .leading, spacing: HumaySpacing.extraSmall) {
                     Text("Roast Mode")
                         .font(HumayTypography.utility)
                         .textCase(.uppercase)
                         .tracking(1.1)
+                        .foregroundStyle(colorScheme == .dark ? Color.humayGround : Color.humayCoral)
                     Text(content.roastTitle)
                         .font(HumayTypography.cardTitle)
                     Text(content.roastBody)
@@ -238,33 +241,42 @@ struct TodayView: View {
                 .frame(maxWidth: .infinity, alignment: .leading)
 
                 RoastFireArt()
+                    .frame(maxWidth: 86)
 
                 Image(systemName: "arrow.right")
-                    .frame(width: 44, height: 44)
-                    .background(Color.humaySurface.opacity(0.28), in: Circle())
+                    .frame(width: 40, height: 40)
+                    .background(roastControlBackground, in: Circle())
                     .accessibilityHidden(true)
             }
             .foregroundStyle(Color.humayTextPrimary)
-            .padding(HumaySpacing.extraLarge)
-            .background(
-                LinearGradient(
-                    colors: [
-                        Color.humayCoral.opacity(0.66),
-                        Color.humaySolarGold.opacity(0.28)
-                    ],
-                    startPoint: .leading,
-                    endPoint: .trailing
-                ),
-                in: RoundedRectangle(cornerRadius: HumayRadius.surface)
-            )
+            .padding(HumaySpacing.large)
+            .background(roastBackground, in: RoundedRectangle(cornerRadius: HumayRadius.surface))
             .overlay {
                 RoundedRectangle(cornerRadius: HumayRadius.surface)
-                    .stroke(Color.humayCoral.opacity(0.42))
+                    .stroke(roastBorder)
             }
         }
         .buttonStyle(.plain)
-        .accessibilityHint("Explains the development Roast Mode preview")
+        .accessibilityHint("Explains the Roast Mode preview")
         .accessibilityIdentifier("today.roast")
+    }
+
+    private var roastBackground: some ShapeStyle {
+        LinearGradient(
+            colors: colorScheme == .light
+                ? [Color.humayCoral.opacity(0.16), Color.humaySolarGold.opacity(0.10)]
+                : [Color.humayCoral.opacity(0.72), Color.humaySolarGold.opacity(0.30)],
+            startPoint: .leading,
+            endPoint: .trailing
+        )
+    }
+
+    private var roastBorder: Color {
+        colorScheme == .light ? Color.humayHairline : Color.humayCoral.opacity(0.42)
+    }
+
+    private var roastControlBackground: Color {
+        colorScheme == .light ? Color.humaySurface.opacity(0.72) : Color.humaySurface.opacity(0.28)
     }
 
     private var loadingState: some View {
@@ -275,7 +287,7 @@ struct TodayView: View {
                     .tint(Color.humayLavender)
                 Text("Reading today’s sky…")
                     .font(HumayTypography.cardTitle)
-                Text("Development loading state. No request is being made.")
+                Text("Preparing your day.")
                     .font(HumayTypography.supporting)
                     .foregroundStyle(Color.humayTextSecondary)
             }
