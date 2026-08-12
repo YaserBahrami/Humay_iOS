@@ -106,7 +106,89 @@ struct PersistenceTests {
         }
     }
 
-    @Test("Write failure is surfaced")
+    @Test("Syntactically valid impossible birth date fails as invalid payload")
+    func impossibleBirthDateFails() async throws {
+        let fixture = try TemporaryStoreFixture()
+        defer { fixture.remove() }
+
+        try write(
+            """
+            {
+              "schemaVersion":1,
+              "profile":{
+                "id":"D7E4E5C6-0D6F-4D66-9C4B-4B9C6B4F7F2A",
+                "displayName":"",
+                "birth":{
+                  "year":1994,
+                  "month":2,
+                  "day":30,
+                  "time":{"kind":"unknown"},
+                  "place":{"kind":"notProvided"}
+                }
+              },
+              "settings":{"leadingTradition":"western","onboardingCompletedAt":null,"tone":"normal"}
+            }
+            """,
+            to: fixture.fileURL
+        )
+
+        let store = FileUserStateStore(fileURL: fixture.fileURL)
+
+        do {
+            _ = try await store.load()
+            Issue.record("Expected invalid payload failure")
+        } catch let error as UserStatePersistenceError {
+            #expect(error == .invalidPayload)
+        } catch {
+            Issue.record("Unexpected persistence error")
+        }
+    }
+
+    @Test("Out-of-range known place coordinates fail as invalid payload")
+    func invalidKnownPlaceFails() async throws {
+        let fixture = try TemporaryStoreFixture()
+        defer { fixture.remove() }
+
+        try write(
+            """
+            {
+              "schemaVersion":1,
+              "profile":{
+                "id":"D7E4E5C6-0D6F-4D66-9C4B-4B9C6B4F7F2A",
+                "displayName":"",
+                "birth":{
+                  "year":1994,
+                  "month":3,
+                  "day":14,
+                  "time":{"kind":"unknown"},
+                  "place":{
+                    "kind":"known",
+                    "name":"Tehran",
+                    "latitude":900,
+                    "longitude":51.389,
+                    "timeZoneIdentifier":"Asia/Tehran"
+                  }
+                }
+              },
+              "settings":{"leadingTradition":"western","onboardingCompletedAt":null,"tone":"normal"}
+            }
+            """,
+            to: fixture.fileURL
+        )
+
+        let store = FileUserStateStore(fileURL: fixture.fileURL)
+
+        do {
+            _ = try await store.load()
+            Issue.record("Expected invalid payload failure")
+        } catch let error as UserStatePersistenceError {
+            #expect(error == .invalidPayload)
+        } catch {
+            Issue.record("Unexpected persistence error")
+        }
+    }
+
+    @Test("Write failure is surfaced without leaking file-system detail")
     func writeFailureIsSurfaced() async throws {
         let fixture = try TemporaryStoreFixture()
         defer { fixture.remove() }
@@ -124,9 +206,9 @@ struct PersistenceTests {
                     settings: .default
                 )
             )
-            Issue.record("Expected directory creation failure")
+            Issue.record("Expected write failure")
         } catch let error as UserStatePersistenceError {
-            #expect(error == .directoryCreationFailed)
+            #expect(error == .writeFailed)
         } catch {
             Issue.record("Unexpected persistence error")
         }
