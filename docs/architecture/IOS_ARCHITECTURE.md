@@ -61,7 +61,7 @@ Rules:
 
 ## Application state
 
-`AppEnvironment` is intentionally small after the reset. It currently owns only profile/settings state needed to stage onboarding development. It does not pretend that mock services are live services.
+`AppEnvironment` is intentionally small after the reset. It owns only profile/settings state needed to stage onboarding development. `AppNavigationState` is composed beside it by `HumayApp` and derives the logical root from `AppEnvironment.hasCompletedOnboarding`; it owns only transient route selection and does not persist or duplicate profile/settings truth. Neither object pretends that mock services are live services.
 
 Feature-specific state should remain feature-local unless multiple routes genuinely need to share it.
 
@@ -99,7 +99,18 @@ Canonical product IA remains:
 
 **Today / Circle / Sky / Chart / Ask**
 
-The routing implementation will be rebuilt when the first post-onboarding application family is implemented. iPad may use platform-appropriate navigation presentation while preserving the same route hierarchy.
+The App layer now owns a small non-visual route boundary:
+
+- root resolves to onboarding or main from `AppEnvironment.hasCompletedOnboarding`;
+- onboarding route ownership is Welcome, Birth Date, Tradition and Profile Reveal;
+- primary destination ownership is Today, Circle, Sky, Chart and Ask in that order;
+- Calendar is a Sky-owned child route and Compatibility is a Circle-owned child route;
+- Profile/Settings is an auxiliary profile/header route, not a primary destination.
+
+`AppNavigationState` is transient, `@MainActor` and Observation-based. It has no
+provider, Data or persistence dependency. iPad may later use platform-appropriate
+stack/tab/sidebar presentation while preserving this same route hierarchy; those
+visual presenters and all feature screens remain unimplemented.
 
 ## Appearance
 
@@ -138,4 +149,4 @@ Use Swift Testing for unit/domain behavior and XCTest for UI tests. Each impleme
 
 ## Not yet built in the clean baseline
 
-Onboarding implementation, persistence/CloudKit, authentication, backend identity, networking, astrology provider adapters, interpretation provider, post-onboarding navigation, StoreKit, advertising, analytics, notification delivery, widgets and feature-specific screens.
+Onboarding implementation, persistence/CloudKit, authentication, backend identity, networking, astrology provider adapters, interpretation provider, visual post-onboarding navigation presenters, StoreKit, advertising, analytics, notification delivery, widgets and feature-specific screens.

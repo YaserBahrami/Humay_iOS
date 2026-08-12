@@ -4,7 +4,7 @@ Last updated: **2026-08-12**
 
 ## Active priorities
 
-1. Continue **Phase 01 — Apple Platform Foundation** after the completed IOS-001 through IOS-003 baseline; IOS-004 is not started.
+1. Continue **Phase 01 — Apple Platform Foundation** after the completed IOS-001 through IOS-004 baseline; IOS-005 is not started.
 2. Preserve the completed Soulful Celestial DesignSystem foundation while feature-specific UI remains behind its cross-device design gate.
 3. Backfill iPad references for approved Welcome + Birth Date.
 4. Design D1 Step 03 Tradition for iPhone + iPad, Light + Dark.
@@ -48,7 +48,7 @@ Details: [`../architecture/PRODUCTION_BASELINE_RESET_2026-08-12.md`](../architec
 
 ### Phase 01 — Apple Platform Foundation
 
-**IN PROGRESS. IOS-001 through IOS-003 are complete; IOS-004 is not started.**
+**IN PROGRESS. IOS-001 through IOS-004 are complete; IOS-005 is not started.**
 
 Current verified foundation:
 
@@ -56,6 +56,8 @@ Current verified foundation:
 - Swift 6 complete strict concurrency, iOS/iPadOS 18.0 and device families `1,2` remain effective;
 - Humay naming, shared scheme and centralized Debug/Release xcconfig inheritance remain intact;
 - `HumayApp` explicitly owns the small `AppEnvironment` composition boundary;
+- `HumayApp` explicitly composes the transient `AppNavigationState` root/route
+  boundary without persisting routing state or adding feature UI;
 - Domain remains independent of UI and persistence frameworks;
 - DesignSystem contains the approved semantic Light/Dark tokens, Dynamic Type typography, adaptive layout, generic surfaces and primary/quiet button foundations;
 - the DesignSystem showcase exists only in Debug previews for representative iPhone/iPad Light/Dark verification and is not a runtime route;
@@ -149,6 +151,6 @@ Cadence:
 
 ## Current runtime
 
-The app still launches the deliberately minimal semantic Light/Dark Humay placeholder. IOS-003 added reusable design infrastructure and a preview-only showcase; it did not redesign RootView or add production feature UI.
+The app still launches the deliberately minimal semantic Light/Dark Humay placeholder. IOS-003 added reusable design infrastructure and a preview-only showcase; IOS-004 added non-visual root/route ownership state without changing RootView or adding production navigation/feature UI.
 
 No production astrology provider, interpretation provider, persistence/CloudKit schema, authentication/account flow, backend identity, StoreKit, ads, analytics, notification delivery or post-onboarding feature runtime is wired yet.

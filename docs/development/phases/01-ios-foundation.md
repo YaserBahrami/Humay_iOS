@@ -1,6 +1,6 @@
 # Phase 01 — Apple Platform Foundation
 
-Status: **IN PROGRESS — IOS-001 through IOS-003 complete; IOS-004 not started**
+Status: **IN PROGRESS — IOS-001 through IOS-004 complete; IOS-005 not started**
 
 Depends on:
 - current production baseline reset;
@@ -78,7 +78,7 @@ Acceptance:
 - existing layering checks are updated to enforce the actual structure.
 
 ### IOS-003 — Soulful Celestial design-system foundation
-Status: **DONE — 2026-08-12**  
+Status: **DONE — 2026-08-12**
 Depends on: IOS-001
 
 Implemented foundation state:
@@ -112,14 +112,25 @@ Acceptance:
 Do not prebuild every future feature card, access gate or settings row in this phase.
 
 ### IOS-004 — Root application state and navigation boundary
-Status: TODO  
+Status: **DONE — 2026-08-12**
 Depends on: IOS-002
 
-Scope:
-- first-launch/onboarding vs main-app root state;
-- route types/ownership needed by currently approved work;
-- future main IA represented without implementing fake feature screens;
-- adaptive navigation strategy capable of iPhone/iPad presentation.
+Implemented foundation state:
+
+- `AppRootState` resolves to onboarding or main from the existing
+  `AppEnvironment.hasCompletedOnboarding` semantics;
+- `OnboardingRoute` owns exactly Welcome, Birth Date, Tradition and Profile Reveal;
+- `MainDestination` owns Today, Circle, Sky, Chart and Ask in canonical order;
+- `CircleRoute.compatibility` remains Circle-owned and `SkyRoute.calendar` remains
+  Sky-owned;
+- `AppAuxiliaryRoute.profileSettings` is separate from primary destinations and is
+  reserved for the profile/header entry;
+- `AppNavigationState` is an App-owned, `@MainActor`/Observation-based transient
+  route selection boundary composed by `HumayApp` beside `AppEnvironment`;
+- no route state is persisted and navigation has no Data, provider or persistence
+  dependency;
+- RootView remains the minimal system-background Humay placeholder. No onboarding,
+  primary destination, auxiliary route or navigation presenter is rendered.
 
 Acceptance:
 - canonical IA remains Today / Circle / Sky / Chart / Ask;
