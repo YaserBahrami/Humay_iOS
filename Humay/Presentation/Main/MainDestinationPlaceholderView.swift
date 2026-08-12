@@ -15,11 +15,25 @@ struct MainDestinationPlaceholderView: View {
                         profileAction: openProfile
                     )
 
-                    D2UnavailableState(
-                        symbol: symbol,
-                        title: "\(title) is waiting in the wings",
-                        detail: detail
-                    )
+                    HumaySurface(level: .raised) {
+                        VStack(spacing: HumaySpacing.large) {
+                            HumayIllustration(name: artworkName)
+                                .frame(width: 180, height: 150)
+
+                            Text(headline)
+                                .font(HumayTypography.editorialTitle)
+                                .multilineTextAlignment(.center)
+                                .accessibilityAddTraits(.isHeader)
+
+                            Text(detail)
+                                .font(HumayTypography.body)
+                                .foregroundStyle(Color.humayTextSecondary)
+                                .multilineTextAlignment(.center)
+                                .fixedSize(horizontal: false, vertical: true)
+                        }
+                        .frame(maxWidth: .infinity)
+                        .padding(.vertical, HumaySpacing.extraLarge)
+                    }
                     .frame(maxWidth: HumayContentWidth.form.rawValue)
                     .frame(maxWidth: .infinity)
                 }
@@ -28,6 +42,7 @@ struct MainDestinationPlaceholderView: View {
                 .padding(.horizontal, HumayLayout.screenGutter(for: proxy.size.width))
                 .padding(.vertical, HumaySpacing.large)
             }
+            .scrollIndicators(.hidden)
         }
         .background(Color.humayGround.ignoresSafeArea())
         .foregroundStyle(Color.humayTextPrimary)
@@ -44,22 +59,33 @@ struct MainDestinationPlaceholderView: View {
         }
     }
 
-    private var symbol: String {
+    private var artworkName: String {
         switch destination {
-        case .sky: "sparkles"
-        case .chart: "circle.hexagongrid"
-        case .ask: "bubble.left.and.text.bubble.right"
-        case .today: "sun.max"
-        case .circle: "person.2"
+        case .sky: "IllustrationCurrentSky"
+        case .chart: "IllustrationWesternChart"
+        case .ask: "IllustrationAskStars"
+        case .today: "IllustrationCosmicWeather"
+        case .circle: "IllustrationTodayTogether"
+        }
+    }
+
+    private var headline: String {
+        switch destination {
+        case .sky: "Your sky is taking shape"
+        case .chart: "Your chart is taking shape"
+        case .ask: "Ask the Stars is taking shape"
+        case .today: "Today is taking shape"
+        case .circle: "Your Circle is taking shape"
         }
     }
 
     private var detail: String {
         switch destination {
-        case .sky: "Sky feature UI belongs to D3 and is intentionally not designed in this phase."
-        case .chart: "Chart feature UI belongs to D4 and remains intentionally minimal here."
-        case .ask: "Ask feature UI belongs to D5 and remains intentionally minimal here."
-        case .today, .circle: "This destination is implemented by D2."
+        case .sky: "Current sky, calendar and meaningful astrological events will live here."
+        case .chart: "Your chart, placements and system comparisons will live here."
+        case .ask: "A focused place for questions and personalized astrology answers will live here."
+        case .today: "Your daily guidance will live here."
+        case .circle: "People and compatibility will live here."
         }
     }
 }
