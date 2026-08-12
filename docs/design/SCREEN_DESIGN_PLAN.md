@@ -82,7 +82,7 @@ Birth time and birth location are not onboarding steps.
 | Tradition | Light + Dark approved | Light + Dark approved | implemented; evidence captured |
 | Profile Reveal | Light + Dark approved | Light + Dark approved | implemented; evidence captured |
 
-D1 cross-device approval date: **2026-08-12**. Production implementation is `Humay/Presentation/Onboarding/`. PROFILE-005 now persists the local profile/settings aggregate and restores the completed root on relaunch; all later feature families remain TODO.
+D1 cross-device approval date: **2026-08-12**. Production implementation is `Humay/Presentation/Onboarding/`. PROFILE-005 persists the local profile/settings aggregate and restores the completed root on relaunch. D2 is now implemented as a development-sample presentation slice; D3 and later remain unimplemented.
 
 The iPad landscape two-region paths are covered by the UI test. iOS 26.5 simulator landscape screenshot export produced an orientation-rotated framebuffer, so those raw captures are documented but not presented as repository evidence; see [`implementation-evidence/d1-onboarding/README.md`](implementation-evidence/d1-onboarding/README.md).
 
@@ -104,6 +104,17 @@ The iPad landscape two-region paths are covered by the UI test. iOS 26.5 simulat
 4. Compatibility overview
 5. Deeper compatibility
 6. Unknown/insufficient birth-data state where applicable
+
+### D2 implementation status
+
+- Approved iPhone Light/Dark composites: [`soulful-reference/today-circle/`](soulful-reference/today-circle/README.md).
+- Implemented: Today, Daily Horoscope, Circle, minimal Add Person, compatibility selection/result and explicit sample/access/cache/offline/error states.
+- Real portrait simulator evidence: [`implementation-evidence/d2-today-circle/`](implementation-evidence/d2-today-circle/README.md).
+- iPad uses width-driven two-region layouts and native adaptive tabs/sidebar; compact widths collapse to one column.
+- Static approved D2 iPad mockups were not supplied, so pixel-perfect iPad reconciliation is not claimed.
+- iOS 26.5 landscape UI tests pass, but XCTest exports the landscape framebuffer rotated/cropped; raw artifacts are retained and labeled rather than presented as valid visual matches.
+- Today Together is not implemented; it remains CIRCLE-006 and was not invented from an unfrozen design.
+- Backend/API/provider, Saved People persistence and monetization remain outside D2.
 
 ## D3 — Sky + Calendar
 

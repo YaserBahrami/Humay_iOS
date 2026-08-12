@@ -4,10 +4,10 @@ Last updated: **2026-08-12**
 
 ## Active priorities
 
-1. Run the post-change IOS-007 foundation verification and ASTRO-001/002/003 Swift tests on the latest branch.
-2. Begin the next approved **UI-first** pass: design/approve D2 Today + Circle across iPhone/iPad Light/Dark, then implement those real SwiftUI states using development sample data.
-3. Continue the same UI-first approach for the next core feature families before wiring production backend/API providers.
-4. Defer concrete backend/API/provider integration until the corresponding UI/feature contracts are stable; before paid-provider rollout, finish ARCH-007 entitlement and ARCH-008 privacy/security contracts and required methodology validation.
+1. Review the captured D2 Today + Circle implementation evidence and close the documented portrait-asset/iPad-reference discrepancies only when approved assets/references exist.
+2. Keep D2 runtime backed by explicit Debug development sample composition until real Free catalog and precision provider contracts are implemented in their owning phases.
+3. Defer backend/API/provider and monetization work; ARCH-007 entitlement, ARCH-008 privacy/security and methodology validation remain prerequisites for production precision rollout.
+4. Do not begin D3 Sky, D4 Chart or D5 Ask UI as part of the completed D2 implementation scope.
 
 ## Repository authority
 
@@ -48,11 +48,11 @@ Details: [`../architecture/PRODUCTION_BASELINE_RESET_2026-08-12.md`](../architec
 
 ### Phase 01 — Apple Platform Foundation
 
-**IN PROGRESS. IOS-001 through IOS-006 are complete; IOS-007 is implemented and awaiting post-change local verification.**
+**DONE. IOS-001 through IOS-007 are complete and the post-D2 local verification passed on 2026-08-12.**
 
 Current foundation:
 
-- the most recent completed verification run (IOS-006) passed representative iPhone/iPad Debug builds, Swift Testing, XCUITest, layering, nomenclature, diagnostics and `git diff --check`;
+- the current verification run passed representative iPhone/iPad Debug builds, the complete 69-test Swift Testing target, all 9 XCUITests on both representative devices, layering, nomenclature, diagnostics and `git diff --check`;
 - Swift 6 complete strict concurrency, iOS/iPadOS 18.0 and device families `1,2` remain effective;
 - Humay naming, shared scheme and centralized Debug/Release xcconfig inheritance remain intact;
 - `HumayApp` explicitly owns the small `AppEnvironment` composition boundary;
@@ -61,10 +61,8 @@ Current foundation:
 - DesignSystem contains the approved semantic Light/Dark tokens, Dynamic Type typography, adaptive layout, generic surfaces and primary/quiet button foundations;
 - Data contains only the production-owned local persistence slice justified by IOS-005/PROFILE-005;
 - IOS-006 centralizes privacy-safe OSLog diagnostics behind finite typed application/persistence events;
-- IOS-007 adds `Scripts/verify-foundation.sh` and [`VERIFICATION.md`](VERIFICATION.md) as the canonical repository/local Xcode verification contract;
+- IOS-007 provides `Scripts/verify-foundation.sh` and [`VERIFICATION.md`](VERIFICATION.md) as the canonical repository/local Xcode verification contract; the canonical script passed after the D2 implementation commit;
 - no third-party dependency or CI workflow is configured.
-
-Because source/tests changed after the last verified IOS-006 run, the latest branch still needs the documented local verification before IOS-007 or Phase 01 is marked DONE.
 
 ### Phase 00 — Technical Architecture
 
@@ -115,7 +113,7 @@ The approved D1 onboarding slice PROFILE-001 through PROFILE-005 is implemented:
 - Welcome → Birth Date → Tradition → Profile Reveal;
 - completion durably stores local `UserProfile`/`AppSettings` schema v1;
 - onboarding does not ask for birth time/location;
-- restore resolves completed state to the current minimal main placeholder;
+- restore resolves completed state to the real adaptive primary navigation shell;
 - no provider, networking, CloudKit or account flow is present.
 
 Birth-time/place editing remains a later Profile/Settings UI task and requires its own UI approval.
@@ -136,20 +134,25 @@ For each core family:
 
 Development sample data is never production truth, methodology evidence or a shipping provider fallback. Release runtime must not present sample personalized astrology as real output.
 
-### Next visual family
+### D2 implementation
 
-**D2 — Today + Circle** is the next UI design gate.
+**D2 — Today + Circle** is implemented as a UI-first presentation slice using Debug-only development sample data.
 
-It should establish:
+It establishes:
 
 - the first real main-root Today experience;
 - Free/coarse vs precision Today states;
 - Circle/Saved People foundations;
 - coarse compatibility vs precise-upgrade states;
 - cache/reopen/loading/offline/error states needed by the new architecture;
-- iPhone/iPad Light/Dark and adaptive behavior.
+- iPhone/iPad Light/Dark and adaptive behavior;
+- Today, Daily Horoscope, Circle, minimal Add Person and Compatibility presentation;
+- explicit loading, loaded, Free, precise-locked, precise-loaded, cached, offline, failed and empty states where applicable;
+- a Release composition that exposes no development astrology sample payload.
 
-After D2 approval, implement it with development sample data before backend/API work.
+The implementation is under `Humay/Presentation/Today/`, `Humay/Presentation/Circle/` and `Humay/Presentation/Main/`. Evidence is under [`../design/implementation-evidence/d2-today-circle/`](../design/implementation-evidence/d2-today-circle/README.md).
+
+Production Free catalog/backend/provider, precision generation, entitlement, monetization and Saved People persistence remain deferred. Phase 05 and Phase 07 therefore remain partial rather than DONE.
 
 ## Backend/API timing
 
@@ -206,6 +209,16 @@ Current status:
 
 Birth time and birth location are not onboarding steps.
 
+### D2
+
+Current status:
+
+- approved Light/Dark iPhone composites are committed under [`../design/soulful-reference/today-circle/`](../design/soulful-reference/today-circle/README.md);
+- production SwiftUI hierarchy is implemented with explicit feature states and Debug-only development sample composition;
+- real iPhone/iPad Light/Dark portrait simulator evidence is committed under [`../design/implementation-evidence/d2-today-circle/`](../design/implementation-evidence/d2-today-circle/README.md);
+- adaptive iPad portrait/landscape paths pass UI tests; iOS 26.5 exports the landscape framebuffer rotated/cropped, so raw artifacts are labeled and no pixel-perfect landscape claim is made;
+- formal static D2 iPad references and approved portrait assets remain visual-reconciliation gaps.
+
 ## Implementation gate
 
 Non-visual architecture/domain/foundation work may proceed without a visual mock. **Every user-facing UI must be designed and approved before implementation.**
@@ -232,6 +245,8 @@ Cadence for user-facing work:
 
 ## Current runtime
 
-The app restores the local user-state snapshot before resolving a meaningful root. A missing file produces fresh four-beat onboarding. `Enter Humay` saves the profile/settings aggregate atomically before resolving the root to the existing minimal semantic Light/Dark Humay placeholder. Terminating and relaunching a completed app restores the main placeholder. Save failures leave the onboarding draft intact and expose a retry alert; restore failures remain distinct from fresh onboarding.
+The app restores the local user-state snapshot before resolving a meaningful root. A missing file produces fresh four-beat onboarding. `Enter Humay` saves the profile/settings aggregate atomically before resolving the root to the adaptive Today / Circle / Sky / Chart / Ask shell. Terminating and relaunching a completed app restores that shell. Profile/Settings remains auxiliary from the header. Sky, Chart and Ask remain minimal destination placeholders because D3/D4/D5 are not approved for implementation in this phase. Save failures leave the onboarding draft intact and expose a retry alert; restore failures remain distinct from fresh onboarding.
 
-The local snapshot remains the device source of truth for current profile/settings. The ASTRO-001/002/003 types are Domain contracts only and are not wired to a calculation provider. No production astrology provider, interpretation provider, backend API, CloudKit sync/restore, authentication, StoreKit, ads, analytics or notification delivery is wired yet.
+Debug builds inject `DevelopmentD2Sample` into narrow feature-state inputs. That type and its payload are excluded by `#if DEBUG`; Release injects production-unavailable/empty states and a binary scan found no development sample symbol or sample reading/person/score strings. The local snapshot remains the device source of truth only for current profile/settings; D2-added people are transient UI state and do not expand the persistence schema.
+
+The ASTRO-001/002/003 types remain provider-independent Domain contracts and are not wired to D2 sample presentation or a calculation provider. No production astrology provider, interpretation provider, backend API, CloudKit sync/restore, authentication, StoreKit, ads, analytics or notification delivery is wired yet.

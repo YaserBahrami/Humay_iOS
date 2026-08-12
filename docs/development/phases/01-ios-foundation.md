@@ -1,6 +1,6 @@
 # Phase 01 — Apple Platform Foundation
 
-Status: **IN PROGRESS — IOS-001 through IOS-006 complete; IOS-007 implemented, local verification pending**
+Status: **DONE — IOS-001 through IOS-007 verified 2026-08-12**
 
 Depends on:
 - current production baseline reset;
@@ -130,8 +130,8 @@ Implemented foundation state:
 - no route state is persisted and navigation has no Data, provider or persistence
   dependency;
 - RootView renders the approved D1 onboarding presenter for the onboarding root and
-  keeps the main root as the minimal system-background Humay placeholder. Later
-  primary destinations and auxiliary presenters remain unimplemented.
+  preserves the verified route boundary. The later D2 phase now supplies the real
+  adaptive primary shell without changing route ownership.
 
 Acceptance:
 - canonical IA remains Today / Circle / Sky / Chart / Ask;
@@ -157,7 +157,7 @@ Acceptance:
 - no volatile production fallback, SwiftData, Core Data, UserDefaults or CloudKit.
 
 ### IOS-006 — Configuration, diagnostics and privacy-safe logging
-Status: **DONE — 2026-08-12**  
+Status: **DONE — 2026-08-12**
 Depends on: IOS-002, IOS-005
 
 Implemented:
@@ -183,7 +183,7 @@ Verification:
 - production-source privacy search was manually reviewed; domain/model matches are legitimate and no logging call carries them.
 
 ### IOS-007 — Test and verification foundation
-Status: **IMPLEMENTED — local verification pending**  
+Status: **DONE — 2026-08-12**
 Depends on: IOS-001 through IOS-006 as applicable
 
 Implemented:
@@ -195,19 +195,18 @@ Implemented:
 - existing onboarding, persistence, logging and essential relaunch UI coverage remains the foundation suite;
 - no screenshot/pixel tests, obsolete prototype tests, CI workflow or speculative feature tests were added.
 
-Acceptance still requires verification after this latest source/test change:
+Post-D2 verification:
 
-- Swift Testing unit target builds/runs;
-- XCUITest target builds/runs on representative iPhone and iPad destinations;
-- layering, nomenclature, diagnostics and canonical foundation verification pass;
-- representative iPhone and iPad Debug builds pass;
-- `git diff --check` passes.
-
-Phase 01 must remain IN PROGRESS until those post-change commands are run locally. The repository/GitHub editing environment used for this implementation cannot execute Xcode or simulator tests, so prior IOS-006 results are not represented as proof for the new IOS-007 commit.
+- `bash Scripts/verify-foundation.sh` passed after the D2 implementation commit;
+- complete Swift Testing passed: 69 tests in 10 suites;
+- complete HumayUITests passed: 9/9 on iPhone and 9/9 on iPad;
+- representative iPhone and iPad Debug builds passed;
+- Release simulator build passed;
+- `git diff --check` passed.
 
 ## Explicitly out of scope
 
-Phase 01 does **not** implement:
+Phase 01 itself did **not** implement:
 
 - Today/Circle/Sky/Chart/Ask feature screens;
 - provider-backed astrology;
@@ -216,7 +215,7 @@ Phase 01 does **not** implement:
 - feature-specific access-state UI;
 - D1 onboarding implementation beyond the approved Phase 03 slice; no later feature UI belongs here.
 
-Shared architecture and design-system primitives may be built now. Feature-specific UI follows the design → approve → implement cadence. D1 onboarding is the approved production slice now owned by Phase 03; IOS-005 local persistence and IOS-006 diagnostics are complete, while IOS-007 awaits its post-change verification run.
+Shared architecture and design-system primitives were completed here. Feature-specific UI continues to follow the design → approve → implement cadence; D1 remains owned by Phase 03 and D2 is tracked as partial work in Phase 05 and Phase 07.
 
 ## Exit criteria
 
@@ -227,4 +226,4 @@ Shared architecture and design-system primitives may be built now. Feature-speci
 - local persistence/configuration/testing boundaries are implemented without speculative feature architecture.
 - no deleted mock-first/provider/old-UI implementation has been reintroduced.
 
-**Phase 01 closes only after the IOS-007 verification commands pass after the latest commit.**
+**Phase 01 closed after the IOS-007 verification commands passed on 2026-08-12.**

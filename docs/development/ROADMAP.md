@@ -2,7 +2,7 @@
 
 This roadmap is dependency-driven rather than date-driven. Product/access authority is [`PRODUCT_ACCESS_MODEL.md`](PRODUCT_ACCESS_MODEL.md). Visual work is governed by [`../design/DESIGN_AUTHORITY.md`](../design/DESIGN_AUTHORITY.md) and [`../design/SCREEN_DESIGN_PLAN.md`](../design/SCREEN_DESIGN_PLAN.md).
 
-The old mock-first runtime was removed during the 2026-08-12 production-baseline reset. Production implementation starts from a minimal iPhone + iPad foundation. Approved feature UI may now be developed before backend/API wiring by using explicit development sample data behind Humay-owned contracts; that is not a return to a production mock-provider architecture.
+The old mock-first runtime was removed during the 2026-08-12 production-baseline reset. Production implementation now includes the iPhone + iPad foundation, D1 onboarding and the D2 Today/Circle presentation shell. Approved feature UI may be developed before backend/API wiring by using explicit development sample data behind Humay-owned contracts; that is not a return to a production mock-provider architecture.
 
 ## Shipping phase summary
 
@@ -71,6 +71,18 @@ This sequence applies to Today, Circle/Compatibility, Sky/Calendar, Chart, Ask a
 - the later backend adapter replaces the development source at composition rather than forcing Presentation redesign.
 
 This lets UI/product behavior mature before backend implementation while preserving clean runtime boundaries.
+
+### Current UI-first checkpoint — D2
+
+The approved D2 Today + Circle family is implemented with explicit Debug-only development sample composition:
+
+- Today and Daily Horoscope;
+- Circle, person overview/detail and minimal Add Person;
+- Free and precise-presentation Compatibility;
+- loading, locked, loaded, cached, offline, failed and empty states where applicable;
+- real iPhone/iPad Light/Dark portrait evidence and passing adaptive landscape UI tests.
+
+Phase 05 and Phase 07 remain partial because production Free catalogs, Saved People persistence, backend/API/provider generation and entitlement/monetization runtime are still deferred. D3–D5 were not started as part of this checkpoint.
 
 ## Visual design track — iPhone + iPad, Light + Dark
 

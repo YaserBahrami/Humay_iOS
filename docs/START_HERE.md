@@ -24,9 +24,9 @@
 
 ## Current implementation state
 
-The old generated mock-first application was removed before production development. The clean app foundation, approved D1 onboarding, local profile persistence and provider-independent astrology Domain contracts are now in place.
+The old generated mock-first application was removed before production development. The clean app foundation, approved D1 onboarding, local profile persistence, provider-independent astrology Domain contracts and approved D2 presentation shell are now in place.
 
-Phase 01 IOS-001 through IOS-006 are complete; IOS-007 implementation is present and still needs the documented post-change local verification before Phase 01 can close.
+Phase 01 IOS-001 through IOS-007 are complete. Post-D2 foundation verification, iPhone/iPad builds, Swift Testing and complete iPhone/iPad UI suites passed on 2026-08-12.
 
 Phase 00 ARCH-001 through ARCH-006 are complete. Humay now has frozen contracts for:
 
@@ -63,7 +63,9 @@ real Data/API integration
 
 Development sample data is allowed only as explicit development/preview/test content conforming to Humay-owned contracts. It must not restore the deleted mock-provider architecture and must not ship in Release as real personalized astrology.
 
-The next visual family is **D2 — Today + Circle**, followed by implementation with development sample data after approval.
+**D2 — Today + Circle** is implemented with Debug-only development sample data. It includes Today, Daily Horoscope, Circle, a minimal Add Person shell and Compatibility plus explicit Free/precise/cache/offline/error states. Release uses production-unavailable/empty composition and contains no development sample astrology payload.
+
+Backend/API/provider, entitlement/monetization and Saved People persistence remain deferred. D3 Sky, D4 Chart and D5 Ask have not been started by the D2 implementation.
 
 ## Foundation target
 
@@ -104,9 +106,11 @@ Birth time and birth location are not onboarding steps. They can be added later 
 Current approved references:
 
 - D0 iPhone Light/Dark anchors: Today, Daily Horoscope, Compatibility;
-- D1 Welcome, Birth Date, Tradition and Profile Reveal cross-device package approved 2026-08-12.
+- D1 Welcome, Birth Date, Tradition and Profile Reveal cross-device package approved 2026-08-12;
+- D2 Today, Daily Horoscope and Compatibility iPhone Light/Dark composites approved 2026-08-12.
 
 The D1 onboarding UI is implemented under `Humay/Presentation/Onboarding/`.
+The D2 UI is implemented under `Humay/Presentation/Today/`, `Humay/Presentation/Circle/` and `Humay/Presentation/Main/`; evidence is under [`design/implementation-evidence/d2-today-circle/`](design/implementation-evidence/d2-today-circle/README.md).
 
 Every user-facing shipping screen requires iPhone Light/Dark + iPad Light/Dark and adaptive/landscape notes where needed. User-facing UI must be designed and approved before implementation; non-visual architecture/domain/foundation work does not require an invented UI design gate.
 
