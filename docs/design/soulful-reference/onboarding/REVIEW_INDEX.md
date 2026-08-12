@@ -1,6 +1,6 @@
 # D1 Onboarding — Cross-Device Review Index
 
-Status: **APPROVED — 2026-08-12; ready for production implementation**
+Status: **APPROVED — 2026-08-12; implemented for PROFILE-001 through PROFILE-004**
 
 The user explicitly approved the complete D1 cross-device onboarding reference set on 2026-08-12. These references are now the implementation authority for the four-beat onboarding family.
 

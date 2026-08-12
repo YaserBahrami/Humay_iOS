@@ -4,12 +4,10 @@ Last updated: **2026-08-12**
 
 ## Active priorities
 
-1. Continue **Phase 01 — Apple Platform Foundation** after the completed IOS-001 through IOS-004 baseline; IOS-005 is not started.
-2. Preserve the completed Soulful Celestial DesignSystem foundation while feature-specific UI remains behind its cross-device design gate.
-3. Backfill iPad references for approved Welcome + Birth Date.
-4. Design D1 Step 03 Tradition for iPhone + iPad, Light + Dark.
-5. After cross-device approval, implement onboarding from repository references.
-6. Continue Phase 00 provider/cache/access architecture in parallel where it does not block the app foundation.
+1. Verify and reconcile the implemented D1 onboarding slice PROFILE-001 through PROFILE-004.
+2. Keep **IOS-005 / PROFILE-005 persistence unstarted**; relaunch is intentionally volatile for this slice.
+3. Preserve the completed Soulful Celestial DesignSystem foundation while later feature families remain behind their cross-device design gates.
+4. Continue Phase 00 provider/cache/access architecture in parallel where it does not block the app foundation.
 
 ## Repository authority
 
@@ -57,13 +55,21 @@ Current verified foundation:
 - Humay naming, shared scheme and centralized Debug/Release xcconfig inheritance remain intact;
 - `HumayApp` explicitly owns the small `AppEnvironment` composition boundary;
 - `HumayApp` explicitly composes the transient `AppNavigationState` root/route
-  boundary without persisting routing state or adding feature UI;
+  boundary without persisting routing state or adding later feature UI;
 - Domain remains independent of UI and persistence frameworks;
 - DesignSystem contains the approved semantic Light/Dark tokens, Dynamic Type typography, adaptive layout, generic surfaces and primary/quiet button foundations;
 - the DesignSystem showcase exists only in Debug previews for representative iPhone/iPad Light/Dark verification and is not a runtime route;
-- no Data or feature Presentation structure exists without current production behavior;
+- no Data structure exists without current production behavior; the approved D1
+  onboarding Presentation structure is now present;
 - Swift Testing, the UI launch test and architecture/nomenclature checks pass;
-- no third-party dependency or production feature UI was added.
+- no third-party dependency or provider-backed feature UI was added.
+
+The first production feature slice is now implemented separately under Phase 03:
+
+- D1 onboarding is the root experience when `AppNavigationState.root == .onboarding`;
+- the main root remains the minimal Humay foundation placeholder;
+- completion creates an in-memory `UserProfile` with unknown birth time and no birth place;
+- no persistence, provider, networking or account flow is present.
 
 Foundation scope:
 
@@ -118,10 +124,10 @@ Canonical onboarding:
 
 Current status:
 
-- Welcome iPhone Light/Dark: approved; iPad pending.
-- Birth Date iPhone Light/Dark + package: approved; iPad pending.
-- Tradition: next, designed for iPhone + iPad together.
-- Profile Reveal: pending, designed for iPhone + iPad together.
+- complete cross-device D1 package approved 2026-08-12;
+- Welcome, Birth Date, Tradition and Profile Reveal production UI implemented;
+- actual Light/Dark simulator evidence captured under `docs/design/implementation-evidence/d1-onboarding/`; the iPad landscape screenshot-export limitation is documented there;
+- compact iPad windows collapse toward the compact hierarchy and iPad landscape uses adaptive two-region compositions where defined.
 
 Birth time and birth location are not onboarding steps.
 
@@ -151,6 +157,6 @@ Cadence:
 
 ## Current runtime
 
-The app still launches the deliberately minimal semantic Light/Dark Humay placeholder. IOS-003 added reusable design infrastructure and a preview-only showcase; IOS-004 added non-visual root/route ownership state without changing RootView or adding production navigation/feature UI.
+The app launches the production four-beat onboarding flow for a fresh `AppEnvironment`. `Enter Humay` completes onboarding only in current in-memory state and resolves the root to the existing minimal semantic Light/Dark Humay placeholder. After terminating/relaunching, onboarding begins again because PROFILE-005 persistence is not implemented.
 
-No production astrology provider, interpretation provider, persistence/CloudKit schema, authentication/account flow, backend identity, StoreKit, ads, analytics, notification delivery or post-onboarding feature runtime is wired yet.
+No production astrology provider, interpretation provider, persistence/CloudKit schema, authentication/account flow, backend identity, StoreKit, ads, analytics, notification delivery or post-onboarding feature runtime is wired yet. Profile Reveal uses no provider-backed astrology and displays only the entered birth date, selected leading tradition and date-only/non-precise state.

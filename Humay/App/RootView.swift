@@ -1,24 +1,57 @@
 import SwiftUI
 
-/// Deliberately minimal launch surface after the production-baseline reset.
-///
-/// Approved screens replace this placeholder one phase at a time. It uses only native
-/// semantic colors so it remains valid in Light/Dark mode and at every iPhone/iPad size
-/// while the new Humay design system is rebuilt from repository references.
+/// Root presenter for transient onboarding and the existing minimal main placeholder.
 struct RootView: View {
-    var body: some View {
-        ZStack {
-            Color(uiColor: .systemBackground)
-                .ignoresSafeArea()
+    @Environment(AppEnvironment.self) private var environment
+    @Environment(AppNavigationState.self) private var navigation
 
-            Text("Humay")
-                .font(.system(size: 44, weight: .regular, design: .serif))
-                .foregroundStyle(.primary)
-                .accessibilityIdentifier("humay.foundation.title")
+    @State private var onboardingDraft = OnboardingDraftState()
+
+    var body: some View {
+        @Bindable var navigation = navigation
+
+        Group {
+            switch navigation.root {
+            case .onboarding:
+                OnboardingFlowView(
+                    route: $navigation.onboardingRoute,
+                    draft: onboardingDraft,
+                    onComplete: completeOnboarding
+                )
+
+            case .main:
+                ZStack {
+                    Color(uiColor: .systemBackground)
+                        .ignoresSafeArea()
+
+                    Text("Humay")
+                        .font(.system(size: 44, weight: .regular, design: .serif))
+                        .foregroundStyle(.primary)
+                        .accessibilityIdentifier("humay.foundation.title")
+                }
+            }
         }
+    }
+
+    private func completeOnboarding() {
+        guard let profile = onboardingDraft.makeProfile() else {
+            navigation.onboardingRoute = .birthDate
+            return
+        }
+
+        environment.completeOnboarding(
+            profile: profile,
+            tradition: onboardingDraft.selectedTradition
+        )
+        navigation.resetRoutes()
     }
 }
 
 #Preview("Foundation") {
+    let environment = AppEnvironment()
+    let navigation = AppNavigationState(environment: environment)
+
     RootView()
+        .environment(environment)
+        .environment(navigation)
 }

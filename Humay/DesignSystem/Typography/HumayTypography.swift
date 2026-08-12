@@ -21,6 +21,12 @@ enum HumayTypography {
         relativeTo: .title
     )
 
+    static let onboardingCardTitle = Font.custom(
+        "CormorantGaramond-Regular",
+        size: 22,
+        relativeTo: .title2
+    )
+
     static let expressiveScore = Font.custom(
         "CormorantGaramond-Regular",
         size: 56,

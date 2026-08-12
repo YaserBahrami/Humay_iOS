@@ -54,7 +54,7 @@ Implemented foundation state:
 - `HumayApp` remains the explicit App composition boundary and owns `AppEnvironment`;
 - `RootView` remains the intentionally minimal App root surface;
 - stable profile/birth/settings facts remain in Domain without UI or persistence-framework dependencies;
-- Data, feature Presentation and DesignSystem directories remain absent until production behavior requires them;
+- Data remains absent until a production data-owning slice requires it; the approved D1 Presentation flow and DesignSystem foundation are now present;
 - layer enforcement protects Domain independence, prevents UI dependencies in Data, prevents persistence/concrete boundary construction in Presentation and rejects global shared dependency singletons.
 
 Target structure grows deliberately toward:
@@ -129,8 +129,9 @@ Implemented foundation state:
   route selection boundary composed by `HumayApp` beside `AppEnvironment`;
 - no route state is persisted and navigation has no Data, provider or persistence
   dependency;
-- RootView remains the minimal system-background Humay placeholder. No onboarding,
-  primary destination, auxiliary route or navigation presenter is rendered.
+- RootView renders the approved D1 onboarding presenter for the onboarding root and
+  keeps the main root as the minimal system-background Humay placeholder. Later
+  primary destinations and auxiliary presenters remain unimplemented.
 
 Acceptance:
 - canonical IA remains Today / Circle / Sky / Chart / Ask;
@@ -184,15 +185,15 @@ Phase 01 does **not** implement:
 - Free catalog runtime;
 - monetization/ad/StoreKit behavior;
 - feature-specific access-state UI;
-- onboarding screen visuals before their required cross-device references are approved.
+- D1 onboarding implementation beyond the approved Phase 03 slice; no later feature UI belongs here.
 
-Shared architecture and design-system primitives may be built now. Feature-specific UI follows the design → approve → implement cadence.
+Shared architecture and design-system primitives may be built now. Feature-specific UI follows the design → approve → implement cadence. D1 onboarding is the approved production slice now owned by Phase 03; this phase does not start IOS-005 persistence.
 
 ## Exit criteria
 
 - Humay builds and launches on representative iPhone and iPad simulators.
 - SwiftUI + Clean Architecture boundaries are enforceable and documented.
 - the production Soulful Celestial Light/Dark design-system foundation exists without old-design residue.
-- root state/navigation composition is ready for approved onboarding work.
+- root state/navigation composition presents the approved D1 onboarding work.
 - persistence/configuration/testing boundaries are ready without speculative feature architecture.
 - no deleted mock-first/provider/old-UI implementation has been reintroduced.

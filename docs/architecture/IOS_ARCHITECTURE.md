@@ -33,6 +33,8 @@ Humay/
 │   └── Typography/
 ├── Domain/
 │   └── Profile/          only stable, already-authoritative user facts/preferences
+├── Presentation/
+│   └── Onboarding/       D1 flow and transient draft state
 └── Resources/
     ├── Assets.xcassets/
     └── Fonts/
@@ -61,7 +63,7 @@ Rules:
 
 ## Application state
 
-`AppEnvironment` is intentionally small after the reset. It owns only profile/settings state needed to stage onboarding development. `AppNavigationState` is composed beside it by `HumayApp` and derives the logical root from `AppEnvironment.hasCompletedOnboarding`; it owns only transient route selection and does not persist or duplicate profile/settings truth. Neither object pretends that mock services are live services.
+`AppEnvironment` remains small and owns current in-memory profile/settings state. `AppNavigationState` is composed beside it by `HumayApp` and derives the logical root from `AppEnvironment.hasCompletedOnboarding`; it owns only transient route selection and does not persist or duplicate profile/settings truth. D1 onboarding owns its date picker cursor, confirmed date draft and tradition selection inside Presentation. Neither object pretends that provider or persistence services are live services.
 
 Feature-specific state should remain feature-local unless multiple routes genuinely need to share it.
 
@@ -109,14 +111,15 @@ The App layer now owns a small non-visual route boundary:
 
 `AppNavigationState` is transient, `@MainActor` and Observation-based. It has no
 provider, Data or persistence dependency. iPad may later use platform-appropriate
-stack/tab/sidebar presentation while preserving this same route hierarchy; those
-visual presenters and all feature screens remain unimplemented.
+stack/tab/sidebar presentation while preserving this same route hierarchy; main
+destination presenters and all later feature screens remain unimplemented. D1
+onboarding is the implemented production root flow.
 
 ## Appearance
 
 Humay follows the system appearance. Light and Dark are first-class compositions.
 
-The previous forced-Light `UIUserInterfaceStyle` and compatibility-mode override were removed. The semantic Soulful Celestial foundation now provides intentional Light/Dark colors, Dynamic Type typography, adaptive layout, generic surfaces and approved button treatments without changing the minimal runtime RootView.
+The previous forced-Light `UIUserInterfaceStyle` and compatibility-mode override were removed. The semantic Soulful Celestial foundation now provides intentional Light/Dark colors, Dynamic Type typography, adaptive layout, generic surfaces and approved button treatments without changing the main-root placeholder.
 
 ## Responsive layout requirements
 
@@ -149,4 +152,4 @@ Use Swift Testing for unit/domain behavior and XCTest for UI tests. Each impleme
 
 ## Not yet built in the clean baseline
 
-Onboarding implementation, persistence/CloudKit, authentication, backend identity, networking, astrology provider adapters, interpretation provider, visual post-onboarding navigation presenters, StoreKit, advertising, analytics, notification delivery, widgets and feature-specific screens.
+Persistence/CloudKit, authentication, backend identity, networking, astrology provider adapters, interpretation provider, visual post-onboarding navigation presenters, StoreKit, advertising, analytics, notification delivery, widgets and feature-specific screens remain unbuilt. The approved D1 onboarding implementation is the current production Presentation slice.

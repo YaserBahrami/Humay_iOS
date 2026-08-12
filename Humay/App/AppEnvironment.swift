@@ -1,11 +1,12 @@
 import Foundation
 import Observation
 
-/// Minimal application state for the clean production baseline.
+/// Small in-memory application state for the current production onboarding slice.
 ///
 /// Provider wiring, mock content, persistence and feature-specific state are added only
-/// when the corresponding production phase reaches implementation. Keeping this small
-/// prevents prototype assumptions from becoming permanent architecture.
+/// when their owning production tasks require them. Persistence and provider wiring
+/// remain out of scope for the current onboarding slice. Keeping this small prevents
+/// prototype assumptions from becoming architecture.
 @Observable
 @MainActor
 final class AppEnvironment {

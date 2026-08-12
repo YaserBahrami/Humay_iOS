@@ -18,9 +18,9 @@
 
 ## Current implementation state
 
-The old generated mock-first application was removed before production development. The Xcode project is intentionally small and ready for a clean production foundation.
+The old generated mock-first application was removed before production development. The Xcode project remains intentionally small, with the first production feature slice now implemented.
 
-Current engineering work is **Phase 01 — Apple Platform Foundation**, while provider/cache/backend details from Phase 00 may continue in parallel where they do not block the app foundation.
+Current engineering work is **Phase 03 — Onboarding & Local Profile**, limited to the approved in-memory onboarding slice PROFILE-001 through PROFILE-004. Phase 01 IOS-005 persistence remains explicitly unstarted, while provider/cache/backend details from Phase 00 may continue in parallel where they do not block the app foundation.
 
 Foundation target:
 
@@ -32,6 +32,8 @@ Foundation target:
 - intentional Light + Dark appearance;
 - no vendor/provider models in Presentation or Domain;
 - no speculative feature implementation ahead of approved design references.
+- production onboarding Presentation for the approved D1 four-beat flow;
+- profile completion only in current in-memory application state until PROFILE-005.
 
 See [`development/phases/01-ios-foundation.md`](development/phases/01-ios-foundation.md).
 
@@ -52,7 +54,10 @@ Current approved references:
 
 - D0 iPhone Light/Dark anchors: Today, Daily Horoscope, Compatibility;
 - D1 Welcome iPhone Light/Dark;
-- D1 Birth Date iPhone Light/Dark + repository package.
+- D1 Birth Date iPhone Light/Dark + repository package;
+- D1 Welcome, Birth Date, Tradition and Profile Reveal cross-device package approved 2026-08-12.
+
+The D1 onboarding UI is implemented under `Humay/Presentation/Onboarding/`. A newly created `AppEnvironment` has no completed profile because persistence is intentionally out of scope; relaunch returns to Welcome until PROFILE-005 lands.
 
 Before production visual freeze, each shipping screen requires iPhone Light/Dark + iPad Light/Dark and adaptive/landscape notes where needed.
 

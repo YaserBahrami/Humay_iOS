@@ -76,7 +76,7 @@ Before a screen is considered ready for final visual implementation, the reposit
 4. iPad Dark reference;
 5. notes for iPad landscape/adaptive behavior if the static portrait reference is insufficient.
 
-Existing approved iPhone D0/D1 references remain valid. Their iPad companion references must be added before those families are considered cross-device complete.
+Existing approved iPhone D0/D1 references remain valid. The complete D1 cross-device package was approved on 2026-08-12 and is now the production onboarding implementation authority.
 
 ## 6. Typography
 
@@ -124,10 +124,10 @@ Production implementation proceeds only from approved repository references, fam
 
 ## 12. Current design status
 
-- **D0:** approved iPhone Light/Dark style anchors; iPad companions pending.
-- **D1 Step 01 Welcome:** approved iPhone Light/Dark; iPad companions pending.
-- **D1 Step 02 Birth Date:** approved iPhone Light/Dark package; iPad companions pending.
-- **D1 Step 03 Tradition:** next design step, produced for iPhone and iPad together.
+- **D0:** approved iPhone Light/Dark style anchors; iPad companions remain a later D0 task.
+- **D1:** approved cross-device on 2026-08-12 for Welcome, Birth Date, Tradition and Profile Reveal; production UI is implemented under `Humay/Presentation/Onboarding/`.
+
+Current D1 implementation evidence lives under `implementation-evidence/d1-onboarding/`. Completion is in-memory only until PROFILE-005; no provider-backed astrology is used by Profile Reveal.
 - Remaining families follow [`SCREEN_DESIGN_PLAN.md`](SCREEN_DESIGN_PLAN.md).
 
 No alternate design authority should be added alongside this one.

@@ -1,6 +1,6 @@
 # D1 — Onboarding Reference Set
 
-**Status:** APPROVED cross-device reference set — 2026-08-12; ready for production implementation.
+**Status:** APPROVED cross-device reference set — 2026-08-12; implemented for PROFILE-001 through PROFILE-004.
 
 D1 follows the canonical four-beat product flow:
 
@@ -11,7 +11,7 @@ D1 follows the canonical four-beat product flow:
 
 Birth time and birth location are intentionally not collected during onboarding. They can be added later for features that genuinely require precision.
 
-The old mock-first onboarding implementation was removed in the 2026-08-12 production-baseline reset. These repository references drive the new implementation rather than documenting an existing screen.
+The old mock-first onboarding implementation was removed in the 2026-08-12 production-baseline reset. These repository references remain the visual authority for the current production implementation.
 
 ## Approval gate
 

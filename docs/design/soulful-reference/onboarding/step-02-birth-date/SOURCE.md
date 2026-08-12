@@ -28,7 +28,7 @@ Repository files:
 - `elements/*.svg` — isolated reusable motifs
 - `design-spec.json` — machine-readable behavior/copy/token handoff
 
-The iPad companion references are still pending and must be added before this screen is cross-device complete.
+The approved iPad companion reference is `birth-date-ipad-review.svg`; the complete Step 02 package is cross-device approved as of 2026-08-12.
 
 ## Authority order
 

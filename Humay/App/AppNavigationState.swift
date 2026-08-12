@@ -12,8 +12,7 @@ enum AppRootState: String, CaseIterable, Hashable, Sendable {
     }
 }
 
-/// Canonical onboarding ownership. These values establish sequence only; they do not
-/// imply that any onboarding screen has been implemented.
+/// Canonical onboarding ownership. Presentation renders exactly these four routes.
 enum OnboardingRoute: String, CaseIterable, Hashable, Sendable {
     case welcome
     case birthDate
@@ -26,6 +25,24 @@ enum OnboardingRoute: String, CaseIterable, Hashable, Sendable {
         .tradition,
         .profileReveal
     ]
+
+    var next: Self? {
+        switch self {
+        case .welcome: .birthDate
+        case .birthDate: .tradition
+        case .tradition: .profileReveal
+        case .profileReveal: nil
+        }
+    }
+
+    var previous: Self? {
+        switch self {
+        case .welcome: nil
+        case .birthDate: .welcome
+        case .tradition: .birthDate
+        case .profileReveal: .tradition
+        }
+    }
 }
 
 /// Canonical primary information architecture. Feature-specific child routes are

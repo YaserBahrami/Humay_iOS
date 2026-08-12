@@ -1,6 +1,6 @@
 # Phase 03 — Onboarding & Local Profile
 
-Status: **TODO**
+Status: **IN PROGRESS — PROFILE-001 through PROFILE-004 DONE 2026-08-12; PROFILE-005 not started**
 
 Depends on:
 - Phase 01 Apple Platform Foundation;
@@ -25,7 +25,7 @@ Tone/Roast is also not an onboarding question unless product authority is explic
 ## Tasks
 
 ### PROFILE-001 — Implement onboarding navigation and state machine
-Status: TODO
+Status: **DONE — 2026-08-12**
 
 Acceptance:
 - flow matches the approved D1 references;
@@ -33,9 +33,11 @@ Acceptance:
 - restart/resume behavior is defined;
 - no login/account step exists;
 - iPhone+iPad adaptive behavior matches the approved cross-device design.
+- `AppNavigationState.onboardingRoute` remains transient and owns the four canonical routes;
+- onboarding draft/input state remains inside `Presentation/Onboarding`.
 
 ### PROFILE-002 — Implement Birth Date step
-Status: TODO  
+Status: **DONE — 2026-08-12**
 Depends on: PROFILE-001
 
 Acceptance:
@@ -45,9 +47,11 @@ Acceptance:
 - native date-input accessibility behavior is retained;
 - validation/date bounds match the approved screen package;
 - no hidden noon/midnight substitution exists.
+- valid range is `1900-01-01...today` in the current calendar;
+- picker cursor is UI state and enters `UserProfile` only after Continue confirms it.
 
 ### PROFILE-003 — Implement Tradition step
-Status: TODO  
+Status: **DONE — 2026-08-12**
 Depends on: PROFILE-001
 
 Acceptance:
@@ -55,9 +59,11 @@ Acceptance:
 - selected tradition sets leading vocabulary/default presentation only;
 - selection does not hide the other systems;
 - no provider-native concept leaks into onboarding state.
+- Western remains the initial selection from `AppSettings.default`;
+- selected state uses outline/tonal treatment and an explicit check indicator.
 
 ### PROFILE-004 — Implement Profile Reveal
-Status: TODO  
+Status: **DONE — 2026-08-12**
 Depends on: PROFILE-002, PROFILE-003
 
 Acceptance:
@@ -65,6 +71,8 @@ Acceptance:
 - no natal-chart precision, house, rising-sign or exact-time-dependent fact is invented;
 - visual sample fixtures are never hardcoded as production truth;
 - the screen clearly explains that time/place can be added later for precision-dependent features.
+- displayed facts are limited to entered birth date, selected leading tradition and date-only/non-precise profile state;
+- no astrology provider or calculation is used.
 
 ### PROFILE-005 — Persist profile/settings and onboarding completion
 Status: TODO  
@@ -101,9 +109,14 @@ Acceptance:
 
 ## Exit criteria
 
-- a user can complete the four-step onboarding without an account;
-- onboarding asks for birth date and tradition only;
-- profile data persists reliably;
-- time/place can be added later without fake defaults;
-- Profile Reveal shows only validated date-supported facts;
-- iPhone and iPad implementations reconcile with approved Light/Dark references.
+- a user can complete the four-step onboarding without an account — **DONE for PROFILE-001–004**;
+- onboarding asks for birth date and tradition only — **DONE**;
+- profile completion is represented in current in-memory state — **DONE**;
+- durable profile/settings persistence remains PROFILE-005 and is **TODO**;
+- time/place can be added later without fake defaults — domain semantics preserved; editor remains PROFILE-006;
+- Profile Reveal shows only entered facts and the date-only precision state — **DONE**;
+- iPhone and iPad Light/Dark implementations reconcile with approved D1 references — **DONE for current implementation evidence**.
+
+### Current implementation boundary
+
+`Enter Humay` calls `AppEnvironment.completeOnboarding(...)`, updates the root to `.main`, and does not write UserDefaults, SwiftData, CloudKit or any other durable store. A newly created `AppEnvironment` starts at Welcome. Do not begin PROFILE-005 or IOS-005 in this slice.
