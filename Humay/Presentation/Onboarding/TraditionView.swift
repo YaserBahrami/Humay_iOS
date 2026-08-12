@@ -178,10 +178,11 @@ private struct TraditionChoiceCard: View {
     var body: some View {
         Button(action: onSelect) {
             HStack(alignment: .center, spacing: compactHeight ? HumaySpacing.small : HumaySpacing.medium) {
-                Capsule()
-                    .fill(accentColor)
-                    .frame(width: compactHeight ? 24 : 28, height: 6)
-                    .accessibilityHidden(true)
+                HumayIllustration(name: artworkName)
+                    .frame(
+                        width: compactHeight ? 46 : 58,
+                        height: compactHeight ? 46 : 58
+                    )
 
                 VStack(alignment: .leading, spacing: compactHeight ? 2 : HumaySpacing.extraSmall) {
                     Text(tradition.shortName)
@@ -201,14 +202,14 @@ private struct TraditionChoiceCard: View {
                     .foregroundStyle(isSelected ? accentColor : Color.humayTextSecondary)
                     .accessibilityHidden(true)
             }
-            .padding(compactHeight ? 10 : HumaySpacing.large)
+            .padding(compactHeight ? 9 : HumaySpacing.medium)
             .frame(
                 minWidth: HumayMetrics.minimumHitTarget,
-                minHeight: compactHeight ? 68 : 84,
+                minHeight: compactHeight ? 68 : 88,
                 alignment: .leading
             )
             .background(
-                isSelected ? Color.humayLavender.opacity(0.12) : Color.humaySurface,
+                isSelected ? accentColor.opacity(0.10) : Color.humaySurface,
                 in: RoundedRectangle(cornerRadius: HumayRadius.compact)
             )
             .overlay {
@@ -225,6 +226,14 @@ private struct TraditionChoiceCard: View {
         .accessibilityValue(isSelected ? "Selected" : "Not selected")
         .accessibilityHint("Sets the leading tradition. Other traditions remain available.")
         .accessibilityIdentifier("onboarding.tradition.\(tradition.rawValue)")
+    }
+
+    private var artworkName: String {
+        switch tradition {
+        case .western: "IllustrationTraditionWestern"
+        case .vedic: "IllustrationTraditionVedic"
+        case .chinese: "IllustrationTraditionChinese"
+        }
     }
 
     private var accentColor: Color {
