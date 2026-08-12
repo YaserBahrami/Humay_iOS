@@ -1,29 +1,13 @@
-// Humay — settings shared by every target and configuration.
-//
-// Target-specific settings (bundle identifiers, TEST_HOST, INFOPLIST_FILE) live in
-// the project file because they cannot be shared. Everything else belongs here.
+// Humay — shared build settings.
+// The project intentionally targets iPhone and iPad from the production baseline.
 
 IPHONEOS_DEPLOYMENT_TARGET = 18.0
 SDKROOT = iphoneos
-
-// V1 is iPhone, portrait. iPad is a planned dedicated design and implementation
-// phase — see docs/design/DESIGN_AUTHORITY.md section 03A.
-TARGETED_DEVICE_FAMILY = 1
+TARGETED_DEVICE_FAMILY = 1,2
 
 SWIFT_VERSION = 6.0
 SWIFT_STRICT_CONCURRENCY = complete
 SWIFT_APPROACHABLE_CONCURRENCY = YES
-
-// Isolation is opt-in rather than defaulted to MainActor.
-//
-// The Domain layer is pure value types with synthesized Hashable and Equatable
-// conformances. Under MainActor-by-default those conformances become isolated, which
-// then cannot satisfy the Sendable requirement on a generic like FactValue<Bhava> —
-// the layer that should be the most concurrency-neutral becomes the most constrained.
-//
-// SwiftUI views still get MainActor from the View protocol, and repositories, view
-// models and the composition root declare @MainActor explicitly, which is worth
-// writing down anyway.
 SWIFT_DEFAULT_ACTOR_ISOLATION = nonisolated
 SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES
 
@@ -59,10 +43,6 @@ ENABLE_PREVIEWS = YES
 
 MARKETING_VERSION = 0.1.0
 CURRENT_PROJECT_VERSION = 1
-
-// Kept ready for development-device signing and archives. Simulator verification
-// may pass CODE_SIGNING_ALLOWED=NO on the xcodebuild command line; it is never
-// committed here.
 CODE_SIGN_STYLE = Automatic
 
 LD_RUNPATH_SEARCH_PATHS = $(inherited) @executable_path/Frameworks

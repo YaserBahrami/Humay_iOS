@@ -21,9 +21,6 @@
 	<key>CFBundleVersion</key>
 	<string>$(CURRENT_PROJECT_VERSION)</string>
 
-	<!-- Cormorant Garamond, SIL Open Font License 1.1. Weights 300 and 400 only:
-	     the brand lock allows no heavier weight. See Humay/Resources/Fonts/OFL.txt.
-	     Values here are filenames; Font.custom takes the PostScript name instead. -->
 	<key>UIAppFonts</key>
 	<array>
 		<string>CormorantGaramond-Light.otf</string>
@@ -31,19 +28,6 @@
 		<string>CormorantGaramond-Regular.otf</string>
 		<string>CormorantGaramond-Italic.otf</string>
 	</array>
-
-	<!-- Opt out of the iOS 26 system appearance.
-
-	     The floating translucent tab bar lets content show through itself and sits on a
-	     rounded capsule, which is the opposite of a design built on a flat ground,
-	     square edges and hairline rules — a reading would be visible through the chrome
-	     while being read. The alternative is a hand-built tab bar, which would cost the
-	     free accessibility, keyboard and state behaviour of the real one.
-
-	     This key is a transitional affordance and will not last forever. Revisit when
-	     the design has an explicit position on the newer appearance. -->
-	<key>UIDesignRequiresCompatibility</key>
-	<true/>
 
 	<key>UILaunchScreen</key>
 	<dict>
@@ -57,9 +41,19 @@
 		<false/>
 	</dict>
 
+	<!-- iPhone production designs are portrait-first. -->
 	<key>UISupportedInterfaceOrientations</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
+	</array>
+
+	<!-- iPad is first-class. Designs and layouts must adapt to portrait and landscape. -->
+	<key>UISupportedInterfaceOrientations~ipad</key>
+	<array>
+		<string>UIInterfaceOrientationPortrait</string>
+		<string>UIInterfaceOrientationPortraitUpsideDown</string>
+		<string>UIInterfaceOrientationLandscapeLeft</string>
+		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
 
 	<key>UIRequiredDeviceCapabilities</key>
@@ -69,7 +63,5 @@
 
 	<key>UIApplicationSupportsIndirectInputEvents</key>
 	<true/>
-	<key>UIUserInterfaceStyle</key>
-	<string>Light</string>
 </dict>
 </plist>

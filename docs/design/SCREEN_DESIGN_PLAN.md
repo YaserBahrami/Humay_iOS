@@ -1,4 +1,4 @@
-# Humay Light + Dark Screen Design Plan
+# Humay Cross-Device Screen Design Plan
 
 **Status:** Current and only screen-design plan  
 **Active branch:** `design/soulful-light-dark`  
@@ -6,17 +6,25 @@
 
 ## Goal
 
-Design every Humay product surface in the selected cosmic-editorial direction and produce an intentional **Light + Dark pair** before final visual implementation is frozen.
+Design every Humay product surface in the selected Soulful Celestial direction and produce an intentional cross-device reference set before final implementation is frozen.
 
-Every completed step must store its review imagery, design specification and reusable reference elements in the repository so later implementation agents do not have to infer visual details from chat history.
+Every shipping screen now requires:
+
+- iPhone Light;
+- iPhone Dark;
+- iPad Light;
+- iPad Dark;
+- adaptive/landscape notes where the iPad composition changes materially.
+
+The iPad design is not a scaled-up phone screenshot.
 
 ## Reference structure
 
 ```text
 docs/design/soulful-reference/
-  anchors/                 # D0 selected references
-  onboarding/              # D1 current design packages + historical drafts
-  components/              # shared UI + illustration boards
+  anchors/
+  onboarding/
+  components/
   today/
   circle/
   sky/
@@ -29,56 +37,48 @@ docs/design/soulful-reference/
   assets/
 ```
 
-Repository design packages should prefer GitHub-viewable/editable SVG for approved visual references. Production artwork is exported separately into `Humay/Resources/Assets.xcassets/` only after approval.
+Per-screen packages should use device-specific folders or unambiguous filenames, for example:
 
-## D0 — Visual anchor lock — APPROVED
+```text
+screen-name/
+  iphone-light.svg
+  iphone-dark.svg
+  ipad-light.svg
+  ipad-dark.svg
+  README.md
+  design-spec.json
+  elements/
+```
 
-| Screen | Light | Dark | Status |
+## D0 — Visual anchor lock
+
+| Screen | iPhone | iPad | Status |
 |---|---|---|---|
-| Today / Home | committed | committed | approved style source |
-| Daily Horoscope | committed | committed | approved style source |
-| Compatibility | committed | committed | approved style source |
+| Today / Home | Light + Dark approved | companion designs pending | style source |
+| Daily Horoscope | Light + Dark approved | companion designs pending | style source |
+| Compatibility | Light + Dark approved | companion designs pending | style source |
 
-D0 establishes warm cream vs midnight navy appearance, strong editorial serif + clean system UI typography, simple cute line/flat celestial illustration, disciplined coral/lavender/gold/blue/sage accents, soft rounded cards and sparse decoration.
+D0 establishes warm cream vs midnight navy appearance, editorial serif + clean system typography, restrained celestial illustration, disciplined accent color and soft rounded surfaces.
 
-## D1 — Onboarding — REDESIGN IN PROGRESS
+## D1 — Onboarding
 
-The previous nine-screen onboarding exploration is stale. The current app implements four beats in `OnboardingFlowView.Step`, and D1 follows that product truth.
+Canonical flow:
 
-1. Welcome — **Light/Dark redesigned; ready for review**
-2. Birth Date — **complete repository package committed; ready for review**
-3. Tradition — **next**
-4. Profile Reveal — pending
+1. Welcome
+2. Birth Date
+3. Tradition
+4. Profile Reveal
 
-Birth time and birth location are not onboarding steps. They are optional later inputs for precise chart features.
+Birth time and birth location are not onboarding steps.
 
-### Step 01 references
+### Current state
 
-- `soulful-reference/onboarding/light/01-welcome.svg`
-- `soulful-reference/onboarding/dark/01-welcome.svg`
-
-### Step 02 package
-
-`docs/design/soulful-reference/onboarding/step-02-birth-date/`
-
-Contains:
-
-- `birth-date-light.svg` — individual Light design
-- `birth-date-dark.svg` — individual Dark design
-- `birth-date-light-dark.svg` — comparison/review board
-- `birth-date-elements.svg` — reusable visual-system board
-- `README.md` — complete screen specification
-- `SOURCE.md` — provenance/authority notes
-- `design-spec.json` — machine-readable implementation handoff
-- `elements/birth-date-motif-light.svg`
-- `elements/birth-date-motif-dark.svg`
-- `elements/progress-light.svg`
-- `elements/progress-dark.svg`
-- `elements/README.md`
-
-The Birth Date package is reconciled with the current app behavior: native wheel date picker, 1900-01-01 through today, no birth-time/location collection, back to Welcome and Continue to Tradition.
-
-Do not propagate any legacy nine-screen onboarding draft into implementation.
+| Step | iPhone | iPad | Status |
+|---|---|---|---|
+| Welcome | Light + Dark approved | pending | backfill iPad before cross-device implementation freeze |
+| Birth Date | Light + Dark approved + documented package | pending | backfill iPad before cross-device implementation freeze |
+| Tradition | next | next | design iPhone + iPad together |
+| Profile Reveal | pending | pending | design iPhone + iPad together |
 
 ## D2 — Today + Circle
 
@@ -118,6 +118,8 @@ Do not propagate any legacy nine-screen onboarding draft into implementation.
 7. Unknown birth-time state
 8. Precision access/generation state where required
 
+Chart screens require explicit iPad landscape treatment because the extra width can materially improve chart + detail composition.
+
 ## D5 — Ask the Stars
 
 1. Empty/question state
@@ -125,6 +127,8 @@ Do not propagate any legacy nine-screen onboarding draft into implementation.
 3. Loading/generating state
 4. Rewarded extension state
 5. Provider/error/recovery state
+
+On iPad, conversation width must be bounded; do not run text bubbles across the full screen.
 
 ## D6 — Profile + Settings
 
@@ -156,47 +160,33 @@ Do not propagate any legacy nine-screen onboarding draft into implementation.
 
 ## D9 — Brand + production handoff
 
-Finalize wordmark, mark/app icon, launch Light/Dark, final token board, component inventory, illustration asset catalog, production export list, overview contact sheets and final authority reconciliation.
-
-## Per-screen repository package
-
-For each new screen/step, store:
-
-- [ ] individual Light visual reference
-- [ ] individual Dark visual reference
-- [ ] side-by-side review board
-- [ ] element/component board when the screen introduces reusable treatment
-- [ ] editable reference elements where applicable
-- [ ] canonical copy and behavior
-- [ ] structured design spec / handoff data
-- [ ] accessibility notes
-- [ ] sample-data disclaimer
-- [ ] source/provenance notes
-- [ ] links from the relevant design indexes
+Finalize wordmark, mark/app icon, launch Light/Dark, final token board, component inventory, illustration asset catalog, production export list, iPhone/iPad overview contact sheets and final authority reconciliation.
 
 ## Per-screen approval checklist
 
 - [ ] canonical route/IA correct
-- [ ] current access semantics
-- [ ] Light design approved
-- [ ] Dark design approved
+- [ ] current access semantics correct
+- [ ] iPhone Light approved
+- [ ] iPhone Dark approved
+- [ ] iPad Light approved
+- [ ] iPad Dark approved
+- [ ] iPad portrait/landscape behavior defined where necessary
+- [ ] compact/regular width adaptation defined
 - [ ] hierarchy matches D0
-- [ ] simple/editorial illustration style; no painterly drift
+- [ ] illustration style has not drifted
 - [ ] color has semantic purpose
-- [ ] readable at accessibility sizes
-- [ ] contrast checked separately
+- [ ] Dynamic Type / VoiceOver / hit targets considered
 - [ ] mock astrology values remain illustrative
 - [ ] reusable assets/components identified
 
-## Review cadence
+## Design → implementation cadence
 
-1. generate/compose Light;
-2. correct hierarchy and product content;
-3. compose Dark intentionally;
-4. review side by side;
-5. reconcile shared components/assets;
-6. commit complete repository package;
-7. mark phase approved;
-8. continue to next phase.
+1. design the next screen family for iPhone + iPad, Light + Dark;
+2. review and approve;
+3. implement only the approved family;
+4. capture actual iPhone and iPad simulator/device screenshots;
+5. reconcile implementation against references;
+6. commit implementation evidence and notes;
+7. move to the next family.
 
-Do not create a second parallel design plan.
+Do not let production UI implementation get ahead of approved cross-device references.
