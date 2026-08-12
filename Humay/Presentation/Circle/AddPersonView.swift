@@ -59,7 +59,7 @@ struct AddPersonView: View {
                         )
                     }
 
-                    Text("Unknown remains unknown. Birth place is not requested in this minimal D2 form shell.")
+                    Text("It’s okay if you don’t know the exact time. You can add more birth details later when a precise feature needs them.")
                         .font(HumayTypography.supporting)
                         .foregroundStyle(Color.humayTextSecondary)
                 }
