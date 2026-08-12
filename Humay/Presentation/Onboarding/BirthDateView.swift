@@ -122,7 +122,7 @@ struct BirthDateView: View {
                 .accessibilityIdentifier("onboarding.birthDate.picker")
 
                 BirthDateMotif(compactHeight: compactHeight)
-                    .frame(height: compactHeight ? 52 : 82)
+                    .frame(height: compactHeight ? 54 : 86)
             }
         }
     }
@@ -191,118 +191,14 @@ struct BirthDateView: View {
 private struct BirthDateMotif: View {
     let compactHeight: Bool
 
-    @Environment(\.colorScheme) private var colorScheme
-
     var body: some View {
-        ZStack {
-            CalendarCompanion()
-                .offset(x: -28, y: 7)
-
-            Image(systemName: colorScheme == .light ? "sun.max.fill" : "moon.fill")
-                .font(.system(size: 29, weight: .regular))
-                .foregroundStyle(Color.humaySolarGold)
-                .offset(x: 47, y: -18)
-
-            Image(systemName: "sparkle")
-                .font(.system(size: 15, weight: .medium))
-                .foregroundStyle(Color.humayLavender)
-                .offset(x: 78, y: 31)
-
-            Image(systemName: "sparkle")
-                .font(.system(size: 10, weight: .medium))
-                .foregroundStyle(Color.humayCoral)
-                .offset(x: -82, y: 5)
-
-            Image(systemName: "sparkle")
-                .font(.system(size: 8, weight: .medium))
-                .foregroundStyle(Color.humaySolarGold)
-                .offset(x: 92, y: -39)
-        }
-        .scaleEffect(compactHeight ? 0.68 : 0.9)
-        .frame(maxWidth: .infinity, minHeight: compactHeight ? 52 : 82)
-        .accessibilityHidden(true)
-    }
-
-    private struct CalendarCompanion: View {
-        @Environment(\.colorScheme) private var colorScheme
-
-        var body: some View {
-            ZStack {
-                RoundedRectangle(cornerRadius: 8, style: .continuous)
-                    .fill(Color.humaySurface)
-                    .frame(width: 62, height: 56)
-                    .overlay {
-                        RoundedRectangle(cornerRadius: 8, style: .continuous)
-                            .stroke(calendarStroke, lineWidth: 2)
-                    }
-
-                Rectangle()
-                    .fill(calendarStroke)
-                    .frame(width: 60, height: 2)
-                    .offset(y: -14)
-
-                HStack(spacing: 6) {
-                    ForEach(0..<6, id: \.self) { _ in
-                        Capsule()
-                            .fill(calendarStroke)
-                            .frame(width: 2, height: 11)
-                    }
-                }
-                .offset(y: -32)
-
-                HStack(spacing: 17) {
-                    Circle()
-                        .fill(faceInk)
-                        .frame(width: 4, height: 4)
-                    Circle()
-                        .fill(faceInk)
-                        .frame(width: 4, height: 4)
-                }
-                .offset(y: 5)
-
-                Canvas { context, size in
-                    var smile = Path()
-                    smile.move(to: CGPoint(x: 2, y: 2))
-                    smile.addQuadCurve(
-                        to: CGPoint(x: size.width - 2, y: 2),
-                        control: CGPoint(x: size.width / 2, y: size.height)
-                    )
-                    context.stroke(
-                        smile,
-                        with: .color(faceInk),
-                        style: StrokeStyle(lineWidth: 1.8, lineCap: .round)
-                    )
-                }
-                .frame(width: 20, height: 10)
-                .offset(y: 16)
-
-                Canvas { context, size in
-                    var feet = Path()
-                    feet.move(to: CGPoint(x: 15, y: 2))
-                    feet.addLine(to: CGPoint(x: 11, y: 11))
-                    feet.addLine(to: CGPoint(x: 22, y: 6))
-                    feet.move(to: CGPoint(x: size.width - 15, y: 2))
-                    feet.addLine(to: CGPoint(x: size.width - 11, y: 11))
-                    feet.addLine(to: CGPoint(x: size.width - 22, y: 6))
-                    context.stroke(
-                        feet,
-                        with: .color(calendarStroke),
-                        style: StrokeStyle(lineWidth: 1.8, lineCap: .round, lineJoin: .round)
-                    )
-                }
-                .frame(width: 62, height: 13)
-                .offset(y: 34)
-            }
-            .frame(width: 72, height: 78)
-        }
-
-        private var calendarStroke: Color {
-            colorScheme == .light ? .humayTextPrimary : .humaySolarGold
-        }
-
-        private var faceInk: Color {
-            .humayTextPrimary
-        }
+        HumayIllustration(name: "IllustrationCalendarCelestial")
+            .frame(
+                width: compactHeight ? 132 : 180,
+                height: compactHeight ? 58 : 88
+            )
+            .frame(maxWidth: .infinity)
+            .accessibilityHidden(true)
     }
 }
 
