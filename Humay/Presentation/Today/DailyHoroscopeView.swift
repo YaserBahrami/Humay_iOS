@@ -5,6 +5,7 @@ struct DailyHoroscopeView: View {
     let precisePreview: DailyHoroscopeContent?
     let source: D2ContentSource
 
+    @Environment(\.colorScheme) private var colorScheme
     @State private var selectedPeriod: HoroscopePeriod = .today
     @State private var previewReading: DailyHoroscopeContent?
     @State private var showUnlockInfo = false
@@ -30,9 +31,20 @@ struct DailyHoroscopeView: View {
         }
         .background(Color.humayGround.ignoresSafeArea())
         .foregroundStyle(Color.humayTextPrimary)
-        .navigationTitle("Daily Horoscope")
         .navigationBarTitleDisplayMode(.inline)
         .toolbar {
+            ToolbarItem(placement: .principal) {
+                VStack(spacing: 1) {
+                    Text("Daily Horoscope")
+                        .font(.headline)
+                    if let reading = currentReading {
+                        Text(reading.date.formatted(date: .abbreviated, time: .omitted))
+                            .font(.caption)
+                            .foregroundStyle(Color.humayTextSecondary)
+                    }
+                }
+            }
+
             ToolbarItem(placement: .topBarTrailing) {
                 if let reading = currentReading {
                     ShareLink(item: shareText(reading)) {
@@ -46,7 +58,7 @@ struct DailyHoroscopeView: View {
         .alert("Precise readings are not connected", isPresented: $showUnlockInfo) {
             Button("OK", role: .cancel) {}
         } message: {
-            Text("StoreKit, rewarded access and provider generation are intentionally outside this UI-first phase.")
+            Text("Provider-backed precise readings will be connected with their access flow.")
         }
     }
 
@@ -95,7 +107,7 @@ struct DailyHoroscopeView: View {
                         .tint(Color.humayLavender)
                     Text("Opening your reading…")
                         .font(HumayTypography.cardTitle)
-                    Text("Development loading state. No network call is running.")
+                    Text("Reading today’s sky.")
                         .font(HumayTypography.supporting)
                         .foregroundStyle(Color.humayTextSecondary)
                 }
@@ -104,42 +116,27 @@ struct DailyHoroscopeView: View {
             }
 
         case .free(let reading):
-            basisBanner(for: reading)
             readingCard(reading)
             dailyTip(reading)
-            preciseAccessCard
-            D2SampleNotice(source: source)
 
         case .preciseLocked(let freeReading):
-            D2StatusBanner(
-                symbol: "lock.fill",
-                title: "Precise reading locked",
-                detail: "Provider-backed personalization will require Rewarded Access or Premium later.",
-                accent: .lavender
-            )
-            basisBanner(for: freeReading)
             readingCard(freeReading)
             dailyTip(freeReading)
             preciseAccessCard
-            D2SampleNotice(source: source)
 
         case .preciseLoaded(let reading):
-            basisBanner(for: reading)
             readingCard(reading)
             dailyTip(reading)
-            D2SampleNotice(source: source)
 
         case .cached(let reading, let savedAt):
             D2StatusBanner(
                 symbol: "clock.arrow.circlepath",
                 title: "Saved result reopened",
-                detail: "Cached \(savedAt.formatted(date: .abbreviated, time: .shortened)); no new generation was started.",
+                detail: "Cached \(savedAt.formatted(date: .abbreviated, time: .shortened)).",
                 accent: .sage
             )
-            basisBanner(for: reading)
             readingCard(reading)
             dailyTip(reading)
-            D2SampleNotice(source: source)
 
         case .offline(let cached):
             D2StatusBanner(
@@ -147,19 +144,17 @@ struct DailyHoroscopeView: View {
                 title: "Offline",
                 detail: cached == nil
                     ? "No saved reading can be reopened."
-                    : "Showing a saved development result. No generation is being attempted.",
+                    : "Showing your saved reading.",
                 accent: .gold
             )
             if let cached {
-                basisBanner(for: cached)
                 readingCard(cached)
                 dailyTip(cached)
-                D2SampleNotice(source: source)
             } else {
                 D2UnavailableState(
                     symbol: "wifi.slash",
                     title: "Reading unavailable offline",
-                    detail: "Reconnect to load catalog content."
+                    detail: "Reconnect to load your reading."
                 )
             }
 
@@ -176,9 +171,9 @@ struct DailyHoroscopeView: View {
         HStack(spacing: HumaySpacing.large) {
             Text(reading.sign.glyph)
                 .font(.system(size: 34, weight: .medium, design: .rounded))
-                .foregroundStyle(Color.humaySolarGold)
+                .foregroundStyle(zodiacGlyphColor)
                 .frame(width: 64, height: 64)
-                .background(Color.humayLavender.opacity(0.24), in: Circle())
+                .background(zodiacGlyphBackground, in: Circle())
                 .accessibilityHidden(true)
 
             VStack(alignment: .leading, spacing: HumaySpacing.extraSmall) {
@@ -187,51 +182,47 @@ struct DailyHoroscopeView: View {
                 Text(reading.sign.dateRange)
                     .font(HumayTypography.supporting)
                     .foregroundStyle(Color.humayTextSecondary)
-                Text(reading.date.formatted(date: .long, time: .omitted))
-                    .font(.caption)
-                    .foregroundStyle(Color.humayTextSecondary)
             }
             .frame(maxWidth: .infinity, alignment: .leading)
 
-            ZodiacSignArt(sign: reading.sign, size: 76)
+            ZodiacSignArt(sign: reading.sign, size: 82)
         }
         .accessibilityElement(children: .combine)
-        .accessibilityLabel("\(reading.sign.displayName), \(reading.sign.dateRange), \(reading.date.formatted(date: .long, time: .omitted))")
+        .accessibilityLabel("\(reading.sign.displayName), \(reading.sign.dateRange)")
         .accessibilityIdentifier("daily.zodiac.identity")
     }
 
-    private func basisBanner(for reading: DailyHoroscopeContent) -> some View {
-        switch reading.basis {
-        case .freeWesternSunSign(let sign):
-            D2StatusBanner(
-                symbol: "sun.max.fill",
-                title: "Free · \(sign.displayName) Sun-sign reading",
-                detail: "Coarse date-and-sign catalog. No natal chart calculation.",
-                accent: .gold
-            )
-            .accessibilityIdentifier("daily.basis.free")
+    private var zodiacGlyphBackground: Color {
+        colorScheme == .light ? .humayTextPrimary : .humayLavender.opacity(0.34)
+    }
 
-        case .precisePersonalized:
-            D2StatusBanner(
-                symbol: "scope",
-                title: "Precise presentation sample",
-                detail: "Development only · no provider calculation or generation.",
-                accent: .lavender
-            )
-            .accessibilityIdentifier("daily.basis.precise")
-        }
+    private var zodiacGlyphColor: Color {
+        colorScheme == .light ? .humayGround : .humaySolarGold
     }
 
     private func readingCard(_ reading: DailyHoroscopeContent) -> some View {
         HumaySurface {
             VStack(alignment: .leading, spacing: HumaySpacing.large) {
-                HStack(alignment: .top) {
-                    Text(reading.headline)
-                        .font(HumayTypography.editorialTitle)
-                        .fixedSize(horizontal: false, vertical: true)
-                        .accessibilityAddTraits(.isHeader)
+                HStack(alignment: .top, spacing: HumaySpacing.medium) {
+                    VStack(alignment: .leading, spacing: HumaySpacing.small) {
+                        Text(reading.headline)
+                            .font(HumayTypography.editorialTitle)
+                            .fixedSize(horizontal: false, vertical: true)
+                            .accessibilityAddTraits(.isHeader)
 
-                    Spacer(minLength: HumaySpacing.medium)
+                        Capsule()
+                            .fill(
+                                LinearGradient(
+                                    colors: [Color.humayCoral, Color.humayLavender],
+                                    startPoint: .leading,
+                                    endPoint: .trailing
+                                )
+                            )
+                            .frame(width: 76, height: 2)
+                            .accessibilityHidden(true)
+                    }
+
+                    Spacer(minLength: HumaySpacing.small)
 
                     Image(systemName: "moon.fill")
                         .font(.title)
@@ -241,6 +232,7 @@ struct DailyHoroscopeView: View {
 
                 Text(reading.body)
                     .font(HumayTypography.body)
+                    .foregroundStyle(Color.humayTextPrimary.opacity(0.92))
                     .fixedSize(horizontal: false, vertical: true)
 
                 Divider().overlay(Color.humayHairline)
@@ -258,7 +250,7 @@ struct DailyHoroscopeView: View {
                                 .font(HumayTypography.bodyEmphasized)
                             Text(highlight.text)
                                 .font(HumayTypography.supporting)
-                                .foregroundStyle(Color.humayTextSecondary)
+                                .foregroundStyle(Color.humayTextPrimary.opacity(0.86))
                                 .fixedSize(horizontal: false, vertical: true)
                         }
                         .frame(maxWidth: .infinity, alignment: .leading)
@@ -274,7 +266,7 @@ struct DailyHoroscopeView: View {
         HumayCosmicSurface {
             HStack(spacing: HumaySpacing.large) {
                 VStack(alignment: .leading, spacing: HumaySpacing.small) {
-                    Text("Cosmic Tip")
+                    Text("Daily Tip")
                         .font(HumayTypography.utility)
                         .textCase(.uppercase)
                         .tracking(1.1)
@@ -297,7 +289,7 @@ struct DailyHoroscopeView: View {
                     .font(HumayTypography.bodyEmphasized)
                     .foregroundStyle(Color.humayLavender)
 
-                Text("A future provider-backed reading can use validated personal factors. It is separate from this Free Sun-sign catalog sample.")
+                Text("Unlock a personalized reading when precise generation is available.")
                     .font(HumayTypography.supporting)
                     .foregroundStyle(Color.humayTextSecondary)
                     .fixedSize(horizontal: false, vertical: true)
@@ -309,7 +301,7 @@ struct DailyHoroscopeView: View {
                 .accessibilityIdentifier("daily.precise.unlock")
 
                 if source.isDevelopmentSample, let precisePreview {
-                    Button("Preview development result") {
+                    Button("Preview precise layout") {
                         previewReading = precisePreview
                         selectedPeriod = precisePreview.period
                     }
