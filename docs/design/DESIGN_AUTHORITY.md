@@ -122,10 +122,13 @@ The old mock-first Presentation, DesignSystem and mock provider implementation w
 
 Production implementation proceeds only from approved repository references, family by family.
 
+D2 Compatibility received a later approved refinement on 2026-08-13. The package under [`soulful-reference/today-circle/compatibility-refresh/`](soulful-reference/today-circle/compatibility-refresh/README.md) supersedes only the Compatibility person-selection and result-hero portions of the older D2 reference. Production authority is implemented in `Humay/Presentation/Circle/CompatibilitySelectionView.swift` and `Humay/Presentation/Circle/CompatibilityView.swift`; reconciliation evidence is under [`implementation-evidence/d2-today-circle/compatibility-refresh/`](implementation-evidence/d2-today-circle/compatibility-refresh/README.md).
+
 ## 12. Current design status
 
 - **D0:** approved iPhone Light/Dark style anchors; iPad companions remain a later D0 task.
 - **D1:** approved cross-device on 2026-08-12 for Welcome, Birth Date, Tradition and Profile Reveal; production UI is implemented under `Humay/Presentation/Onboarding/`.
+- **D2 Compatibility refinement:** approved, implemented and reconciled on 2026-08-13 for Compatibility person selection, Pair Composer, compact one-column rows, iPad two-region selection, Relationship Field, pair identity/connector, score/label/summary composition, Free/Precise disclosure placement, and represented adaptive/accessibility behavior. Unrelated D2 surfaces retain their existing authority status.
 - **D3.1 Current Sky:** Lunar Meridian is the approved cross-device visual reference package under `soulful-reference/sky/current-sky/`; `SKY-003` remains TODO because visual approval is not implementation completion.
 
 Current D1 implementation evidence lives under `implementation-evidence/d1-onboarding/`. Completion is in-memory only until PROFILE-005; no provider-backed astrology is used by Profile Reveal.

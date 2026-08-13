@@ -1,6 +1,6 @@
 # Compatibility Refresh Adaptive and Accessibility Notes
 
-**Status:** REVIEW CANDIDATE — NOT APPROVED
+**Status:** APPROVED VISUAL REFERENCE — IMPLEMENTED AND RECONCILED
 
 ## Width behavior
 
@@ -90,8 +90,15 @@ Reference foreground/background pairs were checked in both appearances. Represen
 | Dark CTA text `#101725` on coral endpoint `#FF9998` | 8.76:1 | Lc 63.0 |
 | Dark CTA text `#101725` on lavender endpoint `#D89AE9` | 8.30:1 | Lc 60.2 |
 
-The generator uses reference-only supporting/CTA tones within the established Soulful Celestial palette. A future SwiftUI implementation must map them to semantic Light/Dark assets and recheck rendered pairs with Increase Contrast enabled.
+The generator uses reference-only supporting/CTA tones within the established Soulful Celestial palette. Production SwiftUI maps the direction to semantic Light/Dark colors. Increase Contrast remains a release-hardening check rather than a numeric reference score.
 
-## Reference-level HIG diagnostic
+## Qualitative implementation and accessibility verification
 
-**9/10.** The proposal covers safe areas, 44 pt targets, native scrolling/navigation, Light/Dark, Dynamic Type reflow, VoiceOver semantics, redundant selected-state cues, and iPad keyboard/pointer behavior. The remaining point requires an approved SwiftUI implementation followed by real VoiceOver, Accessibility Inspector, largest Dynamic Type, narrow split-view, keyboard, and pointer verification.
+- Full-row person buttons exceed the 44 pt minimum target; the primary action uses the larger approved control treatment.
+- Dynamic Type uses semantic/relative styles and reflow. The Compatibility flow passed an iPhone simulator run at AX XXXL (`accessibility-extra-extra-extra-large`).
+- VoiceOver receives concise pair identity, selected/unselected values, add/remove hints, score/basis labels, and no decorative connector stops.
+- Final selection and result evidence covers iPhone Light/Dark and iPad Light/Dark.
+- Selected state uses checkmarks, text/value, and border weight in addition to color, preserving Differentiate Without Color behavior.
+- Native SwiftUI buttons and navigation preserve iPad keyboard/pointer focus and activation; hover is supplementary.
+- No looping or spatial connector animation was added, so Reduce Motion requires no alternate animation.
+- Compact safe-area CTA behavior, regular iPad two-region composition, and accessibility-size collapse are represented by the reconciled production implementation and evidence.

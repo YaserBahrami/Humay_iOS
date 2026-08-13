@@ -21,6 +21,10 @@ The implementation follows the task and repository product authority where the c
 
 The composites do not freeze a detailed Circle landing or Add/Manage Person family. D2 therefore implements only the approved minimal shell: two sample people, person detail, Add Person with name/date and optional unknown/approximate/exact time, and compatibility selection. Birth location is not invented because a canonical place/time-zone input design is not yet approved.
 
+## Later approved Compatibility refinement
+
+The approved, implemented, and reconciled [`compatibility-refresh/`](compatibility-refresh/README.md) package supersedes only the Compatibility person-selection and result-hero portions of these older composites. It is production SwiftUI authority for Pair Composer, compact one-column person rows, iPad two-region selection, Relationship Field, pair identity/connector, score/label/summary composition, Free/Precise disclosure placement, and represented adaptive/accessibility behavior. Implementation lives in [`CompatibilitySelectionView.swift`](../../../../Humay/Presentation/Circle/CompatibilitySelectionView.swift) and [`CompatibilityView.swift`](../../../../Humay/Presentation/Circle/CompatibilityView.swift); evidence lives in [`../../implementation-evidence/d2-today-circle/compatibility-refresh/`](../../implementation-evidence/d2-today-circle/compatibility-refresh/README.md).
+
 ## iPad adaptation
 
 No static D2 iPad companion mockup was supplied. The implementation follows the written design authority:

@@ -108,10 +108,11 @@ The iPad landscape two-region paths are covered by the UI test. iOS 26.5 simulat
 ### D2 implementation status
 
 - Approved iPhone Light/Dark composites: [`soulful-reference/today-circle/`](soulful-reference/today-circle/README.md).
+- Later approved Compatibility refinement: [`soulful-reference/today-circle/compatibility-refresh/`](soulful-reference/today-circle/compatibility-refresh/README.md). It supersedes only the older Compatibility-selection and result-hero portions and is implemented in `Humay/Presentation/Circle/CompatibilitySelectionView.swift` and `Humay/Presentation/Circle/CompatibilityView.swift`.
 - Implemented: Today, Daily Horoscope, Circle, minimal Add Person, compatibility selection/result and explicit sample/access/cache/offline/error states.
-- Real portrait simulator evidence: [`implementation-evidence/d2-today-circle/`](implementation-evidence/d2-today-circle/README.md).
+- Real portrait simulator evidence: [`implementation-evidence/d2-today-circle/`](implementation-evidence/d2-today-circle/README.md), with final Compatibility selection/result evidence under [`implementation-evidence/d2-today-circle/compatibility-refresh/`](implementation-evidence/d2-today-circle/compatibility-refresh/README.md).
 - iPad uses width-driven two-region layouts and native adaptive tabs/sidebar; compact widths collapse to one column.
-- Static approved D2 iPad mockups were not supplied, so pixel-perfect iPad reconciliation is not claimed.
+- Static approved D2 iPad mockups were not supplied for the older D2 composite family, so pixel-perfect iPad reconciliation is not claimed for unrelated D2 screens. The later Compatibility refinement includes approved iPad Light/Dark references and reconciled simulator evidence.
 - iOS 26.5 landscape UI tests pass, but XCTest exports the landscape framebuffer rotated/cropped; raw artifacts are retained and labeled rather than presented as valid visual matches.
 - Today Together is not implemented; it remains CIRCLE-006 and was not invented from an unfrozen design.
 - Backend/API/provider, Saved People persistence and monetization remain outside D2.

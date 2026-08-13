@@ -136,8 +136,8 @@ function svgShell({ width, height, mode, title, description, body }) {
 </svg>`;
 }
 
-function reviewLabel(width, theme) {
-  return `<text x="${width / 2}" y="12" text-anchor="middle" class="label" font-size="6.6" fill="${theme.coralInk}">REVIEW CANDIDATE · NOT APPROVED</text>`;
+function authorityLabel(width, theme) {
+  return `<text x="${width / 2}" y="12" text-anchor="middle" class="label" font-size="6.6" fill="${theme.coralInk}">APPROVED · IMPLEMENTED · RECONCILED</text>`;
 }
 
 function statusBar(width, theme, device) {
@@ -322,7 +322,7 @@ function phoneSelection(mode) {
     theme
   })).join("");
   const body = `<rect width="430" height="932" fill="${theme.ground}"/>
-    ${reviewLabel(430, theme)}
+    ${authorityLabel(430, theme)}
     ${statusBar(430, theme, "phone")}
     ${phoneNavigation(theme, false)}
     <text x="20" y="131" class="editorial" font-size="34" fill="${theme.ink}">Choose your connection</text>
@@ -343,7 +343,7 @@ function phoneSelection(mode) {
     height: phone.height,
     mode,
     title: `Humay Compatibility selection refresh, iPhone ${mode}`,
-    description: "Review candidate, not approved. Full-device iPhone selection reference using a two-slot pair composer, one-column saved-person rows, long-name stress data, and a safe-area Compatibility action.",
+    description: "Approved visual reference, implemented and reconciled. Full-device iPhone selection reference using a two-slot pair composer, one-column saved-person rows, long-name stress data, and a safe-area Compatibility action.",
     body
   });
 }
@@ -360,7 +360,7 @@ function iPadSelection(mode) {
     roomy: true
   })).join("");
   const body = `<rect width="1024" height="1366" fill="${theme.ground}"/>
-    ${reviewLabel(1024, theme)}
+    ${authorityLabel(1024, theme)}
     ${statusBar(1024, theme, "ipad")}
     ${iPadChrome(theme, false)}
     <text x="64" y="208" class="editorial" font-size="46" fill="${theme.ink}">Choose your connection</text>
@@ -382,7 +382,7 @@ function iPadSelection(mode) {
     height: iPad.height,
     mode,
     title: `Humay Compatibility selection refresh, iPad ${mode}`,
-    description: "Review candidate, not approved. Full-device iPad selection reference with a dedicated pair-composer region and a generous one-column saved-person list containing six people and long-name stress data.",
+    description: "Approved visual reference, implemented and reconciled. Full-device iPad selection reference with a dedicated pair-composer region and a generous one-column saved-person list containing six people and long-name stress data.",
     body
   });
 }
@@ -456,7 +456,7 @@ function phoneLowerContext(x, y, width, theme) {
 function phoneResult(mode) {
   const theme = themes[mode];
   const body = `<rect width="430" height="932" fill="${theme.ground}"/>
-    ${reviewLabel(430, theme)}
+    ${authorityLabel(430, theme)}
     ${statusBar(430, theme, "phone")}
     ${phoneNavigation(theme, true)}
     ${phoneRelationshipHero({ x: 20, y: 118, width: 390, height: 454, theme })}
@@ -467,7 +467,7 @@ function phoneResult(mode) {
     height: phone.height,
     mode,
     title: `Humay Compatibility result hero refresh, iPhone ${mode}`,
-    description: "Review candidate, not approved. Full-device iPhone result reference with one unified relationship field containing long pair names, signs, medallions, orbit connector, score, relationship label, summary, and Free Sun-sign basis disclosure.",
+    description: "Approved visual reference, implemented and reconciled. Full-device iPhone result reference with one unified relationship field containing long pair names, signs, medallions, orbit connector, score, relationship label, summary, and Free Sun-sign basis disclosure.",
     body
   });
 }
@@ -533,7 +533,7 @@ function iPadOurTake(x, y, width, theme) {
 function iPadResult(mode) {
   const theme = themes[mode];
   const body = `<rect width="1024" height="1366" fill="${theme.ground}"/>
-    ${reviewLabel(1024, theme)}
+    ${authorityLabel(1024, theme)}
     ${statusBar(1024, theme, "ipad")}
     ${iPadChrome(theme, true)}
     ${iPadRelationshipHero({ x: 48, y: 178, width: 928, height: 420, theme })}
@@ -545,7 +545,7 @@ function iPadResult(mode) {
     height: iPad.height,
     mode,
     title: `Humay Compatibility result hero refresh, iPad ${mode}`,
-    description: "Review candidate, not approved. Full-device iPad result reference with one wide relationship field: pair identity and orbit at left, score, relationship label, summary, and Free Sun-sign basis within the same composition at right.",
+    description: "Approved visual reference, implemented and reconciled. Full-device iPad result reference with one wide relationship field: pair identity and orbit at left, score, relationship label, summary, and Free Sun-sign basis within the same composition at right.",
     body
   });
 }

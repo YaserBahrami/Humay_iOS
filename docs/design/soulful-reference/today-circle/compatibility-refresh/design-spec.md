@@ -1,18 +1,18 @@
 # Compatibility Refresh Design Spec
 
-**Status:** REVIEW CANDIDATE — NOT APPROVED
+**Status:** APPROVED VISUAL REFERENCE — IMPLEMENTED AND RECONCILED
 
-## 1. Current problem diagnosis
+## 1. Problem addressed
 
 ### Selection
 
-`CompatibilitySelectionView` uses `GridItem(.adaptive(minimum: 170))`. At a representative compact content width of about 362 pt, two columns become roughly 175 pt each. After the card's 32 pt horizontal padding, 62 pt medallion, 44 pt selection control, and two 12 pt HStack gaps, only about 13 pt remains for the name/sign text column. SwiftUI therefore wraps ordinary words into vertical fragments such as `Ya / ser` and `Ge / min / i`.
+Before this refresh, `CompatibilitySelectionView` used `GridItem(.adaptive(minimum: 170))`. At a representative compact content width of about 362 pt, two columns became roughly 175 pt each. After the card's 32 pt horizontal padding, 62 pt medallion, 44 pt selection control, and two 12 pt HStack gaps, only about 13 pt remained for the name/sign text column. SwiftUI therefore wrapped ordinary words into vertical fragments such as `Ya / ser` and `Ge / min / i`.
 
-The grid also makes the task read as independent card selection. It does not make the chosen relationship legible until the user infers it from two borders/checkmarks.
+The grid also made the task read as independent card selection. It did not make the chosen relationship legible until the user inferred it from two borders/checkmarks.
 
 ### Result top
 
-The current pair header distributes `person A | connector | person B` across three flexible regions, then places the score, label, and summary below as separate elements. The basis banner sits above them as another independent block. Each element is individually understandable, but the pair has no shared visual field; identity, connection, and result do not read as one emotional composition.
+The previous pair header distributed `person A | connector | person B` across three flexible regions, then placed the score, label, and summary below as separate elements. The basis banner sat above them as another independent block. Each element was individually understandable, but the pair had no shared visual field; identity, connection, and result did not read as one emotional composition.
 
 ## 2. Selection concept — Pair Composer
 
@@ -143,5 +143,4 @@ The disclosure remains visible before the score, but its compact treatment preve
 
 ## 10. Scope boundary
 
-No lower-result redesign is proposed. Metrics, Our Take, precise-access, cached/offline, and error content in the references are context placeholders for spacing only. The toolbar share control remains current context; the final visual share-card family belongs to D8.
-
+No lower-result redesign is approved by this refinement. Metrics, Our Take, precise-access, cached/offline, and error content in the references are context placeholders for spacing only. The toolbar share control remains current context; the final visual share-card family belongs to D8.
