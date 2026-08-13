@@ -1,8 +1,8 @@
 # Current Sky reference-specific design notes
 
-**Status:** REVIEW CANDIDATE — NOT APPROVED
+**Status:** APPROVED VISUAL REFERENCE
 
-## Chosen direction — Lunar Meridian
+## Approved direction — Lunar Meridian
 
 The design treats Current Sky as a **celestial editorial dashboard**:
 
@@ -54,19 +54,19 @@ The header spans both regions. Hero, a one-line observation footer, and Calendar
 | Date-only | `Date only · 14 August` | No clock time is fabricated. |
 | Unavailable | `Unavailable · timing not supplied` | Explicit explanation replaces blank space. |
 
-Astronomical, Western, and Vedic remain visible as quiet text badges on every event row for this candidate. Current Sky can mix systems, so methodology clarity outweighs conditional hiding until real content behavior exists. Color helps scan, but the text label carries the meaning. The badge may move below the title at large Dynamic Type sizes.
+Astronomical, Western, and Vedic remain visible as quiet text badges on every event row in the approved reference. Current Sky can mix systems, so methodology clarity outweighs conditional hiding until real content behavior exists. Color helps scan, but the text label carries the meaning. The badge may move below the title at large Dynamic Type sizes.
 
 ## Hero copy contract
 
-The hero headline is approved only as a layout role within this review candidate; that limited decision does not approve the package or freeze production copy. Its future production source remains open. Implementation must not derive astrology claims arbitrarily. Later content may come from a Humay-owned presentation projection or an approved interpretation/catalog source.
+The hero headline is approved only as a layout role. Package approval does not freeze production copy or make the headline methodology authority. Its future production source remains open. Implementation must not derive astrology claims arbitrarily. Later content may come from a Humay-owned presentation projection or an approved interpretation/catalog source.
 
-## Resolved for the current candidate
+## Approved decisions
 
 - Lunar Meridian visual direction retained.
 - Methodology labels remain visible on event rows.
 - “Window” interval label removed.
 - Observation context reduced to quiet secondary metadata.
-- Calendar illustration retained as a candidate pending Calendar-family review.
+- Calendar illustration ownership remains pending Calendar-family review.
 - Internal engineering and design language removed from product surfaces.
 
 ## Content stress test represented
@@ -78,7 +78,7 @@ The hero headline is approved only as a layout role within this review candidate
 - Sparse event day: explicit final timeline item on iPad.
 - Mixed methodology: Astronomical, Western, Vedic.
 - Mixed timing: exact, interval, date-only, unavailable.
-- Long localized content: rows are designed to expand vertically; fixed one-line truncation is not part of the candidate.
+- Long localized content: rows are designed to expand vertically; fixed one-line truncation is not part of the approved reference.
 
 ## Asset audit
 
@@ -137,4 +137,4 @@ No numerical HIG score is assigned.
 2. Exact recovery actions once `SKY-002` exists.
 3. Final Calendar-family behavior and artwork ownership.
 
-Only the product owner can resolve visual approval. No production implementation should begin from this candidate before that review.
+The product owner approved this complete visual package. `SKY-003` remains TODO; visual approval is not implementation completion.

@@ -126,6 +126,7 @@ Production implementation proceeds only from approved repository references, fam
 
 - **D0:** approved iPhone Light/Dark style anchors; iPad companions remain a later D0 task.
 - **D1:** approved cross-device on 2026-08-12 for Welcome, Birth Date, Tradition and Profile Reveal; production UI is implemented under `Humay/Presentation/Onboarding/`.
+- **D3.1 Current Sky:** Lunar Meridian is the approved cross-device visual reference package under `soulful-reference/sky/current-sky/`; `SKY-003` remains TODO because visual approval is not implementation completion.
 
 Current D1 implementation evidence lives under `implementation-evidence/d1-onboarding/`. Completion is in-memory only until PROFILE-005; no provider-backed astrology is used by Profile Reveal.
 - Remaining families follow [`SCREEN_DESIGN_PLAN.md`](SCREEN_DESIGN_PLAN.md).

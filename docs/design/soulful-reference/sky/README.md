@@ -1,8 +1,8 @@
 # D3 — Sky + Calendar Reference Package
 
-**Status:** design-preparation scaffolding only; no D3 visual reference is approved.
+**Status:** D3.1 Current Sky approved visual reference; later D3 families remain separately gated.
 
-This directory will hold the approved Soulful Celestial references for D3 — Sky + Calendar. It currently contains specifications only. It does not contain final screenshots, implementation evidence, or approval.
+This directory holds the Soulful Celestial reference packages for D3 — Sky + Calendar. Current Sky is visually approved. Calendar is a review candidate, while Event Detail remains future work. No D3 production implementation is completed by these packages.
 
 ## Authority
 
@@ -29,9 +29,10 @@ Calendar remains nested under Sky. It is not a sixth root destination.
 
 ## Package index
 
-- [Current Sky](current-sky/README.md) — requirements ready for visual design; references pending
+- [Current Sky](current-sky/README.md) — **APPROVED VISUAL REFERENCE**
+- [Calendar Month + Week](calendar/README.md) — **REVIEW CANDIDATE — NOT APPROVED**
 
-Future Calendar and event-detail packages should be added only when their design work begins.
+Event Detail remains D3.3 future work and is not part of the Calendar package.
 
 ## Approval gate
 
@@ -45,4 +46,4 @@ A D3 screen is not approved until its package includes:
 - compact-width fallback behavior;
 - recorded review and approval status.
 
-No D3 production SwiftUI may be implemented from this scaffolding. Asset-catalog presence also does not constitute visual approval.
+Only Current Sky has passed this visual gate. Its approval does not complete `SKY-003`. Calendar must pass its own product-owner review before `SKY-004` implementation, and asset-catalog presence does not constitute visual approval.

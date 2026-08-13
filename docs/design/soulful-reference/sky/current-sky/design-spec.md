@@ -2,7 +2,7 @@
 
 **Design phase:** D3.1 — Current Sky
 
-**Status:** design requirements only; no visual reference or implementation is approved
+**Status:** requirements record for the approved visual reference; implementation is not approved
 
 **Visual direction:** Soulful Celestial
 
@@ -12,13 +12,13 @@
 
 Design a Current Sky screen that presents timely celestial context with a warm editorial hierarchy, concise event scanning, methodology awareness, and a clear path into Calendar.
 
-This specification is not a final composition. It intentionally leaves visual judgment to the reference-design and review pass. Do not infer approval from this document, existing sample values, the existing Sky placeholder, or asset-catalog inventory.
+The Lunar Meridian package has completed visual review and is the approved Current Sky composition. Approval belongs to the complete reference package, not to sample values, the existing Sky placeholder, or asset-catalog inventory.
 
-No Current Sky, Calendar, or event-detail SwiftUI may be implemented until the required Current Sky reference set is reviewed and approved.
+The Current Sky reference set is approved. `SKY-003` remains TODO, and this visual approval does not itself authorize or complete production implementation. Calendar and event-detail require their own reference gates.
 
 ## 2. Required visual package
 
-The package must eventually include:
+The approved package includes:
 
 1. iPhone Light
 2. iPhone Dark
@@ -283,7 +283,7 @@ DevelopmentD3Sample exists only to exercise typed states and future UI behavior.
 
 ## 13. Candidate decisions and deferred product questions
 
-Resolved for the current review candidate:
+Approved visual decisions:
 
 - Astronomical, Western, and Vedic labels remain visible on event rows.
 - Intervals use natural start/end text rather than “Window.”

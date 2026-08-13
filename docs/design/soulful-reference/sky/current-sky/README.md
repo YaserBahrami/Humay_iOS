@@ -1,10 +1,10 @@
 # D3.1 — Current Sky
 
-**Status:** REVIEW CANDIDATE — NOT APPROVED
+**Status:** APPROVED VISUAL REFERENCE
 
-This package is the first complete visual-reference candidate for Current Sky. It defines presentation for product-owner review only. It does not approve D3, authorize production SwiftUI, or complete `SKY-003`.
+This package is the approved visual reference for Current Sky. The product owner approved the complete Lunar Meridian package across iPhone, iPad, Light, Dark, adaptive behavior, and state language. Visual approval does not authorize production SwiftUI and does not complete `SKY-003`.
 
-## Review first
+## Approved reference set
 
 1. [iPhone Light preview](iphone-light.png) and [editable SVG](iphone-light.svg)
 2. [iPhone Dark preview](iphone-dark.png) and [editable SVG](iphone-dark.svg)
@@ -14,7 +14,7 @@ This package is the first complete visual-reference candidate for Current Sky. I
 6. [Adaptive layout notes](adaptive-notes.md)
 7. [Reference-specific review notes](review-notes.md)
 
-The four device references are loaded/default candidates. Approval remains package-wide: one device or appearance cannot become implementation authority while another remains unresolved.
+The four device references are the approved loaded/default visual authority. The state board and adaptive notes are approved as visual guidance.
 
 ## Concept
 
@@ -36,15 +36,19 @@ The reference demonstrates exact, interval, date-only, and unavailable timing; A
 - `design-spec.md` — requirements authority
 - `generate-references.cjs` — reference-only SVG/PNG generator
 
-## Approval boundary
+## Approval record and boundary
 
-- Every new artifact is labeled **REVIEW CANDIDATE — NOT APPROVED**.
-- The hero headline is illustrative. Its layout role is accepted for this candidate, but its production source is not frozen because Domain has no approved editorial-hero contract.
+- **Lunar Meridian** is the approved Current Sky visual direction.
+- iPhone Light, iPhone Dark, iPad Light, and iPad Dark are approved.
+- Adaptive behavior and the state language are approved as visual guidance.
+- The hero headline is illustrative. Its layout role is approved, but its editorial-copy source remains deferred because Domain has no approved editorial-hero contract. Hero copy is not methodology authority.
 - Calendar remains a child route inside Sky.
-- Astronomical, Western, and Vedic methodology labels remain visible and quiet on event rows for this candidate.
-- `IllustrationCalendarCelestial` remains candidate art pending review of the wider Calendar family.
+- Astronomical, Western, and Vedic methodology labels remain visible and quiet on Current Sky event rows.
+- Intervals use natural start/end ranges rather than a “Window” label.
+- Observation context remains quiet secondary metadata.
+- `IllustrationCalendarCelestial` artwork ownership remains pending the Calendar-family design.
 - `Development sample · not calculated` is visible as a Debug screenshot treatment, not a Release banner proposal.
 - No Current Sky, Calendar, or event-detail production UI is implemented by this package.
 - Existing production assets are not modified or promoted by this package.
 
-The next action is product-owner review of the four Current Sky references.
+Production implementation remains separately gated by `SKY-003` and is not part of this visual approval.

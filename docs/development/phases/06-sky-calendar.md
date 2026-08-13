@@ -91,4 +91,4 @@ Acceptance:
 - system-specific terminology remains methodology-aware;
 - shipping Sky/Calendar surfaces reconcile with approved D3 iPhone+iPad Light/Dark references.
 
-The current partial foundation does not satisfy the phase exit criteria. No approved D3 visual references exist, so SKY-003, SKY-004 and SKY-005 remain TODO.
+The current partial foundation does not satisfy the phase exit criteria. D3.1 Current Sky has an approved visual reference, but `SKY-003` remains TODO because visual approval is not implementation completion. Calendar and Event Detail have not passed their separate approval gates, so `SKY-004` and `SKY-005` also remain TODO.

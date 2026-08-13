@@ -1,6 +1,6 @@
 # Current Sky adaptive-layout notes
 
-**Status:** REVIEW CANDIDATE — NOT APPROVED
+**Status:** APPROVED VISUAL GUIDANCE
 
 ## Reference canvases
 
