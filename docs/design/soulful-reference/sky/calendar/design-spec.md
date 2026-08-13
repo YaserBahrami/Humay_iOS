@@ -30,7 +30,7 @@ Current Sky owns the stronger hero moment. Calendar reuses editorial typography,
 - A border-light calendar field rather than a card per date.
 - Serif month, range, and selected-day headings; system type for controls and scanning.
 - Sparse Moon, event-count, and neutral event signals only where supplied data supports them.
-- One shared selected-day agenda surface on iPhone.
+- One shared selected-day agenda region on iPhone, separated by editorial hairlines rather than another large card.
 - Dominant overview plus bounded agenda/context on iPad.
 - No illustration inside primary Calendar views.
 
@@ -80,7 +80,7 @@ The August 2026 fixture visibly exercises a six-week month with July and Septemb
 The 1024 pt portrait reference uses a 928 pt bounded content region:
 
 - primary left region: dominant six-week month grid and quiet observation footer;
-- secondary right region: selected date, bounded three-event agenda, and timing context.
+- secondary right region: selected date, healthy-width three-event agenda, and a lightweight timing note.
 
 The right agenda never stretches to full canvas width. The left grid remains dominant, but date cells do not scale proportionally with the device. Selection on August 14 visibly connects the grid to the matching right-side heading and agenda.
 
@@ -107,9 +107,9 @@ The compact reference selects Wednesday to demonstrate a one-event day with exac
 The full-width seven-day rail exposes the complete week at once. Below it:
 
 - primary left region: selected Friday and its three-event agenda;
-- secondary right region: exact lunar timing on Wednesday, Friday event density, and a quiet Sunday.
+- secondary right region: a lightweight chronological continuation showing exact lunar timing on Wednesday, Friday event density, and a quiet Sunday.
 
-This gives additional week context without an hourly vertical timetable or full Event Detail content.
+This gives additional week context without an hourly vertical timetable, a second dashboard card, or full Event Detail content.
 
 ## 9. Date semantics
 
@@ -138,9 +138,9 @@ Calendar reuses Current Sky factual row DNA at higher density. Each row is one f
 | Exact | `Exact · 18:00 TRT` | Clock time appears only for an explicit instant fixture. |
 | Interval | `Fri 21:00 – Sat 03:00` | Natural start/end range remains visible across midnight. |
 | Date only | `Date only · 14 August` | No midnight or noon is invented. |
-| Unavailable | `Unavailable · methodology not approved` | Explicit reason replaces a blank or fake time. Narrow layouts may use `methodology gated` while retaining the Vedic label. |
+| Unavailable | `Timing unavailable` | Explicit language replaces a blank or fake clock time. Methodology remains a separate factual label. |
 
-Astronomical, Western, and Vedic remain visible. Reference rows demonstrate lunar phase, planetary ingress, aspect, and a methodology-gated tradition-specific event.
+Astronomical, Western, and Vedic remain visible as quiet inline labels with a small semantic marker rather than colored category chips. Reference rows demonstrate lunar phase, planetary ingress, aspect, and a Vedic event with unavailable timing.
 
 ## 11. Sparse data constraints
 
@@ -174,6 +174,7 @@ Supporting copy remains restrained: `No notable events are supplied.` This is ne
 8. date-state semantics key.
 
 No Retry control is shown because no current contract promises it.
+Any explanation for the absent recovery action stays in the board annotation outside simulated product surfaces.
 
 ## 14. Light and Dark composition
 
@@ -202,7 +203,7 @@ Dark is separately composed. It is not an inversion of Light.
 - Moon-phase glyphs appear only for supplied lunar events.
 - Planet glyphs are candidates only where the event names the matching planet and optical review passes.
 - Generic event dots are not exposed individually to VoiceOver.
-- A neutral diamond marker identifies the methodology-gated fixture without inventing an astrology symbol.
+- A neutral diamond marker identifies the Vedic fixture without implying astronomical certainty.
 - No production asset is promoted, changed, or retired by this reference package.
 
 ## 16. Accessibility and platform behavior
@@ -223,7 +224,7 @@ Dark is separately composed. It is not an inversion of Light.
 
 ## 17. Stress coverage
 
-The primary references and documented reflow rules cover:
+The primary references, [stress board](stress.png), and documented reflow rules cover:
 
 - six-week month beginning late in the week;
 - outside-month dates at both ends;
@@ -235,6 +236,8 @@ The primary references and documented reflow rules cover:
 - mixed Astronomical, Western, and Vedic events;
 - sparse week and sparse month behavior;
 - compact iPhone and materially different iPad composition.
+
+The stress board additionally exercises September, a six-row November beginning late in the week, `Sagittarius`, mixed timing, long localized month naming, and accessibility text pressure without creating extra full-device screenshots.
 
 Five-week months retain the same row target and allow the grid to become shorter; they do not stretch rows to fill the six-week height. Long month names wrap or reduce editorial display emphasis before controls are compressed. Full localized weekday names are represented through accessibility labels and wider contexts, not forced into narrow month columns.
 

@@ -176,8 +176,8 @@ function rangeNavigation({ x, y, width, title, subtitle = null, theme, fontSize 
 
 function methodBadge(x, y, label, theme, accent, width) {
   return `<g aria-label="${escapeText(label)} methodology">
-    <rect x="${x}" y="${y}" width="${width}" height="18" rx="9" fill="${accent}" fill-opacity="0.13"/>
-    <text x="${x + width / 2}" y="${y + 12.5}" text-anchor="middle" class="ui" font-size="8.2" font-weight="700" fill="${theme.ink}">${escapeText(label)}</text>
+    <circle cx="${x + 4}" cy="${y + 8.5}" r="2.4" fill="${accent}"/>
+    <text x="${x + 11}" y="${y + 12}" class="ui" font-size="8.2" font-weight="700" fill="${theme.secondary}">${escapeText(label)}</text>
   </g>`;
 }
 
@@ -356,11 +356,12 @@ function phoneMonth(mode) {
       ${monthGrid({ x: 30, y: 197, width: 370, height: 296, theme, compact: true })}
       <text x="20" y="543" class="editorial" font-size="22" fill="${theme.ink}">Friday · 14 August</text>
       <text x="410" y="541" text-anchor="end" class="label" font-size="7.4" fill="${theme.secondary}">3 EVENTS</text>
-      <g filter="url(#soft-shadow)">
-        <rect x="20" y="558" width="390" height="264" rx="20" fill="${theme.surface}" stroke="${theme.hairline}"/>
-        ${eventRow({ x: 20, y: 558, width: 390, height: 92, kind: "ingress", titleLines: ["Mars enters Gemini after an", "extended retrograde cycle"], timing: "Date only · 14 August", system: "Western", badgeWidth: 52, accent: theme.coral, theme })}
-        ${eventRow({ x: 20, y: 650, width: 390, height: 78, kind: "aspect", titleLines: ["Mercury square Uranus"], timing: "Fri 21:00 – Sat 03:00", system: "Western", badgeWidth: 52, accent: theme.coral, theme })}
-        ${eventRow({ x: 20, y: 728, width: 390, height: 94, kind: "method", titleLines: ["Methodology-gated event"], timing: "Unavailable · methodology not approved", system: "Vedic", badgeWidth: 44, accent: theme.lavender, theme, last: true })}
+      <g aria-label="Selected-day agenda">
+        <line x1="20" y1="558" x2="410" y2="558" stroke="${theme.hairline}"/>
+        ${eventRow({ x: 20, y: 558, width: 390, height: 88, kind: "ingress", titleLines: ["Mars enters Gemini after an", "extended retrograde cycle"], timing: "Date only · 14 August", system: "Western", badgeWidth: 52, accent: theme.coral, theme })}
+        ${eventRow({ x: 20, y: 646, width: 390, height: 76, kind: "aspect", titleLines: ["Mercury square Uranus"], timing: "Fri 21:00 – Sat 03:00", system: "Western", badgeWidth: 52, accent: theme.lavender, theme })}
+        ${eventRow({ x: 20, y: 722, width: 390, height: 88, kind: "method", titleLines: ["Jupiter trine Saturn"], timing: "Timing unavailable", system: "Vedic", badgeWidth: 44, accent: theme.blue, theme, last: true })}
+        <line x1="20" y1="810" x2="410" y2="810" stroke="${theme.hairline}"/>
       </g>
       ${phoneTabBar(theme)}`
   });
@@ -369,24 +370,19 @@ function phoneMonth(mode) {
 function laterThisWeek(theme) {
   return `<g aria-label="Later this week">
     <text x="20" y="489" class="editorial" font-size="22" fill="${theme.ink}">Later this week</text>
-    <g filter="url(#soft-shadow)">
-      <rect x="20" y="506" width="390" height="184" rx="20" fill="${theme.surface}" stroke="${theme.hairline}"/>
-      <rect x="34" y="521" width="54" height="64" rx="16" fill="${theme.coralWash}"/>
-      <text x="61" y="540" text-anchor="middle" class="label" font-size="6.5" fill="${theme.coralText}">FRI</text>
-      <text x="61" y="568" text-anchor="middle" class="ui" font-size="21" font-weight="750" fill="${theme.ink}">14</text>
-      <text x="103" y="537" class="ui" font-size="14" font-weight="700" fill="${theme.ink}">Three celestial events</text>
-      <text x="103" y="558" class="ui" font-size="10.5" fill="${theme.secondary}">Ingress · aspect · Vedic</text>
-      <text x="103" y="577" class="ui" font-size="10" fill="${theme.secondary}">One event continues into Saturday</text>
-      ${chevron(390, 553, "right", theme, 4)}
-      <line x1="34" y1="600" x2="396" y2="600" stroke="${theme.hairline}"/>
-      <rect x="34" y="613" width="54" height="62" rx="16" fill="${theme.sageWash}"/>
-      <text x="61" y="632" text-anchor="middle" class="label" font-size="6.5" fill="${theme.sage}">SUN</text>
-      <text x="61" y="659" text-anchor="middle" class="ui" font-size="21" font-weight="750" fill="${theme.ink}">16</text>
-      <text x="103" y="631" class="ui" font-size="14" font-weight="700" fill="${theme.ink}">Quiet sky this day</text>
-      <text x="103" y="652" class="ui" font-size="10.5" fill="${theme.secondary}">No supplied celestial events</text>
-      ${chevron(390, 644, "right", theme, 4)}
-    </g>
-    <text x="20" y="718" class="ui" font-size="10" fill="${theme.secondary}">Europe/Istanbul · civil week begins Monday</text>
+    <line x1="55" y1="517" x2="55" y2="650" stroke="${theme.hairline}" stroke-width="2"/>
+    <circle cx="55" cy="535" r="5" fill="${theme.coralText}"/>
+    <text x="76" y="525" class="label" font-size="6.7" fill="${theme.coralText}">FRI · 14 AUG</text>
+    <text x="76" y="548" class="ui" font-size="14" font-weight="700" fill="${theme.ink}">Three celestial events</text>
+    <text x="76" y="568" class="ui" font-size="10.5" fill="${theme.secondary}">Ingress · aspect · Vedic</text>
+    <text x="76" y="586" class="ui" font-size="10" fill="${theme.secondary}">One event continues into Saturday</text>
+    ${chevron(397, 551, "right", theme, 4)}
+    <circle cx="55" cy="625" r="5" fill="${theme.sage}"/>
+    <text x="76" y="615" class="label" font-size="6.7" fill="${theme.sage}">SUN · 16 AUG</text>
+    <text x="76" y="638" class="ui" font-size="14" font-weight="700" fill="${theme.ink}">Quiet sky this day</text>
+    <text x="76" y="658" class="ui" font-size="10.5" fill="${theme.secondary}">No supplied celestial events</text>
+    ${chevron(397, 635, "right", theme, 4)}
+    <text x="20" y="698" class="ui" font-size="10" fill="${theme.secondary}">Europe/Istanbul · civil week begins Monday</text>
   </g>`;
 }
 
@@ -407,9 +403,10 @@ function phoneWeek(mode) {
       ${weekRail({ x: 25, y: 195, width: 380, height: 80, theme, selectedDay: 12, compact: true })}
       <text x="20" y="319" class="editorial" font-size="22" fill="${theme.ink}">Wednesday · 12 August</text>
       <text x="410" y="317" text-anchor="end" class="label" font-size="7.4" fill="${theme.secondary}">1 EVENT</text>
-      <g filter="url(#soft-shadow)">
-        <rect x="20" y="334" width="390" height="116" rx="20" fill="${theme.surface}" stroke="${theme.hairline}"/>
+      <g aria-label="Selected-day agenda">
+        <line x1="20" y1="334" x2="410" y2="334" stroke="${theme.hairline}"/>
         ${eventRow({ x: 20, y: 334, width: 390, height: 116, kind: "moon", titleLines: ["Waning gibbous Moon"], timing: "Exact · 18:00 TRT", system: "Astronomical", badgeWidth: 76, accent: theme.blue, theme, last: true })}
+        <line x1="20" y1="450" x2="410" y2="450" stroke="${theme.hairline}"/>
       </g>
       ${laterThisWeek(theme)}
       ${phoneTabBar(theme)}`
@@ -448,7 +445,8 @@ function observationFooter(x, y, theme, text = "Europe/Istanbul · civil dates �
 
 function iPadMonth(mode) {
   const theme = themes[mode];
-  const agendaX = 680;
+  const agendaX = 660;
+  const agendaWidth = 316;
   return svgShell({
     width: 1024,
     height: 1366,
@@ -458,9 +456,9 @@ function iPadMonth(mode) {
     body: `<rect width="1024" height="1366" fill="${theme.ground}"/>
       ${reviewLabel(1024, theme)}${statusBar(1024, theme, "pad")}${iPadTopNavigation(theme)}${wideHeader(theme, "month")}
       ${sampleNotice(48, 179, theme, 204)}
-      ${rangeNavigation({ x: 48, y: 216, width: 596, title: "August 2026", theme, fontSize: 31 })}
-      <g filter="url(#soft-shadow)"><rect x="48" y="274" width="596" height="626" rx="26" fill="${theme.surface}" stroke="${theme.hairline}"/></g>
-      ${monthGrid({ x: 64, y: 293, width: 564, height: 584, theme })}
+      ${rangeNavigation({ x: 48, y: 216, width: 580, title: "August 2026", theme, fontSize: 31 })}
+      <g filter="url(#soft-shadow)"><rect x="48" y="274" width="580" height="626" rx="26" fill="${theme.surface}" stroke="${theme.hairline}"/></g>
+      ${monthGrid({ x: 64, y: 293, width: 548, height: 584, theme })}
       ${observationFooter(48, 930, theme)}
 
       <g aria-label="Selected date agenda">
@@ -468,40 +466,37 @@ function iPadMonth(mode) {
         <text x="${agendaX}" y="285" class="editorial" font-size="31" fill="${theme.ink}">Friday · 14 August</text>
         <text x="${agendaX}" y="310" class="ui" font-size="12" fill="${theme.secondary}">3 celestial events</text>
         <g filter="url(#soft-shadow)">
-          <rect x="${agendaX}" y="333" width="296" height="360" rx="24" fill="${theme.surface}" stroke="${theme.hairline}"/>
-          ${eventRow({ x: agendaX, y: 333, width: 296, height: 132, kind: "ingress", titleLines: ["Mars enters Gemini", "after an extended", "retrograde cycle"], timing: "Date only · 14 August", system: "Western", badgeWidth: 52, accent: theme.coral, theme, large: true })}
-          ${eventRow({ x: agendaX, y: 465, width: 296, height: 105, kind: "aspect", titleLines: ["Mercury square Uranus"], timing: "Fri 21:00 – Sat 03:00", system: "Western", badgeWidth: 52, accent: theme.coral, theme, large: true })}
-          ${eventRow({ x: agendaX, y: 570, width: 296, height: 123, kind: "method", titleLines: ["Methodology-gated event"], timing: "Unavailable · methodology gated", system: "Vedic", badgeWidth: 44, accent: theme.lavender, theme, large: true, stackedBadge: true, last: true })}
+          <rect x="${agendaX}" y="333" width="${agendaWidth}" height="360" rx="24" fill="${theme.surface}" stroke="${theme.hairline}"/>
+          ${eventRow({ x: agendaX, y: 333, width: agendaWidth, height: 132, kind: "ingress", titleLines: ["Mars enters Gemini after", "an extended retrograde cycle"], timing: "Date only · 14 August", system: "Western", badgeWidth: 52, accent: theme.coral, theme, large: true })}
+          ${eventRow({ x: agendaX, y: 465, width: agendaWidth, height: 105, kind: "aspect", titleLines: ["Mercury square Uranus"], timing: "Fri 21:00 – Sat 03:00", system: "Western", badgeWidth: 52, accent: theme.lavender, theme, large: true })}
+          ${eventRow({ x: agendaX, y: 570, width: agendaWidth, height: 123, kind: "method", titleLines: ["Jupiter trine Saturn"], timing: "Timing unavailable", system: "Vedic", badgeWidth: 44, accent: theme.blue, theme, large: true, last: true })}
         </g>
-        <g filter="url(#soft-shadow)">
-          <rect x="${agendaX}" y="721" width="296" height="118" rx="22" fill="${theme.secondarySurface}" stroke="${theme.hairline}"/>
-          <circle cx="${agendaX + 30}" cy="753" r="9" fill="none" stroke="${theme.goldText}" stroke-width="1.5"/>
-          <path d="M${agendaX + 30} 748v6l4 2" fill="none" stroke="${theme.goldText}" stroke-width="1.5" stroke-linecap="round"/>
-          <text x="${agendaX + 50}" y="758" class="ui" font-size="14" font-weight="700" fill="${theme.ink}">Timing context</text>
-          <text x="${agendaX + 22}" y="783" class="ui" font-size="11" fill="${theme.secondary}">One event continues into Saturday.</text>
-          <text x="${agendaX + 22}" y="803" class="ui" font-size="11" fill="${theme.secondary}">Times shown in TRT.</text>
+        <g aria-label="Timing context">
+          <line x1="${agendaX}" y1="723" x2="${agendaX + agendaWidth}" y2="723" stroke="${theme.hairline}"/>
+          <circle cx="${agendaX + 14}" cy="750" r="9" fill="none" stroke="${theme.goldText}" stroke-width="1.5"/>
+          <path d="M${agendaX + 14} 745v6l4 2" fill="none" stroke="${theme.goldText}" stroke-width="1.5" stroke-linecap="round"/>
+          <text x="${agendaX + 34}" y="755" class="ui" font-size="13" font-weight="700" fill="${theme.ink}">One interval continues into Saturday.</text>
+          <text x="${agendaX + 34}" y="777" class="ui" font-size="10.5" fill="${theme.secondary}">All clock times shown in TRT.</text>
         </g>
       </g>`
   });
 }
 
-function weekContext(theme) {
-  return `<g aria-label="Week context">
-    <text x="680" y="591" class="editorial" font-size="28" fill="${theme.ink}">Week context</text>
-    <g filter="url(#soft-shadow)">
-      <rect x="680" y="612" width="296" height="258" rx="24" fill="${theme.surface}" stroke="${theme.hairline}"/>
-      <text x="704" y="643" class="label" font-size="7.5" fill="${theme.goldText}">WED · 12 AUG</text>
-      ${eventGlyph("moon", 710, 676, theme)}
-      <text x="738" y="671" class="ui" font-size="14" font-weight="700" fill="${theme.ink}">Waning gibbous Moon</text>
-      <text x="738" y="691" class="mono" font-size="9.5" fill="${theme.secondary}">Exact · 18:00 TRT</text>
-      <line x1="704" y1="716" x2="952" y2="716" stroke="${theme.hairline}"/>
-      <text x="704" y="744" class="label" font-size="7.5" fill="${theme.coralText}">FRI · 14 AUG</text>
-      <circle cx="710" cy="775" r="5" fill="${theme.lavenderText}"/>
-      <text x="726" y="779" class="ui" font-size="13" font-weight="700" fill="${theme.ink}">3 celestial events</text>
-      <text x="704" y="808" class="label" font-size="7.5" fill="${theme.sage}">SUN · 16 AUG</text>
-      <text x="704" y="834" class="ui" font-size="13" font-weight="700" fill="${theme.ink}">Quiet sky this day</text>
-      <text x="704" y="853" class="ui" font-size="10.5" fill="${theme.secondary}">No event marker; navigation remains usable.</text>
-    </g>
+function acrossWeek(theme) {
+  return `<g aria-label="Across the visible week">
+    <text x="660" y="591" class="editorial" font-size="28" fill="${theme.ink}">Across the week</text>
+    <line x1="684" y1="624" x2="684" y2="849" stroke="${theme.hairline}" stroke-width="2"/>
+    ${eventGlyph("moon", 684, 651, theme)}
+    <text x="714" y="631" class="label" font-size="7.5" fill="${theme.goldText}">WED · 12 AUG</text>
+    <text x="714" y="655" class="ui" font-size="14" font-weight="700" fill="${theme.ink}">Waning gibbous Moon</text>
+    <text x="714" y="675" class="mono" font-size="9.5" fill="${theme.secondary}">Exact · 18:00 TRT</text>
+    <circle cx="684" cy="750" r="6" fill="${theme.lavenderText}"/>
+    <text x="714" y="728" class="label" font-size="7.5" fill="${theme.coralText}">FRI · 14 AUG</text>
+    <text x="714" y="754" class="ui" font-size="13.5" font-weight="700" fill="${theme.ink}">3 celestial events</text>
+    <circle cx="684" cy="832" r="6" fill="${theme.ground}" stroke="${theme.sage}" stroke-width="2"/>
+    <text x="714" y="811" class="label" font-size="7.5" fill="${theme.sage}">SUN · 16 AUG</text>
+    <text x="714" y="836" class="ui" font-size="13.5" font-weight="700" fill="${theme.ink}">Quiet sky this day</text>
+    <text x="714" y="855" class="ui" font-size="10.5" fill="${theme.secondary}">Navigation remains available.</text>
   </g>`;
 }
 
@@ -525,14 +520,14 @@ function iPadWeek(mode) {
         <text x="48" y="526" class="editorial" font-size="31" fill="${theme.ink}">Friday · 14 August</text>
         <text x="48" y="552" class="ui" font-size="12" fill="${theme.secondary}">3 celestial events</text>
         <g filter="url(#soft-shadow)">
-          <rect x="48" y="575" width="596" height="360" rx="24" fill="${theme.surface}" stroke="${theme.hairline}"/>
-          ${eventRow({ x: 48, y: 575, width: 596, height: 122, kind: "ingress", titleLines: ["Mars enters Gemini after an", "extended retrograde cycle"], timing: "Date only · 14 August", system: "Western", badgeWidth: 52, accent: theme.coral, theme, large: true })}
-          ${eventRow({ x: 48, y: 697, width: 596, height: 111, kind: "aspect", titleLines: ["Mercury square Uranus"], timing: "Fri 21:00 – Sat 03:00", system: "Western", badgeWidth: 52, accent: theme.coral, theme, large: true })}
-          ${eventRow({ x: 48, y: 808, width: 596, height: 127, kind: "method", titleLines: ["Methodology-gated event"], timing: "Unavailable · methodology not approved", system: "Vedic", badgeWidth: 44, accent: theme.lavender, theme, large: true, last: true })}
+          <rect x="48" y="575" width="580" height="360" rx="24" fill="${theme.surface}" stroke="${theme.hairline}"/>
+          ${eventRow({ x: 48, y: 575, width: 580, height: 122, kind: "ingress", titleLines: ["Mars enters Gemini after an", "extended retrograde cycle"], timing: "Date only · 14 August", system: "Western", badgeWidth: 52, accent: theme.coral, theme, large: true })}
+          ${eventRow({ x: 48, y: 697, width: 580, height: 111, kind: "aspect", titleLines: ["Mercury square Uranus"], timing: "Fri 21:00 – Sat 03:00", system: "Western", badgeWidth: 52, accent: theme.lavender, theme, large: true })}
+          ${eventRow({ x: 48, y: 808, width: 580, height: 127, kind: "method", titleLines: ["Jupiter trine Saturn"], timing: "Timing unavailable", system: "Vedic", badgeWidth: 44, accent: theme.blue, theme, large: true, last: true })}
         </g>
         ${observationFooter(48, 966, theme)}
       </g>
-      ${weekContext(theme)}`
+      ${acrossWeek(theme)}`
   });
 }
 
@@ -629,8 +624,7 @@ function statePanel({ x, y, width, height, mode, index, name, note, kind }) {
     component = `<rect x="${contentX}" y="${contentY}" width="${contentWidth}" height="218" rx="20" fill="${theme.surface}" stroke="${theme.hairline}"/>
       ${stateIcon(failed ? "failed" : offline ? "offline" : "unavailable", x + width / 2, contentY + 64, theme)}
       <text x="${x + width / 2}" y="${contentY + 119}" text-anchor="middle" class="editorial" font-size="23" fill="${theme.ink}">${title}</text>
-      <text x="${x + width / 2}" y="${contentY + 150}" text-anchor="middle" class="ui" font-size="10.5" fill="${theme.secondary}">${detail}</text>
-      <text x="${x + width / 2}" y="${contentY + 183}" text-anchor="middle" class="ui" font-size="9.5" fill="${theme.tertiary}">No Retry action is promised.</text>`;
+      <text x="${x + width / 2}" y="${contentY + 150}" text-anchor="middle" class="ui" font-size="10.5" fill="${theme.secondary}">${detail}</text>`;
   }
   return `<g>
     <rect x="${x}" y="${y}" width="${width}" height="${height}" rx="28" fill="${theme.ground}" stroke="#D4CCC4" stroke-opacity=".32"/>
@@ -671,7 +665,105 @@ function stateBoard() {
       <text x="40" y="99" class="editorial" font-size="42" fill="${themes.light.ink}">Calendar state language</text>
       <text x="40" y="128" class="ui" font-size="14.5" fill="${themes.light.secondary}">Empty Calendar data, a quiet selected day, unavailable data, and failure remain separate meanings.</text>
       ${panelMarkup}
+      <text x="40" y="1050" class="ui" font-size="10.5" fill="${themes.light.tertiary}">Reference annotation: no recovery action is shown because current contracts expose none.</text>
       <text x="1560" y="1050" text-anchor="end" class="ui" font-size="10.5" fill="${themes.light.tertiary}">Mixed Light/Dark examples · compact-width components shown</text>`
+  });
+}
+
+function stressMiniMonth({ x, y, width, theme, title, leading, days, previousDays, rows }) {
+  const weekdays = ["M", "T", "W", "T", "F", "S", "S"];
+  const cellWidth = width / 7;
+  const rowHeight = 33;
+  const cells = Array.from({ length: rows * 7 }, (_, index) => {
+    const day = index - leading + 1;
+    const inside = day >= 1 && day <= days;
+    const shown = inside ? day : day < 1 ? previousDays + day : day - days;
+    return `<text x="${x + cellWidth * (index % 7 + 0.5)}" y="${y + 68 + Math.floor(index / 7) * rowHeight}" text-anchor="middle" class="ui" font-size="9.5" font-style="${inside ? "normal" : "italic"}" fill="${inside ? theme.ink : theme.tertiary}" opacity="${inside ? 1 : 0.55}">${shown}</text>`;
+  }).join("");
+  return `<g aria-label="${escapeText(title)} stress month">
+    <text x="${x}" y="${y + 20}" class="editorial" font-size="25" fill="${theme.ink}">${escapeText(title)}</text>
+    ${weekdays.map((day, index) => `<text x="${x + cellWidth * (index + 0.5)}" y="${y + 43}" text-anchor="middle" class="label" font-size="6" fill="${theme.secondary}">${day}</text>`).join("")}
+    <line x1="${x}" y1="${y + 50}" x2="${x + width}" y2="${y + 50}" stroke="${theme.hairline}"/>
+    ${cells}
+  </g>`;
+}
+
+function stressPanel({ x, mode, label, note, body }) {
+  const theme = themes[mode];
+  return `<g>
+    <rect x="${x}" y="150" width="370" height="500" rx="28" fill="${theme.ground}" stroke="#D4CCC4" stroke-opacity=".32"/>
+    <text x="${x + 22}" y="181" class="label" font-size="8.5" fill="${theme.coralText}">${escapeText(label)}</text>
+    <text x="${x + 348}" y="181" text-anchor="end" class="label" font-size="7" fill="${theme.tertiary}">${mode.toUpperCase()}</text>
+    <text x="${x + 22}" y="211" class="ui" font-size="11.5" fill="${theme.secondary}">${escapeText(note)}</text>
+    <rect x="${x + 22}" y="235" width="326" height="382" rx="20" fill="${theme.surface}" stroke="${theme.hairline}"/>
+    ${body(theme, x + 44, 258)}
+  </g>`;
+}
+
+function stressBoard() {
+  const panels = [
+    stressPanel({
+      x: 40,
+      mode: "light",
+      label: "01 · LONG LOCALIZED MONTH",
+      note: "Heading wraps before controls or targets shrink.",
+      body: (theme, x, y) => `${stressMiniMonth({ x, y, width: 282, theme, title: "septiembre de 2026", leading: 1, days: 30, previousDays: 31, rows: 5 })}
+        <text x="${x}" y="${y + 254}" class="ui" font-size="10.5" fill="${theme.secondary}">Five rows retain the standard row rhythm.</text>`
+    }),
+    stressPanel({
+      x: 430,
+      mode: "dark",
+      label: "02 · SIX-ROW NOVEMBER",
+      note: "Late start and outside dates stay legible.",
+      body: (theme, x, y) => `${stressMiniMonth({ x, y, width: 282, theme, title: "November 2026", leading: 6, days: 30, previousDays: 31, rows: 6 })}
+        <text x="${x}" y="${y + 287}" class="ui" font-size="10.5" fill="${theme.secondary}">Outside-month dates remain secondary.</text>`
+    }),
+    stressPanel({
+      x: 820,
+      mode: "light",
+      label: "03 · LONG AGENDA CONTENT",
+      note: "Titles wrap; timing and methodology survive.",
+      body: (theme, x, y) => `<text x="${x}" y="${y + 20}" class="editorial" font-size="23" fill="${theme.ink}">Friday · 27 November</text>
+        <text x="${x}" y="${y + 48}" class="ui" font-size="14" font-weight="700" fill="${theme.ink}">Mars enters Sagittarius after an</text>
+        <text x="${x}" y="${y + 68}" class="ui" font-size="14" font-weight="700" fill="${theme.ink}">extended retrograde cycle</text>
+        <text x="${x}" y="${y + 96}" class="mono" font-size="10" fill="${theme.secondary}">Date only · 27 November</text>
+        ${methodBadge(x + 206, y + 82, "Western", theme, theme.coral, 52)}
+        <line x1="${x}" y1="${y + 120}" x2="${x + 282}" y2="${y + 120}" stroke="${theme.hairline}"/>
+        <text x="${x}" y="${y + 149}" class="ui" font-size="14" font-weight="700" fill="${theme.ink}">Mercury square Uranus</text>
+        <text x="${x}" y="${y + 176}" class="mono" font-size="10" fill="${theme.secondary}">Fri 21:00 – Sat 03:00</text>
+        ${methodBadge(x + 206, y + 162, "Western", theme, theme.lavender, 52)}
+        <line x1="${x}" y1="${y + 201}" x2="${x + 282}" y2="${y + 201}" stroke="${theme.hairline}"/>
+        <text x="${x}" y="${y + 230}" class="ui" font-size="14" font-weight="700" fill="${theme.ink}">Jupiter trine Saturn</text>
+        <text x="${x}" y="${y + 257}" class="mono" font-size="10" fill="${theme.secondary}">Timing unavailable</text>
+        ${methodBadge(x + 220, y + 243, "Vedic", theme, theme.blue, 44)}`
+    }),
+    stressPanel({
+      x: 1210,
+      mode: "dark",
+      label: "04 · ACCESSIBILITY PRESSURE",
+      note: "Width and text pressure trigger one column.",
+      body: (theme, x, y) => `<text x="${x}" y="${y + 24}" class="editorial" font-size="30" fill="${theme.ink}">Selected date</text>
+        <text x="${x}" y="${y + 62}" class="ui" font-size="20" font-weight="700" fill="${theme.ink}">Friday · 27 November</text>
+        <line x1="${x}" y1="${y + 86}" x2="${x + 282}" y2="${y + 86}" stroke="${theme.hairline}"/>
+        <text x="${x}" y="${y + 121}" class="ui" font-size="18" font-weight="700" fill="${theme.ink}">Long event title wraps</text>
+        <text x="${x}" y="${y + 146}" class="ui" font-size="18" font-weight="700" fill="${theme.ink}">without truncation</text>
+        <text x="${x}" y="${y + 181}" class="mono" font-size="14" fill="${theme.secondary}">Timing unavailable</text>
+        <text x="${x}" y="${y + 229}" class="ui" font-size="12" fill="${theme.secondary}">Agenda drops below the grid.</text>
+        <text x="${x}" y="${y + 251}" class="ui" font-size="12" fill="${theme.secondary}">44 pt targets remain intact.</text>
+        <text x="${x}" y="${y + 273}" class="ui" font-size="12" fill="${theme.secondary}">Decorative markers disappear first.</text>`
+    })
+  ].join("");
+  return svgShell({
+    width: 1600,
+    height: 720,
+    title: "Humay Calendar stress board",
+    description: "D3.2 review candidate, not approved. Calendar stress evidence for long month names, five- and six-row months, long agenda content, and accessibility pressure.",
+    mode: "light",
+    body: `<rect width="1600" height="720" fill="#EFE9E2"/>
+      <text x="40" y="53" class="label" font-size="10.5" fill="${themes.light.coralText}">D3.2 · REVIEW CANDIDATE — NOT APPROVED</text>
+      <text x="40" y="99" class="editorial" font-size="42" fill="${themes.light.ink}">Calendar stress evidence</text>
+      <text x="40" y="128" class="ui" font-size="14.5" fill="${themes.light.secondary}">September, November, long content, mixed timing, Sagittarius, and accessibility pressure are exercised without extra device screenshots.</text>
+      ${panels}`
   });
 }
 
@@ -695,6 +787,7 @@ async function main() {
   await writeSvgAndPng("week-ipad-light", iPadWeek("light"), 2048);
   await writeSvgAndPng("week-ipad-dark", iPadWeek("dark"), 2048);
   await writeSvgAndPng("states", stateBoard(), 1600);
+  await writeSvgAndPng("stress", stressBoard(), 1600);
 }
 
 main().catch((error) => {

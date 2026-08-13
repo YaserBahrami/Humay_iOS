@@ -21,15 +21,15 @@ Native nested header → Month/Week selector → month navigation → six-week g
 
 ### Month · iPad
 
-The grid owns the primary left region. The selected Friday agenda is bounded on the right. A small timing-context surface explains the cross-midnight fixture without introducing an Event Detail screen.
+The grid owns the primary left region. The selected Friday agenda is widened and bounded on the right. A lightweight timing note explains the cross-midnight fixture without adding another card or introducing an Event Detail screen.
 
 ### Week · iPhone
 
-The seven-day rail selects Wednesday and demonstrates a one-event day with exact timing. A compact later-week summary exposes Friday’s denser date without turning the screen into a schedule.
+The seven-day rail selects Wednesday and demonstrates a one-event day with exact timing. A compact unboxed chronology exposes Friday’s denser date without turning the screen into a schedule or dashboard.
 
 ### Week · iPad
 
-The rail spans the bounded width. The selected Friday agenda sits beside week context showing Wednesday exact timing and a quiet Sunday.
+The rail spans the bounded width. The selected Friday agenda sits beside an unboxed `Across the week` chronology showing Wednesday exact timing and a quiet Sunday.
 
 ## Month / Week switching
 
@@ -52,7 +52,7 @@ The primary references intentionally separate Today and Selected so both states 
 | Waning gibbous Moon | lunar phase / Astronomical | `Exact · 18:00 TRT` |
 | Mars enters Gemini after an extended retrograde cycle | planetary ingress / Western | `Date only · 14 August` |
 | Mercury square Uranus | aspect / Western | `Fri 21:00 – Sat 03:00` |
-| Methodology-gated event | tradition-specific / Vedic | explicit unavailable methodology treatment |
+| Jupiter trine Saturn | tradition-specific / Vedic | `Timing unavailable` |
 
 These are Debug/reference fixtures only. They do not claim actual astronomy for the rendered date.
 
@@ -66,7 +66,7 @@ These are Debug/reference fixtures only. They do not claim actual astronomy for 
 - Quiet selected day shows a specific date and no rows.
 - Unavailable states a source limitation.
 - Offline with cache preserves visible dates and saved-time metadata.
-- Offline without cache asks for reconnection but does not promise Retry.
+- Offline without cache asks for reconnection. The board annotation, outside the simulated UI, records that current contracts expose no recovery action.
 - Failed says the source could not load.
 - A separate date key documents Today, Selected, event-bearing, and outside-month semantics.
 
@@ -82,7 +82,7 @@ Midnight ground, raised navy calendar/agenda surfaces, brighter coral selection,
 
 ## Calendar artwork decision
 
-`IllustrationCalendarCelestial` should **remain only the Current Sky entry illustration**. It does not become the Calendar family illustration and is not forced into Month or Week. Calendar’s identity comes from civil rhythm, restrained semantic glyphs, and editorial headings.
+**Recommendation A:** `IllustrationCalendarCelestial` should remain exactly as the Current Sky entry illustration. It does not become the Calendar family illustration and is not forced into Month or Week. Calendar’s identity comes from civil rhythm, restrained semantic glyphs, and editorial headings.
 
 This decision resolves the D3.1 ownership question at the visual-reference level only. The production asset remains unchanged.
 
@@ -91,15 +91,30 @@ This decision resolves the D3.1 ownership question at the visual-reference level
 - Lunar crescent appears only on supplied lunar-phase dates/events.
 - The ingress fixture uses a planet/ingress symbol because the title names that event family.
 - The aspect fixture uses a neutral two-body relationship glyph.
-- The methodology-gated fixture uses a neutral diamond marker, not a fabricated astrology symbol.
+- The Vedic fixture uses a neutral diamond marker, not a fabricated astrology symbol or a claim of astronomical certainty.
 - Count markers prevent dense glyph walls on event-heavy dates.
 - Existing production Moon/planet glyphs remain candidates pending approval, small-size optical checks, template rendering checks, and accessibility naming.
+
+## RESOLVED FOR FINAL CANDIDATE
+
+- **Month grid marker system:** one lunar glyph for a supplied lunar event; dot plus count for dense dates; no decorative symbol wall.
+- **Today treatment:** outlined celestial disc, short top rule, bold date, and `TODAY` text.
+- **Selection treatment:** one solid disc/pill with strong contrast and a direct selected-agenda relationship; coincident Today merges into one shape.
+- **Outside-month treatment:** reduced italic date plus explicit boundary month label.
+- **Event-row density:** compact factual rows separated by hairlines on iPhone; one bounded agenda surface on iPad.
+- **Week rail:** seven contiguous civil dates, not an hourly schedule and not seven independent cards.
+- **Methodology visibility:** quiet inline marker plus factual `Astronomical`, `Western`, or `Vedic` text; no colored chip system.
+- **Timing visibility:** exact, cross-midnight range, date-only, and `Timing unavailable` remain explicit and subordinate to title.
+- **Quiet-day language:** `Quiet sky this day` with concise supporting copy; never an error or oversized empty state.
+- **Calendar art:** recommendation A retains `IllustrationCalendarCelestial` only on the approved Current Sky entry.
+- **iPad Month:** dominant grid, widened bounded agenda, and lightweight timing note.
+- **iPad Week:** full-width rail, dominant selected-day agenda, and unboxed `Across the week` chronology.
 
 ## Adaptive findings
 
 - iPhone maintains a single chronological reading order.
 - iPad Month uses a dominant grid plus bounded agenda.
-- iPad Week uses a full-width rail plus agenda/context.
+- iPad Week uses a full-width rail plus agenda/chronology.
 - Landscape adds outer breathing room before scaling content.
 - Split View and accessibility Dynamic Type collapse toward compact hierarchy.
 - Five-week months become shorter rather than stretching dates.
@@ -123,14 +138,15 @@ Static references receive qualitative HIG review only; they do not receive a num
 - Six-week August 2026 starts late in the week and includes both outside-month boundaries.
 - Friday carries three events.
 - Wednesday carries one exact lunar event.
-- Sunday quiet-day behavior is shown in the state board and iPad Week context.
+- Sunday quiet-day behavior is shown in the state board and iPad `Across the week` chronology.
 - The ingress title wraps.
 - The aspect interval crosses midnight.
 - Date-only and unavailable timing remain explicit.
 - Astronomical, Western, and Vedic labels remain visible.
-- Documented rules cover long month names, localized weekday names, year boundaries, five-week months, and accessibility sizes.
+- The supporting stress board shows September, six-row November, `Sagittarius`, long localized month naming, cross-midnight timing, unavailable timing, and accessibility text pressure.
+- Documented rules cover localized weekday names, year boundaries, five-week months, six-week months, and accessibility sizes.
 
-## Unresolved or deferred
+## DEFERRED
 
 1. Production event data, freshness, caching, and recovery actions remain owned by future `SKY-002` work.
 2. Event Detail layout and transition remain D3.3.

@@ -23,6 +23,7 @@ This package defines the first complete cross-device visual-reference candidate 
 ### Supporting review
 
 - [Calendar state board](states.png) and [editable SVG](states.svg)
+- [Calendar stress board](stress.png) and [editable SVG](stress.svg)
 - [Design specification](design-spec.md)
 - [Adaptive and accessibility notes](adaptive-notes.md)
 - [Reference-specific review notes](review-notes.md)
@@ -32,7 +33,7 @@ This package defines the first complete cross-device visual-reference candidate 
 
 **Meridian Almanac** — the quieter chronological layer behind approved Lunar Meridian Current Sky.
 
-Month uses a coherent seven-column civil grid with sparse semantic signals and a selected-day agenda. Week uses a seven-day celestial rail with mixed-precision event context instead of an hourly schedule. iPad turns each view into an intentional overview/detail composition rather than enlarging the phone layout.
+Month uses a coherent seven-column civil grid with sparse semantic signals and a selected-day agenda. Week uses a seven-day celestial rail with mixed-precision event context instead of an hourly schedule. iPad turns each view into an intentional overview/detail composition rather than enlarging the phone layout. Agenda rows use editorial hairlines and quiet inline methodology labels instead of another layer of category chips.
 
 ## Route ownership
 

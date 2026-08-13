@@ -64,7 +64,6 @@
       <circle cx="1395" cy="314" r="20" fill="none" stroke="#C17ADB" stroke-width="3"/><path d="M1395 305v11m0 7v1" stroke="#C17ADB" stroke-width="3" stroke-linecap="round"/>
       <text x="1395" y="369" text-anchor="middle" class="editorial" font-size="23" fill="#F5F0EA">Calendar unavailable</text>
       <text x="1395" y="400" text-anchor="middle" class="ui" font-size="10.5" fill="#C4BDBB">This source isn’t available yet.</text>
-      <text x="1395" y="433" text-anchor="middle" class="ui" font-size="9.5" fill="#A8A0A1">No Retry action is promised.</text>
   </g><g>
     <rect x="40" y="612" width="370" height="416" rx="28" fill="#101725" stroke="#D4CCC4" stroke-opacity=".32"/>
     <text x="62" y="641" class="label" font-size="8.5" fill="#FF9A98">05 · OFFLINE + CACHED</text>
@@ -85,7 +84,6 @@
       <path d="M595 761c12-10 28-10 40 0m-32 8c7-6 17-6 24 0m-16 9c2-2 6-2 8 0M597 746l36 40" fill="none" stroke="#D5A253" stroke-width="3" stroke-linecap="round"/>
       <text x="615" y="823" text-anchor="middle" class="editorial" font-size="23" fill="#151B28">No saved Calendar</text>
       <text x="615" y="854" text-anchor="middle" class="ui" font-size="10.5" fill="#625F62">Reconnect to load these dates.</text>
-      <text x="615" y="887" text-anchor="middle" class="ui" font-size="9.5" fill="#7A7575">No Retry action is promised.</text>
   </g><g>
     <rect x="820" y="612" width="370" height="416" rx="28" fill="#101725" stroke="#D4CCC4" stroke-opacity=".32"/>
     <text x="842" y="641" class="label" font-size="8.5" fill="#FF9A98">07 · FAILED / ERROR</text>
@@ -95,7 +93,6 @@
       <path d="M1005 746l22 40h-44Z" fill="none" stroke="#F77476" stroke-width="3" stroke-linejoin="round"/><path d="M1005 760v13m0 7v1" stroke="#F77476" stroke-width="3" stroke-linecap="round"/>
       <text x="1005" y="823" text-anchor="middle" class="editorial" font-size="23" fill="#F5F0EA">Calendar couldn’t load</text>
       <text x="1005" y="854" text-anchor="middle" class="ui" font-size="10.5" fill="#C4BDBB">The source could not be loaded.</text>
-      <text x="1005" y="887" text-anchor="middle" class="ui" font-size="9.5" fill="#A8A0A1">No Retry action is promised.</text>
   </g><g>
     <rect x="1210" y="612" width="370" height="416" rx="28" fill="#FBF7F1" stroke="#D4CCC4" stroke-opacity=".32"/>
     <text x="1232" y="641" class="label" font-size="8.5" fill="#A83F3C">08 · DATE SEMANTICS</text>
@@ -107,5 +104,6 @@
       <text x="1395" y="855" text-anchor="middle" class="ui" font-size="10.5" fill="#625F62">Shape, text, weight, and count</text>
       <text x="1395" y="873" text-anchor="middle" class="ui" font-size="10.5" fill="#625F62">reinforce color.</text>
   </g>
+      <text x="40" y="1050" class="ui" font-size="10.5" fill="#7A7575">Reference annotation: no recovery action is shown because current contracts expose none.</text>
       <text x="1560" y="1050" text-anchor="end" class="ui" font-size="10.5" fill="#7A7575">Mixed Light/Dark examples · compact-width components shown</text>
 </svg>

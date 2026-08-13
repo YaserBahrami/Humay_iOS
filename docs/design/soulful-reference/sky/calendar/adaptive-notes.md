@@ -11,7 +11,7 @@
 
 ## Compact width
 
-Month uses one vertical scroll hierarchy: nested header, segmented control, month navigation, grid, selected-day agenda, then existing tab shell. Week replaces the grid with the seven-day rail and adds a bounded later-week summary.
+Month uses one vertical scroll hierarchy: nested header, segmented control, month navigation, grid, selected-day agenda, then existing tab shell. Week replaces the grid with the seven-day rail and adds a lightweight later-week chronology.
 
 Compact rules:
 
@@ -19,6 +19,7 @@ Compact rules:
 - civil-date cells remain at least 44 pt targets;
 - segmented control gains invisible vertical hit padding when its visible height is below 44 pt;
 - event rows expand instead of clipping title, time, methodology, or unavailable reason;
+- selected-day rows use hairlines and spacing instead of another full-width rounded card;
 - bottom content padding clears the tab bar and home indicator;
 - outside-month dates remain selectable and announce their full civil date;
 - month-to-month animation is optional, never required to understand the new range.
@@ -40,9 +41,9 @@ The right agenda updates in place when selection changes. Selection and scroll p
 Week keeps one full-width seven-day rail. The lower region becomes:
 
 - left: selected-day agenda;
-- right: week context with upcoming signals and a quiet date.
+- right: an unboxed chronological continuation with upcoming signals and a quiet date.
 
-The secondary region summarizes chronology; it never becomes an hourly timetable or embeds full Event Detail.
+The secondary region summarizes chronology; it never becomes an hourly timetable, a second dashboard card, or full Event Detail.
 
 ## iPad landscape
 
@@ -83,6 +84,8 @@ The selected civil date, visible range, and active Month/Week mode remain stable
 - Event-row order under pressure is glyph, title, timing, methodology, then disclosure.
 - Secondary week context can move below the selected-day agenda.
 - Decorative dots disappear before text becomes unreadable.
+
+The supporting [stress board](stress.png) demonstrates long localized month naming, five- and six-row months, `Sagittarius`, a cross-midnight interval, unavailable timing, and accessibility-sized reflow pressure.
 
 ## VoiceOver grouping
 
