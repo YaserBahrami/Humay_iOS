@@ -151,6 +151,153 @@ final class LaunchUITests: XCTestCase {
         XCTAssertTrue(element("sky.current.happening-now", in: app).exists)
     }
 
+    func testD3CalendarNavigatesFromSkyAndPreservesSelection() {
+        let app = d3App()
+
+        app.buttons["sky.current.calendar-entry"].tap()
+        XCTAssertTrue(element("sky.calendar.screen", in: app).waitForExistence(timeout: 3))
+        XCTAssertTrue(element("sky.calendar.month.state.loaded", in: app).exists)
+        XCTAssertTrue(app.staticTexts["August 2026"].exists)
+
+        let eventDate = app.buttons["sky.calendar.month.date.2026-08-14"]
+        XCTAssertTrue(eventDate.waitForExistence(timeout: 3))
+        eventDate.tap()
+        XCTAssertEqual(eventDate.value as? String, "Selected")
+        XCTAssertTrue(app.staticTexts["3 events"].waitForExistence(timeout: 3))
+
+        let quietDate = app.buttons["sky.calendar.month.date.2026-08-11"]
+        XCTAssertTrue(quietDate.waitForExistence(timeout: 3))
+        quietDate.tap()
+        XCTAssertEqual(quietDate.value as? String, "Selected")
+        app.swipeUp()
+        XCTAssertTrue(app.staticTexts["Quiet sky this day"].waitForExistence(timeout: 3))
+
+        app.buttons["sky.calendar.mode.week"].tap()
+        XCTAssertTrue(element("sky.calendar.week.state.loaded", in: app).waitForExistence(timeout: 3))
+        let weekQuietDate = app.buttons["sky.calendar.week.date.2026-08-11"]
+        XCTAssertTrue(weekQuietDate.waitForExistence(timeout: 3))
+        XCTAssertEqual(weekQuietDate.value as? String, "Selected")
+
+        app.buttons["sky.calendar.mode.month"].tap()
+        XCTAssertTrue(element("sky.calendar.month.state.loaded", in: app).waitForExistence(timeout: 3))
+        XCTAssertEqual(
+            app.buttons["sky.calendar.month.date.2026-08-11"].value as? String,
+            "Selected"
+        )
+
+        app.buttons["sky.calendar.today"].tap()
+        XCTAssertEqual(
+            app.buttons["sky.calendar.month.date.2026-08-13"].value as? String,
+            "Selected"
+        )
+
+        app.navigationBars.buttons.element(boundBy: 0).tap()
+        XCTAssertTrue(app.buttons["sky.current.calendar-entry"].waitForExistence(timeout: 3))
+    }
+
+    func testD3CalendarMonthStatesRemainDistinct() {
+        let states = [
+            ("loading", "loading"),
+            ("empty", "empty"),
+            ("unavailable", "unavailable"),
+            ("offline", "offline.cached"),
+            ("offline-empty", "offline.no-cache"),
+            ("failed", "failed")
+        ]
+
+        for (argument, identifier) in states {
+            let app = d3App(extraArguments: ["-HumayD3MonthState", argument])
+            app.buttons["sky.current.calendar-entry"].tap()
+            XCTAssertTrue(
+                element("sky.calendar.month.state.\(identifier)", in: app)
+                    .waitForExistence(timeout: 3),
+                "Missing Month state \(argument)"
+            )
+            if argument == "offline" {
+                XCTAssertTrue(element("sky.calendar.month.state.offline.cached", in: app).exists)
+                XCTAssertTrue(element("sky.calendar.offline.cached.notice", in: app).exists)
+            }
+            app.terminate()
+        }
+    }
+
+    func testD3CalendarWeekStatesRemainDistinct() {
+        let states = [
+            ("loading", "loading"),
+            ("empty", "empty"),
+            ("unavailable", "unavailable"),
+            ("offline", "offline.cached"),
+            ("offline-empty", "offline.no-cache"),
+            ("failed", "failed")
+        ]
+
+        for (argument, identifier) in states {
+            let app = d3App(extraArguments: ["-HumayD3WeekState", argument])
+            app.buttons["sky.current.calendar-entry"].tap()
+            app.buttons["sky.calendar.mode.week"].tap()
+            XCTAssertTrue(
+                element("sky.calendar.week.state.\(identifier)", in: app)
+                    .waitForExistence(timeout: 3),
+                "Missing Week state \(argument)"
+            )
+            if argument == "offline" {
+                XCTAssertTrue(element("sky.calendar.week.state.offline.cached", in: app).exists)
+                XCTAssertTrue(element("sky.calendar.offline.cached.notice", in: app).exists)
+            }
+            app.terminate()
+        }
+    }
+
+    func testCaptureD3CalendarLoadedAndStates() {
+        captureD3CalendarEvidence(interfaceStyle: "Light")
+    }
+
+    func testCaptureD3CalendarDarkEvidence() {
+        captureD3CalendarEvidence(interfaceStyle: "Dark")
+    }
+
+    private func captureD3CalendarEvidence(interfaceStyle: String) {
+        XCUIDevice.shared.orientation = .portrait
+        let appearance = interfaceStyle.lowercased()
+        let appearanceArguments = ["-AppleInterfaceStyle", interfaceStyle]
+
+        let loaded = d3App(extraArguments: appearanceArguments)
+        loaded.buttons["sky.current.calendar-entry"].tap()
+        XCTAssertTrue(element("sky.calendar.screen", in: loaded).waitForExistence(timeout: 3))
+        XCTAssertTrue(element("sky.calendar.month.state.loaded", in: loaded).exists)
+        capture(loaded, named: "calendar-month-loaded-\(appearance)")
+
+        let quietDate = loaded.buttons["sky.calendar.month.date.2026-08-11"]
+        XCTAssertTrue(quietDate.waitForExistence(timeout: 3))
+        quietDate.tap()
+        loaded.swipeUp()
+        XCTAssertTrue(loaded.staticTexts["Quiet sky this day"].waitForExistence(timeout: 3))
+        capture(loaded, named: "calendar-month-quiet-\(appearance)")
+        loaded.swipeDown()
+        loaded.swipeDown()
+        loaded.buttons["sky.calendar.month.date.2026-08-14"].tap()
+
+        loaded.buttons["sky.calendar.mode.week"].tap()
+        XCTAssertTrue(element("sky.calendar.week.state.loaded", in: loaded).waitForExistence(timeout: 3))
+        loaded.swipeDown()
+        loaded.swipeDown()
+        capture(loaded, named: "calendar-week-loaded-\(appearance)")
+        loaded.terminate()
+
+        for state in ["loading", "empty", "unavailable", "offline", "offline-empty", "failed"] {
+            let app = d3App(extraArguments: appearanceArguments + ["-HumayD3MonthState", state])
+            app.buttons["sky.current.calendar-entry"].tap()
+            let identifier = state == "offline"
+                ? "sky.calendar.month.state.offline.cached"
+                : state == "offline-empty"
+                        ? "sky.calendar.month.state.offline.no-cache"
+                        : "sky.calendar.month.state.\(state)"
+            XCTAssertTrue(element(identifier, in: app).waitForExistence(timeout: 3))
+            capture(app, named: "calendar-month-\(state)-\(appearance)")
+            app.terminate()
+        }
+    }
+
     func testCaptureD3CurrentSkyEvidence() {
         XCUIDevice.shared.orientation = .portrait
 

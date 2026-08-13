@@ -371,6 +371,9 @@ struct D3FeatureModelTests {
         #expect(first.currentSky == .loaded(DevelopmentD3Sample.snapshot))
         #expect(first.calendarMonth == .loaded(DevelopmentD3Sample.month))
         #expect(first.calendarWeek == .loaded(DevelopmentD3Sample.week))
+        #expect(DevelopmentD3Sample.referenceToday == testDateUnchecked(year: 2026, month: 8, day: 13))
+        #expect(DevelopmentD3Sample.month.days.first(where: { $0.date.day == 14 })?.events.count == 3)
+        #expect(DevelopmentD3Sample.week.days.first(where: { $0.date.day == 14 })?.events.count == 3)
         #expect(DevelopmentD3Sample.snapshot.events.allSatisfy {
             $0.reliability == .unverified
         })
@@ -431,12 +434,79 @@ struct D3FeatureModelTests {
             eventID: DevelopmentD3Sample.lunarEventID,
             failure: .invalidContent
         ))
+
+        let cached = DevelopmentD3Sample.makeInput(arguments: [
+            "-HumayD3MonthState", "offline",
+            "-HumayD3WeekState", "offline"
+        ])
+        #expect(cached.calendarMonth == .offline(
+            selection: DevelopmentD3Sample.selectedMonth,
+            cached: DevelopmentD3Sample.month
+        ))
+        #expect(cached.calendarWeek == .offline(
+            startDate: DevelopmentD3Sample.selectedWeekStart,
+            cached: DevelopmentD3Sample.week
+        ))
     }
 #endif
+
+    @Test("Calendar reference grid stays Monday-first and supports six rows")
+    func calendarReferenceGridIsMondayFirst() throws {
+        let august = try SkyCalendarMonthID(year: 2026, month: 8)
+        let dates = SkyCalendarSupport.monthGridDates(for: august)
+        let july27 = try SkyCalendarDate(year: 2026, month: 7, day: 27)
+        let august1 = try SkyCalendarDate(year: 2026, month: 8, day: 1)
+        let august2 = try SkyCalendarDate(year: 2026, month: 8, day: 2)
+        let september6 = try SkyCalendarDate(year: 2026, month: 9, day: 6)
+
+        #expect(dates.count == 42)
+        #expect(dates.first == july27)
+        #expect(dates[5] == august1)
+        #expect(dates[6] == august2)
+        #expect(dates.last == september6)
+    }
+
+    @Test("Calendar preserves quiet-day distinction in supplied fixture")
+    func calendarQuietDayIsNotProviderFailure() throws {
+        let quietDate = try SkyCalendarDate(year: 2026, month: 8, day: 16)
+        let monthDays = Dictionary(uniqueKeysWithValues: DevelopmentD3Sample.month.days.map { ($0.date, $0.events) })
+
+        #expect(monthDays[quietDate] == nil)
+        #expect(!monthDays.keys.contains(quietDate))
+    }
+
+    @Test("Calendar timing presentation keeps exact, range, date-only and unavailable forms")
+    func calendarTimingPresentationUsesCentralFormatter() throws {
+        let context = try testContext()
+        let exact = DevelopmentD3Sample.lunarEvent.timing
+        let dateOnly = SkyEventTiming.dateOnly(try testDate(year: 2026, month: 8, day: 14))
+        let interval = SkyEventTiming.interval(try SkyEventInterval(
+            start: Date(timeIntervalSince1970: 1_786_464_000),
+            end: Date(timeIntervalSince1970: 1_786_496_400)
+        ))
+
+        #expect(SkyEventTimingFormatter.calendarText(for: exact, context: context) == "Exact · 18:00 TRT")
+        #expect(SkyEventTimingFormatter.calendarText(for: dateOnly, context: context) == "Date only · 14 August")
+        #expect(SkyEventTimingFormatter.calendarText(for: interval, context: context).contains("–"))
+        #expect(SkyEventTimingFormatter.calendarText(
+            for: .unavailable(.methodologyNotApproved),
+            context: context
+        ) == "Timing unavailable")
+    }
 
     private func testContext() throws -> SkyObservationContext {
         try SkyObservationContext(timeZoneIdentifier: "Europe/Istanbul")
     }
+
+#if DEBUG
+    private func testDateUnchecked(year: Int, month: Int, day: Int) -> SkyCalendarDate {
+        do {
+            return try SkyCalendarDate(year: year, month: month, day: day)
+        } catch {
+            preconditionFailure("Test date must be valid")
+        }
+    }
+#endif
 
     private func testDate(year: Int, month: Int, day: Int) throws -> SkyCalendarDate {
         try SkyCalendarDate(year: year, month: month, day: day)

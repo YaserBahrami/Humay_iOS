@@ -3,6 +3,9 @@ import SwiftUI
 struct CurrentSkyView: View {
     let state: CurrentSkyFeatureState
     let source: D3ContentSource
+    let calendarMonth: SkyCalendarMonthFeatureState
+    let calendarWeek: SkyCalendarWeekFeatureState
+    let calendarToday: SkyCalendarDate?
     let profileName: String
     let openProfile: () -> Void
 
@@ -35,6 +38,7 @@ struct CurrentSkyView: View {
         }
         .background(Color.humayGround.ignoresSafeArea())
         .foregroundStyle(Color.humayTextPrimary)
+        .navigationTitle("Sky")
         .navigationBarHidden(true)
     }
 
@@ -56,7 +60,12 @@ struct CurrentSkyView: View {
                     identifier: "sky.current.state.empty",
                     accent: .gold
                 )
-                SkyCalendarEntry()
+                SkyCalendarEntry(
+                    source: source,
+                    monthState: calendarMonth,
+                    weekState: calendarWeek,
+                    today: calendarToday
+                )
             }
 
         case .unavailable(let reason):
@@ -108,7 +117,12 @@ struct CurrentSkyView: View {
                     VStack(alignment: .leading, spacing: HumaySpacing.large) {
                         CurrentSkyHero(snapshot: snapshot, showsObservation: false)
                         SkyObservationFooter(snapshot: snapshot)
-                        SkyCalendarEntry()
+                        SkyCalendarEntry(
+                            source: source,
+                            monthState: calendarMonth,
+                            weekState: calendarWeek,
+                            today: calendarToday
+                        )
                     }
                     .frame(maxWidth: .infinity, alignment: .topLeading)
 
@@ -132,7 +146,12 @@ struct CurrentSkyView: View {
                         events: currentEvents,
                         snapshot: snapshot
                     )
-                    SkyCalendarEntry()
+                    SkyCalendarEntry(
+                        source: source,
+                        monthState: calendarMonth,
+                        weekState: calendarWeek,
+                        today: calendarToday
+                    )
                     CurrentSkyTimeline(
                         events: upcomingEvents,
                         snapshot: snapshot,
@@ -159,7 +178,7 @@ struct CurrentSkyView: View {
     }
 }
 
-private struct SkyDevelopmentNotice: View {
+struct SkyDevelopmentNotice: View {
     var body: some View {
         Label("Development sample · not calculated", systemImage: "hammer.fill")
             .font(.caption.weight(.semibold))
@@ -694,8 +713,20 @@ private struct SkyTimelineRow: View {
 }
 
 private struct SkyCalendarEntry: View {
+    let source: D3ContentSource
+    let monthState: SkyCalendarMonthFeatureState
+    let weekState: SkyCalendarWeekFeatureState
+    let today: SkyCalendarDate?
+
     var body: some View {
-        Button(action: {}) {
+        NavigationLink {
+            SkyCalendarView(
+                source: source,
+                monthState: monthState,
+                weekState: weekState,
+                today: today
+            )
+        } label: {
             HStack(spacing: HumaySpacing.medium) {
                 Image("IllustrationCalendarCelestial")
                     .resizable()
@@ -731,10 +762,9 @@ private struct SkyCalendarEntry: View {
             }
         }
         .buttonStyle(.plain)
-        .disabled(true)
         .accessibilityLabel("Calendar")
         .accessibilityValue("Month, week, and full timeline")
-        .accessibilityHint("Calendar will be available in a future Sky update")
+        .accessibilityHint("Opens Calendar")
         .accessibilityIdentifier("sky.current.calendar-entry")
     }
 
@@ -899,13 +929,13 @@ private struct SkyUnavailableCopy {
     }
 }
 
-private extension SkyEvent {
+extension SkyEvent {
     var style: SkyEventStyle {
         SkyEventStyle(type: type, system: system)
     }
 }
 
-private struct SkyEventStyle {
+struct SkyEventStyle {
     let accent: Color
     let symbol: String
 

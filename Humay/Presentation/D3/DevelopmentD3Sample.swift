@@ -15,6 +15,7 @@ enum DevelopmentD3Sample {
     }
 
     static let selectedWeekStart = date(year: 2026, month: 8, day: 10)
+    static let referenceToday = date(year: 2026, month: 8, day: 13)
 
     static let context = require {
         try SkyObservationContext(timeZoneIdentifier: "Europe/Istanbul")
@@ -68,8 +69,8 @@ enum DevelopmentD3Sample {
             summary: nil,
             timing: .interval(
                 try SkyEventInterval(
-                    start: instant(day: 15, hour: 18),
-                    end: instant(day: 16, hour: 0)
+                    start: instant(day: 14, hour: 18),
+                    end: instant(day: 15, hour: 0)
                 )
             ),
             relevance: .timeZone,
@@ -109,7 +110,7 @@ enum DevelopmentD3Sample {
                 ),
                 SkyCalendarDay(
                     date: date(year: 2026, month: 8, day: 14),
-                    events: [ingressEvent, gatedEvent]
+                    events: [ingressEvent, aspectEvent, gatedEvent]
                 )
             ]
         )
@@ -120,7 +121,7 @@ enum DevelopmentD3Sample {
             let day = 10 + offset
             let events: [SkyEvent] = switch day {
             case 12: [lunarEvent]
-            case 14: [ingressEvent, gatedEvent]
+            case 14: [ingressEvent, aspectEvent, gatedEvent]
             default: []
             }
             return SkyCalendarDay(

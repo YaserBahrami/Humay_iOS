@@ -1,14 +1,14 @@
 # Development Status
 
-Last updated: **2026-08-12**
+Last updated: **2026-08-13**
 
 ## Active priorities
 
-1. Keep remaining D3 Calendar/Event Detail work behind their approved references and task gates.
+1. Keep Calendar/Event Detail work behind their approved references and task gates; Calendar Month/Week is implemented over the Debug sample.
 2. Review the captured D2 Today + Circle implementation evidence and close the documented portrait-asset/iPad-reference discrepancies only when approved assets/references exist.
 3. Keep D2 and D3 development content behind explicit Debug composition; Release must expose only safe unavailable/empty states until real owning providers exist.
 4. Defer backend/API/provider and monetization work; ARCH-007 entitlement, ARCH-008 privacy/security and methodology validation remain prerequisites for production precision rollout.
-5. Do not begin D3 Calendar/Event Detail, D4 Chart or D5 Ask without their approved visual references and task gates.
+5. Do not begin Event Detail, D4 Chart or D5 Ask without their approved visual references and task gates.
 
 ## Repository authority
 
@@ -157,7 +157,7 @@ Production Free catalog/backend/provider, precision generation, entitlement, mon
 
 ### D3 engineering foundation
 
-**D3 — Sky + Calendar is PARTIAL: Current Sky presentation is implemented over a Debug-only sample; Calendar and Event Detail remain gated.**
+**D3 — Sky + Calendar is PARTIAL: Current Sky and Calendar Month/Week are implemented over a Debug-only sample; Event Detail remains gated.**
 
 Implemented:
 
@@ -168,16 +168,17 @@ Implemented:
 - `D3FeatureInput.productionUnavailable` with no sample payload;
 - Debug-only `DevelopmentD3Sample` with deterministic, unverified values and launch-argument state variants;
 - Current Sky SwiftUI for compact iPhone and wide iPad layouts, including loaded, loading, empty, unavailable, cached-offline, offline-without-cache and failed states;
-- actual iPhone/iPad Light/Dark simulator evidence and hierarchy/state UI coverage under `docs/design/implementation-evidence/d3-sky-calendar/current-sky/`;
+- Calendar Month/Week SwiftUI nested under Sky, with Monday-first civil grids, selected/today/quiet/event semantics, typed loading/loaded/empty/unavailable/offline/failed states, timezone-safe timing, and adaptive iPhone/iPad composition;
+- actual iPhone/iPad Light/Dark simulator evidence and hierarchy/state UI coverage under `docs/design/implementation-evidence/d3-sky-calendar/current-sky/` and `docs/design/implementation-evidence/d3-sky-calendar/calendar/`;
 - focused Swift Testing for validation, state semantics, deterministic sample composition and Release-safe composition.
 
 Not implemented:
 
-- Calendar month/week and event-detail production SwiftUI;
+- Event Detail production SwiftUI;
 - a calculation/provider pipeline, networking, caching, persistence or personalization;
 - methodology approval or production event provenance.
 
-D3.1 Current Sky, D3.2 Calendar and D3.3 Event Detail approved visual references exist under `docs/design/soulful-reference/`. `SKY-003` is implemented over the Debug-only sample; `SKY-002` remains pending for production data, and `SKY-004`/`SKY-005` remain TODO.
+D3.1 Current Sky, D3.2 Calendar and D3.3 Event Detail approved visual references exist under `docs/design/soulful-reference/`. `SKY-003` and `SKY-004` are implemented over the Debug-only sample; `SKY-002` remains pending for production data and `SKY-005` remains TODO.
 
 ## Backend/API timing
 
@@ -270,7 +271,7 @@ Cadence for user-facing work:
 
 ## Current runtime
 
-The app restores the local user-state snapshot before resolving a meaningful root. A missing file produces fresh four-beat onboarding. `Enter Humay` saves the profile/settings aggregate atomically before resolving the root to the adaptive Today / Circle / Sky / Chart / Ask shell. Terminating and relaunching a completed app restores that shell. Profile/Settings remains auxiliary from the header. Current Sky is implemented over the Debug-only sample; Chart and Ask remain minimal destination placeholders. Save failures leave the onboarding draft intact and expose a retry alert; restore failures remain distinct from fresh onboarding.
+The app restores the local user-state snapshot before resolving a meaningful root. A missing file produces fresh four-beat onboarding. `Enter Humay` saves the profile/settings aggregate atomically before resolving the root to the adaptive Today / Circle / Sky / Chart / Ask shell. Terminating and relaunching a completed app restores that shell. Profile/Settings remains auxiliary from the header. Current Sky and Calendar Month/Week are implemented over the Debug-only sample; Chart and Ask remain minimal destination placeholders. Save failures leave the onboarding draft intact and expose a retry alert; restore failures remain distinct from fresh onboarding.
 
 Debug builds inject `DevelopmentD2Sample` and `DevelopmentD3Sample` into the implemented D2/Current Sky runtime. Both development sample types are excluded by `#if DEBUG`; their Release compositions contain no sample astrology payload. The local snapshot remains the device source of truth only for current profile/settings; D2-added people and all D3 samples are transient and do not expand the persistence schema.
 

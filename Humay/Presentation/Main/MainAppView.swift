@@ -41,6 +41,9 @@ struct MainAppView: View {
                 CurrentSkyView(
                     state: d3FeatureInput.currentSky,
                     source: d3FeatureInput.source,
+                    calendarMonth: d3FeatureInput.calendarMonth,
+                    calendarWeek: d3FeatureInput.calendarWeek,
+                    calendarToday: calendarToday ?? SkyCalendarSupport.currentDate(),
                     profileName: profileName,
                     openProfile: openProfile
                 )
@@ -90,6 +93,15 @@ struct MainAppView: View {
 
     private func openProfile() {
         navigation.auxiliaryRoute = .profileSettings
+    }
+
+    private var calendarToday: SkyCalendarDate? {
+#if DEBUG
+        if d3FeatureInput.source.isDevelopmentSample {
+            return DevelopmentD3Sample.referenceToday
+        }
+#endif
+        return nil
     }
 }
 

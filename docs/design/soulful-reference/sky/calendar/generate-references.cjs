@@ -109,7 +109,7 @@ function svgShell({ width, height, title, description, mode, body, extraDefiniti
 }
 
 function reviewLabel(width, theme) {
-  return `<text x="${width / 2}" y="18" text-anchor="middle" class="label" font-size="7.5" fill="${theme.coralText}">D3.2 · REVIEW CANDIDATE · NOT APPROVED</text>`;
+  return `<text x="${width / 2}" y="18" text-anchor="middle" class="label" font-size="7.5" fill="${theme.coralText}">D3.2 · APPROVED VISUAL REFERENCE</text>`;
 }
 
 function statusBar(width, theme, device) {
@@ -345,7 +345,7 @@ function phoneMonth(mode) {
     width: 430,
     height: 932,
     title: `Humay Calendar Month iPhone ${mode}`,
-    description: `D3.2 review candidate, not approved. Month view on a 430 by 932 point iPhone canvas in ${mode} appearance.`,
+    description: `D3.2 approved visual reference. Month view on a 430 by 932 point iPhone canvas in ${mode} appearance.`,
     mode,
     body: `<rect width="430" height="932" fill="${theme.ground}"/>
       ${reviewLabel(430, theme)}${statusBar(430, theme, "phone")}${compactHeader(theme)}
@@ -392,7 +392,7 @@ function phoneWeek(mode) {
     width: 430,
     height: 932,
     title: `Humay Calendar Week iPhone ${mode}`,
-    description: `D3.2 review candidate, not approved. Seven-day celestial week navigator on a 430 by 932 point iPhone canvas in ${mode} appearance.`,
+    description: `D3.2 approved visual reference. Seven-day celestial week navigator on a 430 by 932 point iPhone canvas in ${mode} appearance.`,
     mode,
     body: `<rect width="430" height="932" fill="${theme.ground}"/>
       ${reviewLabel(430, theme)}${statusBar(430, theme, "phone")}${compactHeader(theme)}
@@ -451,7 +451,7 @@ function iPadMonth(mode) {
     width: 1024,
     height: 1366,
     title: `Humay Calendar Month iPad ${mode}`,
-    description: `D3.2 review candidate, not approved. Month master-detail composition on a 1024 by 1366 point iPad canvas in ${mode} appearance.`,
+    description: `D3.2 approved visual reference. Month master-detail composition on a 1024 by 1366 point iPad canvas in ${mode} appearance.`,
     mode,
     body: `<rect width="1024" height="1366" fill="${theme.ground}"/>
       ${reviewLabel(1024, theme)}${statusBar(1024, theme, "pad")}${iPadTopNavigation(theme)}${wideHeader(theme, "month")}
@@ -506,7 +506,7 @@ function iPadWeek(mode) {
     width: 1024,
     height: 1366,
     title: `Humay Calendar Week iPad ${mode}`,
-    description: `D3.2 review candidate, not approved. Seven-day celestial rail and bounded agenda on a 1024 by 1366 point iPad canvas in ${mode} appearance.`,
+    description: `D3.2 approved visual reference. Seven-day celestial rail and bounded agenda on a 1024 by 1366 point iPad canvas in ${mode} appearance.`,
     mode,
     body: `<rect width="1024" height="1366" fill="${theme.ground}"/>
       ${reviewLabel(1024, theme)}${statusBar(1024, theme, "pad")}${iPadTopNavigation(theme)}${wideHeader(theme, "week")}
@@ -658,10 +658,10 @@ function stateBoard() {
     width: 1600,
     height: 1080,
     title: "Humay Calendar state board",
-    description: "D3.2 review candidate, not approved. Seven Calendar state treatments plus the date-state key.",
+    description: "D3.2 approved visual reference. Seven Calendar state treatments plus the date-state key.",
     mode: "light",
     body: `<rect width="1600" height="1080" fill="#EFE9E2"/>
-      <text x="40" y="53" class="label" font-size="10.5" fill="${themes.light.coralText}">D3.2 · REVIEW CANDIDATE — NOT APPROVED</text>
+      <text x="40" y="53" class="label" font-size="10.5" fill="${themes.light.coralText}">D3.2 · APPROVED VISUAL REFERENCE</text>
       <text x="40" y="99" class="editorial" font-size="42" fill="${themes.light.ink}">Calendar state language</text>
       <text x="40" y="128" class="ui" font-size="14.5" fill="${themes.light.secondary}">Empty Calendar data, a quiet selected day, unavailable data, and failure remain separate meanings.</text>
       ${panelMarkup}
@@ -757,10 +757,10 @@ function stressBoard() {
     width: 1600,
     height: 720,
     title: "Humay Calendar stress board",
-    description: "D3.2 review candidate, not approved. Calendar stress evidence for long month names, five- and six-row months, long agenda content, and accessibility pressure.",
+    description: "D3.2 approved visual reference. Calendar stress evidence for long month names, five- and six-row months, long agenda content, and accessibility pressure.",
     mode: "light",
     body: `<rect width="1600" height="720" fill="#EFE9E2"/>
-      <text x="40" y="53" class="label" font-size="10.5" fill="${themes.light.coralText}">D3.2 · REVIEW CANDIDATE — NOT APPROVED</text>
+      <text x="40" y="53" class="label" font-size="10.5" fill="${themes.light.coralText}">D3.2 · APPROVED VISUAL REFERENCE</text>
       <text x="40" y="99" class="editorial" font-size="42" fill="${themes.light.ink}">Calendar stress evidence</text>
       <text x="40" y="128" class="ui" font-size="14.5" fill="${themes.light.secondary}">September, November, long content, mixed timing, Sagittarius, and accessibility pressure are exercised without extra device screenshots.</text>
       ${panels}`

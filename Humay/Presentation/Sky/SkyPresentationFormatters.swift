@@ -103,6 +103,37 @@ enum SkyEventTimingFormatter {
         }
     }
 
+    /// Calendar keeps the central timing semantics but uses the shorter editorial
+    /// prefix approved for agenda rows. No clock is added to date-only or
+    /// unavailable timing.
+    static func calendarText(
+        for timing: SkyEventTiming,
+        context: SkyObservationContext
+    ) -> String {
+        switch timing {
+        case .instant(let date):
+            return "Exact · \(timeString(date, context: context)) \(calendarZoneString(for: date, context: context))"
+        case .interval, .dateOnly:
+            return text(for: timing, context: context)
+        case .unavailable:
+            return "Timing unavailable"
+        }
+    }
+
+    static func calendarAccessibilityText(
+        for timing: SkyEventTiming,
+        context: SkyObservationContext
+    ) -> String {
+        switch timing {
+        case .instant(let date):
+            return "Exact timing at \(timeString(date, context: context)) \(calendarZoneString(for: date, context: context))"
+        case .interval, .dateOnly:
+            return accessibilityText(for: timing, context: context)
+        case .unavailable:
+            return "Timing unavailable"
+        }
+    }
+
     static func observationText(
         for date: Date,
         context: SkyObservationContext
@@ -202,6 +233,16 @@ enum SkyEventTimingFormatter {
     ) -> String {
         let timeZone = timeZone(for: context)
         return timeZone.abbreviation(for: date) ?? context.timeZoneIdentifier
+    }
+
+    private static func calendarZoneString(
+        for date: Date,
+        context: SkyObservationContext
+    ) -> String {
+        if context.timeZoneIdentifier == "Europe/Istanbul" {
+            return "TRT"
+        }
+        return zoneString(for: date, context: context)
     }
 
     private static func isSameCivilDay(

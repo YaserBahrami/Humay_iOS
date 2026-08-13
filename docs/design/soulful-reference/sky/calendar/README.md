@@ -2,7 +2,7 @@
 
 **Status:** APPROVED VISUAL REFERENCE
 
-This package is the approved cross-device visual reference for Calendar inside Sky. It does not authorize production SwiftUI, complete `SKY-004`, or begin D3.3 Event Detail.
+This package is the approved cross-device visual reference and implementation authority for Calendar inside Sky. It does not begin D3.3 Event Detail.
 
 ## Review first
 
@@ -62,4 +62,4 @@ No absent `SkyCalendarDay` is treated as provider failure. The month grid derive
 - Event-row chevrons reserve a future Event Detail destination; no Event Detail screen is designed here.
 - No production code, route, ViewModel, provider, calculation, cache, or asset-catalog entry is created.
 
-**NEXT ACTION:** Product owner reviews the D3.3 Event Detail references. Calendar production remains gated by `SKY-004`.
+**IMPLEMENTATION HANDOFF:** `SKY-004` Month/Week behavior is implemented over the approved boundary; `SKY-005` owns the later Event Detail route.

@@ -8,7 +8,7 @@ Status: implemented over the Debug-only `DevelopmentD3Sample`; production data p
 - Implemented surface: `Humay/Presentation/Sky/CurrentSkyView.swift`
 - App boundary: `Humay/App/AppFeatureComposition.swift`
 - Deterministic sample: `Humay/Presentation/D3/DevelopmentD3Sample.swift`
-- Calendar and Event Detail remain gated. The Calendar entry is intentionally disabled until `SKY-004`; no Event Detail route was added.
+- Calendar is now an active nested Month/Week route from Current Sky; Event Detail remains gated and no Event Detail route was added.
 
 ## Actual simulator captures
 
@@ -33,17 +33,17 @@ The iPhone capture set includes loading, empty, unavailable, offline with cached
 
 ## Reconciliation notes
 
-- iPhone uses one reading column: header → Debug disclosure → restrained orbital hero → current events → Calendar gate → upcoming timeline.
+- iPhone uses one reading column: header → Debug disclosure → restrained orbital hero → current events → Calendar entry → upcoming timeline.
 - iPad uses an intentional two-region composition at wide width: bounded hero/observation/Calendar context on the left and current/upcoming event scanning on the right. Compact widths collapse through the same SwiftUI content into the iPhone hierarchy.
 - Light mode uses the approved warm cream / dark ink treatment; Dark mode uses midnight/navy surfaces with warm readable text and tonal elevation.
 - Timing remains data-driven: exact instant, natural interval range, date-only, and explicit unavailable states are rendered from `SkyEventTiming` and the supplied `SkyObservationContext` timezone. Device timezone is not consulted.
 - Methodology remains explicit and centralized: Astronomical, Western, Vedic, and future tradition labels do not collapse into one astrology vocabulary.
 - The hero headline remains restrained editorial chrome because the Domain contract does not provide an approved editorial-hero field. It does not assert a calculated interpretation.
-- Decorative orbital art is SwiftUI-only, hidden from VoiceOver, and kept subordinate to supplied event facts. The Calendar asset is displayed as a disabled future-route gate; it is not a Calendar implementation.
+- Decorative orbital art is SwiftUI-only, hidden from VoiceOver, and kept subordinate to supplied event facts. The Calendar entry opens the nested Calendar implementation; it does not expose Event Detail.
 - `Development sample · not calculated` is Debug-only. Release composition supplies unavailable D3 input and excludes development sample types.
 
 ## Verification
 
 - `HumayTests`: formatter, state, methodology, timezone, composition-boundary coverage.
-- `HumayUITests`: loaded hierarchy, distinct state identifiers, cached offline content, and evidence capture.
+- `HumayUITests`: loaded hierarchy, distinct state identifiers, cached offline content, Calendar navigation/state coverage, and evidence capture.
 - Captured devices: iPhone 17 Pro (`491D593D-23B0-4992-B995-568C8AEE5ECE`) and iPad Pro 11-inch (`6F36DBA5-F778-4267-8B9D-F90B443675C4`), iOS 26.5.

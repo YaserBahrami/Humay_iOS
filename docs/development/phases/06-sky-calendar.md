@@ -1,6 +1,6 @@
 # Phase 06 — Sky & Calendar
 
-Status: **IN PROGRESS — non-visual foundation only**
+Status: **IN PROGRESS — Current Sky and Calendar Month/Week UI exist; provider/data pipeline pending**
 
 Depends on:
 - Phase 01 platform/design-system foundation;
@@ -58,7 +58,7 @@ Acceptance:
 - no deleted final-archive/old design artifact is used as authority.
 
 ### SKY-004 — Implement D3 Calendar month/week views
-Status: TODO  
+Status: IMPLEMENTED — Debug sample; production data pipeline pending
 Depends on: sufficient SKY-001 feature/domain contracts, approved D3 package
 
 Acceptance:
@@ -91,4 +91,4 @@ Acceptance:
 - system-specific terminology remains methodology-aware;
 - shipping Sky/Calendar surfaces reconcile with approved D3 iPhone+iPad Light/Dark references.
 
-The current partial foundation does not satisfy the phase exit criteria. D3.1 Current Sky is implemented over the Debug-only sample and reconciled on iPhone/iPad Light/Dark; `SKY-002` remains pending for production data, while `SKY-004` and `SKY-005` remain TODO.
+The current partial foundation does not satisfy the phase exit criteria. D3.1 Current Sky and D3.2 Calendar are implemented over the Debug-only sample and reconciled on iPhone/iPad Light/Dark; `SKY-002` remains pending for production data and `SKY-005` remains TODO.

@@ -1,7 +1,7 @@
 # Calendar Month + Week visual-design specification
 
 **Design phase:** D3.2 — Calendar Month + Week  
-**Status:** REVIEW CANDIDATE — NOT APPROVED  
+**Status:** APPROVED VISUAL REFERENCE
 **Concept:** Meridian Almanac  
 **Platforms:** iPhone and iPad, Light and Dark
 
@@ -9,7 +9,7 @@
 
 Calendar is the chronological exploration layer inside Sky. It extends the approved Lunar Meridian Current Sky family with quieter utility, a clear civil-date rhythm, sparse celestial signals, and factual event rows.
 
-This is visual guidance only. It does not implement `SKY-002`, `SKY-004`, or `SKY-005`; add production SwiftUI; calculate astrology; define providers; or authorize Event Detail.
+This is approved visual guidance and implementation authority for `SKY-004`. It does not implement `SKY-002` or `SKY-005`; calculate astrology; define providers; or authorize Event Detail.
 
 ## 2. Authority and family relationship
 
@@ -245,4 +245,4 @@ Five-week months retain the same row target and allow the grid to become shorter
 
 `generate-references.cjs` is the editable source for all SVG/PNG pairs. It uses the repository’s existing Cormorant Garamond font by reference and does not copy font files into this package. PNGs render at 2× the point canvases. Reference output remains illustrative and contains no production provider assumptions.
 
-Approval must remain package-wide. Product-owner acceptance of D3.2 is required before any Calendar SwiftUI implementation begins.
+Package-wide D3.2 approval is complete. Calendar SwiftUI preserves this reference boundary; Event Detail remains deferred to `SKY-005`.
