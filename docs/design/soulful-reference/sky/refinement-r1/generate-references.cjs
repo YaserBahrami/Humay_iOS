@@ -3,8 +3,7 @@ const path = require("node:path");
 const sharp = require("sharp");
 
 const out = __dirname;
-const fontDir = path.join(out, "reference-fonts");
-const newsreaderPath = path.join(fontDir, "Newsreader-Variable.ttf");
+const newsreaderPath = path.resolve(out, "../../../../../Humay/Resources/Fonts/Newsreader-Variable.ttf");
 const cormorantPath = path.resolve(out, "../../../../../Humay/Resources/Fonts/CormorantGaramond-Regular.otf");
 
 for (const required of [newsreaderPath, cormorantPath]) {
@@ -68,7 +67,7 @@ function shell({ width, height, mode = "light", title, description, body, defini
 }
 
 function reviewLabel(width, t) {
-  return `<text x="${width / 2}" y="15" text-anchor="middle" class="label" font-size="7.5" fill="${t.coralInk}">REVIEW CANDIDATE · NOT APPROVED</text>`;
+  return `<text x="${width / 2}" y="15" text-anchor="middle" class="label" font-size="7.5" fill="${t.coralInk}">APPROVED VISUAL REFERENCE · R1</text>`;
 }
 
 function statusBar(width, t, device) {
@@ -145,7 +144,7 @@ function illustrationBody(mode, x = 0, y = 0, scale = 1) {
 function illustrationAsset(mode) {
   return shell({
     width: 420, height: 260, mode,
-    title: `IllustrationCurrentSky ${mode} review candidate`,
+    title: `IllustrationCurrentSky ${mode} approved asset`,
     description: "Transparent flat-vector Lunar Compass asset preview. Symbolic only; it encodes no astronomical position.",
     body: illustrationBody(mode, 10, 12, 1.18)
   });
@@ -176,7 +175,7 @@ function currentSkyPhone(mode) {
     ${compactEventRow({ x: 22, y: 382, width: 386, height: 66, type: "ingress", title: ["Mars enters Gemini after an", "extended retrograde cycle"], timing: "14 August · date only", method: "Western" }, t)}
     ${compactEventRow({ x: 22, y: 448, width: 386, height: 62, type: "aspect", title: "Jupiter trine Saturn", timing: "Timing unavailable", method: "Vedic" }, t, true)}
   </g>`;
-  return shell({ width: 430, height: 932, mode, title: `Current Sky iPhone ${mode} refinement`, description: "Compact Current Sky review candidate with short Lunar Compass hero, dense event rows, and tab clearance.", body: `
+  return shell({ width: 430, height: 932, mode, title: `Current Sky iPhone ${mode} refinement`, description: "Approved compact Current Sky reference with short Lunar Compass hero, dense event rows, and tab clearance.", body: `
     <rect width="430" height="932" fill="${t.ground}"/>${reviewLabel(430, t)}${statusBar(430, t, "phone")}
     <text x="20" y="91" class="editorial" font-size="34" font-weight="500" fill="${t.ink}">Sky</text>
     <circle cx="388" cy="75" r="22" fill="${t.lavender}" opacity=".75"/><text x="388" y="80" text-anchor="middle" class="ui" font-size="13" font-weight="800" fill="${t.ink}">Y</text>
@@ -205,7 +204,7 @@ function currentSkyPhone(mode) {
 
 function currentSkyIPad(mode) {
   const t = themes[mode];
-  return shell({ width: 1024, height: 1366, mode, title: `Current Sky iPad ${mode} refinement`, description: "Two-region iPad Current Sky review candidate with bounded Lunar Compass hero and compact event rows.", body: `
+  return shell({ width: 1024, height: 1366, mode, title: `Current Sky iPad ${mode} refinement`, description: "Approved two-region iPad Current Sky reference with bounded Lunar Compass hero and compact event rows.", body: `
     <rect width="1024" height="1366" fill="${t.ground}"/>${reviewLabel(1024, t)}${statusBar(1024, t, "ipad")}${iPadTopNav(t)}
     <text x="48" y="176" class="editorial" font-size="38" font-weight="500" fill="${t.ink}">Sky</text><circle cx="950" cy="160" r="25" fill="${t.lavender}" opacity=".78"/><text x="950" y="166" text-anchor="middle" class="ui" font-size="14" font-weight="800" fill="${t.ink}">Y</text>${debugNote(48, 194, t)}
     <g aria-label="Current sky hero"><rect x="48" y="226" width="438" height="238" rx="24" fill="url(#hero)"/>
@@ -345,7 +344,7 @@ function typographyComparison() {
     ["COMPATIBILITY", "A steady kind of gravity", "82 · Strong resonance"]
   ];
   const rows = contexts.map((c, i) => { const y = 230 + i * 150; return `<text x="70" y="${y - 48}" class="label" font-size="10" fill="${t.coralInk}">${c[0]}</text><rect x="70" y="${y - 30}" width="590" height="118" rx="18" fill="${t.surface}" stroke="${t.hairline}"/><rect x="740" y="${y - 30}" width="590" height="118" rx="18" fill="${t.surface}" stroke="${t.hairline}"/><text x="98" y="${y + 20}" class="editorial" font-size="34" font-weight="520" fill="${t.ink}">${c[1]}</text><text x="98" y="${y + 53}" class="ui" font-size="14" fill="${t.secondary}">${c[2]}</text><text x="768" y="${y + 20}" class="current-editorial" font-size="38" fill="${t.ink}">${c[1]}</text><text x="768" y="${y + 53}" class="ui" font-size="14" fill="${t.secondary}">${c[2]}</text>`; }).join("");
-  return shell({ width: 1400, height: 900, mode: "light", title: "Humay typography comparison", description: "Newsreader and Cormorant Garamond pressure-tested across Sky, Calendar, Today, and Compatibility.", body: `<rect width="1400" height="900" fill="${t.ground}"/>${reviewLabel(1400, t)}<text x="70" y="78" class="editorial" font-size="42" font-weight="520" fill="${t.ink}">Editorial typography pressure test</text><text x="70" y="110" class="ui" font-size="15" fill="${t.secondary}">Global design-system candidate · Sky / Calendar / Today / Compatibility</text><text x="70" y="166" class="label" font-size="12" fill="${t.ink}">A · NEWSREADER — RECOMMENDED</text><text x="740" y="166" class="label" font-size="12" fill="${t.ink}">B · CORMORANT GARAMOND — CURRENT</text>${rows}<text x="70" y="866" class="ui" font-size="13" font-weight="650" fill="${t.coralInk}">Recommendation: Newsreader for editorial UI. Retain Cormorant as wordmark candidate. SF Pro remains body/UI.</text>` });
+  return shell({ width: 1400, height: 900, mode: "light", title: "Humay typography comparison", description: "Newsreader and Cormorant Garamond pressure-tested across Sky, Calendar, Today, and Compatibility.", body: `<rect width="1400" height="900" fill="${t.ground}"/>${reviewLabel(1400, t)}<text x="70" y="78" class="editorial" font-size="42" font-weight="520" fill="${t.ink}">Editorial typography pressure test</text><text x="70" y="110" class="ui" font-size="15" fill="${t.secondary}">Approved global system · Sky / Calendar / Today / Compatibility</text><text x="70" y="166" class="label" font-size="12" fill="${t.ink}">A · NEWSREADER — ADOPTED</text><text x="740" y="166" class="label" font-size="12" fill="${t.ink}">B · CORMORANT GARAMOND — WORDMARK</text>${rows}<text x="70" y="866" class="ui" font-size="13" font-weight="650" fill="${t.coralInk}">Newsreader carries editorial UI. Cormorant carries the wordmark. SF Pro remains body/UI.</text>` });
 }
 
 function stateStudy(kind) {

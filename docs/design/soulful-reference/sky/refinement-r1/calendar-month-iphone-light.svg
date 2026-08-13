@@ -24,7 +24,7 @@
     
   </defs>
   
-    <rect width="430" height="932" fill="#FBF7F1"/><text x="215" y="15" text-anchor="middle" class="label" font-size="7.5" fill="#A83F3C">REVIEW CANDIDATE · NOT APPROVED</text><g aria-hidden="true">
+    <rect width="430" height="932" fill="#FBF7F1"/><text x="215" y="15" text-anchor="middle" class="label" font-size="7.5" fill="#A83F3C">APPROVED VISUAL REFERENCE · R1</text><g aria-hidden="true">
     <text x="22" y="34" class="ui" font-size="14" font-weight="700" fill="#151B28">9:41</text>
     <g transform="translate(350 22)" fill="none" stroke="#151B28" stroke-width="1.8" stroke-linecap="round">
       <path d="M0 8h2V6h2v2h2V3h2v5"/><path d="M14 4c3-3 8-3 11 0M17 7c2-2 4-2 6 0"/>

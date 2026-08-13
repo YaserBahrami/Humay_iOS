@@ -42,7 +42,7 @@ struct SkyCalendarView: View {
     var body: some View {
         GeometryReader { proxy in
             ScrollView {
-                VStack(alignment: .leading, spacing: HumaySpacing.large) {
+                VStack(alignment: .leading, spacing: HumaySpacing.medium) {
                     if source.isDevelopmentSample {
                         SkyDevelopmentNotice()
                     }
@@ -54,8 +54,8 @@ struct SkyCalendarView: View {
                 .frame(maxWidth: 1_120, alignment: .top)
                 .frame(maxWidth: .infinity, alignment: .top)
                 .padding(.horizontal, HumayLayout.screenGutter(for: proxy.size.width))
-                .padding(.top, HumaySpacing.large)
-                .padding(.bottom, HumaySpacing.extraExtraLarge * 2)
+                .padding(.top, HumaySpacing.medium)
+                .padding(.bottom, HumaySpacing.extraExtraLarge)
             }
             .scrollIndicators(.hidden)
         }
@@ -67,6 +67,7 @@ struct SkyCalendarView: View {
             ToolbarItem(placement: .topBarTrailing) {
                 Button("Today", action: goToToday)
                     .foregroundStyle(Color.humayCoral)
+                    .frame(minWidth: HumayMetrics.minimumHitTarget, minHeight: HumayMetrics.minimumHitTarget)
                     .accessibilityIdentifier("sky.calendar.today")
             }
         }

@@ -1,6 +1,6 @@
 # Adaptive and Accessibility Notes
 
-**Status:** REVIEW CANDIDATE — NOT APPROVED
+**Status:** APPROVED VISUAL REFERENCE — IMPLEMENTED AND RECONCILED
 
 ## Reference canvases
 
@@ -75,4 +75,3 @@ Use one full-width rail followed by two regions: selected agenda and `Across the
 - Validate Light and Dark independently, including Increase Contrast.
 - Today, selected, event-bearing, disabled, and outside-month states all have non-color cues.
 - Reduce Motion replaces any future hero drift or selection animation with an immediate state change or brief opacity transition.
-

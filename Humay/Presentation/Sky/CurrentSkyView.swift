@@ -180,12 +180,10 @@ struct CurrentSkyView: View {
 
 struct SkyDevelopmentNotice: View {
     var body: some View {
-        Label("Development sample · not calculated", systemImage: "hammer.fill")
-            .font(.caption.weight(.semibold))
+        Label("Development sample · not calculated", systemImage: "hammer")
+            .font(.caption)
             .foregroundStyle(Color.humayTextSecondary)
-            .padding(.horizontal, HumaySpacing.medium)
-            .padding(.vertical, HumaySpacing.small)
-            .background(Color.humayRaisedSurface, in: Capsule())
+            .frame(minHeight: 22, alignment: .leading)
             .accessibilityElement(children: .combine)
             .accessibilityIdentifier("sky.current.development-sample.notice")
     }
@@ -235,16 +233,31 @@ private struct CurrentSkyHero: View {
     let showsObservation: Bool
 
     @Environment(\.colorScheme) private var colorScheme
+    @Environment(\.dynamicTypeSize) private var dynamicTypeSize
 
     private var leadEvent: SkyEvent { snapshot.events[0] }
 
     var body: some View {
-        ViewThatFits(in: .horizontal) {
-            heroContent(horizontal: true)
-            heroContent(horizontal: false)
+        HStack(alignment: .center, spacing: HumaySpacing.medium) {
+            heroText
+                .layoutPriority(1)
+
+            if !dynamicTypeSize.isAccessibilitySize {
+                Spacer(minLength: 0)
+                Image("IllustrationCurrentSky")
+                    .resizable()
+                    .scaledToFit()
+                    .frame(
+                        width: showsObservation ? 132 : 194,
+                        height: showsObservation ? 104 : 156
+                    )
+                    .accessibilityHidden(true)
+            }
         }
+        .frame(minHeight: showsObservation ? 108 : 196, alignment: .leading)
         .frame(maxWidth: .infinity, alignment: .leading)
-        .padding(HumaySpacing.extraLarge)
+        .padding(.horizontal, HumaySpacing.large)
+        .padding(.vertical, HumaySpacing.large)
         .background(heroBackground, in: RoundedRectangle(cornerRadius: HumayRadius.feature))
         .overlay {
             RoundedRectangle(cornerRadius: HumayRadius.feature)
@@ -256,33 +269,12 @@ private struct CurrentSkyHero: View {
         .accessibilityIdentifier("sky.current.hero")
     }
 
-    @ViewBuilder
-    private func heroContent(horizontal: Bool) -> some View {
-        if horizontal {
-            HStack(alignment: .center, spacing: HumaySpacing.medium) {
-                heroText
-                Spacer(minLength: HumaySpacing.small)
-                LunarMeridianArt()
-                    .frame(width: 148, height: 132)
-            }
-        } else {
-            VStack(alignment: .leading, spacing: HumaySpacing.medium) {
-                heroText
-                HStack {
-                    Spacer(minLength: 0)
-                    LunarMeridianArt()
-                        .frame(width: 148, height: 132)
-                }
-            }
-        }
-    }
-
     private var heroText: some View {
         VStack(alignment: .leading, spacing: HumaySpacing.small) {
-                Text("A closer look at the sky")
-                    .font(HumayTypography.editorialTitle)
-                    .foregroundStyle(heroForeground)
-                    .fixedSize(horizontal: false, vertical: true)
+            Text("A closer look at the sky")
+                .font(HumayTypography.editorialTitle)
+                .foregroundStyle(heroForeground)
+                .fixedSize(horizontal: false, vertical: true)
 
             if showsObservation {
                 Text(
@@ -299,7 +291,8 @@ private struct CurrentSkyHero: View {
                         context: snapshot.context
                     )
                 )
-                .font(HumayTypography.technical)
+                .font(HumayTypography.supporting)
+                .monospacedDigit()
                 .foregroundStyle(heroForeground.opacity(0.82))
                 .fixedSize(horizontal: false, vertical: true)
             }
@@ -330,58 +323,6 @@ private struct CurrentSkyHero: View {
             + "\(SkyEventTimingFormatter.contextText(for: snapshot.context)), \(observation)"
     }
 
-}
-
-private struct LunarMeridianArt: View {
-    @Environment(\.colorScheme) private var colorScheme
-
-    var body: some View {
-        ZStack {
-            Circle()
-                .fill(Color.humayLavender.opacity(0.14))
-                .frame(width: 126, height: 126)
-
-            Ellipse()
-                .stroke(Color.humayCelestialBlue.opacity(0.62), lineWidth: 2)
-                .frame(width: 150, height: 58)
-                .rotationEffect(.degrees(-16))
-
-            Ellipse()
-                .stroke(Color.humaySolarGold, lineWidth: 2.5)
-                .frame(width: 164, height: 70)
-                .rotationEffect(.degrees(14))
-
-            ZStack {
-                Circle()
-                    .fill(colorScheme == .light ? Color.humayGround : Color.humaySolarGold)
-                Circle()
-                    .fill(colorScheme == .light ? Color.humayRaisedSurface : Color.humaySurface)
-                    .offset(x: 16, y: -5)
-            }
-            .frame(width: 78, height: 78)
-
-            Circle()
-                .fill(Color.humayCoral)
-                .frame(width: 10, height: 10)
-                .offset(x: -72, y: -12)
-
-            Circle()
-                .fill(Color.humayLavender)
-                .frame(width: 12, height: 12)
-                .offset(x: 72, y: 22)
-
-            Image(systemName: "sparkle")
-                .font(.system(size: 21, weight: .light))
-                .foregroundStyle(Color.humayCoral)
-                .offset(x: -43, y: -44)
-
-            Image(systemName: "sparkle")
-                .font(.system(size: 17, weight: .light))
-                .foregroundStyle(Color.humaySolarGold)
-                .offset(x: 45, y: 47)
-        }
-        .accessibilityHidden(true)
-    }
 }
 
 private struct SkyObservationFooter: View {
@@ -433,7 +374,7 @@ private struct CurrentSkyEventSection: View {
                             context: snapshot.context,
                             observedAt: snapshot.observedAt
                         )
-                        .padding(.vertical, HumaySpacing.medium)
+                        .padding(.vertical, HumaySpacing.small)
 
                         if index < events.count - 1 {
                             Divider()
@@ -495,12 +436,12 @@ private struct CurrentSkyEventRow: View {
             HStack(alignment: .firstTextBaseline, spacing: HumaySpacing.small) {
                 timingText
                 Spacer(minLength: HumaySpacing.small)
-                SkyMethodologyPill(event: event)
+                SkyMethodologyMetadata(event: event)
             }
         } else {
             VStack(alignment: .leading, spacing: HumaySpacing.small) {
                 timingText
-                SkyMethodologyPill(event: event)
+                SkyMethodologyMetadata(event: event)
             }
         }
     }
@@ -513,7 +454,8 @@ private struct CurrentSkyEventRow: View {
                 observedAt: observedAt
             )
         )
-        .font(HumayTypography.technical.weight(.semibold))
+        .font(HumayTypography.supporting.weight(.semibold))
+        .monospacedDigit()
         .foregroundStyle(Color.humayTextSecondary)
         .fixedSize(horizontal: false, vertical: true)
     }
@@ -534,17 +476,20 @@ private struct CurrentSkyEventRow: View {
     }
 }
 
-private struct SkyMethodologyPill: View {
+private struct SkyMethodologyMetadata: View {
     let event: SkyEvent
 
     var body: some View {
-        Text(SkyMethodologyFormatter.label(for: event.system))
-            .font(.caption2.weight(.semibold))
-            .foregroundStyle(Color.humayTextPrimary)
-            .padding(.horizontal, HumaySpacing.medium)
-            .padding(.vertical, HumaySpacing.extraSmall)
-            .background(event.style.accent.opacity(0.14), in: Capsule())
-            .fixedSize(horizontal: true, vertical: false)
+        HStack(spacing: HumaySpacing.extraSmall) {
+            Circle()
+                .fill(event.style.accent)
+                .frame(width: 5, height: 5)
+                .accessibilityHidden(true)
+            Text(SkyMethodologyFormatter.label(for: event.system))
+                .font(.caption.weight(.semibold))
+                .foregroundStyle(Color.humayTextSecondary)
+        }
+        .fixedSize(horizontal: true, vertical: false)
     }
 }
 
@@ -553,10 +498,11 @@ private struct SkyEventGlyph: View {
 
     var body: some View {
         Image(systemName: event.style.symbol)
-            .font(.system(size: 21, weight: .medium))
+            .font(.system(size: 16, weight: .medium))
             .foregroundStyle(event.style.accent)
-            .frame(width: 44, height: 44)
+            .frame(width: 30, height: 30)
             .background(event.style.accent.opacity(0.12), in: Circle())
+            .frame(width: HumayMetrics.minimumHitTarget, height: HumayMetrics.minimumHitTarget)
             .accessibilityHidden(true)
     }
 }
@@ -608,7 +554,7 @@ private struct CurrentSkyTimeline: View {
                         context: snapshot.context,
                         observedAt: snapshot.observedAt
                     )
-                    .padding(.vertical, HumaySpacing.medium)
+                    .padding(.vertical, HumaySpacing.small)
 
                     if index < events.count - 1 {
                         Divider()
@@ -638,11 +584,11 @@ private struct SkyTimelineRow: View {
                     HStack(alignment: .firstTextBaseline, spacing: HumaySpacing.small) {
                         timingText
                         Spacer(minLength: HumaySpacing.small)
-                        SkyMethodologyPill(event: event)
+                        SkyMethodologyMetadata(event: event)
                     }
                     VStack(alignment: .leading, spacing: HumaySpacing.small) {
                         timingText
-                        SkyMethodologyPill(event: event)
+                        SkyMethodologyMetadata(event: event)
                     }
                 }
             }
@@ -706,7 +652,8 @@ private struct SkyTimelineRow: View {
                 observedAt: observedAt
             )
         )
-        .font(HumayTypography.technical)
+        .font(HumayTypography.supporting)
+        .monospacedDigit()
         .foregroundStyle(Color.humayTextSecondary)
         .fixedSize(horizontal: false, vertical: true)
     }
@@ -731,7 +678,7 @@ private struct SkyCalendarEntry: View {
                 Image("IllustrationCalendarCelestial")
                     .resizable()
                     .scaledToFit()
-                    .frame(width: 70, height: 70)
+                    .frame(width: 42, height: 42)
                     .accessibilityHidden(true)
 
                 VStack(alignment: .leading, spacing: HumaySpacing.extraSmall) {
@@ -753,7 +700,7 @@ private struct SkyCalendarEntry: View {
             }
             .padding(.horizontal, HumaySpacing.small)
             .padding(.vertical, HumaySpacing.small)
-            .frame(minHeight: 76, alignment: .leading)
+            .frame(minHeight: 60, alignment: .leading)
             .frame(maxWidth: .infinity, alignment: .leading)
             .background(calendarBackground, in: RoundedRectangle(cornerRadius: HumayRadius.surface))
             .overlay {

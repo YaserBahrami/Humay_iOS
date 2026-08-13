@@ -121,7 +121,8 @@ struct SkyCalendarMonthView: View {
                             monthID: monthID,
                             selectedDate: $selectedDate,
                             today: today,
-                            eventDays: eventDays
+                            eventDays: eventDays,
+                            usesRegularRows: true
                         )
 
                         if showsEmptyMonthMessage {
@@ -147,7 +148,8 @@ struct SkyCalendarMonthView: View {
                     monthID: monthID,
                     selectedDate: $selectedDate,
                     today: today,
-                    eventDays: eventDays
+                    eventDays: eventDays,
+                    usesRegularRows: false
                 )
 
                 if showsEmptyMonthMessage {
@@ -346,13 +348,6 @@ struct SkyCalendarWeekView: View {
                     context: context,
                     identifier: "sky.calendar.agenda"
                 )
-
-                SkyCalendarWeekContext(
-                    dates: dates,
-                    selectedDate: date,
-                    eventDays: eventDays,
-                    context: context
-                )
             }
 
             if let context {
@@ -453,9 +448,17 @@ private struct SkyCalendarCivilGrid: View {
     @Binding var selectedDate: SkyCalendarDate?
     let today: SkyCalendarDate?
     let eventDays: [SkyCalendarDate: [SkyEvent]]
+    let usesRegularRows: Bool
+
+    @Environment(\.dynamicTypeSize) private var dynamicTypeSize
 
     private var dates: [SkyCalendarDate] {
         SkyCalendarSupport.monthGridDates(for: monthID)
+    }
+
+    private var rowHeight: CGFloat {
+        if dynamicTypeSize.isAccessibilitySize { return 56 }
+        return usesRegularRows ? 50 : HumayMetrics.minimumHitTarget
     }
 
     var body: some View {
@@ -467,7 +470,7 @@ private struct SkyCalendarCivilGrid: View {
                         .tracking(1.1)
                         .foregroundStyle(Color.humayTextSecondary)
                         .frame(maxWidth: .infinity)
-                        .frame(minHeight: HumayMetrics.minimumHitTarget)
+                        .frame(height: 30)
                 }
             }
 
@@ -483,6 +486,7 @@ private struct SkyCalendarCivilGrid: View {
                             selectedDate: selectedDate,
                             today: today,
                             events: eventDays[date] ?? [],
+                            rowHeight: rowHeight,
                             action: { selectedDate = date }
                         )
                         .frame(maxWidth: .infinity)
@@ -494,8 +498,8 @@ private struct SkyCalendarCivilGrid: View {
                 }
             }
         }
-        .padding(.horizontal, HumaySpacing.small)
-        .padding(.vertical, HumaySpacing.small)
+        .padding(.horizontal, HumaySpacing.extraSmall)
+        .padding(.vertical, HumaySpacing.extraSmall)
         .background(Color.humaySurface, in: RoundedRectangle(cornerRadius: HumayRadius.feature))
         .overlay {
             RoundedRectangle(cornerRadius: HumayRadius.feature)
@@ -512,9 +516,8 @@ private struct SkyCalendarDateCell: View {
     let selectedDate: SkyCalendarDate?
     let today: SkyCalendarDate?
     let events: [SkyEvent]
+    let rowHeight: CGFloat
     let action: () -> Void
-
-    @Environment(\.colorScheme) private var colorScheme
 
     private var isSelected: Bool { selectedDate == date }
     private var isToday: Bool { today == date }
@@ -522,51 +525,42 @@ private struct SkyCalendarDateCell: View {
 
     var body: some View {
         Button(action: action) {
-            VStack(spacing: 2) {
-                if isOutsideMonth && showsBoundaryLabel {
-                    Text(SkyCalendarSupport.shortMonth(date))
-                        .font(.caption2.weight(.bold))
-                        .tracking(1)
-                        .foregroundStyle(Color.humayTextSecondary)
-                } else {
-                    Color.clear.frame(height: 12)
+            ZStack {
+                if isSelected {
+                    Circle()
+                        .fill(Color.humayCoral)
+                        .frame(width: 32, height: 32)
+                } else if isToday {
+                    Circle()
+                        .stroke(Color.humayCoral, lineWidth: 2)
+                        .frame(width: 32, height: 32)
                 }
 
-                ZStack {
-                    if isSelected {
-                        Circle()
-                            .fill(Color.humayCoral)
-                            .frame(width: 40, height: 40)
-                    } else if isToday {
-                        Circle()
-                            .stroke(Color.humayCoral, lineWidth: 2)
-                            .frame(width: 40, height: 40)
-                            .overlay(alignment: .top) {
-                                Capsule()
-                                    .fill(Color.humayCoral)
-                                    .frame(width: 16, height: 3)
-                                    .offset(y: -2)
-                            }
-                    }
-
-                    Text(String(date.day))
-                        .font(.body.weight(isToday || isSelected ? .bold : .semibold))
-                        .italic(isOutsideMonth)
-                        .foregroundStyle(textColor)
+                if isToday {
+                    Capsule()
+                        .fill(Color.humayCoral)
+                        .frame(width: 12, height: 3)
+                        .offset(y: -18)
+                        .accessibilityHidden(true)
                 }
-                .frame(width: 44, height: 40)
+
+                Text(String(date.day))
+                    .font(.callout.weight(isToday || isSelected ? .bold : .semibold))
+                    .monospacedDigit()
+                    .foregroundStyle(textColor)
 
                 marker
-                    .frame(height: 14)
+                    .offset(y: 14)
 
-                Text(isToday ? "TODAY" : " ")
-                    .font(.caption2.weight(.bold))
-                    .tracking(1.2)
-                    .foregroundStyle(Color.humayCoral)
-                    .frame(height: 10)
-                    .opacity(isToday ? 1 : 0)
+                if isOutsideMonth && showsBoundaryLabel {
+                    Text(SkyCalendarSupport.shortMonth(date))
+                        .font(.system(size: 7, weight: .bold))
+                        .tracking(0.6)
+                        .foregroundStyle(Color.humayTextSecondary)
+                        .offset(y: -(rowHeight / 2) + 5)
+                }
             }
-            .frame(minWidth: HumayMetrics.minimumHitTarget, minHeight: 64)
+            .frame(minWidth: HumayMetrics.minimumHitTarget, minHeight: rowHeight)
             .frame(maxWidth: .infinity)
             .contentShape(Rectangle())
         }
@@ -582,18 +576,18 @@ private struct SkyCalendarDateCell: View {
     private var marker: some View {
         if events.count == 1, events[0].type == .lunarPhase {
             Image(systemName: "moon.fill")
-                .font(.caption.weight(.semibold))
-                .foregroundStyle(Color.humaySolarGold)
+                .font(.system(size: 7, weight: .bold))
+                .foregroundStyle(isSelected ? selectedForeground : Color.humaySolarGold)
                 .accessibilityHidden(true)
         } else if !events.isEmpty {
-            HStack(spacing: 5) {
+            HStack(spacing: 3) {
                 Circle()
                     .fill(markerColor)
-                    .frame(width: 8, height: 8)
+                    .frame(width: 5, height: 5)
                 if events.count > 1 {
                     Text(String(events.count))
-                        .font(.caption2.weight(.bold))
-                        .foregroundStyle(isSelected ? Color.humayTextPrimary : Color.humayTextSecondary)
+                        .font(.system(size: 7, weight: .bold))
+                        .foregroundStyle(isSelected ? selectedForeground : Color.humayTextSecondary)
                 }
             }
             .accessibilityHidden(true)
@@ -605,12 +599,13 @@ private struct SkyCalendarDateCell: View {
 
     private var textColor: Color {
         if isSelected {
-            return colorScheme == .light ? Color.humayGround : Color.humayTextPrimary
+            return selectedForeground
         }
         return isOutsideMonth ? Color.humayTextSecondary.opacity(0.62) : Color.humayTextPrimary
     }
 
     private var markerColor: Color {
+        if isSelected { return selectedForeground }
         if events.contains(where: { $0.type == .planetaryAspect }) {
             return Color.humayLavender
         }
@@ -618,6 +613,10 @@ private struct SkyCalendarDateCell: View {
             return Color.humayCelestialBlue
         }
         return Color.humayCoral
+    }
+
+    private var selectedForeground: Color {
+        Color.humayGround
     }
 
     private var accessibilityLabel: String {
@@ -639,21 +638,25 @@ private struct SkyCalendarWeekRail: View {
     let today: SkyCalendarDate?
     let eventDays: [SkyCalendarDate: [SkyEvent]]
 
+    @Environment(\.dynamicTypeSize) private var dynamicTypeSize
+
     var body: some View {
-        HStack(spacing: 0) {
-            ForEach(dates, id: \.self) { date in
-                SkyCalendarWeekDateCell(
-                    date: date,
-                    selectedDate: selectedDate,
-                    today: today,
-                    events: eventDays[date] ?? [],
-                    action: { selectedDate = date }
-                )
-                .frame(maxWidth: .infinity)
+        Group {
+            if dynamicTypeSize.isAccessibilitySize {
+                ScrollView(.horizontal) {
+                    HStack(spacing: 0) {
+                        weekCells(fixedWidth: 60)
+                    }
+                }
+                .scrollIndicators(.hidden)
+            } else {
+                HStack(spacing: 0) {
+                    weekCells(fixedWidth: nil)
+                }
             }
         }
-        .padding(.horizontal, HumaySpacing.small)
-        .padding(.vertical, HumaySpacing.small)
+        .padding(.horizontal, HumaySpacing.extraSmall)
+        .padding(.vertical, HumaySpacing.extraSmall)
         .background(Color.humaySurface, in: RoundedRectangle(cornerRadius: HumayRadius.feature))
         .overlay {
             RoundedRectangle(cornerRadius: HumayRadius.feature)
@@ -661,6 +664,21 @@ private struct SkyCalendarWeekRail: View {
         }
         .accessibilityElement(children: .contain)
         .accessibilityIdentifier("sky.calendar.week.rail")
+    }
+
+    @ViewBuilder
+    private func weekCells(fixedWidth: CGFloat?) -> some View {
+        ForEach(dates, id: \.self) { date in
+            SkyCalendarWeekDateCell(
+                date: date,
+                selectedDate: selectedDate,
+                today: today,
+                events: eventDays[date] ?? [],
+                action: { selectedDate = date }
+            )
+            .frame(width: fixedWidth)
+            .frame(maxWidth: fixedWidth == nil ? .infinity : nil)
+        }
     }
 }
 
@@ -671,52 +689,50 @@ private struct SkyCalendarWeekDateCell: View {
     let events: [SkyEvent]
     let action: () -> Void
 
-    @Environment(\.colorScheme) private var colorScheme
+    @Environment(\.dynamicTypeSize) private var dynamicTypeSize
 
     private var isSelected: Bool { selectedDate == date }
     private var isToday: Bool { today == date }
 
     var body: some View {
         Button(action: action) {
-            VStack(spacing: HumaySpacing.small) {
+            VStack(spacing: 2) {
                 Text(SkyCalendarSupport.shortWeekday(date))
-                    .font(.caption.weight(.bold))
-                    .tracking(1.1)
-                    .foregroundStyle(isSelected ? selectedForeground : Color.humayTextSecondary)
+                    .font(.caption2.weight(.bold))
+                    .tracking(0.9)
+                    .foregroundStyle(Color.humayTextSecondary)
 
                 ZStack {
                     if isSelected {
-                        RoundedRectangle(cornerRadius: HumayRadius.feature)
+                        Circle()
                             .fill(Color.humayCoral)
                     } else if isToday {
-                        RoundedRectangle(cornerRadius: HumayRadius.feature)
+                        Circle()
                             .stroke(Color.humayCoral, lineWidth: 2)
-                            .overlay(alignment: .top) {
-                                Capsule()
-                                    .fill(Color.humayCoral)
-                                    .frame(width: 18, height: 3)
-                                    .offset(y: -2)
-                            }
                     }
 
-                    VStack(spacing: HumaySpacing.small) {
-                        Text(String(date.day))
-                            .font(.title3.weight(.bold))
-                            .foregroundStyle(isSelected ? selectedForeground : Color.humayTextPrimary)
-
-                        marker
+                    if isToday {
+                        Capsule()
+                            .fill(Color.humayCoral)
+                            .frame(width: 14, height: 3)
+                            .offset(y: -21)
+                            .accessibilityHidden(true)
                     }
+
+                    Text(String(date.day))
+                        .font(.title3.weight(.semibold))
+                        .monospacedDigit()
+                        .foregroundStyle(isSelected ? selectedForeground : Color.humayTextPrimary)
+
+                    marker
+                        .offset(y: 14)
                 }
-                .frame(minWidth: 44, minHeight: 92)
-
-                Text(isToday ? "TODAY" : " ")
-                    .font(.caption2.weight(.bold))
-                    .tracking(1.1)
-                    .foregroundStyle(Color.humayCoral)
-                    .frame(height: 10)
-                    .opacity(isToday ? 1 : 0)
+                .frame(width: 40, height: 40)
             }
-            .frame(minWidth: HumayMetrics.minimumHitTarget, minHeight: 136)
+            .frame(
+                minWidth: HumayMetrics.minimumHitTarget,
+                minHeight: dynamicTypeSize.isAccessibilitySize ? 72 : 60
+            )
             .frame(maxWidth: .infinity)
             .contentShape(Rectangle())
         }
@@ -732,29 +748,29 @@ private struct SkyCalendarWeekDateCell: View {
     private var marker: some View {
         if events.count == 1, events[0].type == .lunarPhase {
             Image(systemName: "moon.fill")
-                .font(.caption.weight(.semibold))
+                .font(.system(size: 7, weight: .bold))
                 .foregroundStyle(isSelected ? selectedForeground : Color.humaySolarGold)
                 .accessibilityHidden(true)
         } else if !events.isEmpty {
-            HStack(spacing: 5) {
+            HStack(spacing: 3) {
                 Circle()
                     .fill(isSelected ? selectedForeground : Color.humayLavender)
-                    .frame(width: 8, height: 8)
+                    .frame(width: 5, height: 5)
                 if events.count > 1 {
                     Text(String(events.count))
-                        .font(.caption2.weight(.bold))
+                        .font(.system(size: 7, weight: .bold))
                         .foregroundStyle(isSelected ? selectedForeground : Color.humayTextSecondary)
                 }
             }
             .accessibilityHidden(true)
         } else {
-            Color.clear.frame(height: 8)
+            Color.clear.frame(width: 5, height: 5)
                 .accessibilityHidden(true)
         }
     }
 
     private var selectedForeground: Color {
-        colorScheme == .light ? Color.humayGround : Color.humayTextPrimary
+        Color.humayGround
     }
 
     private var accessibilityLabel: String {
@@ -798,7 +814,7 @@ private struct SkyCalendarAgenda: View {
                 VStack(spacing: 0) {
                     ForEach(Array(events.enumerated()), id: \.element.id) { index, event in
                         SkyCalendarEventRow(event: event, context: context)
-                            .padding(.vertical, HumaySpacing.medium)
+                            .padding(.vertical, HumaySpacing.small)
 
                         if index < events.count - 1 {
                             Divider().overlay(Color.humayHairline)
@@ -866,7 +882,8 @@ private struct SkyCalendarEventRow: View {
 
     private var timingText: some View {
         Text(timing)
-            .font(HumayTypography.technical.weight(.semibold))
+            .font(HumayTypography.supporting.weight(.semibold))
+            .monospacedDigit()
             .foregroundStyle(Color.humayTextSecondary)
             .fixedSize(horizontal: false, vertical: true)
     }
@@ -900,10 +917,11 @@ private struct SkyCalendarEventGlyph: View {
 
     var body: some View {
         Image(systemName: event.style.symbol)
-            .font(.system(size: 21, weight: .medium))
+            .font(.system(size: 16, weight: .medium))
             .foregroundStyle(event.style.accent)
-            .frame(width: 44, height: 44)
+            .frame(width: 30, height: 30)
             .background(event.style.accent.opacity(0.12), in: Circle())
+            .frame(width: HumayMetrics.minimumHitTarget, height: HumayMetrics.minimumHitTarget)
             .accessibilityHidden(true)
     }
 }
@@ -1001,7 +1019,8 @@ private struct SkyCalendarWeekContext: View {
                         .fixedSize(horizontal: false, vertical: true)
                     if let context {
                         Text(SkyEventTimingFormatter.calendarText(for: event.timing, context: context))
-                            .font(HumayTypography.technical)
+                            .font(HumayTypography.supporting)
+                            .monospacedDigit()
                             .foregroundStyle(Color.humayTextSecondary)
                     }
                 } else {

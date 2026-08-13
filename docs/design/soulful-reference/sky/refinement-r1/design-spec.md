@@ -1,6 +1,6 @@
 # Sky + Calendar Refinement R1 Design Specification
 
-**Status:** REVIEW CANDIDATE — NOT APPROVED  
+**Status:** APPROVED VISUAL REFERENCE — IMPLEMENTED AND RECONCILED  
 **Direction:** Soulful Celestial, compact editorial utility  
 **Platforms:** iPhone/iPad, Light/Dark
 
@@ -23,7 +23,7 @@ Increase useful information per first screen while retaining one memorable celes
 
 ### Hero
 
-- Candidate name: **Lunar Compass**.
+- Approved name: **Lunar Compass**.
 - Editorial title: two lines maximum at default Dynamic Type.
 - Supporting context: system and location on one concise line.
 - Observation time uses SF Pro with monospaced digits, not SF Mono.
@@ -33,7 +33,7 @@ Increase useful information per first screen while retaining one memorable celes
 
 ### Illustration asset
 
-- File candidate: `IllustrationCurrentSky` with separate Light and Dark artwork.
+- Shipping asset: `IllustrationCurrentSky` with separate Light and Dark artwork.
 - Visual idea: a crescent crossing a tilted meridian window, with one coral compass star, a gold horizon, and a sparse lavender trail.
 - Meaning: symbolic current-sky identity only; no factual planetary position.
 - Medium: flat vector, simple fills, thin curves, no 3D, watercolor, neon galaxy, procedural SwiftUI orbit, or face.
@@ -90,15 +90,15 @@ Increase useful information per first screen while retaining one memorable celes
 
 ## 7. Typography roles
 
-| Role | Candidate family | Reference treatment |
+| Role | Family | Reference treatment |
 |---|---|---|
-| Humay wordmark | Cormorant Garamond | Retain pending brand review. |
-| Editorial display | Newsreader | Primary recommendation; optical sizing enabled in production evaluation. |
+| Humay wordmark | Cormorant Garamond | Approved exception for the brand wordmark. |
+| Editorial display | Newsreader | Approved expressive family; variable weight and optical-size axes are available in the shipping font. |
 | Body, navigation, event titles | SF Pro/system | Semantic styles and Dynamic Type. |
 | Dates and times | SF Pro/system | Monospaced digits only. |
 | Degrees/coordinates | SF Mono | Reserved for genuinely technical chart values. |
 
-Newsreader uses fewer oversized sizes than the current system: 28–30 pt compact hero, 26–28 pt section title, and 32–36 pt regular-width editorial title. Exact runtime mapping remains unapproved.
+Newsreader uses fewer oversized sizes than the previous system: 28 pt editorial titles and a 40 pt hero role, scaled relative to semantic Dynamic Type styles. Runtime registration uses the verified PostScript name `Newsreader16pt-Regular` and the real variable weight axis.
 
 ## 8. Color and surfaces
 
@@ -122,10 +122,6 @@ Use existing Soulful Celestial semantic colors. Light uses warm cream ground and
 - Contrast targets: 4.5:1 normal text, 3:1 large text and meaningful graphics.
 - Reduce Motion removes any future drift/sparkle animation; static composition remains complete.
 
-## 11. HIG candidate score
+## 11. Implementation / accessibility verification
 
-Static-reference score: **9/10 candidate**.
-
-- Passes: safe-area intent, 44 pt targets, deliberate Dark Mode, Dynamic Type rules, VoiceOver semantics, native navigation hierarchy, semantic palette, system controls, SF Symbols/vector language.
-- Remaining point: runtime Accessibility Inspector, Increase Contrast, focus ring, pointer, keyboard, and largest Dynamic Type verification cannot be proven by static SVG/PNG references.
-
+Production reconciliation must verify 44 pt targets, Dynamic Type through accessibility sizes, VoiceOver labels and order, Light and Dark appearances, Increase Contrast, Differentiate Without Color, pointer and keyboard behavior on iPad, Reduce Motion, safe areas, and floating-tab clearance at runtime. Static references establish intent but do not replace simulator and Accessibility Inspector verification.

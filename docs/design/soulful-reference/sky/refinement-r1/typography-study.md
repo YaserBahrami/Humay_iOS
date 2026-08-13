@@ -1,13 +1,11 @@
 # Typography Study — Newsreader vs Cormorant Garamond
 
-**Status:** REVIEW CANDIDATE — NOT APPROVED  
+**Status:** APPROVED VISUAL REFERENCE — IMPLEMENTED AND RECONCILED  
 **Decision scope:** global editorial typography, not Sky-only
 
 ## Recommendation
 
-Adopt **Newsreader** as the primary candidate for editorial/display UI roles. Keep **Cormorant Garamond** as the Humay wordmark candidate. Keep **SF Pro/system** for body, buttons, navigation, dates, event titles, and metadata. Use SF Pro monospaced digits for changing/aligned dates and times. Reserve SF Mono for chart coordinates and degree-heavy technical surfaces.
-
-Do not change `HumayTypography.swift` until product-owner review approves a global system.
+Adopt **Newsreader** as the primary editorial/display UI family. Keep **Cormorant Garamond** for the Humay wordmark. Keep **SF Pro/system** for body, buttons, navigation, dates, event titles, and metadata. Use SF Pro monospaced digits for changing/aligned dates and times. Reserve SF Mono for chart coordinates and degree-heavy technical surfaces.
 
 ## Why Newsreader leads
 
@@ -27,19 +25,19 @@ Its weaker fit is compact product UI: narrow forms and delicate hairlines need m
 
 ## Pressure test
 
-| Context | Newsreader candidate | Cormorant candidate | Recommendation |
+| Context | Newsreader study | Cormorant study | Decision |
 |---|---|---|---|
 | Sky hero | 29 pt, 1.08 line height | 31 pt, 1.08 line height | Newsreader; stronger at shorter height. |
 | Calendar month title | 27 pt | 30 pt | Newsreader; better density and numeral clarity. |
 | Today editorial heading | 32 pt | 35 pt | Newsreader; warm but more readable beside body copy. |
 | Compatibility score/title | 34–40 pt | 40–46 pt | Newsreader for title/score UI; Cormorant may remain for exceptional score emphasis after review. |
 
-## Candidate global role map
+## Approved global role map
 
 | Semantic role | Family | Notes |
 |---|---|---|
 | Brand wordmark | Cormorant Garamond | Isolated treatment; verify real face and avoid synthetic weights. |
-| Editorial large title | Newsreader | Variable optical sizing; semibold/medium candidate. |
+| Editorial large title | Newsreader | Variable optical sizing; real medium weight. |
 | Editorial section title | Newsreader | Regular/medium; avoid excessive size jumps. |
 | Body and controls | SF Pro/system | Native semantic styles and Dynamic Type. |
 | Event title | SF Pro/system | Semibold; prioritize scanning. |
@@ -49,7 +47,7 @@ Its weaker fit is compact product UI: narrow forms and delicate hairlines need m
 ## Dynamic Type and OpenType notes
 
 - Use semantic scaled roles rather than fixed point sizes.
-- Prefer the variable Newsreader file when licensing and application footprint are approved.
+- Use the canonical variable Newsreader file and its real weight axis.
 - Use the high-level optical-size and weight APIs available on the platform; do not force arbitrary variation-axis values without testing.
 - Load only intended weights/styles; avoid synthetic bold/italic where emphasis matters.
 - Keep heading line height near 1.1 and body near the system semantic default.
@@ -57,11 +55,10 @@ Its weaker fit is compact product UI: narrow forms and delicate hairlines need m
 
 ## Font source in this package
 
-The generator embeds the official Google Fonts Newsreader variable font solely for deterministic design-reference rendering. Its OFL license is stored beside it under `reference-fonts/OFL-Newsreader.txt`. This does not add the font to the app bundle or approve its production use.
+The generator embeds the canonical shipping copy of the official Google Fonts Newsreader variable font for deterministic design-reference rendering. The binary is stored at `Humay/Resources/Fonts/Newsreader-Variable.ttf`; its license is `Humay/Resources/Fonts/OFL-Newsreader.txt`. The app registers that same file and uses the verified runtime PostScript name `Newsreader16pt-Regular`.
 
-## Approval questions
+## Approved decisions
 
-1. Approve Newsreader for editorial UI while retaining Cormorant for the wordmark?
-2. Keep Cormorant for rare compatibility score moments, or move those to Newsreader too?
-3. If approved, which Newsreader weights and optical-size behavior should ship after runtime size/legibility testing?
-
+1. Newsreader is approved globally for editorial/display roles represented by `HumayTypography`.
+2. Expressive and compatibility score roles use Newsreader; ordinary event/calendar content stays system typography.
+3. Cormorant is retained for the Humay wordmark only.

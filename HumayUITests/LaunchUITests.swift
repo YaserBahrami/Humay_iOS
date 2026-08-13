@@ -320,6 +320,49 @@ final class LaunchUITests: XCTestCase {
         }
     }
 
+    func testCaptureD3RefinementR1LightEvidence() {
+        captureD3RefinementR1Evidence(appearance: "light")
+
+        guard evidenceDevice == "iphone" else { return }
+        let clearance = d3App()
+        XCTAssertTrue(element("sky.current.coming-up", in: clearance).waitForExistence(timeout: 3))
+        clearance.swipeUp()
+        clearance.swipeUp()
+        capture(clearance, named: "r1-iphone-bottom-tab-clearance")
+    }
+
+    func testCaptureD3RefinementR1DarkEvidence() {
+        captureD3RefinementR1Evidence(appearance: "dark")
+    }
+
+    func testCaptureD3RefinementR1AccessibilityEvidence() {
+        XCUIDevice.shared.orientation = .portrait
+        let accessibility = d3App()
+        XCTAssertTrue(element("sky.current.hero", in: accessibility).waitForExistence(timeout: 3))
+        capture(accessibility, named: "r1-iphone-ax-current-sky")
+    }
+
+    private func captureD3RefinementR1Evidence(appearance: String) {
+        XCUIDevice.shared.orientation = .portrait
+        let app = d3App()
+
+        XCTAssertTrue(element("sky.current.hero", in: app).waitForExistence(timeout: 3))
+        capture(app, named: "r1-\(evidenceDevice)-\(appearance)-current-sky")
+
+        app.buttons["sky.current.calendar-entry"].tap()
+        XCTAssertTrue(element("sky.calendar.month.state.loaded", in: app).waitForExistence(timeout: 3))
+        capture(app, named: "r1-\(evidenceDevice)-\(appearance)-month")
+
+        app.buttons["sky.calendar.mode.week"].tap()
+        XCTAssertTrue(element("sky.calendar.week.state.loaded", in: app).waitForExistence(timeout: 3))
+        capture(app, named: "r1-\(evidenceDevice)-\(appearance)-week")
+    }
+
+    private var evidenceDevice: String {
+        ProcessInfo.processInfo.environment["SIMULATOR_DEVICE_NAME"]?
+            .localizedCaseInsensitiveContains("iPad") == true ? "ipad" : "iphone"
+    }
+
     func testCaptureD2Evidence() {
         let app = d2App(extraArguments: [
             "-HumayD2CompatibilityState", "precise"

@@ -19,6 +19,7 @@ enum HumayRadius {
 enum HumayMetrics {
     static let minimumHitTarget: CGFloat = 44
     static let primaryControlMinimumHeight: CGFloat = 56
+    static let rootTabContentBreathingRoom: CGFloat = 20
 
     static func hairline(displayScale: CGFloat) -> CGFloat {
         1 / max(displayScale, 1)

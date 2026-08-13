@@ -80,9 +80,10 @@ Existing approved iPhone D0/D1 references remain valid. The complete D1 cross-de
 
 ## 6. Typography
 
-- **Cormorant Garamond** — wordmark, hero/editorial headlines and selected large scores.
-- **SF Pro / system** — body copy, controls, navigation, forms and settings.
-- **SF Mono / system** — technical degrees/coordinates/dates/times where beneficial.
+- **Cormorant Garamond** — Humay wordmark only.
+- **Newsreader** — semantic editorial/display roles, including hero and editorial titles, onboarding card titles, card titles and expressive scores.
+- **SF Pro / system** — body copy, event titles, controls, navigation, forms, settings, dates and times; use monospaced digits where alignment helps.
+- **SF Mono / system** — reserved for genuinely technical future Chart values such as coordinates or degree-heavy data.
 
 Dynamic Type is mandatory. iPad does not justify fixed text sizes or oversized empty layouts.
 
@@ -129,11 +130,11 @@ D2 Compatibility received a later approved refinement on 2026-08-13. The package
 - **D0:** approved iPhone Light/Dark style anchors; iPad companions remain a later D0 task.
 - **D1:** approved cross-device on 2026-08-12 for Welcome, Birth Date, Tradition and Profile Reveal; production UI is implemented under `Humay/Presentation/Onboarding/`.
 - **D2 Compatibility refinement:** approved, implemented and reconciled on 2026-08-13 for Compatibility person selection, Pair Composer, compact one-column rows, iPad two-region selection, Relationship Field, pair identity/connector, score/label/summary composition, Free/Precise disclosure placement, and represented adaptive/accessibility behavior. Unrelated D2 surfaces retain their existing authority status.
-- **D3.1 Current Sky:** Lunar Meridian is the approved cross-device visual reference package under `soulful-reference/sky/current-sky/`; `SKY-003` is implemented over the Debug-only sample, with production data pipeline work still tracked by `SKY-002`.
-- **D3.2 Calendar Month + Week:** Meridian Almanac is the approved cross-device visual reference package under `soulful-reference/sky/calendar/`. Approval covers Month iPhone Light/Dark, Month iPad Light/Dark, Week iPhone Light/Dark, Week iPad Light/Dark, the calendar state board, stress board, and Meridian Almanac visual direction. `SKY-004` remains TODO because visual approval is not implementation completion.
+- **D3.1 Current Sky:** Lunar Meridian under `soulful-reference/sky/current-sky/` remains historical authority for unaffected behavior and semantics. The approved [`refinement-r1/`](soulful-reference/sky/refinement-r1/README.md) package supersedes its hero composition, event density, authored illustration, typography treatment, and floating-tab clearance. `SKY-003` is implemented over the Debug-only sample; production data work remains tracked by `SKY-002`.
+- **D3.2 Calendar Month + Week:** Meridian Almanac under `soulful-reference/sky/calendar/` remains historical authority for unaffected behavior and semantics. The approved [`refinement-r1/`](soulful-reference/sky/refinement-r1/README.md) package supersedes its Month density/date states, Week rail treatment, typography treatment, and floating-tab clearance. `SKY-004` is implemented over the Debug-only sample.
 - **D3.3 Event Detail:** Celestial editorial sheet is the approved cross-device visual reference package under `soulful-reference/sky/event-detail/`, approved on 2026-08-13. Approval covers iPhone/iPad Light/Dark, state and stress boards, adaptive/accessibility guidance, origin-aware native navigation, Sky root shell behavior, factual versus interpretive hierarchy, timing/methodology treatment, and observation context. `SKY-005` remains TODO because visual approval is not implementation completion.
 
-Current D1 implementation evidence lives under `implementation-evidence/d1-onboarding/`. Current Sky implementation evidence lives under `implementation-evidence/d3-sky-calendar/current-sky/`. Completion is in-memory only until PROFILE-005; no provider-backed astrology is used by Profile Reveal.
+Current D1 implementation evidence lives under `implementation-evidence/d1-onboarding/`. The reconciled Current Sky and Calendar R1 evidence lives under [`implementation-evidence/d3-sky-calendar/refinement-r1/`](implementation-evidence/d3-sky-calendar/refinement-r1/README.md). Completion is in-memory only until PROFILE-005; no provider-backed astrology is used by Profile Reveal.
 - Remaining families follow [`SCREEN_DESIGN_PLAN.md`](SCREEN_DESIGN_PLAN.md).
 
 No alternate design authority should be added alongside this one.

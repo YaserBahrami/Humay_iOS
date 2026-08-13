@@ -11,62 +11,72 @@ struct MainAppView: View {
         @Bindable var navigation = navigation
 
         TabView(selection: $navigation.mainDestination) {
-            NavigationStack {
-                TodayView(
-                    state: d2FeatureInput.today,
-                    dailyStates: d2FeatureInput.dailyHoroscope,
-                    precisePreview: d2FeatureInput.preciseDailyPreview,
-                    source: d2FeatureInput.source,
-                    profileName: profileName,
-                    openProfile: openProfile
-                )
+            MainTabRoot {
+                NavigationStack {
+                    TodayView(
+                        state: d2FeatureInput.today,
+                        dailyStates: d2FeatureInput.dailyHoroscope,
+                        precisePreview: d2FeatureInput.preciseDailyPreview,
+                        source: d2FeatureInput.source,
+                        profileName: profileName,
+                        openProfile: openProfile
+                    )
+                }
             }
             .tabItem { Label("Today", systemImage: "sun.max") }
             .tag(MainDestination.today)
 
-            NavigationStack {
-                CircleView(
-                    state: d2FeatureInput.circle,
-                    compatibilityState: d2FeatureInput.compatibility,
-                    precisePreview: d2FeatureInput.preciseCompatibilityPreview,
-                    source: d2FeatureInput.source,
-                    profileName: profileName,
-                    openProfile: openProfile
-                )
+            MainTabRoot {
+                NavigationStack {
+                    CircleView(
+                        state: d2FeatureInput.circle,
+                        compatibilityState: d2FeatureInput.compatibility,
+                        precisePreview: d2FeatureInput.preciseCompatibilityPreview,
+                        source: d2FeatureInput.source,
+                        profileName: profileName,
+                        openProfile: openProfile
+                    )
+                }
             }
             .tabItem { Label("Circle", systemImage: "person.2") }
             .tag(MainDestination.circle)
 
-            NavigationStack {
-                CurrentSkyView(
-                    state: d3FeatureInput.currentSky,
-                    source: d3FeatureInput.source,
-                    calendarMonth: d3FeatureInput.calendarMonth,
-                    calendarWeek: d3FeatureInput.calendarWeek,
-                    calendarToday: calendarToday ?? SkyCalendarSupport.currentDate(),
-                    profileName: profileName,
-                    openProfile: openProfile
-                )
+            MainTabRoot {
+                NavigationStack {
+                    CurrentSkyView(
+                        state: d3FeatureInput.currentSky,
+                        source: d3FeatureInput.source,
+                        calendarMonth: d3FeatureInput.calendarMonth,
+                        calendarWeek: d3FeatureInput.calendarWeek,
+                        calendarToday: calendarToday ?? SkyCalendarSupport.currentDate(),
+                        profileName: profileName,
+                        openProfile: openProfile
+                    )
+                }
             }
             .tabItem { Label("Sky", systemImage: "sparkles") }
             .tag(MainDestination.sky)
 
-            NavigationStack {
-                MainDestinationPlaceholderView(
-                    destination: .chart,
-                    profileName: profileName,
-                    openProfile: openProfile
-                )
+            MainTabRoot {
+                NavigationStack {
+                    MainDestinationPlaceholderView(
+                        destination: .chart,
+                        profileName: profileName,
+                        openProfile: openProfile
+                    )
+                }
             }
             .tabItem { Label("Chart", systemImage: "circle.hexagongrid") }
             .tag(MainDestination.chart)
 
-            NavigationStack {
-                MainDestinationPlaceholderView(
-                    destination: .ask,
-                    profileName: profileName,
-                    openProfile: openProfile
-                )
+            MainTabRoot {
+                NavigationStack {
+                    MainDestinationPlaceholderView(
+                        destination: .ask,
+                        profileName: profileName,
+                        openProfile: openProfile
+                    )
+                }
             }
             .tabItem { Label("Ask", systemImage: "bubble.left.and.text.bubble.right") }
             .tag(MainDestination.ask)
@@ -102,6 +112,24 @@ struct MainAppView: View {
         }
 #endif
         return nil
+    }
+}
+
+private struct MainTabRoot<Content: View>: View {
+    let content: Content
+
+    init(@ViewBuilder content: () -> Content) {
+        self.content = content()
+    }
+
+    var body: some View {
+        content
+            .safeAreaInset(edge: .bottom, spacing: 0) {
+                Color.clear
+                    .frame(height: HumayMetrics.rootTabContentBreathingRoom)
+                    .allowsHitTesting(false)
+                    .accessibilityHidden(true)
+            }
     }
 }
 

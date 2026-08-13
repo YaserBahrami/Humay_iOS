@@ -1,6 +1,6 @@
 # R1 Review Notes
 
-**Status:** REVIEW CANDIDATE — NOT APPROVED
+**Status:** APPROVED VISUAL REFERENCE — IMPLEMENTED AND RECONCILED
 
 ## Problems identified from real simulator evidence
 
@@ -29,7 +29,7 @@
 - The selected agenda starts too late on iPhone.
 - `Across the week` is valuable on iPad but adds avoidable scroll weight on iPhone.
 
-## Candidate decisions
+## Approved decisions
 
 - Replace Lunar Meridian with a shorter **Lunar Compass** hero and standalone Light/Dark vector asset.
 - Reduce Debug disclosure to a quiet inline development note.
@@ -55,13 +55,13 @@ Newsreader is denser and more legible at 26–36 pt, has a larger practical x-he
 - Astronomical, Western, and Vedic methodology labels.
 - iPhone/iPad, Light/Dark, Dynamic Type, VoiceOver, 44 pt targets.
 
-## Approval boundary
+## Authority boundary
 
-- This package does not update `DESIGN_AUTHORITY.md`.
-- It does not supersede the approved D3.1/D3.2 references.
-- It does not modify shipping SwiftUI, `HumayTypography.swift`, `Info.plist`, or production `Assets.xcassets`.
+- `DESIGN_AUTHORITY.md` records this package as the approved refinement of the relevant D3.1/D3.2 visual portions.
+- Earlier D3.1/D3.2 references remain historical authority for unaffected behavior and semantics.
+- Shipping SwiftUI, `HumayTypography.swift`, `Info.plist`, and production assets are reconciled against this package during implementation.
 - It does not implement `SKY-002`, `SKY-005`, or any Domain/Data behavior.
-- Illustration files are review candidates only and must not be promoted into the asset catalog without explicit product-owner approval.
+- The approved Current Sky Light/Dark SVGs are promoted into the existing `IllustrationCurrentSky` asset slot.
 
 ## Implementation-time verification still required after approval
 
@@ -71,4 +71,3 @@ Newsreader is denser and more legible at 26–36 pt, has a larger practical x-he
 - Pointer/keyboard focus on iPad.
 - Actual tab-shell inset ownership to avoid missing or doubled bottom padding.
 - Asset optimization and final PDF/SVG-to-asset-catalog export choice.
-
