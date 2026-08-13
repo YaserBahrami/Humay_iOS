@@ -129,7 +129,8 @@ The iPad landscape two-region paths are covered by the UI test. iOS 26.5 simulat
 
 - D3.1 Current Sky Lunar Meridian is the approved visual reference package: [`soulful-reference/sky/current-sky/`](soulful-reference/sky/current-sky/README.md).
 - Current Sky iPhone Light/Dark, iPad Light/Dark, adaptive behavior, and state language are approved as visual guidance; `SKY-003` remains TODO.
-- D3.2 Calendar Month + Week is a review candidate and is not approved: [`soulful-reference/sky/calendar/`](soulful-reference/sky/calendar/README.md).
+- D3.2 Calendar Month + Week Meridian Almanac is the approved visual reference package: [`soulful-reference/sky/calendar/`](soulful-reference/sky/calendar/README.md). Approval covers Month iPhone Light/Dark, Month iPad Light/Dark, Week iPhone Light/Dark, Week iPad Light/Dark, the calendar state board, stress board, and Meridian Almanac visual direction; `SKY-004` remains TODO.
+- D3.3 Event Detail is a review candidate and is not approved: [`soulful-reference/sky/event-detail/`](soulful-reference/sky/event-detail/README.md).
 - Non-visual Domain/Presentation contracts and Debug-only deterministic sample states are implemented.
 - Current Sky, month/week Calendar and event-detail SwiftUI remain intentionally unimplemented.
 - SKY-003, SKY-004 and SKY-005 remain TODO; no visual completion or reconciliation is claimed.

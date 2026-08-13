@@ -1,8 +1,8 @@
 # D3.2 — Calendar Month + Week
 
-**Status:** REVIEW CANDIDATE — NOT APPROVED
+**Status:** APPROVED VISUAL REFERENCE
 
-This package defines the first complete cross-device visual-reference candidate for Calendar inside Sky. It does not approve Calendar, authorize production SwiftUI, complete `SKY-004`, or begin D3.3 Event Detail.
+This package is the approved cross-device visual reference for Calendar inside Sky. It does not authorize production SwiftUI, complete `SKY-004`, or begin D3.3 Event Detail.
 
 ## Review first
 
@@ -56,10 +56,10 @@ No absent `SkyCalendarDay` is treated as provider failure. The month grid derive
 
 ## Approval boundary
 
-- Every Calendar artifact remains **REVIEW CANDIDATE — NOT APPROVED**.
+- Month iPhone Light/Dark, Month iPad Light/Dark, Week iPhone Light/Dark, Week iPad Light/Dark, the calendar state board, stress board, and Meridian Almanac visual direction are **APPROVED VISUAL REFERENCE**.
 - The approved Current Sky package remains approved and separate.
 - Calendar artwork and production glyph promotion remain review decisions, not asset-catalog changes.
 - Event-row chevrons reserve a future Event Detail destination; no Event Detail screen is designed here.
 - No production code, route, ViewModel, provider, calculation, cache, or asset-catalog entry is created.
 
-**NEXT ACTION:** Product owner reviews the eight Calendar Month/Week references.
+**NEXT ACTION:** Product owner reviews the D3.3 Event Detail references. Calendar production remains gated by `SKY-004`.

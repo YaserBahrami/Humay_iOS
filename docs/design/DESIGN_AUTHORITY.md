@@ -130,6 +130,7 @@ D2 Compatibility received a later approved refinement on 2026-08-13. The package
 - **D1:** approved cross-device on 2026-08-12 for Welcome, Birth Date, Tradition and Profile Reveal; production UI is implemented under `Humay/Presentation/Onboarding/`.
 - **D2 Compatibility refinement:** approved, implemented and reconciled on 2026-08-13 for Compatibility person selection, Pair Composer, compact one-column rows, iPad two-region selection, Relationship Field, pair identity/connector, score/label/summary composition, Free/Precise disclosure placement, and represented adaptive/accessibility behavior. Unrelated D2 surfaces retain their existing authority status.
 - **D3.1 Current Sky:** Lunar Meridian is the approved cross-device visual reference package under `soulful-reference/sky/current-sky/`; `SKY-003` remains TODO because visual approval is not implementation completion.
+- **D3.2 Calendar Month + Week:** Meridian Almanac is the approved cross-device visual reference package under `soulful-reference/sky/calendar/`. Approval covers Month iPhone Light/Dark, Month iPad Light/Dark, Week iPhone Light/Dark, Week iPad Light/Dark, the calendar state board, stress board, and Meridian Almanac visual direction. `SKY-004` remains TODO because visual approval is not implementation completion.
 
 Current D1 implementation evidence lives under `implementation-evidence/d1-onboarding/`. Completion is in-memory only until PROFILE-005; no provider-backed astrology is used by Profile Reveal.
 - Remaining families follow [`SCREEN_DESIGN_PLAN.md`](SCREEN_DESIGN_PLAN.md).

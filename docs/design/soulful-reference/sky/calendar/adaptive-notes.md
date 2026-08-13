@@ -1,6 +1,6 @@
 # Calendar adaptive-layout and accessibility notes
 
-**Status:** REVIEW CANDIDATE — NOT APPROVED
+**Status:** APPROVED VISUAL GUIDANCE
 
 ## Reference canvases
 

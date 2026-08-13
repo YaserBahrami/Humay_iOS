@@ -1,6 +1,6 @@
 # Calendar reference-specific review notes
 
-**Status:** REVIEW CANDIDATE — NOT APPROVED
+**Status:** APPROVED VISUAL REFERENCE
 
 ## Chosen direction — Meridian Almanac
 
