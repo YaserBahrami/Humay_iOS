@@ -47,17 +47,18 @@ This content exercises layout only. It makes no claim about the displayed date o
 
 ### Header
 
-- Native Back to Calendar.
+- Native Back action; destination/title follows the actual opening screen. Primary fixture is Calendar-origin and shows `Calendar`.
 - Event Detail title context.
 - No extra root-navigation confusion.
+
+The iPhone reference retains the existing Sky-selected root tab bar. Event Detail is nested in Sky, not an immersive modal. iPad retains the adaptive root-navigation model.
 
 ### Event identity
 
 - Event type label: Planetary ingress.
 - Event title: Mercury enters Virgo.
-- Quiet method line: Western · reference fixture.
+- Quiet method line: Western.
 - Timing row: Fri 21:00 TRT.
-- Small explanatory timing note: instant timing shown as reference content.
 
 The identity hero is informative first. It is a tonal surface, not a Current Sky-style emotional hero.
 
@@ -73,13 +74,11 @@ The fact surface keeps structured information separate from interpretation:
 - methodology/system;
 - involved bodies or points;
 - event type;
-- availability/precision disclosure where needed.
+- availability/precision disclosure only when it provides meaningful user information.
 
-The production projection may omit a field when unavailable. It must not fabricate a clock time, body, sign, method, or source.
+The primary reference omits an availability row because the single Debug disclosure already identifies the development sample. The production projection may omit a field when unavailable. It must not fabricate a clock time, body, sign, method, or source.
 
-### Supporting context
-
-The reference shows why the user arrived here: Current Sky or Calendar provides chronology; Event Detail adds meaning and available factual basis. A quiet timing-language note on iPad clarifies instant, range, date-only, and unavailable treatment without becoming a legal disclaimer.
+Route explanation stays in this specification, not in the simulated app. Navigation itself communicates why the user arrived here.
 
 ## 5. Timing semantics
 
@@ -118,13 +117,12 @@ Canvas: 430 × 932 pt portrait reference.
 
 Order:
 
-1. nested Back to Calendar header;
+1. origin-aware native Back header;
 2. quiet Debug disclosure;
 3. identity hero with title, type, method and timing;
 4. What this means;
 5. Factual context;
-6. quiet route context;
-7. existing Sky-selected bottom navigation shell.
+6. existing Sky-selected bottom navigation shell.
 
 Basic explanation and core facts appear in the first useful viewport. Cards remain compact; no giant stacked panels are required to understand the event. In production, Dynamic Type expands rows and allows scrolling rather than clipping facts.
 
@@ -134,10 +132,10 @@ Canvas: 1024 × 1366 pt portrait reference.
 
 The page uses two bounded regions:
 
-- left: identity, meaning, and Calendar-to-detail relationship;
-- right: factual context, timing-language clarification, and route context.
+- left: identity and meaning;
+- right: factual context.
 
-The columns are intentionally sized for reading. Empty lower canvas is avoided through bounded supporting context, not giant decorative art. Landscape and split-view behavior are width-driven and documented in `adaptive-notes.md`.
+The columns are intentionally sized for reading. Premium breathing room is allowed; no filler card is added only to occupy space. Landscape and split-view behavior are width-driven and documented in `adaptive-notes.md`.
 
 ## 10. Glyph and illustration decision
 
@@ -156,7 +154,7 @@ Stress references use moon, aspect, and neutral tradition-specific markers only 
 - failed/error;
 - event not found / no longer available.
 
-Loading keeps shell hierarchy without fake facts. Cached content keeps saved-time disclosure. Unavailable, offline-empty, failed, and not-found use distinct copy. No Retry, provider debug data, or unsupported recovery action is presented; native Back remains the available navigation behavior.
+Loading keeps shell hierarchy without fake facts. Cached content keeps saved-time disclosure. Unavailable, offline-empty, failed, and not-found use distinct copy. No Retry, provider debug data, or unsupported recovery action is presented; Back returns to the opening screen.
 
 ## 12. Stress board
 
@@ -196,6 +194,5 @@ No numerical HIG score is assigned to static references.
 2. Production event-detail projection and provider provenance.
 3. Exact recovery actions after `SKY-002` exists.
 4. Whether any reference-only glyph receives a production asset export.
-5. Final route/tab-bar behavior after Event Detail implementation is approved.
 
-These references do not resolve Domain, Data, Presentation, access, provider, cache, or persistence contracts.
+Navigation-origin behavior and root-tab visibility are visual decisions recorded here; these references do not resolve Domain, Data, Presentation, access, provider, cache, or persistence contracts.

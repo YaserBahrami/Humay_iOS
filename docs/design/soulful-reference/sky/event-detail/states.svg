@@ -31,76 +31,81 @@
   <rect width="1600" height="1080" fill="#EFE9E2"/>
       <text x="40" y="53" class="label" font-size="10.5" fill="#A83F3C">D3.3 · REVIEW CANDIDATE — NOT APPROVED</text>
       <text x="40" y="99" class="editorial" font-size="42" fill="#151B28">Event Detail state language</text>
-      <text x="40" y="128" class="ui" font-size="14.5" fill="#625F62">Shared shell, explicit availability, natural copy, and no unsupported Retry or provider-debug UI.</text>
+      <text x="40" y="128" class="ui" font-size="14.5" fill="#625F62">Design review board · notes above sit outside simulated app surfaces.</text>
       <g>
     <rect x="40" y="166" width="480" height="408" rx="28" fill="#FBF7F1" stroke="#E9E0D8"/>
     <text x="64" y="197" class="label" font-size="9" fill="#A83F3C">01 · LOADING</text>
     <text x="496" y="197" text-anchor="end" class="label" font-size="8" fill="#7A7575">LIGHT EXAMPLE</text>
-    <text x="64" y="229" class="ui" font-size="12.5" fill="#625F62">Stable shell; no fake event payload.</text>
-    <rect x="60" y="254" width="440" height="296" rx="20" fill="#FFFDFC" stroke="#E9E0D8"/>
-      <rect x="80" y="274" width="170" height="13" rx="6.5" fill="#F7F0E8"/>
-      <rect x="80" y="302" width="250" height="18" rx="9" fill="#F7F0E8"/>
-      <circle cx="280" cy="364" r="20" fill="none" stroke="#E9E0D8" stroke-width="4"/><path d="M280 344a20 20 0 0 1 18 11" fill="none" stroke="#9A82C8" stroke-width="4" stroke-linecap="round"/>
-      <text x="280" y="409" text-anchor="middle" class="ui" font-size="14" font-weight="700" fill="#151B28">Opening event detail…</text>
-      <rect x="80" y="436" width="400" height="10" rx="5" fill="#F7F0E8"/>
-      <rect x="80" y="458" width="344" height="10" rx="5" fill="#F7F0E8"/>
+    <text x="64" y="220" class="label" font-size="6.8" fill="#7A7575">DESIGN REVIEW NOTE</text>
+    <text x="64" y="241" class="ui" font-size="11.5" fill="#625F62">Stable shell; no fake event payload.</text>
+    <rect x="60" y="262" width="440" height="288" rx="20" fill="#FFFDFC" stroke="#E9E0D8"/>
+      <rect x="80" y="282" width="170" height="13" rx="6.5" fill="#F7F0E8"/>
+      <rect x="80" y="310" width="250" height="18" rx="9" fill="#F7F0E8"/>
+      <circle cx="280" cy="372" r="20" fill="none" stroke="#E9E0D8" stroke-width="4"/><path d="M280 352a20 20 0 0 1 18 11" fill="none" stroke="#9A82C8" stroke-width="4" stroke-linecap="round"/>
+      <text x="280" y="417" text-anchor="middle" class="ui" font-size="14" font-weight="700" fill="#151B28">Opening event detail…</text>
+      <rect x="80" y="444" width="400" height="10" rx="5" fill="#F7F0E8"/>
+      <rect x="80" y="466" width="344" height="10" rx="5" fill="#F7F0E8"/>
   </g><g>
     <rect x="560" y="166" width="480" height="408" rx="28" fill="#101725" stroke="#30394B"/>
     <text x="584" y="197" class="label" font-size="9" fill="#FF9A98">02 · UNAVAILABLE</text>
     <text x="1016" y="197" text-anchor="end" class="label" font-size="8" fill="#A8A0A1">DARK EXAMPLE</text>
-    <text x="584" y="229" class="ui" font-size="12.5" fill="#C4BDBB">Source limitation stays explicit.</text>
-    <rect x="580" y="254" width="440" height="296" rx="20" fill="#171F30" stroke="#30394B"/>
-    <circle cx="800" cy="317" r="21" fill="none" stroke="#C17ADB" stroke-width="3"/><path d="M800 308v11m0 7v1" stroke="#C17ADB" stroke-width="3" stroke-linecap="round"/>
-    <text x="800" y="378" text-anchor="middle" class="editorial" font-size="23" fill="#F5F0EA">Event detail unavailable</text>
-    <text x="800" y="412" text-anchor="middle" class="ui" font-size="12" fill="#C4BDBB">This event needs a connected source.</text>
-    <text x="800" y="435" text-anchor="middle" class="ui" font-size="11" fill="#C4BDBB">The route remains readable without guessed facts.</text>
+    <text x="584" y="220" class="label" font-size="6.8" fill="#A8A0A1">DESIGN REVIEW NOTE</text>
+    <text x="584" y="241" class="ui" font-size="11.5" fill="#C4BDBB">Source limitation stays explicit.</text>
+    <rect x="580" y="262" width="440" height="288" rx="20" fill="#171F30" stroke="#30394B"/>
+    <circle cx="800" cy="325" r="21" fill="none" stroke="#C17ADB" stroke-width="3"/><path d="M800 316v11m0 7v1" stroke="#C17ADB" stroke-width="3" stroke-linecap="round"/>
+    <text x="800" y="386" text-anchor="middle" class="editorial" font-size="23" fill="#F5F0EA">Event detail unavailable</text>
+    <text x="800" y="420" text-anchor="middle" class="ui" font-size="12" fill="#C4BDBB">This event needs a connected source.</text>
+    <text x="800" y="443" text-anchor="middle" class="ui" font-size="11" fill="#C4BDBB">No details are available right now.</text>
 
   </g><g>
     <rect x="1080" y="166" width="480" height="408" rx="28" fill="#FBF7F1" stroke="#E9E0D8"/>
     <text x="1104" y="197" class="label" font-size="9" fill="#A83F3C">03 · OFFLINE WITH CACHE</text>
     <text x="1536" y="197" text-anchor="end" class="label" font-size="8" fill="#7A7575">LIGHT EXAMPLE</text>
-    <text x="1104" y="229" class="ui" font-size="12.5" fill="#625F62">Saved detail remains visible with freshness.</text>
-    <rect x="1100" y="254" width="440" height="296" rx="20" fill="#FFFDFC" stroke="#E9E0D8"/>
-      <rect x="1114" y="268" width="412" height="58" rx="15" fill="#F7F0E8"/>
-      <path d="M1122 290c12-10 28-10 40 0m-32 8c7-6 17-6 24 0m-16 9c2-2 6-2 8 0M1124 275l36 40" fill="none" stroke="#D5A253" stroke-width="3" stroke-linecap="round"/>
-      <text x="1176" y="292" class="ui" font-size="13.5" font-weight="700" fill="#151B28">Offline · saved event</text>
-      <text x="1176" y="311" class="ui" font-size="10.5" fill="#625F62">Showing content saved 12 Aug · 09:00</text>
-      <text x="1120" y="362" class="editorial" font-size="22" fill="#151B28">Mercury enters Virgo</text>
-      <text x="1120" y="390" class="mono" font-size="10.5" fill="#625F62">Fri 21:00 TRT · Western</text>
-      <line x1="1120" y1="412" x2="1520" y2="412" stroke="#E9E0D8"/>
-      <text x="1120" y="441" class="ui" font-size="11.5" fill="#625F62">Saved facts stay readable; freshness stays explicit.</text>
+    <text x="1104" y="220" class="label" font-size="6.8" fill="#7A7575">DESIGN REVIEW NOTE</text>
+    <text x="1104" y="241" class="ui" font-size="11.5" fill="#625F62">Saved detail remains visible with freshness.</text>
+    <rect x="1100" y="262" width="440" height="288" rx="20" fill="#FFFDFC" stroke="#E9E0D8"/>
+      <rect x="1114" y="276" width="412" height="58" rx="15" fill="#F7F0E8"/>
+      <path d="M1122 298c12-10 28-10 40 0m-32 8c7-6 17-6 24 0m-16 9c2-2 6-2 8 0M1124 283l36 40" fill="none" stroke="#D5A253" stroke-width="3" stroke-linecap="round"/>
+      <text x="1176" y="300" class="ui" font-size="13.5" font-weight="700" fill="#151B28">Offline · saved event</text>
+      <text x="1176" y="319" class="ui" font-size="10.5" fill="#625F62">Showing content saved 12 Aug · 09:00</text>
+      <text x="1120" y="370" class="editorial" font-size="22" fill="#151B28">Mercury enters Virgo</text>
+      <text x="1120" y="398" class="mono" font-size="10.5" fill="#625F62">Fri 21:00 TRT · Western</text>
+      <line x1="1120" y1="420" x2="1520" y2="420" stroke="#E9E0D8"/>
   </g><g>
     <rect x="40" y="624" width="480" height="408" rx="28" fill="#101725" stroke="#30394B"/>
     <text x="64" y="655" class="label" font-size="9" fill="#FF9A98">04 · OFFLINE WITHOUT CACHE</text>
     <text x="496" y="655" text-anchor="end" class="label" font-size="8" fill="#A8A0A1">DARK EXAMPLE</text>
-    <text x="64" y="687" class="ui" font-size="12.5" fill="#C4BDBB">No saved payload; no invented recovery control.</text>
-    <rect x="60" y="712" width="440" height="296" rx="20" fill="#171F30" stroke="#30394B"/>
-    <circle cx="280" cy="775" r="20" fill="none" stroke="#82BDA3" stroke-width="2.5"/><circle cx="278" cy="775" r="8" fill="#E5AA55"/><circle cx="283" cy="772" r="8" fill="#171F30"/><path d="M294 761c1 4 2 5 6 6-4 1-5 2-6 6-1-4-2-5-6-6 4-1 5-2 6-6Z" fill="#F77476"/>
-    <text x="280" y="836" text-anchor="middle" class="editorial" font-size="23" fill="#F5F0EA">No saved event detail</text>
-    <text x="280" y="870" text-anchor="middle" class="ui" font-size="12" fill="#C4BDBB">Reconnect to view this event.</text>
-    <text x="280" y="893" text-anchor="middle" class="ui" font-size="11" fill="#C4BDBB">No recovery action is promised here.</text>
+    <text x="64" y="678" class="label" font-size="6.8" fill="#A8A0A1">DESIGN REVIEW NOTE</text>
+    <text x="64" y="699" class="ui" font-size="11.5" fill="#C4BDBB">No saved payload; no invented recovery control.</text>
+    <rect x="60" y="720" width="440" height="288" rx="20" fill="#171F30" stroke="#30394B"/>
+    <circle cx="280" cy="783" r="20" fill="none" stroke="#82BDA3" stroke-width="2.5"/><circle cx="278" cy="783" r="8" fill="#E5AA55"/><circle cx="283" cy="780" r="8" fill="#171F30"/><path d="M294 769c1 4 2 5 6 6-4 1-5 2-6 6-1-4-2-5-6-6 4-1 5-2 6-6Z" fill="#F77476"/>
+    <text x="280" y="844" text-anchor="middle" class="editorial" font-size="23" fill="#F5F0EA">No saved event detail</text>
+    <text x="280" y="878" text-anchor="middle" class="ui" font-size="12" fill="#C4BDBB">Reconnect to view this event.</text>
+    <text x="280" y="901" text-anchor="middle" class="ui" font-size="11" fill="#C4BDBB">Nothing is saved on this device.</text>
 
   </g><g>
     <rect x="560" y="624" width="480" height="408" rx="28" fill="#FBF7F1" stroke="#E9E0D8"/>
     <text x="584" y="655" class="label" font-size="9" fill="#A83F3C">05 · FAILED</text>
     <text x="1016" y="655" text-anchor="end" class="label" font-size="8" fill="#7A7575">LIGHT EXAMPLE</text>
-    <text x="584" y="687" class="ui" font-size="12.5" fill="#625F62">Failure copy; retry remains pipeline-owned.</text>
-    <rect x="580" y="712" width="440" height="296" rx="20" fill="#FFFDFC" stroke="#E9E0D8"/>
-    <path d="M800 753l22 40h-44Z" fill="none" stroke="#F06F67" stroke-width="3" stroke-linejoin="round"/><path d="M800 767v13m0 7v1" stroke="#F06F67" stroke-width="3" stroke-linecap="round"/>
-    <text x="800" y="836" text-anchor="middle" class="editorial" font-size="23" fill="#151B28">Event detail couldn’t load</text>
-    <text x="800" y="870" text-anchor="middle" class="ui" font-size="12" fill="#625F62">The event facts could not be loaded.</text>
-    <text x="800" y="893" text-anchor="middle" class="ui" font-size="11" fill="#625F62">Use native Back to return to Calendar.</text>
+    <text x="584" y="678" class="label" font-size="6.8" fill="#7A7575">DESIGN REVIEW NOTE</text>
+    <text x="584" y="699" class="ui" font-size="11.5" fill="#625F62">Failure copy; retry remains pipeline-owned.</text>
+    <rect x="580" y="720" width="440" height="288" rx="20" fill="#FFFDFC" stroke="#E9E0D8"/>
+    <path d="M800 761l22 40h-44Z" fill="none" stroke="#F06F67" stroke-width="3" stroke-linejoin="round"/><path d="M800 775v13m0 7v1" stroke="#F06F67" stroke-width="3" stroke-linecap="round"/>
+    <text x="800" y="844" text-anchor="middle" class="editorial" font-size="23" fill="#151B28">Event detail couldn’t load</text>
+    <text x="800" y="878" text-anchor="middle" class="ui" font-size="12" fill="#625F62">The event facts could not be loaded.</text>
+    <text x="800" y="901" text-anchor="middle" class="ui" font-size="11" fill="#625F62">Use Back to return to the previous screen.</text>
 
   </g><g>
     <rect x="1080" y="624" width="480" height="408" rx="28" fill="#101725" stroke="#30394B"/>
     <text x="1104" y="655" class="label" font-size="9" fill="#FF9A98">06 · EVENT NOT FOUND</text>
     <text x="1536" y="655" text-anchor="end" class="label" font-size="8" fill="#A8A0A1">DARK EXAMPLE</text>
-    <text x="1104" y="687" class="ui" font-size="12.5" fill="#C4BDBB">Distinct from source failure; native Back stays available.</text>
-    <rect x="1100" y="712" width="440" height="296" rx="20" fill="#171F30" stroke="#30394B"/>
-    <circle cx="1320" cy="775" r="21" fill="none" stroke="#82BDA3" stroke-width="2.5"/><path d="M1312 770h13m-13 8h8" stroke="#82BDA3" stroke-width="2.5" stroke-linecap="round"/><path d="M1328 765l8 8-8 8" fill="none" stroke="#F77476" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
-    <text x="1320" y="836" text-anchor="middle" class="editorial" font-size="23" fill="#F5F0EA">Event no longer available</text>
-    <text x="1320" y="870" text-anchor="middle" class="ui" font-size="12" fill="#C4BDBB">This event is not in the current source.</text>
-    <text x="1320" y="893" text-anchor="middle" class="ui" font-size="11" fill="#C4BDBB">Use native Back to choose another event.</text>
-    <line x1="1128" y1="922" x2="1512" y2="922" stroke="#30394B"/><text x="1320" y="950" text-anchor="middle" class="ui" font-size="11" font-weight="700" fill="#FF9A98">Back to Calendar</text>
+    <text x="1104" y="678" class="label" font-size="6.8" fill="#A8A0A1">DESIGN REVIEW NOTE</text>
+    <text x="1104" y="699" class="ui" font-size="11.5" fill="#C4BDBB">Distinct from source failure; Back follows the opening screen.</text>
+    <rect x="1100" y="720" width="440" height="288" rx="20" fill="#171F30" stroke="#30394B"/>
+    <circle cx="1320" cy="783" r="21" fill="none" stroke="#82BDA3" stroke-width="2.5"/><path d="M1312 778h13m-13 8h8" stroke="#82BDA3" stroke-width="2.5" stroke-linecap="round"/><path d="M1328 773l8 8-8 8" fill="none" stroke="#F77476" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+    <text x="1320" y="844" text-anchor="middle" class="editorial" font-size="23" fill="#F5F0EA">Event no longer available</text>
+    <text x="1320" y="878" text-anchor="middle" class="ui" font-size="12" fill="#C4BDBB">This event can’t be opened right now.</text>
+    <text x="1320" y="901" text-anchor="middle" class="ui" font-size="11" fill="#C4BDBB">Use Back to choose another event.</text>
+    <line x1="1128" y1="930" x2="1512" y2="930" stroke="#30394B"/><text x="1320" y="958" text-anchor="middle" class="ui" font-size="11" font-weight="700" fill="#FF9A98">Back</text>
   </g>
 </svg>

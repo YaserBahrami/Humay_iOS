@@ -12,11 +12,13 @@ The primary fixture is **Mercury enters Virgo**. The hero uses a small Mercury/i
 
 ### iPhone
 
-Native Back to Calendar → Debug disclosure → identity hero → What this means → Factual context → quiet Current Sky/Calendar route context → existing Sky tab shell.
+Origin-aware native Back → Debug disclosure → identity hero → What this means → Factual context → existing Sky tab shell.
 
 ### iPad
 
-The left bounded region owns identity, meaning, and the explanation of the Calendar-to-detail relationship. The right bounded region owns factual context, timing-language clarification, and route context. This is a true two-region composition, not a stretched phone.
+The left bounded region owns identity and meaning. The right bounded region owns factual context. This is a true two-region composition, not a stretched phone. Breathing room remains intentional; no explanatory filler cards are added.
+
+The primary visual uses Calendar as origin. Current Sky-origin and Calendar-origin behavior remain native-stack decisions, with Month/Week selection preserved when returning to Calendar. iPhone keeps Sky selected in the root tab bar; iPad keeps adaptive root navigation.
 
 ## Event identity decision
 
@@ -44,7 +46,7 @@ Western is visible in the primary identity and factual context, but remains quie
 
 ## Factual versus interpretive decision
 
-“What this means” has its own labeled block. “Factual context” has grouped label/value rows for timing, method, involved bodies/points, event type, and availability. This keeps interpretation concise without hiding what is known or unknown.
+“What this means” has its own labeled block. “Factual context” has grouped label/value rows for timing, system, involved bodies/points, and event type. The single Debug badge owns development disclosure; repeated availability/meta rows are removed from the primary product surface.
 
 ## State board decisions
 
@@ -53,7 +55,7 @@ Western is visible in the primary identity and factual context, but remains quie
 - Offline with cache shows saved event content and saved-time disclosure.
 - Offline without cache says no saved detail is available.
 - Failed says event facts could not load.
-- Event not found is distinct from source failure and leaves native Back to Calendar available.
+- Event not found is distinct from source failure and leaves Back to the opening screen available.
 - No Retry button, provider-debug panel, or invented recovery action is shown.
 
 ## Stress board coverage
@@ -88,7 +90,7 @@ No symbol wall, star field, large illustration, or new `Assets.xcassets` item is
 
 ## Accessibility findings
 
-- [x] Native Back is visible and has a full target area.
+- [x] Origin-aware Back is visible and has a full target area.
 - [x] Factual rows are grouped and carry label/value/detail reading order.
 - [x] Timing semantics remain textual and do not rely on accent color.
 - [x] Light and Dark use separate tonal hierarchies.
@@ -102,7 +104,7 @@ No numerical HIG score is assigned.
 
 ## Deferred decisions
 
-1. Production event-detail route and tab-bar behavior.
+1. Production integration of origin-aware navigation and root-tab behavior.
 2. Provider provenance and editorial meaning source.
 3. Exact recovery controls after the data pipeline exists.
 4. Production promotion of any reference-only glyph or motif.

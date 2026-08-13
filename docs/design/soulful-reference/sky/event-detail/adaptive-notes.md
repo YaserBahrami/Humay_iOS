@@ -14,23 +14,24 @@
 
 Use one scroll column with 20 pt side margins and this order:
 
-1. native Back to Calendar;
+1. origin-aware native Back action;
 2. Event Detail context;
 3. Debug disclosure when present;
 4. identity hero;
 5. editorial meaning;
 6. factual context rows;
-7. quiet route context;
-8. existing Sky tab shell, if the native route retains it.
+7. existing Sky tab shell.
 
 The hero exposes title, type, methodology, and timing before the first fold ends. Factual rows are grouped and expand vertically. Methodology text moves below the title when Dynamic Type pressure requires it. No critical timing is truncated.
+
+The primary fixture uses Calendar as its origin. Current Sky-origin opens return to Current Sky / the Sky navigation stack; Calendar-origin opens return to Calendar with Month/Week state preserved. No origin selector is part of the UI.
 
 ## Regular width — iPad
 
 At roughly 820 pt usable width and above, use two bounded regions:
 
 - left: identity and meaning;
-- right: factual context and timing clarification.
+- right: factual context.
 
 Keep a 44–56 pt inter-region gap and comfortable reading widths. Do not stretch phone cards across the whole canvas. Do not scale type, glyphs, radii, or illustration in proportion to device width.
 
@@ -51,8 +52,7 @@ When the right region cannot preserve readable fact rows, collapse toward the iP
 
 1. identity;
 2. meaning;
-3. facts;
-4. supporting context.
+3. facts.
 
 Use available width, horizontal size class, and Dynamic Type pressure—not an iPad model check. Preserve the selected event and route state when collapsing.
 
@@ -69,13 +69,13 @@ Use available width, horizontal size class, and Dynamic Type pressure—not an i
 
 ### Compact phone
 
-Back to Calendar → Event Detail heading → Debug disclosure → event type → event title → methodology → timing → What this means → meaning text → Factual context heading → fact rows → route context → tab shell.
+Back to opening screen → Event Detail heading → Debug disclosure → event type → event title → methodology → timing → What this means → meaning text → Factual context heading → fact rows → tab shell.
 
-The hero motif is decorative. A fact row is one grouped element, for example: “Timing, Friday at 21:00 TRT, instant reference timing.”
+The hero motif is decorative. A fact row is one grouped element, for example: “Timing, Friday at 21:00 TRT.”
 
 ### Regular iPad
 
-Back to Calendar → Event Detail heading → Debug disclosure → identity hero → meaning → Calendar-to-detail context → Factual context → timing-language clarification → route context.
+Back to opening screen → Event Detail heading → Debug disclosure → identity hero → meaning → Factual context.
 
 Do not expose chevrons, dots, orbital arcs, or decorative accents as separate focusable elements. The full row owns pointer hover, keyboard focus, and activation when implementation introduces a row target.
 
@@ -83,7 +83,7 @@ Do not expose chevrons, dots, orbital arcs, or decorative accents as separate fo
 
 - Background may extend under system areas; text and controls remain inside safe areas.
 - The phone bottom shell reserves home-indicator clearance and does not obscure the last fact row.
-- Back, future fact rows, and route links use native 44 pt targets.
+- Back and future fact rows use native 44 pt targets.
 - iPad pointer hover and keyboard focus apply to the complete target, not only an icon.
 - Native Back swipe, Return/Space activation, and system focus rings remain available.
 - Reduce Motion shows static orbital art with no replacement animation.

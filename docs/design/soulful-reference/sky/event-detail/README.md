@@ -24,11 +24,10 @@ Supporting review:
 
 **Celestial editorial sheet** — Event Detail is more focused than Calendar and quieter than the Current Sky hero. It opens one event into a compact explanatory sequence:
 
-1. native Back to Calendar;
+1. native Back action whose title follows the opening screen;
 2. event identity and timing;
 3. a short Humay editorial meaning;
-4. factual context with a quiet methodology label;
-5. route context showing why the page exists.
+4. factual context with a quiet methodology label.
 
 The primary fixture is **Mercury enters Virgo**, shown as a Planetary ingress in the Western system. It exercises a two-line identity, a methodology label, instant timing, involved body/sign context, interpretive copy, and explicit reference-only availability. Every primary reference keeps **Development sample · not calculated** visible.
 
@@ -41,6 +40,15 @@ The fixture is illustrative only. It is not real astronomy or astrology for the 
 - **Event Detail:** editorial and factual; interpretation and supplied facts remain visibly separate.
 
 Calendar remains nested under Sky. Event Detail does not add a root destination or a second navigation shell.
+
+## Navigation origin and root shell
+
+Event Detail can open from Current Sky, Calendar Month, or Calendar Week. Native navigation-stack behavior owns the Back destination:
+
+- Current Sky origin returns to Current Sky / the Sky navigation stack.
+- Calendar origin returns to Calendar and preserves Month/Week selection state.
+
+Primary references use Calendar as visual origin, so Back reads `Calendar`. No custom origin selector is shown. iPhone keeps the existing Sky-selected root tab bar visible; iPad keeps the adaptive Sky root-navigation model.
 
 ## Approval boundary
 

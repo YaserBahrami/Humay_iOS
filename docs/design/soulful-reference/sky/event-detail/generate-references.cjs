@@ -116,10 +116,6 @@ function svgShell({ width, height, title, description, mode, body, extraDefiniti
 </svg>`;
 }
 
-function reviewLabel(width, theme) {
-  return `<text x="${width / 2}" y="18" text-anchor="middle" class="label" font-size="7.5" fill="${theme.coralText}">D3.3 · REVIEW CANDIDATE · NOT APPROVED</text>`;
-}
-
 function statusBar(width, theme, device) {
   const phone = device === "phone";
   const timeX = phone ? 22 : 24;
@@ -140,19 +136,20 @@ function chevron(x, y, direction, theme, size = 5) {
   return `<path d="M${x - sign * size} ${y - size}l${sign * size} ${size} ${-sign * size} ${size}" fill="none" stroke="${theme.ink}" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>`;
 }
 
-function backHeader(theme, { wide = false } = {}) {
+function backHeader(theme, { wide = false, origin } = {}) {
+  const originTitle = origin === "Sky" ? "Sky" : "Calendar";
   if (wide) {
-    return `<g aria-label="Back to Calendar, Event Detail">
+    return `<g aria-label="Back to ${originTitle}, Event Detail">
       <rect x="36" y="122" width="150" height="44" rx="22" fill="transparent"/>
       ${chevron(52, 144, "left", theme, 5)}
-      <text x="66" y="149" class="ui" font-size="15" font-weight="650" fill="${theme.coralText}">Calendar</text>
+      <text x="66" y="149" class="ui" font-size="15" font-weight="650" fill="${theme.coralText}">${originTitle}</text>
       <text x="210" y="151" class="editorial" font-size="34" fill="${theme.ink}">Event Detail</text>
     </g>`;
   }
-  return `<g aria-label="Back to Calendar, Event Detail">
+  return `<g aria-label="Back to ${originTitle}, Event Detail">
     <rect x="12" y="43" width="138" height="44" rx="22" fill="transparent"/>
     ${chevron(27, 65, "left", theme, 4.5)}
-    <text x="39" y="70" class="ui" font-size="14" font-weight="600" fill="${theme.coralText}">Calendar</text>
+    <text x="39" y="70" class="ui" font-size="14" font-weight="600" fill="${theme.coralText}">${originTitle}</text>
     <text x="215" y="70" text-anchor="middle" class="ui" font-size="16" font-weight="700" fill="${theme.ink}">Event Detail</text>
   </g>`;
 }
@@ -238,12 +235,13 @@ function heroMotif(theme, mode, x, y) {
 }
 
 function factRow({ x, y, width, label, value, detail = null, theme, last = false, valueColor = null }) {
+  const textY = detail ? y + 17 : y + 27;
   const detailMarkup = detail
     ? `<text x="${x + 122}" y="${y + 34}" class="ui" font-size="9.5" fill="${theme.secondary}">${escapeText(detail)}</text>`
     : "";
   return `<g aria-label="${escapeText(label)}: ${escapeText(value)}${detail ? `. ${escapeText(detail)}` : ""}">
-    <text x="${x}" y="${y + 16}" class="label" font-size="7.2" fill="${theme.tertiary}">${escapeText(label.toUpperCase())}</text>
-    <text x="${x + 122}" y="${y + 17}" class="ui" font-size="12.5" font-weight="700" fill="${valueColor || theme.ink}">${escapeText(value)}</text>
+    <text x="${x}" y="${textY - 1}" class="label" font-size="7.2" fill="${theme.tertiary}">${escapeText(label.toUpperCase())}</text>
+    <text x="${x + 122}" y="${textY}" class="ui" font-size="12.5" font-weight="700" fill="${valueColor || theme.ink}">${escapeText(value)}</text>
     ${detailMarkup}
     ${last ? "" : `<line x1="${x}" y1="${y + 49}" x2="${x + width}" y2="${y + 49}" stroke="${theme.hairline}"/>`}
   </g>`;
@@ -256,16 +254,14 @@ function meaningBlock({ x, y, width, height, theme, large = false }) {
     <text x="${x + 22}" y="${y + (large ? 62 : 54)}" class="editorial" font-size="${large ? 26 : 22}" fill="${theme.ink}">A useful shift in focus.</text>
     <text x="${x + 22}" y="${y + (large ? 94 : 82)}" class="ui" font-size="${large ? 13.5 : 11.5}" fill="${theme.secondary}">Notice patterns, refine language, and give</text>
     <text x="${x + 22}" y="${y + (large ? 115 : 101)}" class="ui" font-size="${large ? 13.5 : 11.5}" fill="${theme.secondary}">small details a shape you can use.</text>
-    ${large ? `<text x="${x + 22}" y="${y + 147}" class="ui" font-size="12" fill="${theme.secondary}">Humay editorial reading · concise and non-deterministic</text>` : ""}
   </g>`;
 }
 
 function phoneReference(mode) {
   const theme = themes[mode];
   const body = `<rect width="430" height="932" fill="${theme.ground}"/>
-    ${reviewLabel(430, theme)}
     ${statusBar(430, theme, "phone")}
-    ${backHeader(theme)}
+    ${backHeader(theme, { origin: "Calendar" })}
     ${sampleNotice(20, 94, theme)}
 
     <g aria-label="Mercury enters Virgo event identity">
@@ -274,11 +270,10 @@ function phoneReference(mode) {
       <text x="42" y="165" class="label" font-size="8" fill="${theme.heroSecondary}">PLANETARY INGRESS</text>
       <text x="42" y="211" class="editorial" font-size="30" fill="${theme.heroText}">Mercury enters</text>
       <text x="42" y="246" class="editorial" font-size="30" fill="${theme.heroText}">Virgo</text>
-      <text x="42" y="278" class="ui" font-size="10.5" fill="${theme.heroSecondary}">Western · reference fixture</text>
+      <text x="42" y="278" class="ui" font-size="10.5" fill="${theme.heroSecondary}">Western</text>
       <line x1="42" y1="296" x2="244" y2="296" stroke="${theme.heroSecondary}" stroke-opacity="0.42"/>
       <text x="42" y="319" class="label" font-size="7.2" fill="${theme.heroSecondary}">TIMING</text>
       <text x="101" y="320" class="mono" font-size="13.2" font-weight="600" fill="${theme.heroText}">Fri 21:00 TRT</text>
-      <text x="42" y="349" class="ui" font-size="9.4" fill="${theme.heroSecondary}">Instant timing shown as reference content.</text>
       ${heroMotif(theme, mode, 342, 224)}
     </g>
 
@@ -288,22 +283,17 @@ function phoneReference(mode) {
     <text x="20" y="581" class="editorial" font-size="23" fill="${theme.ink}">Factual context</text>
     <g aria-label="Factual context" filter="url(#soft-shadow)">
       <rect x="20" y="592" width="390" height="221" rx="22" fill="${theme.surface}" stroke="${theme.hairline}"/>
-      ${factRow({ x: 40, y: 608, width: 350, label: "Timing", value: "Fri 21:00 TRT", detail: "Instant reference timing", theme })}
-      ${factRow({ x: 40, y: 657, width: 350, label: "Method", value: "Western", detail: "System label stays visible", theme, valueColor: theme.coralText })}
-      ${factRow({ x: 40, y: 706, width: 350, label: "Involved", value: "Mercury · Virgo", detail: "Ingress fixture", theme })}
-      ${factRow({ x: 40, y: 755, width: 350, label: "Event type", value: "Planetary ingress", detail: "A body changes sign", theme, last: true })}
-    </g>
-    <g aria-label="Event detail route context">
-      <line x1="20" y1="831" x2="410" y2="831" stroke="${theme.hairline}"/>
-      <text x="20" y="855" class="ui" font-size="10.5" fill="${theme.secondary}">From Current Sky or Calendar</text>
-      <text x="410" y="855" text-anchor="end" class="ui" font-size="10.5" font-weight="700" fill="${theme.coralText}">READ THE EVENT</text>
+      ${factRow({ x: 40, y: 608, width: 350, label: "Timing", value: "Fri 21:00 TRT", theme })}
+      ${factRow({ x: 40, y: 657, width: 350, label: "System", value: "Western", theme, valueColor: theme.coralText })}
+      ${factRow({ x: 40, y: 706, width: 350, label: "Involved", value: "Mercury · Virgo", theme })}
+      ${factRow({ x: 40, y: 755, width: 350, label: "Event type", value: "Planetary ingress", theme, last: true })}
     </g>
     ${phoneTabBar(theme)}`;
   return svgShell({
     width: 430,
     height: 932,
     title: `Humay Event Detail iPhone ${mode}`,
-    description: `D3.3 review candidate, not approved. Editorial event detail on a 430 by 932 point iPhone canvas in ${mode} appearance.`,
+    description: `Editorial event detail on a 430 by 932 point iPhone canvas in ${mode} appearance.`,
     mode,
     body
   });
@@ -316,10 +306,9 @@ function iPadReference(mode) {
   const rightX = 540;
   const rightWidth = 436;
   const body = `<rect width="1024" height="1366" fill="${theme.ground}"/>
-    ${reviewLabel(1024, theme)}
     ${statusBar(1024, theme, "pad")}
     ${iPadTopNavigation(theme)}
-    ${backHeader(theme, { wide: true })}
+    ${backHeader(theme, { wide: true, origin: "Calendar" })}
     ${sampleNotice(48, 184, theme, 204)}
 
     <g aria-label="Event identity and editorial meaning">
@@ -328,52 +317,30 @@ function iPadReference(mode) {
       <text x="78" y="274" class="label" font-size="8.5" fill="${theme.heroSecondary}">PLANETARY INGRESS</text>
       <text x="78" y="325" class="editorial" font-size="37" fill="${theme.heroText}">Mercury enters</text>
       <text x="78" y="367" class="editorial" font-size="37" fill="${theme.heroText}">Virgo</text>
-      <text x="78" y="405" class="ui" font-size="12" fill="${theme.heroSecondary}">Western · reference fixture</text>
+      <text x="78" y="405" class="ui" font-size="12" fill="${theme.heroSecondary}">Western</text>
       <line x1="78" y1="428" x2="283" y2="428" stroke="${theme.heroSecondary}" stroke-opacity="0.42"/>
       <text x="78" y="455" class="label" font-size="7.5" fill="${theme.heroSecondary}">TIMING</text>
       <text x="145" y="456" class="mono" font-size="15" font-weight="600" fill="${theme.heroText}">Fri 21:00 TRT</text>
-      <text x="78" y="488" class="ui" font-size="10.5" fill="${theme.heroSecondary}">Instant timing shown as reference content.</text>
       ${heroMotif(theme, mode, 408, 353)}
     </g>
 
     <text x="${leftX}" y="598" class="editorial" font-size="28" fill="${theme.ink}">What this means</text>
-    ${meaningBlock({ x: leftX, y: 616, width: leftWidth, height: 177, theme, large: true })}
-    <g aria-label="How Event Detail relates to Calendar">
-      <rect x="${leftX}" y="846" width="${leftWidth}" height="132" rx="22" fill="${theme.secondarySurface}" stroke="${theme.hairline}"/>
-      <text x="${leftX + 22}" y="881" class="label" font-size="7.7" fill="${theme.coralText}">FROM CALENDAR TO DETAIL</text>
-      <text x="${leftX + 22}" y="913" class="ui" font-size="14" font-weight="700" fill="${theme.ink}">Chronology opens into explanation.</text>
-      <text x="${leftX + 22}" y="938" class="ui" font-size="11.5" fill="${theme.secondary}">The row gives the date; this page gives</text>
-      <text x="${leftX + 22}" y="958" class="ui" font-size="11.5" fill="${theme.secondary}">meaning and the available factual basis.</text>
-    </g>
+    ${meaningBlock({ x: leftX, y: 616, width: leftWidth, height: 146, theme, large: true })}
 
     <text x="${rightX}" y="254" class="editorial" font-size="28" fill="${theme.ink}">Factual context</text>
     <g aria-label="Factual context" filter="url(#soft-shadow)">
-      <rect x="${rightX}" y="273" width="${rightWidth}" height="344" rx="24" fill="${theme.surface}" stroke="${theme.hairline}"/>
-      ${factRow({ x: rightX + 22, y: 294, width: rightWidth - 44, label: "Timing", value: "Fri 21:00 TRT", detail: "Instant reference timing" , theme })}
-      ${factRow({ x: rightX + 22, y: 343, width: rightWidth - 44, label: "Method", value: "Western", detail: "Visible, quiet system context", theme, valueColor: theme.coralText })}
-      ${factRow({ x: rightX + 22, y: 392, width: rightWidth - 44, label: "Involved", value: "Mercury · Virgo", detail: "Ingress fixture", theme })}
-      ${factRow({ x: rightX + 22, y: 441, width: rightWidth - 44, label: "Event type", value: "Planetary ingress", detail: "A body changes sign", theme })}
-      ${factRow({ x: rightX + 22, y: 490, width: rightWidth - 44, label: "Availability", value: "Reference only", detail: "Development sample · not calculated", theme, last: true, valueColor: theme.goldText })}
+      <rect x="${rightX}" y="273" width="${rightWidth}" height="270" rx="24" fill="${theme.surface}" stroke="${theme.hairline}"/>
+      ${factRow({ x: rightX + 22, y: 294, width: rightWidth - 44, label: "Timing", value: "Fri 21:00 TRT", theme })}
+      ${factRow({ x: rightX + 22, y: 343, width: rightWidth - 44, label: "System", value: "Western", theme, valueColor: theme.coralText })}
+      ${factRow({ x: rightX + 22, y: 392, width: rightWidth - 44, label: "Involved", value: "Mercury · Virgo", theme })}
+      ${factRow({ x: rightX + 22, y: 441, width: rightWidth - 44, label: "Event type", value: "Planetary ingress", theme, last: true })}
     </g>
-
-    <g aria-label="Timing language guidance">
-      <rect x="${rightX}" y="674" width="${rightWidth}" height="172" rx="22" fill="${theme.blueWash}" stroke="${theme.hairline}"/>
-      <text x="${rightX + 22}" y="710" class="label" font-size="7.7" fill="${theme.blueText}">TIMING LANGUAGE</text>
-      <text x="${rightX + 22}" y="744" class="editorial" font-size="24" fill="${theme.ink}">Precision stays honest.</text>
-      <text x="${rightX + 22}" y="776" class="ui" font-size="11.5" fill="${theme.secondary}">Instant, range, date-only, and unavailable</text>
-      <text x="${rightX + 22}" y="797" class="ui" font-size="11.5" fill="${theme.secondary}">timing use distinct labels—not guessed clocks.</text>
-      <text x="${rightX + 22}" y="827" class="ui" font-size="10.5" fill="${theme.secondary}">A reference fixture never becomes a factual claim.</text>
-    </g>
-    <g aria-label="Supporting route context">
-      <line x1="${rightX}" y1="895" x2="${rightX + rightWidth}" y2="895" stroke="${theme.hairline}"/>
-      <text x="${rightX}" y="923" class="ui" font-size="11.5" fill="${theme.secondary}">Appears from Current Sky or Calendar</text>
-      <text x="${rightX + rightWidth}" y="923" text-anchor="end" class="ui" font-size="11.5" font-weight="700" fill="${theme.coralText}">NATIVE BACK</text>
-    </g>`;
+    `;
   return svgShell({
     width: 1024,
     height: 1366,
     title: `Humay Event Detail iPad ${mode}`,
-    description: `D3.3 review candidate, not approved. Bounded two-region Event Detail composition on a 1024 by 1366 point iPad canvas in ${mode} appearance.`,
+    description: `Bounded two-region Event Detail composition on a 1024 by 1366 point iPad canvas in ${mode} appearance.`,
     mode,
     body
   });
@@ -418,21 +385,20 @@ function statePreview({ x, y, width, height, kind, theme }) {
       <text x="${innerX + 76}" y="${y + 57}" class="ui" font-size="10.5" fill="${theme.secondary}">Showing content saved 12 Aug · 09:00</text>
       <text x="${innerX + 20}" y="${y + 108}" class="editorial" font-size="22" fill="${theme.ink}">Mercury enters Virgo</text>
       <text x="${innerX + 20}" y="${y + 136}" class="mono" font-size="10.5" fill="${theme.secondary}">Fri 21:00 TRT · Western</text>
-      <line x1="${innerX + 20}" y1="${y + 158}" x2="${innerX + innerWidth - 20}" y2="${y + 158}" stroke="${theme.hairline}"/>
-      <text x="${innerX + 20}" y="${y + 187}" class="ui" font-size="11.5" fill="${theme.secondary}">Saved facts stay readable; freshness stays explicit.</text>`;
+      <line x1="${innerX + 20}" y1="${y + 158}" x2="${innerX + innerWidth - 20}" y2="${y + 158}" stroke="${theme.hairline}"/>`;
   }
   const content = {
-    unavailable: ["Event detail unavailable", "This event needs a connected source.", "The route remains readable without guessed facts."],
-    empty: ["No saved event detail", "Reconnect to view this event.", "No recovery action is promised here."],
-    failed: ["Event detail couldn’t load", "The event facts could not be loaded.", "Use native Back to return to Calendar."],
-    "not-found": ["Event no longer available", "This event is not in the current source.", "Use native Back to choose another event."]
+    unavailable: ["Event detail unavailable", "This event needs a connected source.", "No details are available right now."],
+    empty: ["No saved event detail", "Reconnect to view this event.", "Nothing is saved on this device."],
+    failed: ["Event detail couldn’t load", "The event facts could not be loaded.", "Use Back to return to the previous screen."],
+    "not-found": ["Event no longer available", "This event can’t be opened right now.", "Use Back to choose another event."]
   }[kind];
   return `<rect x="${innerX}" y="${y}" width="${innerWidth}" height="${height}" rx="20" fill="${theme.surface}" stroke="${theme.hairline}"/>
     ${stateIcon(kind, x + width / 2, y + 63, theme)}
     <text x="${x + width / 2}" y="${y + 124}" text-anchor="middle" class="editorial" font-size="23" fill="${theme.ink}">${escapeText(content[0])}</text>
     <text x="${x + width / 2}" y="${y + 158}" text-anchor="middle" class="ui" font-size="12" fill="${theme.secondary}">${escapeText(content[1])}</text>
     <text x="${x + width / 2}" y="${y + 181}" text-anchor="middle" class="ui" font-size="11" fill="${theme.secondary}">${escapeText(content[2])}</text>
-    ${kind === "not-found" ? `<line x1="${innerX + 28}" y1="${y + 210}" x2="${innerX + innerWidth - 28}" y2="${y + 210}" stroke="${theme.hairline}"/><text x="${x + width / 2}" y="${y + 238}" text-anchor="middle" class="ui" font-size="11" font-weight="700" fill="${theme.coralText}">Back to Calendar</text>` : ""}`;
+    ${kind === "not-found" ? `<line x1="${innerX + 28}" y1="${y + 210}" x2="${innerX + innerWidth - 28}" y2="${y + 210}" stroke="${theme.hairline}"/><text x="${x + width / 2}" y="${y + 238}" text-anchor="middle" class="ui" font-size="11" font-weight="700" fill="${theme.coralText}">Back</text>` : ""}`;
 }
 
 function statePanel({ x, y, width, height, mode, index, name, note, kind }) {
@@ -441,8 +407,9 @@ function statePanel({ x, y, width, height, mode, index, name, note, kind }) {
     <rect x="${x}" y="${y}" width="${width}" height="${height}" rx="28" fill="${theme.ground}" stroke="${theme.hairline}"/>
     <text x="${x + 24}" y="${y + 31}" class="label" font-size="9" fill="${theme.coralText}">${String(index).padStart(2, "0")} · ${escapeText(name.toUpperCase())}</text>
     <text x="${x + width - 24}" y="${y + 31}" text-anchor="end" class="label" font-size="8" fill="${theme.tertiary}">${mode === "light" ? "LIGHT EXAMPLE" : "DARK EXAMPLE"}</text>
-    <text x="${x + 24}" y="${y + 63}" class="ui" font-size="12.5" fill="${theme.secondary}">${escapeText(note)}</text>
-    ${statePreview({ x, y: y + 88, width, height: height - 112, kind, theme })}
+    <text x="${x + 24}" y="${y + 54}" class="label" font-size="6.8" fill="${theme.tertiary}">DESIGN REVIEW NOTE</text>
+    <text x="${x + 24}" y="${y + 75}" class="ui" font-size="11.5" fill="${theme.secondary}">${escapeText(note)}</text>
+    ${statePreview({ x, y: y + 96, width, height: height - 120, kind, theme })}
   </g>`;
 }
 
@@ -453,7 +420,7 @@ function stateBoard() {
     { x: 1080, y: 166, mode: "light", index: 3, name: "Offline with cache", kind: "cached", note: "Saved detail remains visible with freshness." },
     { x: 40, y: 624, mode: "dark", index: 4, name: "Offline without cache", kind: "empty", note: "No saved payload; no invented recovery control." },
     { x: 560, y: 624, mode: "light", index: 5, name: "Failed", kind: "failed", note: "Failure copy; retry remains pipeline-owned." },
-    { x: 1080, y: 624, mode: "dark", index: 6, name: "Event not found", kind: "not-found", note: "Distinct from source failure; native Back stays available." }
+    { x: 1080, y: 624, mode: "dark", index: 6, name: "Event not found", kind: "not-found", note: "Distinct from source failure; Back follows the opening screen." }
   ].map((panel) => statePanel({ ...panel, width: 480, height: 408 })).join("");
   return svgShell({
     width: 1600,
@@ -464,7 +431,7 @@ function stateBoard() {
     body: `<rect width="1600" height="1080" fill="#EFE9E2"/>
       <text x="40" y="53" class="label" font-size="10.5" fill="${themes.light.coralText}">D3.3 · REVIEW CANDIDATE — NOT APPROVED</text>
       <text x="40" y="99" class="editorial" font-size="42" fill="${themes.light.ink}">Event Detail state language</text>
-      <text x="40" y="128" class="ui" font-size="14.5" fill="${themes.light.secondary}">Shared shell, explicit availability, natural copy, and no unsupported Retry or provider-debug UI.</text>
+      <text x="40" y="128" class="ui" font-size="14.5" fill="${themes.light.secondary}">Design review board · notes above sit outside simulated app surfaces.</text>
       ${panels}`
   });
 }
@@ -474,8 +441,9 @@ function stressPanel({ x, mode, label, note, body }) {
   return `<g>
     <rect x="${x}" y="137" width="350" height="700" rx="26" fill="${theme.ground}" stroke="${theme.hairline}"/>
     <text x="${x + 22}" y="170" class="label" font-size="8.5" fill="${theme.coralText}">${escapeText(label)}</text>
-    <text x="${x + 22}" y="197" class="ui" font-size="11" fill="${theme.secondary}">${escapeText(note)}</text>
-    ${body(theme, x + 22, 232)}
+    <text x="${x + 22}" y="197" class="label" font-size="6.8" fill="${theme.tertiary}">DESIGN REVIEW NOTE</text>
+    <text x="${x + 22}" y="216" class="ui" font-size="10.5" fill="${theme.secondary}">${escapeText(note)}</text>
+    ${body(theme, x + 22, 248)}
   </g>`;
 }
 
@@ -485,32 +453,26 @@ function stressBoard() {
       x: 40,
       mode: "light",
       label: "01 · TITLE + TIMING",
-      note: "Long identity wraps before facts disappear.",
+      note: "Long identity wraps; date-only and range stay explicit.",
       body: (theme, x, y) => `<rect x="${x}" y="${y}" width="306" height="270" rx="20" fill="${theme.surface}" stroke="${theme.hairline}"/>
         ${eventGlyph("ingress", x + 43, y + 45, theme, 0.74)}
         <text x="${x + 78}" y="${y + 39}" class="label" font-size="7" fill="${theme.coralText}">PLANETARY INGRESS</text>
         <text x="${x + 78}" y="${y + 70}" class="ui" font-size="15" font-weight="700" fill="${theme.ink}">Mars enters Sagittarius</text>
         <text x="${x + 78}" y="${y + 91}" class="ui" font-size="15" font-weight="700" fill="${theme.ink}">after an extended cycle</text>
-        <text x="${x + 22}" y="${y + 130}" class="label" font-size="7" fill="${theme.tertiary}">DATE-ONLY TIMING</text>
-        <text x="${x + 22}" y="${y + 153}" class="mono" font-size="11" fill="${theme.secondary}">Date only · 27 November</text>
-        <line x1="${x + 22}" y1="${y + 178}" x2="${x + 284}" y2="${y + 178}" stroke="${theme.hairline}"/>
-        <text x="${x + 22}" y="${y + 208}" class="label" font-size="7" fill="${theme.tertiary}">RANGE TIMING</text>
-        <text x="${x + 22}" y="${y + 231}" class="mono" font-size="11" fill="${theme.secondary}">Fri 21:00 – Sat 03:00</text>
-        ${methodology(x + 22, y + 244, "Western", theme, theme.coral)}`
+        <text x="${x + 22}" y="${y + 143}" class="mono" font-size="11" fill="${theme.secondary}">Date only · 27 November</text>
+        <line x1="${x + 22}" y1="${y + 168}" x2="${x + 284}" y2="${y + 168}" stroke="${theme.hairline}"/>
+        <text x="${x + 22}" y="${y + 207}" class="mono" font-size="11" fill="${theme.secondary}">Fri 21:00 – Sat 03:00</text>
+        ${methodology(x + 22, y + 222, "Western", theme, theme.coral)}`
     }),
     stressPanel({
       x: 430,
       mode: "dark",
       label: "02 · EVENT CLASSES",
-      note: "Glyph supports identity; text carries meaning.",
+      note: "Glyph stays secondary; event name and system carry meaning.",
       body: (theme, x, y) => `<g aria-label="Lunar phase, aspect, and tradition-specific examples">
         ${stressEventRow({ x, y, theme, kind: "moon", title: "Full Moon", meta: "Lunar phase · Astronomical", color: theme.goldText })}
         ${stressEventRow({ x, y: y + 102, theme, kind: "aspect", title: "Venus trine Jupiter", meta: "Aspect · Western", color: theme.lavenderText })}
         ${stressEventRow({ x, y: y + 204, theme, kind: "tradition", title: "Tradition-specific event", meta: "Vedic · methodology label", color: theme.blueText })}
-        <rect x="${x}" y="${y + 328}" width="306" height="124" rx="18" fill="${theme.secondarySurface}" stroke="${theme.hairline}"/>
-        <text x="${x + 18}" y="${y + 360}" class="label" font-size="7.2" fill="${theme.tertiary}">SYMBOL RULE</text>
-        <text x="${x + 18}" y="${y + 389}" class="ui" font-size="12" fill="${theme.secondary}">No glyph wall. Event name, type,</text>
-        <text x="${x + 18}" y="${y + 410}" class="ui" font-size="12" fill="${theme.secondary}">system, and timing remain textual.</text>
       </g>`
     }),
     stressPanel({
@@ -520,17 +482,17 @@ function stressBoard() {
       note: "Sparse facts and longer meaning share one shell.",
       body: (theme, x, y) => `<g aria-label="Long interpretation and sparse or dense factual context">
         <rect x="${x}" y="${y}" width="306" height="308" rx="20" fill="${theme.surface}" stroke="${theme.hairline}"/>
-        <text x="${x + 18}" y="${y + 31}" class="label" font-size="7.2" fill="${theme.coralText}">LONGER INTERPRETATION</text>
+        <text x="${x + 18}" y="${y + 31}" class="label" font-size="7.2" fill="${theme.coralText}">WHAT THIS MEANS</text>
         <text x="${x + 18}" y="${y + 64}" class="editorial" font-size="22" fill="${theme.ink}">Meaning can breathe.</text>
         <text x="${x + 18}" y="${y + 95}" class="ui" font-size="11.5" fill="${theme.secondary}">The editorial layer grows to three or</text>
         <text x="${x + 18}" y="${y + 115}" class="ui" font-size="11.5" fill="${theme.secondary}">four lines without swallowing facts.</text>
         <line x1="${x + 18}" y1="${y + 143}" x2="${x + 288}" y2="${y + 143}" stroke="${theme.hairline}"/>
-        <text x="${x + 18}" y="${y + 173}" class="label" font-size="7.2" fill="${theme.tertiary}">SPARSE FACTS</text>
-        <text x="${x + 18}" y="${y + 198}" class="ui" font-size="12.5" font-weight="700" fill="${theme.ink}">Type · Lunar phase</text>
+        <text x="${x + 18}" y="${y + 173}" class="label" font-size="7.2" fill="${theme.tertiary}">FACTUAL CONTEXT</text>
+        <text x="${x + 18}" y="${y + 198}" class="ui" font-size="12.5" font-weight="700" fill="${theme.ink}">Event type · Lunar phase</text>
         <text x="${x + 18}" y="${y + 222}" class="ui" font-size="12.5" fill="${theme.secondary}">Timing unavailable</text>
         <line x1="${x + 18}" y1="${y + 241}" x2="${x + 288}" y2="${y + 241}" stroke="${theme.hairline}"/>
-        <text x="${x + 18}" y="${y + 267}" class="label" font-size="7.2" fill="${theme.tertiary}">DENSE FACTS</text>
-        <text x="${x + 18}" y="${y + 289}" class="ui" font-size="11" fill="${theme.secondary}">Bodies · phase · visibility · source note</text>
+        <text x="${x + 18}" y="${y + 267}" class="label" font-size="7.2" fill="${theme.tertiary}">ADDITIONAL CONTEXT</text>
+        <text x="${x + 18}" y="${y + 289}" class="ui" font-size="11" fill="${theme.secondary}">Body · phase · visibility · source note</text>
       </g>`
     }),
     stressPanel({
@@ -539,17 +501,16 @@ function stressBoard() {
       label: "04 · ACCESSIBILITY PRESSURE",
       note: "Large type collapses regions before truncation.",
       body: (theme, x, y) => `<g aria-label="Dynamic Type and methodology pressure">
-        <rect x="${x}" y="${y}" width="306" height="374" rx="20" fill="${theme.surface}" stroke="${theme.hairline}"/>
+        <rect x="${x}" y="${y}" width="306" height="294" rx="20" fill="${theme.surface}" stroke="${theme.hairline}"/>
         <text x="${x + 18}" y="${y + 43}" class="editorial" font-size="29" fill="${theme.ink}">Event detail</text>
         <text x="${x + 18}" y="${y + 82}" class="ui" font-size="20" font-weight="700" fill="${theme.ink}">Fri 21:00 – Sat 03:00</text>
         <text x="${x + 18}" y="${y + 113}" class="ui" font-size="17" font-weight="700" fill="${theme.ink}">Timing unavailable</text>
         <line x1="${x + 18}" y1="${y + 137}" x2="${x + 288}" y2="${y + 137}" stroke="${theme.hairline}"/>
-        <text x="${x + 18}" y="${y + 174}" class="label" font-size="7.2" fill="${theme.tertiary}">METHODOLOGY PRESSURE</text>
+        <text x="${x + 18}" y="${y + 174}" class="label" font-size="7.2" fill="${theme.tertiary}">SYSTEM</text>
         <text x="${x + 18}" y="${y + 207}" class="ui" font-size="18" font-weight="700" fill="${theme.coralText}">Astronomical</text>
         <text x="${x + 18}" y="${y + 233}" class="ui" font-size="18" font-weight="700" fill="${theme.coralText}">Western · Vedic</text>
-        <rect x="${x + 18}" y="${y + 270}" width="270" height="56" rx="14" fill="${theme.secondarySurface}" stroke="${theme.hairline}"/>
-        <text x="${x + 34}" y="${y + 294}" class="ui" font-size="11.5" fill="${theme.secondary}">44 pt targets remain. Meaningful</text>
-        <text x="${x + 34}" y="${y + 313}" class="ui" font-size="11.5" fill="${theme.secondary}">labels stay readable; art hides first.</text>
+        <text x="${x + 18}" y="${y + 326}" class="label" font-size="6.8" fill="${theme.tertiary}">DESIGN REVIEW NOTE</text>
+        <text x="${x + 18}" y="${y + 347}" class="ui" font-size="10.5" fill="${theme.secondary}">44 pt targets stay intact; art hides first.</text>
       </g>`
     })
   ].join("");

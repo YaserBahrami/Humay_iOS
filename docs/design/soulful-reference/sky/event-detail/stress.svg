@@ -35,83 +35,80 @@
       <g>
     <rect x="40" y="137" width="350" height="700" rx="26" fill="#FBF7F1" stroke="#E9E0D8"/>
     <text x="62" y="170" class="label" font-size="8.5" fill="#A83F3C">01 · TITLE + TIMING</text>
-    <text x="62" y="197" class="ui" font-size="11" fill="#625F62">Long identity wraps before facts disappear.</text>
-    <rect x="62" y="232" width="306" height="270" rx="20" fill="#FFFDFC" stroke="#E9E0D8"/>
-        <g aria-hidden="true"><circle cx="105" cy="277" r="17.02" fill="#F7F0E8"/><circle cx="102.78" cy="279.96" r="5.18" fill="none" stroke="#678E79" stroke-width="1.48"/><path d="M106.48 274.78l8.14 -8.14m-4.4399999999999995 0h4.4399999999999995v4.4399999999999995" fill="none" stroke="#678E79" stroke-width="1.48" stroke-linecap="round" stroke-linejoin="round"/></g>
-        <text x="140" y="271" class="label" font-size="7" fill="#A83F3C">PLANETARY INGRESS</text>
-        <text x="140" y="302" class="ui" font-size="15" font-weight="700" fill="#151B28">Mars enters Sagittarius</text>
-        <text x="140" y="323" class="ui" font-size="15" font-weight="700" fill="#151B28">after an extended cycle</text>
-        <text x="84" y="362" class="label" font-size="7" fill="#7A7575">DATE-ONLY TIMING</text>
-        <text x="84" y="385" class="mono" font-size="11" fill="#625F62">Date only · 27 November</text>
-        <line x1="84" y1="410" x2="346" y2="410" stroke="#E9E0D8"/>
-        <text x="84" y="440" class="label" font-size="7" fill="#7A7575">RANGE TIMING</text>
-        <text x="84" y="463" class="mono" font-size="11" fill="#625F62">Fri 21:00 – Sat 03:00</text>
+    <text x="62" y="197" class="label" font-size="6.8" fill="#7A7575">DESIGN REVIEW NOTE</text>
+    <text x="62" y="216" class="ui" font-size="10.5" fill="#625F62">Long identity wraps; date-only and range stay explicit.</text>
+    <rect x="62" y="248" width="306" height="270" rx="20" fill="#FFFDFC" stroke="#E9E0D8"/>
+        <g aria-hidden="true"><circle cx="105" cy="293" r="17.02" fill="#F7F0E8"/><circle cx="102.78" cy="295.96" r="5.18" fill="none" stroke="#678E79" stroke-width="1.48"/><path d="M106.48 290.78l8.14 -8.14m-4.4399999999999995 0h4.4399999999999995v4.4399999999999995" fill="none" stroke="#678E79" stroke-width="1.48" stroke-linecap="round" stroke-linejoin="round"/></g>
+        <text x="140" y="287" class="label" font-size="7" fill="#A83F3C">PLANETARY INGRESS</text>
+        <text x="140" y="318" class="ui" font-size="15" font-weight="700" fill="#151B28">Mars enters Sagittarius</text>
+        <text x="140" y="339" class="ui" font-size="15" font-weight="700" fill="#151B28">after an extended cycle</text>
+        <text x="84" y="391" class="mono" font-size="11" fill="#625F62">Date only · 27 November</text>
+        <line x1="84" y1="416" x2="346" y2="416" stroke="#E9E0D8"/>
+        <text x="84" y="455" class="mono" font-size="11" fill="#625F62">Fri 21:00 – Sat 03:00</text>
         <g aria-label="Western methodology">
-    <circle cx="88" cy="484.5" r="2.4" fill="#F06F67"/>
-    <text x="95" y="488" text-anchor="start" class="ui" font-size="9.4" font-weight="700" fill="#625F62">Western</text>
+    <circle cx="88" cy="478.5" r="2.4" fill="#F06F67"/>
+    <text x="95" y="482" text-anchor="start" class="ui" font-size="9.4" font-weight="700" fill="#625F62">Western</text>
   </g>
   </g><g>
     <rect x="430" y="137" width="350" height="700" rx="26" fill="#101725" stroke="#30394B"/>
     <text x="452" y="170" class="label" font-size="8.5" fill="#FF9A98">02 · EVENT CLASSES</text>
-    <text x="452" y="197" class="ui" font-size="11" fill="#C4BDBB">Glyph supports identity; text carries meaning.</text>
+    <text x="452" y="197" class="label" font-size="6.8" fill="#A8A0A1">DESIGN REVIEW NOTE</text>
+    <text x="452" y="216" class="ui" font-size="10.5" fill="#C4BDBB">Glyph stays secondary; event name and system carry meaning.</text>
     <g aria-label="Lunar phase, aspect, and tradition-specific examples">
         <g>
-    <rect x="452" y="232" width="306" height="82" rx="18" fill="#171F30" stroke="#30394B"/>
-    <g aria-hidden="true"><circle cx="490" cy="273" r="15.41" fill="#20283A"/><circle cx="489.33" cy="273" r="6.7" fill="#F0BA68"/><circle cx="493.35" cy="270.99" r="6.7" fill="#20283A"/></g>
-    <text x="524" y="268" class="ui" font-size="13.5" font-weight="700" fill="#F5F0EA">Full Moon</text>
-    <text x="524" y="290" class="ui" font-size="10.5" fill="#F0BA68">Lunar phase · Astronomical</text>
+    <rect x="452" y="248" width="306" height="82" rx="18" fill="#171F30" stroke="#30394B"/>
+    <g aria-hidden="true"><circle cx="490" cy="289" r="15.41" fill="#20283A"/><circle cx="489.33" cy="289" r="6.7" fill="#F0BA68"/><circle cx="493.35" cy="286.99" r="6.7" fill="#20283A"/></g>
+    <text x="524" y="284" class="ui" font-size="13.5" font-weight="700" fill="#F5F0EA">Full Moon</text>
+    <text x="524" y="306" class="ui" font-size="10.5" fill="#F0BA68">Lunar phase · Astronomical</text>
   </g>
         <g>
-    <rect x="452" y="334" width="306" height="82" rx="18" fill="#171F30" stroke="#30394B"/>
-    <g aria-hidden="true"><circle cx="490" cy="375" r="15.41" fill="#20283A"/><circle cx="483.97" cy="375" r="3.685" fill="none" stroke="#D79AE8" stroke-width="1.34"/><circle cx="496.03" cy="375" r="3.685" fill="none" stroke="#D79AE8" stroke-width="1.34"/><path d="M487.99 375h4.0200000000000005" stroke="#D79AE8" stroke-width="1.34" stroke-linecap="round"/></g>
-    <text x="524" y="370" class="ui" font-size="13.5" font-weight="700" fill="#F5F0EA">Venus trine Jupiter</text>
-    <text x="524" y="392" class="ui" font-size="10.5" fill="#D79AE8">Aspect · Western</text>
+    <rect x="452" y="350" width="306" height="82" rx="18" fill="#171F30" stroke="#30394B"/>
+    <g aria-hidden="true"><circle cx="490" cy="391" r="15.41" fill="#20283A"/><circle cx="483.97" cy="391" r="3.685" fill="none" stroke="#D79AE8" stroke-width="1.34"/><circle cx="496.03" cy="391" r="3.685" fill="none" stroke="#D79AE8" stroke-width="1.34"/><path d="M487.99 391h4.0200000000000005" stroke="#D79AE8" stroke-width="1.34" stroke-linecap="round"/></g>
+    <text x="524" y="386" class="ui" font-size="13.5" font-weight="700" fill="#F5F0EA">Venus trine Jupiter</text>
+    <text x="524" y="408" class="ui" font-size="10.5" fill="#D79AE8">Aspect · Western</text>
   </g>
         <g>
-    <rect x="452" y="436" width="306" height="82" rx="18" fill="#171F30" stroke="#30394B"/>
-    <g aria-hidden="true"><circle cx="490" cy="477" r="15.41" fill="#20283A"/><path d="M490 469.63l7.37 7.37-7.37 7.37-7.37-7.37Z" fill="none" stroke="#8BC4E4" stroke-width="1.34"/><circle cx="490" cy="477" r="1.608" fill="#8BC4E4"/></g>
-    <text x="524" y="472" class="ui" font-size="13.5" font-weight="700" fill="#F5F0EA">Tradition-specific event</text>
-    <text x="524" y="494" class="ui" font-size="10.5" fill="#8BC4E4">Vedic · methodology label</text>
+    <rect x="452" y="452" width="306" height="82" rx="18" fill="#171F30" stroke="#30394B"/>
+    <g aria-hidden="true"><circle cx="490" cy="493" r="15.41" fill="#20283A"/><path d="M490 485.63l7.37 7.37-7.37 7.37-7.37-7.37Z" fill="none" stroke="#8BC4E4" stroke-width="1.34"/><circle cx="490" cy="493" r="1.608" fill="#8BC4E4"/></g>
+    <text x="524" y="488" class="ui" font-size="13.5" font-weight="700" fill="#F5F0EA">Tradition-specific event</text>
+    <text x="524" y="510" class="ui" font-size="10.5" fill="#8BC4E4">Vedic · methodology label</text>
   </g>
-        <rect x="452" y="560" width="306" height="124" rx="18" fill="#20283A" stroke="#30394B"/>
-        <text x="470" y="592" class="label" font-size="7.2" fill="#A8A0A1">SYMBOL RULE</text>
-        <text x="470" y="621" class="ui" font-size="12" fill="#C4BDBB">No glyph wall. Event name, type,</text>
-        <text x="470" y="642" class="ui" font-size="12" fill="#C4BDBB">system, and timing remain textual.</text>
       </g>
   </g><g>
     <rect x="820" y="137" width="350" height="700" rx="26" fill="#FBF7F1" stroke="#E9E0D8"/>
     <text x="842" y="170" class="label" font-size="8.5" fill="#A83F3C">03 · CONTENT DENSITY</text>
-    <text x="842" y="197" class="ui" font-size="11" fill="#625F62">Sparse facts and longer meaning share one shell.</text>
+    <text x="842" y="197" class="label" font-size="6.8" fill="#7A7575">DESIGN REVIEW NOTE</text>
+    <text x="842" y="216" class="ui" font-size="10.5" fill="#625F62">Sparse facts and longer meaning share one shell.</text>
     <g aria-label="Long interpretation and sparse or dense factual context">
-        <rect x="842" y="232" width="306" height="308" rx="20" fill="#FFFDFC" stroke="#E9E0D8"/>
-        <text x="860" y="263" class="label" font-size="7.2" fill="#A83F3C">LONGER INTERPRETATION</text>
-        <text x="860" y="296" class="editorial" font-size="22" fill="#151B28">Meaning can breathe.</text>
-        <text x="860" y="327" class="ui" font-size="11.5" fill="#625F62">The editorial layer grows to three or</text>
-        <text x="860" y="347" class="ui" font-size="11.5" fill="#625F62">four lines without swallowing facts.</text>
-        <line x1="860" y1="375" x2="1130" y2="375" stroke="#E9E0D8"/>
-        <text x="860" y="405" class="label" font-size="7.2" fill="#7A7575">SPARSE FACTS</text>
-        <text x="860" y="430" class="ui" font-size="12.5" font-weight="700" fill="#151B28">Type · Lunar phase</text>
-        <text x="860" y="454" class="ui" font-size="12.5" fill="#625F62">Timing unavailable</text>
-        <line x1="860" y1="473" x2="1130" y2="473" stroke="#E9E0D8"/>
-        <text x="860" y="499" class="label" font-size="7.2" fill="#7A7575">DENSE FACTS</text>
-        <text x="860" y="521" class="ui" font-size="11" fill="#625F62">Bodies · phase · visibility · source note</text>
+        <rect x="842" y="248" width="306" height="308" rx="20" fill="#FFFDFC" stroke="#E9E0D8"/>
+        <text x="860" y="279" class="label" font-size="7.2" fill="#A83F3C">WHAT THIS MEANS</text>
+        <text x="860" y="312" class="editorial" font-size="22" fill="#151B28">Meaning can breathe.</text>
+        <text x="860" y="343" class="ui" font-size="11.5" fill="#625F62">The editorial layer grows to three or</text>
+        <text x="860" y="363" class="ui" font-size="11.5" fill="#625F62">four lines without swallowing facts.</text>
+        <line x1="860" y1="391" x2="1130" y2="391" stroke="#E9E0D8"/>
+        <text x="860" y="421" class="label" font-size="7.2" fill="#7A7575">FACTUAL CONTEXT</text>
+        <text x="860" y="446" class="ui" font-size="12.5" font-weight="700" fill="#151B28">Event type · Lunar phase</text>
+        <text x="860" y="470" class="ui" font-size="12.5" fill="#625F62">Timing unavailable</text>
+        <line x1="860" y1="489" x2="1130" y2="489" stroke="#E9E0D8"/>
+        <text x="860" y="515" class="label" font-size="7.2" fill="#7A7575">ADDITIONAL CONTEXT</text>
+        <text x="860" y="537" class="ui" font-size="11" fill="#625F62">Body · phase · visibility · source note</text>
       </g>
   </g><g>
     <rect x="1210" y="137" width="350" height="700" rx="26" fill="#101725" stroke="#30394B"/>
     <text x="1232" y="170" class="label" font-size="8.5" fill="#FF9A98">04 · ACCESSIBILITY PRESSURE</text>
-    <text x="1232" y="197" class="ui" font-size="11" fill="#C4BDBB">Large type collapses regions before truncation.</text>
+    <text x="1232" y="197" class="label" font-size="6.8" fill="#A8A0A1">DESIGN REVIEW NOTE</text>
+    <text x="1232" y="216" class="ui" font-size="10.5" fill="#C4BDBB">Large type collapses regions before truncation.</text>
     <g aria-label="Dynamic Type and methodology pressure">
-        <rect x="1232" y="232" width="306" height="374" rx="20" fill="#171F30" stroke="#30394B"/>
-        <text x="1250" y="275" class="editorial" font-size="29" fill="#F5F0EA">Event detail</text>
-        <text x="1250" y="314" class="ui" font-size="20" font-weight="700" fill="#F5F0EA">Fri 21:00 – Sat 03:00</text>
-        <text x="1250" y="345" class="ui" font-size="17" font-weight="700" fill="#F5F0EA">Timing unavailable</text>
-        <line x1="1250" y1="369" x2="1520" y2="369" stroke="#30394B"/>
-        <text x="1250" y="406" class="label" font-size="7.2" fill="#A8A0A1">METHODOLOGY PRESSURE</text>
-        <text x="1250" y="439" class="ui" font-size="18" font-weight="700" fill="#FF9A98">Astronomical</text>
-        <text x="1250" y="465" class="ui" font-size="18" font-weight="700" fill="#FF9A98">Western · Vedic</text>
-        <rect x="1250" y="502" width="270" height="56" rx="14" fill="#20283A" stroke="#30394B"/>
-        <text x="1266" y="526" class="ui" font-size="11.5" fill="#C4BDBB">44 pt targets remain. Meaningful</text>
-        <text x="1266" y="545" class="ui" font-size="11.5" fill="#C4BDBB">labels stay readable; art hides first.</text>
+        <rect x="1232" y="248" width="306" height="294" rx="20" fill="#171F30" stroke="#30394B"/>
+        <text x="1250" y="291" class="editorial" font-size="29" fill="#F5F0EA">Event detail</text>
+        <text x="1250" y="330" class="ui" font-size="20" font-weight="700" fill="#F5F0EA">Fri 21:00 – Sat 03:00</text>
+        <text x="1250" y="361" class="ui" font-size="17" font-weight="700" fill="#F5F0EA">Timing unavailable</text>
+        <line x1="1250" y1="385" x2="1520" y2="385" stroke="#30394B"/>
+        <text x="1250" y="422" class="label" font-size="7.2" fill="#A8A0A1">SYSTEM</text>
+        <text x="1250" y="455" class="ui" font-size="18" font-weight="700" fill="#FF9A98">Astronomical</text>
+        <text x="1250" y="481" class="ui" font-size="18" font-weight="700" fill="#FF9A98">Western · Vedic</text>
+        <text x="1250" y="574" class="label" font-size="6.8" fill="#A8A0A1">DESIGN REVIEW NOTE</text>
+        <text x="1250" y="595" class="ui" font-size="10.5" fill="#C4BDBB">44 pt targets stay intact; art hides first.</text>
       </g>
   </g>
 </svg>
