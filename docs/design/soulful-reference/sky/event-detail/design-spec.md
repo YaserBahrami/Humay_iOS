@@ -1,6 +1,6 @@
 # Event Detail design specification
 
-**Status:** REVIEW CANDIDATE — NOT APPROVED
+**Status:** APPROVED VISUAL REFERENCE
 
 ## 1. Product role
 

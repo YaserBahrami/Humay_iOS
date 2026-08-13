@@ -4,7 +4,8 @@ import SwiftUI
 struct HumayApp: App {
     @State private var environment: AppEnvironment
     @State private var navigation: AppNavigationState
-    private let featureInput: D2FeatureInput
+    private let d2FeatureInput: D2FeatureInput
+    private let d3FeatureInput: D3FeatureInput
 
     init() {
         let store: any UserStateStore
@@ -19,15 +20,20 @@ struct HumayApp: App {
         _environment = State(initialValue: environment)
         _navigation = State(initialValue: AppNavigationState(environment: environment))
 #if DEBUG
-        featureInput = DevelopmentD2Sample.makeInput()
+        d2FeatureInput = AppFeatureComposition.makeD2Input()
+        d3FeatureInput = AppFeatureComposition.makeD3Input()
 #else
-        featureInput = .productionUnavailable
+        d2FeatureInput = .productionUnavailable
+        d3FeatureInput = .productionUnavailable
 #endif
     }
 
     var body: some Scene {
         WindowGroup {
-            RootView(featureInput: featureInput)
+            RootView(
+                d2FeatureInput: d2FeatureInput,
+                d3FeatureInput: d3FeatureInput
+            )
                 .environment(environment)
                 .environment(navigation)
                 .task {

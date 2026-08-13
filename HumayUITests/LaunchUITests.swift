@@ -117,6 +117,62 @@ final class LaunchUITests: XCTestCase {
         )
     }
 
+    func testD3CurrentSkyLoadedRendersApprovedHierarchy() {
+        let app = d3App()
+
+        XCTAssertTrue(app.staticTexts["Sky"].waitForExistence(timeout: 3))
+        XCTAssertTrue(
+            app.staticTexts["Development sample · not calculated"].waitForExistence(timeout: 3)
+        )
+        XCTAssertTrue(element("sky.current.hero", in: app).waitForExistence(timeout: 3))
+        XCTAssertTrue(element("sky.current.happening-now", in: app).waitForExistence(timeout: 3))
+        XCTAssertTrue(app.buttons["sky.current.calendar-entry"].waitForExistence(timeout: 3))
+        XCTAssertTrue(element("sky.current.coming-up", in: app).waitForExistence(timeout: 3))
+        XCTAssertTrue(app.tabBars.buttons["Sky"].exists || app.buttons["Sky"].exists)
+    }
+
+    func testD3CurrentSkyStatesRemainDistinct() {
+        for state in ["loading", "empty", "unavailable", "offline-empty", "failed"] {
+            let app = d3App(extraArguments: ["-HumayD3SkyState", state])
+
+            XCTAssertTrue(
+                element("sky.current.state.\(stateIdentifier(for: state))", in: app)
+                    .waitForExistence(timeout: 3),
+                "Missing Current Sky state for \(state)"
+            )
+            app.terminate()
+        }
+    }
+
+    func testD3CurrentSkyOfflineCachedKeepsEvents() {
+        let app = d3App(extraArguments: ["-HumayD3SkyState", "offline"])
+
+        XCTAssertTrue(element("sky.current.offline.cached.notice", in: app).exists)
+        XCTAssertTrue(element("sky.current.happening-now", in: app).exists)
+    }
+
+    func testCaptureD3CurrentSkyEvidence() {
+        XCUIDevice.shared.orientation = .portrait
+
+        let loaded = d3App()
+        XCTAssertTrue(element("sky.current.hero", in: loaded).waitForExistence(timeout: 3))
+        capture(loaded, named: "current-sky-loaded")
+        loaded.terminate()
+
+        for state in ["loading", "empty", "unavailable", "offline", "offline-empty", "failed"] {
+            let app = d3App(extraArguments: ["-HumayD3SkyState", state])
+            let stateElement = state == "offline"
+                ? "sky.current.offline.cached.notice"
+                : "sky.current.state.\(stateIdentifier(for: state))"
+            XCTAssertTrue(
+                element(stateElement, in: app)
+                    .waitForExistence(timeout: 3)
+            )
+            capture(app, named: "current-sky-\(state)")
+            app.terminate()
+        }
+    }
+
     func testCaptureD2Evidence() {
         let app = d2App(extraArguments: [
             "-HumayD2CompatibilityState", "precise"
@@ -292,6 +348,32 @@ final class LaunchUITests: XCTestCase {
             app.staticTexts["main.today.wordmark"].waitForExistence(timeout: 5)
         )
         return app
+    }
+
+    private func d3App(extraArguments: [String] = []) -> XCUIApplication {
+        let app = XCUIApplication()
+        app.launchArguments += [
+            "-HumayResetPersistence",
+            "-HumayD2Demo"
+        ]
+        app.launchArguments += extraArguments
+        app.launch()
+        XCTAssertTrue(
+            app.staticTexts["main.today.wordmark"].waitForExistence(timeout: 5)
+        )
+        selectPrimaryDestination("Sky", in: app)
+        return app
+    }
+
+    private func stateIdentifier(for state: String) -> String {
+        switch state {
+        case "offline-empty": "offline.no-cache"
+        default: state
+        }
+    }
+
+    private func element(_ identifier: String, in app: XCUIApplication) -> XCUIElement {
+        app.descendants(matching: .any)[identifier]
     }
 
     private func selectPrimaryDestination(_ name: String, in app: XCUIApplication) {

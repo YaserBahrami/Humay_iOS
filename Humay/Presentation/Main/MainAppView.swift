@@ -4,7 +4,8 @@ struct MainAppView: View {
     @Environment(AppEnvironment.self) private var environment
     @Environment(AppNavigationState.self) private var navigation
 
-    let featureInput: D2FeatureInput
+    let d2FeatureInput: D2FeatureInput
+    let d3FeatureInput: D3FeatureInput
 
     var body: some View {
         @Bindable var navigation = navigation
@@ -12,10 +13,10 @@ struct MainAppView: View {
         TabView(selection: $navigation.mainDestination) {
             NavigationStack {
                 TodayView(
-                    state: featureInput.today,
-                    dailyStates: featureInput.dailyHoroscope,
-                    precisePreview: featureInput.preciseDailyPreview,
-                    source: featureInput.source,
+                    state: d2FeatureInput.today,
+                    dailyStates: d2FeatureInput.dailyHoroscope,
+                    precisePreview: d2FeatureInput.preciseDailyPreview,
+                    source: d2FeatureInput.source,
                     profileName: profileName,
                     openProfile: openProfile
                 )
@@ -25,10 +26,10 @@ struct MainAppView: View {
 
             NavigationStack {
                 CircleView(
-                    state: featureInput.circle,
-                    compatibilityState: featureInput.compatibility,
-                    precisePreview: featureInput.preciseCompatibilityPreview,
-                    source: featureInput.source,
+                    state: d2FeatureInput.circle,
+                    compatibilityState: d2FeatureInput.compatibility,
+                    precisePreview: d2FeatureInput.preciseCompatibilityPreview,
+                    source: d2FeatureInput.source,
                     profileName: profileName,
                     openProfile: openProfile
                 )
@@ -37,8 +38,9 @@ struct MainAppView: View {
             .tag(MainDestination.circle)
 
             NavigationStack {
-                MainDestinationPlaceholderView(
-                    destination: .sky,
+                CurrentSkyView(
+                    state: d3FeatureInput.currentSky,
+                    source: d3FeatureInput.source,
                     profileName: profileName,
                     openProfile: openProfile
                 )
@@ -83,7 +85,7 @@ struct MainAppView: View {
         if let persistedName, !persistedName.isEmpty {
             return persistedName
         }
-        return featureInput.circle.people.first?.name ?? "Humay"
+        return d2FeatureInput.circle.people.first?.name ?? "Humay"
     }
 
     private func openProfile() {

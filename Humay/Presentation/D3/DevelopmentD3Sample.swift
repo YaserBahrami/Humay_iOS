@@ -7,6 +7,8 @@ enum DevelopmentD3Sample {
     static let lunarEventID = requireID("development.sky.lunar")
     static let ingressEventID = requireID("development.sky.ingress")
     static let gatedEventID = requireID("development.sky.gated")
+    static let aspectEventID = requireID("development.sky.aspect")
+    static let seasonalEventID = requireID("development.sky.seasonal")
 
     static let selectedMonth = require {
         try SkyCalendarMonthID(year: 2026, month: 8)
@@ -23,9 +25,9 @@ enum DevelopmentD3Sample {
             id: lunarEventID,
             type: .lunarPhase,
             system: .astronomical,
-            title: "Lunar phase",
-            summary: "Deterministic sample copy for future layout testing.",
-            timing: .instant(instant(day: 12, hour: 18)),
+            title: "Waning gibbous Moon",
+            summary: "Light softens toward the next phase.",
+            timing: .instant(instant(day: 12, hour: 15)),
             relevance: .timeZone,
             reliability: .unverified
         )
@@ -36,8 +38,8 @@ enum DevelopmentD3Sample {
             id: ingressEventID,
             type: .planetaryIngress,
             system: .astrological(.western),
-            title: "Planetary ingress",
-            summary: "Illustrative event content; no calculation is implied.",
+            title: "Mars enters Gemini after an extended retrograde cycle",
+            summary: nil,
             timing: .dateOnly(date(year: 2026, month: 8, day: 14)),
             relevance: .global,
             reliability: .unverified
@@ -49,7 +51,7 @@ enum DevelopmentD3Sample {
             id: gatedEventID,
             type: .traditionSpecific(.vedic),
             system: .astrological(.vedic),
-            title: "Methodology-gated event",
+            title: "Jupiter trine Saturn",
             summary: nil,
             timing: .unavailable(.methodologyNotApproved),
             relevance: .location,
@@ -57,11 +59,42 @@ enum DevelopmentD3Sample {
         )
     }
 
+    static let aspectEvent = require {
+        try SkyEvent(
+            id: aspectEventID,
+            type: .planetaryAspect,
+            system: .astrological(.western),
+            title: "Mercury square Uranus",
+            summary: nil,
+            timing: .interval(
+                try SkyEventInterval(
+                    start: instant(day: 15, hour: 18),
+                    end: instant(day: 16, hour: 0)
+                )
+            ),
+            relevance: .timeZone,
+            reliability: .unverified
+        )
+    }
+
+    static let seasonalEvent = require {
+        try SkyEvent(
+            id: seasonalEventID,
+            type: .seasonalTransition,
+            system: .astronomical,
+            title: "Equinox",
+            summary: nil,
+            timing: .dateOnly(date(year: 2026, month: 9, day: 22)),
+            relevance: .global,
+            reliability: .unverified
+        )
+    }
+
     static let snapshot = require {
         try SkySnapshot(
-            observedAt: instant(day: 12, hour: 9),
+            observedAt: instant(day: 12, hour: 6),
             context: context,
-            events: [lunarEvent, ingressEvent, gatedEvent]
+            events: [lunarEvent, ingressEvent, gatedEvent, aspectEvent, seasonalEvent]
         )
     }
 

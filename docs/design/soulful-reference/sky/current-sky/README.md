@@ -2,7 +2,7 @@
 
 **Status:** APPROVED VISUAL REFERENCE
 
-This package is the approved visual reference for Current Sky. The product owner approved the complete Lunar Meridian package across iPhone, iPad, Light, Dark, adaptive behavior, and state language. Visual approval does not authorize production SwiftUI and does not complete `SKY-003`.
+This package is the approved visual reference for Current Sky. The product owner approved the complete Lunar Meridian package across iPhone, iPad, Light, Dark, adaptive behavior, and state language. Visual approval is the D3.1 design gate; it does not by itself complete `SKY-003` or authorize unrelated D3 work.
 
 ## Approved reference set
 
@@ -48,7 +48,7 @@ The reference demonstrates exact, interval, date-only, and unavailable timing; A
 - Observation context remains quiet secondary metadata.
 - `IllustrationCalendarCelestial` artwork ownership remains pending the Calendar-family design.
 - `Development sample · not calculated` is visible as a Debug screenshot treatment, not a Release banner proposal.
-- No Current Sky, Calendar, or event-detail production UI is implemented by this package.
+- This reference package itself does not implement Current Sky, Calendar, or event-detail production UI.
 - Existing production assets are not modified or promoted by this package.
 
-Production implementation remains separately gated by `SKY-003` and is not part of this visual approval.
+Current Sky implementation evidence is recorded at [`docs/design/implementation-evidence/d3-sky-calendar/current-sky/`](../../../../design/implementation-evidence/d3-sky-calendar/current-sky/README.md). Calendar and event-detail implementation remain separately gated by `SKY-004` and `SKY-005`.

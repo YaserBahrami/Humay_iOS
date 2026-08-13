@@ -307,6 +307,58 @@ struct D3FeatureModelTests {
         ))
     }
 
+    @Test("Sky methodology formatter preserves system ownership")
+    func methodologyLabelsRemainDistinct() {
+        #expect(SkyMethodologyFormatter.label(for: .astronomical) == "Astronomical")
+        #expect(SkyMethodologyFormatter.label(for: .astrological(.western)) == "Western")
+        #expect(SkyMethodologyFormatter.label(for: .astrological(.vedic)) == "Vedic")
+        #expect(SkyMethodologyFormatter.label(for: .astrological(.chinese)) == "Chinese")
+    }
+
+    @Test("Sky timing formatter never adds a clock to date-only timing")
+    func timingFormatterDoesNotFabricateDateTime() throws {
+        let context = try testContext()
+        let date = try testDate(year: 2026, month: 8, day: 14)
+
+        let dateOnly = SkyEventTimingFormatter.text(
+            for: .dateOnly(date),
+            context: context
+        )
+        let unavailable = SkyEventTimingFormatter.text(
+            for: .unavailable(.calculationUnavailable),
+            context: context
+        )
+
+        #expect(dateOnly == "Date only · 14 August")
+        #expect(!dateOnly.contains(":"))
+        #expect(unavailable == "Unavailable · timing not supplied")
+    }
+
+    @Test("Sky timing formatter uses supplied observation timezone")
+    func timingFormatterUsesSuppliedTimezone() throws {
+        let context = try SkyObservationContext(timeZoneIdentifier: "Europe/Istanbul")
+        let instant = Date(timeIntervalSince1970: 1_786_464_000)
+
+        let formatted = SkyEventTimingFormatter.text(
+            for: .instant(instant),
+            context: context
+        )
+
+        #expect(formatted.contains("TRT") || formatted.contains("GMT+3"))
+    }
+
+    @Test("App composition keeps D3 input at the application boundary")
+    func appCompositionKeepsD3AtBoundary() {
+        let production = D3FeatureInput.productionUnavailable
+        #expect(production.source == .productionUnavailable)
+
+#if DEBUG
+        let development = AppFeatureComposition.makeD3Input(arguments: [])
+        #expect(development.source == .developmentSample)
+        #expect(development.currentSky == .loaded(DevelopmentD3Sample.snapshot))
+#endif
+    }
+
 #if DEBUG
     @Test("Development composition is deterministic and fully typed")
     func developmentCompositionIsDeterministic() {

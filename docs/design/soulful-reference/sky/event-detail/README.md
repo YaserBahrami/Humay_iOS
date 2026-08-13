@@ -1,8 +1,8 @@
 # D3.3 — Event Detail
 
-**Status:** REVIEW CANDIDATE — NOT APPROVED
+**Status:** APPROVED VISUAL REFERENCE
 
-This package is the visual-reference candidate for the explanatory Event Detail destination reached from Current Sky rows and Calendar Month/Week agenda rows. It is reference-only work. It does not approve Event Detail, authorize SwiftUI, complete `SKY-005`, or mark D3 complete.
+This package is the approved visual reference for the explanatory Event Detail destination reached from Current Sky rows and Calendar Month/Week agenda rows. It is reference-only work. It does not authorize SwiftUI, complete `SKY-005`, or mark D3 complete.
 
 ## Review first
 
@@ -52,9 +52,10 @@ Primary references use Calendar as visual origin, so Back reads `Calendar`. No c
 
 ## Approval boundary
 
-- Event Detail remains **REVIEW CANDIDATE — NOT APPROVED**.
-- `SKY-003`, `SKY-004`, and `SKY-005` remain TODO.
+- Event Detail is an **APPROVED VISUAL REFERENCE**.
+- Approval covers iPhone Light/Dark, iPad Light/Dark, state board, stress board, Celestial editorial sheet direction, origin-aware native navigation behavior, visible Sky root shell behavior, factual versus interpretive hierarchy, timing/methodology treatment, observation context, and adaptive/accessibility guidance.
+- `SKY-003` is implemented over the Debug-only sample; `SKY-004` and `SKY-005` remain TODO.
 - No production SwiftUI, route, provider, API, cache, persistence, Chart, Ask, sharing work, or asset-catalog entry is created.
 - Reference fixtures do not define production calculations, methodology authority, editorial copy contracts, recovery actions, or asset ownership.
 
-**NEXT STEP:** Product owner reviews the four Event Detail primary references first. Do not begin D3 SwiftUI implementation automatically.
+**NEXT STEP:** Implement only the approved feature slice under its own SKY task. Event Detail SwiftUI remains gated by `SKY-005` and must not begin with this approval record.

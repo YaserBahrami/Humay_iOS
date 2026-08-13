@@ -82,7 +82,7 @@ Birth time and birth location are not onboarding steps.
 | Tradition | Light + Dark approved | Light + Dark approved | implemented; evidence captured |
 | Profile Reveal | Light + Dark approved | Light + Dark approved | implemented; evidence captured |
 
-D1 cross-device approval date: **2026-08-12**. Production implementation is `Humay/Presentation/Onboarding/`. PROFILE-005 persists the local profile/settings aggregate and restores the completed root on relaunch. D2 is now implemented as a development-sample presentation slice. D3 has only a non-visual engineering/sample foundation; D3 production UI and later screen families remain unimplemented.
+D1 cross-device approval date: **2026-08-12**. Production implementation is `Humay/Presentation/Onboarding/`. PROFILE-005 persists the local profile/settings aggregate and restores the completed root on relaunch. D2 is implemented as a development-sample presentation slice. D3 Current Sky is implemented as a development-sample presentation slice; Calendar and event-detail remain unimplemented.
 
 The iPad landscape two-region paths are covered by the UI test. iOS 26.5 simulator landscape screenshot export produced an orientation-rotated framebuffer, so those raw captures are documented but not presented as repository evidence; see [`implementation-evidence/d1-onboarding/README.md`](implementation-evidence/d1-onboarding/README.md).
 
@@ -128,12 +128,12 @@ The iPad landscape two-region paths are covered by the UI test. iOS 26.5 simulat
 ### Current state
 
 - D3.1 Current Sky Lunar Meridian is the approved visual reference package: [`soulful-reference/sky/current-sky/`](soulful-reference/sky/current-sky/README.md).
-- Current Sky iPhone Light/Dark, iPad Light/Dark, adaptive behavior, and state language are approved as visual guidance; `SKY-003` remains TODO.
+- Current Sky iPhone Light/Dark, iPad Light/Dark, adaptive behavior, and state language are approved as visual guidance; `SKY-003` is implemented over the Debug-only sample. Actual simulator evidence and reconciliation notes live in [`implementation-evidence/d3-sky-calendar/current-sky/`](implementation-evidence/d3-sky-calendar/current-sky/README.md).
 - D3.2 Calendar Month + Week Meridian Almanac is the approved visual reference package: [`soulful-reference/sky/calendar/`](soulful-reference/sky/calendar/README.md). Approval covers Month iPhone Light/Dark, Month iPad Light/Dark, Week iPhone Light/Dark, Week iPad Light/Dark, the calendar state board, stress board, and Meridian Almanac visual direction; `SKY-004` remains TODO.
-- D3.3 Event Detail is a review candidate and is not approved: [`soulful-reference/sky/event-detail/`](soulful-reference/sky/event-detail/README.md).
+- D3.3 Event Detail Celestial editorial sheet is an approved visual reference package: [`soulful-reference/sky/event-detail/`](soulful-reference/sky/event-detail/README.md). Approval covers iPhone/iPad Light/Dark, state and stress boards, adaptive/accessibility guidance, origin-aware native navigation, Sky root shell behavior, factual versus interpretive hierarchy, timing/methodology treatment, and observation context; `SKY-005` remains TODO.
 - Non-visual Domain/Presentation contracts and Debug-only deterministic sample states are implemented.
-- Current Sky, month/week Calendar and event-detail SwiftUI remain intentionally unimplemented.
-- SKY-003, SKY-004 and SKY-005 remain TODO; no visual completion or reconciliation is claimed.
+- Current Sky SwiftUI is implemented and reconciled against the approved D3.1 package; month/week Calendar and event-detail SwiftUI remain intentionally unimplemented.
+- `SKY-002` remains pending for production data; `SKY-004` and `SKY-005` remain TODO. Current Sky evidence does not imply Calendar or Event Detail implementation.
 
 ## D4 — Chart + astrology systems
 

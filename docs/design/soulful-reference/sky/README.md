@@ -1,8 +1,8 @@
 # D3 — Sky + Calendar Reference Package
 
-**Status:** D3.1 Current Sky and D3.2 Calendar approved visual references; D3.3 Event Detail remains a review candidate.
+**Status:** D3.1 Current Sky, D3.2 Calendar, and D3.3 Event Detail approved visual references.
 
-This directory holds the Soulful Celestial reference packages for D3 — Sky + Calendar. Current Sky and Calendar are visually approved. Event Detail is a review candidate. No D3 production implementation is completed by these packages.
+This directory holds the Soulful Celestial reference packages for D3 — Sky + Calendar. Current Sky, Calendar, and Event Detail are visually approved. No D3 production implementation is completed by these packages.
 
 ## Authority
 
@@ -31,9 +31,9 @@ Calendar remains nested under Sky. It is not a sixth root destination.
 
 - [Current Sky](current-sky/README.md) — **APPROVED VISUAL REFERENCE**
 - [Calendar Month + Week](calendar/README.md) — **APPROVED VISUAL REFERENCE**
-- [Event Detail](event-detail/README.md) — **REVIEW CANDIDATE — NOT APPROVED**
+- [Event Detail](event-detail/README.md) — **APPROVED VISUAL REFERENCE**
 
-Event Detail is D3.3 and remains separately gated from the approved Calendar package.
+Event Detail is D3.3 and remains separately gated from production implementation.
 
 ## Approval gate
 
@@ -47,4 +47,4 @@ A D3 screen is not approved until its package includes:
 - compact-width fallback behavior;
 - recorded review and approval status.
 
-Current Sky and Calendar have passed this visual gate. Their approvals do not complete `SKY-003` or `SKY-004`. Event Detail must pass its own product-owner review before `SKY-005` implementation, and asset-catalog presence does not constitute visual approval.
+Current Sky, Calendar, and Event Detail have passed this visual gate. Their approvals do not complete `SKY-003`, `SKY-004`, or `SKY-005`; asset-catalog presence does not constitute visual approval.

@@ -47,7 +47,7 @@ Acceptance:
 - Presentation receives Humay-owned models, not vendor responses.
 
 ### SKY-003 — Implement D3 Current Sky UI for iPhone + iPad
-Status: TODO  
+Status: IMPLEMENTED — Debug sample; production data pipeline pending
 Depends on: sufficient SKY-001 feature/domain contracts, approved D3 package
 
 Acceptance:
@@ -91,4 +91,4 @@ Acceptance:
 - system-specific terminology remains methodology-aware;
 - shipping Sky/Calendar surfaces reconcile with approved D3 iPhone+iPad Light/Dark references.
 
-The current partial foundation does not satisfy the phase exit criteria. D3.1 Current Sky and D3.2 Calendar have approved visual references, but `SKY-003` and `SKY-004` remain TODO because visual approval is not implementation completion. D3.3 Event Detail remains a review candidate, so `SKY-005` also remains TODO.
+The current partial foundation does not satisfy the phase exit criteria. D3.1 Current Sky is implemented over the Debug-only sample and reconciled on iPhone/iPad Light/Dark; `SKY-002` remains pending for production data, while `SKY-004` and `SKY-005` remain TODO.

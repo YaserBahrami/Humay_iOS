@@ -8,10 +8,15 @@ struct RootView: View {
     @State private var onboardingDraft = OnboardingDraftState()
     @State private var saveFailed = false
 
-    private let featureInput: D2FeatureInput
+    private let d2FeatureInput: D2FeatureInput
+    private let d3FeatureInput: D3FeatureInput
 
-    init(featureInput: D2FeatureInput = .productionUnavailable) {
-        self.featureInput = featureInput
+    init(
+        d2FeatureInput: D2FeatureInput = .productionUnavailable,
+        d3FeatureInput: D3FeatureInput = .productionUnavailable
+    ) {
+        self.d2FeatureInput = d2FeatureInput
+        self.d3FeatureInput = d3FeatureInput
     }
 
     var body: some View {
@@ -33,7 +38,10 @@ struct RootView: View {
                 )
 
             case .main:
-                MainAppView(featureInput: featureInput)
+                MainAppView(
+                    d2FeatureInput: d2FeatureInput,
+                    d3FeatureInput: d3FeatureInput
+                )
             }
         }
         .alert("Couldn't save your profile", isPresented: $saveFailed) {
@@ -97,7 +105,10 @@ struct RootView: View {
     )
     let navigation = AppNavigationState(environment: environment)
 
-    RootView(featureInput: DevelopmentD2Sample.makeInput(arguments: []))
+    RootView(
+        d2FeatureInput: DevelopmentD2Sample.makeInput(arguments: []),
+        d3FeatureInput: DevelopmentD3Sample.makeInput(arguments: [])
+    )
         .environment(environment)
         .environment(navigation)
 }

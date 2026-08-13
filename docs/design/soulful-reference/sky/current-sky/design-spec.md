@@ -2,7 +2,7 @@
 
 **Design phase:** D3.1 — Current Sky
 
-**Status:** requirements record for the approved visual reference; implementation is not approved
+**Status:** requirements record for the approved visual reference; Current Sky implementation is tracked separately under `SKY-003`
 
 **Visual direction:** Soulful Celestial
 
@@ -14,7 +14,7 @@ Design a Current Sky screen that presents timely celestial context with a warm e
 
 The Lunar Meridian package has completed visual review and is the approved Current Sky composition. Approval belongs to the complete reference package, not to sample values, the existing Sky placeholder, or asset-catalog inventory.
 
-The Current Sky reference set is approved. `SKY-003` remains TODO, and this visual approval does not itself authorize or complete production implementation. Calendar and event-detail require their own reference gates.
+The Current Sky reference set is approved. The visual approval does not itself complete production implementation; `SKY-003` is now implemented over the Debug-only sample with evidence recorded separately. Calendar and event-detail require their own reference and implementation gates.
 
 ## 2. Required visual package
 

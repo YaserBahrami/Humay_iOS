@@ -56,8 +56,8 @@ enum SkyEventDetailFeatureState: Sendable, Hashable {
     case failed(eventID: SkyEventID, failure: D3FeatureFailure)
 }
 
-/// Immutable non-visual D3 input. No production screen consumes this until a D3
-/// cross-device reference package is approved.
+/// Immutable D3 input shared by the approved Current Sky presentation and future
+/// Calendar/Event Detail surfaces. Provider and persistence work stay outside it.
 struct D3FeatureInput: Sendable, Hashable {
     let source: D3ContentSource
     let currentSky: CurrentSkyFeatureState

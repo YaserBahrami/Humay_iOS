@@ -137,4 +137,4 @@ No numerical HIG score is assigned.
 2. Exact recovery actions once `SKY-002` exists.
 3. Final Calendar-family behavior and artwork ownership.
 
-The product owner approved this complete visual package. `SKY-003` remains TODO; visual approval is not implementation completion.
+The product owner approved this complete visual package. Visual approval did not itself complete `SKY-003`; Current Sky implementation and evidence are tracked separately under the implementation task and evidence package.

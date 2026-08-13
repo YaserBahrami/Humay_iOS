@@ -1,6 +1,6 @@
 # Event Detail reference-specific review notes
 
-**Status:** REVIEW CANDIDATE — NOT APPROVED
+**Status:** APPROVED VISUAL REFERENCE
 
 ## Chosen direction — Celestial editorial sheet
 
@@ -110,4 +110,4 @@ No numerical HIG score is assigned.
 4. Production promotion of any reference-only glyph or motif.
 5. Final content contract for unavailable factual fields.
 
-The product owner must review the four primary references before any D3 SwiftUI work begins.
+The product owner approved the four primary references and the complete Celestial editorial sheet package on 2026-08-13. This approval records visual authority; it does not authorize Event Detail SwiftUI before `SKY-005`.
