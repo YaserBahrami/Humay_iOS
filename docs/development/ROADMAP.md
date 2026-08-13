@@ -103,6 +103,31 @@ D3 has now started only at the engineering foundation layer. Humay-owned sky/eve
 
 Every shipping screen requires iPhone Light/Dark + iPad Light/Dark. iPad landscape/adaptive behavior must be documented when composition changes.
 
+### D8 requirement — Compatibility Visual Share Card
+
+Final Compatibility sharing must **not** be plain-text-only. The intended primary artifact is a Humay-branded rendered share card/image, designed as part of the D8 visual share-card family and shared through the system share sheet.
+
+The card must be capable of including:
+
+- both people's display names or user-approved share names;
+- medallions/initials;
+- Sun signs when relevant;
+- overall compatibility score;
+- relationship label;
+- a short share-safe summary;
+- Humay branding.
+
+By default, the card must **not** include:
+
+- birth time;
+- birth location;
+- exact birth date;
+- private precision/calculation details;
+- internal methodology or debug metadata;
+- provider information.
+
+Optional supporting text or a deep link may be added later, but the rendered visual card remains the primary share artifact. The current production plain-text `ShareLink` is temporary/non-final UI. Do not implement the visual card or image rendering before the D8 family is designed and approved.
+
 ## UI design → implementation rule
 
 Feature-specific user-facing UI follows this cadence:

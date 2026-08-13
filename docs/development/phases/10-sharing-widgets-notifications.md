@@ -9,6 +9,16 @@ Depends on:
 
 Goal: extend validated Humay content to system surfaces without leaking locked content, private saved-person data or Roast tone into notifications.
 
+## Compatibility Visual Share Card — D8 requirement
+
+Final Compatibility sharing must not be plain-text-only. D8 must design a Humay-branded rendered share card/image as the primary artifact, with the system share sheet used for distribution. Optional supporting text or a deep link may be added later.
+
+The visual card must be capable of including both people's display names or user-approved share names, medallions/initials, relevant Sun signs, overall compatibility score, relationship label, a short share-safe summary, and Humay branding.
+
+Privacy defaults must exclude birth time, birth location, exact birth date, private precision/calculation details, internal methodology/debug metadata, and provider information.
+
+The current production plain-text `ShareLink` is temporary/non-final UI. Do not implement Compatibility image rendering until the D8 visual share-card family is approved.
+
 ## Tasks
 
 ### PLATFORM-001 — Implement D8 share-card rendering
@@ -19,6 +29,8 @@ Acceptance:
 - uses current Design Authority and approved D8 share system;
 - share output contains only already-visible/unlocked content;
 - another person's private placements are not exposed by default;
+- Compatibility output is a rendered Humay-branded visual card rather than plain-text-only sharing;
+- Compatibility card content follows the D8 capability list and privacy exclusions above;
 - layout works for the approved export sizes without embedding stale UI screenshots.
 
 ### PLATFORM-002 — Implement system share sheet integration
@@ -27,6 +39,8 @@ Depends on: PLATFORM-001
 
 Acceptance:
 - export works from supported reading surfaces;
+- Compatibility uses the rendered visual asset as the primary share-sheet item;
+- optional supporting text/deep link does not replace the visual card;
 - failure/cancel leaves app state unchanged.
 
 ### PLATFORM-003 — Implement widget data contract and timeline behavior
