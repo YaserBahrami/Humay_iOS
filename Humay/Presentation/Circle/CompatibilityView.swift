@@ -6,6 +6,7 @@ struct CompatibilityView: View {
     let source: D2ContentSource
 
     @Environment(\.colorScheme) private var colorScheme
+    @Environment(\.dynamicTypeSize) private var dynamicTypeSize
     @State private var previewOverride: PreciseCompatibilityResult?
     @State private var showUnlockInfo = false
 
@@ -15,7 +16,7 @@ struct CompatibilityView: View {
                 VStack(alignment: .leading, spacing: HumaySpacing.large) {
                     stateContent(availableWidth: proxy.size.width)
                 }
-                .frame(maxWidth: HumayContentWidth.expanded.rawValue)
+                .frame(maxWidth: 1_180)
                 .frame(maxWidth: .infinity, alignment: .top)
                 .padding(.horizontal, HumayLayout.screenGutter(for: proxy.size.width))
                 .padding(.vertical, HumaySpacing.large)
@@ -151,34 +152,31 @@ struct CompatibilityView: View {
         availableWidth: CGFloat,
         showAccessCard: Bool
     ) -> some View {
-        basisBanner(result)
+        relationshipField(result, useWideLayout: availableWidth >= 900)
 
-        if availableWidth >= 820 {
+        if availableWidth >= 900 {
             HStack(alignment: .top, spacing: HumaySpacing.extraExtraLarge) {
+                metricsCard(result.metrics)
+                    .frame(maxWidth: .infinity, alignment: .top)
+
                 VStack(spacing: HumaySpacing.extraLarge) {
-                    compatibilityHero(result)
+                    ourTakeCard(result.ourTake)
                     if showAccessCard { preciseAccessCard }
                 }
-                .frame(maxWidth: .infinity, alignment: .top)
-
-                VStack(spacing: HumaySpacing.extraLarge) {
-                    metricsCard(result.metrics)
-                    ourTakeCard(result.ourTake)
-                }
-                .frame(maxWidth: .infinity, alignment: .top)
+                .frame(minWidth: 320, maxWidth: 420, alignment: .top)
             }
         } else {
-            compatibilityHero(result)
             metricsCard(result.metrics)
             ourTakeCard(result.ourTake)
             if showAccessCard { preciseAccessCard }
         }
     }
 
-    private func basisBanner(_ result: DisplayResult) -> some View {
+    @ViewBuilder
+    private func basisDisclosure(_ result: DisplayResult) -> some View {
         switch result.basis {
         case .free(let key):
-            D2StatusBanner(
+            basisRow(
                 symbol: "sun.max.fill",
                 title: "Free · Sun-sign pair",
                 detail: "\(key.first.displayName) × \(key.second.displayName) catalog · not natal synastry.",
@@ -187,7 +185,7 @@ struct CompatibilityView: View {
             .accessibilityIdentifier("compatibility.basis.free")
 
         case .precise:
-            D2StatusBanner(
+            basisRow(
                 symbol: "scope",
                 title: "Precise presentation sample",
                 detail: "Development only · no provider calculation or synastry generation.",
@@ -197,37 +195,140 @@ struct CompatibilityView: View {
         }
     }
 
-    private func pairHeader(_ pair: CompatibilityPair) -> some View {
-        HStack(alignment: .top, spacing: HumaySpacing.small) {
-            personIdentity(pair.first, accent: .lavender)
+    private func basisRow(
+        symbol: String,
+        title: String,
+        detail: String,
+        accent: HumayAccent
+    ) -> some View {
+        HStack(alignment: .top, spacing: HumaySpacing.medium) {
+            Image(systemName: symbol)
+                .font(.body.weight(.semibold))
+                .foregroundStyle(accent.color)
+                .frame(width: 32, height: 32)
+                .background(accent.color.opacity(0.14), in: Circle())
+                .accessibilityHidden(true)
 
-            VStack(spacing: HumaySpacing.extraSmall) {
-                Image(systemName: "heart")
-                    .font(.title2)
-                    .foregroundStyle(Color.humayCoral)
-
-                HStack(spacing: 5) {
-                    ForEach(0..<5, id: \.self) { _ in
-                        Capsule()
-                            .fill(Color.humayCoral.opacity(0.82))
-                            .frame(width: 6, height: 1.5)
-                    }
-                }
+            VStack(alignment: .leading, spacing: HumaySpacing.extraSmall) {
+                Text(title)
+                    .font(HumayTypography.bodyEmphasized)
+                Text(detail)
+                    .font(HumayTypography.supporting)
+                    .foregroundStyle(Color.humayTextSecondary)
+                    .fixedSize(horizontal: false, vertical: true)
             }
-            .frame(maxWidth: .infinity)
-            .padding(.top, HumaySpacing.extraLarge)
-            .accessibilityHidden(true)
-
-            personIdentity(pair.second, accent: .coral)
+            .frame(maxWidth: .infinity, alignment: .leading)
         }
         .accessibilityElement(children: .combine)
+    }
+
+    private func pairHeader(_ pair: CompatibilityPair) -> some View {
+        VStack(spacing: HumaySpacing.large) {
+            Text("\(pair.first.name) & \(pair.second.name)")
+                .font(HumayTypography.editorialTitle)
+                .multilineTextAlignment(.center)
+                .lineLimit(2)
+                .fixedSize(horizontal: false, vertical: true)
+
+            pairAxis(pair)
+        }
+        .frame(maxWidth: .infinity)
+        .padding(HumaySpacing.extraLarge)
+        .background(Color.humayRaisedSurface, in: RoundedRectangle(cornerRadius: HumayRadius.feature))
+        .overlay {
+            RoundedRectangle(cornerRadius: HumayRadius.feature)
+                .stroke(Color.humayHairline)
+        }
+        .accessibilityElement(children: .ignore)
         .accessibilityLabel("\(pair.first.name) and \(pair.second.name)")
     }
 
-    private func compatibilityHero(_ result: DisplayResult) -> some View {
-        VStack(spacing: HumaySpacing.medium) {
-            pairHeader(result.pair)
+    private func relationshipField(_ result: DisplayResult, useWideLayout: Bool) -> some View {
+        VStack(alignment: .leading, spacing: HumaySpacing.extraLarge) {
+            basisDisclosure(result)
 
+            Divider()
+
+            if useWideLayout, !dynamicTypeSize.isAccessibilitySize {
+                HStack(alignment: .center, spacing: HumaySpacing.extraExtraLarge) {
+                    relationshipIdentity(result.pair)
+                        .frame(maxWidth: .infinity)
+
+                    Divider()
+                        .frame(minHeight: 280)
+
+                    relationshipResult(result)
+                        .frame(minWidth: 330, maxWidth: 420)
+                }
+            } else {
+                VStack(spacing: HumaySpacing.extraLarge) {
+                    relationshipIdentity(result.pair)
+                    Divider()
+                    relationshipResult(result)
+                }
+                .frame(maxWidth: .infinity)
+            }
+        }
+        .padding(useWideLayout ? HumaySpacing.extraExtraLarge : HumaySpacing.extraLarge)
+        .background(relationshipBackground, in: RoundedRectangle(cornerRadius: 28, style: .continuous))
+        .overlay {
+            RoundedRectangle(cornerRadius: 28, style: .continuous)
+                .stroke(Color.humayHairline)
+        }
+        .shadow(
+            color: colorScheme == .light ? .black.opacity(0.06) : .clear,
+            radius: 16,
+            y: 6
+        )
+    }
+
+    private func relationshipIdentity(_ pair: CompatibilityPair) -> some View {
+        VStack(spacing: HumaySpacing.extraLarge) {
+            Text("\(pair.first.name) & \(pair.second.name)")
+                .font(HumayTypography.editorialTitle)
+                .multilineTextAlignment(.center)
+                .lineLimit(2)
+                .fixedSize(horizontal: false, vertical: true)
+                .accessibilityElement(children: .ignore)
+                .accessibilityLabel("\(pair.first.name) and \(pair.second.name)")
+
+            pairAxis(pair)
+        }
+        .frame(maxWidth: .infinity)
+    }
+
+    private func pairAxis(_ pair: CompatibilityPair) -> some View {
+        HStack(alignment: .top, spacing: HumaySpacing.small) {
+            relationshipPerson(pair.first, accent: .lavender)
+                .frame(maxWidth: .infinity)
+
+            CompatibilityConnector(state: .active)
+                .frame(minWidth: 58, maxWidth: 130, minHeight: 90)
+
+            relationshipPerson(pair.second, accent: .coral)
+                .frame(maxWidth: .infinity)
+        }
+        .accessibilityElement(children: .ignore)
+        .accessibilityLabel(
+            "\(pair.first.westernSunSign?.displayName ?? "Sign unavailable") Sun and "
+                + "\(pair.second.westernSunSign?.displayName ?? "Sign unavailable") Sun"
+        )
+    }
+
+    private func relationshipPerson(_ person: CirclePerson, accent: HumayAccent) -> some View {
+        VStack(spacing: HumaySpacing.small) {
+            CirclePersonMedallion(person: person, accent: accent, size: 88)
+            Text("\(person.westernSunSign?.displayName ?? "Sign unavailable") Sun")
+                .font(HumayTypography.supporting)
+                .foregroundStyle(Color.humayTextSecondary)
+                .lineLimit(2)
+                .multilineTextAlignment(.center)
+                .fixedSize(horizontal: false, vertical: true)
+        }
+    }
+
+    private func relationshipResult(_ result: DisplayResult) -> some View {
+        VStack(spacing: HumaySpacing.medium) {
             Text("\(result.overallScore.value)%")
                 .font(HumayTypography.compatibilityScore)
                 .tracking(-2)
@@ -240,50 +341,43 @@ struct CompatibilityView: View {
             Text(result.relationshipLabel)
                 .font(.title2.weight(.semibold))
                 .multilineTextAlignment(.center)
+                .fixedSize(horizontal: false, vertical: true)
 
             Text(result.shortSummary)
-                .font(HumayTypography.supporting)
-                .foregroundStyle(summaryTextColor)
+                .font(HumayTypography.body)
+                .foregroundStyle(Color.humayTextSecondary)
                 .multilineTextAlignment(.center)
-                .padding(.horizontal, HumaySpacing.large)
-                .padding(.vertical, HumaySpacing.small)
-                .background(summaryBackground, in: Capsule())
                 .fixedSize(horizontal: false, vertical: true)
         }
         .frame(maxWidth: .infinity)
-        .padding(.vertical, HumaySpacing.small)
+    }
+
+    private var relationshipBackground: LinearGradient {
+        LinearGradient(
+            colors: colorScheme == .light
+                ? [
+                    Color.humaySurface,
+                    Color.humayLavender.opacity(0.10),
+                    Color.humayCoral.opacity(0.10),
+                    Color.humaySurface
+                ]
+                : [
+                    Color.humayRaisedSurface,
+                    Color.humayLavender.opacity(0.16),
+                    Color.humayCoral.opacity(0.12),
+                    Color.humayRaisedSurface
+                ],
+            startPoint: .topLeading,
+            endPoint: .bottomTrailing
+        )
     }
 
     private var scoreGradient: LinearGradient {
         LinearGradient(
-            colors: colorScheme == .light
-                ? [Color.humayTextPrimary, Color.humayTextPrimary]
-                : [Color.humayLavender, Color.humayCoral],
+            colors: [Color.humayLavender, Color.humayCoral, Color.humaySolarGold],
             startPoint: .leading,
             endPoint: .trailing
         )
-    }
-
-    private var summaryBackground: Color {
-        colorScheme == .light ? .humayTextPrimary : .humayLavender.opacity(0.28)
-    }
-
-    private var summaryTextColor: Color {
-        colorScheme == .light ? .humayGround : .humayTextPrimary
-    }
-
-    private func personIdentity(_ person: CirclePerson, accent: HumayAccent) -> some View {
-        VStack(spacing: HumaySpacing.small) {
-            CirclePersonMedallion(person: person, accent: accent, size: 96)
-            Text(person.name)
-                .font(HumayTypography.bodyEmphasized)
-                .lineLimit(2)
-                .multilineTextAlignment(.center)
-            Text(person.westernSunSign?.displayName ?? "Sign unavailable")
-                .font(HumayTypography.supporting)
-                .foregroundStyle(Color.humayTextSecondary)
-        }
-        .frame(maxWidth: .infinity)
     }
 
     private func metricsCard(_ metrics: [CompatibilityMetric]) -> some View {

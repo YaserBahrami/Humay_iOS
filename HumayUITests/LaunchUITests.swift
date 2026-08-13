@@ -73,6 +73,22 @@ final class LaunchUITests: XCTestCase {
         XCTAssertTrue(
             app.buttons["compatibility.selection.continue"].waitForExistence(timeout: 3)
         )
+        XCTAssertTrue(
+            app.otherElements["compatibility.pair-composer"].exists
+                || app.staticTexts["compatibility.pair-composer"].exists
+        )
+        let firstPerson = app.buttons["compatibility.selection.person.0"]
+        XCTAssertTrue(firstPerson.waitForExistence(timeout: 3))
+        XCTAssertEqual(firstPerson.value as? String, "Selected")
+
+        firstPerson.tap()
+        XCTAssertEqual(firstPerson.value as? String, "Not selected")
+        XCTAssertFalse(app.buttons["compatibility.selection.continue"].isEnabled)
+
+        firstPerson.tap()
+        XCTAssertEqual(firstPerson.value as? String, "Selected")
+        XCTAssertTrue(app.buttons["compatibility.selection.continue"].isEnabled)
+
         app.buttons["compatibility.selection.continue"].tap()
         XCTAssertTrue(
             app.staticTexts["compatibility.score"].waitForExistence(timeout: 3)
@@ -129,7 +145,35 @@ final class LaunchUITests: XCTestCase {
         XCTAssertTrue(
             app.staticTexts["compatibility.score"].waitForExistence(timeout: 3)
         )
+        XCTAssertTrue(
+            app.otherElements["compatibility.basis.precise"].exists
+                || app.staticTexts["compatibility.basis.precise"].exists
+        )
         capture(app, named: "d2-compatibility")
+    }
+
+    func testCaptureCompatibilityRefreshEvidence() {
+        let app = d2App()
+
+        selectPrimaryDestination("Circle", in: app)
+        XCTAssertTrue(
+            app.buttons["circle.compatibility.open"].waitForExistence(timeout: 3)
+        )
+        app.buttons["circle.compatibility.open"].tap()
+        XCTAssertTrue(
+            app.buttons["compatibility.selection.continue"].waitForExistence(timeout: 3)
+        )
+        capture(app, named: "compatibility-refresh-selection")
+
+        app.buttons["compatibility.selection.continue"].tap()
+        XCTAssertTrue(
+            app.staticTexts["compatibility.score"].waitForExistence(timeout: 3)
+        )
+        XCTAssertTrue(
+            app.otherElements["compatibility.basis.free"].exists
+                || app.staticTexts["compatibility.basis.free"].exists
+        )
+        capture(app, named: "compatibility-refresh-result")
     }
 
     func testCaptureD2LandscapeEvidence() {

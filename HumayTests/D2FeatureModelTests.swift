@@ -38,6 +38,35 @@ struct D2FeatureModelTests {
         #expect(CompatibilityScore(101) == nil)
     }
 
+    @Test("Compatibility selection starts with the first two people in stable order")
+    func compatibilitySelectionInitialPairIsDeterministic() {
+        let people = compatibilitySelectionPeople
+        let selection = CompatibilityPairSelection(people: people)
+
+        #expect(selection.selectedIDs == [people[0].id, people[1].id])
+        #expect(selection.isComplete)
+    }
+
+    @Test("Compatibility selection caps at two and supports deselection")
+    func compatibilitySelectionCapsAndDeselects() {
+        let people = compatibilitySelectionPeople
+        var selection = CompatibilityPairSelection(people: people)
+
+        selection.toggle(people[2].id)
+        #expect(selection.selectedIDs == [people[0].id, people[1].id])
+
+        selection.toggle(people[0].id)
+        #expect(selection.selectedIDs == [people[1].id])
+        #expect(!selection.isComplete)
+
+        selection.toggle(people[2].id)
+        #expect(selection.selectedIDs == [people[1].id, people[2].id])
+        #expect(selection.isComplete)
+
+        selection.toggle(people[1].id)
+        #expect(selection.selectedIDs == [people[2].id])
+    }
+
     @Test("New person keeps unknown precision explicit")
     func personUnknownPrecision() {
         let person = CirclePerson(
@@ -113,4 +142,27 @@ struct D2FeatureModelTests {
         }
     }
 #endif
+
+    private var compatibilitySelectionPeople: [CirclePerson] {
+        [
+            CirclePerson(
+                id: UUID(uuidString: "AAAAAAAA-AAAA-4AAA-8AAA-AAAAAAAAAAAA")!,
+                name: "Alexandria",
+                birth: BirthDetails(year: 1990, month: 12, day: 2),
+                westernSunSign: .sagittarius
+            ),
+            CirclePerson(
+                id: UUID(uuidString: "BBBBBBBB-BBBB-4BBB-8BBB-BBBBBBBBBBBB")!,
+                name: "Christopher",
+                birth: BirthDetails(year: 1991, month: 1, day: 4),
+                westernSunSign: .capricorn
+            ),
+            CirclePerson(
+                id: UUID(uuidString: "CCCCCCCC-CCCC-4CCC-8CCC-CCCCCCCCCCCC")!,
+                name: "Salma",
+                birth: BirthDetails(year: 1995, month: 6, day: 3),
+                westernSunSign: .gemini
+            )
+        ]
+    }
 }

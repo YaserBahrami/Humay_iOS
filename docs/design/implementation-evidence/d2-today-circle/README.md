@@ -1,5 +1,9 @@
 # D2 Today + Circle Implementation Evidence
 
+## Compatibility refresh — 2026-08-13
+
+The approved Compatibility selection and Relationship Field refresh is implemented and reconciled separately. See [`compatibility-refresh/`](compatibility-refresh/README.md) for eight final production-SwiftUI simulator screenshots, device/appearance details, reference comparisons and reconciliation fixes. Historical D2 evidence below remains unchanged.
+
 Captured on **2026-08-12** from the production SwiftUI hierarchy with the Debug-only `DevelopmentD2Sample` composition. These are simulator screenshots, not mockups and not calculated astrology results.
 
 ## Devices
