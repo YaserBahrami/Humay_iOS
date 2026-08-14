@@ -77,7 +77,7 @@ struct D2WordmarkHeader: View {
                 )
 
             Text(initials)
-                .font(.subheadline.weight(.bold))
+                .font(HumayTypography.supportingEmphasized)
                 .foregroundStyle(Color.humayTextPrimary)
         }
     }
@@ -100,7 +100,7 @@ struct D2SampleNotice: View {
     var body: some View {
         if source.isDevelopmentSample {
             Label("Development sample · not calculated", systemImage: "hammer.fill")
-                .font(.caption.weight(.semibold))
+                .font(HumayTypography.utility)
                 .foregroundStyle(Color.humayTextSecondary)
                 .padding(.horizontal, HumaySpacing.medium)
                 .padding(.vertical, HumaySpacing.small)

@@ -110,4 +110,4 @@ No numerical HIG score is assigned.
 4. Production promotion of any reference-only glyph or motif.
 5. Final content contract for unavailable factual fields.
 
-The product owner approved the four primary references and the complete Celestial editorial sheet package on 2026-08-13. This approval records visual authority; it does not authorize Event Detail SwiftUI before `SKY-005`.
+The product owner approved the four primary references and the complete Celestial editorial sheet package on 2026-08-13. Event Detail SwiftUI is now implemented under `SKY-005`; this package remains visual authority while `SKY-002` and `SKY-006` stay pending.

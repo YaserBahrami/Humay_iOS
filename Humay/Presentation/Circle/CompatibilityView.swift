@@ -339,7 +339,7 @@ struct CompatibilityView: View {
                 .accessibilityIdentifier("compatibility.score")
 
             Text(result.relationshipLabel)
-                .font(.title2.weight(.semibold))
+                .font(HumayTypography.sectionTitle)
                 .multilineTextAlignment(.center)
                 .fixedSize(horizontal: false, vertical: true)
 
@@ -415,7 +415,7 @@ struct CompatibilityView: View {
                     .frame(height: 6)
 
                     Text("\(metric.score.value)%")
-                        .font(.subheadline.weight(.semibold))
+                        .font(HumayTypography.supportingEmphasized)
                         .monospacedDigit()
                         .frame(width: 42, alignment: .trailing)
                 }

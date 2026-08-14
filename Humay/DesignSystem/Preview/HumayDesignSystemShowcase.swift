@@ -38,17 +38,38 @@ private struct HumayDesignSystemShowcase: View {
 
     private var typography: some View {
         VStack(alignment: .leading, spacing: HumaySpacing.medium) {
-            Text("humay")
-                .font(HumayTypography.wordmark)
-            Text("Soulful Celestial")
-                .font(HumayTypography.heroTitle)
-            Text("Editorial title")
-                .font(HumayTypography.editorialTitle)
-            Text("Clear system body supports long-form reading and Dynamic Type.")
-                .font(HumayTypography.body)
-            Text("14° 27′ · 21:42")
-                .font(HumayTypography.technical)
+            typeSample("wordmark", "humay", HumayTypography.wordmark)
+            typeSample("heroTitle", "Soulful Celestial", HumayTypography.heroTitle)
+            typeSample("detailTitle", "Mars enters Gemini", HumayTypography.detailTitle)
+            typeSample("editorialTitle", "Editorial title", HumayTypography.editorialTitle)
+            typeSample("sectionTitle", "Factual context", HumayTypography.sectionTitle)
+            typeSample("cardTitle", "Card title", HumayTypography.cardTitle)
+            typeSample(
+                "body",
+                "Clear system body supports long-form reading and Dynamic Type.",
+                HumayTypography.body
+            )
+            typeSample("bodyEmphasized", "Body emphasis", HumayTypography.bodyEmphasized)
+            typeSample("supporting", "Supporting context", HumayTypography.supporting)
+            typeSample("supportingEmphasized", "Exact · Fri 21:00 TRT", HumayTypography.supportingEmphasized)
+            typeSample("control", "Continue", HumayTypography.control)
+            typeSample("utility / caption", "DEVELOPMENT SAMPLE · NOT CALCULATED", HumayTypography.utility)
+            typeSample("micro", "AUG 14", HumayTypography.micro)
+            typeSample("expressiveScore", "86", HumayTypography.expressiveScore)
+            typeSample("compatibilityScore", "92", HumayTypography.compatibilityScore)
+            typeSample("technical", "14° 27′ · 21:42", HumayTypography.technical)
                 .foregroundStyle(Color.humayTextSecondary)
+        }
+    }
+
+    private func typeSample(_ role: String, _ sample: String, _ font: Font) -> some View {
+        VStack(alignment: .leading, spacing: HumaySpacing.extraSmall) {
+            Text(role)
+                .font(HumayTypography.utility)
+                .foregroundStyle(Color.humayTextSecondary)
+                .textCase(.none)
+            Text(sample)
+                .font(font)
         }
     }
 

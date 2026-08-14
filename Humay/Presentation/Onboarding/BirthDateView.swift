@@ -130,7 +130,7 @@ struct BirthDateView: View {
     private func explanatoryContent(compactHeight: Bool) -> some View {
         VStack(alignment: .leading, spacing: compactHeight ? 7 : HumaySpacing.medium) {
             Text("This is all the general reading needs — your Sun sign, your Chinese year and sign-to-sign compatibility all follow from the date alone.")
-                .font(compactHeight ? .caption : HumayTypography.supporting)
+                .font(compactHeight ? HumayTypography.caption : HumayTypography.supporting)
                 .foregroundStyle(Color.humayTextPrimary)
                 .fixedSize(horizontal: false, vertical: true)
 
@@ -138,13 +138,13 @@ struct BirthDateView: View {
                 .overlay(Color.humayHairline)
 
             Text("Birth time and place are not required now. You can add them later in Profile, and they unlock the parts of a chart that genuinely depend on them.")
-                .font(compactHeight ? .caption : HumayTypography.supporting)
+                .font(compactHeight ? HumayTypography.caption : HumayTypography.supporting)
                 .foregroundStyle(Color.humayTextSecondary)
                 .fixedSize(horizontal: false, vertical: true)
 
             if let validationMessage {
                 Text(validationMessage)
-                    .font(.caption)
+                    .font(HumayTypography.caption)
                     .foregroundStyle(.red)
                     .fixedSize(horizontal: false, vertical: true)
             }
@@ -180,7 +180,7 @@ struct BirthDateView: View {
                         .fixedSize(horizontal: false, vertical: true)
 
                     Text("Time and place stay optional.")
-                        .font(compactHeight ? .caption : HumayTypography.supporting)
+                        .font(compactHeight ? HumayTypography.caption : HumayTypography.supporting)
                         .foregroundStyle(Color.humayTextSecondary)
                 }
             }

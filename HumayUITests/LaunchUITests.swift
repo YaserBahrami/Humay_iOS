@@ -151,6 +151,155 @@ final class LaunchUITests: XCTestCase {
         XCTAssertTrue(element("sky.current.happening-now", in: app).exists)
     }
 
+    func testD3CurrentSkyEventOpensLoadedDetailAndBack() {
+        let app = d3App()
+        let event = element("sky.current.event.development.sky.lunar", in: app)
+
+        XCTAssertTrue(event.waitForExistence(timeout: 3))
+        event.tap()
+        XCTAssertTrue(element("sky.event-detail.screen", in: app).waitForExistence(timeout: 3))
+        XCTAssertTrue(element("sky.event-detail.title", in: app).exists)
+        XCTAssertTrue(app.staticTexts["Factual context"].exists)
+        XCTAssertTrue(app.staticTexts["What this means"].exists)
+
+        app.navigationBars.buttons.element(boundBy: 0).tap()
+        XCTAssertTrue(event.waitForExistence(timeout: 3))
+    }
+
+    func testD3CalendarMonthEventOpensDetailAndPreservesSelection() {
+        let app = d3App()
+        app.buttons["sky.current.calendar-entry"].tap()
+
+        let selectedDate = app.buttons["sky.calendar.month.date.2026-08-14"]
+        XCTAssertTrue(selectedDate.waitForExistence(timeout: 3))
+        selectedDate.tap()
+        XCTAssertEqual(selectedDate.value as? String, "Selected")
+
+        let event = element("sky.calendar.event.development.sky.ingress", in: app)
+        XCTAssertTrue(event.waitForExistence(timeout: 3))
+        event.tap()
+        XCTAssertTrue(element("sky.event-detail.screen", in: app).waitForExistence(timeout: 3))
+        XCTAssertTrue(element("sky.event-detail.title", in: app).exists)
+
+        app.navigationBars.buttons.element(boundBy: 0).tap()
+        XCTAssertTrue(element("sky.calendar.screen", in: app).waitForExistence(timeout: 3))
+        XCTAssertEqual(selectedDate.value as? String, "Selected")
+    }
+
+    func testD3CalendarWeekEventOpensDetailAndPreservesModeAndDate() {
+        let app = d3App()
+        app.buttons["sky.current.calendar-entry"].tap()
+        app.buttons["sky.calendar.mode.week"].tap()
+
+        let selectedDate = app.buttons["sky.calendar.week.date.2026-08-14"]
+        XCTAssertTrue(selectedDate.waitForExistence(timeout: 3))
+        selectedDate.tap()
+        XCTAssertEqual(selectedDate.value as? String, "Selected")
+
+        let event = element("sky.calendar.event.development.sky.ingress", in: app)
+        XCTAssertTrue(event.waitForExistence(timeout: 3))
+        event.tap()
+        XCTAssertTrue(element("sky.event-detail.screen", in: app).waitForExistence(timeout: 3))
+
+        app.navigationBars.buttons.element(boundBy: 0).tap()
+        XCTAssertTrue(element("sky.calendar.week.state.loaded", in: app).waitForExistence(timeout: 3))
+        XCTAssertTrue(app.buttons["sky.calendar.mode.week"].isSelected)
+        XCTAssertEqual(selectedDate.value as? String, "Selected")
+    }
+
+    func testD3EventDetailStatesRemainDistinct() {
+        let states = [
+            ("loading", "sky.event-detail.state.loading"),
+            ("unavailable", "sky.event-detail.state.unavailable"),
+            ("unsupported-methodology", "sky.event-detail.state.unavailable"),
+            ("missing-time-zone", "sky.event-detail.state.unavailable"),
+            ("missing-location", "sky.event-detail.state.unavailable"),
+            ("event-not-found", "sky.event-detail.state.event-not-found"),
+            ("offline", "sky.event-detail.state.offline.cached"),
+            ("offline-empty", "sky.event-detail.state.offline.no-cache"),
+            ("failed", "sky.event-detail.state.failed")
+        ]
+
+        for (argument, identifier) in states {
+            let app = d3App(extraArguments: ["-HumayD3DetailState", argument])
+            let event = element("sky.current.event.development.sky.lunar", in: app)
+            XCTAssertTrue(event.waitForExistence(timeout: 3))
+            event.tap()
+            XCTAssertTrue(
+                element("sky.event-detail.screen", in: app).waitForExistence(timeout: 3),
+                "Missing Event Detail screen for \(argument)"
+            )
+            XCTAssertTrue(
+                element(identifier, in: app).waitForExistence(timeout: 3),
+                "Missing Event Detail state for \(argument)"
+            )
+            if argument == "offline" {
+                XCTAssertTrue(element("sky.event-detail.offline.cached.notice", in: app).exists)
+                XCTAssertTrue(element("sky.event-detail.title", in: app).exists)
+            }
+            app.terminate()
+        }
+    }
+
+    func testCaptureD3EventDetailLightEvidence() {
+        captureD3EventDetailEvidence(interfaceStyle: "Light")
+    }
+
+    func testCaptureD3EventDetailDarkEvidence() {
+        captureD3EventDetailEvidence(interfaceStyle: "Dark")
+    }
+
+    private func captureD3EventDetailEvidence(interfaceStyle: String) {
+        XCUIDevice.shared.orientation = .portrait
+        let appearance = interfaceStyle.lowercased()
+        let appearanceArguments = ["-AppleInterfaceStyle", interfaceStyle]
+
+        let current = d3App(extraArguments: appearanceArguments)
+        let lunar = element("sky.current.event.development.sky.lunar", in: current)
+        XCTAssertTrue(lunar.waitForExistence(timeout: 3))
+        lunar.tap()
+        XCTAssertTrue(element("sky.event-detail.title", in: current).waitForExistence(timeout: 3))
+        capture(current, named: "loaded-current-sky-\(appearance)")
+        current.terminate()
+
+        let calendar = d3App(extraArguments: appearanceArguments)
+        calendar.buttons["sky.current.calendar-entry"].tap()
+        calendar.buttons["sky.calendar.month.date.2026-08-14"].tap()
+        let ingress = element("sky.calendar.event.development.sky.ingress", in: calendar)
+        XCTAssertTrue(ingress.waitForExistence(timeout: 3))
+        ingress.tap()
+        XCTAssertTrue(element("sky.event-detail.title", in: calendar).waitForExistence(timeout: 3))
+        capture(calendar, named: "loaded-calendar-\(appearance)")
+        calendar.terminate()
+
+        let longTitle = d3App(extraArguments: appearanceArguments)
+        let ingressFromSky = element("sky.current.event.development.sky.ingress", in: longTitle)
+        XCTAssertTrue(ingressFromSky.waitForExistence(timeout: 3))
+        ingressFromSky.tap()
+        XCTAssertTrue(element("sky.event-detail.title", in: longTitle).waitForExistence(timeout: 3))
+        capture(longTitle, named: "long-title-\(appearance)")
+        longTitle.terminate()
+
+        let states = [
+            ("loading", "sky.event-detail.state.loading"),
+            ("unavailable", "sky.event-detail.state.unavailable"),
+            ("offline", "sky.event-detail.state.offline.cached"),
+            ("offline-empty", "sky.event-detail.state.offline.no-cache"),
+            ("failed", "sky.event-detail.state.failed"),
+            ("event-not-found", "sky.event-detail.state.event-not-found")
+        ]
+
+        for (argument, identifier) in states {
+            let app = d3App(extraArguments: appearanceArguments + ["-HumayD3DetailState", argument])
+            let event = element("sky.current.event.development.sky.lunar", in: app)
+            XCTAssertTrue(event.waitForExistence(timeout: 3))
+            event.tap()
+            XCTAssertTrue(element(identifier, in: app).waitForExistence(timeout: 3))
+            capture(app, named: "\(argument == "offline-empty" ? "offline-no-cache" : argument)-\(appearance)")
+            app.terminate()
+        }
+    }
+
     func testD3CalendarNavigatesFromSkyAndPreservesSelection() {
         let app = d3App()
 

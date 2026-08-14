@@ -84,7 +84,7 @@ The approved D2 Today + Circle family is implemented with explicit Debug-only de
 
 Phase 05 and Phase 07 remain partial because production Free catalogs, Saved People persistence, backend/API/provider generation and entitlement/monetization runtime are still deferred.
 
-D3 has now started only at the engineering foundation layer. Humay-owned sky/event/timing and calendar contracts, typed feature states, Release-unavailable composition and Debug-only deterministic samples exist. No D3 user-facing UI, provider, calculation, cache or persistence implementation exists because the required D3 cross-device visual package has not been designed and approved. D4 and D5 remain unstarted.
+D3 Current Sky, Calendar Month/Week, and Event Detail user-facing UI are implemented over typed Debug-only deterministic samples and approved cross-device references. Provider, calculation, cache and persistence implementation remains pending; D4 and D5 remain unstarted.
 
 ## Visual design track — iPhone + iPad, Light + Dark
 

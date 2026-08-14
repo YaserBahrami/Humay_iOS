@@ -1,6 +1,6 @@
 # SKY-004 — Calendar Month + Week implementation evidence
 
-Status: implemented over the Debug-only `DevelopmentD3Sample`; production provider/cache pipeline remains `SKY-002`. Event Detail remains `SKY-005` and is intentionally not exposed.
+Status: implemented over the Debug-only `DevelopmentD3Sample`; production provider/cache pipeline remains `SKY-002`. Agenda rows now open the implemented `SKY-005` Event Detail route.
 
 ## Authority and scope
 
@@ -30,7 +30,7 @@ State board filenames: `loading.png`, `empty.png`, `unavailable.png`, `offline-c
 - Event rows show title, optional summary, centralized timezone-safe timing, and methodology. Date-only, exact, interval, and unavailable timing remain mutually exclusive.
 - Quiet days are explicit agenda content, not empty/loading/unavailable states. Offline cached keeps civil dates and event metadata; offline no-cache is a distinct message.
 - iPhone uses one reading column. iPad uses the approved overview/detail composition: Month grid or Week rail/context alongside the selected-date agenda.
-- No Event Detail chevrons or dead-end route affordances are added. Event interpretation remains deferred to `SKY-005`.
+- Month/Week agenda rows use native full-row navigation to Event Detail; Back preserves selected date and Month/Week mode.
 - Release uses `D3FeatureInput.productionUnavailable`; the development sample and its deterministic date are DEBUG-only.
 
 ## Verification

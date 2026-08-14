@@ -144,11 +144,11 @@ struct TraditionView: View {
         HumaySurface(padding: compactHeight ? HumaySpacing.medium : HumaySpacing.extraLarge) {
             VStack(alignment: .leading, spacing: compactHeight ? 3 : HumaySpacing.small) {
                 Text("Your choice is a starting point, not a lock.")
-                    .font(compactHeight ? HumayTypography.supporting.weight(.semibold) : HumayTypography.bodyEmphasized)
+                    .font(compactHeight ? HumayTypography.supportingEmphasized : HumayTypography.bodyEmphasized)
                     .foregroundStyle(Color.humayTextPrimary)
 
                 Text("Change it later from Profile.")
-                    .font(compactHeight ? .caption : HumayTypography.supporting)
+                    .font(compactHeight ? HumayTypography.caption : HumayTypography.supporting)
                     .foregroundStyle(Color.humayTextSecondary)
             }
         }
@@ -186,12 +186,12 @@ private struct TraditionChoiceCard: View {
 
                 VStack(alignment: .leading, spacing: compactHeight ? 2 : HumaySpacing.extraSmall) {
                     Text(tradition.shortName)
-                        .font(compactHeight ? HumayTypography.supporting.weight(.semibold) : HumayTypography.bodyEmphasized)
+                        .font(compactHeight ? HumayTypography.supportingEmphasized : HumayTypography.bodyEmphasized)
                         .foregroundStyle(Color.humayTextPrimary)
                         .frame(maxWidth: .infinity, alignment: .leading)
 
                     Text(description)
-                        .font(compactHeight ? .caption : HumayTypography.supporting)
+                        .font(compactHeight ? HumayTypography.caption : HumayTypography.supporting)
                         .foregroundStyle(Color.humayTextSecondary)
                         .fixedSize(horizontal: false, vertical: true)
                         .frame(maxWidth: .infinity, alignment: .leading)

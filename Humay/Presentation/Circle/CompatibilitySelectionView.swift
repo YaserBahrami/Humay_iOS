@@ -155,7 +155,7 @@ struct CompatibilitySelectionView: View {
 
     private var savedPeopleTitle: some View {
         Text("Saved people")
-            .font(.title2.weight(.semibold))
+            .font(HumayTypography.sectionTitle)
             .accessibilityAddTraits(.isHeader)
     }
 

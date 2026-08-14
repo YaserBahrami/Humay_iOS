@@ -135,7 +135,7 @@ struct CircleView: View {
         VStack(alignment: .leading, spacing: HumaySpacing.large) {
             HStack(spacing: HumaySpacing.medium) {
                 Text("People")
-                    .font(.title3.weight(.semibold))
+                    .font(HumayTypography.sectionTitle)
                     .accessibilityAddTraits(.isHeader)
 
                 Spacer()
@@ -279,7 +279,7 @@ private struct CirclePersonDetailView: View {
                         CirclePersonMedallion(person: person, accent: .lavender, size: 72)
                         VStack(alignment: .leading, spacing: HumaySpacing.extraSmall) {
                             Text(person.name)
-                                .font(.title2.weight(.semibold))
+                                .font(HumayTypography.sectionTitle)
                             Text(person.westernSunSign?.displayName ?? "Sun sign unavailable")
                                 .foregroundStyle(Color.humayTextSecondary)
                         }

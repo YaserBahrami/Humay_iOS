@@ -37,10 +37,10 @@ struct DailyHoroscopeView: View {
             ToolbarItem(placement: .principal) {
                 VStack(spacing: 1) {
                     Text("Daily Horoscope")
-                        .font(.headline)
+                        .font(HumayTypography.control)
                     if let reading = currentReading {
                         Text(reading.date.formatted(date: .abbreviated, time: .omitted))
-                            .font(.caption)
+                            .font(HumayTypography.caption)
                             .foregroundStyle(Color.humayTextSecondary)
                     }
                 }
@@ -179,7 +179,7 @@ struct DailyHoroscopeView: View {
 
             VStack(alignment: .leading, spacing: HumaySpacing.extraSmall) {
                 Text(reading.sign.displayName)
-                    .font(.title3.weight(.semibold))
+                    .font(HumayTypography.sectionTitle)
                 Text(reading.sign.dateRange)
                     .font(HumayTypography.supporting)
                     .foregroundStyle(Color.humayTextSecondary)

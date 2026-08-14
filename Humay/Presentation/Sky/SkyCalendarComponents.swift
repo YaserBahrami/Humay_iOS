@@ -1,12 +1,14 @@
 import SwiftUI
 
 struct SkyCalendarMonthView: View {
+    let source: D3ContentSource
     let state: SkyCalendarMonthFeatureState
     @Binding var selectedDate: SkyCalendarDate?
     @Binding var selection: SkyCalendarMonthID?
     let today: SkyCalendarDate?
     let usesWideLayout: Bool
     let onNavigate: (Int) -> Void
+    let eventDetailState: (SkyEventID) -> SkyEventDetailFeatureState
 
     var body: some View {
         Group {
@@ -139,7 +141,9 @@ struct SkyCalendarMonthView: View {
                         selectedDate: date,
                         events: agendaEvents,
                         context: context,
-                        identifier: "sky.calendar.agenda"
+                        identifier: "sky.calendar.agenda",
+                        source: source,
+                        eventDetailState: eventDetailState
                     )
                     .frame(maxWidth: 390, alignment: .topLeading)
                 }
@@ -160,7 +164,9 @@ struct SkyCalendarMonthView: View {
                     selectedDate: date,
                     events: agendaEvents,
                     context: context,
-                    identifier: "sky.calendar.agenda"
+                    identifier: "sky.calendar.agenda",
+                    source: source,
+                    eventDetailState: eventDetailState
                 )
 
                 if let context {
@@ -198,12 +204,14 @@ struct SkyCalendarMonthView: View {
 }
 
 struct SkyCalendarWeekView: View {
+    let source: D3ContentSource
     let state: SkyCalendarWeekFeatureState
     @Binding var selectedDate: SkyCalendarDate?
     @Binding var weekStart: SkyCalendarDate?
     let today: SkyCalendarDate?
     let usesWideLayout: Bool
     let onNavigate: (Int) -> Void
+    let eventDetailState: (SkyEventID) -> SkyEventDetailFeatureState
 
     var body: some View {
         Group {
@@ -329,7 +337,9 @@ struct SkyCalendarWeekView: View {
                         selectedDate: date,
                         events: agendaEvents,
                         context: context,
-                        identifier: "sky.calendar.agenda"
+                        identifier: "sky.calendar.agenda",
+                        source: source,
+                        eventDetailState: eventDetailState
                     )
                     .frame(maxWidth: 660, alignment: .topLeading)
 
@@ -346,7 +356,9 @@ struct SkyCalendarWeekView: View {
                     selectedDate: date,
                     events: agendaEvents,
                     context: context,
-                    identifier: "sky.calendar.agenda"
+                    identifier: "sky.calendar.agenda",
+                    source: source,
+                    eventDetailState: eventDetailState
                 )
             }
 
@@ -466,7 +478,7 @@ private struct SkyCalendarCivilGrid: View {
             HStack(spacing: 0) {
                 ForEach(SkyCalendarSupport.weekdaySymbols, id: \.self) { weekday in
                     Text(weekday)
-                        .font(.caption.weight(.bold))
+                        .font(HumayTypography.calendarWeekday)
                         .tracking(1.1)
                         .foregroundStyle(Color.humayTextSecondary)
                         .frame(maxWidth: .infinity)
@@ -545,7 +557,7 @@ private struct SkyCalendarDateCell: View {
                 }
 
                 Text(String(date.day))
-                    .font(.callout.weight(isToday || isSelected ? .bold : .semibold))
+                    .font(isToday || isSelected ? HumayTypography.calendarDateSelected : HumayTypography.calendarDate)
                     .monospacedDigit()
                     .foregroundStyle(textColor)
 
@@ -554,7 +566,7 @@ private struct SkyCalendarDateCell: View {
 
                 if isOutsideMonth && showsBoundaryLabel {
                     Text(SkyCalendarSupport.shortMonth(date))
-                        .font(.system(size: 7, weight: .bold))
+                        .font(HumayTypography.calendarBoundary)
                         .tracking(0.6)
                         .foregroundStyle(Color.humayTextSecondary)
                         .offset(y: -(rowHeight / 2) + 5)
@@ -586,7 +598,7 @@ private struct SkyCalendarDateCell: View {
                     .frame(width: 5, height: 5)
                 if events.count > 1 {
                     Text(String(events.count))
-                        .font(.system(size: 7, weight: .bold))
+                        .font(HumayTypography.calendarMarker)
                         .foregroundStyle(isSelected ? selectedForeground : Color.humayTextSecondary)
                 }
             }
@@ -698,7 +710,7 @@ private struct SkyCalendarWeekDateCell: View {
         Button(action: action) {
             VStack(spacing: 2) {
                 Text(SkyCalendarSupport.shortWeekday(date))
-                    .font(.caption2.weight(.bold))
+                    .font(HumayTypography.calendarWeekday)
                     .tracking(0.9)
                     .foregroundStyle(Color.humayTextSecondary)
 
@@ -720,7 +732,7 @@ private struct SkyCalendarWeekDateCell: View {
                     }
 
                     Text(String(date.day))
-                        .font(.title3.weight(.semibold))
+                        .font(HumayTypography.calendarDate)
                         .monospacedDigit()
                         .foregroundStyle(isSelected ? selectedForeground : Color.humayTextPrimary)
 
@@ -758,7 +770,7 @@ private struct SkyCalendarWeekDateCell: View {
                     .frame(width: 5, height: 5)
                 if events.count > 1 {
                     Text(String(events.count))
-                        .font(.system(size: 7, weight: .bold))
+                        .font(HumayTypography.calendarMarker)
                         .foregroundStyle(isSelected ? selectedForeground : Color.humayTextSecondary)
                 }
             }
@@ -786,13 +798,15 @@ private struct SkyCalendarAgenda: View {
     let events: [SkyEvent]
     let context: SkyObservationContext?
     let identifier: String
+    let source: D3ContentSource
+    let eventDetailState: (SkyEventID) -> SkyEventDetailFeatureState
 
     var body: some View {
         VStack(alignment: .leading, spacing: HumaySpacing.medium) {
             HStack(alignment: .lastTextBaseline) {
                 VStack(alignment: .leading, spacing: HumaySpacing.extraSmall) {
                     Text("Selected date")
-                        .font(.caption.weight(.bold))
+                        .font(HumayTypography.utility)
                         .tracking(1.1)
                         .foregroundStyle(Color.humayCoral)
 
@@ -813,7 +827,12 @@ private struct SkyCalendarAgenda: View {
             } else {
                 VStack(spacing: 0) {
                     ForEach(Array(events.enumerated()), id: \.element.id) { index, event in
-                        SkyCalendarEventRow(event: event, context: context)
+                        SkyCalendarEventRow(
+                            event: event,
+                            context: context,
+                            source: source,
+                            eventDetailState: eventDetailState
+                        )
                             .padding(.vertical, HumaySpacing.small)
 
                         if index < events.count - 1 {
@@ -841,8 +860,25 @@ private struct SkyCalendarAgenda: View {
 private struct SkyCalendarEventRow: View {
     let event: SkyEvent
     let context: SkyObservationContext?
+    let source: D3ContentSource
+    let eventDetailState: (SkyEventID) -> SkyEventDetailFeatureState
 
     var body: some View {
+        NavigationLink {
+            SkyEventDetailView(
+                source: source,
+                state: eventDetailState(event.id),
+                context: context
+            )
+        } label: {
+            rowContent
+        }
+        .buttonStyle(.plain)
+        .accessibilityHint("Opens Event Detail")
+        .accessibilityIdentifier("sky.calendar.event.\(event.id.rawValue)")
+    }
+
+    private var rowContent: some View {
         HStack(alignment: .top, spacing: HumaySpacing.medium) {
             SkyCalendarEventGlyph(event: event)
                 .frame(width: HumayMetrics.minimumHitTarget, height: HumayMetrics.minimumHitTarget)
@@ -875,14 +911,17 @@ private struct SkyCalendarEventRow: View {
         }
         .frame(minHeight: HumayMetrics.minimumHitTarget, alignment: .leading)
         .accessibilityElement(children: .ignore)
-        .accessibilityLabel("\(event.title), \(SkyMethodologyFormatter.label(for: event.system))")
+        .accessibilityLabel(
+            "\(event.title), \(SkyEventTypeFormatter.label(for: event.type)), "
+                + "\(SkyMethodologyFormatter.label(for: event.system))"
+        )
         .accessibilityValue(accessibilityValue)
         .accessibilityIdentifier("sky.calendar.event.\(event.id.rawValue)")
     }
 
     private var timingText: some View {
         Text(timing)
-            .font(HumayTypography.supporting.weight(.semibold))
+            .font(HumayTypography.supportingEmphasized)
             .monospacedDigit()
             .foregroundStyle(Color.humayTextSecondary)
             .fixedSize(horizontal: false, vertical: true)
@@ -895,7 +934,7 @@ private struct SkyCalendarEventRow: View {
                 .frame(width: 8, height: 8)
                 .accessibilityHidden(true)
             Text(SkyMethodologyFormatter.label(for: event.system))
-                .font(.caption.weight(.semibold))
+                .font(HumayTypography.utility)
                 .foregroundStyle(Color.humayTextSecondary)
         }
         .fixedSize(horizontal: true, vertical: false)
@@ -1003,7 +1042,7 @@ private struct SkyCalendarWeekContext: View {
 
             VStack(alignment: .leading, spacing: HumaySpacing.extraSmall) {
                 Text(SkyCalendarSupport.contextDateTitle(date))
-                    .font(.caption.weight(.bold))
+                    .font(HumayTypography.utility)
                     .tracking(1.1)
                     .foregroundStyle(events.isEmpty ? Color.humaySage : Color.humayCoral)
 

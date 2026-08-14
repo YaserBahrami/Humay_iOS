@@ -85,6 +85,8 @@ Existing approved iPhone D0/D1 references remain valid. The complete D1 cross-de
 - **SF Pro / system** — body copy, event titles, controls, navigation, forms, settings, dates and times; use monospaced digits where alignment helps.
 - **SF Mono / system** — reserved for genuinely technical future Chart values such as coordinates or degree-heavy data.
 
+Humay-owned production text must use semantic `HumayTypography` roles; direct custom-font selection in feature views is prohibited.
+
 Dynamic Type is mandatory. iPad does not justify fixed text sizes or oversized empty layouts.
 
 ## 7. Illustration and visual intensity

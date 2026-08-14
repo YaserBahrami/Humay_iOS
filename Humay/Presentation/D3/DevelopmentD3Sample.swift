@@ -142,6 +142,18 @@ enum DevelopmentD3Sample {
         astrologicalBasis: "No calculated basis is supplied by this development sample."
     )
 
+    static let ingressDetail = SkyEventDetail(
+        event: ingressEvent,
+        meaning: "A change in momentum invites clearer language, deliberate choices, and useful attention to detail.",
+        astrologicalBasis: "Western ingress basis is represented by this unverified development sample only."
+    )
+
+    static let aspectDetail = SkyEventDetail(
+        event: aspectEvent,
+        meaning: "Tension between quick ideas can become useful when observation comes before reaction.",
+        astrologicalBasis: "Western aspect basis is represented by this unverified development sample only."
+    )
+
     static func makeInput(arguments: [String] = ProcessInfo.processInfo.arguments) -> D3FeatureInput {
         D3FeatureInput(
             source: .developmentSample,
@@ -157,6 +169,16 @@ enum DevelopmentD3Sample {
             eventDetails: [
                 lunarEventID: detailState(
                     named: argumentValue(after: "-HumayD3DetailState", in: arguments)
+                ),
+                ingressEventID: .loaded(ingressDetail),
+                aspectEventID: .loaded(aspectDetail),
+                gatedEventID: .unavailable(
+                    eventID: gatedEventID,
+                    reason: .unsupportedMethodology
+                ),
+                seasonalEventID: .unavailable(
+                    eventID: seasonalEventID,
+                    reason: .eventNotFound
                 )
             ]
         )
@@ -209,6 +231,22 @@ enum DevelopmentD3Sample {
         case "loading": .loading(lunarEventID)
         case "offline": .offline(eventID: lunarEventID, cached: lunarDetail)
         case "offline-empty": .offline(eventID: lunarEventID, cached: nil)
+        case "unsupported-methodology": .unavailable(
+            eventID: lunarEventID,
+            reason: .unsupportedMethodology
+        )
+        case "missing-time-zone": .unavailable(
+            eventID: lunarEventID,
+            reason: .missingTimeZone
+        )
+        case "missing-location": .unavailable(
+            eventID: lunarEventID,
+            reason: .missingLocation
+        )
+        case "event-not-found": .unavailable(
+            eventID: lunarEventID,
+            reason: .eventNotFound
+        )
         case "unavailable": .unavailable(
             eventID: lunarEventID,
             reason: .dataSourceNotConnected

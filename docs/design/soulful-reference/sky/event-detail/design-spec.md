@@ -20,7 +20,7 @@ The package keeps the D3 family language:
 
 - warm cream Light ground and midnight/navy Dark ground;
 - tonal surfaces before heavy shadow;
-- Cormorant Garamond for identity and editorial headings;
+- Newsreader for editorial/display UI; Cormorant Garamond remains wordmark-only under R1;
 - SF/system for navigation, labels, body and controls;
 - SF Mono only where timing benefits from scanability;
 - restrained coral, lavender, gold, blue, and sage accents;

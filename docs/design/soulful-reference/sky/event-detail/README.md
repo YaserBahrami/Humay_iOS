@@ -1,8 +1,10 @@
 # D3.3 — Event Detail
 
-**Status:** APPROVED VISUAL REFERENCE
+**Status:** APPROVED VISUAL REFERENCE — IMPLEMENTED AND RECONCILED
 
-This package is the approved visual reference for the explanatory Event Detail destination reached from Current Sky rows and Calendar Month/Week agenda rows. It is reference-only work. It does not authorize SwiftUI, complete `SKY-005`, or mark D3 complete.
+This package is the approved visual reference for the implemented explanatory Event Detail destination reached from Current Sky rows and Calendar Month/Week agenda rows. `SKY-005` is implemented over the Debug-only sample; `SKY-002` and `SKY-006` remain pending.
+
+R1 typography supersedes older font-family and size choices in this package: Newsreader owns editorial/display UI, SF Pro/system owns body, controls, dates and times, and Cormorant Garamond remains wordmark-only.
 
 ## Review first
 
@@ -54,8 +56,8 @@ Primary references use Calendar as visual origin, so Back reads `Calendar`. No c
 
 - Event Detail is an **APPROVED VISUAL REFERENCE**.
 - Approval covers iPhone Light/Dark, iPad Light/Dark, state board, stress board, Celestial editorial sheet direction, origin-aware native navigation behavior, visible Sky root shell behavior, factual versus interpretive hierarchy, timing/methodology treatment, observation context, and adaptive/accessibility guidance.
-- `SKY-003` is implemented over the Debug-only sample; `SKY-004` and `SKY-005` remain TODO.
-- No production SwiftUI, route, provider, API, cache, persistence, Chart, Ask, sharing work, or asset-catalog entry is created.
+- `SKY-003`, `SKY-004`, and `SKY-005` are implemented over the Debug-only sample; `SKY-002` remains pending for the production data pipeline and `SKY-006` remains pending for methodology-aware system behavior.
+- Production SwiftUI and native routes are implemented; provider, API, cache, persistence, Chart, Ask, sharing, and asset-catalog work remain outside this slice.
 - Reference fixtures do not define production calculations, methodology authority, editorial copy contracts, recovery actions, or asset ownership.
 
-**NEXT STEP:** Implement only the approved feature slice under its own SKY task. Event Detail SwiftUI remains gated by `SKY-005` and must not begin with this approval record.
+**Implementation result:** Event Detail is implemented and reconciled under `SKY-005`. This package remains visual authority; it does not authorize `SKY-002` or `SKY-006`.

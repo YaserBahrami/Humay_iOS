@@ -166,7 +166,7 @@ private struct WelcomeHeroCard: View {
                         .fixedSize(horizontal: false, vertical: true)
 
                     Text("A little perspective. Zero cosmic homework.")
-                        .font(compactHeight ? .caption : HumayTypography.supporting)
+                        .font(compactHeight ? HumayTypography.caption : HumayTypography.supporting)
                         .foregroundStyle(heroText.opacity(0.78))
                         .fixedSize(horizontal: false, vertical: true)
                 }

@@ -49,6 +49,7 @@ struct MainAppView: View {
                         calendarMonth: d3FeatureInput.calendarMonth,
                         calendarWeek: d3FeatureInput.calendarWeek,
                         calendarToday: calendarToday ?? SkyCalendarSupport.currentDate(),
+                        eventDetailState: d3FeatureInput.eventDetailState,
                         profileName: profileName,
                         openProfile: openProfile
                     )

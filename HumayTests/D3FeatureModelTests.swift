@@ -447,8 +447,40 @@ struct D3FeatureModelTests {
             startDate: DevelopmentD3Sample.selectedWeekStart,
             cached: DevelopmentD3Sample.week
         ))
+
+        let detailStates = DevelopmentD3Sample.makeInput()
+        #expect(detailStates.eventDetailState(for: DevelopmentD3Sample.ingressEventID) == .loaded(
+            DevelopmentD3Sample.ingressDetail
+        ))
+        #expect(detailStates.eventDetailState(for: DevelopmentD3Sample.aspectEventID) == .loaded(
+            DevelopmentD3Sample.aspectDetail
+        ))
+        #expect(detailStates.eventDetailState(for: DevelopmentD3Sample.gatedEventID) == .unavailable(
+            eventID: DevelopmentD3Sample.gatedEventID,
+            reason: .unsupportedMethodology
+        ))
+        #expect(detailStates.eventDetailState(for: DevelopmentD3Sample.seasonalEventID) == .unavailable(
+            eventID: DevelopmentD3Sample.seasonalEventID,
+            reason: .eventNotFound
+        ))
     }
 #endif
+
+    @Test("Event detail presentation labels keep facts and availability user-facing")
+    func eventDetailPresentationLabels() {
+        #expect(SkyEventRelevanceFormatter.label(for: .global) == "Global")
+        #expect(SkyEventRelevanceFormatter.label(for: .timeZone) == "Observation timezone")
+        #expect(SkyEventReliabilityFormatter.label(for: .unverified) == "Unverified sample")
+        #expect(SkyEventReliabilityFormatter.label(for: .approximate(.roundedTiming)) == "Approximate · rounded timing")
+
+        let notFound = SkyEventDetailStateFormatter.unavailableCopy(for: .eventNotFound)
+        #expect(notFound.title == "Event not found")
+        #expect(notFound.detail == "This event is no longer available.")
+
+        let failed = SkyEventDetailStateFormatter.failureCopy(for: .invalidContent)
+        #expect(failed.title == "Event detail unavailable")
+        #expect(failed.detail == "The supplied event facts could not be loaded.")
+    }
 
     @Test("Calendar reference grid stays Monday-first and supports six rows")
     func calendarReferenceGridIsMondayFirst() throws {

@@ -14,6 +14,7 @@ struct SkyCalendarView: View {
     let monthState: SkyCalendarMonthFeatureState
     let weekState: SkyCalendarWeekFeatureState
     let today: SkyCalendarDate?
+    let eventDetailState: (SkyEventID) -> SkyEventDetailFeatureState
 
     @Environment(\.dynamicTypeSize) private var dynamicTypeSize
     @State private var mode: Mode = .month
@@ -25,12 +26,16 @@ struct SkyCalendarView: View {
         source: D3ContentSource,
         monthState: SkyCalendarMonthFeatureState,
         weekState: SkyCalendarWeekFeatureState,
-        today: SkyCalendarDate? = nil
+        today: SkyCalendarDate? = nil,
+        eventDetailState: @escaping (SkyEventID) -> SkyEventDetailFeatureState = { eventID in
+            .unavailable(eventID: eventID, reason: .eventNotFound)
+        }
     ) {
         self.source = source
         self.monthState = monthState
         self.weekState = weekState
         self.today = today
+        self.eventDetailState = eventDetailState
 
         let month = Self.monthValue(from: monthState)
         let week = Self.weekValue(from: weekState)
@@ -104,24 +109,28 @@ struct SkyCalendarView: View {
         switch mode {
         case .month:
             SkyCalendarMonthView(
+                source: source,
                 state: monthState,
                 selectedDate: $selectedDate,
                 selection: $monthSelection,
                 today: today,
                 usesWideLayout: usesWideLayout(availableWidth),
-                onNavigate: navigateMonth
+                onNavigate: navigateMonth,
+                eventDetailState: eventDetailState
             )
             .accessibilityElement(children: .contain)
             .accessibilityIdentifier(monthStateIdentifier)
 
         case .week:
             SkyCalendarWeekView(
+                source: source,
                 state: weekState,
                 selectedDate: $selectedDate,
                 weekStart: $weekStart,
                 today: today,
                 usesWideLayout: usesWideLayout(availableWidth),
-                onNavigate: navigateWeek
+                onNavigate: navigateWeek,
+                eventDetailState: eventDetailState
             )
             .accessibilityElement(children: .contain)
             .accessibilityIdentifier(weekStateIdentifier)
@@ -238,11 +247,14 @@ struct SkyCalendarView: View {
 
 #if DEBUG
 #Preview("Calendar Month") {
+    let input = DevelopmentD3Sample.makeInput()
+
     SkyCalendarView(
         source: .developmentSample,
         monthState: .loaded(DevelopmentD3Sample.month),
         weekState: .loaded(DevelopmentD3Sample.week),
-        today: DevelopmentD3Sample.referenceToday
+        today: DevelopmentD3Sample.referenceToday,
+        eventDetailState: input.eventDetailState
     )
 }
 #endif

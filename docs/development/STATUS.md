@@ -157,7 +157,7 @@ Production Free catalog/backend/provider, precision generation, entitlement, mon
 
 ### D3 engineering foundation
 
-**D3 — Sky + Calendar is PARTIAL: Current Sky and Calendar Month/Week are implemented over a Debug-only sample; Event Detail remains gated.**
+**D3 — Sky + Calendar is PARTIAL: Current Sky, Calendar Month/Week, and Event Detail are implemented over a Debug-only sample; production data and methodology work remain pending.**
 
 Implemented:
 
@@ -169,16 +169,16 @@ Implemented:
 - Debug-only `DevelopmentD3Sample` with deterministic, unverified values and launch-argument state variants;
 - Current Sky SwiftUI for compact iPhone and wide iPad layouts, including loaded, loading, empty, unavailable, cached-offline, offline-without-cache and failed states;
 - Calendar Month/Week SwiftUI nested under Sky, with Monday-first civil grids, selected/today/quiet/event semantics, typed loading/loaded/empty/unavailable/offline/failed states, timezone-safe timing, and adaptive iPhone/iPad composition;
-- actual iPhone/iPad Light/Dark simulator evidence and hierarchy/state UI coverage under `docs/design/implementation-evidence/d3-sky-calendar/current-sky/` and `docs/design/implementation-evidence/d3-sky-calendar/calendar/`;
-- focused Swift Testing for validation, state semantics, deterministic sample composition and Release-safe composition.
+- Event Detail SwiftUI under Sky with loaded, loading, unavailable, event-not-found, offline cached/no-cache, and failed states; Current Sky and Calendar Month/Week native routes preserve origin context;
+- actual iPhone/iPad Light/Dark simulator evidence and hierarchy/state UI coverage under `docs/design/implementation-evidence/d3-sky-calendar/`;
+- focused Swift Testing and XCUITest coverage for validation, state semantics, deterministic sample composition, detail navigation/back preservation, and Release-safe composition.
 
 Not implemented:
 
-- Event Detail production SwiftUI;
 - a calculation/provider pipeline, networking, caching, persistence or personalization;
 - methodology approval or production event provenance.
 
-D3.1 Current Sky, D3.2 Calendar and D3.3 Event Detail approved visual references exist under `docs/design/soulful-reference/`. `SKY-003` and `SKY-004` are implemented over the Debug-only sample; `SKY-002` remains pending for production data and `SKY-005` remains TODO.
+D3.1 Current Sky, D3.2 Calendar and D3.3 Event Detail approved visual references exist under `docs/design/soulful-reference/`. `SKY-003`, `SKY-004`, and `SKY-005` are implemented over the Debug-only sample; `SKY-002` remains pending for production data and `SKY-006` remains TODO.
 
 ## Backend/API timing
 

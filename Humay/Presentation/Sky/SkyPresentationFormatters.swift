@@ -42,6 +42,97 @@ enum SkyEventTypeFormatter {
     }
 }
 
+enum SkyEventRelevanceFormatter {
+    static func label(for relevance: SkyEventRelevance) -> String {
+        switch relevance {
+        case .global:
+            "Global"
+        case .timeZone:
+            "Observation timezone"
+        case .location:
+            "Observation location"
+        }
+    }
+}
+
+enum SkyEventReliabilityFormatter {
+    static func label(for reliability: SkyEventReliability) -> String {
+        switch reliability {
+        case .reliable:
+            "Reliable"
+        case .approximate(let uncertainty):
+            switch uncertainty {
+            case .roundedTiming:
+                "Approximate · rounded timing"
+            case .limitedSourcePrecision:
+                "Approximate · limited source precision"
+            }
+        case .unverified:
+            "Unverified sample"
+        }
+    }
+}
+
+struct SkyEventDetailStateCopy {
+    let symbol: String
+    let title: String
+    let detail: String
+}
+
+enum SkyEventDetailStateFormatter {
+    static func unavailableCopy(for reason: D3FeatureUnavailability) -> SkyEventDetailStateCopy {
+        switch reason {
+        case .dataSourceNotConnected:
+            SkyEventDetailStateCopy(
+                symbol: "externaldrive.badge.questionmark",
+                title: "Event detail unavailable",
+                detail: "This source isn’t connected yet."
+            )
+        case .unsupportedMethodology:
+            SkyEventDetailStateCopy(
+                symbol: "exclamationmark.circle",
+                title: "Methodology unavailable",
+                detail: "This methodology isn’t available for this event yet."
+            )
+        case .missingTimeZone:
+            SkyEventDetailStateCopy(
+                symbol: "clock.badge.exclamationmark",
+                title: "Timezone needed",
+                detail: "Event timing needs a valid observation timezone."
+            )
+        case .missingLocation:
+            SkyEventDetailStateCopy(
+                symbol: "location.slash",
+                title: "Location needed",
+                detail: "This event requires an observation location."
+            )
+        case .eventNotFound:
+            SkyEventDetailStateCopy(
+                symbol: "questionmark.circle",
+                title: "Event not found",
+                detail: "This event is no longer available."
+            )
+        }
+    }
+
+    static func failureCopy(for failure: D3FeatureFailure) -> SkyEventDetailStateCopy {
+        switch failure {
+        case .invalidContent:
+            SkyEventDetailStateCopy(
+                symbol: "exclamationmark.triangle",
+                title: "Event detail unavailable",
+                detail: "The supplied event facts could not be loaded."
+            )
+        case .temporarilyUnavailable, .unknown:
+            SkyEventDetailStateCopy(
+                symbol: "exclamationmark.triangle",
+                title: "Event detail unavailable",
+                detail: "Event facts could not be loaded right now."
+            )
+        }
+    }
+}
+
 /// Formats event timing from the observation context supplied by D3.
 /// Device timezone is never used when a context is present.
 enum SkyEventTimingFormatter {

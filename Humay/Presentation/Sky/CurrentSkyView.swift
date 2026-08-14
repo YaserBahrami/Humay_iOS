@@ -6,6 +6,7 @@ struct CurrentSkyView: View {
     let calendarMonth: SkyCalendarMonthFeatureState
     let calendarWeek: SkyCalendarWeekFeatureState
     let calendarToday: SkyCalendarDate?
+    let eventDetailState: (SkyEventID) -> SkyEventDetailFeatureState
     let profileName: String
     let openProfile: () -> Void
 
@@ -64,7 +65,8 @@ struct CurrentSkyView: View {
                     source: source,
                     monthState: calendarMonth,
                     weekState: calendarWeek,
-                    today: calendarToday
+                    today: calendarToday,
+                    eventDetailState: eventDetailState
                 )
             }
 
@@ -121,7 +123,8 @@ struct CurrentSkyView: View {
                             source: source,
                             monthState: calendarMonth,
                             weekState: calendarWeek,
-                            today: calendarToday
+                            today: calendarToday,
+                            eventDetailState: eventDetailState
                         )
                     }
                     .frame(maxWidth: .infinity, alignment: .topLeading)
@@ -129,33 +132,42 @@ struct CurrentSkyView: View {
                     VStack(alignment: .leading, spacing: HumaySpacing.large) {
                         CurrentSkyEventSection(
                             events: currentEvents,
-                            snapshot: snapshot
+                            snapshot: snapshot,
+                            source: source,
+                            eventDetailState: eventDetailState
                         )
                         CurrentSkyTimeline(
                             events: upcomingEvents,
                             snapshot: snapshot,
-                            usesPanel: true
+                            usesPanel: true,
+                            source: source,
+                            eventDetailState: eventDetailState
                         )
-            }
-            .frame(maxWidth: .infinity, alignment: .topLeading)
-        }
+                    }
+                    .frame(maxWidth: .infinity, alignment: .topLeading)
+                }
             } else {
                 VStack(alignment: .leading, spacing: HumaySpacing.large) {
                     CurrentSkyHero(snapshot: snapshot, showsObservation: true)
                     CurrentSkyEventSection(
                         events: currentEvents,
-                        snapshot: snapshot
+                        snapshot: snapshot,
+                        source: source,
+                        eventDetailState: eventDetailState
                     )
                     SkyCalendarEntry(
                         source: source,
                         monthState: calendarMonth,
                         weekState: calendarWeek,
-                        today: calendarToday
+                        today: calendarToday,
+                        eventDetailState: eventDetailState
                     )
                     CurrentSkyTimeline(
                         events: upcomingEvents,
                         snapshot: snapshot,
-                        usesPanel: false
+                        usesPanel: false,
+                        source: source,
+                        eventDetailState: eventDetailState
                     )
                 }
             }
@@ -181,7 +193,7 @@ struct CurrentSkyView: View {
 struct SkyDevelopmentNotice: View {
     var body: some View {
         Label("Development sample · not calculated", systemImage: "hammer")
-            .font(.caption)
+            .font(HumayTypography.caption)
             .foregroundStyle(Color.humayTextSecondary)
             .frame(minHeight: 22, alignment: .leading)
             .accessibilityElement(children: .combine)
@@ -351,6 +363,8 @@ private struct SkyObservationFooter: View {
 private struct CurrentSkyEventSection: View {
     let events: [SkyEvent]
     let snapshot: SkySnapshot
+    let source: D3ContentSource
+    let eventDetailState: (SkyEventID) -> SkyEventDetailFeatureState
 
     var body: some View {
         VStack(alignment: .leading, spacing: HumaySpacing.medium) {
@@ -369,12 +383,23 @@ private struct CurrentSkyEventSection: View {
             CurrentSkyPanel {
                 VStack(spacing: 0) {
                     ForEach(Array(events.enumerated()), id: \.element.id) { index, event in
-                        CurrentSkyEventRow(
-                            event: event,
-                            context: snapshot.context,
-                            observedAt: snapshot.observedAt
-                        )
-                        .padding(.vertical, HumaySpacing.small)
+                        NavigationLink {
+                            SkyEventDetailView(
+                                source: source,
+                                state: eventDetailState(event.id),
+                                context: snapshot.context
+                            )
+                        } label: {
+                            CurrentSkyEventRow(
+                                event: event,
+                                context: snapshot.context,
+                                observedAt: snapshot.observedAt
+                            )
+                            .padding(.vertical, HumaySpacing.small)
+                        }
+                        .buttonStyle(.plain)
+                        .accessibilityHint("Opens Event Detail")
+                        .accessibilityIdentifier("sky.current.event.\(event.id.rawValue)")
 
                         if index < events.count - 1 {
                             Divider()
@@ -454,7 +479,7 @@ private struct CurrentSkyEventRow: View {
                 observedAt: observedAt
             )
         )
-        .font(HumayTypography.supporting.weight(.semibold))
+        .font(HumayTypography.supportingEmphasized)
         .monospacedDigit()
         .foregroundStyle(Color.humayTextSecondary)
         .fixedSize(horizontal: false, vertical: true)
@@ -486,7 +511,7 @@ private struct SkyMethodologyMetadata: View {
                 .frame(width: 5, height: 5)
                 .accessibilityHidden(true)
             Text(SkyMethodologyFormatter.label(for: event.system))
-                .font(.caption.weight(.semibold))
+                .font(HumayTypography.utility)
                 .foregroundStyle(Color.humayTextSecondary)
         }
         .fixedSize(horizontal: true, vertical: false)
@@ -511,6 +536,8 @@ private struct CurrentSkyTimeline: View {
     let events: [SkyEvent]
     let snapshot: SkySnapshot
     let usesPanel: Bool
+    let source: D3ContentSource
+    let eventDetailState: (SkyEventID) -> SkyEventDetailFeatureState
 
     var body: some View {
         VStack(alignment: .leading, spacing: HumaySpacing.medium) {
@@ -552,7 +579,9 @@ private struct CurrentSkyTimeline: View {
                     SkyTimelineRow(
                         event: event,
                         context: snapshot.context,
-                        observedAt: snapshot.observedAt
+                        observedAt: snapshot.observedAt,
+                        source: source,
+                        eventDetailState: eventDetailState
                     )
                     .padding(.vertical, HumaySpacing.small)
 
@@ -570,8 +599,25 @@ private struct SkyTimelineRow: View {
     let event: SkyEvent
     let context: SkyObservationContext
     let observedAt: Date
+    let source: D3ContentSource
+    let eventDetailState: (SkyEventID) -> SkyEventDetailFeatureState
 
     var body: some View {
+        NavigationLink {
+            SkyEventDetailView(
+                source: source,
+                state: eventDetailState(event.id),
+                context: context
+            )
+        } label: {
+            rowContent
+        }
+        .buttonStyle(.plain)
+        .accessibilityHint("Opens Event Detail")
+        .accessibilityIdentifier("sky.current.event.timeline.\(event.id.rawValue)")
+    }
+
+    private var rowContent: some View {
         HStack(alignment: .top, spacing: HumaySpacing.medium) {
             dateBadge
 
@@ -608,7 +654,7 @@ private struct SkyTimelineRow: View {
                 observedAt: observedAt
             )
         )
-        .accessibilityIdentifier("sky.current.event.timeline.\(event.id.rawValue)")
+        .accessibilityIdentifier("sky.current.event.\(event.id.rawValue)")
     }
 
     @ViewBuilder
@@ -619,11 +665,11 @@ private struct SkyTimelineRow: View {
         ) {
             VStack(spacing: HumaySpacing.extraSmall) {
                 Text(components.month)
-                    .font(.caption2.weight(.bold))
+                    .font(HumayTypography.calendarBoundary)
                     .tracking(1.1)
                     .foregroundStyle(event.style.accent)
                 Text(components.day)
-                    .font(.title3.weight(.bold))
+                    .font(HumayTypography.calendarDateSelected)
                     .foregroundStyle(Color.humayTextPrimary)
             }
             .frame(width: 46)
@@ -664,6 +710,7 @@ private struct SkyCalendarEntry: View {
     let monthState: SkyCalendarMonthFeatureState
     let weekState: SkyCalendarWeekFeatureState
     let today: SkyCalendarDate?
+    let eventDetailState: (SkyEventID) -> SkyEventDetailFeatureState
 
     var body: some View {
         NavigationLink {
@@ -671,7 +718,8 @@ private struct SkyCalendarEntry: View {
                 source: source,
                 monthState: monthState,
                 weekState: weekState,
-                today: today
+                today: today,
+                eventDetailState: eventDetailState
             )
         } label: {
             HStack(spacing: HumaySpacing.medium) {
@@ -750,6 +798,7 @@ private struct CurrentSkyPanel<Content: View>: View {
                 radius: colorScheme == .light ? HumayElevation.subtleShadowRadius : 0,
                 y: colorScheme == .light ? HumayElevation.subtleShadowY : 0
             )
+            .accessibilityElement(children: .contain)
     }
 }
 
