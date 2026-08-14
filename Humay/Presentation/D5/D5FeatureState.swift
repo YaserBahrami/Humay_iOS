@@ -7,8 +7,11 @@ enum D5ContentSource: String, Sendable, Hashable {
     var isDevelopmentSample: Bool { self == .developmentSample }
 }
 
-enum AskTone: String, Sendable, Hashable {
-    case gentle
+enum AskSubmissionAvailability: String, Sendable, Hashable {
+    case available
+    case unavailable
+
+    var isAvailable: Bool { self == .available }
 }
 
 enum AskContextScope: String, Sendable, Hashable {
@@ -19,7 +22,7 @@ enum AskContextScope: String, Sendable, Hashable {
 struct AskQuestion: Sendable, Hashable {
     let questionText: String
     let locale: String
-    let tone: AskTone
+    let tone: Tone
     let selectedTradition: String
     let selectedSystem: String
     let contextScope: AskContextScope
@@ -48,7 +51,7 @@ struct AskQuestion: Sendable, Hashable {
 struct AskCacheIdentity: Sendable, Hashable {
     let questionText: String
     let locale: String
-    let tone: AskTone
+    let tone: Tone
     let selectedTradition: String
     let selectedSystem: String
     let contextScope: AskContextScope
@@ -181,11 +184,13 @@ enum AskFeatureState: Sendable, Hashable {
 
 struct D5FeatureInput: Sendable, Hashable {
     let source: D5ContentSource
+    let submissionAvailability: AskSubmissionAvailability
     let context: AskContext
     let state: AskFeatureState
 
     static let productionUnavailable = D5FeatureInput(
         source: .productionUnavailable,
+        submissionAvailability: .unavailable,
         context: .productionUnavailable,
         state: .empty
     )
@@ -207,6 +212,7 @@ enum AskProductCopy {
     static let accessDetail = "Create this personal reading by watching an ad."
     static let accessAction = "Watch an ad for this answer"
     static let premiumAlternative = "Premium alternative"
+    static let submissionUnavailable = "Personal readings aren’t available yet."
     static let offlineNoCache = "A new answer needs a connection."
     static let failedTitle = "Humay couldn’t finish this reading."
     static let askAnother = "Ask another question"

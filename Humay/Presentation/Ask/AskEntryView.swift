@@ -3,6 +3,7 @@ import SwiftUI
 struct AskEntryView: View {
     @Binding var draft: String
 
+    let submissionAvailability: AskSubmissionAvailability
     let context: AskContext
     let onSubmit: (String) -> Void
 
@@ -45,6 +46,7 @@ struct AskEntryView: View {
                     AskComposerCard(
                         draft: $draft,
                         composerFocused: $composerFocused,
+                        submissionAvailability: submissionAvailability,
                         onSubmit: onSubmit
                     )
                 }
@@ -57,6 +59,7 @@ struct AskEntryView: View {
                 AskComposerCard(
                     draft: $draft,
                     composerFocused: $composerFocused,
+                    submissionAvailability: submissionAvailability,
                     onSubmit: onSubmit
                 )
                 AskSuggestionsView(draft: $draft)
@@ -105,10 +108,15 @@ struct AskIllustrationView: View {
 private struct AskComposerCard: View {
     @Binding var draft: String
     var composerFocused: FocusState<Bool>.Binding
+    let submissionAvailability: AskSubmissionAvailability
     let onSubmit: (String) -> Void
 
     private var hasQuestion: Bool {
         !draft.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty
+    }
+
+    private var canSubmit: Bool {
+        hasQuestion && submissionAvailability.isAvailable
     }
 
     var body: some View {
@@ -138,6 +146,14 @@ private struct AskComposerCard: View {
                     }
                 }
 
+                if !submissionAvailability.isAvailable {
+                    Text(AskProductCopy.submissionUnavailable)
+                        .font(HumayTypography.supporting)
+                        .foregroundStyle(Color.humayTextSecondary)
+                        .fixedSize(horizontal: false, vertical: true)
+                        .accessibilityIdentifier("ask.composer.unavailable")
+                }
+
                 HStack(alignment: .center, spacing: HumaySpacing.medium) {
                     Label("Relevant context only", systemImage: "sparkles")
                         .font(HumayTypography.supporting)
@@ -151,7 +167,12 @@ private struct AskComposerCard: View {
                         onSubmit(draft)
                     }
                     .buttonStyle(.humayPrimary)
-                    .disabled(!hasQuestion)
+                    .disabled(!canSubmit)
+                    .accessibilityHint(
+                        submissionAvailability.isAvailable
+                            ? "Submits your focused question"
+                            : AskProductCopy.submissionUnavailable
+                    )
                     .accessibilityIdentifier("ask.composer.action")
                 }
             }

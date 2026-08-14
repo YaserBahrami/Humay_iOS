@@ -1,10 +1,12 @@
 # D5.1 Ask visual foundation · R1 review notes
 
-**Status: APPROVED VISUAL REFERENCE — IMPLEMENTED AND RECONCILED**
+**Status: APPROVED VISUAL REFERENCE — UI-FIRST IMPLEMENTATION COMPLETE; R2 REFINEMENT PENDING**
 
 ## Review boundary
 
 This package is the first complete D5 visual and contract reference. Visual approval is recorded for the D5.1 UI-first presentation slice and reconciled against the implementation evidence. Production feature gates remain separately tracked.
+
+Implementation reconciliation note: Entry matches the approved two-region regular-width iPad composition. Regular-width iPad Answer currently keeps a bounded readable column but does not yet implement the approved contextual question/basis rail. This is an explicit R2 visual-refinement item and does not block freezing the D5 UI-first contract. No iPad layout redesign is included in this cleanup.
 
 The package preserves the current authority order:
 

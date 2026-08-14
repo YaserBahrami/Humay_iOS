@@ -45,6 +45,7 @@ private struct AskFeatureHost: View {
             case .empty:
                 AskEntryView(
                     draft: $draft,
+                    submissionAvailability: input.submissionAvailability,
                     context: input.context,
                     onSubmit: submit
                 )
@@ -164,11 +165,12 @@ private struct AskFeatureHost: View {
     private func submit(questionText: String) {
         let trimmed = questionText.trimmingCharacters(in: .whitespacesAndNewlines)
         guard !trimmed.isEmpty else { return }
+        guard input.submissionAvailability.isAvailable else { return }
 
         let question = AskQuestion(
             questionText: trimmed,
             locale: "en-US",
-            tone: .gentle,
+            tone: .normal,
             selectedTradition: input.context.selectedTradition,
             selectedSystem: input.context.selectedSystem,
             contextScope: input.context.availability == .available

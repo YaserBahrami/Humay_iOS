@@ -5,7 +5,7 @@ enum DevelopmentD5Sample {
     static let primaryQuestion = AskQuestion(
         questionText: "How can I work with my Moon in Libra?",
         locale: "en-US",
-        tone: .gentle,
+        tone: .normal,
         selectedTradition: "Western",
         selectedSystem: "Tropical",
         contextScope: .relevantChartContext
@@ -109,7 +109,12 @@ enum DevelopmentD5Sample {
     private static let savedAt = Date(timeIntervalSince1970: 1_710_432_000)
 
     private static func sample(_ state: AskFeatureState) -> D5FeatureInput {
-        D5FeatureInput(source: .developmentSample, context: context, state: state)
+        D5FeatureInput(
+            source: .developmentSample,
+            submissionAvailability: .available,
+            context: context,
+            state: state
+        )
     }
 
     private static func argumentValue(named name: String, arguments: [String]) -> String? {

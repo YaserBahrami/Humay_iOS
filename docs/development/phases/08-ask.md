@@ -11,7 +11,7 @@ Depends on:
 
 Goal: implement contextual astrology Q&A over validated structured facts without creating an uncontrolled Free paid-model path.
 
-The D5.1 UI-first presentation slice is implemented over a Debug-only sample fixture and reconciled against the approved D5 reference package. The production provider, access, persistence and methodology tasks below remain TODO.
+The D5.1 UI-first presentation slice is implemented over a Debug-only sample fixture. Core UI-first behavior is reconciled against the approved D5 reference package; the regular-width iPad Answer contextual rail remains an explicit R2 visual-refinement item. The production provider, access, persistence and methodology tasks below remain TODO.
 
 ## Tasks
 
@@ -19,7 +19,8 @@ The D5.1 UI-first presentation slice is implemented over a Debug-only sample fix
 Status: TODO
 
 Acceptance:
-- includes selected system, relevant structured facts, question, locale/tone and access context;
+- includes selected system/methodology, relevant structured facts, question, locale, tone and context scope/uncertainty;
+- access/entitlement authorization is a separate orchestration contract;
 - missing/unsupported calculations are explicit;
 - only the minimum relevant profile/context data is sent.
 
@@ -36,6 +37,8 @@ Acceptance:
 ### ASK-003 — Implement D5 question/answer UI for iPhone + iPad
 Status: TODO  
 Depends on: ASK-002, approved D5 package
+
+The UI-first presentation slice is implemented and reconciled with Debug samples. Production ASK-003 remains TODO pending ASK-002 and production integration.
 
 Acceptance:
 - uses current Design Authority and approved D5 references;

@@ -1,8 +1,8 @@
 # D5.1 Ask UI-first implementation evidence
 
-**Status: APPROVED VISUAL REFERENCE — IMPLEMENTED AND RECONCILED**  
-**Date:** 2026-08-14  
-**Branch:** `feature/foundation-clean-architecture`  
+**Status: APPROVED VISUAL REFERENCE — IMPLEMENTED — CORE UI-FIRST BASELINE; R2 VISUAL REFINEMENT PENDING**
+**Date:** 2026-08-14
+**Branch:** `feature/foundation-clean-architecture`
 **Starting HEAD:** `75f92383412da5fe1f2721cdc0b875ec7233051b`
 
 ## Authority
@@ -36,6 +36,8 @@ Additional deterministic UI coverage exercises cached, offline no-cache, insuffi
 - The iPad duplicate inner “Ask” heading was removed; the existing root navigation title supplies the screen title, matching the approved reference hierarchy.
 - Native `TextEditor` preserves typed content, supports internal multiline scrolling and keeps the Ask action reachable through focus/scroll behavior. Empty/whitespace-only input remains disabled.
 - Answer content uses bounded editorial hierarchy: question identity, reading, disclosure, sections, reflection, basis facts and Ask another.
+- Entry is reconciled with the approved two-region iPad layout. Regular-width iPad Answer currently preserves bounded reading width but does not yet implement the approved contextual question/basis rail; this is an explicit R2 visual-refinement item, not a D5 UI-first contract blocker.
+- Release keeps the Ask action disabled with concise product-facing and accessibility copy when submission capability is unavailable; valid text cannot trigger a transition.
 - Light/Dark surfaces, global typography roles, 44 pt actions, context disclosure and root-tab clearance use existing Humay tokens.
 
 ## Verification
@@ -43,6 +45,7 @@ Additional deterministic UI coverage exercises cached, offline no-cache, insuffi
 - Full `HumayTests`: passed.
 - D5 unit model tests: passed.
 - D5 UI capture tests: passed on iPhone and iPad for Light/Dark.
+- Current focused D5 UI rerun could not start on iPhone or iPad because the Xcode host reported `DebuggerVersionStore.StoreError` / `no debugger version` before test execution; no app failure was observed.
 - Keyboard flow: passed on iPhone software keyboard; iPad uses native text input for hardware keyboard support.
 - Dynamic Type accessibility flow: passed at `UICTContentSizeCategoryAccessibilityXXXL`.
 - Debug iPhone/iPad builds and Release Simulator build: passed.

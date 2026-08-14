@@ -14,6 +14,7 @@ struct D5FeatureModelTests {
         #expect(input.state.answer == nil)
         #expect(input.state.question == nil)
         #expect(input.context.availability == .unavailable)
+        #expect(input.submissionAvailability == .unavailable)
 
         let releaseSurface = [
             AskProductCopy.title,
@@ -32,12 +33,24 @@ struct D5FeatureModelTests {
         }
     }
 
-    @Test("Cache identity uses semantic inputs, never access")
-    func cacheIdentityIsAccessIndependent() {
+    @Test("Release keeps valid questions unavailable and payload-free")
+    func productionSubmissionRemainsUnavailableForValidText() {
+        let input = D5FeatureInput.productionUnavailable
+        let validQuestion = "What should I focus on today?"
+
+        #expect(!validQuestion.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty)
+        #expect(!input.submissionAvailability.isAvailable)
+        #expect(input.state == .empty)
+        #expect(input.state.answer == nil)
+        #expect(input.state.question == nil)
+    }
+
+    @Test("Cache identity uses canonical tone and never access")
+    func cacheIdentityUsesCanonicalToneAndIsAccessIndependent() {
         let base = AskQuestion(
             questionText: "  How can I work with my Moon in Libra?  ",
             locale: "en-US",
-            tone: .gentle,
+            tone: .normal,
             selectedTradition: "Western",
             selectedSystem: "Tropical",
             contextScope: .relevantChartContext
@@ -45,21 +58,40 @@ struct D5FeatureModelTests {
         let equivalent = AskQuestion(
             questionText: "How   can I work with my Moon in Libra?",
             locale: "en-US",
-            tone: .gentle,
+            tone: .normal,
             selectedTradition: "Western",
             selectedSystem: "Tropical",
             contextScope: .relevantChartContext
         )
+        let roast = AskQuestion(
+            questionText: equivalent.questionText,
+            locale: equivalent.locale,
+            tone: .roast,
+            selectedTradition: equivalent.selectedTradition,
+            selectedSystem: equivalent.selectedSystem,
+            contextScope: equivalent.contextScope
+        )
+        let canonicalTone: Tone = base.tone
 
         #expect(base.cacheIdentity == equivalent.cacheIdentity)
+        #expect(canonicalTone == .normal)
+        #expect(roast.tone == .roast)
+        #expect(base.cacheIdentity.tone == .normal)
+        #expect(roast.cacheIdentity.tone == .roast)
+        #expect(base.cacheIdentity != roast.cacheIdentity)
         #expect(base.cacheIdentity != AskQuestion(
             questionText: base.questionText,
             locale: "en-US",
-            tone: .gentle,
+            tone: .normal,
             selectedTradition: "Western",
             selectedSystem: "Tropical",
             contextScope: .noChartContext
         ).cacheIdentity)
+
+        for access in [AskAccessState.free, .rewardedRequired, .premiumAlternative] {
+            let accessState = AskFeatureState.accessRequired(question: base, access: access)
+            #expect(accessState.question?.cacheIdentity == base.cacheIdentity)
+        }
 
         let storedPropertyNames = Set(Mirror(reflecting: base.cacheIdentity).children.compactMap(\.label))
         #expect(!storedPropertyNames.contains("access"))
@@ -76,6 +108,7 @@ struct D5FeatureModelTests {
         ])
 
         #expect(input.source == .developmentSample)
+        #expect(input.submissionAvailability == .available)
         #expect(input.context.summary == "Using: Western · available chart context")
 
         guard case .loaded(let answer) = input.state else {

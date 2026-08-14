@@ -4,6 +4,8 @@
 
 These adaptive and accessibility decisions are approved for D5.1 UI-first presentation and reconciled against the iPhone/iPad Light/Dark simulator evidence. Production provider, access and persistence behavior remains separately gated.
 
+Implementation reconciliation note: Entry uses the approved two-region regular-width iPad composition. Regular-width iPad Answer currently preserves bounded reading width without the approved contextual question/basis rail; track this explicit visual-refinement gap for R2. The reference remains approved, and this cleanup does not change any iPad layout.
+
 ## iPhone
 
 - Portrait-first, one bounded reading column with the shared 20–24 pt content gutter.
