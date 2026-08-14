@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+  "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" width="368.64pt" height="368.64pt" viewBox="0 0 368.64 368.64" xmlns="http://www.w3.org/2000/svg" version="1.1">
+ <metadata>
+  <rdf:RDF xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+   <cc:Work>
+    <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
+    <dc:date>2026-08-12T17:57:28.930832</dc:date>
+    <dc:format>image/svg+xml</dc:format>
+    <dc:creator>
+     <cc:Agent>
+      <dc:title>Matplotlib v3.10.8, https://matplotlib.org/</dc:title>
+     </cc:Agent>
+    </dc:creator>
+   </cc:Work>
+  </rdf:RDF>
+ </metadata>
+ <defs>
+  <style type="text/css">*{stroke-linejoin: round; stroke-linecap: butt}</style>
+ </defs>
+ <g id="figure_1">
+  <g id="patch_1">
+   <path d="M 0 368.64 
+L 368.64 368.64 
+L 368.64 0 
+L 0 0 
+L 0 368.64 
+z
+" style="fill: none; opacity: 0"/>
+  </g>
+  <g id="axes_1">
+   <g id="text_1">
+    <!-- ☋ -->
+    <g transform="translate(51.10125 267.10125) scale(3 -3)">
+     <defs>
+      <path id="DejaVuSans-260b" d="M 4875 3653 
+Q 4875 3881 4712 4043 
+Q 4550 4206 4322 4206 
+Q 4091 4206 3930 4043 
+Q 3769 3881 3769 3653 
+Q 3769 3422 3930 3261 
+Q 4091 3100 4322 3100 
+Q 4553 3100 4714 3261 
+Q 4875 3422 4875 3653 
+z
+M 1916 3653 
+Q 1916 3884 1755 4045 
+Q 1594 4206 1363 4206 
+Q 1134 4206 971 4045 
+Q 809 3884 809 3653 
+Q 809 3425 971 3264 
+Q 1134 3103 1363 3103 
+Q 1594 3103 1755 3264 
+Q 1916 3425 1916 3653 
+z
+M 5225 1863 
+Q 5225 1091 4525 545 
+Q 3825 0 2813 0 
+Q 1809 0 1109 545 
+Q 409 1091 409 1863 
+Q 409 2425 791 2866 
+Q 731 2913 675 2969 
+Q 391 3253 391 3656 
+Q 391 4059 677 4343 
+Q 963 4628 1363 4628 
+Q 1769 4628 2053 4343 
+Q 2338 4059 2338 3656 
+Q 2338 3253 2056 2969 
+Q 1784 2694 1394 2684 
+Q 1016 2328 1016 1856 
+Q 1016 1294 1539 901 
+Q 2063 509 2813 509 
+Q 3563 509 4086 901 
+Q 4609 1294 4609 1856 
+Q 4609 2331 4231 2684 
+Q 3884 2713 3631 2966 
+Q 3350 3253 3350 3656 
+Q 3350 4059 3634 4343 
+Q 3919 4628 4322 4628 
+Q 4728 4628 5012 4343 
+Q 5297 4059 5297 3656 
+Q 5297 3253 5013 2966 
+Q 4944 2897 4866 2844 
+Q 5225 2409 5225 1863 
+z
+" transform="scale(0.015625)"/>
+     </defs>
+     <use xlink:href="#DejaVuSans-260b"/>
+    </g>
+   </g>
+  </g>
+ </g>
+</svg>

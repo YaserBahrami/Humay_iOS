@@ -1,0 +1,14 @@
+{
+  "id": "onboarding.welcome",
+  "phase": "D1",
+  "step": 1,
+  "status": "approvedCrossDevice",
+  "repositoryAuthority": "main",
+  "route": {"previous": null, "next": "onboarding.birthDate"},
+  "deviceStatus": {"iphoneLight": "approved", "iphoneDark": "approved", "ipadPortraitLight": "approved", "ipadPortraitDark": "approved", "ipadLandscapeLight": "approved", "ipadLandscapeDark": "approved", "ipadAdaptiveNotes": "defined"},
+  "productBehavior": {"primaryAction": "Begin", "requiresAccount": false, "collectBirthDate": false, "collectBirthTime": false, "collectBirthLocation": false},
+  "copy": {"heading": "Read the sky. Keep the fun.", "supporting": "Astrology that feels human — with the reasoning close enough to open whenever you want it.", "heroEyebrow": "YOUR COSMIC COMPANION", "heroHeading": "Clear when it matters. Playful when it can be.", "heroSupporting": "A little perspective. Zero cosmic homework.", "primaryAction": "Begin"},
+  "adaptive": {"portrait": "bounded single-reading region with wide hero and compact feature cues", "landscape": "two-region editorial-left / hero-right composition", "compact": "collapse toward approved iPhone hierarchy"},
+  "referenceFiles": ["../light/01-welcome.svg", "../dark/01-welcome.svg", "welcome-ipad-review.svg"],
+  "accessibility": {"minimumTouchTargetPoints": 44, "supportsDynamicTypeReflow": true, "colorOnlyMeaning": false, "decorativeArtVoiceOverHidden": true}
+}

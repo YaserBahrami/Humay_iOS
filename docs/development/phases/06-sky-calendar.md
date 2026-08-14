@@ -1,6 +1,6 @@
 # Phase 06 — Sky & Calendar
 
-Status: **TODO**
+Status: **IN PROGRESS — Current Sky and Calendar Month/Week UI exist; provider/data pipeline pending**
 
 Depends on:
 - Phase 01 platform/design-system foundation;
@@ -13,7 +13,22 @@ Goal: implement current Sky, event calendar and event detail over deterministic 
 ## Tasks
 
 ### SKY-001 — Define sky/event fact contract
-Status: TODO
+Status: PARTIAL
+
+Implemented foundation:
+
+- Humay-owned event identity, type, tradition/system ownership, timing, relevance and reliability;
+- validated civil dates, event intervals, month selections and seven-day week structures;
+- explicit unavailable timing rather than guessed clock values;
+- separate compact event and event-detail meaning/astrological-basis contracts;
+- typed Current Sky, month, week and detail availability/state inputs;
+- Debug-only deterministic/unverified sample composition and Release-unavailable composition.
+
+Still required before DONE:
+
+- production calculation/catalog source and provenance wiring;
+- methodology validation for supported event families;
+- real timezone/location invalidation behavior through the owning data pipeline.
 
 Acceptance:
 - event type, time window, timezone/location relevance, system and provenance are explicit;
@@ -24,32 +39,36 @@ Acceptance:
 Status: TODO  
 Depends on: SKY-001
 
+This later production provider/cache integration is not a prerequisite for SKY-003 or SKY-004.
+
 Acceptance:
 - refresh/cache/offline behavior follows current architecture;
 - user timezone/location changes invalidate affected facts correctly;
 - Presentation receives Humay-owned models, not vendor responses.
 
 ### SKY-003 — Implement D3 Current Sky UI for iPhone + iPad
-Status: TODO  
-Depends on: SKY-002, approved D3 package
+Status: IMPLEMENTED — Debug sample; production data pipeline pending
+Depends on: sufficient SKY-001 feature/domain contracts, approved D3 package
 
 Acceptance:
 - uses current Design Authority and approved D3 reference package;
+- can use explicit Debug-only development sample data before SKY-002 is complete;
 - iPhone Light/Dark and iPad Light/Dark are intentional compositions;
 - basis/availability disclosure matches the facts actually supplied;
 - no deleted final-archive/old design artifact is used as authority.
 
 ### SKY-004 — Implement D3 Calendar month/week views
-Status: TODO  
-Depends on: SKY-002, approved D3 package
+Status: IMPLEMENTED — Debug sample; production data pipeline pending
+Depends on: sufficient SKY-001 feature/domain contracts, approved D3 package
 
 Acceptance:
 - Calendar remains nested under Sky, never a sixth root tab;
+- can use explicit Debug-only development sample data before SKY-002 is complete;
 - month/week navigation and empty/unavailable states are tested;
 - iPad uses available width according to the approved adaptive composition.
 
 ### SKY-005 — Implement event detail and interpretation
-Status: TODO  
+Status: IMPLEMENTED — Debug sample; production data pipeline pending
 Depends on: SKY-003, SKY-004, ARCH-005
 
 Acceptance:
@@ -71,3 +90,5 @@ Acceptance:
 - event timing is timezone-safe and sourceable;
 - system-specific terminology remains methodology-aware;
 - shipping Sky/Calendar surfaces reconcile with approved D3 iPhone+iPad Light/Dark references.
+
+The current partial foundation does not satisfy the phase exit criteria. D3.1 Current Sky, D3.2 Calendar, and D3.3 Event Detail are implemented over the Debug-only sample and reconciled on iPhone/iPad Light/Dark; `SKY-002` remains pending for production data and `SKY-006` remains pending.

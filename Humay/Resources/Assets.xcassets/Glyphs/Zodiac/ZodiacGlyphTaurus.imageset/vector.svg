@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+  "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" width="368.64pt" height="368.64pt" viewBox="0 0 368.64 368.64" xmlns="http://www.w3.org/2000/svg" version="1.1">
+ <metadata>
+  <rdf:RDF xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+   <cc:Work>
+    <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
+    <dc:date>2026-08-12T17:57:28.811894</dc:date>
+    <dc:format>image/svg+xml</dc:format>
+    <dc:creator>
+     <cc:Agent>
+      <dc:title>Matplotlib v3.10.8, https://matplotlib.org/</dc:title>
+     </cc:Agent>
+    </dc:creator>
+   </cc:Work>
+  </rdf:RDF>
+ </metadata>
+ <defs>
+  <style type="text/css">*{stroke-linejoin: round; stroke-linecap: butt}</style>
+ </defs>
+ <g id="figure_1">
+  <g id="patch_1">
+   <path d="M 0 368.64 
+L 368.64 368.64 
+L 368.64 0 
+L 0 0 
+L 0 368.64 
+z
+" style="fill: none; opacity: 0"/>
+  </g>
+  <g id="axes_1">
+   <g id="text_1">
+    <!-- ♉ -->
+    <g transform="translate(49.835625 267.10125) scale(3 -3)">
+     <defs>
+      <path id="DejaVuSans-2649" d="M 2866 2688 
+Q 2406 2688 2084 2364 
+Q 1763 2041 1763 1581 
+Q 1763 1122 2084 800 
+Q 2406 478 2865 478 
+Q 3325 478 3648 800 
+Q 3972 1122 3972 1581 
+Q 3972 2041 3651 2364 
+Q 3331 2688 2866 2688 
+z
+M 2866 3156 
+Q 3275 3172 3513 3363 
+Q 3781 3569 3932 3850 
+Q 4084 4131 4336 4403 
+Q 4588 4675 5166 4675 
+L 5166 4338 
+Q 4781 4338 4520 3850 
+Q 4259 3363 3850 3025 
+Q 3784 2966 3713 2919 
+Q 3856 2825 3991 2697 
+Q 4447 2231 4447 1575 
+Q 4447 922 3986 461 
+Q 3525 0 2866 0 
+Q 2216 0 1753 461 
+Q 1291 922 1291 1575 
+Q 1291 2231 1753 2697 
+Q 1881 2828 2031 2922 
+Q 1956 2966 1891 3025 
+Q 1488 3363 1220 3850 
+Q 953 4338 572 4338 
+L 572 4675 
+Q 1150 4675 1440 4403 
+Q 1731 4131 1843 3850 
+Q 1956 3569 2222 3363 
+Q 2463 3172 2866 3156 
+z
+" transform="scale(0.015625)"/>
+     </defs>
+     <use xlink:href="#DejaVuSans-2649"/>
+    </g>
+   </g>
+  </g>
+ </g>
+</svg>

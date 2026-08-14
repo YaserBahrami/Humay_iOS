@@ -48,14 +48,25 @@ Canonical onboarding:
 
 Current status:
 
-- Welcome iPhone Light/Dark — approved; iPad pending.
-- Birth Date iPhone Light/Dark package — approved; iPad pending.
-- Tradition — next; design iPhone + iPad together.
-- Profile Reveal — pending; design iPhone + iPad together.
+- complete iPhone/iPad Light/Dark D1 package approved 2026-08-12;
+- Welcome, Birth Date, Tradition and Profile Reveal implemented;
+- real simulator evidence is under [`../implementation-evidence/d1-onboarding/`](../implementation-evidence/d1-onboarding/README.md).
 
 Birth time/place are later Profile inputs, not onboarding beats.
 
 The old mock-first onboarding code and obsolete nine-screen design drafts were removed. Git history is the archive; these current references lead implementation.
+
+## D2 — Today + Circle
+
+`today-circle/` contains the approved iPhone Light/Dark composites for Today, Daily Horoscope and Compatibility plus implementation/adaptive notes.
+
+Current status:
+
+- D2 production SwiftUI hierarchy implemented with Debug-only development sample composition;
+- Today, Daily Horoscope, Circle, minimal Add Person and Compatibility states implemented;
+- real iPhone/iPad Light/Dark portrait evidence is under [`../implementation-evidence/d2-today-circle/`](../implementation-evidence/d2-today-circle/README.md);
+- static D2 iPad companions and approved production portrait assets remain pending visual-reconciliation inputs;
+- backend/API/provider, Saved People persistence and monetization remain unimplemented.
 
 ## Components
 

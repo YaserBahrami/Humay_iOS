@@ -2,7 +2,7 @@
 
 This roadmap is dependency-driven rather than date-driven. Product/access authority is [`PRODUCT_ACCESS_MODEL.md`](PRODUCT_ACCESS_MODEL.md). Visual work is governed by [`../design/DESIGN_AUTHORITY.md`](../design/DESIGN_AUTHORITY.md) and [`../design/SCREEN_DESIGN_PLAN.md`](../design/SCREEN_DESIGN_PLAN.md).
 
-The old mock-first runtime was removed during the 2026-08-12 production-baseline reset. Production implementation starts from a minimal iPhone + iPad foundation.
+The old mock-first runtime was removed during the 2026-08-12 production-baseline reset. Production implementation now includes the iPhone + iPad foundation, D1 onboarding and the D2 Today/Circle presentation shell. D3 Current Sky, Calendar and Event Detail UI exist over typed development samples. Approved feature UI may be developed before backend/API wiring by using explicit development sample data behind Humay-owned contracts; that is not a return to a production mock-provider architecture.
 
 ## Shipping phase summary
 
@@ -25,9 +25,66 @@ Phase numbers express ownership, not an artificial requirement that every earlie
 
 ## Parallel-work rule
 
-Phase 01 platform foundation may proceed while unfinished provider/backend details remain in Phase 00, because the current Clean Architecture, product-access, device and design boundaries are already sufficient for that work.
+Platform, architecture and approved UI work can proceed independently where their contracts are already sufficient.
 
-Provider-backed feature implementation may not invent unresolved Phase 00 contracts.
+Provider-backed production runtime may not invent unresolved Phase 00 entitlement/privacy rules or unresolved astrology methodology.
+
+### Current architecture gate — 2026-08-12
+
+- ARCH-001 is complete in [`../architecture/SYSTEM_ARCHITECTURE.md`](../architecture/SYSTEM_ARCHITECTURE.md): Free catalog and precision are separate logical cost/trust paths, and a Free miss cannot fall through to paid generation.
+- ARCH-003 is complete in [`../architecture/ASTROLOGY_ENGINE.md`](../architecture/ASTROLOGY_ENGINE.md): calculation adapters are provider-independent, facts are typed/versioned/provenanced, unknown-time uncertainty is preserved, and provider fallback requires validated methodology equivalence.
+- ARCH-004 is complete in [`../architecture/RESULT_CACHE_OFFLINE.md`](../architecture/RESULT_CACHE_OFFLINE.md): calculation and interpretation artifacts have separate identities, server precision cache/idempotency is authoritative, and offline behavior never creates a paid fallback.
+- ARCH-005 is complete in [`../architecture/INTERPRETATION_LAYER.md`](../architecture/INTERPRETATION_LAYER.md): interpretation receives validated facts, is independently versioned/cacheable, and cannot invent deterministic astrology facts.
+- ARCH-006 is complete in [`../architecture/BACKEND.md`](../architecture/BACKEND.md): Free catalog publishing/serving, precision orchestration, provider adapters, observability and normalized API ownership are server responsibilities.
+- ARCH-007/ARCH-008 remain required before production rewarded/Premium provider rollout and before sensitive provider data handling is considered final.
+- No concrete calculation/interpretation/hosting vendor is frozen yet.
+
+## Development sequence — UI first, backend/API second
+
+For the next feature families, the preferred implementation sequence is:
+
+```text
+UI design + approval
+        ↓
+SwiftUI implementation with development sample data
+        ↓
+real simulator screenshot reconciliation
+        ↓
+stabilize feature-facing/domain contracts
+        ↓
+backend/API implementation
+        ↓
+real Data/API adapter integration
+        ↓
+provider/cache/access/privacy validation
+```
+
+This sequence applies to Today, Circle/Compatibility, Sky/Calendar, Chart, Ask and later access/settings surfaces where practical.
+
+### Development sample-data rules
+
+- sample data must use Humay-owned feature/domain contracts, not vendor response shapes;
+- sample output is explicitly development/preview/test content;
+- feature UI should cover realistic loaded/loading/cache-hit/offline/limited/error/access states from approved designs;
+- Release runtime must not present sample astrology as if it were calculated or provider-generated;
+- the old deleted `Mock*` provider/runtime architecture is not restored;
+- the later backend adapter replaces the development source at composition rather than forcing Presentation redesign.
+
+This lets UI/product behavior mature before backend implementation while preserving clean runtime boundaries.
+
+### Current UI-first checkpoint — D2 plus D3 foundation
+
+The approved D2 Today + Circle family is implemented with explicit Debug-only development sample composition:
+
+- Today and Daily Horoscope;
+- Circle, person overview/detail and minimal Add Person;
+- Free and precise-presentation Compatibility;
+- loading, locked, loaded, cached, offline, failed and empty states where applicable;
+- real iPhone/iPad Light/Dark portrait evidence and passing adaptive landscape UI tests.
+
+Phase 05 and Phase 07 remain partial because production Free catalogs, Saved People persistence, backend/API/provider generation and entitlement/monetization runtime are still deferred.
+
+D3 Current Sky, Calendar Month/Week, and Event Detail user-facing UI are implemented over typed Debug-only deterministic samples and approved cross-device references. Provider, calculation, cache and persistence implementation remains pending. D4.1 Chart UI foundation is now approved and implemented over a Debug-only deterministic sample; production Chart and D5 remain task-gated.
 
 ## Visual design track — iPhone + iPad, Light + Dark
 
@@ -46,18 +103,56 @@ Provider-backed feature implementation may not invent unresolved Phase 00 contra
 
 Every shipping screen requires iPhone Light/Dark + iPad Light/Dark. iPad landscape/adaptive behavior must be documented when composition changes.
 
-## Design → implementation rule
+### D8 requirement — Compatibility Visual Share Card
 
-Architecture and shared foundation work may continue while screen design is in progress. Feature-specific production UI follows this cadence:
+Final Compatibility sharing must **not** be plain-text-only. The intended primary artifact is a Humay-branded rendered share card/image, designed as part of the D8 visual share-card family and shared through the system share sheet.
+
+The card must be capable of including:
+
+- both people's display names or user-approved share names;
+- medallions/initials;
+- Sun signs when relevant;
+- overall compatibility score;
+- relationship label;
+- a short share-safe summary;
+- Humay branding.
+
+By default, the card must **not** include:
+
+- birth time;
+- birth location;
+- exact birth date;
+- private precision/calculation details;
+- internal methodology or debug metadata;
+- provider information.
+
+Optional supporting text or a deep link may be added later, but the rendered visual card remains the primary share artifact. The current production plain-text `ShareLink` is temporary/non-final UI. Do not implement the visual card or image rendering before the D8 family is designed and approved.
+
+## UI design → implementation rule
+
+Feature-specific user-facing UI follows this cadence:
 
 1. design next family for iPhone+iPad, Light+Dark;
 2. approve;
-3. implement;
+3. implement the real SwiftUI hierarchy/state model with development sample data when backend data is not ready;
 4. capture real cross-device screenshots;
 5. reconcile implementation;
 6. continue.
 
-Do not let feature-specific production UI get ahead of approved cross-device references.
+No feature-specific production UI gets ahead of approved cross-device references.
+
+## Backend/API implementation rule
+
+Backend/API work follows the UI-first pass for the relevant feature family unless a non-visual backend prerequisite must be completed earlier for correctness.
+
+When backend work begins:
+
+- implement Humay-owned API contracts, not UI-specific vendor DTOs;
+- implement Free catalog serving separately from precision generation;
+- preserve authoritative server cache/idempotency;
+- enforce ARCH-007/008 before production paid-provider rollout;
+- replace development sample sources at the app composition/Data boundary;
+- validate real provider results independently from values used in UI mockups.
 
 ## Product architecture invariant
 
@@ -76,17 +171,17 @@ Complete the Phase 01 platform foundation, required Phase 00 architecture contra
 
 Expected result: buildable iPhone+iPad foundation, current design system, durable profile/birth storage, backend/provider/cache boundaries and approved four-step onboarding.
 
-### Milestone B — Core value build
+### Milestone B — UI-complete core value shell
 
-Complete supported Chart/Today/Sky slices and D2–D4.
+Complete approved D2–D5 feature UI families with typed development sample data and real cross-device screenshot reconciliation before backend integration is considered visually complete.
 
-Expected result: Rewarded/Premium Chart, Free/precise Today, validated Sky/Calendar sources and approved core UI across iPhone+iPad.
+Expected result: Today, Circle/Compatibility, Sky/Calendar, Chart and Ask can be exercised across their important UI states without relying on a production provider.
 
-### Milestone C — Relationship + contextual build
+### Milestone C — Core backend/API integration
 
-Complete Circle/Compatibility and Ask with D2/D5.
+Implement the required Free catalog, precision cache/orchestration, validated calculation provider(s), interpretation adapter(s), access/privacy contracts and app Data/API adapters.
 
-Expected result: Saved People, free Western 12×12 compatibility, precise compatibility and Ask over structured context.
+Expected result: development sample sources can be replaced by real Humay APIs without redesigning Presentation.
 
 ### Milestone D — Monetized beta
 
@@ -103,7 +198,7 @@ Complete Phase 11, D9 and all methodology gates for included production features
 - Free content generation/publishing is a backend/content-pipeline responsibility, not an on-device LLM feature.
 - Calculation facts and interpretation text are separately versioned/cacheable.
 - No interpretation model may fabricate calculation facts.
-- Preview/sample values are never production truth.
+- Development/sample values are never production truth or methodology validation.
 - Chinese/BaZi or Vedic Free shortcuts require methodology validation of the coarse bucket model.
 - Monetization enforces the product access model rather than redefining it in SDK-specific code.
 - Numeric compatibility presentation is allowed, but production scoring methodology must be explicitly defined and validated.

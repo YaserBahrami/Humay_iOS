@@ -1,7 +1,7 @@
 # Humay Design Authority
 
-**Status:** Current and exclusive design authority  
-**Effective:** 2026-08-12  
+**Status:** Current and exclusive design authority
+**Effective:** 2026-08-14
 **Repository authority:** `main`
 
 `main` contains one current design program only. Temporary feature/design branches must merge back here and must not become separate authorities.
@@ -76,13 +76,16 @@ Before a screen is considered ready for final visual implementation, the reposit
 4. iPad Dark reference;
 5. notes for iPad landscape/adaptive behavior if the static portrait reference is insufficient.
 
-Existing approved iPhone D0/D1 references remain valid. Their iPad companion references must be added before those families are considered cross-device complete.
+Existing approved iPhone D0/D1 references remain valid. The complete D1 cross-device package was approved on 2026-08-12 and is now the production onboarding implementation authority.
 
 ## 6. Typography
 
-- **Cormorant Garamond** — wordmark, hero/editorial headlines and selected large scores.
-- **SF Pro / system** — body copy, controls, navigation, forms and settings.
-- **SF Mono / system** — technical degrees/coordinates/dates/times where beneficial.
+- **Cormorant Garamond** — Humay wordmark only.
+- **Newsreader** — semantic editorial/display roles, including hero and editorial titles, onboarding card titles, card titles and expressive scores.
+- **SF Pro / system** — body copy, event titles, controls, navigation, forms, settings, dates and times; use monospaced digits where alignment helps.
+- **SF Mono / system** — reserved for genuinely technical future Chart values such as coordinates or degree-heavy data.
+
+Humay-owned production text must use semantic `HumayTypography` roles; direct custom-font selection in feature views is prohibited.
 
 Dynamic Type is mandatory. iPad does not justify fixed text sizes or oversized empty layouts.
 
@@ -122,12 +125,20 @@ The old mock-first Presentation, DesignSystem and mock provider implementation w
 
 Production implementation proceeds only from approved repository references, family by family.
 
+D2 Compatibility received a later approved refinement on 2026-08-13. The package under [`soulful-reference/today-circle/compatibility-refresh/`](soulful-reference/today-circle/compatibility-refresh/README.md) supersedes only the Compatibility person-selection and result-hero portions of the older D2 reference. Production authority is implemented in `Humay/Presentation/Circle/CompatibilitySelectionView.swift` and `Humay/Presentation/Circle/CompatibilityView.swift`; reconciliation evidence is under [`implementation-evidence/d2-today-circle/compatibility-refresh/`](implementation-evidence/d2-today-circle/compatibility-refresh/README.md).
+
 ## 12. Current design status
 
-- **D0:** approved iPhone Light/Dark style anchors; iPad companions pending.
-- **D1 Step 01 Welcome:** approved iPhone Light/Dark; iPad companions pending.
-- **D1 Step 02 Birth Date:** approved iPhone Light/Dark package; iPad companions pending.
-- **D1 Step 03 Tradition:** next design step, produced for iPhone and iPad together.
+- **D0:** approved iPhone Light/Dark style anchors; iPad companions remain a later D0 task.
+- **D1:** approved cross-device on 2026-08-12 for Welcome, Birth Date, Tradition and Profile Reveal; production UI is implemented under `Humay/Presentation/Onboarding/`.
+- **D2 Compatibility refinement:** approved, implemented and reconciled on 2026-08-13 for Compatibility person selection, Pair Composer, compact one-column rows, iPad two-region selection, Relationship Field, pair identity/connector, score/label/summary composition, Free/Precise disclosure placement, and represented adaptive/accessibility behavior. Unrelated D2 surfaces retain their existing authority status.
+- **D3.1 Current Sky:** Lunar Meridian under `soulful-reference/sky/current-sky/` remains historical authority for unaffected behavior and semantics. The approved [`refinement-r1/`](soulful-reference/sky/refinement-r1/README.md) package supersedes its hero composition, event density, authored illustration, typography treatment, and floating-tab clearance. `SKY-003` is implemented over the Debug-only sample; production data work remains tracked by `SKY-002`.
+- **D3.2 Calendar Month + Week:** Meridian Almanac under `soulful-reference/sky/calendar/` remains historical authority for unaffected behavior and semantics. The approved [`refinement-r1/`](soulful-reference/sky/refinement-r1/README.md) package supersedes its Month density/date states, Week rail treatment, typography treatment, and floating-tab clearance. `SKY-004` is implemented over the Debug-only sample.
+- **D3.3 Event Detail:** Celestial editorial sheet is the approved cross-device visual reference package under `soulful-reference/sky/event-detail/`, approved on 2026-08-13. Approval covers iPhone/iPad Light/Dark, state and stress boards, adaptive/accessibility guidance, origin-aware native navigation, Sky root shell behavior, factual versus interpretive hierarchy, timing/methodology treatment, and observation context. `SKY-005` is implemented and reconciled over the Debug-only sample; approval does not complete production `SKY-002` or methodology `SKY-006`.
+- **D4.1 Chart foundation:** approved on 2026-08-14. The package under [`soulful-reference/chart/foundation/`](soulful-reference/chart/foundation/README.md) is implemented and reconciled for Chart root/Free entry, typed state surfaces, Western known-time development fixture, data-driven wheel/list, Moon Placement Detail, unknown birth-time handling and iPhone/iPad adaptive composition. Evidence is under [`implementation-evidence/d4-chart/`](implementation-evidence/d4-chart/README.md). This approval does not complete production `CHART-002`, `ASTRO-003`, access/cache/entitlement work or methodology gates.
+- **D5.1 Ask foundation:** approved on 2026-08-14 for the UI-first Ask presentation slice and implemented as the core UI-first baseline. Entry is reconciled with the approved two-region regular-width iPad composition; regular-width iPad Answer currently preserves bounded reading width without the approved contextual question/basis rail, tracked as an explicit R2 visual-refinement item. This does not block the D5 contract freeze. The package under [`soulful-reference/ask/foundation/`](soulful-reference/ask/foundation/README.md) governs the iPhone/iPad Light/Dark entry, access, generating, answer and offline-cached compositions, typed Humay-owned presentation states, relevant-context disclosure, safety/unsupported/error surfaces and Debug-only sample boundary. Evidence is under [`implementation-evidence/d5-ask/`](implementation-evidence/d5-ask/README.md). This approval does not complete provider/backend/API, rewarded access, Premium/StoreKit, production cache/history/memory or astrology methodology work.
+
+Current D1 implementation evidence lives under `implementation-evidence/d1-onboarding/`. The reconciled Current Sky and Calendar R1 evidence lives under [`implementation-evidence/d3-sky-calendar/refinement-r1/`](implementation-evidence/d3-sky-calendar/refinement-r1/README.md). D4 evidence lives under [`implementation-evidence/d4-chart/`](implementation-evidence/d4-chart/README.md). Completion is in-memory only until PROFILE-005; no provider-backed astrology is used by Profile Reveal or D4 sample UI.
 - Remaining families follow [`SCREEN_DESIGN_PLAN.md`](SCREEN_DESIGN_PLAN.md).
 
 No alternate design authority should be added alongside this one.

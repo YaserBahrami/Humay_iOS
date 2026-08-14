@@ -1,28 +1,77 @@
 # Humay — Start Here
 
-**Status:** current production documentation index as of 2026-08-12.
+**Status:** current production documentation index as of 2026-08-14.
 
 `main` is the repository source of truth. Feature branches are temporary implementation workspaces and must not become separate product/design authorities.
 
 ## Read in this order
 
 1. [`development/STATUS.md`](development/STATUS.md) — what is active now.
-2. [`development/ROADMAP.md`](development/ROADMAP.md) — dependency-driven implementation sequence.
+2. [`development/ROADMAP.md`](development/ROADMAP.md) — dependency-driven implementation sequence and the current UI-first/backend-second workflow.
 3. [`development/PRODUCT_ACCESS_MODEL.md`](development/PRODUCT_ACCESS_MODEL.md) — Free / Rewarded Access / Premium cost and entitlement rules.
-4. [`architecture/IOS_ARCHITECTURE.md`](architecture/IOS_ARCHITECTURE.md) — SwiftUI + Clean Architecture boundaries for iPhone and iPad.
-5. [`design/DESIGN_AUTHORITY.md`](design/DESIGN_AUTHORITY.md) — exclusive visual/product-device authority.
-6. [`design/SOULFUL_CELESTIAL_DESIGN_DIRECTION.md`](design/SOULFUL_CELESTIAL_DESIGN_DIRECTION.md) — current visual system.
-7. [`design/SCREEN_DESIGN_PLAN.md`](design/SCREEN_DESIGN_PLAN.md) — D0–D9 screen/design sequence.
-8. The approved screen package under [`design/soulful-reference/`](design/soulful-reference/README.md) for the feature being implemented.
-9. [`development/METHODOLOGY_TRACK.md`](development/METHODOLOGY_TRACK.md) when a feature depends on astrology conventions that are not yet signed off.
+4. [`architecture/SYSTEM_ARCHITECTURE.md`](architecture/SYSTEM_ARCHITECTURE.md) — Free vs precision system/deployment/trust boundaries.
+5. [`architecture/ASTROLOGY_ENGINE.md`](architecture/ASTROLOGY_ENGINE.md) — provider-independent calculation, provenance and fallback contract.
+6. [`architecture/RESULT_CACHE_OFFLINE.md`](architecture/RESULT_CACHE_OFFLINE.md) — result identity, invalidation, authoritative server cache and offline behavior.
+7. [`architecture/INTERPRETATION_LAYER.md`](architecture/INTERPRETATION_LAYER.md) — interpretation/LLM boundary, provenance, safety, retries and idempotency.
+8. [`architecture/BACKEND.md`](architecture/BACKEND.md) — Free catalog, precision API, provider adapter and observability responsibilities.
+9. [`architecture/IOS_ARCHITECTURE.md`](architecture/IOS_ARCHITECTURE.md) — SwiftUI + Clean Architecture boundaries for iPhone and iPad.
+10. [`development/VERIFICATION.md`](development/VERIFICATION.md) — canonical repository, build and test verification commands.
+11. [`design/DESIGN_AUTHORITY.md`](design/DESIGN_AUTHORITY.md) — exclusive visual/product-device authority.
+12. [`design/SOULFUL_CELESTIAL_DESIGN_DIRECTION.md`](design/SOULFUL_CELESTIAL_DESIGN_DIRECTION.md) — current visual system.
+13. [`design/SCREEN_DESIGN_PLAN.md`](design/SCREEN_DESIGN_PLAN.md) — D0–D9 screen/design sequence.
+14. The approved screen package under [`design/soulful-reference/`](design/soulful-reference/README.md) for the feature being implemented.
+15. [`development/METHODOLOGY_TRACK.md`](development/METHODOLOGY_TRACK.md) when a feature depends on astrology conventions that are not yet signed off.
 
 ## Current implementation state
 
-The old generated mock-first application was removed before production development. The Xcode project is intentionally small and ready for a clean production foundation.
+The old generated mock-first application was removed before production development. The clean app foundation, approved D1 onboarding, local profile persistence, provider-independent astrology Domain contracts and approved D2 presentation shell are now in place.
 
-Current engineering work is **Phase 01 — Apple Platform Foundation**, while provider/cache/backend details from Phase 00 may continue in parallel where they do not block the app foundation.
+Phase 01 IOS-001 through IOS-007 are complete. Post-D2 foundation verification, iPhone/iPad builds, Swift Testing and complete iPhone/iPad UI suites passed on 2026-08-12.
 
-Foundation target:
+Phase 00 ARCH-001 through ARCH-006 are complete. Humay now has frozen contracts for:
+
+- system/trust boundaries;
+- Apple Clean Architecture;
+- astrology calculation adapters;
+- result cache/offline behavior;
+- interpretation/LLM behavior;
+- backend/Free catalog/API responsibilities.
+
+ARCH-007 entitlement and ARCH-008 privacy/security remain open before production rewarded/Premium provider rollout.
+
+Phase 02 ASTRO-001 and ASTRO-002 are implemented. ASTRO-003 has the provider-independent Western fact/structural-validation foundation, but real engine/provider integration and golden validation are deliberately deferred.
+
+**D4.1 Chart UI foundation** is approved, implemented and reconciled over an explicit Debug-only sample. It includes the Chart root/Free entry, typed access/cache/offline/error states, Western known-time overview, data-driven wheel plus ordered placement list, Moon Placement Detail and unknown birth-time handling. Production calculation, provider, access, cache, entitlement and methodology gates remain open.
+
+## Current implementation order
+
+The preferred next sequence is **UI first, backend/API second**.
+
+For each core feature family:
+
+```text
+UI design + approval
+        ↓
+SwiftUI implementation with development sample data
+        ↓
+real simulator screenshot reconciliation
+        ↓
+stabilize feature-facing contracts
+        ↓
+backend/API implementation
+        ↓
+real Data/API integration
+```
+
+Development sample data is allowed only as explicit development/preview/test content conforming to Humay-owned contracts. It must not restore the deleted mock-provider architecture and must not ship in Release as real personalized astrology.
+
+**D2 — Today + Circle** is implemented with Debug-only development sample data. It includes Today, Daily Horoscope, Circle, a minimal Add Person shell and Compatibility plus explicit Free/precise/cache/offline/error states. Release uses production-unavailable/empty composition and contains no development sample astrology payload.
+
+**D3 — Sky + Calendar** now has an implemented Current Sky presentation over the Debug-only deterministic sample, plus approved cross-device references for Current Sky, Calendar and Event Detail. Humay-owned Domain event/timing/calendar contracts, typed Presentation states and Release-safe unavailable composition remain in force. Calendar month/week and event-detail production UI remain task-gated until `SKY-004` and `SKY-005`.
+
+Backend/API/provider, entitlement/monetization and Saved People persistence remain deferred. D4 production Chart and D5 Ask have not been started.
+
+## Foundation target
 
 - Swift 6 + strict concurrency;
 - SwiftUI;
@@ -31,9 +80,19 @@ Foundation target:
 - iPhone + iPad from the start;
 - intentional Light + Dark appearance;
 - no vendor/provider models in Presentation or Domain;
-- no speculative feature implementation ahead of approved design references.
+- production onboarding for the approved D1 four-beat flow;
+- local versioned profile/settings persistence;
+- privacy-safe typed diagnostics;
+- Free and precision paths remain separate cost/trust paths;
+- precision calculation facts are normalized before interpretation;
+- calculation and interpretation results are independently versioned/cacheable;
+- provider secrets and paid calls remain server-side.
 
-See [`development/phases/01-ios-foundation.md`](development/phases/01-ios-foundation.md).
+See:
+
+- [`development/phases/00-technical-architecture.md`](development/phases/00-technical-architecture.md)
+- [`development/phases/01-ios-foundation.md`](development/phases/01-ios-foundation.md)
+- [`development/phases/02-astrology-engine-foundation.md`](development/phases/02-astrology-engine-foundation.md)
 
 ## Current design state
 
@@ -51,10 +110,15 @@ Birth time and birth location are not onboarding steps. They can be added later 
 Current approved references:
 
 - D0 iPhone Light/Dark anchors: Today, Daily Horoscope, Compatibility;
-- D1 Welcome iPhone Light/Dark;
-- D1 Birth Date iPhone Light/Dark + repository package.
+- D1 Welcome, Birth Date, Tradition and Profile Reveal cross-device package approved 2026-08-12;
+- D2 Today, Daily Horoscope and Compatibility iPhone Light/Dark composites approved 2026-08-12;
+- D4.1 Chart foundation cross-device package approved 2026-08-14.
 
-Before production visual freeze, each shipping screen requires iPhone Light/Dark + iPad Light/Dark and adaptive/landscape notes where needed.
+The D1 onboarding UI is implemented under `Humay/Presentation/Onboarding/`.
+The D2 UI is implemented under `Humay/Presentation/Today/`, `Humay/Presentation/Circle/` and `Humay/Presentation/Main/`; evidence is under [`design/implementation-evidence/d2-today-circle/`](design/implementation-evidence/d2-today-circle/README.md).
+The D4 UI-first slice is implemented under `Humay/Presentation/Chart/` and `Humay/Presentation/D4/`; evidence is under [`design/implementation-evidence/d4-chart/`](design/implementation-evidence/d4-chart/README.md).
+
+Every user-facing shipping screen requires iPhone Light/Dark + iPad Light/Dark and adaptive/landscape notes where needed. User-facing UI must be designed and approved before implementation; non-visual architecture/domain/foundation work does not require an invented UI design gate.
 
 ## Do not use as authority
 

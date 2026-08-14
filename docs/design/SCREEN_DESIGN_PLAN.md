@@ -77,10 +77,14 @@ Birth time and birth location are not onboarding steps.
 
 | Step | iPhone | iPad | Status |
 |---|---|---|---|
-| Welcome | Light + Dark approved | pending | backfill iPad before cross-device visual freeze |
-| Birth Date | Light + Dark approved + documented package | pending | backfill iPad before cross-device visual freeze |
-| Tradition | next | next | design iPhone + iPad together |
-| Profile Reveal | pending | pending | design iPhone + iPad together |
+| Welcome | Light + Dark approved | Light + Dark approved | implemented; evidence captured |
+| Birth Date | Light + Dark approved + documented package | Light + Dark approved | implemented; evidence captured |
+| Tradition | Light + Dark approved | Light + Dark approved | implemented; evidence captured |
+| Profile Reveal | Light + Dark approved | Light + Dark approved | implemented; evidence captured |
+
+D1 cross-device approval date: **2026-08-12**. Production implementation is `Humay/Presentation/Onboarding/`. PROFILE-005 persists the local profile/settings aggregate and restores the completed root on relaunch. D2 is implemented as a development-sample presentation slice. D3 Current Sky, Month/Week Calendar and Event Detail are implemented and reconciled over Debug-only development samples.
+
+The iPad landscape two-region paths are covered by the UI test. iOS 26.5 simulator landscape screenshot export produced an orientation-rotated framebuffer, so those raw captures are documented but not presented as repository evidence; see [`implementation-evidence/d1-onboarding/README.md`](implementation-evidence/d1-onboarding/README.md).
 
 ## D2 — Today + Circle
 
@@ -101,6 +105,18 @@ Birth time and birth location are not onboarding steps.
 5. Deeper compatibility
 6. Unknown/insufficient birth-data state where applicable
 
+### D2 implementation status
+
+- Approved iPhone Light/Dark composites: [`soulful-reference/today-circle/`](soulful-reference/today-circle/README.md).
+- Later approved Compatibility refinement: [`soulful-reference/today-circle/compatibility-refresh/`](soulful-reference/today-circle/compatibility-refresh/README.md). It supersedes only the older Compatibility-selection and result-hero portions and is implemented in `Humay/Presentation/Circle/CompatibilitySelectionView.swift` and `Humay/Presentation/Circle/CompatibilityView.swift`.
+- Implemented: Today, Daily Horoscope, Circle, minimal Add Person, compatibility selection/result and explicit sample/access/cache/offline/error states.
+- Real portrait simulator evidence: [`implementation-evidence/d2-today-circle/`](implementation-evidence/d2-today-circle/README.md), with final Compatibility selection/result evidence under [`implementation-evidence/d2-today-circle/compatibility-refresh/`](implementation-evidence/d2-today-circle/compatibility-refresh/README.md).
+- iPad uses width-driven two-region layouts and native adaptive tabs/sidebar; compact widths collapse to one column.
+- Static approved D2 iPad mockups were not supplied for the older D2 composite family, so pixel-perfect iPad reconciliation is not claimed for unrelated D2 screens. The later Compatibility refinement includes approved iPad Light/Dark references and reconciled simulator evidence.
+- iOS 26.5 landscape UI tests pass, but XCTest exports the landscape framebuffer rotated/cropped; raw artifacts are retained and labeled rather than presented as valid visual matches.
+- Today Together is not implemented; it remains CIRCLE-006 and was not invented from an unfrozen design.
+- Backend/API/provider, Saved People persistence and monetization remain outside D2.
+
 ## D3 — Sky + Calendar
 
 1. Current Sky
@@ -108,6 +124,16 @@ Birth time and birth location are not onboarding steps.
 3. Calendar week
 4. Event detail
 5. Required empty/unavailable state
+
+### Current state
+
+- D3.1 Current Sky Lunar Meridian is the approved visual reference package: [`soulful-reference/sky/current-sky/`](soulful-reference/sky/current-sky/README.md).
+- Current Sky iPhone Light/Dark, iPad Light/Dark, adaptive behavior, and state language are implemented over the Debug-only sample. The approved [`refinement-r1/`](soulful-reference/sky/refinement-r1/README.md) package supersedes the relevant D3.1 visual treatment. Simulator evidence and reconciliation notes live under `implementation-evidence/d3-sky-calendar/`.
+- D3.2 Calendar Month + Week Meridian Almanac remains historical authority for unaffected behavior and semantics. The approved [`refinement-r1/`](soulful-reference/sky/refinement-r1/README.md) package supersedes the relevant visual treatment; `SKY-004` is implemented over the Debug-only sample.
+- D3.3 Event Detail Celestial editorial sheet is an approved visual reference package: [`soulful-reference/sky/event-detail/`](soulful-reference/sky/event-detail/README.md). Approval covers iPhone/iPad Light/Dark, state and stress boards, adaptive/accessibility guidance, origin-aware native navigation, Sky root shell behavior, factual versus interpretive hierarchy, timing/methodology treatment, and observation context; `SKY-005` is implemented and reconciled over the Debug-only sample.
+- Non-visual Domain/Presentation contracts and Debug-only deterministic sample states are implemented.
+- Current Sky, Month/Week Calendar and Event Detail SwiftUI are implemented and reconciled over Debug-only development samples.
+- `SKY-002` and `SKY-006` remain pending. Current Sky, Calendar and Event Detail evidence does not imply production data or methodology completion.
 
 ## D4 — Chart + astrology systems
 
@@ -122,6 +148,10 @@ Birth time and birth location are not onboarding steps.
 
 Chart screens require explicit iPad landscape treatment because the extra width can materially improve chart + detail composition.
 
+### Current state
+
+D4.1 was approved on 2026-08-14. The first UI-first slice is implemented and reconciled over a Debug-only typed sample: Chart root/Free entry, loading/access/cache/offline/error states, Western known-time overview, data-driven wheel with ordered list alternative, Moon Placement Detail, unknown-time state and iPhone/iPad adaptive chart/detail composition. Vedic, Chinese/BaZi, Compare Systems, real calculation/provider, access, cache and entitlement work remain task-gated. Evidence: [`implementation-evidence/d4-chart/`](implementation-evidence/d4-chart/README.md).
+
 ## D5 — Ask the Stars
 
 1. Empty/question state
@@ -131,6 +161,12 @@ Chart screens require explicit iPad landscape treatment because the extra width 
 5. Provider/error/recovery state
 
 On iPad, conversation width must be bounded; do not run text bubbles across the full screen.
+
+### D5.1 review candidate
+
+The first complete visual foundation and contract review package is under [`soulful-reference/ask/foundation/`](soulful-reference/ask/foundation/README.md).
+
+**Status: REVIEW CANDIDATE — NOT APPROVED.** The package does not authorize production Ask SwiftUI, provider/backend/API, access/entitlement, conversation persistence or D6 work. Product-owner approval is required before any feature-specific implementation.
 
 ## D6 — Profile + Settings
 

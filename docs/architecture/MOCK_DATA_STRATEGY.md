@@ -8,7 +8,14 @@ The former app-wide mock astrology runtime and large fixture catalog were remove
 
 There is no `ContentMode.mock` wired as the live application and no production runtime service may silently return illustrative astrology content.
 
-Preview/sample data may be added later only when it serves a specific implemented feature.
+Feature-scoped sample data now exists for D2 and for the non-visual D3 engineering foundation:
+
+- `DevelopmentD2Sample` supports the approved Today/Circle implementation;
+- `DevelopmentD3Sample` supports typed Sky/Calendar state and contract testing before D3 visual approval.
+
+Both are compiled only under `#if DEBUG`. D3 sample events are explicitly unverified and are not calculation or methodology evidence. Release uses production-unavailable/empty feature composition and never treats sample astrology as real output.
+
+Additional preview/sample data may be added only when it serves a specific implemented feature or approved non-visual contract foundation.
 
 When added, preview content must:
 
