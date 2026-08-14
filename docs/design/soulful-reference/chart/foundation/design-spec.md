@@ -1,6 +1,8 @@
 # D4.1 Chart visual foundation — design specification
 
-**Status:** REVIEW CANDIDATE — NOT APPROVED
+**Status:** APPROVED VISUAL REFERENCE — IMPLEMENTED AND RECONCILED
+
+**Approval record:** D4.1 approved 2026-08-14 for the first UI-first Chart slice: Free entry, typed states, Western known-time development fixture, Placement Detail, unknown-time handling and iPhone/iPad adaptive presentation. This does not approve production calculation, provider, access, cache, entitlement or methodology work.
 
 ## 1. Product role
 

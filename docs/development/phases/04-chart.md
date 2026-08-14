@@ -1,6 +1,6 @@
 # Phase 04 — Chart
 
-Status: **TODO**
+Status: **IN PROGRESS**
 
 Depends on:
 - Phase 02 validated calculation contracts;
@@ -10,10 +10,14 @@ Depends on:
 
 Goal: deliver Humay's natal/precision Chart experience without creating paid provider cost for ordinary Free users.
 
+## D4.1 approval and implementation note
+
+D4.1 visual references were approved on 2026-08-14. A UI-first foundation is implemented over typed Debug-only sample data and reconciled in [`../../design/implementation-evidence/d4-chart/`](../../design/implementation-evidence/d4-chart/README.md). This slice does not close the production dependencies below: real calculation/provider output, access/entitlement, cache/offline persistence, interpretation, or methodology validation remain gated.
+
 ## Tasks
 
 ### CHART-001 — Define Chart shell and access-state contract
-Status: TODO
+Status: **UI-FIRST SLICE IMPLEMENTED; PRODUCTION CONTRACT OPEN**
 
 Acceptance:
 - route/feature ownership matches canonical IA;
@@ -52,7 +56,7 @@ Acceptance:
 - provider failure recovery follows the entitlement contract.
 
 ### CHART-005 — Implement D4 Chart UI for iPhone + iPad
-Status: TODO  
+Status: **UI-FIRST DEBUG SLICE IMPLEMENTED; PRODUCTION GATE OPEN**
 Depends on: CHART-002, approved D4 package
 
 Acceptance:
@@ -60,6 +64,8 @@ Acceptance:
 - iPhone Light/Dark and iPad Light/Dark are implemented intentionally;
 - iPad landscape uses its approved chart/detail composition rather than a stretched iPhone layout;
 - Dynamic Type, VoiceOver alternatives and pointer/keyboard behavior are considered where applicable.
+
+The approved UI-first slice covers Chart root/Free entry, typed state surfaces, Western known-time development fixture, data-driven wheel plus ordered placement list, Moon Placement Detail and unknown birth-time handling. `CHART-005` remains open for production completion until `CHART-002` and its calculation/access/cache dependencies are complete.
 
 ### CHART-006 — Implement Vedic UI against methodology/provider gates
 Status: TODO  

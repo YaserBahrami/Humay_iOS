@@ -1,6 +1,6 @@
 # Humay — Start Here
 
-**Status:** current production documentation index as of 2026-08-12.
+**Status:** current production documentation index as of 2026-08-14.
 
 `main` is the repository source of truth. Feature branches are temporary implementation workspaces and must not become separate product/design authorities.
 
@@ -41,6 +41,8 @@ ARCH-007 entitlement and ARCH-008 privacy/security remain open before production
 
 Phase 02 ASTRO-001 and ASTRO-002 are implemented. ASTRO-003 has the provider-independent Western fact/structural-validation foundation, but real engine/provider integration and golden validation are deliberately deferred.
 
+**D4.1 Chart UI foundation** is approved, implemented and reconciled over an explicit Debug-only sample. It includes the Chart root/Free entry, typed access/cache/offline/error states, Western known-time overview, data-driven wheel plus ordered placement list, Moon Placement Detail and unknown birth-time handling. Production calculation, provider, access, cache, entitlement and methodology gates remain open.
+
 ## Current implementation order
 
 The preferred next sequence is **UI first, backend/API second**.
@@ -67,7 +69,7 @@ Development sample data is allowed only as explicit development/preview/test con
 
 **D3 — Sky + Calendar** now has an implemented Current Sky presentation over the Debug-only deterministic sample, plus approved cross-device references for Current Sky, Calendar and Event Detail. Humay-owned Domain event/timing/calendar contracts, typed Presentation states and Release-safe unavailable composition remain in force. Calendar month/week and event-detail production UI remain task-gated until `SKY-004` and `SKY-005`.
 
-Backend/API/provider, entitlement/monetization and Saved People persistence remain deferred. D4 Chart and D5 Ask have not been started.
+Backend/API/provider, entitlement/monetization and Saved People persistence remain deferred. D4 production Chart and D5 Ask have not been started.
 
 ## Foundation target
 
@@ -109,10 +111,12 @@ Current approved references:
 
 - D0 iPhone Light/Dark anchors: Today, Daily Horoscope, Compatibility;
 - D1 Welcome, Birth Date, Tradition and Profile Reveal cross-device package approved 2026-08-12;
-- D2 Today, Daily Horoscope and Compatibility iPhone Light/Dark composites approved 2026-08-12.
+- D2 Today, Daily Horoscope and Compatibility iPhone Light/Dark composites approved 2026-08-12;
+- D4.1 Chart foundation cross-device package approved 2026-08-14.
 
 The D1 onboarding UI is implemented under `Humay/Presentation/Onboarding/`.
 The D2 UI is implemented under `Humay/Presentation/Today/`, `Humay/Presentation/Circle/` and `Humay/Presentation/Main/`; evidence is under [`design/implementation-evidence/d2-today-circle/`](design/implementation-evidence/d2-today-circle/README.md).
+The D4 UI-first slice is implemented under `Humay/Presentation/Chart/` and `Humay/Presentation/D4/`; evidence is under [`design/implementation-evidence/d4-chart/`](design/implementation-evidence/d4-chart/README.md).
 
 Every user-facing shipping screen requires iPhone Light/Dark + iPad Light/Dark and adaptive/landscape notes where needed. User-facing UI must be designed and approved before implementation; non-visual architecture/domain/foundation work does not require an invented UI design gate.
 

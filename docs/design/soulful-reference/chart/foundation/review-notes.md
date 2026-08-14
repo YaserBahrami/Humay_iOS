@@ -1,6 +1,8 @@
 # D4.1 Chart review and contract notes
 
-**Status:** REVIEW CANDIDATE — NOT APPROVED
+**Status:** APPROVED UI-FIRST FOUNDATION — IMPLEMENTED AND RECONCILED
+
+**Approval record:** D4.1 review boundary approved 2026-08-14. The approval unblocks a Debug-only, typed UI slice while preserving all production calculation, provider, access, cache and methodology gates.
 
 ## CHART-001 findings
 
@@ -76,21 +78,21 @@ The loaded wheel’s houses/Ascendant belong only to a clearly labeled known-tim
 
 ## Review checklist
 
-- [ ] Product owner confirms Free entry is educational, not a fake personalized chart.
-- [ ] Product owner confirms unknown time/place language and “what adding data unlocks” treatment.
-- [ ] Product owner confirms wheel + list hierarchy on iPhone.
-- [ ] Product owner confirms iPad chart + detail composition and Split View collapse.
-- [ ] Product owner confirms access presentation remains separate from calculation truth.
-- [ ] Product owner confirms Newsreader/SF Pro/system/SF Mono role mapping.
-- [ ] Product owner confirms Vedic/BaZi/Compare Systems remain future, distinct and methodology-gated.
-- [ ] Product owner confirms the proposed reference-only assets before any production asset work.
+- [x] Product owner confirms Free entry is educational, not a fake personalized chart.
+- [x] Product owner confirms unknown time/place language and “what adding data unlocks” treatment.
+- [x] Product owner confirms wheel + list hierarchy on iPhone.
+- [x] Product owner confirms iPad chart + detail composition and Split View collapse.
+- [x] Product owner confirms access presentation remains separate from calculation truth.
+- [x] Product owner confirms Newsreader/SF Pro/system/SF Mono role mapping.
+- [x] Product owner confirms Vedic/BaZi/Compare Systems remain future, distinct and methodology-gated.
+- [x] Product owner confirms the proposed reference-only assets before any production asset work.
 
 ## Out of scope and explicit non-actions
 
-- No `Humay/App/`, `Humay/Presentation/`, `Humay/Data/` or `Humay/Domain/` production edits.
-- No `ChartView.swift`, `NatalChartView.swift`, provider adapter, backend/API, cache, entitlement SDK, rewarded-ad or subscription code.
+- No provider-backed `Humay/Data/` or production calculation edits; the approved UI-first `Humay/App/` and `Humay/Presentation/Chart/` slice is now implemented.
+- No `NatalChartView.swift`, provider adapter, backend/API, cache, entitlement SDK, rewarded-ad or subscription code.
 - No real natal calculation or methodology validation.
 - No D3 visual redesign, `SKY-002` or `SKY-006` work.
 - No D5 Ask work.
 
-Product owner reviews this package next. It remains **REVIEW CANDIDATE — NOT APPROVED**.
+This package is **APPROVED UI-FIRST FOUNDATION — IMPLEMENTED AND RECONCILED**. Production Chart completion remains task-gated.

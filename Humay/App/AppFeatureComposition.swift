@@ -22,4 +22,14 @@ enum AppFeatureComposition {
         .productionUnavailable
 #endif
     }
+
+    static func makeD4Input(
+        arguments: [String] = ProcessInfo.processInfo.arguments
+    ) -> D4FeatureInput {
+#if DEBUG
+        DevelopmentD4Sample.makeInput(arguments: arguments)
+#else
+        .productionUnavailable
+#endif
+    }
 }

@@ -6,6 +6,7 @@ struct HumayApp: App {
     @State private var navigation: AppNavigationState
     private let d2FeatureInput: D2FeatureInput
     private let d3FeatureInput: D3FeatureInput
+    private let d4FeatureInput: D4FeatureInput
 
     init() {
         let store: any UserStateStore
@@ -22,9 +23,11 @@ struct HumayApp: App {
 #if DEBUG
         d2FeatureInput = AppFeatureComposition.makeD2Input()
         d3FeatureInput = AppFeatureComposition.makeD3Input()
+        d4FeatureInput = AppFeatureComposition.makeD4Input()
 #else
         d2FeatureInput = .productionUnavailable
         d3FeatureInput = .productionUnavailable
+        d4FeatureInput = .productionUnavailable
 #endif
     }
 
@@ -32,7 +35,8 @@ struct HumayApp: App {
         WindowGroup {
             RootView(
                 d2FeatureInput: d2FeatureInput,
-                d3FeatureInput: d3FeatureInput
+                d3FeatureInput: d3FeatureInput,
+                d4FeatureInput: d4FeatureInput
             )
                 .environment(environment)
                 .environment(navigation)
@@ -67,6 +71,10 @@ struct HumayApp: App {
             } catch {
                 return
             }
+        }
+
+        if ProcessInfo.processInfo.arguments.contains("-HumayD4Demo") {
+            navigation.mainDestination = .chart
         }
 #endif
     }

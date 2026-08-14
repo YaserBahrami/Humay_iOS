@@ -84,7 +84,7 @@ The approved D2 Today + Circle family is implemented with explicit Debug-only de
 
 Phase 05 and Phase 07 remain partial because production Free catalogs, Saved People persistence, backend/API/provider generation and entitlement/monetization runtime are still deferred.
 
-D3 Current Sky, Calendar Month/Week, and Event Detail user-facing UI are implemented over typed Debug-only deterministic samples and approved cross-device references. Provider, calculation, cache and persistence implementation remains pending; D4 and D5 remain unstarted.
+D3 Current Sky, Calendar Month/Week, and Event Detail user-facing UI are implemented over typed Debug-only deterministic samples and approved cross-device references. Provider, calculation, cache and persistence implementation remains pending. D4.1 Chart UI foundation is now approved and implemented over a Debug-only deterministic sample; production Chart and D5 remain task-gated.
 
 ## Visual design track — iPhone + iPad, Light + Dark
 

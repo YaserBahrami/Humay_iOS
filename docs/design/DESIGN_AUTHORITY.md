@@ -1,7 +1,7 @@
 # Humay Design Authority
 
-**Status:** Current and exclusive design authority  
-**Effective:** 2026-08-12  
+**Status:** Current and exclusive design authority
+**Effective:** 2026-08-14
 **Repository authority:** `main`
 
 `main` contains one current design program only. Temporary feature/design branches must merge back here and must not become separate authorities.
@@ -135,8 +135,9 @@ D2 Compatibility received a later approved refinement on 2026-08-13. The package
 - **D3.1 Current Sky:** Lunar Meridian under `soulful-reference/sky/current-sky/` remains historical authority for unaffected behavior and semantics. The approved [`refinement-r1/`](soulful-reference/sky/refinement-r1/README.md) package supersedes its hero composition, event density, authored illustration, typography treatment, and floating-tab clearance. `SKY-003` is implemented over the Debug-only sample; production data work remains tracked by `SKY-002`.
 - **D3.2 Calendar Month + Week:** Meridian Almanac under `soulful-reference/sky/calendar/` remains historical authority for unaffected behavior and semantics. The approved [`refinement-r1/`](soulful-reference/sky/refinement-r1/README.md) package supersedes its Month density/date states, Week rail treatment, typography treatment, and floating-tab clearance. `SKY-004` is implemented over the Debug-only sample.
 - **D3.3 Event Detail:** Celestial editorial sheet is the approved cross-device visual reference package under `soulful-reference/sky/event-detail/`, approved on 2026-08-13. Approval covers iPhone/iPad Light/Dark, state and stress boards, adaptive/accessibility guidance, origin-aware native navigation, Sky root shell behavior, factual versus interpretive hierarchy, timing/methodology treatment, and observation context. `SKY-005` is implemented and reconciled over the Debug-only sample; approval does not complete production `SKY-002` or methodology `SKY-006`.
+- **D4.1 Chart foundation:** approved on 2026-08-14. The package under [`soulful-reference/chart/foundation/`](soulful-reference/chart/foundation/README.md) is implemented and reconciled for Chart root/Free entry, typed state surfaces, Western known-time development fixture, data-driven wheel/list, Moon Placement Detail, unknown birth-time handling and iPhone/iPad adaptive composition. Evidence is under [`implementation-evidence/d4-chart/`](implementation-evidence/d4-chart/README.md). This approval does not complete production `CHART-002`, `ASTRO-003`, access/cache/entitlement work or methodology gates.
 
-Current D1 implementation evidence lives under `implementation-evidence/d1-onboarding/`. The reconciled Current Sky and Calendar R1 evidence lives under [`implementation-evidence/d3-sky-calendar/refinement-r1/`](implementation-evidence/d3-sky-calendar/refinement-r1/README.md). Completion is in-memory only until PROFILE-005; no provider-backed astrology is used by Profile Reveal.
+Current D1 implementation evidence lives under `implementation-evidence/d1-onboarding/`. The reconciled Current Sky and Calendar R1 evidence lives under [`implementation-evidence/d3-sky-calendar/refinement-r1/`](implementation-evidence/d3-sky-calendar/refinement-r1/README.md). D4 evidence lives under [`implementation-evidence/d4-chart/`](implementation-evidence/d4-chart/README.md). Completion is in-memory only until PROFILE-005; no provider-backed astrology is used by Profile Reveal or D4 sample UI.
 - Remaining families follow [`SCREEN_DESIGN_PLAN.md`](SCREEN_DESIGN_PLAN.md).
 
 No alternate design authority should be added alongside this one.

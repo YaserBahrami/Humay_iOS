@@ -1,6 +1,6 @@
 # D4.1 — Chart visual foundation
 
-**Status:** REVIEW CANDIDATE — NOT APPROVED
+**Status:** APPROVED VISUAL REFERENCE — IMPLEMENTED AND RECONCILED
 
 This package establishes the first Chart visual/product foundation for:
 
@@ -67,4 +67,4 @@ The package follows [`docs/design/DESIGN_AUTHORITY.md`](../../../DESIGN_AUTHORIT
 
 The references use clearly marked development/sample values. They are not calculation evidence, methodology evidence or a claim about the current user.
 
-**Product-owner decision required:** this package remains **REVIEW CANDIDATE — NOT APPROVED**.
+**Approval record:** D4.1 was approved on 2026-08-14 for the UI-first Chart foundation slice. The implementation is reconciled against the four primary device/appearance references in [`docs/design/implementation-evidence/d4-chart/`](../../../../implementation-evidence/d4-chart/). Production calculation, access, cache, provider and methodology gates remain open.

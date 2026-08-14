@@ -8,7 +8,7 @@ Last updated: **2026-08-14**
 2. Review the captured D2 Today + Circle implementation evidence and close the documented portrait-asset/iPad-reference discrepancies only when approved assets/references exist.
 3. Keep D2 and D3 development content behind explicit Debug composition; Release must expose only safe unavailable/empty states until real owning providers exist.
 4. Defer backend/API/provider and monetization work; ARCH-007 entitlement, ARCH-008 privacy/security and methodology validation remain prerequisites for production precision rollout.
-5. Do not begin D4 Chart implementation or D5 Ask without approved visual references and task gates; D4.1 design/contract review may proceed as a review candidate.
+5. Keep the approved D4.1 Chart UI-first slice aligned with evidence while deferring production calculation/provider/access/cache/entitlement work; D5 Ask remains gated.
 
 ## Repository authority
 
@@ -271,8 +271,8 @@ Cadence for user-facing work:
 
 ## Current runtime
 
-The app restores the local user-state snapshot before resolving a meaningful root. A missing file produces fresh four-beat onboarding. `Enter Humay` saves the profile/settings aggregate atomically before resolving the root to the adaptive Today / Circle / Sky / Chart / Ask shell. Terminating and relaunching a completed app restores that shell. Profile/Settings remains auxiliary from the header. Current Sky and Calendar Month/Week are implemented over the Debug-only sample; Chart and Ask remain minimal destination placeholders. Save failures leave the onboarding draft intact and expose a retry alert; restore failures remain distinct from fresh onboarding.
+The app restores the local user-state snapshot before resolving a meaningful root. A missing file produces fresh four-beat onboarding. `Enter Humay` saves the profile/settings aggregate atomically before resolving the root to the adaptive Today / Circle / Sky / Chart / Ask shell. Terminating and relaunching a completed app restores that shell. Profile/Settings remains auxiliary from the header. Current Sky and Calendar Month/Week are implemented over the Debug-only sample. D4.1 Chart UI foundation is approved, implemented and reconciled over a Debug-only sample; production Chart calculation/provider/access/cache/entitlement work remains pending. Ask remains a minimal destination placeholder. Save failures leave the onboarding draft intact and expose a retry alert; restore failures remain distinct from fresh onboarding.
 
-Debug builds inject `DevelopmentD2Sample` and `DevelopmentD3Sample` into the implemented D2/Current Sky runtime. Both development sample types are excluded by `#if DEBUG`; their Release compositions contain no sample astrology payload. The local snapshot remains the device source of truth only for current profile/settings; D2-added people and all D3 samples are transient and do not expand the persistence schema.
+Debug builds inject `DevelopmentD2Sample`, `DevelopmentD3Sample` and `DevelopmentD4Sample` into the implemented D2/Current Sky/Chart runtime. All development sample types are excluded by `#if DEBUG`; their Release compositions contain no sample astrology payload. The local snapshot remains the device source of truth only for current profile/settings; D2-added people and all D3/D4 samples are transient and do not expand the persistence schema.
 
 The ASTRO-001/002/003 types remain provider-independent Domain contracts and are not wired to D2 sample presentation or a calculation provider. No production astrology provider, interpretation provider, backend API, CloudKit sync/restore, authentication, StoreKit, ads, analytics or notification delivery is wired yet.

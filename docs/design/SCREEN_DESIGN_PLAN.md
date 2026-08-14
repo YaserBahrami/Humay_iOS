@@ -148,6 +148,10 @@ The iPad landscape two-region paths are covered by the UI test. iOS 26.5 simulat
 
 Chart screens require explicit iPad landscape treatment because the extra width can materially improve chart + detail composition.
 
+### Current state
+
+D4.1 was approved on 2026-08-14. The first UI-first slice is implemented and reconciled over a Debug-only typed sample: Chart root/Free entry, loading/access/cache/offline/error states, Western known-time overview, data-driven wheel with ordered list alternative, Moon Placement Detail, unknown-time state and iPhone/iPad adaptive chart/detail composition. Vedic, Chinese/BaZi, Compare Systems, real calculation/provider, access, cache and entitlement work remain task-gated. Evidence: [`implementation-evidence/d4-chart/`](implementation-evidence/d4-chart/README.md).
+
 ## D5 — Ask the Stars
 
 1. Empty/question state

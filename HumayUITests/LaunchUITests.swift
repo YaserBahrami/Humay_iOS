@@ -608,6 +608,100 @@ final class LaunchUITests: XCTestCase {
         )
     }
 
+    func testD4FreeEntryShowsReadinessAndNoNatalWheel() {
+        let app = d4App()
+
+        XCTAssertTrue(element("chart.state.free", in: app).exists)
+        XCTAssertTrue(element("chart.free.preview.disclosure", in: app).exists)
+        XCTAssertTrue(element("chart.readiness.time", in: app).exists)
+        XCTAssertTrue(element("chart.readiness.place", in: app).exists)
+        XCTAssertTrue(element("chart.precision-path", in: app).exists)
+        XCTAssertFalse(element("chart.wheel", in: app).exists)
+    }
+
+    func testD4LoadedWesternChartOpensPlacementDetail() {
+        let app = d4App(extraArguments: [
+            "-HumayD4ChartState", "loaded"
+        ])
+
+        XCTAssertTrue(element("chart.state.loaded", in: app).waitForExistence(timeout: 3))
+        app.buttons["chart.western.open"].tap()
+        XCTAssertTrue(element("chart.western.screen", in: app).waitForExistence(timeout: 3))
+        XCTAssertTrue(element("chart.wheel", in: app).exists)
+        XCTAssertTrue(element("chart.big-three", in: app).exists)
+
+        app.buttons["chart.placements.open"].tap()
+        XCTAssertTrue(element("chart.placements.screen", in: app).waitForExistence(timeout: 3))
+        app.swipeUp()
+        let moon = app.staticTexts["Moon"].firstMatch
+        XCTAssertTrue(moon.waitForExistence(timeout: 3))
+        moon.tap()
+
+        XCTAssertTrue(element("chart.placement-detail.screen", in: app).waitForExistence(timeout: 3))
+        XCTAssertTrue(element("chart.placement-detail.facts", in: app).exists)
+        XCTAssertTrue(element("chart.placement-detail.interpretation", in: app).exists)
+        XCTAssertTrue(app.staticTexts["14° 27′"].exists)
+    }
+
+    func testD4UnknownTimeWithholdsPrecisionFacts() {
+        let app = d4App(extraArguments: [
+            "-HumayD4ChartState", "unknown-time"
+        ])
+
+        XCTAssertTrue(element("chart.unknown-time.screen", in: app).waitForExistence(timeout: 3))
+        XCTAssertTrue(
+            element("chart.unknown-time.warning", in: app).exists
+                || app.staticTexts["Birth time unknown"].exists
+        )
+        app.swipeUp()
+        XCTAssertTrue(
+            element("chart.unknown-time.known-facts", in: app).exists
+                || app.staticTexts["Known from the date"].exists
+        )
+        app.swipeUp()
+        XCTAssertTrue(
+            element("chart.unknown-time.withheld", in: app).exists
+                || app.staticTexts["Not available without more precision"].exists
+        )
+        app.swipeUp()
+        XCTAssertTrue(
+            element("chart.readiness.time", in: app).exists
+                || app.staticTexts["Birth time"].exists
+        )
+        XCTAssertFalse(element("chart.wheel", in: app).exists)
+        XCTAssertFalse(app.staticTexts["03° 02′"].exists)
+    }
+
+    func testD4TypedStatesRemainDistinct() {
+        let states: [(String, String)] = [
+            ("loading", "loading"),
+            ("locked", "precision-locked"),
+            ("available", "generation-available"),
+            ("loaded", "loaded"),
+            ("cached", "cached"),
+            ("offline", "offline.cached"),
+            ("offline-empty", "offline.no-cache"),
+            ("unsupported", "unsupported"),
+            ("unknown-time", "insufficient-precision"),
+            ("failed", "failed")
+        ]
+
+        for (state, identifier) in states {
+            let app = d4App(extraArguments: [
+                "-HumayD4ChartState", state
+            ])
+            if state == "unknown-time" {
+                app.swipeUp()
+                app.swipeUp()
+            }
+            XCTAssertTrue(
+                element("chart.state.\(identifier)", in: app).waitForExistence(timeout: 3),
+                "Missing D4 state \(state)"
+            )
+            app.terminate()
+        }
+    }
+
     func testCaptureOnboardingEvidence() {
         let app = freshApp()
 
@@ -701,6 +795,22 @@ final class LaunchUITests: XCTestCase {
             app.staticTexts["main.today.wordmark"].waitForExistence(timeout: 5)
         )
         selectPrimaryDestination("Sky", in: app)
+        return app
+    }
+
+    private func d4App(extraArguments: [String] = []) -> XCUIApplication {
+        let app = XCUIApplication()
+        app.launchArguments += [
+            "-HumayResetPersistence",
+            "-HumayD2Demo"
+        ]
+        app.launchArguments += extraArguments
+        app.launch()
+        XCTAssertTrue(
+            app.staticTexts["main.today.wordmark"].waitForExistence(timeout: 5)
+        )
+        selectPrimaryDestination("Chart", in: app)
+        XCTAssertTrue(element("chart.screen", in: app).waitForExistence(timeout: 5))
         return app
     }
 

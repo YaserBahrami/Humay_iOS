@@ -1,6 +1,8 @@
 # D4.1 Chart adaptive and accessibility notes
 
-**Status:** REVIEW CANDIDATE — NOT APPROVED
+**Status:** APPROVED VISUAL REFERENCE — IMPLEMENTED AND RECONCILED
+
+**Approval record:** D4.1 adaptive and accessibility guidance approved 2026-08-14. Simulator reconciliation is recorded under [`docs/design/implementation-evidence/d4-chart/`](../../../../implementation-evidence/d4-chart/).
 
 ## iPhone
 
