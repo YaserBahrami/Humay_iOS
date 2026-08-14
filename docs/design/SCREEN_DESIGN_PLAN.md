@@ -162,6 +162,12 @@ D4.1 was approved on 2026-08-14. The first UI-first slice is implemented and rec
 
 On iPad, conversation width must be bounded; do not run text bubbles across the full screen.
 
+### D5.1 review candidate
+
+The first complete visual foundation and contract review package is under [`soulful-reference/ask/foundation/`](soulful-reference/ask/foundation/README.md).
+
+**Status: REVIEW CANDIDATE — NOT APPROVED.** The package does not authorize production Ask SwiftUI, provider/backend/API, access/entitlement, conversation persistence or D6 work. Product-owner approval is required before any feature-specific implementation.
+
 ## D6 — Profile + Settings
 
 1. Profile/settings cover
