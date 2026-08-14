@@ -4,7 +4,6 @@ struct ChartView: View {
     let input: D4FeatureInput
     let profileName: String
     let openProfile: () -> Void
-    @State private var debugRoute: ChartDebugRoute?
 
     var body: some View {
         GeometryReader { proxy in
@@ -27,32 +26,6 @@ struct ChartView: View {
         }
         .navigationBarHidden(true)
         .accessibilityIdentifier("chart.screen")
-        .navigationDestination(item: $debugRoute) { route in
-            debugDestination(for: route)
-        }
-        .onAppear {
-            if debugRoute == nil {
-                debugRoute = requestedDebugRoute
-            }
-        }
-    }
-
-    @ViewBuilder
-    private func debugDestination(for route: ChartDebugRoute) -> some View {
-        if let western = input.chart.payload?.western {
-            switch route {
-            case .western:
-                WesternChartView(model: western, source: input.source)
-            case .placement:
-                if let moon = western.placement(for: .moon) {
-                    ChartPlacementDetailView(
-                        placement: moon,
-                        basis: western.basis,
-                        source: input.source
-                    )
-                }
-            }
-        }
     }
 
     @ViewBuilder
@@ -62,14 +35,14 @@ struct ChartView: View {
             ChartLoadingState(context: context)
 
         case .freePreview(let readiness):
-            ChartFreeEntry(readiness: readiness, source: input.source)
+            ChartFreeEntry(readiness: readiness)
 
         case .precisionLocked(let offer, let readiness):
             ChartAccessState(
                 stateIdentifier: "precision-locked",
                 offer: offer,
                 readiness: readiness,
-                detail: "Access is separate from calculation truth. No chart facts are shown until the access boundary is connected."
+                detail: "More precise chart details need the right birth information and access."
             )
 
         case .generationAvailable(let offer, let readiness):
@@ -77,7 +50,7 @@ struct ChartView: View {
                 stateIdentifier: "generation-available",
                 offer: offer,
                 readiness: readiness,
-                detail: "This development surface confirms the supplied inputs without pretending that a production calculation has run."
+                detail: "Your birth details are ready for a more precise chart."
             )
 
         case .loaded(let payload):
@@ -125,8 +98,7 @@ struct ChartView: View {
             case .unknownTime(let unknownTime):
                 ChartUnknownTimeState(
                     context: unknownTime,
-                    readiness: unknownTime.readiness,
-                    source: input.source
+                    readiness: unknownTime.readiness
                 )
             case .missingPlace(let detail):
                 ChartUnavailableState(
@@ -148,40 +120,18 @@ struct ChartView: View {
     }
 }
 
-private enum ChartDebugRoute: String, Identifiable {
-    case western
-    case placement
-
-    var id: String { rawValue }
-}
-
-private var requestedDebugRoute: ChartDebugRoute? {
-#if DEBUG
-    guard let index = ProcessInfo.processInfo.arguments.firstIndex(of: "-HumayD4Route"),
-          ProcessInfo.processInfo.arguments.indices.contains(index + 1) else {
-        return nil
-    }
-    return ChartDebugRoute(rawValue: ProcessInfo.processInfo.arguments[index + 1])
-#else
-    return nil
-#endif
-}
-
 private struct ChartFreeEntry: View {
     let readiness: ChartReadiness
-    let source: D4ContentSource
 
     var body: some View {
         VStack(alignment: .leading, spacing: HumaySpacing.extraLarge) {
-            ChartDevelopmentNotice(source: source)
-
             VStack(alignment: .leading, spacing: HumaySpacing.medium) {
-                Text("Your personal sky map")
+                Text(ChartProductCopy.freeTitle)
                     .font(HumayTypography.heroTitle)
                     .foregroundStyle(Color.humayTextPrimary)
                     .accessibilityAddTraits(.isHeader)
 
-                Text("A chart can hold the details of your birth sky with care, context, and room for uncertainty.")
+                Text(ChartProductCopy.freeDescription)
                     .font(HumayTypography.body)
                     .foregroundStyle(Color.humayTextSecondary)
                     .fixedSize(horizontal: false, vertical: true)
@@ -206,11 +156,11 @@ private struct ChartFreeEntry: View {
 
             HumayCosmicSurface {
                 VStack(alignment: .leading, spacing: HumaySpacing.medium) {
-                    Text("A more precise layer, when ready")
+                    Text(ChartProductCopy.precisionTitle)
                         .font(HumayTypography.sectionTitle)
                         .foregroundStyle(Color.humayGround)
 
-                    Text("Birth time and place help define the parts of a chart that cannot be responsibly guessed. Humay will keep those boundaries visible.")
+                    Text(ChartProductCopy.precisionDescription)
                         .font(HumayTypography.body)
                         .foregroundStyle(Color.humayGround.opacity(0.78))
                         .fixedSize(horizontal: false, vertical: true)
@@ -222,8 +172,8 @@ private struct ChartFreeEntry: View {
                 model: ChartStateBannerModel(
                     identifier: "free",
                     symbol: "sparkles",
-                    title: "Chart foundation is in place",
-                    detail: "The next layer will connect approved calculation and access services. This preview does not claim personalized results.",
+                    title: ChartProductCopy.freeBannerTitle,
+                    detail: ChartProductCopy.freeBannerDetail,
                     accent: .lavender
                 )
             )
@@ -251,7 +201,7 @@ private struct ChartReadyEntry: View {
                     .foregroundStyle(Color.humayTextPrimary)
                     .accessibilityAddTraits(.isHeader)
 
-                Text("The chart foundation is ready to explore.")
+                Text(ChartProductCopy.loadedDescription)
                     .font(HumayTypography.body)
                     .foregroundStyle(Color.humayTextSecondary)
             }
@@ -281,8 +231,8 @@ private struct ChartReadyEntry: View {
                 ChartUnavailableState(
                     identifier: "loaded",
                     symbol: "questionmark.circle",
-                    title: "This chart format is not available yet",
-                    detail: "The chart boundary is typed so another methodology can be added without being mistaken for Western facts."
+                    title: "Chart method unavailable",
+                    detail: "This chart method is not available right now."
                 )
             }
         }
@@ -319,7 +269,7 @@ private struct ChartAccessState: View {
                 VStack(alignment: .leading, spacing: HumaySpacing.medium) {
                     Text("No guessed facts")
                         .font(HumayTypography.sectionTitle)
-                    Text("A real calculation, reward, purchase, or entitlement is not simulated by this foundation slice.")
+                    Text("Humay shows only chart facts supported by the information you provide.")
                         .font(HumayTypography.body)
                         .foregroundStyle(Color.humayTextSecondary)
                         .fixedSize(horizontal: false, vertical: true)
@@ -393,12 +343,9 @@ private struct ChartUnavailableState: View {
 private struct ChartUnknownTimeState: View {
     let context: ChartUnknownTimeContext
     let readiness: ChartReadiness
-    let source: D4ContentSource
 
     var body: some View {
             VStack(alignment: .leading, spacing: HumaySpacing.extraLarge) {
-                ChartDevelopmentNotice(source: source)
-
                 VStack(alignment: .leading, spacing: HumaySpacing.medium) {
                     Text("Chart, with room for uncertainty")
                         .font(HumayTypography.heroTitle)
@@ -441,10 +388,15 @@ private struct ChartUnknownTimeState: View {
                         Text("Known from the date")
                             .font(HumayTypography.sectionTitle)
                             .accessibilityIdentifier("chart.unknown-time.known-facts")
-                        Text(context.knownFact.factText)
-                            .font(HumayTypography.technical)
-                            .foregroundStyle(Color.humayTextPrimary)
-                            .fixedSize(horizontal: false, vertical: true)
+                        VStack(alignment: .leading, spacing: HumaySpacing.extraSmall) {
+                            Text("\(context.knownFact.point.label) in \(context.knownFact.position.sign.displayName)")
+                                .font(HumayTypography.body)
+                                .foregroundStyle(Color.humayTextPrimary)
+                            Text(context.knownFact.degreeText)
+                                .font(HumayTypography.technical)
+                                .foregroundStyle(Color.humayTextPrimary)
+                        }
+                        .accessibilityElement(children: .combine)
                         Text("Date-valid fact · \(ChartReliabilityFormatter.string(for: context.knownFact.reliability))")
                             .font(HumayTypography.supporting)
                             .foregroundStyle(Color.humayTextSecondary)

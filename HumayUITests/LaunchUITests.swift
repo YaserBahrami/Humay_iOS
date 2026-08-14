@@ -616,6 +616,8 @@ final class LaunchUITests: XCTestCase {
         XCTAssertTrue(element("chart.readiness.time", in: app).exists)
         XCTAssertTrue(element("chart.readiness.place", in: app).exists)
         XCTAssertTrue(element("chart.precision-path", in: app).exists)
+        XCTAssertFalse(app.staticTexts["Development sample · not calculated"].exists)
+        XCTAssertFalse(app.staticTexts["Chart foundation is in place"].exists)
         XCTAssertFalse(element("chart.wheel", in: app).exists)
     }
 
@@ -625,22 +627,23 @@ final class LaunchUITests: XCTestCase {
         ])
 
         XCTAssertTrue(element("chart.state.loaded", in: app).waitForExistence(timeout: 3))
+        XCTAssertTrue(
+            app.staticTexts["Development sample · not calculated"].waitForExistence(timeout: 3)
+        )
         app.buttons["chart.western.open"].tap()
         XCTAssertTrue(element("chart.western.screen", in: app).waitForExistence(timeout: 3))
         XCTAssertTrue(element("chart.wheel", in: app).exists)
         XCTAssertTrue(element("chart.big-three", in: app).exists)
 
-        app.buttons["chart.placements.open"].tap()
-        XCTAssertTrue(element("chart.placements.screen", in: app).waitForExistence(timeout: 3))
-        app.swipeUp()
-        let moon = app.staticTexts["Moon"].firstMatch
-        XCTAssertTrue(moon.waitForExistence(timeout: 3))
-        moon.tap()
+        app.buttons["Open Moon detail"].tap()
 
         XCTAssertTrue(element("chart.placement-detail.screen", in: app).waitForExistence(timeout: 3))
         XCTAssertTrue(element("chart.placement-detail.facts", in: app).exists)
         XCTAssertTrue(element("chart.placement-detail.interpretation", in: app).exists)
         XCTAssertTrue(app.staticTexts["14° 27′"].exists)
+
+        app.navigationBars.buttons.element(boundBy: 0).tap()
+        XCTAssertTrue(element("chart.western.screen", in: app).waitForExistence(timeout: 3))
     }
 
     func testD4UnknownTimeWithholdsPrecisionFacts() {
@@ -649,6 +652,7 @@ final class LaunchUITests: XCTestCase {
         ])
 
         XCTAssertTrue(element("chart.unknown-time.screen", in: app).waitForExistence(timeout: 3))
+        XCTAssertFalse(app.staticTexts["Development sample · not calculated"].exists)
         XCTAssertTrue(
             element("chart.unknown-time.warning", in: app).exists
                 || app.staticTexts["Birth time unknown"].exists
@@ -658,6 +662,8 @@ final class LaunchUITests: XCTestCase {
             element("chart.unknown-time.known-facts", in: app).exists
                 || app.staticTexts["Known from the date"].exists
         )
+        XCTAssertTrue(app.staticTexts["Sun in Aquarius"].exists)
+        XCTAssertTrue(app.staticTexts["22° 11′"].exists)
         app.swipeUp()
         XCTAssertTrue(
             element("chart.unknown-time.withheld", in: app).exists
@@ -670,6 +676,53 @@ final class LaunchUITests: XCTestCase {
         )
         XCTAssertFalse(element("chart.wheel", in: app).exists)
         XCTAssertFalse(app.staticTexts["03° 02′"].exists)
+    }
+
+    func testD4FreeEntryDynamicTypeRemainsNavigable() {
+        let app = d4App(extraArguments: [
+            "-UIPreferredContentSizeCategory", "UICTContentSizeCategoryAccessibilityXXXL"
+        ])
+
+        XCTAssertTrue(element("chart.state.free", in: app).waitForExistence(timeout: 3))
+        XCTAssertTrue(element("chart.readiness", in: app).exists)
+        XCTAssertTrue(element("chart.precision-path", in: app).exists)
+        XCTAssertFalse(element("chart.wheel", in: app).exists)
+    }
+
+    func testCaptureD4HardeningEvidence() {
+        for interfaceStyle in ["Light", "Dark"] {
+            let appearance = interfaceStyle.lowercased()
+            let appearanceArguments = ["-AppleInterfaceStyle", interfaceStyle]
+
+            let free = d4App(extraArguments: appearanceArguments)
+            XCTAssertTrue(element("chart.state.free", in: free).waitForExistence(timeout: 3))
+            capture(free, named: "free-entry-\(evidenceDevice)-\(appearance)")
+            free.terminate()
+
+            let unknownTime = d4App(extraArguments: appearanceArguments + [
+                "-HumayD4ChartState", "unknown-time"
+            ])
+            XCTAssertTrue(element("chart.unknown-time.screen", in: unknownTime).waitForExistence(timeout: 3))
+            capture(unknownTime, named: "unknown-time-\(evidenceDevice)-\(appearance)")
+            unknownTime.terminate()
+
+            let loaded = d4App(extraArguments: appearanceArguments + [
+                "-HumayD4ChartState", "loaded"
+            ])
+            loaded.buttons["chart.western.open"].tap()
+            XCTAssertTrue(element("chart.western.screen", in: loaded).waitForExistence(timeout: 3))
+            capture(loaded, named: "western-loaded-\(evidenceDevice)-\(appearance)")
+            loaded.terminate()
+
+            if interfaceStyle == "Light", evidenceDevice == "iphone" {
+                let dynamicType = d4App(extraArguments: appearanceArguments + [
+                    "-UIPreferredContentSizeCategory", "UICTContentSizeCategoryAccessibilityXXXL"
+                ])
+                XCTAssertTrue(element("chart.state.free", in: dynamicType).waitForExistence(timeout: 3))
+                capture(dynamicType, named: "dynamic-type-large-iphone-light")
+                dynamicType.terminate()
+            }
+        }
     }
 
     func testD4TypedStatesRemainDistinct() {
@@ -690,12 +743,11 @@ final class LaunchUITests: XCTestCase {
             let app = d4App(extraArguments: [
                 "-HumayD4ChartState", state
             ])
-            if state == "unknown-time" {
-                app.swipeUp()
-                app.swipeUp()
-            }
+            let elementIdentifier = state == "unknown-time"
+                ? "chart.unknown-time.screen"
+                : "chart.state.\(identifier)"
             XCTAssertTrue(
-                element("chart.state.\(identifier)", in: app).waitForExistence(timeout: 3),
+                element(elementIdentifier, in: app).waitForExistence(timeout: 3),
                 "Missing D4 state \(state)"
             )
             app.terminate()

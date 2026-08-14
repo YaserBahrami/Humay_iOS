@@ -11,6 +11,28 @@ struct D4FeatureModelTests {
         #expect(input.source == .productionUnavailable)
         #expect(!input.source.isDevelopmentSample)
         #expect(input.chart.payload == nil)
+        #expect(input.chart.payload?.western?.placement(for: .sun) == nil)
+        #expect(input.chart.payload?.western?.placement(for: .moon) == nil)
+        #expect(input.chart.payload?.western?.placement(for: .ascendant) == nil)
+        #expect(input.chart.payload?.western?.wheel.houses.count == nil)
+
+        let releaseCopy = [
+            ChartProductCopy.freeTitle,
+            ChartProductCopy.freeDescription,
+            ChartProductCopy.precisionTitle,
+            ChartProductCopy.precisionDescription,
+            ChartProductCopy.freeBannerTitle,
+            ChartProductCopy.freeBannerDetail
+        ]
+        let engineeringTerms = [
+            "foundation", "next layer", "provider", "service", "implementation",
+            "development sample", "not calculated"
+        ]
+        for sentence in releaseCopy {
+            for term in engineeringTerms {
+                #expect(!sentence.localizedCaseInsensitiveContains(term))
+            }
+        }
 
         guard case .freePreview(let readiness) = input.chart else {
             Issue.record("Production Chart foundation should remain an explicit free entry")
@@ -86,6 +108,8 @@ struct D4FeatureModelTests {
         #expect(unknownTime.withheldFacts.contains(.ascendant))
         #expect(unknownTime.withheldFacts.contains(.houses))
         #expect(input.chart.payload == nil)
+        #expect(unknownTime.readiness.birthTime == .unknown)
+        #expect(unknownTime.knownFact.factText == "Sun in Aquarius at 22° 11′")
 
         let readiness = DevelopmentD4Sample.unknownTimeReadiness
         #expect(readiness.birthTime == .unknown)
@@ -127,9 +151,30 @@ struct D4FeatureModelTests {
         }
     }
 
-    @Test("Chart formatters keep degree values legible")
-    func chartFormatters() {
-        #expect(ChartDegreeFormatter.string(for: 14.45) == "14° 27′")
+    @Test("Chart degree formatter stays within one sign")
+    func chartDegreeFormatterStaysWithinOneSign() {
+        let values: [(Double, String)] = [
+            (0, "00° 00′"),
+            (-1, "00° 00′"),
+            (14.45, "14° 27′"),
+            (29.0, "29° 00′"),
+            (29.99, "29° 59′"),
+            (29.999999, "29° 59′"),
+            (30, "29° 59′"),
+            (42, "29° 59′"),
+            (Double.nan, "00° 00′")
+        ]
+
+        for (value, expected) in values {
+            let formatted = ChartDegreeFormatter.string(for: value)
+            #expect(formatted == expected)
+            #expect(!formatted.contains("60′"))
+            #expect(!formatted.hasPrefix("30°"))
+        }
+    }
+
+    @Test("Other chart formatters keep values legible")
+    func otherChartFormatters() {
         #expect(ChartDegreeFormatter.string(for: 3.0333) == "03° 02′")
         #expect(ChartReliabilityFormatter.string(for: .reliable) == "Reliable")
         #expect(

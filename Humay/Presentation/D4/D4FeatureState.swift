@@ -309,14 +309,27 @@ struct D4FeatureInput: Sendable, Hashable {
     )
 }
 
+enum ChartProductCopy {
+    static let freeTitle = "Your personal sky map"
+    static let freeDescription = "A chart holds the details of your birth sky with care, context, and room for uncertainty."
+    static let precisionTitle = "A more precise chart, when ready"
+    static let precisionDescription = "Birth time and place help define the parts of a chart that cannot be responsibly guessed. Humay keeps those boundaries visible."
+    static let freeBannerTitle = "Your chart starts with what you share"
+    static let freeBannerDetail = "Add birth time and place to open more precise chart details. Until then, Humay keeps time-dependent facts open rather than guessing."
+    static let loadedDescription = "Your chart is ready to explore."
+}
+
 enum ChartDegreeFormatter {
     static func string(for degree: Double) -> String {
-        let clamped = max(0, min(29.999_999, degree))
-        let wholeDegrees = Int(clamped.rounded(.down))
-        let minutes = Int(((clamped - Double(wholeDegrees)) * 60).rounded())
-        if minutes == 60 {
-            return String(format: "%02d° 00′", wholeDegrees + 1)
+        guard degree.isFinite else {
+            return "00° 00′"
         }
+
+        let clampedDegree = min(max(degree, 0), 30)
+        let roundedMinutes = Int((clampedDegree * 60).rounded())
+        let totalMinutes = min(max(roundedMinutes, 0), 1_799)
+        let wholeDegrees = totalMinutes / 60
+        let minutes = totalMinutes % 60
         return String(format: "%02d° %02d′", wholeDegrees, minutes)
     }
 }

@@ -148,9 +148,14 @@ private struct ChartHighlightView: View {
                         .font(HumayTypography.cardTitle)
                         .foregroundStyle(Color.humayGround)
 
-                    Text("\(moon.degreeText) · \(moon.house?.label ?? "House withheld")")
-                        .font(HumayTypography.technical)
-                        .foregroundStyle(Color.humayGround.opacity(0.88))
+                    HStack(alignment: .firstTextBaseline, spacing: HumaySpacing.small) {
+                        Text(moon.degreeText)
+                            .font(HumayTypography.technical)
+                        Text("·")
+                        Text(moon.house?.label ?? "House withheld")
+                            .font(HumayTypography.supporting)
+                    }
+                    .foregroundStyle(Color.humayGround.opacity(0.88))
 
                     Text("Open the placement for a fact-first detail and a separate interpretation layer.")
                         .font(HumayTypography.supporting)

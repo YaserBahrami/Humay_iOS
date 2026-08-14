@@ -85,13 +85,13 @@ enum DevelopmentD4Sample {
         case "loading":
             return sample(.loading(ChartLoadingContext(
                 title: "Preparing your sky map",
-                detail: "Chart facts will appear when the calculation boundary is ready."
+                detail: "Chart facts will appear when your chart is ready."
             )))
         case "locked":
             return sample(.precisionLocked(
                 offer: ChartAccessOffer(
                     title: "Precision chart access",
-                    detail: "A fuller chart is ready for the next access step."
+                    detail: "Open more chart detail with the birth information you provide."
                 ),
                 readiness: knownTimeReadiness
             ))
@@ -99,7 +99,7 @@ enum DevelopmentD4Sample {
             return sample(.generationAvailable(
                 offer: ChartAccessOffer(
                     title: "Your chart is ready to generate",
-                    detail: "Your supplied birth details meet the current precision boundary."
+                    detail: "Your birth details are ready for a fuller chart."
                 ),
                 readiness: knownTimeReadiness
             ))
@@ -116,8 +116,8 @@ enum DevelopmentD4Sample {
             )))
         case "unsupported":
             return sample(.unsupportedMethodology(ChartUnsupportedMethodologyContext(
-                title: "This chart method is not available yet",
-                detail: "Humay is keeping the methodology boundary explicit while this path is reviewed."
+                title: "This chart method is not available right now",
+                detail: "Choose Western to explore your chart."
             )))
         case "unknown-time":
             return sample(.insufficientBirthPrecision(
@@ -176,56 +176,56 @@ enum DevelopmentD4Sample {
             longitude: 322.1833,
             house: .eleventh,
             interpretationTitle: "A clear center.",
-            interpretationBody: "The Sun placement is a factual anchor in this development fixture. Interpretation remains separate from the supplied position."
+            interpretationBody: "The Sun placement offers a clear center for how you express yourself."
         ),
         placement(
             .moon,
             longitude: 194.45,
             house: .fifth,
             interpretationTitle: "Room for response.",
-            interpretationBody: "The Moon in Libra is presented as a reflective placement: notice balance, response, and the space between impulse and choice."
+            interpretationBody: "The Moon in Libra brings attention to balance, response, and the space between impulse and choice."
         ),
         placement(
             .mercury,
             longitude: 31.3,
             house: .tenth,
             interpretationTitle: "A practical voice.",
-            interpretationBody: "This sample interpretation is editorial scaffolding only; the displayed degree remains the source fact."
+            interpretationBody: "This placement points toward a practical voice and a clear way of shaping ideas."
         ),
         placement(
             .venus,
             longitude: 108.7,
             house: .eighth,
             interpretationTitle: "A warm value system.",
-            interpretationBody: "This sample interpretation stays subordinate to the factual placement above."
+            interpretationBody: "This placement brings warmth and care to the values you choose to keep close."
         ),
         placement(
             .mars,
             longitude: 217.9167,
             house: .twelfth,
             interpretationTitle: "A focused current.",
-            interpretationBody: "This sample interpretation is not a calculation result or a personal claim."
+            interpretationBody: "This placement invites a focused current, with energy gathered before it moves."
         ),
         placement(
             .jupiter,
             longitude: 282.15,
             house: .second,
             interpretationTitle: "A wider horizon.",
-            interpretationBody: "This development fixture keeps meaning readable without presenting it as provider output."
+            interpretationBody: "This placement opens a wider horizon around growth, values, and possibility."
         ),
         placement(
             .saturn,
             longitude: 356.2167,
             house: .sixth,
             interpretationTitle: "A patient structure.",
-            interpretationBody: "Interpretation is intentionally restrained until production methodology is approved."
+            interpretationBody: "This placement brings patience and structure to everyday rhythms."
         ),
         placement(
             .ascendant,
             longitude: 63.0333,
             house: .first,
             interpretationTitle: "A first impression.",
-            interpretationBody: "The Ascendant is included only inside this explicit known-time development fixture."
+            interpretationBody: "The Ascendant shapes a first impression and the way your presence meets the world."
         )
     ]
 }
