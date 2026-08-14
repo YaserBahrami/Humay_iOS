@@ -22,7 +22,7 @@ The package keeps the D3 family language:
 - tonal surfaces before heavy shadow;
 - Newsreader for editorial/display UI; Cormorant Garamond remains wordmark-only under R1;
 - SF/system for navigation, labels, body and controls;
-- SF Mono only where timing benefits from scanability;
+- SF Pro/system with `monospacedDigit()` for ordinary timing; SF Mono only for genuinely technical Chart values;
 - restrained coral, lavender, gold, blue, and sage accents;
 - one small semantic Mercury/ingress motif, no large illustration;
 - no decorative star field, symbol wall, percentage, or score.

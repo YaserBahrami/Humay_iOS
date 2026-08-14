@@ -98,7 +98,7 @@ No symbol wall, star field, large illustration, or new `Assets.xcassets` item is
 - [x] Dynamic Type rules preserve title, meaning, timing, and methodology before decorative art.
 - [x] iPad uses bounded regions and collapses under width or accessibility pressure.
 - [x] Reduce Motion leaves a complete static composition.
-- [ ] Runtime contrast, focus-ring, pointer, and Accessibility Inspector checks remain implementation-time work.
+- [x] Runtime implementation evidence is captured under [`docs/design/implementation-evidence/d3-sky-calendar/event-detail/`](../../../implementation-evidence/d3-sky-calendar/event-detail/README.md); future regressions must preserve contrast, focus-ring, pointer, keyboard and Dynamic Type behavior.
 
 No numerical HIG score is assigned.
 

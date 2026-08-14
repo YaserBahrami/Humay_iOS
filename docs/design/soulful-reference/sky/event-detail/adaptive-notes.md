@@ -94,4 +94,4 @@ Do not expose chevrons, dots, orbital arcs, or decorative accents as separate fo
 - Dark uses midnight ground, raised navy/plum surfaces, warm text, and brighter accents without inversion.
 - Meaning remains understandable without color through labels and copy.
 - Increase Contrast strengthens hairlines, fact grouping, and the selected navigation context.
-- Implementation-time contrast and Accessibility Inspector checks remain deferred because this package contains static references only.
+- Runtime implementation evidence is captured under [`docs/design/implementation-evidence/d3-sky-calendar/event-detail/`](../../../implementation-evidence/d3-sky-calendar/event-detail/README.md) for cross-device states, Dynamic Type pressure, native focus/navigation and pointer/keyboard paths; future changes must re-run platform inspections.

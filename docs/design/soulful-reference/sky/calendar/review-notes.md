@@ -157,4 +157,4 @@ Static references receive qualitative HIG review only; they do not receive a num
 
 No production SwiftUI, route, ViewModel, Domain model, provider, calculation, cache, CloudKit, notification, StoreKit, test, or asset-catalog file is changed by this package.
 
-**IMPLEMENTATION HANDOFF:** `SKY-004` Month and Week are implemented from this approved package; `SKY-005` remains the next Event Detail slice.
+**IMPLEMENTATION HANDOFF:** `SKY-004` Month and Week are implemented from this approved package; `SKY-005` Event Detail is implemented and reconciled over the Debug-only sample.

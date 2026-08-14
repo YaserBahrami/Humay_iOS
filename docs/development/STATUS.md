@@ -1,14 +1,14 @@
 # Development Status
 
-Last updated: **2026-08-13**
+Last updated: **2026-08-14**
 
 ## Active priorities
 
-1. Keep Calendar/Event Detail work behind their approved references and task gates; Calendar Month/Week is implemented over the Debug sample.
+1. Keep the D3 Current Sky/Calendar/Event Detail family aligned with approved references and task gates; all three UI slices are implemented over the Debug sample.
 2. Review the captured D2 Today + Circle implementation evidence and close the documented portrait-asset/iPad-reference discrepancies only when approved assets/references exist.
 3. Keep D2 and D3 development content behind explicit Debug composition; Release must expose only safe unavailable/empty states until real owning providers exist.
 4. Defer backend/API/provider and monetization work; ARCH-007 entitlement, ARCH-008 privacy/security and methodology validation remain prerequisites for production precision rollout.
-5. Do not begin Event Detail, D4 Chart or D5 Ask without their approved visual references and task gates.
+5. Do not begin D4 Chart implementation or D5 Ask without approved visual references and task gates; D4.1 design/contract review may proceed as a review candidate.
 
 ## Repository authority
 
@@ -178,7 +178,7 @@ Not implemented:
 - a calculation/provider pipeline, networking, caching, persistence or personalization;
 - methodology approval or production event provenance.
 
-D3.1 Current Sky, D3.2 Calendar and D3.3 Event Detail approved visual references exist under `docs/design/soulful-reference/`. `SKY-003`, `SKY-004`, and `SKY-005` are implemented over the Debug-only sample; `SKY-002` remains pending for production data and `SKY-006` remains TODO.
+D3.1 Current Sky, D3.2 Calendar and D3.3 Event Detail approved visual references exist under `docs/design/soulful-reference/`. `SKY-003`, `SKY-004`, and `SKY-005` are implemented over the Debug-only sample; `SKY-002` remains pending for production data and `SKY-006` remains pending.
 
 ## Backend/API timing
 

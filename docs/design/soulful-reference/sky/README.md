@@ -47,4 +47,4 @@ A D3 screen is not approved until its package includes:
 - compact-width fallback behavior;
 - recorded review and approval status.
 
-Current Sky, Calendar, and Event Detail have passed this visual gate. Their approvals do not complete `SKY-003`, `SKY-004`, or `SKY-005`; asset-catalog presence does not constitute visual approval.
+Current Sky, Calendar, and Event Detail have passed this visual gate. Their approvals support `SKY-003`, `SKY-004`, and `SKY-005` implementation/reconciliation over Debug-only samples; `SKY-002` and `SKY-006` remain pending. Asset-catalog presence does not constitute visual approval.

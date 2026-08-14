@@ -91,4 +91,4 @@ Acceptance:
 - system-specific terminology remains methodology-aware;
 - shipping Sky/Calendar surfaces reconcile with approved D3 iPhone+iPad Light/Dark references.
 
-The current partial foundation does not satisfy the phase exit criteria. D3.1 Current Sky, D3.2 Calendar, and D3.3 Event Detail are implemented over the Debug-only sample and reconciled on iPhone/iPad Light/Dark; `SKY-002` remains pending for production data and `SKY-006` remains TODO.
+The current partial foundation does not satisfy the phase exit criteria. D3.1 Current Sky, D3.2 Calendar, and D3.3 Event Detail are implemented over the Debug-only sample and reconciled on iPhone/iPad Light/Dark; `SKY-002` remains pending for production data and `SKY-006` remains pending.

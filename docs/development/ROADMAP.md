@@ -2,7 +2,7 @@
 
 This roadmap is dependency-driven rather than date-driven. Product/access authority is [`PRODUCT_ACCESS_MODEL.md`](PRODUCT_ACCESS_MODEL.md). Visual work is governed by [`../design/DESIGN_AUTHORITY.md`](../design/DESIGN_AUTHORITY.md) and [`../design/SCREEN_DESIGN_PLAN.md`](../design/SCREEN_DESIGN_PLAN.md).
 
-The old mock-first runtime was removed during the 2026-08-12 production-baseline reset. Production implementation now includes the iPhone + iPad foundation, D1 onboarding and the D2 Today/Circle presentation shell. D3 Sky/Calendar has started only at the non-visual contract and Debug sample-state layer. Approved feature UI may be developed before backend/API wiring by using explicit development sample data behind Humay-owned contracts; that is not a return to a production mock-provider architecture.
+The old mock-first runtime was removed during the 2026-08-12 production-baseline reset. Production implementation now includes the iPhone + iPad foundation, D1 onboarding and the D2 Today/Circle presentation shell. D3 Current Sky, Calendar and Event Detail UI exist over typed development samples. Approved feature UI may be developed before backend/API wiring by using explicit development sample data behind Humay-owned contracts; that is not a return to a production mock-provider architecture.
 
 ## Shipping phase summary
 
