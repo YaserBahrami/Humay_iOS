@@ -38,6 +38,9 @@ enum HumayTypography {
     static let utility = Font.caption.weight(.semibold)
     static let micro = Font.caption2
 
+    /// Large rounded SF Symbol role for state and status surfaces.
+    static let statusSymbol = Font.system(.largeTitle, design: .rounded, weight: .medium)
+
     /// Civil-calendar roles remain system typography, but use stable semantic names
     /// so month/week surfaces do not drift through local system-style choices.
     static let calendarWeekday = Font.caption.weight(.bold)

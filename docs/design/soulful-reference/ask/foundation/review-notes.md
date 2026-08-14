@@ -1,10 +1,10 @@
 # D5.1 Ask visual foundation · R1 review notes
 
-**Status: REVIEW CANDIDATE — NOT APPROVED**
+**Status: APPROVED VISUAL REFERENCE — IMPLEMENTED AND RECONCILED**
 
 ## Review boundary
 
-This package is the first complete D5 visual and contract candidate. It is intentionally not self-approved. Product-owner review is required before feature-specific implementation.
+This package is the first complete D5 visual and contract reference. Visual approval is recorded for the D5.1 UI-first presentation slice and reconciled against the implementation evidence. Production feature gates remain separately tracked.
 
 The package preserves the current authority order:
 
@@ -52,11 +52,11 @@ The references do not imply these facts belong to the current user. The one quie
 
 ## Accessibility review boundary
 
-The candidate documents Dynamic Type, VoiceOver order, minimum targets, keyboard avoidance, focus transitions, Reduce Motion, Increase Contrast, color redundancy, long questions and long answers. Runtime Accessibility Inspector and simulator verification remain implementation-time work and are not claimed here.
+The implementation follows the Dynamic Type, VoiceOver order, minimum targets, keyboard avoidance, focus transitions, Reduce Motion, Increase Contrast, color redundancy, long-question and long-answer guidance. Simulator UI tests cover keyboard reachability and accessibility content size; the evidence package records the reconciled result.
 
 ## Existing foundation alignment
 
-The candidate maps to existing Humay conventions:
+The implementation maps to existing Humay conventions:
 
 - `HumayTypography` semantic Newsreader/system roles;
 - current cream/navy color tokens;
@@ -65,11 +65,11 @@ The candidate maps to existing Humay conventions:
 - native NavigationStack/TabView/text-input direction;
 - current `D2WordmarkHeader`, `HumaySurface`, `HumayCosmicSurface` and state-banner language as future reuse candidates.
 
-No production component or asset is changed in this pass.
+No provider, backend/API, access SDK, persistence or production asset is introduced by this slice; only presentation-facing types and UI composition are implemented.
 
 ## Phase 08 dependency recommendation
 
-Keep the production dependency exactly as written: ASK-003 depends on ASK-002 and approved D5. The visual candidate can inform a later UI-first Presentation decision only after product-owner approval and only with Humay-owned Debug-only sample contracts.
+Keep the production dependency exactly as written: ASK-003 depends on ASK-002 and approved D5. D5.1 UI-first Presentation is implemented with Humay-owned Debug-only sample contracts; production Ask remains gated.
 
 Production Ask remains gated by ASK-001, ASK-002, ARCH-007, backend/provider, cache/idempotency, privacy and safety integration. Do not mark ASK-002 complete. Do not treat references as methodology or provider evidence.
 

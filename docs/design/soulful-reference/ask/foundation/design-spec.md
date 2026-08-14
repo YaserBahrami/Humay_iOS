@@ -1,6 +1,8 @@
 # D5.1 Ask — design specification · R1
 
-**Status: REVIEW CANDIDATE — NOT APPROVED**
+**Status: APPROVED VISUAL REFERENCE — IMPLEMENTED AND RECONCILED**
+
+This specification is approved for the D5.1 UI-first presentation slice. Its iPhone/iPad Light/Dark visual decisions are reconciled by the implementation evidence package; provider, backend/API, access, cache/history and methodology work remain outside this approval.
 
 ## 1. Product role
 

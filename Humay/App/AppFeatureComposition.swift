@@ -32,4 +32,14 @@ enum AppFeatureComposition {
         .productionUnavailable
 #endif
     }
+
+    static func makeD5Input(
+        arguments: [String] = ProcessInfo.processInfo.arguments
+    ) -> D5FeatureInput {
+#if DEBUG
+        DevelopmentD5Sample.makeInput(arguments: arguments)
+#else
+        .productionUnavailable
+#endif
+    }
 }

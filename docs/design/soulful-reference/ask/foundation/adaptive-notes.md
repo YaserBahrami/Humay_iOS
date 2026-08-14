@@ -1,6 +1,8 @@
 # D5.1 Ask adaptive and accessibility notes
 
-**Status: REVIEW CANDIDATE — NOT APPROVED**
+**Status: APPROVED VISUAL REFERENCE — IMPLEMENTED AND RECONCILED**
+
+These adaptive and accessibility decisions are approved for D5.1 UI-first presentation and reconciled against the iPhone/iPad Light/Dark simulator evidence. Production provider, access and persistence behavior remains separately gated.
 
 ## iPhone
 

@@ -1,8 +1,8 @@
 # D5.1 Ask contract review notes · R1
 
-**Status: REVIEW CANDIDATE — NOT APPROVED**
+**Status: APPROVED UI-FIRST CONTRACT REFERENCE — IMPLEMENTED AND RECONCILED**
 
-This is a documentation-level recommendation for ASK-001 and the later presentation boundary. It does not add Swift types, production routes or provider adapters.
+This reference is approved for the D5.1 presentation boundary and reconciled with the typed Humay-owned UI contract in `Humay/Presentation/D5/`. It does not approve production ASK-001 routes, provider adapters or access/persistence behavior.
 
 ## 1. Minimum Humay-owned envelope
 

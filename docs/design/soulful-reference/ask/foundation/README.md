@@ -1,10 +1,10 @@
 # D5.1 — Ask visual foundation · R1
 
-**Status: REVIEW CANDIDATE — NOT APPROVED**
+**Status: APPROVED VISUAL REFERENCE — IMPLEMENTED AND RECONCILED**
 
-This package defines the first complete D5 Ask cross-device visual family and the minimum Humay-owned presentation boundary needed for later review. R1 refines product language, answer completion, access separation and reference consistency. It is a design and contract review artifact only.
+This package defines the first complete D5 Ask cross-device visual family and the minimum Humay-owned presentation boundary for the D5.1 UI-first slice. R1 refines product language, answer completion, access separation and reference consistency. The visual reference is now reconciled against the implemented Debug-only presentation fixture and the iPhone/iPad Light/Dark evidence set.
 
-No production Ask SwiftUI, provider, backend/API, rewarded-ad, subscription, entitlement, conversation persistence or production asset work is included. Ask remains `MainDestinationPlaceholderView` until product-owner approval and the later implementation gates are satisfied.
+No provider, backend/API, LLM, rewarded-ad SDK, StoreKit, Premium entitlement, production cache/history/memory or astrology-calculation work is included. The implemented slice is intentionally UI-first and Release-safe: production composition remains empty/unavailable until the later implementation gates are satisfied.
 
 ## Product concept
 

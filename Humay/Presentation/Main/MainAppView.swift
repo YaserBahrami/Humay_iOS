@@ -7,6 +7,7 @@ struct MainAppView: View {
     let d2FeatureInput: D2FeatureInput
     let d3FeatureInput: D3FeatureInput
     let d4FeatureInput: D4FeatureInput
+    let d5FeatureInput: D5FeatureInput
 
     var body: some View {
         @Bindable var navigation = navigation
@@ -73,8 +74,8 @@ struct MainAppView: View {
 
             MainTabRoot {
                 NavigationStack {
-                    MainDestinationPlaceholderView(
-                        destination: .ask,
+                    AskView(
+                        input: d5FeatureInput,
                         profileName: profileName,
                         openProfile: openProfile
                     )

@@ -11,6 +11,8 @@ Depends on:
 
 Goal: implement contextual astrology Q&A over validated structured facts without creating an uncontrolled Free paid-model path.
 
+The D5.1 UI-first presentation slice is implemented over a Debug-only sample fixture and reconciled against the approved D5 reference package. The production provider, access, persistence and methodology tasks below remain TODO.
+
 ## Tasks
 
 ### ASK-001 — Define Ask request/context contract

@@ -11,15 +11,18 @@ struct RootView: View {
     private let d2FeatureInput: D2FeatureInput
     private let d3FeatureInput: D3FeatureInput
     private let d4FeatureInput: D4FeatureInput
+    private let d5FeatureInput: D5FeatureInput
 
     init(
         d2FeatureInput: D2FeatureInput = .productionUnavailable,
         d3FeatureInput: D3FeatureInput = .productionUnavailable,
-        d4FeatureInput: D4FeatureInput = .productionUnavailable
+        d4FeatureInput: D4FeatureInput = .productionUnavailable,
+        d5FeatureInput: D5FeatureInput = .productionUnavailable
     ) {
         self.d2FeatureInput = d2FeatureInput
         self.d3FeatureInput = d3FeatureInput
         self.d4FeatureInput = d4FeatureInput
+        self.d5FeatureInput = d5FeatureInput
     }
 
     var body: some View {
@@ -44,7 +47,8 @@ struct RootView: View {
                 MainAppView(
                     d2FeatureInput: d2FeatureInput,
                     d3FeatureInput: d3FeatureInput,
-                    d4FeatureInput: d4FeatureInput
+                    d4FeatureInput: d4FeatureInput,
+                    d5FeatureInput: d5FeatureInput
                 )
             }
         }
@@ -112,7 +116,8 @@ struct RootView: View {
     RootView(
         d2FeatureInput: DevelopmentD2Sample.makeInput(arguments: []),
         d3FeatureInput: DevelopmentD3Sample.makeInput(arguments: []),
-        d4FeatureInput: DevelopmentD4Sample.makeInput(arguments: [])
+        d4FeatureInput: DevelopmentD4Sample.makeInput(arguments: []),
+        d5FeatureInput: DevelopmentD5Sample.makeInput(arguments: [])
     )
         .environment(environment)
         .environment(navigation)
