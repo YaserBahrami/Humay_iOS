@@ -104,12 +104,19 @@ struct D4FeatureModelTests {
 
         #expect(missingInputs == [.birthTime, .birthPlace])
         #expect(unknownTime.knownFact.point == .sun)
-        #expect(unknownTime.knownFact.house == nil)
+        #expect(unknownTime.knownFact.sign == .pisces)
+        #expect(unknownTime.knownFact.reliability == .reliable)
+        let storedPropertyNames = Set(Mirror(reflecting: unknownTime.knownFact).children.compactMap(\.label))
+        #expect(storedPropertyNames.contains("point"))
+        #expect(storedPropertyNames.contains("sign"))
+        #expect(storedPropertyNames.contains("reliability"))
+        #expect(!storedPropertyNames.contains("position"))
+        #expect(!storedPropertyNames.contains("degree"))
+        #expect(!storedPropertyNames.contains("house"))
         #expect(unknownTime.withheldFacts.contains(.ascendant))
         #expect(unknownTime.withheldFacts.contains(.houses))
         #expect(input.chart.payload == nil)
         #expect(unknownTime.readiness.birthTime == .unknown)
-        #expect(unknownTime.knownFact.factText == "Sun in Aquarius at 22° 11′")
 
         let readiness = DevelopmentD4Sample.unknownTimeReadiness
         #expect(readiness.birthTime == .unknown)

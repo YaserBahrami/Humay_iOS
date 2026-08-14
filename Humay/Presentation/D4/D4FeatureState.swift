@@ -121,10 +121,16 @@ enum ChartWithheldFact: String, Sendable, Hashable, CaseIterable {
     }
 }
 
+struct ChartDateKnownFact: Sendable, Hashable {
+    let point: ChartPoint
+    let sign: WesternZodiacSign
+    let reliability: AstrologyFactReliability
+}
+
 struct ChartUnknownTimeContext: Sendable, Hashable {
     let dateLabel: String
     let readiness: ChartReadiness
-    let knownFact: ChartPlacement
+    let knownFact: ChartDateKnownFact
     let withheldFacts: [ChartWithheldFact]
     let explanation: String
 }

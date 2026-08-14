@@ -662,8 +662,8 @@ final class LaunchUITests: XCTestCase {
             element("chart.unknown-time.known-facts", in: app).exists
                 || app.staticTexts["Known from the date"].exists
         )
-        XCTAssertTrue(app.staticTexts["Sun in Aquarius"].exists)
-        XCTAssertTrue(app.staticTexts["22° 11′"].exists)
+        XCTAssertTrue(app.staticTexts["Sun in Pisces"].exists)
+        XCTAssertFalse(app.staticTexts["22° 11′"].exists)
         app.swipeUp()
         XCTAssertTrue(
             element("chart.unknown-time.withheld", in: app).exists

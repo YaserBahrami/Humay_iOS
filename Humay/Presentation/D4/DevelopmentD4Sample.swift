@@ -64,13 +64,10 @@ enum DevelopmentD4Sample {
     static let unknownTimeContext = ChartUnknownTimeContext(
         dateLabel: "14 March 1994",
         readiness: unknownTimeReadiness,
-        knownFact: ChartPlacement(
+        knownFact: ChartDateKnownFact(
             point: .sun,
-            position: position(322.1833),
-            house: nil,
-            reliability: .reliable,
-            interpretationTitle: "A date-valid starting point.",
-            interpretationBody: "The Sun sign is shown because it is supported by the supplied date. Other precision-dependent facts stay withheld."
+            sign: .pisces,
+            reliability: .reliable
         ),
         withheldFacts: [.ascendant, .houses, .houseCusps],
         explanation: "No time or place was supplied. Humay does not substitute noon, midnight, sunrise, or another guessed time."

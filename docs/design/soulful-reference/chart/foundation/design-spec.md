@@ -270,15 +270,23 @@ Reference-only authored assets proposed:
 - partial-sky / unknown-time visual cue;
 - restrained wheel anatomy marks and accessible legend.
 
-Keep these inside the D4.1 package until approval. Do not modify `Assets.xcassets` in this pass. Prefer scalable SVG.
+Keep these inside the D4.1 package. Do not modify `Assets.xcassets` in this pass. Prefer scalable SVG.
 
 ## 14. Approval boundary
 
-This package is not approved. Product-owner review must explicitly confirm:
+D4.1 is approved, implemented and reconciled for the UI-first foundation.
 
-- Free entry does not imply a calculated natal chart;
-- unknown time/place treatment is prominent and humane;
-- wheel/list composition is readable on iPhone and useful on iPad;
-- access language stays separate from calculation truth;
-- typography roles remain globally consistent;
-- methodology gates remain visible and unresolved.
+Still NOT completed:
+
+- production calculation;
+- provider integration;
+- CHART-002;
+- ASTRO-003;
+- cache;
+- access;
+- entitlement;
+- rewarded ads;
+- methodology gates;
+- Vedic;
+- BaZi;
+- Compare Systems.

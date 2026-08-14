@@ -31,7 +31,7 @@ Additional stress capture:
 - Loaded Western uses typed `ChartWheelModel` placements/aspects/houses and a separate ordered placement route. The wheel is not the only representation.
 - Loaded Debug sample routes show one quiet disclosure: “Development sample · not calculated”. Free Preview and Unknown Time remain product-facing surfaces without development notices.
 - Known-time sample values are fixed presentation fixtures: Sun Aquarius 22° 11′, Moon Libra 14° 27′, Ascendant Gemini 03° 02′, Moon 5th house and Sun trine Moon.
-- Unknown time keeps the supplied date fact, explicitly shows the missing time/place, withholds Ascendant/houses/cusps, and never supplies noon, midnight, sunrise or another guessed time.
+- Unknown time exposes only date-level facts supported by the supplied precision, explicitly shows the missing time/place, withholds Ascendant/houses/cusps and exact placement degrees, and never supplies noon, midnight, sunrise or another guessed time.
 - iPad regular width uses a bounded chart/detail composition; narrow content reflows toward one ordered column. Big Three cards do not rely on color alone and remain text-readable.
 - Fact rows precede interpretation in Placement Detail. Degree values use the reserved technical typography role; sign names, body names, houses and prose use semantic Humay roles.
 - Native navigation owns Back. Existing root-tab safe-area behavior remains the source of tab clearance; no arbitrary large bottom padding was added.
@@ -40,7 +40,7 @@ Additional stress capture:
 
 - Free Preview copy now describes Chart, birth-data readiness and the precision more complete birth details can unlock; implementation status is not exposed in product UI.
 - `-HumayD4Route` was removed. UI tests enter Chart, open Western Chart, open Moon Placement Detail and return through native navigation.
-- Unknown Time splits the date-valid fact into normal sign/body text and technical degree text.
+- Unknown Time keeps the date-valid fact at sign/body level; it does not expose an exact placement degree when birth time is unknown.
 - `ChartDegreeFormatter` normalizes rounded arcminutes into `0°00′ ... 29°59′`, including boundary, negative and over-range inputs.
 - Release-safe composition remains `Free Preview` with no `ChartPayload`; no sample placements, houses, interpretations or development disclosure cross into production.
 - Canonical verification passes: `verify-foundation: OK`.

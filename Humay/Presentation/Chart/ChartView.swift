@@ -389,11 +389,8 @@ private struct ChartUnknownTimeState: View {
                             .font(HumayTypography.sectionTitle)
                             .accessibilityIdentifier("chart.unknown-time.known-facts")
                         VStack(alignment: .leading, spacing: HumaySpacing.extraSmall) {
-                            Text("\(context.knownFact.point.label) in \(context.knownFact.position.sign.displayName)")
+                            Text("\(context.knownFact.point.label) in \(context.knownFact.sign.displayName)")
                                 .font(HumayTypography.body)
-                                .foregroundStyle(Color.humayTextPrimary)
-                            Text(context.knownFact.degreeText)
-                                .font(HumayTypography.technical)
                                 .foregroundStyle(Color.humayTextPrimary)
                         }
                         .accessibilityElement(children: .combine)
