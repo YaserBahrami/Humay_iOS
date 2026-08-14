@@ -58,7 +58,7 @@ Breakpoints follow content fit, not iPad model checks. Accessibility sizes may f
 2. Invitation and supporting explanation.
 3. Composer label, current value and Ask action.
 4. Suggested-question heading and rows.
-5. Context scope and access explanation.
+5. Available context and access explanation.
 6. Root navigation.
 
 ### Answer
@@ -70,7 +70,7 @@ Breakpoints follow content fit, not iPad model checks. Accessibility sizes may f
 5. Reading section headings and body in order.
 6. Practical/reflection action.
 7. `What this answer used` heading, basis rows and validity/source disclosure.
-8. Ask another question / return action.
+8. Ask another question action.
 
 Decorative orbit lines, stars and folded-note marks are hidden. The question, answer sections, basis and state warnings are meaningful text elements, not one opaque image.
 
@@ -117,3 +117,19 @@ Decorative orbit lines, stars and folded-note marks are hidden. The question, an
 - Phone answer/entry content reserves bottom breathing room above the native root tab shell.
 - The keyboard inset takes precedence over the tab shell; no action is obscured.
 - iPad top navigation remains native/adaptive and does not turn into a full-width chat rail.
+
+## Answer completion and new-question action
+
+- Every completed answer includes **Ask another question** after the factual-basis region.
+- On iPhone, the action belongs below **WHAT THIS ANSWER USED** in the canonical scroll order. A small scroll is acceptable; reading text and section spacing do not get compressed to force the action into the first viewport.
+- On iPad, the same semantic action sits in the bounded reading area beneath the editorial reading. The bounded question/basis rail remains; no device-specific navigation behavior is introduced.
+- Activating the action opens a fresh Ask composer for a new focused question. It does not create a persistent chat thread, conversation-history sidebar or long-term conversational memory.
+- Native Back may return to the previous answer during the current `NavigationStack` session.
+
+## Navigation reference
+
+Static iPhone/iPad navigation drawings are schematic. They do not authorize a custom tab or navigation control. Implementation retains the existing native `TabView(.sidebarAdaptable)` and current root hierarchy:
+
+**Today / Circle / Sky / Chart / Ask**
+
+Calendar remains nested under Sky. Profile and Settings remain reachable from the existing profile/header entry. Ask remains one root destination in that shell.

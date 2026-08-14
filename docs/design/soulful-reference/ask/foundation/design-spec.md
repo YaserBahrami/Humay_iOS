@@ -1,4 +1,4 @@
-# D5.1 Ask the Stars — design specification
+# D5.1 Ask — design specification · R1
 
 **Status: REVIEW CANDIDATE — NOT APPROVED**
 
@@ -6,7 +6,7 @@
 
 Today gives guidance. Circle gives relationship perspective. Sky gives current celestial context. Chart gives personal celestial structure. Ask gives a focused question interpreted through the astrology context Humay is actually authorized to use.
 
-The working concept is **Celestial Correspondence**:
+The working concept is **Celestial Correspondence**. It remains an internal design concept, not a required shipping label:
 
 ```text
 focused question
@@ -28,12 +28,12 @@ This package covers:
 - Premium accommodation without a D7 paywall;
 - cached/reopened answer behavior;
 - offline with and without a cached answer;
-- provider failure and fair recovery pressure;
+- unfinished reading and fair recovery pressure;
 - insufficient astrology context;
 - unsupported methodology and safety refusal language;
 - iPhone, iPad portrait, iPad landscape and narrow Split View composition;
 - accessibility, keyboard and composer behavior;
-- the minimum provider-independent Ask presentation contract.
+- the minimum Humay-owned Ask presentation contract.
 
 This package does not design long-term chat history, a conversation sidebar, provider/model branding, a full Premium paywall, rewarded-ad mechanics, subscription UI, backend/API, LLM orchestration, conversation persistence, D6 Settings or production Ask code.
 
@@ -63,20 +63,22 @@ The composer appears before a large hero. The first fold shows the input action 
 
 Regular width uses two bounded regions rather than a stretched phone:
 
-- leading region: invitation, what works well, suggested questions and context scope;
+- leading region: invitation, what works well, suggested questions and available context;
 - main region: compact illustration above the composer and the composer as the action center.
 
 Narrow Split View collapses to the iPhone reading order before text becomes cramped.
 
 ### Copy boundary
 
-Preferred language includes:
+Preferred shipping language includes:
 
-- **Ask the stars**;
+- **Ask**;
 - **What’s on your mind?**;
-- **Ask a focused question. Humay answers from the astrology context available for it.**
+- **Ask one honest question. Humay answers from the astrology context available for it.**
+- **YOUR QUESTION**;
+- **AVAILABLE CONTEXT**.
 
-Avoid “Ask me anything.” Ask is not an unrestricted general-purpose assistant.
+Avoid “Ask me anything.” Ask is not an unrestricted general-purpose assistant. Do not display Celestial Correspondence, Focused Question or other design-study labels merely to explain the composition.
 
 ## 4. Authored illustration concept
 
@@ -108,7 +110,7 @@ The composer is a native-feeling multiline input, not a chat bubble.
 | Accessibility | Label, hint, value, focus state and activation behavior are exposed through native controls. |
 | Decoration | No typing dots, neon glow or dense star field. |
 
-The composer does not trigger a paid call. Question entry and access/generation are separate concepts.
+The composer does not begin a reading. Question entry and access are separate concepts.
 
 ## 6. Suggested questions
 
@@ -124,15 +126,15 @@ These are examples for the reference package, not a frozen production prompt lib
 
 Use a quiet disclosure such as:
 
-> Using: Western · your available chart context
+> Using: Western · available chart context
 
-Supporting copy explains that only relevant structured context is used. The surface must not expose provider, model name, raw prompt, backend artifact ID or a full birth profile. Exact birth date/time/location appears only when directly needed and product-approved.
+Supporting copy explains: **Only relevant astrology context is used for this question.** The surface must not expose provider, model name, raw prompt, backend artifact ID or a full birth profile. Exact birth date/time/location appears only when directly needed and product-approved.
 
 The visual distinction is important:
 
 - the answer body is interpretation;
 - the context/basis region contains supplied facts and their reliability/basis;
-- neither is represented as an opaque provider response.
+- neither is represented as an opaque implementation response.
 
 ## 8. Answer / reading state
 
@@ -163,7 +165,7 @@ The primary answer references contain one quiet disclosure: **Development sample
 3. two or three structured sections;
 4. practical/reflection section where appropriate;
 5. **What this answer used** factual basis;
-6. Ask another question / return action.
+6. **Ask another question** action.
 
 Candidate section language:
 
@@ -183,11 +185,11 @@ The answer body is interpretation. The basis region contains:
 - Western · Tropical;
 - known-time development fixture.
 
-The basis is a compact trustworthy region, preferably inline/disclosure-style in V1. No provider provenance is shown.
+The basis is a compact trustworthy region, preferably inline/disclosure-style in V1. No implementation provenance is shown.
 
 ### iPhone answer
 
-Use one bounded reading column. Keep the original question compact but visible. Let answer sections breathe on the warm ground. One selective cosmic surface may hold the practical reflection; do not turn every paragraph into a card. Keep cached/offline disclosure, basis and new-question action clear.
+Use one bounded reading column. Keep the original question compact but visible. Let answer sections breathe on the warm ground. One selective cosmic surface may hold the practical reflection; do not turn every paragraph into a card. Keep cached/offline disclosure and **WHAT THIS ANSWER USED** clear. Place **Ask another question** below the factual-basis region in the canonical scroll order; a small scroll is acceptable and reading content must not be compressed to force it into the first viewport.
 
 ### iPad answer
 
@@ -196,7 +198,11 @@ Regular width uses:
 - leading bounded rail: original question and basis/context summary;
 - main bounded reading column: editorial answer.
 
-The main prose measure remains comfortable. No conversation-history sidebar. No full-width prose spanning the iPad canvas. Narrow Split View collapses the rail below the question or above the answer.
+The main prose measure remains comfortable. No conversation-history sidebar. No full-width prose spanning the iPad canvas. The same **Ask another question** action sits below the bounded reading and uses the same behavior as iPhone. Narrow Split View collapses the rail below the question or above the answer.
+
+### Answer completion decision
+
+After a completed answer, **Ask another question** opens a fresh Ask composer for a new focused question. It does not create a persistent chat thread, conversation-history sidebar or long-term conversational memory. Native Back may return to the previous answer during the current `NavigationStack` session. iPhone and iPad keep this semantic action and behavior identical; only placement adapts to available width.
 
 ## 9. Generating state
 
@@ -206,11 +212,11 @@ Candidate copy:
 
 - **Reading the context you shared…**
 - **Putting the pieces together…**
-- **No answer has been generated yet.**
+- **Your reading will appear here when it’s ready.**
 
 The state may show the submitted question, a small orbit/note treatment and stable skeleton lines. It must not show fabricated answer paragraphs, deterministic calculation progress, fake percentage completion or typing dots that imply a human conversation.
 
-If the calculation artifact already exists, copy must not imply that astrology is being recalculated. The state represents interpretation generation only.
+If the calculation artifact already exists, copy must not imply that astrology is being recalculated. The state represents putting the reading together from the context already shared.
 
 Motion concept:
 
@@ -249,13 +255,13 @@ Hierarchy:
 3. **Watch an ad for this answer**;
 4. calm Premium alternative.
 
-One successful rewarded completion authorizes one needed provider-backed generation for this question/result key. It is not coins, stars currency, a credit wallet, a token balance or temporary Premium. Ask should not look like an ad screen.
+One successful rewarded completion allows one needed personal reading for this question/result key. It is not a currency, wallet, balance or temporary Premium. Ask should not look like an ad screen.
 
 ### Premium
 
 Only show enough to establish the alternative path:
 
-> Premium members can ask included questions without this per-generation step.
+> Premium members can create included personal readings without this per-question step.
 
 The full paywall, plan detail, StoreKit and entitlement implementation belong to D7/ARCH-007.
 
@@ -265,26 +271,43 @@ If the exact valid answer exists:
 
 - reopen the answer;
 - consume no new reward;
-- make no new provider generation;
+- make no new reading;
 - show a quiet Saved/Cached indicator when useful;
 - preserve basis, validity/freshness and source disclosure.
 
 The user must not unlock the same valid answer again.
 
+### Cache identity invariant
+
+The same semantic question plus the same relevant astrology context must keep the same answer identity whether the user is Free, has completed the Rewarded step or is Premium. Access authorizes creation; it does not alter question semantics.
+
+Result identity is based on result-changing dimensions only:
+
+- relevant astrology context or calculation artifact;
+- question digest;
+- system or methodology;
+- locale;
+- tone;
+- prompt, model and safety versions where applicable.
+
+Entitlement tier is not part of answer semantic identity unless a future product decision explicitly makes it result-changing.
+
 ## 11. Offline, failure and context states
 
 These states must be visually distinct:
 
+Technical categories such as provider failure remain architecture/state terminology in this document. Simulated user-facing references use calm Humay language instead.
+
 | State | Visual/copy direction | Forbidden implication |
 |---|---|---|
 | Offline + cached answer | Answer remains readable with `Offline · saved answer` and saved-time/freshness context. | Do not imply current generation. |
-| Offline + no cache | `A new answer needs a connection.` Keep the submitted draft if later product policy allows. | Do not silently queue paid generation or consume reward. |
+| Offline + no cache | `A new answer needs a connection.` Keep the submitted draft if later product policy allows. | Do not silently queue a paid reading or consume reward. |
 | Provider failure | `Humay couldn’t finish this reading.` Calm retry/recovery placeholder owned by later contracts. | Do not expose provider name, HTTP code, timeout or stack. |
-| Reward completed, provider failed | Explain that the authorized generation needs fair retry/recovery; do not ask for another reward for the same scope. | Do not invent a bankable credit or silently consume again. |
+| Reward completed, provider failed | Explain that the completed access step needs fair retry/recovery; do not ask for another reward for the same scope. | Do not invent a bankable credit or silently consume again. |
 | Insufficient context | Show what Humay knows and what is missing. | Do not invent a house, Ascendant, aspect or chart. |
 | Unsupported methodology | Explain that this question needs a method/context not available or approved. | Do not collapse into generic network failure. |
 | Safety refusal | Decline astrology-based high-stakes guidance and redirect to an appropriate real-world source of help. | Do not generate a probability or certainty claim. |
-| Malformed/validation failure | `This reading could not be verified.` Offer later Humay-owned recovery. | Do not present provider text as a valid answer. |
+| Malformed/validation failure | `This reading could not be verified.` Offer later Humay-owned recovery. | Do not present unverified text as a valid answer. |
 
 Safety example pressure case:
 
@@ -294,7 +317,7 @@ The response declines the astrology-based decision, recommends a qualified healt
 
 ## 12. Prediction certainty
 
-Ask must not present high-impact outcomes as certain astrology predictions. The reading language remains reflective and non-deterministic. No certainty percentage, risk score or pseudo-clinical confidence meter is introduced.
+Ask must not present high-impact outcomes as certain astrology predictions. The reading language remains reflective and non-deterministic. No certainty score, risk score or pseudo-clinical confidence meter is introduced.
 
 Normal is the primary D5 register. No Ask-specific Roast toggle is introduced. The architecture may accommodate Normal/Roast later as variants over the same facts; this package does not expand into a Roast pass.
 

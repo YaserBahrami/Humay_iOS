@@ -26,7 +26,6 @@
     <filter id="soft-shadow" x="-30%" y="-30%" width="160%" height="180%">
       <feDropShadow dx="0" dy="5" stdDeviation="10" flood-color="#35281C" flood-opacity="0.09"/>
     </filter>
-    
   </defs>
   <rect width="1024" height="1366" fill="#FBF7F1"/>
     <text x="24" y="31" class="ui" font-size="13" font-weight="700" fill="#151B28">9:41  ·  Thu 14 Aug</text>
@@ -43,7 +42,7 @@
     <text x="340" y="81" text-anchor="middle" class="ui" font-size="15" font-weight="600" fill="#151B28">Today</text><text x="430" y="81" text-anchor="middle" class="ui" font-size="15" font-weight="600" fill="#151B28">Circle</text><text x="520" y="81" text-anchor="middle" class="ui" font-size="15" font-weight="600" fill="#151B28">Sky</text><text x="625" y="81" text-anchor="middle" class="ui" font-size="15" font-weight="600" fill="#151B28">Chart</text><text x="725" y="81" text-anchor="middle" class="ui" font-size="15" font-weight="750" fill="#A83F3C">Ask</text>
   </g>
     <text x="56" y="161" class="editorial" font-size="42" fill="#151B28">Ask</text>
-    <text x="56" y="194" class="label" font-size="8" fill="#A83F3C">ACCESS BEFORE GENERATION</text>
+    <text x="56" y="194" class="label" font-size="8" fill="#A83F3C">YOUR READING</text>
     <circle cx="944" cy="154" r="24" fill="url(#context-gradient)" stroke="#E9E0D8"/>
     <text x="944" y="161" text-anchor="middle" class="ui" font-size="14" font-weight="700" fill="#151B28">Y</text>
     <line x1="56" y1="224" x2="968" y2="224" stroke="#E9E0D8"/>
@@ -55,9 +54,9 @@
   </g>
       <g aria-label="Available astrology context">
     <rect x="56" y="386" width="286" height="178" rx="22" fill="url(#context-gradient)" stroke="#E9E0D8" />
-    <text x="76" y="415" class="label" font-size="7.3" fill="#356F91">CONTEXT SCOPE</text>
-    <text x="76" y="446" class="ui" text-anchor="start" font-size="12.5" font-weight="700" fill="#151B28" opacity="1">Using: Western · your available</text><text x="76" y="464" class="ui" text-anchor="start" font-size="12.5" font-weight="700" fill="#151B28" opacity="1">chart context</text>
-    <text x="76" y="484" class="ui" text-anchor="start" font-size="11.5" font-weight="400" fill="#625F62" opacity="1">Only relevant context is used.</text>
+    <text x="76" y="415" class="label" font-size="7.3" fill="#356F91">AVAILABLE CONTEXT</text>
+    <text x="76" y="446" class="ui" text-anchor="start" font-size="12.5" font-weight="700" fill="#151B28" opacity="1">Using: Western · available</text><text x="76" y="464" class="ui" text-anchor="start" font-size="12.5" font-weight="700" fill="#151B28" opacity="1">chart context</text>
+    <text x="76" y="484" class="ui" text-anchor="start" font-size="11.5" font-weight="400" fill="#625F62" opacity="1">Only relevant astrology context is</text><text x="76" y="502" class="ui" text-anchor="start" font-size="11.5" font-weight="400" fill="#625F62" opacity="1">used for this question.</text>
   </g>
       <rect x="56" y="598" width="286" height="170" rx="20" fill="#F7F0E8" stroke="#E9E0D8" />
       <text x="76" y="628" class="label" font-size="7.4" fill="#5F8C72">CACHE FIRST</text>
@@ -65,13 +64,13 @@
     </g>
     <g>
       <text x="402" y="273" class="label" font-size="8" fill="#A83F3C">A SINGLE CALM GATE</text>
-      <g aria-label="Rewarded access presentation">
+      <g aria-label="Create your personal reading">
     <rect x="402" y="302" width="566" height="260" rx="26" fill="url(#hero-gradient)" stroke="#E9E0D8" />
     <circle cx="444" cy="344" r="16" fill="#D5A253" opacity="0.18"/>
     <path d="M438.54 343.22a7 7 0 0 1 14 0v9h-14Z" stroke="#D5A253" fill="none" stroke-width="1.326" stroke-linecap="round" stroke-linejoin="round"/><path d="M440.88 342.44v-4a4 4 0 0 1 8 0v4" stroke="#D5A253" fill="none" stroke-width="1.326" stroke-linecap="round" stroke-linejoin="round"/>
-    <text x="472" y="347" class="label" font-size="7.1" fill="#D9D5D1">GENERATION ACCESS</text>
-    <text x="430" y="389" class="editorial" font-size="26" fill="#FFF7F0">Your question is ready</text>
-    <text x="430" y="419" class="ui" text-anchor="start" font-size="12" font-weight="400" fill="#D9D5D1" opacity="1">A new answer needs one authorized</text><text x="430" y="437" class="ui" text-anchor="start" font-size="12" font-weight="400" fill="#D9D5D1" opacity="1">provider-backed generation.</text>
+    <text x="472" y="347" class="label" font-size="7.1" fill="#D9D5D1">YOUR QUESTION IS READY</text>
+    <text x="430" y="389" class="editorial" font-size="26" fill="#FFF7F0">Create this reading</text>
+    <text x="430" y="419" class="ui" text-anchor="start" font-size="12" font-weight="400" fill="#D9D5D1" opacity="1">Create this personal reading</text><text x="430" y="437" class="ui" text-anchor="start" font-size="12" font-weight="400" fill="#D9D5D1" opacity="1">by watching an ad.</text>
     <g aria-label="Watch an ad for this answer">
     <rect x="430" y="502" width="220" height="44" rx="22" fill="#F06F67" stroke="#F06F67"/>
     <text x="540" y="529" text-anchor="middle" class="ui" font-size="13" font-weight="700" fill="#FFFFFF">Watch an ad for this answer</text>
@@ -82,11 +81,11 @@
     <circle cx="432" cy="629" r="9" fill="#D5A253" opacity="0.18" stroke="#D5A253"/>
     <path d="M432 623.96l3.5 7.5 8 .8-6 5.3 1.8 7.8-7.3-4.1-7.3 4.1 1.8-7.8-6-5.3 8-.8Z" fill="#D5A253" stroke="none"/>
     <text x="454" y="628" class="ui" font-size="12.5" font-weight="700" fill="#151B28">Premium alternative</text>
-    <text x="454" y="652" class="ui" font-size="11" fill="#625F62">Included Ask generation without this per-question step.</text>
+    <text x="454" y="652" class="ui" text-anchor="start" font-size="11" font-weight="400" fill="#625F62" opacity="1">Premium members can create included</text><text x="454" y="668" class="ui" text-anchor="start" font-size="11" font-weight="400" fill="#625F62" opacity="1">personal readings without this per-question</text><text x="454" y="684" class="ui" text-anchor="start" font-size="11" font-weight="400" fill="#625F62" opacity="1">step.</text>
     <path d="M940 640l4 4-4 4" fill="none" stroke="#7A7575" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
   </g>
       <rect x="402" y="738" width="566" height="132" rx="22" fill="#FFF9F4" stroke="#E9E0D8" />
-      <text x="430" y="770" class="label" font-size="7.5" fill="#356F91">SEMANTICS</text>
-      <text x="430" y="807" class="ui" text-anchor="start" font-size="13" font-weight="400" fill="#625F62" opacity="1">One successful rewarded completion authorizes one needed</text><text x="430" y="827" class="ui" text-anchor="start" font-size="13" font-weight="400" fill="#625F62" opacity="1">generation for this question/result key. It is not a wallet.</text>
+      <text x="430" y="770" class="label" font-size="7.5" fill="#356F91">ONE READING</text>
+      <text x="430" y="807" class="ui" text-anchor="start" font-size="13" font-weight="400" fill="#625F62" opacity="1">This step is for this question only.</text><text x="430" y="827" class="ui" text-anchor="start" font-size="13" font-weight="400" fill="#625F62" opacity="1">A saved reading will not ask again.</text>
     </g>
 </svg>

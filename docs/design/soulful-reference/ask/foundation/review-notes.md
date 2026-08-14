@@ -1,4 +1,4 @@
-# D5.1 Ask visual foundation — review notes
+# D5.1 Ask visual foundation · R1 review notes
 
 **Status: REVIEW CANDIDATE — NOT APPROVED**
 
@@ -19,23 +19,23 @@ The package preserves the current authority order:
 
 ### Celestial Correspondence
 
-Ask is designed as one focused question followed by one considered reading. The primary hierarchy avoids a transcript and avoids a large hero that pushes the composer below the fold.
+Ask is designed as one focused question followed by one personal reading. Celestial Correspondence remains the internal concept; shipping hierarchy uses Ask, your question and your reading. The primary composition avoids a transcript and avoids a large hero that pushes the composer below the fold.
 
 ### Entry
 
-The composer is the action center. Suggested questions explain the product without becoming a prompt library. Context scope is quiet and relevant rather than a full profile summary.
+The composer is the action center. Suggested questions explain the product without becoming a prompt library. **AVAILABLE CONTEXT** is quiet and relevant rather than a full profile summary.
 
 ### Answer
 
-The original question remains visible as identity. Interpretation sections stay open on the reading ground. `What this answer used` is a separate basis region, making the calculation/interpretation boundary visible without exposing provider internals.
+The original question remains visible as identity. Interpretation sections stay open on the reading ground. **WHAT THIS ANSWER USED** is a separate basis region, making the fact/interpretation boundary visible without exposing implementation details. **Ask another question** follows the basis region on iPhone and the bounded reading on iPad.
 
 ### Access
 
-Rewarded Access is one calm generation gate. Premium is shown only as an alternative path; the full paywall belongs to D7. Cached reopen is treated as a result state, not another access event.
+Rewarded Access is one calm reading gate. Premium is shown only as an alternative path; the full paywall belongs to D7. Cached reopen is treated as a result state, not another access event. Access stays outside AskQuestion semantic identity.
 
 ### States
 
-Offline, provider failure, insufficient context, unsupported methodology and safety refusal have separate concepts and copy pressure. Reward-completed/provider-failed is retained as a future fairness requirement, not implemented entitlement behavior.
+Offline, unfinished reading, insufficient context, unsupported methodology and safety refusal have separate concepts and copy pressure. User-facing failure copy is **Humay couldn’t finish this reading.** Technical provider-failure terminology remains architecture-only. Reward-completed/provider-failed is retained as a future fairness requirement, not implemented entitlement behavior.
 
 ## Fixture review
 
@@ -48,7 +48,7 @@ The answer references use only explicitly supplied sample factors:
 - 5th house;
 - known-time development fixture.
 
-The references do not imply these facts belong to the current user. The one quiet answer disclosure is **Development sample · not generated**. No provider-generated, calculated or verified-personalized claim is made.
+The references do not imply these facts belong to the current user. The one quiet answer disclosure is **Development sample · not generated**. No generated, calculated or verified-personalized claim is made.
 
 ## Accessibility review boundary
 
@@ -82,8 +82,15 @@ Production Ask remains gated by ASK-001, ASK-002, ARCH-007, backend/provider, ca
 - anonymous backend identity and privacy retention/deletion/export policy;
 - final provider/model policy and prompt/safety versions;
 - production source/ownership of the folded-note illustration;
-- final Ask navigation/action behavior after answer completion;
 - whether context basis is inline disclosure or a later native disclosure route.
+
+## R1 resolved decisions
+
+- Completed answer action: **Ask another question** opens a fresh Ask composer for a new focused question.
+- The action does not create a persistent thread, history sidebar or long-term conversational memory. Native Back may return to the prior answer during the current `NavigationStack` session.
+- iPhone places the action below **WHAT THIS ANSWER USED**; a small scroll is acceptable. iPad places the same action below the bounded reading. Navigation behavior is shared across device classes.
+- Static navigation is schematic. Implementation retains native `TabView(.sidebarAdaptable)` and **Today / Circle / Sky / Chart / Ask**; no custom root navigation is introduced.
+- The same semantic question plus relevant astrology context keeps one answer identity across Free, Rewarded and Premium. Access authorizes creation; entitlement tier does not change the result key.
 
 ## Explicit non-actions
 
@@ -103,6 +110,7 @@ Production Ask remains gated by ASK-001, ASK-002, ARCH-007, backend/provider, ca
 - [ ] product owner approves Celestial Correspondence direction;
 - [ ] product owner approves entry/composer hierarchy;
 - [ ] product owner approves answer/basis separation;
+- [ ] product owner approves **Ask another question** completion behavior;
 - [ ] product owner approves Rewarded/Premium presentation boundary;
 - [ ] product owner approves cached/offline/failure/context/safety state distinctions;
 - [ ] product owner approves iPhone/iPad/landscape/Split View behavior;

@@ -1,4 +1,4 @@
-# D5.1 Ask contract review notes
+# D5.1 Ask contract review notes · R1
 
 **Status: REVIEW CANDIDATE — NOT APPROVED**
 
@@ -10,17 +10,27 @@ The future Ask surface needs a provider-independent envelope that keeps question
 
 ### AskQuestion
 
-Recommended fields:
+Recommended semantic fields only:
 
 - `questionText`: user-authored text, treated as untrusted content;
 - `locale`;
 - `tone`: existing `normal` / `roast` accommodation, with Normal as D5 primary;
 - `selectedTradition` or system identifier;
-- `contextScope`: the minimum authorized context requested for this question;
-- `accessContext`: Free, Rewarded-available, Premium or already-authorized generation scope;
-- opaque request/idempotency scope owned by Humay orchestration, not a provider DTO.
+- `contextScope`: the relevant astrology context requested for this question.
 
-Question text must not carry hidden instructions that override Humay system, safety, access or provider rules.
+Access or entitlement is not part of `AskQuestion` semantic identity. Request/idempotency scope belongs to a separate future Humay-owned envelope, not to the question itself. Question text must not carry hidden instructions that override Humay system, safety, access or provider rules.
+
+### Separate access state
+
+Represent access separately in the future envelope with a Humay-owned concept such as `AskAccessState` or `AskGenerationAuthorization`. Exact production names remain open. It may express:
+
+- access required;
+- Rewarded available;
+- authorized rewarded reading;
+- Premium;
+- cached reopen.
+
+This state authorizes or bypasses a reading step; it does not change `AskQuestion`, the relevant astrology context or the answer identity.
 
 ### AskContext
 
@@ -87,6 +97,8 @@ Raw provider/network errors must not cross into Presentation. The later Data bou
 
 The UI can share a surface family, but it must not make provider failure look like missing astrology context or safety refusal.
 
+User-facing failure copy stays Humay-owned: **Humay couldn’t finish this reading.** Technical categories remain outside the simulated product UI and may remain in architecture annotations.
+
 ## 3. Access and cache contract
 
 The design encodes this sequence:
@@ -100,9 +112,15 @@ The design encodes this sequence:
 7. validate, cache and return structured answer;
 8. support fair recovery if reward succeeded but generation failed.
 
-The result identity should include only result-changing dimensions: relevant calculation artifact/digest, feature/context scope, question digest, prompt/model/safety policy versions, locale and tone. It must not expose raw question text or birth fields in logs.
+The result identity should include only result-changing dimensions: relevant astrology context or calculation artifact/digest, question digest, selected system/methodology, locale, tone and prompt/model/safety policy versions where applicable. It must not expose raw question text or birth fields in logs.
 
-Reward semantics remain exactly one successful rewarded completion for one needed provider-backed generation for the selected question/result key. No coin, star, credit or bankable token model is introduced.
+### Cache identity invariant
+
+The same semantic question plus the same relevant astrology context must not become a different answer identity because the user is Free, has completed the Rewarded step or is Premium. Access authorizes reading creation; it does not alter question semantics.
+
+Entitlement tier is not part of answer semantic identity unless an explicit future product decision makes it result-changing. A valid cached result therefore reopens under the same result identity without another access step.
+
+Reward semantics remain exactly one successful rewarded completion for one needed reading for the selected question/result key. No coin, star, credit or bankable token model is introduced.
 
 ## 4. Data minimization
 

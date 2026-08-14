@@ -26,7 +26,6 @@
     <filter id="soft-shadow" x="-30%" y="-30%" width="160%" height="180%">
       <feDropShadow dx="0" dy="5" stdDeviation="10" flood-color="#35281C" flood-opacity="0.09"/>
     </filter>
-    
   </defs>
   <rect width="1600" height="900" fill="#EFE9E2"/>
     <text x="40" y="54" class="label" font-size="10" fill="#A83F3C">D5.1 · REVIEW CANDIDATE</text>
@@ -64,13 +63,13 @@
     <text x="1194" y="332" class="editorial" font-size="25" fill="#151B28">Visible factors</text>
     <text x="1194" y="364" class="ui" text-anchor="start" font-size="12.5" font-weight="400" fill="#625F62" opacity="1">Supplied facts stay compact,</text><text x="1194" y="383" class="ui" text-anchor="start" font-size="12.5" font-weight="400" fill="#625F62" opacity="1">scannable and separate from</text><text x="1194" y="402" class="ui" text-anchor="start" font-size="12.5" font-weight="400" fill="#625F62" opacity="1">interpretive language.</text>
   </g>
-      <g aria-label="No provider blob">
+      <g aria-label="No hidden machinery">
     <rect x="742" y="500" width="400" height="214" rx="24" fill="#FFFDFC" stroke="#E9E0D8"/>
     <circle cx="774" cy="534" r="12" fill="#A83F3C" opacity="0.18"/>
     <path d="M768.96 533.28a7 7 0 0 1 14 0v9h-14Z" stroke="#A83F3C" fill="none" stroke-width="1.224" stroke-linecap="round" stroke-linejoin="round"/><path d="M771.12 532.56v-4a4 4 0 0 1 8 0v4" stroke="#A83F3C" fill="none" stroke-width="1.224" stroke-linecap="round" stroke-linejoin="round"/>
     <text x="798" y="538" class="label" font-size="7.4" fill="#A83F3C">BOUNDARY</text>
-    <text x="770" y="582" class="editorial" font-size="25" fill="#151B28">No provider blob</text>
-    <text x="770" y="614" class="ui" text-anchor="start" font-size="12.5" font-weight="400" fill="#625F62" opacity="1">No model name, raw prompt,</text><text x="770" y="633" class="ui" text-anchor="start" font-size="12.5" font-weight="400" fill="#625F62" opacity="1">artifact ID or invented factor</text><text x="770" y="652" class="ui" text-anchor="start" font-size="12.5" font-weight="400" fill="#625F62" opacity="1">reaches the reading surface.</text>
+    <text x="770" y="582" class="editorial" font-size="25" fill="#151B28">No hidden machinery</text>
+    <text x="770" y="614" class="ui" text-anchor="start" font-size="12.5" font-weight="400" fill="#625F62" opacity="1">Only the relevant facts and</text><text x="770" y="633" class="ui" text-anchor="start" font-size="12.5" font-weight="400" fill="#625F62" opacity="1">reading sections appear here.</text><text x="770" y="652" class="ui" text-anchor="start" font-size="12.5" font-weight="400" fill="#625F62" opacity="1">Nothing extra reaches the page.</text>
   </g>
       <g aria-label="May, can, notice">
     <rect x="1166" y="500" width="394" height="214" rx="24" fill="#FFFDFC" stroke="#E9E0D8"/>
@@ -78,7 +77,7 @@
     <path d="M1198 525.36l3.5 7.5 8 .8-6 5.3 1.8 7.8-7.3-4.1-7.3 4.1 1.8-7.8-6-5.3 8-.8Z" fill="#80570E" stroke="none"/>
     <text x="1222" y="538" class="label" font-size="7.4" fill="#80570E">VOICE</text>
     <text x="1194" y="582" class="editorial" font-size="25" fill="#151B28">May, can, notice</text>
-    <text x="1194" y="614" class="ui" text-anchor="start" font-size="12.5" font-weight="400" fill="#625F62" opacity="1">Interpretation remains warm,</text><text x="1194" y="633" class="ui" text-anchor="start" font-size="12.5" font-weight="400" fill="#625F62" opacity="1">specific and non-deterministic.</text><text x="1194" y="652" class="ui" text-anchor="start" font-size="12.5" font-weight="400" fill="#625F62" opacity="1">No certainty percentage.</text>
+    <text x="1194" y="614" class="ui" text-anchor="start" font-size="12.5" font-weight="400" fill="#625F62" opacity="1">Interpretation remains warm,</text><text x="1194" y="633" class="ui" text-anchor="start" font-size="12.5" font-weight="400" fill="#625F62" opacity="1">specific and non-deterministic.</text><text x="1194" y="652" class="ui" text-anchor="start" font-size="12.5" font-weight="400" fill="#625F62" opacity="1">No certainty score.</text>
   </g>
     </g>
 </svg>

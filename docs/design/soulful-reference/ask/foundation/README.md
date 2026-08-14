@@ -1,14 +1,14 @@
-# D5.1 — Ask the Stars visual foundation
+# D5.1 — Ask visual foundation · R1
 
 **Status: REVIEW CANDIDATE — NOT APPROVED**
 
-This package defines the first complete D5 Ask the Stars cross-device visual family and the minimum provider-independent presentation boundary needed for later review. It is a design and contract review artifact only.
+This package defines the first complete D5 Ask cross-device visual family and the minimum Humay-owned presentation boundary needed for later review. R1 refines product language, answer completion, access separation and reference consistency. It is a design and contract review artifact only.
 
 No production Ask SwiftUI, provider, backend/API, rewarded-ad, subscription, entitlement, conversation persistence or production asset work is included. Ask remains `MainDestinationPlaceholderView` until product-owner approval and the later implementation gates are satisfied.
 
 ## Product concept
 
-**Celestial Correspondence**: the user brings one focused question to Humay; Humay returns a structured personal reading. The visual rhythm is **question → considered reading**, not a chat transcript.
+**Celestial Correspondence** remains the internal design concept: the user brings one focused question to Humay; Humay returns a structured personal reading. Shipping UI uses the simpler hierarchy **Ask → your question → your reading**, not the concept name and not a chat transcript.
 
 Ask is:
 
@@ -43,8 +43,8 @@ The answer family contains one quiet disclosure: **Development sample · not gen
 
 - [`answer-anatomy.png`](answer-anatomy.png) — question, interpretation, practical reflection and factual basis separation.
 - [`composer-keyboard.png`](composer-keyboard.png) — empty, multiline, keyboard, long-question, disabled/enabled, Dynamic Type and hardware-keyboard pressure.
-- [`access-cache-states.png`](access-cache-states.png) — Free generation-needed, Rewarded, Premium, cached reopen and reward-completed/provider-failed concepts.
-- [`error-context-safety.png`](error-context-safety.png) — offline, provider failure, insufficient context, unsupported methodology, safety refusal and malformed/validation failure.
+- [`access-cache-states.png`](access-cache-states.png) — Free access, Rewarded, Premium, saved reopen and fair recovery concepts.
+- [`error-context-safety.png`](error-context-safety.png) — offline, unfinished reading, missing context, unsupported methodology, safety refusal and unreadable-result failure.
 - [`accessibility-long-content.png`](accessibility-long-content.png) — reading order, focus, Dynamic Type, VoiceOver, Reduce Motion, contrast and long-content pressure.
 - [`ipad-adaptive.png`](ipad-adaptive.png) — regular iPad, landscape, narrow Split View and keyboard-present collapse rules.
 - [`illustration-ask-stars-light.png`](illustration-ask-stars-light.png) and [`illustration-ask-stars-dark.png`](illustration-ask-stars-dark.png) — reference-only folded note/celestial correspondence illustration concept.
@@ -56,6 +56,15 @@ The answer family contains one quiet disclosure: **Development sample · not gen
 3. [`contract-notes.md`](contract-notes.md) — ASK-001 minimum Humay-owned presentation contract, data minimization and prompt-injection boundary.
 4. [`review-notes.md`](review-notes.md) — review boundary, open decisions, non-actions and Phase 08 recommendation.
 5. [`generate-references.cjs`](generate-references.cjs) — deterministic SVG/PNG generator.
+
+## R1 interaction decisions
+
+- Entry labels use **Ask**, **What’s on your mind?**, **YOUR QUESTION** and **AVAILABLE CONTEXT**. Celestial Correspondence is not required in shipping UI.
+- Generating copy uses **Reading the context you shared…**, **Putting the pieces together…** and **Your reading will appear here when it’s ready.**
+- Rewarded Access keeps the question → access card → rewarded action → Premium alternative → context composition. Product copy says **Create this personal reading by watching an ad.** and never names implementation details.
+- A completed answer ends with **Ask another question**. It opens a fresh Ask composer for a new focused question; it does not create a persistent thread, history sidebar or long-term conversational memory. Native Back may return to the prior answer during the current `NavigationStack` session.
+- iPhone includes the same action below **WHAT THIS ANSWER USED**; it may require a small scroll. iPad uses the same action beside the bounded reading column. Device class does not change behavior.
+- Static navigation drawings are schematic. Implementation retains the existing native `TabView(.sidebarAdaptable)` and **Today / Circle / Sky / Chart / Ask** hierarchy; no custom root tab or history control is implied.
 
 ## Authority boundary
 

@@ -117,8 +117,7 @@ function svgShell({ width, height, title, description, mode, body, extraDefiniti
     <filter id="soft-shadow" x="-30%" y="-30%" width="160%" height="180%">
       <feDropShadow dx="0" dy="5" stdDeviation="10" flood-color="${theme.shadow}" flood-opacity="${mode === "light" ? "0.09" : "0"}"/>
     </filter>
-    ${extraDefinitions}
-  </defs>
+${extraDefinitions ? `    ${extraDefinitions}\n` : ""}  </defs>
   ${body}
 </svg>`;
 }
@@ -236,20 +235,18 @@ function iPadTopNavigation(theme, selected = "Ask") {
   </g>`;
 }
 
-function phoneHeader(theme, subtitle = "FOCUSED QUESTION") {
+function phoneHeader(theme, subtitle = "") {
   return `${statusBar(430, theme, "phone")}
     <text x="20" y="80" class="editorial" font-size="34" fill="${theme.ink}">Ask</text>
-    ${label(20, 108, subtitle, theme, theme.coralText, 7.3)}
-    <circle cx="388" cy="70" r="22" fill="url(#context-gradient)" stroke="${theme.hairline}"/>
+${subtitle ? `    ${label(20, 108, subtitle, theme, theme.coralText, 7.3)}\n` : ""}    <circle cx="388" cy="70" r="22" fill="url(#context-gradient)" stroke="${theme.hairline}"/>
     <text x="388" y="76" text-anchor="middle" class="ui" font-size="13" font-weight="700" fill="${theme.ink}">Y</text>`;
 }
 
-function iPadHeader(theme, subtitle = "FOCUSED QUESTION") {
+function iPadHeader(theme, subtitle = "") {
   return `${statusBar(1024, theme, "ipad")}
     ${iPadTopNavigation(theme, "Ask")}
     <text x="56" y="161" class="editorial" font-size="42" fill="${theme.ink}">Ask</text>
-    ${label(56, 194, subtitle, theme, theme.coralText, 8)}
-    <circle cx="944" cy="154" r="24" fill="url(#context-gradient)" stroke="${theme.hairline}"/>
+${subtitle ? `    ${label(56, 194, subtitle, theme, theme.coralText, 8)}\n` : ""}    <circle cx="944" cy="154" r="24" fill="url(#context-gradient)" stroke="${theme.hairline}"/>
     <text x="944" y="161" text-anchor="middle" class="ui" font-size="14" font-weight="700" fill="${theme.ink}">Y</text>`;
 }
 
@@ -275,7 +272,7 @@ function surface(x, y, width, height, theme, { fill = theme.surface, radius = 22
 }
 
 function button(x, y, width, value, theme, { filled = true, disabled = false } = {}) {
-  const fill = disabled ? theme.secondarySurface : filled ? theme.coral : "transparent";
+  const fill = disabled ? theme.secondarySurface : filled ? theme.coral : "none";
   const stroke = disabled ? theme.hairline : filled ? theme.coral : theme.hairline;
   const color = disabled ? theme.tertiary : filled ? "#FFFFFF" : theme.coralText;
   return `<g aria-label="${escapeText(value)}">
@@ -312,14 +309,14 @@ function suggestionRow(theme, x, y, width, value, accent = theme.lavender) {
 
 function contextSurface(theme, x, y, width, height = 142, { compact = false } = {}) {
   const narrow = width < 450;
-  const headingLines = narrow ? ["Using: Western · your available", "chart context"] : ["Using: Western · your available chart context"];
+  const headingLines = narrow ? ["Using: Western · available", "chart context"] : ["Using: Western · available chart context"];
   const detailLines = compact
-    ? (narrow ? ["Only relevant context is used."] : ["Only relevant structured context is used."])
-    : (narrow ? ["Only relevant context is used.", "Typing does not start paid generation."] : ["Only relevant structured context is used.", "Typing a question does not start a paid generation."]);
+    ? (narrow ? ["Only relevant astrology context is", "used for this question."] : ["Only relevant astrology context is used for this question."])
+    : (narrow ? ["Only relevant astrology context is", "used for this question."] : ["Only relevant astrology context is used for this question."]);
   const detailY = y + (headingLines.length > 1 ? 98 : 86);
   return `<g aria-label="Available astrology context">
     ${surface(x, y, width, height, theme, { fill: "url(#context-gradient)", radius: 22 })}
-    ${label(x + 20, y + 29, "CONTEXT SCOPE", theme, theme.blueText, 7.3)}
+    ${label(x + 20, y + 29, "AVAILABLE CONTEXT", theme, theme.blueText, 7.3)}
     ${multiline(x + 20, y + 60, headingLines, { size: compact ? 12.5 : 13, fill: theme.ink, lineHeight: 18, weight: 700, maxChars: narrow ? 38 : 52 })}
     ${multiline(x + 20, detailY, detailLines, { size: 11.5, fill: theme.secondary, lineHeight: 18, maxChars: narrow ? 38 : 56 })}
   </g>`;
@@ -351,30 +348,30 @@ function basisSurface(theme, x, y, width, { compact = false, cached = false, off
     <text x="${x + 20}" y="${y + 58}" class="ui" font-size="12" font-weight="700" fill="${theme.ink}">Moon in Libra · 14° 27′</text>
     <text x="${x + 20}" y="${y + 82}" class="ui" font-size="12" fill="${theme.secondary}">5th house · Western · Tropical</text>
     <text x="${x + 20}" y="${y + 106}" class="ui" font-size="11" fill="${theme.secondary}">Known-time development fixture</text>
-    ${!compact ? button(x + 20, y + 124, 170, "Ask another", theme, { filled: false }) : ""}
+    ${!compact ? button(x + 20, y + 124, 220, "Ask another question", theme, { filled: false }) : ""}
   </g>`;
 }
 
 function generatingCard(theme, x, y, width, height = 286) {
   const dark = theme === themes.dark;
-  return `<g aria-label="Generating answer">
+  return `<g aria-label="Preparing your reading">
     ${surface(x, y, width, height, theme, { fill: "url(#hero-gradient)", radius: 26, stroke: dark ? theme.hairline : "#3F3B55" })}
     ${askIllustration(x + width / 2, y + 77, 0.72, theme, dark)}
     <text x="${x + 28}" y="${y + 174}" class="editorial" font-size="25" fill="${theme.heroText}">Reading the context you shared…</text>
-    <text x="${x + 28}" y="${y + 203}" class="ui" font-size="12" fill="${theme.heroSecondary}">No answer has been generated yet.</text>
+    <text x="${x + 28}" y="${y + 203}" class="ui" font-size="12" fill="${theme.heroSecondary}">Putting the pieces together…</text>
     <rect x="${x + 28}" y="${y + 231}" width="${width - 56}" height="8" rx="4" fill="${theme.heroSecondary}" opacity="0.24"/>
     <rect x="${x + 28}" y="${y + 251}" width="${(width - 56) * 0.62}" height="8" rx="4" fill="${theme.heroSecondary}" opacity="0.18"/>
   </g>`;
 }
 
 function accessCard(theme, x, y, width, height = 226) {
-  return `<g aria-label="Rewarded access presentation">
+  return `<g aria-label="Create your personal reading">
     ${surface(x, y, width, height, theme, { fill: "url(#hero-gradient)", radius: 26, stroke: theme.hairline })}
     <circle cx="${x + 42}" cy="${y + 42}" r="16" fill="${theme.gold}" opacity="0.18"/>
     ${icon("lock", x + 42, y + 42, theme.gold, 0.78)}
-    ${label(x + 70, y + 45, "GENERATION ACCESS", theme, theme.heroSecondary, 7.1)}
-    <text x="${x + 28}" y="${y + 87}" class="editorial" font-size="26" fill="${theme.heroText}">Your question is ready</text>
-    ${multiline(x + 28, y + 117, ["A new answer needs one authorized", "provider-backed generation."], { size: 12, fill: theme.heroSecondary, lineHeight: 18 })}
+    ${label(x + 70, y + 45, "YOUR QUESTION IS READY", theme, theme.heroSecondary, 7.1)}
+    <text x="${x + 28}" y="${y + 87}" class="editorial" font-size="26" fill="${theme.heroText}">Create this reading</text>
+    ${multiline(x + 28, y + 117, ["Create this personal reading", "by watching an ad."], { size: 12, fill: theme.heroSecondary, lineHeight: 18 })}
     ${button(x + 28, y + height - 60, Math.min(220, width - 56), "Watch an ad for this answer", theme, { filled: true })}
   </g>`;
 }
@@ -385,7 +382,7 @@ function premiumCard(theme, x, y, width, height = 94) {
     <circle cx="${x + 30}" cy="${y + 31}" r="9" fill="${theme.gold}" opacity="0.18" stroke="${theme.gold}"/>
     ${icon("star", x + 30, y + 31, theme.gold, 0.42)}
     <text x="${x + 52}" y="${y + 30}" class="ui" font-size="12.5" font-weight="700" fill="${theme.ink}">Premium alternative</text>
-    <text x="${x + 52}" y="${y + 54}" class="ui" font-size="11" fill="${theme.secondary}">Included Ask generation without this per-question step.</text>
+    ${multiline(x + 52, y + 54, ["Premium members can create included", "personal readings without this per-question", "step."], { size: 11, fill: theme.secondary, lineHeight: 16 })}
     <path d="M${x + width - 28} ${y + 42}l4 4-4 4" fill="none" stroke="${theme.tertiary}" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
   </g>`;
 }
@@ -394,9 +391,8 @@ function questionEntryPhone(mode) {
   const theme = themes[mode];
   const body = `<rect width="430" height="932" fill="${theme.ground}"/>
     ${phoneHeader(theme)}
-    ${label(20, 144, "CELESTIAL CORRESPONDENCE", theme, theme.lavenderText, 7.4)}
     ${multiline(20, 178, ["What’s on your mind?"], { className: "editorial", size: 31, fill: theme.ink, lineHeight: 34 })}
-    ${multiline(20, 202, ["Ask a focused question.", "Humay answers from the astrology context", "available for it."], { size: 12.2, fill: theme.secondary, lineHeight: 17, maxChars: 42 })}
+    ${multiline(20, 202, ["Ask one honest question.", "Humay answers from the astrology context", "available for it."], { size: 12.2, fill: theme.secondary, lineHeight: 17, maxChars: 42 })}
     ${askIllustration(351, 164, 0.52, theme, mode === "dark")}
     ${composer(theme, { x: 20, y: 250, width: 390, height: 154 })}
     ${label(20, 438, "TRY A QUESTION", theme, theme.coralText, 7.4)}
@@ -409,7 +405,7 @@ function questionEntryPhone(mode) {
     width: 430,
     height: 932,
     title: `Humay Ask question entry ${mode}`,
-    description: "Ask empty state with invitation, compact folded-note illustration, multiline composer, suggested questions and context scope.",
+    description: "Ask empty state with invitation, compact folded-note illustration, multiline composer, suggested questions and available chart context.",
     mode,
     body
   });
@@ -421,9 +417,9 @@ function questionEntryIPad(mode) {
     ${iPadHeader(theme)}
     <line x1="56" y1="224" x2="968" y2="224" stroke="${theme.hairline}"/>
     <g>
-      ${label(56, 272, "A FOCUSED PLACE TO ASK", theme, theme.lavenderText, 8)}
+      ${label(56, 272, "YOUR QUESTION", theme, theme.lavenderText, 8)}
       ${multiline(56, 316, ["Bring one honest", "question to the stars."], { className: "editorial", size: 39, fill: theme.ink, lineHeight: 45, maxChars: 24 })}
-      ${multiline(56, 434, ["Humay answers from the relevant astrology", "context available for this question—not an", "unrestricted profile."], { size: 14, fill: theme.secondary, lineHeight: 21, maxChars: 45 })}
+      ${multiline(56, 434, ["Only relevant astrology context is used", "for this question."], { size: 14, fill: theme.secondary, lineHeight: 21, maxChars: 45 })}
       ${contextSurface(theme, 56, 512, 392, 154)}
       ${label(56, 728, "QUESTIONS THAT WORK WELL", theme, theme.coralText, 8)}
       ${suggestionRow(theme, 56, 746, 392, "What should I focus on today?", theme.lavender)}
@@ -436,7 +432,7 @@ function questionEntryIPad(mode) {
       <text x="530" y="560" class="editorial" font-size="27" fill="${theme.ink}">Start with one honest question.</text>
       ${multiline(530, 594, ["The composer stays at the center of the", "experience, with room to think before asking."], { size: 13, fill: theme.secondary, lineHeight: 20, maxChars: 46 })}
       ${composer(theme, { x: 530, y: 676, width: 400, height: 190 })}
-      ${multiline(530, 908, ["Revise the question before asking.", "No paid generation begins while typing."], { size: 11.5, fill: theme.secondary, lineHeight: 18, maxChars: 48 })}
+      ${multiline(530, 908, ["Revise the question before asking.", "Nothing is generated until you ask."], { size: 11.5, fill: theme.secondary, lineHeight: 18, maxChars: 48 })}
     </g>`;
   return svgShell({
     width: 1024,
@@ -450,19 +446,18 @@ function questionEntryIPad(mode) {
 
 function answerReadingPhone(mode) {
   const theme = themes[mode];
-  const dark = mode === "dark";
   const body = `<rect width="430" height="932" fill="${theme.ground}"/>
-    ${phoneHeader(theme, "CONSIDERED READING")}
-    ${questionCard(theme, 20, 128, 390, { sample: true })}
-    <text x="20" y="266" class="editorial" font-size="28" fill="${theme.ink}">A gentler kind of balance</text>
-    ${multiline(20, 297, ["Your Moon in Libra may feel steadier when", "you give yourself a moment to choose", "balance before responding."], { size: 12.2, fill: theme.secondary, lineHeight: 18, maxChars: 43 })}
-    <line x1="20" y1="353" x2="410" y2="353" stroke="${theme.hairline}"/>
-    ${answerSection(theme, 20, 386, 390, "Balance before reaction", ["Harmony does not have to mean silence.", "Let the first feeling become a conversation", "before it becomes a decision."], { accent: theme.lavenderText })}
-    ${answerSection(theme, 20, 490, 390, "Make room for beauty and play", ["A small creative ritual can help you hear", "what feels true. Beauty is not a detour", "from the work."], { accent: theme.blueText })}
-    ${surface(20, 584, 390, 104, theme, { fill: "url(#meaning-gradient)", radius: 22 })}
-    ${label(40, 613, "TRY THIS", theme, theme.coralText, 7.3)}
-    ${multiline(40, 642, ["Before a difficult choice, make one small", "beautiful thing. Then ask what leaves more", "room for honesty and ease."], { size: 12.1, fill: theme.ink, lineHeight: 18, maxChars: 43 })}
-    ${basisSurface(theme, 20, 704, 390, { compact: true })}
+    ${phoneHeader(theme, "YOUR READING")}
+    ${questionCard(theme, 20, 128, 390, { sample: true, compact: true })}
+    <text x="20" y="244" class="editorial" font-size="28" fill="${theme.ink}">A gentler kind of balance</text>
+    ${multiline(20, 275, ["Your Moon in Libra may feel steadier when", "you give yourself a moment to choose", "balance before responding."], { size: 12.2, fill: theme.secondary, lineHeight: 18, maxChars: 43 })}
+    <line x1="20" y1="331" x2="410" y2="331" stroke="${theme.hairline}"/>
+    ${answerSection(theme, 20, 360, 390, "Balance before reaction", ["Harmony does not have to mean silence.", "Let the first feeling become a conversation", "before it becomes a decision."], { accent: theme.lavenderText })}
+    ${answerSection(theme, 20, 456, 390, "Make room for beauty and play", ["A small creative ritual can help you hear", "what feels true. Beauty is not a detour", "from the work."], { accent: theme.blueText })}
+    ${surface(20, 542, 390, 102, theme, { fill: "url(#meaning-gradient)", radius: 22 })}
+    ${label(40, 571, "TRY THIS", theme, theme.coralText, 7.3)}
+    ${multiline(40, 600, ["Before a difficult choice, make one small", "beautiful thing. Then ask what leaves more", "room for honesty and ease."], { size: 12.1, fill: theme.ink, lineHeight: 18, maxChars: 43 })}
+    ${basisSurface(theme, 20, 654, 390, { compact: false })}
     ${phoneTabBar(theme, "Ask")}`;
   return svgShell({
     width: 430,
@@ -476,15 +471,13 @@ function answerReadingPhone(mode) {
 
 function answerReadingIPad(mode) {
   const theme = themes[mode];
-  const dark = mode === "dark";
   const body = `<rect width="1024" height="1366" fill="${theme.ground}"/>
-    ${iPadHeader(theme, "CONSIDERED READING")}
+    ${iPadHeader(theme, "YOUR READING")}
     <line x1="56" y1="224" x2="968" y2="224" stroke="${theme.hairline}"/>
     <g>
       ${questionCard(theme, 56, 272, 286, { sample: true, compact: false })}
       ${basisSurface(theme, 56, 406, 286, { compact: true })}
       ${surface(56, 594, 286, 154, theme, { fill: theme.secondarySurface, radius: 20 })}
-      ${label(76, 625, "READING SHAPE", theme, theme.blueText, 7.2)}
       ${multiline(76, 657, ["Question first.", "Meaning second.", "Basis stays visible."], { className: "editorial", size: 22, fill: theme.ink, lineHeight: 28 })}
       ${multiline(76, 739, ["No conversation history is implied."], { size: 11.5, fill: theme.secondary })}
     </g>
@@ -498,7 +491,7 @@ function answerReadingIPad(mode) {
       ${surface(402, 738, 566, 142, theme, { fill: "url(#meaning-gradient)", radius: 24 })}
       ${label(430, 774, "TRY THIS", theme, theme.coralText, 7.7)}
       ${multiline(430, 807, ["Before a difficult choice, make one small beautiful thing.", "Then ask what leaves more room for honesty and ease."], { size: 13.5, fill: theme.ink, lineHeight: 21, maxChars: 62 })}
-      ${button(402, 906, 176, "Ask another", theme, { filled: false })}
+      ${button(402, 906, 220, "Ask another question", theme, { filled: false })}
     </g>`;
   return svgShell({
     width: 1024,
@@ -513,11 +506,11 @@ function answerReadingIPad(mode) {
 function generatingPhone(mode) {
   const theme = themes[mode];
   const body = `<rect width="430" height="932" fill="${theme.ground}"/>
-    ${phoneHeader(theme, "GENERATING")}
+    ${phoneHeader(theme, "READING")}
     ${questionCard(theme, 20, 128, 390, { compact: true })}
     ${generatingCard(theme, 20, 242, 390, 286)}
     ${contextSurface(theme, 20, 558, 390, 172, { compact: true })}
-    ${multiline(20, 766, ["The answer will appear here when the authorized", "interpretation generation finishes."], { size: 11.5, fill: theme.secondary, lineHeight: 18 })}
+    ${multiline(20, 766, ["Your reading will appear here when it’s ready."], { size: 11.5, fill: theme.secondary, lineHeight: 18, maxChars: 52 })}
     ${phoneTabBar(theme, "Ask")}`;
   return svgShell({
     width: 430,
@@ -532,19 +525,19 @@ function generatingPhone(mode) {
 function generatingIPad(mode) {
   const theme = themes[mode];
   const body = `<rect width="1024" height="1366" fill="${theme.ground}"/>
-    ${iPadHeader(theme, "GENERATING")}
+    ${iPadHeader(theme, "READING")}
     <line x1="56" y1="224" x2="968" y2="224" stroke="${theme.hairline}"/>
     <g>
       ${questionCard(theme, 56, 272, 286, { compact: true })}
       ${contextSurface(theme, 56, 386, 286, 180, { compact: true })}
       ${surface(56, 598, 286, 146, theme, { fill: theme.secondarySurface, radius: 20 })}
-      ${label(76, 628, "HONEST LOADING", theme, theme.lavenderText, 7.4)}
-      ${multiline(76, 665, ["No fake facts.", "No fake progress.", "Just a considered transition."], { className: "editorial", size: 21, fill: theme.ink, lineHeight: 27 })}
+      ${label(76, 628, "A QUIET PAUSE", theme, theme.lavenderText, 7.4)}
+      ${multiline(76, 665, ["No made-up facts.", "No pretend progress.", "Just a considered pause."], { className: "editorial", size: 21, fill: theme.ink, lineHeight: 27 })}
     </g>
     <g>
-      ${label(402, 273, "READING THE CONTEXT YOU SHARED", theme, theme.coralText, 8)}
+      ${label(402, 273, "YOUR READING", theme, theme.coralText, 8)}
       ${generatingCard(theme, 402, 302, 566, 450)}
-      ${multiline(402, 805, ["The calculation context is already supplied; this state represents", "interpretation generation only."], { size: 13, fill: theme.secondary, lineHeight: 20 })}
+      ${multiline(402, 805, ["Your reading will appear here when it’s ready."], { size: 13, fill: theme.secondary, lineHeight: 20 })}
     </g>`;
   return svgShell({
     width: 1024,
@@ -559,7 +552,7 @@ function generatingIPad(mode) {
 function rewardedAccessPhone(mode) {
   const theme = themes[mode];
   const body = `<rect width="430" height="932" fill="${theme.ground}"/>
-    ${phoneHeader(theme, "ACCESS BEFORE GENERATION")}
+    ${phoneHeader(theme, "YOUR READING")}
     ${questionCard(theme, 20, 128, 390, { compact: true })}
     ${accessCard(theme, 20, 242, 390, 236)}
     ${premiumCard(theme, 20, 500, 390, 98)}
@@ -569,7 +562,7 @@ function rewardedAccessPhone(mode) {
     width: 430,
     height: 932,
     title: `Humay Ask rewarded access ${mode}`,
-    description: "Calm future Rewarded Access state showing one-question authorization with a Premium alternative and context scope.",
+    description: "Calm future Rewarded Access state showing one-question access with a Premium alternative and available chart context.",
     mode,
     body
   });
@@ -578,7 +571,7 @@ function rewardedAccessPhone(mode) {
 function rewardedAccessIPad(mode) {
   const theme = themes[mode];
   const body = `<rect width="1024" height="1366" fill="${theme.ground}"/>
-    ${iPadHeader(theme, "ACCESS BEFORE GENERATION")}
+    ${iPadHeader(theme, "YOUR READING")}
     <line x1="56" y1="224" x2="968" y2="224" stroke="${theme.hairline}"/>
     <g>
       ${questionCard(theme, 56, 272, 286, { compact: true })}
@@ -592,8 +585,8 @@ function rewardedAccessIPad(mode) {
       ${accessCard(theme, 402, 302, 566, 260)}
       ${premiumCard(theme, 402, 598, 566, 104)}
       ${surface(402, 738, 566, 132, theme, { fill: theme.raised, radius: 22 })}
-      ${label(430, 770, "SEMANTICS", theme, theme.blueText, 7.5)}
-      ${multiline(430, 807, ["One successful rewarded completion authorizes one needed", "generation for this question/result key. It is not a wallet."], { size: 13, fill: theme.secondary, lineHeight: 20 })}
+      ${label(430, 770, "ONE READING", theme, theme.blueText, 7.5)}
+      ${multiline(430, 807, ["This step is for this question only.", "A saved reading will not ask again."], { size: 13, fill: theme.secondary, lineHeight: 20 })}
     </g>`;
   return svgShell({
     width: 1024,
@@ -648,8 +641,8 @@ function answerAnatomyBoard() {
       ${label(742, 226, "REVIEW PRINCIPLE", theme, theme.coralText, 8)}
       ${boardTile(theme, { x: 742, y: 250, width: 400, height: 214, kicker: "READING", title: "Open prose", lines: ["Answer sections breathe on the", "ground. One selective cosmic", "surface may hold a reflection."], accent: theme.lavenderText, iconType: "note" })}
       ${boardTile(theme, { x: 1166, y: 250, width: 394, height: 214, kicker: "BASIS", title: "Visible factors", lines: ["Supplied facts stay compact,", "scannable and separate from", "interpretive language."], accent: theme.blueText, iconType: "shield" })}
-      ${boardTile(theme, { x: 742, y: 500, width: 400, height: 214, kicker: "BOUNDARY", title: "No provider blob", lines: ["No model name, raw prompt,", "artifact ID or invented factor", "reaches the reading surface."], accent: theme.coralText, iconType: "lock" })}
-      ${boardTile(theme, { x: 1166, y: 500, width: 394, height: 214, kicker: "VOICE", title: "May, can, notice", lines: ["Interpretation remains warm,", "specific and non-deterministic.", "No certainty percentage."], accent: theme.goldText, iconType: "star" })}
+      ${boardTile(theme, { x: 742, y: 500, width: 400, height: 214, kicker: "BOUNDARY", title: "No hidden machinery", lines: ["Only the relevant facts and", "reading sections appear here.", "Nothing extra reaches the page."], accent: theme.coralText, iconType: "lock" })}
+      ${boardTile(theme, { x: 1166, y: 500, width: 394, height: 214, kicker: "VOICE", title: "May, can, notice", lines: ["Interpretation remains warm,", "specific and non-deterministic.", "No certainty score."], accent: theme.goldText, iconType: "star" })}
     </g>`;
   return svgShell({ width: 1600, height: 900, title: "Humay Ask answer anatomy board", description: "Focused board separating question identity, interpretation and supplied factual basis.", mode: "light", body });
 }
@@ -680,12 +673,12 @@ function composerKeyboardBoard() {
 function accessCacheBoard() {
   const theme = themes.light;
   const cards = [
-    ["FREE · GENERATION NEEDED", "Question ready", ["Compose freely. Resolve access", "before any paid generation."], theme.blueText, "note", false],
-    ["REWARDED AVAILABLE", "One calm gate", ["Watch an ad for this answer.", "Not coins. Not a wallet."], theme.goldText, "lock", true],
+    ["FREE · NEEDS ACCESS", "Question ready", ["Ask freely. Review the next step", "before creating your reading."], theme.blueText, "note", false],
+    ["REWARDED AVAILABLE", "One calm gate", ["Watch an ad for this answer.", "One question, one reading."], theme.goldText, "lock", true],
     ["PREMIUM", "Alternative path", ["Included Ask generation", "without this per-question step."], theme.lavenderText, "star", false],
     ["CACHED ANSWER", "Reopen", ["Exact valid answer returns", "without another ad or call."], theme.sage, "check", true],
-    ["REWARD COMPLETED", "Recover fairly", ["If generation fails, do not ask", "for another reward for same scope."], theme.coralText, "shield", false],
-    ["ACCESS ≠ RESULT", "Truth stays separate", ["Access authorizes a needed", "generation; it does not prove success."], theme.lavenderText, "note", false]
+    ["REWARD COMPLETED", "Recover fairly", ["If the reading does not finish,", "do not ask for access again."], theme.coralText, "shield", false],
+    ["ACCESS IS NOT THE READING", "Truth stays separate", ["Access lets Humay create a reading;", "it does not mean one is ready."], theme.lavenderText, "note", false]
   ];
   const panels = cards.map(([kicker, title, lines, accent, iconType, dark], index) => {
     const x = 40 + (index % 3) * 520;
@@ -695,19 +688,19 @@ function accessCacheBoard() {
   const body = `<rect width="1600" height="840" fill="#EFE9E2"/>
     ${boardHeader(theme, "D5.1 · ACCESS + CACHE", "Access and cache states", "The exact valid result is cache-first; access presentation never becomes an entitlement wallet.")}
     ${panels}`;
-  return svgShell({ width: 1600, height: 840, title: "Humay Ask access and cache states board", description: "Focused board covering Free generation needed, Rewarded Access, Premium, cached reopen and fair recovery.", mode: "light", body });
+  return svgShell({ width: 1600, height: 840, title: "Humay Ask access and cache states board", description: "Focused board covering Free access, Rewarded Access, Premium, saved reopening and fair recovery.", mode: "light", body });
 }
 
 function errorContextSafetyBoard() {
   const theme = themes.light;
   const cards = [
     ["OFFLINE · CACHED", "Saved answer", ["Show answer with Offline · saved", "disclosure and freshness."], theme.sage, "wifi-off", false],
-    ["OFFLINE · NO CACHE", "Connection needed", ["A new answer needs a connection.", "Never queue paid generation."], theme.blueText, "wifi-off", true],
-    ["PROVIDER FAILURE", "Humay couldn’t finish", ["Use Humay-owned recovery copy.", "Hide provider names and codes."], theme.coralText, "warning", false],
-    ["INSUFFICIENT CONTEXT", "Show the boundary", ["Explain what Humay knows and", "what birth/context factor is missing."], theme.goldText, "note", true],
-    ["UNSUPPORTED METHOD", "Not available yet", ["Methodology boundary is distinct", "from network/provider failure."], theme.lavenderText, "shield", false],
+    ["OFFLINE · NO CACHE", "Connection needed", ["A new answer needs a connection.", "Keep the question for later."], theme.blueText, "wifi-off", true],
+    ["READING DIDN’T FINISH", "Humay couldn’t finish", ["Humay couldn’t finish this reading.", "Offer a calm way to try again."], theme.coralText, "warning", false],
+    ["CONTEXT NEEDED", "Show the boundary", ["Explain what Humay knows and", "what context is missing."], theme.goldText, "note", true],
+    ["METHOD NOT AVAILABLE", "Not available yet", ["This question needs a different", "astrology method or context."], theme.lavenderText, "shield", false],
     ["SAFETY REFUSAL", "A different kind of help", ["Decline astrology-based medical", "or other high-stakes instructions."], theme.coralText, "shield", true],
-    ["MALFORMED / VALIDATION", "Not verified", ["Do not present arbitrary provider", "prose as a valid reading."], theme.tertiary, "warning", false],
+    ["READING NOT READY", "Not verified", ["This reading could not be verified.", "Keep the answer hidden until Humay", "can confirm it."], theme.tertiary, "warning", false],
     ["CERTAINTY", "May, can, notice", ["No death, illness, violence or", "financial-disaster certainty claims."], theme.goldText, "star", true]
   ];
   const panels = cards.map(([kicker, title, lines, accent, iconType, dark], index) => {
@@ -716,9 +709,9 @@ function errorContextSafetyBoard() {
     return boardTile(theme, { x, y, width: 350, height: 276, kicker, title, lines, accent, iconType, dark });
   }).join("");
   const body = `<rect width="1600" height="900" fill="#EFE9E2"/>
-    ${boardHeader(theme, "D5.1 · CONTEXT + SAFETY", "Error, context and safety states", "Distinct state language prevents missing astrology context from looking like a provider outage.")}
+    ${boardHeader(theme, "D5.1 · CONTEXT + SAFETY", "Error, context and safety states", "Distinct state language keeps missing astrology context separate from a reading that did not finish.")}
     ${panels}`;
-  return svgShell({ width: 1600, height: 900, title: "Humay Ask error context and safety board", description: "Focused board covering offline, provider failure, insufficient context, unsupported methodology, safety refusal and certainty boundaries.", mode: "light", body });
+  return svgShell({ width: 1600, height: 900, title: "Humay Ask error context and safety board", description: "Focused board covering offline, unfinished readings, missing context, unsupported methodology, safety refusal and certainty boundaries.", mode: "light", body });
 }
 
 function accessibilityBoard() {

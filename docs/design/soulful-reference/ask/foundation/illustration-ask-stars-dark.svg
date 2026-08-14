@@ -26,7 +26,6 @@
     <filter id="soft-shadow" x="-30%" y="-30%" width="160%" height="180%">
       <feDropShadow dx="0" dy="5" stdDeviation="10" flood-color="#000000" flood-opacity="0"/>
     </filter>
-    
   </defs>
   <rect width="800" height="600" fill="#101725"/>
     <text x="36" y="48" class="label" font-size="8.5" fill="#FF9A98">D5.1 · ILLUSTRATION PREVIEW · DARK</text>

@@ -26,7 +26,6 @@
     <filter id="soft-shadow" x="-30%" y="-30%" width="160%" height="180%">
       <feDropShadow dx="0" dy="5" stdDeviation="10" flood-color="#35281C" flood-opacity="0.09"/>
     </filter>
-    
   </defs>
   <rect width="1024" height="1366" fill="#FBF7F1"/>
     <text x="24" y="31" class="ui" font-size="13" font-weight="700" fill="#151B28">9:41  ·  Thu 14 Aug</text>
@@ -43,19 +42,18 @@
     <text x="340" y="81" text-anchor="middle" class="ui" font-size="15" font-weight="600" fill="#151B28">Today</text><text x="430" y="81" text-anchor="middle" class="ui" font-size="15" font-weight="600" fill="#151B28">Circle</text><text x="520" y="81" text-anchor="middle" class="ui" font-size="15" font-weight="600" fill="#151B28">Sky</text><text x="625" y="81" text-anchor="middle" class="ui" font-size="15" font-weight="600" fill="#151B28">Chart</text><text x="725" y="81" text-anchor="middle" class="ui" font-size="15" font-weight="750" fill="#A83F3C">Ask</text>
   </g>
     <text x="56" y="161" class="editorial" font-size="42" fill="#151B28">Ask</text>
-    <text x="56" y="194" class="label" font-size="8" fill="#A83F3C">FOCUSED QUESTION</text>
     <circle cx="944" cy="154" r="24" fill="url(#context-gradient)" stroke="#E9E0D8"/>
     <text x="944" y="161" text-anchor="middle" class="ui" font-size="14" font-weight="700" fill="#151B28">Y</text>
     <line x1="56" y1="224" x2="968" y2="224" stroke="#E9E0D8"/>
     <g>
-      <text x="56" y="272" class="label" font-size="8" fill="#684F9D">A FOCUSED PLACE TO ASK</text>
+      <text x="56" y="272" class="label" font-size="8" fill="#684F9D">YOUR QUESTION</text>
       <text x="56" y="316" class="editorial" text-anchor="start" font-size="39" font-weight="400" fill="#151B28" opacity="1">Bring one honest</text><text x="56" y="361" class="editorial" text-anchor="start" font-size="39" font-weight="400" fill="#151B28" opacity="1">question to the stars.</text>
-      <text x="56" y="434" class="ui" text-anchor="start" font-size="14" font-weight="400" fill="#625F62" opacity="1">Humay answers from the relevant astrology</text><text x="56" y="455" class="ui" text-anchor="start" font-size="14" font-weight="400" fill="#625F62" opacity="1">context available for this question—not an</text><text x="56" y="476" class="ui" text-anchor="start" font-size="14" font-weight="400" fill="#625F62" opacity="1">unrestricted profile.</text>
+      <text x="56" y="434" class="ui" text-anchor="start" font-size="14" font-weight="400" fill="#625F62" opacity="1">Only relevant astrology context is used</text><text x="56" y="455" class="ui" text-anchor="start" font-size="14" font-weight="400" fill="#625F62" opacity="1">for this question.</text>
       <g aria-label="Available astrology context">
     <rect x="56" y="512" width="392" height="154" rx="22" fill="url(#context-gradient)" stroke="#E9E0D8" />
-    <text x="76" y="541" class="label" font-size="7.3" fill="#356F91">CONTEXT SCOPE</text>
-    <text x="76" y="572" class="ui" text-anchor="start" font-size="13" font-weight="700" fill="#151B28" opacity="1">Using: Western · your available</text><text x="76" y="590" class="ui" text-anchor="start" font-size="13" font-weight="700" fill="#151B28" opacity="1">chart context</text>
-    <text x="76" y="610" class="ui" text-anchor="start" font-size="11.5" font-weight="400" fill="#625F62" opacity="1">Only relevant context is used.</text><text x="76" y="628" class="ui" text-anchor="start" font-size="11.5" font-weight="400" fill="#625F62" opacity="1">Typing does not start paid generation.</text>
+    <text x="76" y="541" class="label" font-size="7.3" fill="#356F91">AVAILABLE CONTEXT</text>
+    <text x="76" y="572" class="ui" text-anchor="start" font-size="13" font-weight="700" fill="#151B28" opacity="1">Using: Western · available</text><text x="76" y="590" class="ui" text-anchor="start" font-size="13" font-weight="700" fill="#151B28" opacity="1">chart context</text>
+    <text x="76" y="610" class="ui" text-anchor="start" font-size="11.5" font-weight="400" fill="#625F62" opacity="1">Only relevant astrology context is</text><text x="76" y="628" class="ui" text-anchor="start" font-size="11.5" font-weight="400" fill="#625F62" opacity="1">used for this question.</text>
   </g>
       <text x="56" y="728" class="label" font-size="8" fill="#A83F3C">QUESTIONS THAT WORK WELL</text>
       <g aria-label="Suggested question: What should I focus on today?">
@@ -106,6 +104,6 @@
   </g>
     <text x="550" y="840" class="ui" font-size="10.5" fill="#625F62">Relevant context only</text>
   </g>
-      <text x="530" y="908" class="ui" text-anchor="start" font-size="11.5" font-weight="400" fill="#625F62" opacity="1">Revise the question before asking.</text><text x="530" y="926" class="ui" text-anchor="start" font-size="11.5" font-weight="400" fill="#625F62" opacity="1">No paid generation begins while typing.</text>
+      <text x="530" y="908" class="ui" text-anchor="start" font-size="11.5" font-weight="400" fill="#625F62" opacity="1">Revise the question before asking.</text><text x="530" y="926" class="ui" text-anchor="start" font-size="11.5" font-weight="400" fill="#625F62" opacity="1">Nothing is generated until you ask.</text>
     </g>
 </svg>

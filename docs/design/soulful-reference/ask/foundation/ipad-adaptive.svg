@@ -26,7 +26,6 @@
     <filter id="soft-shadow" x="-30%" y="-30%" width="160%" height="180%">
       <feDropShadow dx="0" dy="5" stdDeviation="10" flood-color="#35281C" flood-opacity="0.09"/>
     </filter>
-    
   </defs>
   <rect width="1600" height="900" fill="#EFE9E2"/>
     <text x="40" y="54" class="label" font-size="10" fill="#A83F3C">D5.1 · ADAPTIVE COMPOSITION</text>

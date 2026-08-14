@@ -26,7 +26,6 @@
     <filter id="soft-shadow" x="-30%" y="-30%" width="160%" height="180%">
       <feDropShadow dx="0" dy="5" stdDeviation="10" flood-color="#000000" flood-opacity="0"/>
     </filter>
-    
   </defs>
   <rect width="430" height="932" fill="#101725"/>
     <text x="22" y="31" class="ui" font-size="14" font-weight="700" fill="#F5F0EA">9:41</text>
@@ -38,37 +37,40 @@
       <path d="M53 3v4"/>
     </g>
     <text x="20" y="80" class="editorial" font-size="34" fill="#F5F0EA">Ask</text>
-    <text x="20" y="108" class="label" font-size="7.3" fill="#FF9A98">CONSIDERED READING</text>
+    <text x="20" y="108" class="label" font-size="7.3" fill="#FF9A98">YOUR READING</text>
     <circle cx="388" cy="70" r="22" fill="url(#context-gradient)" stroke="#30394B"/>
     <text x="388" y="76" text-anchor="middle" class="ui" font-size="13" font-weight="700" fill="#F5F0EA">Y</text>
     <g aria-label="Question identity">
-    <rect x="20" y="128" width="390" height="106" rx="20" fill="#171F30" stroke="#30394B" />
+    <rect x="20" y="128" width="390" height="88" rx="20" fill="#171F30" stroke="#30394B" />
     <text x="38" y="153" class="label" font-size="6.8" fill="#A8A0A1">DEVELOPMENT SAMPLE · NOT GENERATED</text>
-    <text x="38" y="195" class="editorial" font-size="19" fill="#F5F0EA">How can I work with my Moon in Libra?</text>
+    <text x="38" y="187" class="ui" font-size="16" fill="#F5F0EA">How can I work with my Moon in Libra?</text>
   </g>
-    <text x="20" y="266" class="editorial" font-size="28" fill="#F5F0EA">A gentler kind of balance</text>
-    <text x="20" y="297" class="ui" text-anchor="start" font-size="12.2" font-weight="400" fill="#C4BDBB" opacity="1">Your Moon in Libra may feel steadier when</text><text x="20" y="315" class="ui" text-anchor="start" font-size="12.2" font-weight="400" fill="#C4BDBB" opacity="1">you give yourself a moment to choose</text><text x="20" y="333" class="ui" text-anchor="start" font-size="12.2" font-weight="400" fill="#C4BDBB" opacity="1">balance before responding.</text>
-    <line x1="20" y1="353" x2="410" y2="353" stroke="#30394B"/>
+    <text x="20" y="244" class="editorial" font-size="28" fill="#F5F0EA">A gentler kind of balance</text>
+    <text x="20" y="275" class="ui" text-anchor="start" font-size="12.2" font-weight="400" fill="#C4BDBB" opacity="1">Your Moon in Libra may feel steadier when</text><text x="20" y="293" class="ui" text-anchor="start" font-size="12.2" font-weight="400" fill="#C4BDBB" opacity="1">you give yourself a moment to choose</text><text x="20" y="311" class="ui" text-anchor="start" font-size="12.2" font-weight="400" fill="#C4BDBB" opacity="1">balance before responding.</text>
+    <line x1="20" y1="331" x2="410" y2="331" stroke="#30394B"/>
     <g>
-    <circle cx="25" cy="381" r="4" fill="#D79AE8"/>
-    <text x="40" y="386" class="editorial" font-size="21" fill="#F5F0EA">Balance before reaction</text>
-    <text x="40" y="414" class="ui" text-anchor="start" font-size="12.4" font-weight="400" fill="#C4BDBB" opacity="1">Harmony does not have to mean silence.</text><text x="40" y="432" class="ui" text-anchor="start" font-size="12.4" font-weight="400" fill="#C4BDBB" opacity="1">Let the first feeling become a conversation</text><text x="40" y="450" class="ui" text-anchor="start" font-size="12.4" font-weight="400" fill="#C4BDBB" opacity="1">before it becomes a decision.</text>
+    <circle cx="25" cy="355" r="4" fill="#D79AE8"/>
+    <text x="40" y="360" class="editorial" font-size="21" fill="#F5F0EA">Balance before reaction</text>
+    <text x="40" y="388" class="ui" text-anchor="start" font-size="12.4" font-weight="400" fill="#C4BDBB" opacity="1">Harmony does not have to mean silence.</text><text x="40" y="406" class="ui" text-anchor="start" font-size="12.4" font-weight="400" fill="#C4BDBB" opacity="1">Let the first feeling become a conversation</text><text x="40" y="424" class="ui" text-anchor="start" font-size="12.4" font-weight="400" fill="#C4BDBB" opacity="1">before it becomes a decision.</text>
   </g>
     <g>
-    <circle cx="25" cy="485" r="4" fill="#95C9E8"/>
-    <text x="40" y="490" class="editorial" font-size="21" fill="#F5F0EA">Make room for beauty and play</text>
-    <text x="40" y="518" class="ui" text-anchor="start" font-size="12.4" font-weight="400" fill="#C4BDBB" opacity="1">A small creative ritual can help you hear</text><text x="40" y="536" class="ui" text-anchor="start" font-size="12.4" font-weight="400" fill="#C4BDBB" opacity="1">what feels true. Beauty is not a detour</text><text x="40" y="554" class="ui" text-anchor="start" font-size="12.4" font-weight="400" fill="#C4BDBB" opacity="1">from the work.</text>
+    <circle cx="25" cy="451" r="4" fill="#95C9E8"/>
+    <text x="40" y="456" class="editorial" font-size="21" fill="#F5F0EA">Make room for beauty and play</text>
+    <text x="40" y="484" class="ui" text-anchor="start" font-size="12.4" font-weight="400" fill="#C4BDBB" opacity="1">A small creative ritual can help you hear</text><text x="40" y="502" class="ui" text-anchor="start" font-size="12.4" font-weight="400" fill="#C4BDBB" opacity="1">what feels true. Beauty is not a detour</text><text x="40" y="520" class="ui" text-anchor="start" font-size="12.4" font-weight="400" fill="#C4BDBB" opacity="1">from the work.</text>
   </g>
-    <rect x="20" y="584" width="390" height="104" rx="22" fill="url(#meaning-gradient)" stroke="#30394B" />
-    <text x="40" y="613" class="label" font-size="7.3" fill="#FF9A98">TRY THIS</text>
-    <text x="40" y="642" class="ui" text-anchor="start" font-size="12.1" font-weight="400" fill="#F5F0EA" opacity="1">Before a difficult choice, make one small</text><text x="40" y="660" class="ui" text-anchor="start" font-size="12.1" font-weight="400" fill="#F5F0EA" opacity="1">beautiful thing. Then ask what leaves more</text><text x="40" y="678" class="ui" text-anchor="start" font-size="12.1" font-weight="400" fill="#F5F0EA" opacity="1">room for honesty and ease.</text>
+    <rect x="20" y="542" width="390" height="102" rx="22" fill="url(#meaning-gradient)" stroke="#30394B" />
+    <text x="40" y="571" class="label" font-size="7.3" fill="#FF9A98">TRY THIS</text>
+    <text x="40" y="600" class="ui" text-anchor="start" font-size="12.1" font-weight="400" fill="#F5F0EA" opacity="1">Before a difficult choice, make one small</text><text x="40" y="618" class="ui" text-anchor="start" font-size="12.1" font-weight="400" fill="#F5F0EA" opacity="1">beautiful thing. Then ask what leaves more</text><text x="40" y="636" class="ui" text-anchor="start" font-size="12.1" font-weight="400" fill="#F5F0EA" opacity="1">room for honesty and ease.</text>
     <g aria-label="WHAT THIS ANSWER USED">
-    <rect x="20" y="704" width="390" height="120" rx="20" fill="#222B3E" stroke="#30394B" />
-    <text x="40" y="733" class="label" font-size="7.2" fill="#D79AE8">WHAT THIS ANSWER USED</text>
-    <text x="40" y="762" class="ui" font-size="12" font-weight="700" fill="#F5F0EA">Moon in Libra · 14° 27′</text>
-    <text x="40" y="786" class="ui" font-size="12" fill="#C4BDBB">5th house · Western · Tropical</text>
-    <text x="40" y="810" class="ui" font-size="11" fill="#C4BDBB">Known-time development fixture</text>
-    
+    <rect x="20" y="654" width="390" height="178" rx="20" fill="#222B3E" stroke="#30394B" />
+    <text x="40" y="683" class="label" font-size="7.2" fill="#D79AE8">WHAT THIS ANSWER USED</text>
+    <text x="40" y="712" class="ui" font-size="12" font-weight="700" fill="#F5F0EA">Moon in Libra · 14° 27′</text>
+    <text x="40" y="736" class="ui" font-size="12" fill="#C4BDBB">5th house · Western · Tropical</text>
+    <text x="40" y="760" class="ui" font-size="11" fill="#C4BDBB">Known-time development fixture</text>
+    <g aria-label="Ask another question">
+    <rect x="40" y="778" width="220" height="44" rx="22" fill="none" stroke="#30394B"/>
+    <text x="150" y="805" text-anchor="middle" class="ui" font-size="13" font-weight="700" fill="#FF9A98">Ask another question</text>
+  </g>
   </g>
     <g aria-label="Primary navigation, Ask selected" filter="url(#soft-shadow)">
     <rect x="14" y="838" width="402" height="76" rx="32" fill="#20283A" stroke="#30394B"/>

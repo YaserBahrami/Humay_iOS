@@ -26,7 +26,6 @@
     <filter id="soft-shadow" x="-30%" y="-30%" width="160%" height="180%">
       <feDropShadow dx="0" dy="5" stdDeviation="10" flood-color="#35281C" flood-opacity="0.09"/>
     </filter>
-    
   </defs>
   <rect width="1024" height="1366" fill="#FBF7F1"/>
     <text x="24" y="31" class="ui" font-size="13" font-weight="700" fill="#151B28">9:41  ·  Thu 14 Aug</text>
@@ -43,7 +42,7 @@
     <text x="340" y="81" text-anchor="middle" class="ui" font-size="15" font-weight="600" fill="#151B28">Today</text><text x="430" y="81" text-anchor="middle" class="ui" font-size="15" font-weight="600" fill="#151B28">Circle</text><text x="520" y="81" text-anchor="middle" class="ui" font-size="15" font-weight="600" fill="#151B28">Sky</text><text x="625" y="81" text-anchor="middle" class="ui" font-size="15" font-weight="600" fill="#151B28">Chart</text><text x="725" y="81" text-anchor="middle" class="ui" font-size="15" font-weight="750" fill="#A83F3C">Ask</text>
   </g>
     <text x="56" y="161" class="editorial" font-size="42" fill="#151B28">Ask</text>
-    <text x="56" y="194" class="label" font-size="8" fill="#A83F3C">GENERATING</text>
+    <text x="56" y="194" class="label" font-size="8" fill="#A83F3C">READING</text>
     <circle cx="944" cy="154" r="24" fill="url(#context-gradient)" stroke="#E9E0D8"/>
     <text x="944" y="161" text-anchor="middle" class="ui" font-size="14" font-weight="700" fill="#151B28">Y</text>
     <line x1="56" y1="224" x2="968" y2="224" stroke="#E9E0D8"/>
@@ -55,17 +54,17 @@
   </g>
       <g aria-label="Available astrology context">
     <rect x="56" y="386" width="286" height="180" rx="22" fill="url(#context-gradient)" stroke="#E9E0D8" />
-    <text x="76" y="415" class="label" font-size="7.3" fill="#356F91">CONTEXT SCOPE</text>
-    <text x="76" y="446" class="ui" text-anchor="start" font-size="12.5" font-weight="700" fill="#151B28" opacity="1">Using: Western · your available</text><text x="76" y="464" class="ui" text-anchor="start" font-size="12.5" font-weight="700" fill="#151B28" opacity="1">chart context</text>
-    <text x="76" y="484" class="ui" text-anchor="start" font-size="11.5" font-weight="400" fill="#625F62" opacity="1">Only relevant context is used.</text>
+    <text x="76" y="415" class="label" font-size="7.3" fill="#356F91">AVAILABLE CONTEXT</text>
+    <text x="76" y="446" class="ui" text-anchor="start" font-size="12.5" font-weight="700" fill="#151B28" opacity="1">Using: Western · available</text><text x="76" y="464" class="ui" text-anchor="start" font-size="12.5" font-weight="700" fill="#151B28" opacity="1">chart context</text>
+    <text x="76" y="484" class="ui" text-anchor="start" font-size="11.5" font-weight="400" fill="#625F62" opacity="1">Only relevant astrology context is</text><text x="76" y="502" class="ui" text-anchor="start" font-size="11.5" font-weight="400" fill="#625F62" opacity="1">used for this question.</text>
   </g>
       <rect x="56" y="598" width="286" height="146" rx="20" fill="#F7F0E8" stroke="#E9E0D8" />
-      <text x="76" y="628" class="label" font-size="7.4" fill="#684F9D">HONEST LOADING</text>
-      <text x="76" y="665" class="editorial" text-anchor="start" font-size="21" font-weight="400" fill="#151B28" opacity="1">No fake facts.</text><text x="76" y="692" class="editorial" text-anchor="start" font-size="21" font-weight="400" fill="#151B28" opacity="1">No fake progress.</text><text x="76" y="719" class="editorial" text-anchor="start" font-size="21" font-weight="400" fill="#151B28" opacity="1">Just a considered transition.</text>
+      <text x="76" y="628" class="label" font-size="7.4" fill="#684F9D">A QUIET PAUSE</text>
+      <text x="76" y="665" class="editorial" text-anchor="start" font-size="21" font-weight="400" fill="#151B28" opacity="1">No made-up facts.</text><text x="76" y="692" class="editorial" text-anchor="start" font-size="21" font-weight="400" fill="#151B28" opacity="1">No pretend progress.</text><text x="76" y="719" class="editorial" text-anchor="start" font-size="21" font-weight="400" fill="#151B28" opacity="1">Just a considered pause.</text>
     </g>
     <g>
-      <text x="402" y="273" class="label" font-size="8" fill="#A83F3C">READING THE CONTEXT YOU SHARED</text>
-      <g aria-label="Generating answer">
+      <text x="402" y="273" class="label" font-size="8" fill="#A83F3C">YOUR READING</text>
+      <g aria-label="Preparing your reading">
     <rect x="402" y="302" width="566" height="450" rx="26" fill="url(#hero-gradient)" stroke="#3F3B55" />
     <g transform="translate(685 379) scale(0.72)" aria-label="Folded note orbiting a moon and star">
     <ellipse cx="0" cy="8" rx="78" ry="25" fill="none" stroke="#D5A253" stroke-width="1.5" opacity="0.68" transform="rotate(-16)"/>
@@ -80,10 +79,10 @@
     <path d="M-80 -18l2 5 5 2-5 2-2 5-2-5-5-2 5-2Z" fill="#F06F67" opacity="0.9"/>
   </g>
     <text x="430" y="476" class="editorial" font-size="25" fill="#FFF7F0">Reading the context you shared…</text>
-    <text x="430" y="505" class="ui" font-size="12" fill="#D9D5D1">No answer has been generated yet.</text>
+    <text x="430" y="505" class="ui" font-size="12" fill="#D9D5D1">Putting the pieces together…</text>
     <rect x="430" y="533" width="510" height="8" rx="4" fill="#D9D5D1" opacity="0.24"/>
     <rect x="430" y="553" width="316.2" height="8" rx="4" fill="#D9D5D1" opacity="0.18"/>
   </g>
-      <text x="402" y="805" class="ui" text-anchor="start" font-size="13" font-weight="400" fill="#625F62" opacity="1">The calculation context is already supplied; this state represents</text><text x="402" y="825" class="ui" text-anchor="start" font-size="13" font-weight="400" fill="#625F62" opacity="1">interpretation generation only.</text>
+      <text x="402" y="805" class="ui" text-anchor="start" font-size="13" font-weight="400" fill="#625F62" opacity="1">Your reading will appear here when it’s ready.</text>
     </g>
 </svg>
