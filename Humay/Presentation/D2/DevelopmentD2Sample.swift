@@ -209,7 +209,7 @@ enum DevelopmentD2Sample {
         case "loading": .loading
         case "empty": .empty
         case "offline": .offline(cached: [yaser, salma])
-        case "failed": .failed(message: "Your development Circle could not be opened.")
+        case "failed": .failed(message: "Your development Connections sample could not be opened.")
         default: .loaded([yaser, salma])
         }
     }

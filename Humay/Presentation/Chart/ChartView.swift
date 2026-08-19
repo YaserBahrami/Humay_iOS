@@ -6,23 +6,14 @@ struct ChartView: View {
     let openProfile: () -> Void
 
     var body: some View {
-        GeometryReader { proxy in
-            ScrollView {
-                VStack(alignment: .leading, spacing: HumaySpacing.extraLarge) {
-                    D2WordmarkHeader(
-                        title: "Chart",
-                        profileName: profileName,
-                        profileAction: openProfile
-                    )
+        HumayPage(maximum: .immersive) {
+            HumayScreenHeader(
+                section: "Chart",
+                profileName: profileName,
+                profileAction: openProfile
+            )
 
-                    stateSurface
-                }
-                .frame(maxWidth: HumayContentWidth.readable.rawValue, alignment: .leading)
-                .frame(maxWidth: .infinity, alignment: .center)
-                .padding(.horizontal, HumayLayout.screenGutter(for: proxy.size.width))
-                .padding(.vertical, HumaySpacing.large)
-            }
-            .background(Color.humayGround.ignoresSafeArea())
+            stateSurface
         }
         .navigationBarHidden(true)
         .accessibilityIdentifier("chart.screen")
@@ -138,11 +129,11 @@ private struct ChartFreeEntry: View {
             }
             .accessibilityIdentifier("chart.state.free")
 
-            HumaySurface(level: .raised, padding: HumaySpacing.large) {
+            HumayHairlineSurface(style: .celestial) {
                 VStack(alignment: .leading, spacing: HumaySpacing.medium) {
-                    HumayIllustration(name: "IllustrationWesternChart")
+                    HumayCelestialStage(compact: true)
                         .frame(maxWidth: .infinity)
-                        .frame(height: 176)
+                        .frame(height: 210)
 
                     Text("Illustrative preview · not your chart")
                         .font(HumayTypography.utility)
@@ -208,25 +199,7 @@ private struct ChartReadyEntry: View {
             .accessibilityIdentifier("chart.state.\(status?.identifier ?? "loaded")")
 
             if let western = payload.western {
-                HumaySurface(level: .raised) {
-                    VStack(alignment: .leading, spacing: HumaySpacing.medium) {
-                        Label("Western · Tropical", systemImage: "circle.hexagongrid")
-                            .font(HumayTypography.sectionTitle)
-
-                        Text("Open the chart overview to see the wheel, Big Three, and placement facts in order.")
-                            .font(HumayTypography.body)
-                            .foregroundStyle(Color.humayTextSecondary)
-                            .fixedSize(horizontal: false, vertical: true)
-
-                        NavigationLink {
-                            WesternChartView(model: western, source: source)
-                        } label: {
-                            Text("Open Western chart")
-                        }
-                        .buttonStyle(.humayPrimary)
-                        .accessibilityIdentifier("chart.western.open")
-                    }
-                }
+                ChartLoadedHero(model: western, source: source)
             } else {
                 ChartUnavailableState(
                     identifier: "loaded",
@@ -235,6 +208,86 @@ private struct ChartReadyEntry: View {
                     detail: "This chart method is not available right now."
                 )
             }
+        }
+    }
+}
+
+private struct ChartLoadedHero: View {
+    let model: ChartWesternModel
+    let source: D4ContentSource
+
+    @State private var focus: ChartWheelFocus
+
+    init(model: ChartWesternModel, source: D4ContentSource) {
+        self.model = model
+        self.source = source
+        _focus = State(initialValue: .point(model.wheel.selectedPoint ?? .sun))
+    }
+
+    var body: some View {
+        ViewThatFits(in: .horizontal) {
+            HStack(alignment: .center, spacing: HumaySpacing.hero) {
+                chart
+                    .frame(minWidth: 440, maxWidth: 570)
+                invitation
+                    .frame(minWidth: 300, maxWidth: 430)
+            }
+            .frame(maxWidth: .infinity, alignment: .center)
+
+            VStack(alignment: .leading, spacing: HumaySpacing.extraExtraLarge) {
+                chart
+                    .frame(maxWidth: 560)
+                    .frame(maxWidth: .infinity)
+                invitation
+            }
+        }
+    }
+
+    private var chart: some View {
+        ChartWheelView(model: model.wheel, focus: focus) { focus = $0 }
+            .padding(HumaySpacing.large)
+            .background(Color.humaySurface.opacity(0.52), in: RoundedRectangle(cornerRadius: HumayRadius.feature, style: .continuous))
+            .overlay {
+                RoundedRectangle(cornerRadius: HumayRadius.feature, style: .continuous)
+                    .stroke(Color.humaySeparator, lineWidth: 0.7)
+            }
+    }
+
+    private var invitation: some View {
+        VStack(alignment: .leading, spacing: HumaySpacing.extraLarge) {
+            HumayEyebrow(text: "Western · Tropical")
+
+            Text(focusTitle)
+                .font(HumayTypography.editorialTitle)
+                .fixedSize(horizontal: false, vertical: true)
+
+            Text("Enter the chart to explore placements, houses, aspect lines, and their interpretation.")
+                .font(HumayTypography.body)
+                .foregroundStyle(Color.humayTextSecondary)
+                .fixedSize(horizontal: false, vertical: true)
+
+            NavigationLink {
+                WesternChartView(model: model, source: source)
+            } label: {
+                Text("Open Western chart")
+            }
+            .buttonStyle(.humayPrimary)
+            .accessibilityIdentifier("chart.western.open")
+        }
+    }
+
+    private var focusTitle: String {
+        switch focus {
+        case .point(let point):
+            guard let placement = model.placement(for: point) else { return "Your natal chart" }
+            return "\(point.label) in \(placement.position.sign.displayName)"
+        case .house(let house):
+            return house.label.capitalized
+        case .aspect(let id):
+            guard let aspect = model.wheel.aspects.first(where: { $0.id == id }) else {
+                return "Your natal chart"
+            }
+            return "\(aspect.firstPoint.label) · \(aspect.secondPoint.label)"
         }
     }
 }

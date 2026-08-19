@@ -161,7 +161,10 @@ final class D5AskUITests: XCTestCase {
             XCTAssertTrue(
                 app.staticTexts["main.today.wordmark"].waitForExistence(timeout: 5)
             )
-            selectPrimaryDestination("Ask", in: app)
+            selectPrimaryDestination("Explore", in: app)
+            let ask = app.buttons["explore.tool.ask"]
+            XCTAssertTrue(ask.waitForExistence(timeout: 3))
+            ask.tap()
         }
         addTeardownBlock {
             app.terminate()

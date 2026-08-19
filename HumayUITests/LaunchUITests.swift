@@ -52,6 +52,27 @@ final class LaunchUITests: XCTestCase {
         XCTAssertFalse(relaunchedApp.buttons["onboarding.welcome.begin"].exists)
     }
 
+    func testPremiumPrimaryNavigationAndExploreHub() {
+        let app = d2App()
+
+        for destination in ["Today", "Chart", "Explore", "Connections", "You"] {
+            XCTAssertTrue(
+                app.tabBars.buttons[destination].exists
+                    || app.buttons[destination].firstMatch.exists,
+                "Missing primary destination \(destination)"
+            )
+        }
+
+        selectPrimaryDestination("Explore", in: app)
+        XCTAssertTrue(element("explore.screen", in: app).waitForExistence(timeout: 3))
+        XCTAssertTrue(app.buttons["explore.topic.love"].exists)
+        XCTAssertTrue(app.buttons["explore.tool.current-sky"].exists)
+        XCTAssertTrue(app.buttons["explore.tool.ask"].exists)
+
+        selectPrimaryDestination("You", in: app)
+        XCTAssertTrue(element("you.screen", in: app).waitForExistence(timeout: 3))
+    }
+
     func testD2PrimaryNavigationAndCompatibilityFlow() {
         let app = d2App()
 
@@ -65,7 +86,7 @@ final class LaunchUITests: XCTestCase {
         )
 
         app.navigationBars["Daily Horoscope"].buttons.element(boundBy: 0).tap()
-        selectPrimaryDestination("Circle", in: app)
+        selectPrimaryDestination("Connections", in: app)
         XCTAssertTrue(
             app.buttons["circle.compatibility.open"].waitForExistence(timeout: 3)
         )
@@ -94,15 +115,14 @@ final class LaunchUITests: XCTestCase {
             app.staticTexts["compatibility.score"].waitForExistence(timeout: 3)
         )
         XCTAssertTrue(
-            app.otherElements["compatibility.basis.free"].exists
-                || app.staticTexts["compatibility.basis.free"].exists
+            element("compatibility.basis.free", in: app).exists
         )
     }
 
     func testD2AddPersonValidation() {
         let app = d2App()
 
-        selectPrimaryDestination("Circle", in: app)
+        selectPrimaryDestination("Connections", in: app)
         XCTAssertTrue(
             app.buttons["circle.add-person"].waitForExistence(timeout: 3)
         )
@@ -128,7 +148,7 @@ final class LaunchUITests: XCTestCase {
         XCTAssertTrue(element("sky.current.happening-now", in: app).waitForExistence(timeout: 3))
         XCTAssertTrue(app.buttons["sky.current.calendar-entry"].waitForExistence(timeout: 3))
         XCTAssertTrue(element("sky.current.coming-up", in: app).waitForExistence(timeout: 3))
-        XCTAssertTrue(app.tabBars.buttons["Sky"].exists || app.buttons["Sky"].exists)
+        XCTAssertTrue(app.tabBars.buttons["Explore"].exists || app.buttons["Explore"].exists)
     }
 
     func testD3CurrentSkyStatesRemainDistinct() {
@@ -526,7 +546,7 @@ final class LaunchUITests: XCTestCase {
         capture(app, named: "d2-daily-horoscope")
 
         app.navigationBars["Daily Horoscope"].buttons.element(boundBy: 0).tap()
-        selectPrimaryDestination("Circle", in: app)
+        selectPrimaryDestination("Connections", in: app)
         XCTAssertTrue(
             app.buttons["circle.compatibility.open"].waitForExistence(timeout: 3)
         )
@@ -541,8 +561,7 @@ final class LaunchUITests: XCTestCase {
             app.staticTexts["compatibility.score"].waitForExistence(timeout: 3)
         )
         XCTAssertTrue(
-            app.otherElements["compatibility.basis.precise"].exists
-                || app.staticTexts["compatibility.basis.precise"].exists
+            element("compatibility.basis.precise", in: app).exists
         )
         capture(app, named: "d2-compatibility")
     }
@@ -550,7 +569,7 @@ final class LaunchUITests: XCTestCase {
     func testCaptureCompatibilityRefreshEvidence() {
         let app = d2App()
 
-        selectPrimaryDestination("Circle", in: app)
+        selectPrimaryDestination("Connections", in: app)
         XCTAssertTrue(
             app.buttons["circle.compatibility.open"].waitForExistence(timeout: 3)
         )
@@ -565,8 +584,7 @@ final class LaunchUITests: XCTestCase {
             app.staticTexts["compatibility.score"].waitForExistence(timeout: 3)
         )
         XCTAssertTrue(
-            app.otherElements["compatibility.basis.free"].exists
-                || app.staticTexts["compatibility.basis.free"].exists
+            element("compatibility.basis.free", in: app).exists
         )
         capture(app, named: "compatibility-refresh-result")
     }
@@ -582,7 +600,7 @@ final class LaunchUITests: XCTestCase {
         )
         capture(app, named: "d2-today-landscape")
 
-        selectPrimaryDestination("Circle", in: app)
+        selectPrimaryDestination("Connections", in: app)
         app.buttons["circle.compatibility.open"].tap()
         XCTAssertTrue(
             app.buttons["compatibility.selection.continue"].waitForExistence(timeout: 3)
@@ -632,10 +650,18 @@ final class LaunchUITests: XCTestCase {
         )
         app.buttons["chart.western.open"].tap()
         XCTAssertTrue(element("chart.western.screen", in: app).waitForExistence(timeout: 3))
-        XCTAssertTrue(element("chart.wheel", in: app).exists)
-        XCTAssertTrue(element("chart.big-three", in: app).exists)
+        let wheel = element("chart.wheel", in: app)
+        for _ in 0..<3 where !wheel.exists {
+            app.swipeUp()
+        }
+        XCTAssertTrue(wheel.waitForExistence(timeout: 3))
 
-        app.buttons["Open Moon detail"].tap()
+        let moonDetail = app.buttons["chart.placement.moon.open"]
+        for _ in 0..<3 where !moonDetail.isHittable {
+            app.swipeUp()
+        }
+        XCTAssertTrue(moonDetail.isHittable)
+        moonDetail.tap()
 
         XCTAssertTrue(element("chart.placement-detail.screen", in: app).waitForExistence(timeout: 3))
         XCTAssertTrue(element("chart.placement-detail.facts", in: app).exists)
@@ -644,6 +670,11 @@ final class LaunchUITests: XCTestCase {
 
         app.navigationBars.buttons.element(boundBy: 0).tap()
         XCTAssertTrue(element("chart.western.screen", in: app).waitForExistence(timeout: 3))
+        let bigThree = element("chart.big-three", in: app)
+        for _ in 0..<3 where !bigThree.exists {
+            app.swipeUp()
+        }
+        XCTAssertTrue(bigThree.waitForExistence(timeout: 3))
     }
 
     func testD4UnknownTimeWithholdsPrecisionFacts() {
@@ -846,7 +877,10 @@ final class LaunchUITests: XCTestCase {
         XCTAssertTrue(
             app.staticTexts["main.today.wordmark"].waitForExistence(timeout: 5)
         )
-        selectPrimaryDestination("Sky", in: app)
+        selectPrimaryDestination("Explore", in: app)
+        let currentSky = app.buttons["explore.tool.current-sky"]
+        XCTAssertTrue(currentSky.waitForExistence(timeout: 3))
+        currentSky.tap()
         return app
     }
 

@@ -25,74 +25,134 @@ struct MainAppView: View {
                     )
                 }
             }
-            .tabItem { Label("Today", systemImage: "sun.max") }
+            .tabItem { Label("Today", systemImage: "sun.horizon") }
             .tag(MainDestination.today)
 
             MainTabRoot {
                 NavigationStack {
-                    CircleView(
-                        state: d2FeatureInput.circle,
-                        compatibilityState: d2FeatureInput.compatibility,
-                        precisePreview: d2FeatureInput.preciseCompatibilityPreview,
-                        source: d2FeatureInput.source,
-                        profileName: profileName,
-                        openProfile: openProfile
-                    )
+                    chartRoot
                 }
             }
-            .tabItem { Label("Circle", systemImage: "person.2") }
-            .tag(MainDestination.circle)
-
-            MainTabRoot {
-                NavigationStack {
-                    CurrentSkyView(
-                        state: d3FeatureInput.currentSky,
-                        source: d3FeatureInput.source,
-                        calendarMonth: d3FeatureInput.calendarMonth,
-                        calendarWeek: d3FeatureInput.calendarWeek,
-                        calendarToday: calendarToday ?? SkyCalendarSupport.currentDate(),
-                        eventDetailState: d3FeatureInput.eventDetailState,
-                        profileName: profileName,
-                        openProfile: openProfile
-                    )
-                }
-            }
-            .tabItem { Label("Sky", systemImage: "sparkles") }
-            .tag(MainDestination.sky)
-
-            MainTabRoot {
-                NavigationStack {
-                    ChartView(
-                        input: d4FeatureInput,
-                        profileName: profileName,
-                        openProfile: openProfile
-                    )
-                }
-            }
-            .tabItem { Label("Chart", systemImage: "circle.hexagongrid") }
+            .tabItem { Label("Chart", systemImage: "circle.grid.cross") }
             .tag(MainDestination.chart)
 
             MainTabRoot {
                 NavigationStack {
-                    AskView(
-                        input: d5FeatureInput,
-                        profileName: profileName,
-                        openProfile: openProfile
+                    exploreRoot
+                }
+            }
+            .tabItem { Label("Explore", systemImage: "safari") }
+            .tag(MainDestination.explore)
+
+            MainTabRoot {
+                NavigationStack {
+                    connectionsRoot
+                }
+            }
+            .tabItem { Label("Connections", systemImage: "person.2") }
+            .tag(MainDestination.connections)
+
+            MainTabRoot {
+                NavigationStack {
+                    YouView(
+                        people: d2FeatureInput.circle.people,
+                        profileName: profileName
                     )
                 }
             }
-            .tabItem { Label("Ask", systemImage: "bubble.left.and.text.bubble.right") }
-            .tag(MainDestination.ask)
+            .tabItem { Label("You", systemImage: "person.crop.circle") }
+            .tag(MainDestination.you)
         }
         .tabViewStyle(.sidebarAdaptable)
-        .tint(Color.humayCoral)
-        .sheet(item: $navigation.auxiliaryRoute) { route in
-            switch route {
-            case .profileSettings:
-                ProfileSettingsSummaryView()
-                    .environment(environment)
-            }
+        .tint(Color.humayAccentPrestige)
+    }
+
+    @ViewBuilder
+    private var exploreRoot: some View {
+#if DEBUG
+        if d5FeatureInput.source.isDevelopmentSample,
+           d5FeatureInput.state != .empty {
+            AskView(
+                input: d5FeatureInput,
+                profileName: profileName,
+                openProfile: openProfile
+            )
+        } else {
+            exploreHub
         }
+#else
+        exploreHub
+#endif
+    }
+
+    @ViewBuilder
+    private var chartRoot: some View {
+#if DEBUG
+        if ProcessInfo.processInfo.arguments.contains("-HumayPlacementDetailDemo"),
+           let western = d4FeatureInput.chart.payload?.western,
+           let moon = western.placement(for: .moon) {
+            ChartPlacementDetailView(
+                placement: moon,
+                basis: western.basis,
+                source: d4FeatureInput.source
+            )
+        } else if ProcessInfo.processInfo.arguments.contains("-HumayWesternChartDemo"),
+                  let western = d4FeatureInput.chart.payload?.western {
+            WesternChartView(model: western, source: d4FeatureInput.source)
+        } else {
+            chartHub
+        }
+#else
+        chartHub
+#endif
+    }
+
+    private var chartHub: some View {
+        ChartView(
+            input: d4FeatureInput,
+            profileName: profileName,
+            openProfile: openProfile
+        )
+    }
+
+    @ViewBuilder
+    private var connectionsRoot: some View {
+#if DEBUG
+        if ProcessInfo.processInfo.arguments.contains("-HumayCompatibilityDemo") {
+            CompatibilityView(
+                state: d2FeatureInput.compatibility,
+                precisePreview: d2FeatureInput.preciseCompatibilityPreview,
+                source: d2FeatureInput.source
+            )
+        } else {
+            connectionsHub
+        }
+#else
+        connectionsHub
+#endif
+    }
+
+    private var connectionsHub: some View {
+        CircleView(
+            state: d2FeatureInput.circle,
+            compatibilityState: d2FeatureInput.compatibility,
+            precisePreview: d2FeatureInput.preciseCompatibilityPreview,
+            source: d2FeatureInput.source,
+            profileName: profileName,
+            openProfile: openProfile
+        )
+    }
+
+    private var exploreHub: some View {
+        ExploreView(
+            d2Input: d2FeatureInput,
+            d3Input: d3FeatureInput,
+            d4Input: d4FeatureInput,
+            d5Input: d5FeatureInput,
+            calendarToday: calendarToday ?? SkyCalendarSupport.currentDate(),
+            profileName: profileName,
+            openProfile: openProfile
+        )
     }
 
     private var profileName: String {
@@ -105,7 +165,8 @@ struct MainAppView: View {
     }
 
     private func openProfile() {
-        navigation.auxiliaryRoute = .profileSettings
+        navigation.auxiliaryRoute = nil
+        navigation.mainDestination = .you
     }
 
     private var calendarToday: SkyCalendarDate? {
@@ -133,55 +194,5 @@ private struct MainTabRoot<Content: View>: View {
                     .allowsHitTesting(false)
                     .accessibilityHidden(true)
             }
-    }
-}
-
-private struct ProfileSettingsSummaryView: View {
-    @Environment(AppEnvironment.self) private var environment
-    @Environment(\.dismiss) private var dismiss
-
-    var body: some View {
-        NavigationStack {
-            Form {
-                Section("Profile") {
-                    LabeledContent("Name", value: displayName)
-                    if let profile = environment.profile {
-                        LabeledContent("Birth date", value: profile.birth.dateFormatted())
-                        LabeledContent("Birth time", value: birthTimeText(profile.birth.time))
-                        LabeledContent("Birth place", value: profile.birth.place.name ?? "Not provided")
-                    }
-                }
-
-                Section("About your details") {
-                    Text("Birth time and place can stay unknown. Humay only uses them when a feature genuinely needs more precision.")
-                        .font(HumayTypography.supporting)
-                        .foregroundStyle(Color.humayTextSecondary)
-                }
-            }
-            .scrollContentBackground(.hidden)
-            .background(Color.humayGround)
-            .navigationTitle("Profile & Settings")
-            .navigationBarTitleDisplayMode(.inline)
-            .toolbar {
-                ToolbarItem(placement: .confirmationAction) {
-                    Button("Done") { dismiss() }
-                }
-            }
-        }
-        .presentationDetents([.medium, .large])
-    }
-
-    private var displayName: String {
-        let name = environment.profile?.displayName
-            .trimmingCharacters(in: .whitespacesAndNewlines) ?? ""
-        return name.isEmpty ? "Not provided" : name
-    }
-
-    private func birthTimeText(_ birthTime: BirthTime) -> String {
-        switch birthTime {
-        case .unknown: "Unknown"
-        case .exact: birthTime.formatted() ?? "Exact time"
-        case .approximate: birthTime.formatted() ?? "Approximate time"
-        }
     }
 }

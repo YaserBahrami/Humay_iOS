@@ -1,7 +1,8 @@
 import SwiftUI
 
-/// Semantic Soulful Celestial roles. Literal Light/Dark values live in the asset
-/// catalog; Xcode generates the corresponding type-safe `Color` symbols.
+/// Compatibility roles backed by the Premium Celestial semantic palette.
+/// Literal Light/Dark values live in the asset catalog so system appearance,
+/// increased contrast, previews, and generated color symbols keep working.
 enum HumayColorRole: CaseIterable {
     case ground
     case surface
@@ -33,8 +34,24 @@ enum HumayColorRole: CaseIterable {
 }
 
 extension Color {
-    /// Decorative liquid tone used only by the Welcome companion illustration.
-    /// Literal illustration colors remain centralized with the design tokens rather
-    /// than being embedded in production Presentation code.
+    // MARK: Semantic aliases
+
+    static var humayCanvas: Color { .humayGround }
+    static var humaySurfaceElevated: Color { .humayRaisedSurface }
+    static var humayAccentPrestige: Color { .humaySolarGold }
+    static var humayAccentCelestial: Color { .humayLavender }
+    static var humayAccentRoast: Color { .humayCoral }
+    static var humaySeparator: Color { .humayHairline }
+    static var humayOrbit: Color { .humayHairline }
+
+    static var humayChartHarmonious: Color { .humayCelestialBlue }
+    static var humayChartDynamic: Color { .humayCoral }
+    static var humayChartSelected: Color { .humaySolarGold }
+
+    /// Stable dark ink for prestige-gold controls in both appearances.
+    static let humayInkOnGold = Color(red: 0.09, green: 0.09, blue: 0.07)
+
+    /// Legacy onboarding illustration token. New post-onboarding surfaces use
+    /// semantic aliases above rather than local decorative color literals.
     static let humayCosmicCoffee = Color(red: 0.35, green: 0.24, blue: 0.16)
 }

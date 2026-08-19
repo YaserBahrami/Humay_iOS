@@ -8,47 +8,35 @@ struct TodayView: View {
     let profileName: String
     let openProfile: () -> Void
 
-    @Environment(\.colorScheme) private var colorScheme
     @State private var showRoastInfo = false
 
     var body: some View {
-        GeometryReader { proxy in
-            ScrollView {
-                VStack(alignment: .leading, spacing: HumaySpacing.large) {
-                    D2WordmarkHeader(
-                        title: nil,
-                        profileName: profileName,
-                        profileAction: openProfile
-                    )
+        HumayPage(maximum: .immersive) {
+            HumayScreenHeader(
+                section: "Today",
+                profileName: profileName,
+                profileAction: openProfile,
+                wordmarkIdentifier: "main.today.wordmark"
+            )
 
-                    stateContent(availableWidth: proxy.size.width)
-                }
-                .frame(maxWidth: HumayContentWidth.expanded.rawValue)
-                .frame(maxWidth: .infinity, alignment: .top)
-                .padding(.horizontal, HumayLayout.screenGutter(for: proxy.size.width))
-                .padding(.top, HumaySpacing.medium)
-                .padding(.bottom, HumaySpacing.extraExtraLarge)
-            }
-            .scrollIndicators(.hidden)
+            stateContent
         }
-        .background(Color.humayGround.ignoresSafeArea())
-        .foregroundStyle(Color.humayTextPrimary)
         .navigationBarHidden(true)
         .alert("Roast Mode preview", isPresented: $showRoastInfo) {
             Button("Got it", role: .cancel) {}
         } message: {
-            Text("Roast changes expression only. Real tone switching arrives with its owning feature work.")
+            Text("Roast changes expression only. It never changes the astrology facts beneath a reading.")
         }
     }
 
     @ViewBuilder
-    private func stateContent(availableWidth: CGFloat) -> some View {
+    private var stateContent: some View {
         switch state {
         case .loading:
-            loadingState
+            TodayLoadingView()
 
         case .loaded(let content):
-            loadedContent(content, availableWidth: availableWidth)
+            loadedContent(content)
 
         case .cached(let content, let savedAt):
             D2StatusBanner(
@@ -57,7 +45,7 @@ struct TodayView: View {
                 detail: "Saved \(savedAt.formatted(date: .abbreviated, time: .shortened)).",
                 accent: .sage
             )
-            loadedContent(content, availableWidth: availableWidth)
+            loadedContent(content)
 
         case .offline(let cached):
             D2StatusBanner(
@@ -69,74 +57,67 @@ struct TodayView: View {
                 accent: .gold
             )
             if let cached {
-                loadedContent(cached, availableWidth: availableWidth)
+                loadedContent(cached)
             } else {
-                D2UnavailableState(
-                    symbol: "moon.zzz",
+                HumayStateView(
                     title: "Today is unavailable",
-                    detail: "Reconnect to open a current reading."
+                    message: "Reconnect to open a current reading.",
+                    glyph: .eclipse
                 )
             }
 
         case .failed(let message):
-            D2UnavailableState(
-                symbol: "sparkles",
+            HumayStateView(
                 title: "Today needs a moment",
-                detail: message
+                message: message,
+                glyph: .orbit
             )
         }
     }
 
-    @ViewBuilder
-    private func loadedContent(_ content: TodayContent, availableWidth: CGFloat) -> some View {
-        if availableWidth >= 820 {
-            HStack(alignment: .top, spacing: HumaySpacing.extraLarge) {
-                VStack(alignment: .leading, spacing: HumaySpacing.extraLarge) {
+    private func loadedContent(_ content: TodayContent) -> some View {
+        VStack(alignment: .leading, spacing: HumaySpacing.section) {
+            ViewThatFits(in: .horizontal) {
+                HStack(alignment: .top, spacing: HumaySpacing.hero) {
                     greeting(content)
-                    cosmicInsight(content)
+                        .frame(minWidth: 320, maxWidth: 440, alignment: .leading)
+                    cosmicWeather(content)
+                        .frame(minWidth: 420, maxWidth: .infinity)
                 }
-                .frame(maxWidth: .infinity, alignment: .topLeading)
 
-                VStack(alignment: .leading, spacing: HumaySpacing.extraLarge) {
-                    highlights(content)
-                    roastCard(content)
+                VStack(alignment: .leading, spacing: HumaySpacing.extraExtraLarge) {
+                    greeting(content)
+                    cosmicWeather(content)
                 }
-                .frame(maxWidth: .infinity, alignment: .topLeading)
             }
-        } else {
-            VStack(alignment: .leading, spacing: HumaySpacing.large) {
-                greeting(content)
-                cosmicInsight(content)
-                highlights(content)
-                roastCard(content)
-            }
+
+            themes(content)
+            importantInsight(content)
+            timingAndBasis
+            roastMoment(content)
         }
     }
 
     private func greeting(_ content: TodayContent) -> some View {
-        HStack(alignment: .bottom, spacing: HumaySpacing.small) {
-            VStack(alignment: .leading, spacing: HumaySpacing.medium) {
-                Text(content.greeting)
-                    .font(HumayTypography.editorialTitle)
-                    .fixedSize(horizontal: false, vertical: true)
-                    .accessibilityAddTraits(.isHeader)
+        VStack(alignment: .leading, spacing: HumaySpacing.large) {
+            HumayEyebrow(text: "Your day, in focus", color: .humayAccentCelestial)
 
-                Text(content.introduction)
-                    .font(HumayTypography.body)
-                    .foregroundStyle(Color.humayTextPrimary.opacity(0.90))
-                    .fixedSize(horizontal: false, vertical: true)
-            }
-            .frame(maxWidth: .infinity, alignment: .leading)
+            Text(content.greeting)
+                .font(HumayTypography.displayTitle)
+                .fixedSize(horizontal: false, vertical: true)
+                .accessibilityAddTraits(.isHeader)
 
-            CelestialCoffeeArt()
-                .frame(maxWidth: 128)
-                .offset(y: 2)
+            Text(content.introduction)
+                .font(HumayTypography.body)
+                .foregroundStyle(Color.humayTextSecondary)
+                .fixedSize(horizontal: false, vertical: true)
+                .frame(maxWidth: 420, alignment: .leading)
         }
         .accessibilityElement(children: .combine)
         .accessibilityIdentifier("today.greeting")
     }
 
-    private func cosmicInsight(_ content: TodayContent) -> some View {
+    private func cosmicWeather(_ content: TodayContent) -> some View {
         NavigationLink {
             DailyHoroscopeView(
                 states: dailyStates,
@@ -144,158 +125,364 @@ struct TodayView: View {
                 source: source
             )
         } label: {
-            HumayCosmicSurface(padding: HumaySpacing.large) {
-                HStack(spacing: HumaySpacing.medium) {
-                    VStack(alignment: .leading, spacing: HumaySpacing.small) {
-                        Text("Cosmic Weather")
-                            .font(HumayTypography.utility)
-                            .textCase(.uppercase)
-                            .tracking(1.1)
-                            .foregroundStyle(Color.humayLavender)
-
-                        Text(content.cosmicInsight)
-                            .font(HumayTypography.onboardingCardTitle)
-                            .fixedSize(horizontal: false, vertical: true)
+            VStack(alignment: .leading, spacing: 0) {
+                ViewThatFits(in: .horizontal) {
+                    HStack(alignment: .center, spacing: HumaySpacing.extraLarge) {
+                        cosmicWeatherCopy(content)
+                        Spacer(minLength: 0)
+                        HumayCelestialStage(compact: true)
+                            .frame(width: 190, height: 190)
                     }
-                    .frame(maxWidth: .infinity, alignment: .leading)
 
-                    OrbitPlanetArt(compact: true)
-                        .frame(maxWidth: 112)
+                    VStack(alignment: .leading, spacing: HumaySpacing.large) {
+                        cosmicWeatherCopy(content)
+                        HumayCelestialStage(compact: true)
+                            .frame(maxWidth: .infinity)
+                            .frame(height: 190)
+                    }
+                }
+
+                HStack(spacing: HumaySpacing.small) {
+                    Text("Read your full day")
+                        .font(HumayTypography.control)
+                    Spacer(minLength: HumaySpacing.small)
+                    Image(systemName: "arrow.right")
+                        .accessibilityHidden(true)
+                }
+                .padding(.top, HumaySpacing.large)
+                .overlay(alignment: .top) {
+                    Rectangle()
+                        .fill(Color.humaySeparator)
+                        .frame(height: 1)
                 }
             }
+            .padding(.vertical, HumaySpacing.extraLarge)
+            .padding(.horizontal, HumaySpacing.extraLarge)
+            .foregroundStyle(Color.humayTextPrimary)
+            .background(cosmicBackground)
+            .overlay(alignment: .top) {
+                Rectangle().fill(Color.humayAccentCelestial.opacity(0.52)).frame(height: 1)
+            }
+            .overlay(alignment: .bottom) {
+                Rectangle().fill(Color.humayAccentPrestige.opacity(0.55)).frame(height: 1)
+            }
+            .contentShape(Rectangle())
         }
         .buttonStyle(.plain)
-        .accessibilityLabel("Cosmic Weather. \(content.cosmicInsight)")
-        .accessibilityHint("Opens Daily Horoscope")
+        .accessibilityLabel("Your Cosmic Weather. \(humanHeadline(for: content))")
+        .accessibilityHint("Opens your full daily reading")
         .accessibilityIdentifier("today.daily.open")
     }
 
-    private func highlights(_ content: TodayContent) -> some View {
-        HumaySurface(padding: 0) {
-            VStack(spacing: 0) {
-                ForEach(Array(content.highlights.enumerated()), id: \.element.id) { index, highlight in
-                    NavigationLink {
-                        DailyHoroscopeView(
-                            states: dailyStates,
-                            precisePreview: precisePreview,
-                            source: source
-                        )
-                    } label: {
-                        HStack(alignment: .center, spacing: HumaySpacing.large) {
-                            HumayCategoryIcon(
-                                symbol: highlight.category.symbol,
-                                accent: highlight.category.accent
-                            )
+    private func cosmicWeatherCopy(_ content: TodayContent) -> some View {
+        VStack(alignment: .leading, spacing: HumaySpacing.medium) {
+            HumayEyebrow(text: "Your Cosmic Weather")
 
-                            VStack(alignment: .leading, spacing: HumaySpacing.extraSmall) {
-                                Text(highlight.category.displayName)
-                                    .font(HumayTypography.bodyEmphasized)
-                                Text(highlight.text)
-                                    .font(HumayTypography.supporting)
-                                    .foregroundStyle(Color.humayTextPrimary.opacity(0.88))
-                                    .fixedSize(horizontal: false, vertical: true)
-                            }
-                            .frame(maxWidth: .infinity, alignment: .leading)
+            Text(humanHeadline(for: content))
+                .font(HumayTypography.editorialTitle)
+                .fixedSize(horizontal: false, vertical: true)
 
-                            Image(systemName: "chevron.right")
-                                .font(.footnote.weight(.semibold))
-                                .foregroundStyle(Color.humayTextSecondary)
-                                .frame(width: 44, height: 44)
-                                .background(Color.humayRaisedSurface.opacity(0.70), in: Circle())
-                                .accessibilityHidden(true)
-                        }
-                        .padding(.horizontal, HumaySpacing.large)
-                        .padding(.vertical, HumaySpacing.medium)
-                        .contentShape(Rectangle())
-                    }
-                    .buttonStyle(.plain)
-                    .accessibilityHint("Opens Daily Horoscope")
+            Text(content.cosmicInsight)
+                .font(HumayTypography.supporting)
+                .foregroundStyle(Color.humayTextSecondary)
+                .fixedSize(horizontal: false, vertical: true)
+        }
+        .frame(maxWidth: 420, alignment: .leading)
+    }
 
-                    if index < content.highlights.count - 1 {
-                        Divider()
-                            .overlay(Color.humayHairline)
-                            .padding(.leading, 80)
-                    }
+    private var cosmicBackground: LinearGradient {
+        LinearGradient(
+            colors: [
+                Color.humayAccentCelestial.opacity(0.08),
+                Color.humaySurface.opacity(0.76),
+                Color.humayAccentPrestige.opacity(0.06)
+            ],
+            startPoint: .topLeading,
+            endPoint: .bottomTrailing
+        )
+    }
+
+    private func themes(_ content: TodayContent) -> some View {
+        VStack(alignment: .leading, spacing: HumaySpacing.extraLarge) {
+            HumaySectionHeader(
+                title: "The themes moving through today",
+                subtitle: "Start with what matters. Technical context waits deeper in the reading."
+            )
+
+            LazyVGrid(
+                columns: [GridItem(.adaptive(minimum: 230), spacing: HumaySpacing.large)],
+                spacing: HumaySpacing.large
+            ) {
+                ForEach(DailyReadingCategory.allCases) { category in
+                    themeLink(category, content: content)
                 }
             }
         }
         .accessibilityIdentifier("today.highlights")
     }
 
-    private func roastCard(_ content: TodayContent) -> some View {
-        Button {
-            showRoastInfo = true
+    private func themeLink(_ category: DailyReadingCategory, content: TodayContent) -> some View {
+        let highlight = content.highlights.first { $0.category == category }
+
+        return NavigationLink {
+            DailyHoroscopeView(
+                states: dailyStates,
+                precisePreview: precisePreview,
+                source: source
+            )
         } label: {
-            HStack(spacing: HumaySpacing.medium) {
-                VStack(alignment: .leading, spacing: HumaySpacing.extraSmall) {
-                    Text("Roast Mode")
-                        .font(HumayTypography.utility)
-                        .textCase(.uppercase)
-                        .tracking(1.1)
-                        .foregroundStyle(colorScheme == .dark ? Color.humayGround : Color.humayCoral)
-                    Text(content.roastTitle)
-                        .font(HumayTypography.cardTitle)
-                    Text(content.roastBody)
+            HStack(alignment: .top, spacing: HumaySpacing.large) {
+                HumayGlyph(kind: category.glyphKind)
+                    .frame(width: 34, height: 34)
+                    .foregroundStyle(category.premiumAccent)
+
+                VStack(alignment: .leading, spacing: HumaySpacing.small) {
+                    Text(category.displayName)
+                        .font(HumayTypography.bodyEmphasized)
+                    Text(highlight?.text ?? "Open your full daily reading.")
                         .font(HumayTypography.supporting)
+                        .foregroundStyle(Color.humayTextSecondary)
+                        .fixedSize(horizontal: false, vertical: true)
                 }
                 .frame(maxWidth: .infinity, alignment: .leading)
 
-                RoastFireArt()
-                    .frame(maxWidth: 86)
-
-                Image(systemName: "arrow.right")
-                    .frame(width: 40, height: 40)
-                    .background(roastControlBackground, in: Circle())
+                Image(systemName: "chevron.right")
+                    .font(.footnote.weight(.semibold))
+                    .foregroundStyle(Color.humayTextSecondary)
+                    .frame(width: HumayMetrics.minimumHitTarget, height: HumayMetrics.minimumHitTarget)
                     .accessibilityHidden(true)
             }
-            .foregroundStyle(Color.humayTextPrimary)
-            .padding(HumaySpacing.large)
-            .background(roastBackground, in: RoundedRectangle(cornerRadius: HumayRadius.surface))
-            .overlay {
-                RoundedRectangle(cornerRadius: HumayRadius.surface)
-                    .stroke(roastBorder)
+            .padding(.vertical, HumaySpacing.large)
+            .overlay(alignment: .bottom) {
+                Rectangle().fill(Color.humaySeparator).frame(height: 1)
             }
+            .contentShape(Rectangle())
         }
         .buttonStyle(.plain)
-        .accessibilityHint("Explains the Roast Mode preview")
+        .accessibilityHint("Opens your daily reading")
+    }
+
+    private func importantInsight(_ content: TodayContent) -> some View {
+        HumayHairlineSurface(style: .raised, padding: HumaySpacing.extraLarge) {
+            VStack(alignment: .leading, spacing: HumaySpacing.large) {
+                HStack(alignment: .top, spacing: HumaySpacing.large) {
+                    HumayGlyph(kind: .feather)
+                        .frame(width: 42, height: 42)
+                        .foregroundStyle(Color.humayAccentPrestige)
+
+                    VStack(alignment: .leading, spacing: HumaySpacing.small) {
+                        HumayEyebrow(text: "One thing to carry")
+                        Text(todayReading?.headline ?? content.cosmicInsight)
+                            .font(HumayTypography.narrativeSectionTitle)
+                            .fixedSize(horizontal: false, vertical: true)
+                    }
+                }
+
+                if let reading = todayReading {
+                    Text(reading.body)
+                        .font(HumayTypography.body)
+                        .foregroundStyle(Color.humayTextSecondary)
+                        .fixedSize(horizontal: false, vertical: true)
+
+                    Rectangle()
+                        .fill(Color.humaySeparator)
+                        .frame(height: 1)
+
+                    HumayDisclosureGroup(
+                        eyebrow: "Level 2",
+                        title: "Why this appears",
+                        summary: basisSummary(for: reading)
+                    ) {
+                        Text("Humay keeps the interpretation separate from its basis. This reading uses the source shown below; no hidden birth time or transit is inferred.")
+                            .font(HumayTypography.supporting)
+                            .foregroundStyle(Color.humayTextSecondary)
+                    }
+
+                    Rectangle()
+                        .fill(Color.humaySeparator)
+                        .frame(height: 1)
+
+                    HumayDisclosureGroup(
+                        eyebrow: "Level 3",
+                        title: "Astrology details",
+                        summary: "Inspect the reading basis and available facts."
+                    ) {
+                        VStack(spacing: HumaySpacing.small) {
+                            HumayFactRow(label: "Period", value: reading.period.displayName)
+                            HumayFactRow(label: "Sign", value: reading.sign.displayName)
+                            HumayFactRow(label: "Basis", value: basisLabel(for: reading))
+                            HumayFactRow(
+                                label: "Source",
+                                value: source.isDevelopmentSample
+                                    ? "Development sample · not calculated"
+                                    : "Production content"
+                            )
+                        }
+                    }
+                }
+            }
+        }
+        .accessibilityIdentifier("today.important-insight")
+    }
+
+    private var timingAndBasis: some View {
+        NavigationLink {
+            DailyHoroscopeView(
+                states: dailyStates,
+                precisePreview: precisePreview,
+                source: source
+            )
+        } label: {
+            HStack(spacing: HumaySpacing.large) {
+                HumayGlyph(kind: .orbit)
+                    .frame(width: 40, height: 40)
+                    .foregroundStyle(Color.humayAccentCelestial)
+
+                VStack(alignment: .leading, spacing: HumaySpacing.extraSmall) {
+                    Text("Timing & reading basis")
+                        .font(HumayTypography.bodyEmphasized)
+                    Text("Today, tomorrow, this week, and available source details")
+                        .font(HumayTypography.supporting)
+                        .foregroundStyle(Color.humayTextSecondary)
+                }
+                .frame(maxWidth: .infinity, alignment: .leading)
+
+                Image(systemName: "arrow.right")
+                    .foregroundStyle(Color.humayAccentPrestige)
+                    .frame(width: HumayMetrics.minimumHitTarget, height: HumayMetrics.minimumHitTarget)
+                    .accessibilityHidden(true)
+            }
+            .padding(.vertical, HumaySpacing.large)
+            .overlay(alignment: .top) { Rectangle().fill(Color.humaySeparator).frame(height: 1) }
+            .overlay(alignment: .bottom) { Rectangle().fill(Color.humaySeparator).frame(height: 1) }
+            .contentShape(Rectangle())
+        }
+        .buttonStyle(.plain)
+    }
+
+    private func roastMoment(_ content: TodayContent) -> some View {
+        Button {
+            showRoastInfo = true
+        } label: {
+            HStack(alignment: .center, spacing: HumaySpacing.extraLarge) {
+                VStack(alignment: .leading, spacing: HumaySpacing.small) {
+                    HumayEyebrow(text: "Roast Mode", color: .humayAccentRoast)
+                    Text(content.roastTitle)
+                        .font(HumayTypography.editorialTitle)
+                    Text(content.roastBody)
+                        .font(HumayTypography.supporting)
+                        .foregroundStyle(Color.humayTextSecondary)
+                }
+                .frame(maxWidth: .infinity, alignment: .leading)
+
+                HumayGlyph(kind: .eye)
+                    .frame(width: 58, height: 58)
+                    .foregroundStyle(Color.humayAccentRoast)
+
+                Image(systemName: "arrow.up.right")
+                    .foregroundStyle(Color.humayAccentRoast)
+                    .frame(width: HumayMetrics.minimumHitTarget, height: HumayMetrics.minimumHitTarget)
+                    .accessibilityHidden(true)
+            }
+            .padding(.vertical, HumaySpacing.extraLarge)
+            .padding(.horizontal, HumaySpacing.large)
+            .background(Color.humayAccentRoast.opacity(0.07))
+            .overlay(alignment: .leading) {
+                Rectangle().fill(Color.humayAccentRoast).frame(width: 2)
+            }
+            .contentShape(Rectangle())
+        }
+        .buttonStyle(.plain)
+        .accessibilityHint("Explains Roast Mode")
         .accessibilityIdentifier("today.roast")
     }
 
-    private var roastBackground: some ShapeStyle {
-        LinearGradient(
-            colors: colorScheme == .light
-                ? [Color.humayCoral.opacity(0.16), Color.humaySolarGold.opacity(0.10)]
-                : [Color.humayCoral.opacity(0.72), Color.humaySolarGold.opacity(0.30)],
-            startPoint: .leading,
-            endPoint: .trailing
-        )
+    private var todayReading: DailyHoroscopeContent? {
+        guard let state = dailyStates[.today] else { return nil }
+        switch state {
+        case .free(let reading),
+             .preciseLocked(let reading),
+             .preciseLoaded(let reading),
+             .cached(let reading, _):
+            return reading
+        case .offline(let reading):
+            return reading
+        case .loading, .failed:
+            return nil
+        }
     }
 
-    private var roastBorder: Color {
-        colorScheme == .light ? Color.humayHairline : Color.humayCoral.opacity(0.42)
+    private func humanHeadline(for content: TodayContent) -> String {
+        todayReading?.headline ?? content.cosmicInsight
     }
 
-    private var roastControlBackground: Color {
-        colorScheme == .light ? Color.humaySurface.opacity(0.72) : Color.humaySurface.opacity(0.28)
+    private func basisSummary(for reading: DailyHoroscopeContent) -> String {
+        switch reading.basis {
+        case .freeWesternSunSign(let sign):
+            "A coarse \(sign.displayName) Sun-sign reading, not a natal transit interpretation."
+        case .precisePersonalized:
+            "A personalized reading whose calculation facts remain separate from interpretation."
+        }
     }
 
-    private var loadingState: some View {
-        HumaySurface(level: .raised) {
+    private func basisLabel(for reading: DailyHoroscopeContent) -> String {
+        switch reading.basis {
+        case .freeWesternSunSign(let sign):
+            "Free Western · \(sign.displayName) Sun"
+        case .precisePersonalized:
+            "Precise personalized"
+        }
+    }
+}
+
+private struct TodayLoadingView: View {
+    @Environment(\.accessibilityReduceMotion) private var reduceMotion
+    @State private var visible = false
+
+    var body: some View {
+        HumayHairlineSurface(style: .raised) {
             VStack(spacing: HumaySpacing.extraLarge) {
-                ProgressView()
-                    .controlSize(.large)
-                    .tint(Color.humayLavender)
+                HumayCelestialStage(compact: true)
+                    .frame(width: 150, height: 150)
+                    .opacity(visible || reduceMotion ? 1 : 0.45)
+
                 Text("Reading today’s sky…")
-                    .font(HumayTypography.cardTitle)
+                    .font(HumayTypography.editorialTitle)
+
                 Text("Preparing your day.")
                     .font(HumayTypography.supporting)
                     .foregroundStyle(Color.humayTextSecondary)
             }
             .frame(maxWidth: .infinity)
-            .padding(.vertical, HumaySpacing.extraExtraLarge)
+            .padding(.vertical, HumaySpacing.section)
+        }
+        .onAppear {
+            withAnimation(HumayMotion.reveal(reduceMotion: reduceMotion)) {
+                visible = true
+            }
         }
         .accessibilityElement(children: .combine)
         .accessibilityLabel("Loading Today")
+    }
+}
+
+private extension DailyReadingCategory {
+    var glyphKind: HumayGlyphKind {
+        switch self {
+        case .love: .connection
+        case .career: .feather
+        case .money: .crown
+        case .health: .orbit
+        }
+    }
+
+    var premiumAccent: Color {
+        switch self {
+        case .love: .humayAccentRoast
+        case .career: .humayAccentCelestial
+        case .money: .humayAccentPrestige
+        case .health: .humaySage
+        }
     }
 }
 

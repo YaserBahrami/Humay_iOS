@@ -2,7 +2,7 @@ import Testing
 import UIKit
 @testable import Humay
 
-@Suite("Soulful Celestial design system")
+@Suite("Premium Celestial design system")
 struct DesignSystemFoundationTests {
     @Test("Every semantic color role has Light and Dark asset variants")
     func semanticColorsExist() {
@@ -117,7 +117,7 @@ struct DesignSystemFoundationTests {
     @Test("Interactive and hairline metrics preserve platform minimums")
     func interactionMetrics() {
         #expect(HumayMetrics.minimumHitTarget == 44)
-        #expect(HumayMetrics.primaryControlMinimumHeight == 56)
+        #expect(HumayMetrics.primaryControlMinimumHeight == 54)
         #expect(HumayMetrics.primaryControlMinimumHeight >= HumayMetrics.minimumHitTarget)
         #expect(HumayMetrics.hairline(displayScale: 2) == 0.5)
         #expect(HumayMetrics.hairline(displayScale: 3) < 0.34)
@@ -127,9 +127,9 @@ struct DesignSystemFoundationTests {
     func adaptiveLayoutWidths() {
         #expect(HumayLayout.screenGutter(for: 393) == 20)
         #expect(HumayLayout.contentWidth(for: 393, maximum: .readable) == 353)
-        #expect(HumayLayout.screenGutter(for: 600) == 24)
-        #expect(HumayLayout.contentWidth(for: 600, maximum: .form) == 552)
-        #expect(HumayLayout.screenGutter(for: 1024) == 32)
+        #expect(HumayLayout.screenGutter(for: 600) == 28)
+        #expect(HumayLayout.contentWidth(for: 600, maximum: .form) == 544)
+        #expect(HumayLayout.screenGutter(for: 1024) == 40)
         #expect(HumayLayout.contentWidth(for: 1024, maximum: .readable) == 680)
         #expect(HumayLayout.contentWidth(for: 1366, maximum: .expanded) == 960)
     }

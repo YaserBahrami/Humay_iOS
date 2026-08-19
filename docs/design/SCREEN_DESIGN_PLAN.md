@@ -1,12 +1,12 @@
 # Humay Cross-Device Screen Design Plan
 
-**Status:** Current and only screen-design plan  
+**Status:** Current screen inventory and propagation plan
 **Repository authority:** `main`  
-**Visual authority:** [`SOULFUL_CELESTIAL_DESIGN_DIRECTION.md`](SOULFUL_CELESTIAL_DESIGN_DIRECTION.md)
+**Visual authority:** [`PREMIUM_CELESTIAL_REDESIGN.md`](PREMIUM_CELESTIAL_REDESIGN.md)
 
 ## Goal
 
-Design every Humay product surface in the selected Soulful Celestial direction and produce an intentional cross-device reference set before final implementation is frozen.
+Propagate Premium Celestial through every Humay product surface while retaining the existing state, access, and astrology contracts. Pre-2026-08-19 references remain useful for behavior and coverage, but redesigned screens follow the current authority.
 
 Every shipping screen requires:
 
@@ -60,7 +60,7 @@ Only current/approved references belong in the active reference tree. Superseded
 | Daily Horoscope | Light + Dark approved | companion designs pending | style source |
 | Compatibility | Light + Dark approved | companion designs pending | style source |
 
-D0 establishes warm cream vs midnight navy appearance, editorial serif + clean system typography, restrained celestial illustration, disciplined accent color and soft rounded surfaces.
+D0 is historical visual evidence. Today and Compatibility were superseded by the Premium Celestial representative phase on 2026-08-19; Daily Horoscope awaits propagation.
 
 ## D1 — Onboarding
 
@@ -150,7 +150,7 @@ Chart screens require explicit iPad landscape treatment because the extra width 
 
 ### Current state
 
-D4.1 was approved on 2026-08-14. The first UI-first slice is implemented and reconciled over a Debug-only typed sample: Chart root/Free entry, loading/access/cache/offline/error states, Western known-time overview, data-driven wheel with ordered list alternative, Moon Placement Detail, unknown-time state and iPhone/iPad adaptive chart/detail composition. Vedic, Chinese/BaZi, Compare Systems, real calculation/provider, access, cache and entitlement work remain task-gated. Evidence: [`implementation-evidence/d4-chart/`](implementation-evidence/d4-chart/README.md).
+D4.1 behavior/state coverage was approved on 2026-08-14. Chart root, Western Chart, interactive wheel, and Placement Detail received the Premium Celestial redesign on 2026-08-19. Existing typed samples, access/cache/offline/error contracts, unknown-time behavior, and ordered accessibility alternative remain intact. Vedic, Chinese/BaZi, Compare Systems, real calculation/provider, access, cache, and entitlement work remain task-gated. Earlier evidence remains historical: [`implementation-evidence/d4-chart/`](implementation-evidence/d4-chart/README.md).
 
 ## D5 — Ask the Stars
 

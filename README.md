@@ -6,7 +6,7 @@
 
 ## Current state
 
-The repository was reset to a **clean production baseline on 2026-08-12** before implementation of the approved Soulful Celestial design.
+The repository was reset to a **clean production baseline on 2026-08-12**. On 2026-08-19, the Premium Celestial representative redesign established the current post-onboarding system across Today, Chart, Placement Detail, Compatibility, and Explore.
 
 The old mock-first Presentation, DesignSystem, fixture runtime and premature persistence/provider layers were removed. Git history remains available for archaeology, but removed prototype code is not current implementation authority.
 
@@ -29,7 +29,7 @@ xcodebuild -project Humay.xcodeproj -scheme Humay -configuration Debug \
 
 ## Current engineering work
 
-**Phase 01 — Apple Platform Foundation is ready to start.** It establishes SwiftUI + Clean Architecture (`App → Presentation → Domain ← Data`), explicit dependency composition, the production Soulful Celestial design-system foundation, cross-device root state/navigation boundaries, and test/config/persistence seams without rebuilding speculative features.
+**Phase 01 — Apple Platform Foundation is complete.** Current work propagates Premium Celestial through remaining post-onboarding surfaces while preserving SwiftUI + Clean Architecture (`App → Presentation → Domain ← Data`), explicit dependency composition, state contracts, and persistence/provider seams.
 
 Provider/cache/backend details from Phase 00 continue in parallel where they do not block foundation work.
 
@@ -59,16 +59,16 @@ See [`docs/development/PRODUCT_ACCESS_MODEL.md`](docs/development/PRODUCT_ACCESS
 
 ## Current design program
 
-Humay has one design authority: **Soulful Celestial, Light + Dark**.
+Humay has one post-onboarding design authority: **Premium Celestial, Light + Dark**.
 
 Start here:
 
 1. [`docs/design/DESIGN_AUTHORITY.md`](docs/design/DESIGN_AUTHORITY.md)
-2. [`docs/design/SOULFUL_CELESTIAL_DESIGN_DIRECTION.md`](docs/design/SOULFUL_CELESTIAL_DESIGN_DIRECTION.md)
+2. [`docs/design/PREMIUM_CELESTIAL_REDESIGN.md`](docs/design/PREMIUM_CELESTIAL_REDESIGN.md)
 3. [`docs/design/SCREEN_DESIGN_PLAN.md`](docs/design/SCREEN_DESIGN_PLAN.md)
-4. [`docs/design/soulful-reference/`](docs/design/soulful-reference/README.md)
+4. [`docs/design/SOULFUL_CELESTIAL_DESIGN_DIRECTION.md`](docs/design/SOULFUL_CELESTIAL_DESIGN_DIRECTION.md) — retained onboarding authority and legacy context
 
-The target feeling is warm, soulful, colorful, charming and premium with editorial typography and **restrained simple line/flat celestial illustration**. The old Paper/minimal and painterly/watercolor explorations are superseded.
+The target feeling is editorial, quiet, and unmistakably Humay: ivory/midnight grounds, restrained gold, thin celestial mechanics, and subtle feather/eye/orbit motifs. Generic purple-neon astrology, cute celestial characters, and excessive cards are superseded post-onboarding.
 
 ### Cross-device rule
 
@@ -82,7 +82,7 @@ Every shipping screen is designed and reviewed for:
 
 A phone layout is not stretched onto iPad.
 
-Existing iPhone Welcome and Birth Date references remain approved. Their iPad companions are the next backfill before those screens are cross-device complete. Step 03 Tradition is designed for both device families from the start.
+The approved D1 onboarding family already covers iPhone and iPad Light/Dark. It remains intact until onboarding receives a dedicated Premium Celestial migration phase.
 
 ## Canonical onboarding
 
@@ -95,14 +95,14 @@ Birth time and birth location are not onboarding steps. They may be added later 
 
 ## Canonical IA
 
-- Today / Circle / Sky / Chart / Ask
-- Calendar nested under Sky
-- Profile / Settings through the header/profile entry
-- Compatibility through Circle/people flows
+- Today / Chart / Explore / Connections / You
+- Current Sky, Calendar, and Ask under Explore
+- Circle/people and Compatibility under Connections
+- Profile, birth details, preferences, access, and settings under You
 
 ## Development cadence
 
-Shared architecture/design-system foundation can proceed now. Feature-specific UI follows:
+The architecture and Premium Celestial representative foundation are implemented. Remaining feature-family migration follows:
 
 1. design the family for iPhone + iPad, Light + Dark;
 2. approve;

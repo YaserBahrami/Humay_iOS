@@ -93,7 +93,7 @@ struct CompatibilitySelectionView: View {
                 .accessibilityAddTraits(.isHeader)
             Text(
                 regularLayout
-                    ? "Select two people. The pair stays visible while you browse your Circle."
+                    ? "Select two people. The pair stays visible while you browse Connections."
                     : "Select two people to compare."
             )
             .font(HumayTypography.body)

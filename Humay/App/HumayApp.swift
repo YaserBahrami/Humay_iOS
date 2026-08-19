@@ -81,9 +81,30 @@ struct HumayApp: App {
             navigation.mainDestination = .chart
         }
 
+        if ProcessInfo.processInfo.arguments.contains("-HumayWesternChartDemo")
+            || ProcessInfo.processInfo.arguments.contains("-HumayPlacementDetailDemo") {
+            navigation.mainDestination = .chart
+        }
+
+        if ProcessInfo.processInfo.arguments.contains("-HumayExploreDemo") {
+            navigation.mainDestination = .explore
+        }
+
+        if ProcessInfo.processInfo.arguments.contains("-HumayConnectionsDemo") {
+            navigation.mainDestination = .connections
+        }
+
+        if ProcessInfo.processInfo.arguments.contains("-HumayCompatibilityDemo") {
+            navigation.mainDestination = .connections
+        }
+
+        if ProcessInfo.processInfo.arguments.contains("-HumayYouDemo") {
+            navigation.mainDestination = .you
+        }
+
         if d5FeatureInput.source.isDevelopmentSample,
            d5FeatureInput.state != .empty {
-            navigation.mainDestination = .ask
+            navigation.mainDestination = .explore
         }
 #endif
     }

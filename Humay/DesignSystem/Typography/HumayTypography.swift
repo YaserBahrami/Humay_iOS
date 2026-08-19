@@ -11,15 +11,18 @@ enum HumayTypography {
         relativeTo: .largeTitle
     )
 
-    static let heroTitle = newsreader(size: 40, relativeTo: .largeTitle, weight: .medium)
+    static let heroTitle = newsreader(size: 44, relativeTo: .largeTitle, weight: .medium)
+
+    static let displayTitle = newsreader(size: 36, relativeTo: .largeTitle, weight: .medium)
 
     /// Primary title for a single deep-detail destination.
     static let detailTitle = newsreader(size: 32, relativeTo: .title, weight: .medium)
 
-    static let editorialTitle = newsreader(size: 28, relativeTo: .title, weight: .medium)
+    static let editorialTitle = newsreader(size: 29, relativeTo: .title, weight: .medium)
 
     /// Repeated section heading for user-owned content regions.
     static let sectionTitle = newsreader(size: 22, relativeTo: .title2, weight: .medium)
+    static let narrativeSectionTitle = newsreader(size: 24, relativeTo: .title2, weight: .medium)
 
     static let onboardingCardTitle = newsreader(size: 22, relativeTo: .title2, weight: .medium)
 
@@ -36,6 +39,7 @@ enum HumayTypography {
     static let control = Font.body.weight(.semibold)
     static let caption = Font.caption
     static let utility = Font.caption.weight(.semibold)
+    static let eyebrow = Font.caption.weight(.semibold)
     static let micro = Font.caption2
 
     /// Large rounded SF Symbol role for state and status surfaces.
@@ -51,6 +55,7 @@ enum HumayTypography {
 
     /// Reserved for degree-heavy or coordinate-heavy Chart values.
     static let technical = Font.system(.body, design: .monospaced)
+    static let technicalSmall = Font.system(.footnote, design: .monospaced)
 
     private static func newsreader(
         size: CGFloat,

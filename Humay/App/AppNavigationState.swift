@@ -58,25 +58,25 @@ enum OnboardingRoute: String, CaseIterable, Hashable, Sendable {
 /// intentionally owned by their feature and are not modeled here.
 enum MainDestination: String, CaseIterable, Hashable, Sendable {
     case today
-    case circle
-    case sky
     case chart
-    case ask
+    case explore
+    case connections
+    case you
 
     static let canonicalOrder: [MainDestination] = [
         .today,
-        .circle,
-        .sky,
         .chart,
-        .ask
+        .explore,
+        .connections,
+        .you
     ]
 }
 
-/// Circle-owned child route boundary. Compatibility belongs to Circle/people flows.
+/// Connections-owned child route boundary. Compatibility remains in the people flow.
 enum CircleRoute: String, Hashable, Sendable {
     case compatibility
 
-    var owningDestination: MainDestination { .circle }
+    var owningDestination: MainDestination { .connections }
 }
 
 /// Today-owned child route boundary.
@@ -86,16 +86,14 @@ enum TodayRoute: String, Hashable, Sendable {
     var owningDestination: MainDestination { .today }
 }
 
-/// Sky-owned child route boundary. Calendar belongs under Sky.
+/// Explore-owned child route boundary. Current sky and Calendar live under Explore.
 enum SkyRoute: String, Hashable, Sendable {
     case calendar
 
-    var owningDestination: MainDestination { .sky }
+    var owningDestination: MainDestination { .explore }
 }
 
-/// Auxiliary routes opened from the profile/header entry. This is deliberately a
-/// separate type from `MainDestination`, so Profile/Settings cannot become a sixth
-/// primary destination by accident.
+/// Retained for state restoration compatibility. Profile now has a primary You tab.
 enum AppAuxiliaryRoute: String, CaseIterable, Hashable, Sendable, Identifiable {
     case profileSettings
 

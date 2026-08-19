@@ -4,6 +4,7 @@ enum HumayContentWidth: CGFloat, CaseIterable {
     case form = 560
     case readable = 680
     case expanded = 960
+    case immersive = 1_180
 }
 
 enum HumayLayout {
@@ -14,9 +15,9 @@ enum HumayLayout {
         case ..<440:
             compactScreenGutter
         case ..<700:
-            HumaySpacing.extraLarge
+            28
         default:
-            HumaySpacing.extraExtraLarge
+            HumaySpacing.section
         }
     }
 

@@ -1,14 +1,20 @@
 # Development Status
 
-Last updated: **2026-08-14**
+Last updated: **2026-08-19**
 
 ## Active priorities
 
-1. Keep the D3 Current Sky/Calendar/Event Detail family aligned with approved references and task gates; all three UI slices are implemented over the Debug sample.
-2. Review the captured D2 Today + Circle implementation evidence and close the documented portrait-asset/iPad-reference discrepancies only when approved assets/references exist.
-3. Keep D2 and D3 development content behind explicit Debug composition; Release must expose only safe unavailable/empty states until real owning providers exist.
-4. Defer backend/API/provider and monetization work; ARCH-007 entitlement, ARCH-008 privacy/security and methodology validation remain prerequisites for production precision rollout.
-5. Keep the approved D4.1 Chart UI-first slice aligned with evidence while deferring production calculation/provider/access/cache/entitlement work; D5 Ask remains gated.
+1. Propagate [`../design/PREMIUM_CELESTIAL_REDESIGN.md`](../design/PREMIUM_CELESTIAL_REDESIGN.md) from the completed representative phase into Daily Horoscope, Current Sky/Calendar/Event Detail, Ask, remaining Connections flows, settings, and monetization surfaces.
+2. Preserve the new Today / Chart / Explore / Connections / You information architecture while retaining all existing Sky, Calendar, Ask, people, Compatibility, and profile functionality.
+3. Keep D2–D4 development content behind explicit Debug composition; Release must expose only safe unavailable/empty states until real owning providers exist.
+4. Defer backend/API/provider and monetization work; ARCH-007 entitlement, ARCH-008 privacy/security, and methodology validation remain prerequisites for production precision rollout.
+5. Keep onboarding behavior and its approved D1 package intact until onboarding receives a separate Premium Celestial migration phase.
+
+## Premium Celestial representative phase
+
+**IMPLEMENTED AND VERIFIED — 2026-08-19.** Today, Chart, Placement Detail, Compatibility, and Explore now establish the post-onboarding design system. The primary shell is Today / Chart / Explore / Connections / You. Shared semantic tokens, editorial primitives, Huma/orbit geometry, progressive astrology disclosure, interactive chart focus, and multidimensional compatibility are implemented without changing astrology domain models or adding dependencies/backend work.
+
+Representative iPhone and iPad Debug builds and an iPhone Release simulator build pass. Swift Testing passes 112 tests across 13 suites. Targeted shell/Explore, Current Sky, Ask, Compatibility, and Western Chart/Placement XCUITests pass. Light/Dark iPhone and iPad simulator compositions were visually inspected. The foundation script passes typography, layering, nomenclature, and diagnostics checks; its historical committed-diff whitespace gate remains red because of existing legacy SVG/reference whitespace outside this redesign diff.
 
 ## Repository authority
 
@@ -256,7 +262,7 @@ Cadence for user-facing work:
 ## Binding product decisions
 
 - Product/repository/internal name is Humay.
-- Primary IA is Today / Circle / Sky / Chart / Ask.
+- Primary IA is Today / Chart / Explore / Connections / You; internal Circle, Sky, and Ask names remain valid.
 - Ordinary Free usage must not trigger paid astrology or LLM calls.
 - Free Western daily horoscope uses finite Sun-sign catalog content.
 - Free Western compatibility uses 12 × 12 sign-pair catalog keys.
@@ -271,7 +277,7 @@ Cadence for user-facing work:
 
 ## Current runtime
 
-The app restores the local user-state snapshot before resolving a meaningful root. A missing file produces fresh four-beat onboarding. `Enter Humay` saves the profile/settings aggregate atomically before resolving the root to the adaptive Today / Circle / Sky / Chart / Ask shell. Terminating and relaunching a completed app restores that shell. Profile/Settings remains auxiliary from the header. Current Sky and Calendar Month/Week are implemented over the Debug-only sample. D4.1 Chart UI foundation is approved, implemented and reconciled over a Debug-only sample; production Chart calculation/provider/access/cache/entitlement work remains pending. Ask remains a minimal destination placeholder. Save failures leave the onboarding draft intact and expose a retry alert; restore failures remain distinct from fresh onboarding.
+The app restores the local user-state snapshot before resolving a meaningful root. A missing file produces fresh four-beat onboarding. `Enter Humay` saves the profile/settings aggregate atomically before resolving the root to the adaptive Today / Chart / Explore / Connections / You shell. Terminating and relaunching a completed app restores that shell. Current Sky, Calendar, and Ask remain reachable under Explore; Circle/people and Compatibility remain under Connections; profile/settings content is under You. D4.1 contracts remain intact beneath the redesigned interactive Chart presentation; production Chart calculation/provider/access/cache/entitlement work remains pending. Save failures leave the onboarding draft intact and expose a retry alert; restore failures remain distinct from fresh onboarding.
 
 Debug builds inject `DevelopmentD2Sample`, `DevelopmentD3Sample` and `DevelopmentD4Sample` into the implemented D2/Current Sky/Chart runtime. All development sample types are excluded by `#if DEBUG`; their Release compositions contain no sample astrology payload. The local snapshot remains the device source of truth only for current profile/settings; D2-added people and all D3/D4 samples are transient and do not expand the persistence schema.
 

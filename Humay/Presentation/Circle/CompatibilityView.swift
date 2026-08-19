@@ -5,26 +5,13 @@ struct CompatibilityView: View {
     let precisePreview: PreciseCompatibilityResult?
     let source: D2ContentSource
 
-    @Environment(\.colorScheme) private var colorScheme
-    @Environment(\.dynamicTypeSize) private var dynamicTypeSize
     @State private var previewOverride: PreciseCompatibilityResult?
     @State private var showUnlockInfo = false
 
     var body: some View {
-        GeometryReader { proxy in
-            ScrollView {
-                VStack(alignment: .leading, spacing: HumaySpacing.large) {
-                    stateContent(availableWidth: proxy.size.width)
-                }
-                .frame(maxWidth: 1_180)
-                .frame(maxWidth: .infinity, alignment: .top)
-                .padding(.horizontal, HumayLayout.screenGutter(for: proxy.size.width))
-                .padding(.vertical, HumaySpacing.large)
-            }
-            .scrollIndicators(.hidden)
+        HumayPage(maximum: .immersive) {
+            stateContent
         }
-        .background(Color.humayGround.ignoresSafeArea())
-        .foregroundStyle(Color.humayTextPrimary)
         .navigationTitle("Compatibility")
         .navigationBarTitleDisplayMode(.inline)
         .toolbar {
@@ -32,9 +19,9 @@ struct CompatibilityView: View {
                 if let result = displayResult {
                     ShareLink(item: shareText(result)) {
                         Image(systemName: "square.and.arrow.up")
-                            .frame(width: 44, height: 44)
+                            .frame(width: HumayMetrics.minimumHitTarget, height: HumayMetrics.minimumHitTarget)
                     }
-                    .accessibilityLabel("Share Compatibility")
+                    .accessibilityLabel("Share compatibility")
                 }
             }
         }
@@ -53,52 +40,40 @@ struct CompatibilityView: View {
     }
 
     @ViewBuilder
-    private func stateContent(availableWidth: CGFloat) -> some View {
+    private var stateContent: some View {
         switch activeState {
         case .entry:
-            D2UnavailableState(
-                symbol: "person.2",
+            HumayStateView(
                 title: "Choose two people",
-                detail: "Return to Circle and select a pair before opening compatibility."
+                message: "Return to Connections and select a pair before opening compatibility.",
+                glyph: .connection
             )
 
         case .loading(let pair):
-            pairHeader(pair)
-            HumaySurface(level: .raised) {
-                VStack(spacing: HumaySpacing.large) {
+            compactPairHeader(pair)
+            HumayHairlineSurface(style: .raised) {
+                HStack(spacing: HumaySpacing.extraLarge) {
                     ProgressView()
                         .controlSize(.large)
-                        .tint(Color.humayLavender)
-                    Text("Reading the connection…")
-                        .font(HumayTypography.cardTitle)
-                    Text("Looking at how these two energies meet.")
-                        .font(HumayTypography.supporting)
-                        .foregroundStyle(Color.humayTextSecondary)
+                        .tint(Color.humayAccentPrestige)
+                    VStack(alignment: .leading, spacing: HumaySpacing.small) {
+                        Text("Reading the connection…")
+                            .font(HumayTypography.narrativeSectionTitle)
+                        Text("Looking at how these two energies meet.")
+                            .font(HumayTypography.supporting)
+                            .foregroundStyle(Color.humayTextSecondary)
+                    }
                 }
-                .frame(maxWidth: .infinity)
-                .padding(.vertical, HumaySpacing.extraExtraLarge)
             }
 
         case .freeLoaded(let result):
-            loaded(
-                DisplayResult(free: result),
-                availableWidth: availableWidth,
-                showAccessCard: false
-            )
+            loaded(DisplayResult(free: result), showAccessCard: false)
 
         case .preciseLocked(let freeResult):
-            loaded(
-                DisplayResult(free: freeResult),
-                availableWidth: availableWidth,
-                showAccessCard: true
-            )
+            loaded(DisplayResult(free: freeResult), showAccessCard: true)
 
         case .preciseLoaded(let result):
-            loaded(
-                DisplayResult(precise: result),
-                availableWidth: availableWidth,
-                showAccessCard: false
-            )
+            loaded(DisplayResult(precise: result), showAccessCard: false)
 
         case .cached(let result, let savedAt):
             D2StatusBanner(
@@ -107,11 +82,7 @@ struct CompatibilityView: View {
                 detail: "Cached \(savedAt.formatted(date: .abbreviated, time: .shortened)).",
                 accent: .sage
             )
-            loaded(
-                DisplayResult(precise: result),
-                availableWidth: availableWidth,
-                showAccessCard: false
-            )
+            loaded(DisplayResult(precise: result), showAccessCard: false)
 
         case .offline(let cached):
             D2StatusBanner(
@@ -123,91 +94,190 @@ struct CompatibilityView: View {
                 accent: .gold
             )
             if let cached {
-                loaded(
-                    DisplayResult(precise: cached),
-                    availableWidth: availableWidth,
-                    showAccessCard: false
-                )
+                loaded(DisplayResult(precise: cached), showAccessCard: false)
             } else {
-                D2UnavailableState(
-                    symbol: "wifi.slash",
+                HumayStateView(
                     title: "Compatibility unavailable offline",
-                    detail: "Reconnect to open an available result."
+                    message: "Reconnect to open an available result.",
+                    glyph: .eclipse
                 )
             }
 
         case .failed(let pair, let message):
-            if let pair { pairHeader(pair) }
-            D2UnavailableState(
-                symbol: "heart.slash",
+            if let pair { compactPairHeader(pair) }
+            HumayStateView(
                 title: "Connection unavailable",
-                detail: message
+                message: message,
+                glyph: .eclipse
             )
         }
     }
 
     @ViewBuilder
-    private func loaded(
-        _ result: DisplayResult,
-        availableWidth: CGFloat,
-        showAccessCard: Bool
-    ) -> some View {
-        relationshipField(result, useWideLayout: availableWidth >= 900)
+    private func loaded(_ result: DisplayResult, showAccessCard: Bool) -> some View {
+        relationshipHero(result)
 
-        if availableWidth >= 900 {
-            HStack(alignment: .top, spacing: HumaySpacing.extraExtraLarge) {
-                metricsCard(result.metrics)
-                    .frame(maxWidth: .infinity, alignment: .top)
-
-                VStack(spacing: HumaySpacing.extraLarge) {
-                    ourTakeCard(result.ourTake)
-                    if showAccessCard { preciseAccessCard }
-                }
-                .frame(minWidth: 320, maxWidth: 420, alignment: .top)
+        ViewThatFits(in: .horizontal) {
+            HStack(alignment: .top, spacing: HumaySpacing.hero) {
+                dimensions(result.metrics)
+                    .frame(minWidth: 420, maxWidth: 620, alignment: .topLeading)
+                connectionNotes(result)
+                    .frame(minWidth: 320, maxWidth: 430, alignment: .topLeading)
             }
-        } else {
-            metricsCard(result.metrics)
-            ourTakeCard(result.ourTake)
-            if showAccessCard { preciseAccessCard }
+            .frame(maxWidth: .infinity, alignment: .center)
+
+            VStack(alignment: .leading, spacing: HumaySpacing.section) {
+                dimensions(result.metrics)
+                connectionNotes(result)
+            }
+        }
+
+        reading(result.ourTake)
+        technicalDisclosure(result)
+
+        if showAccessCard {
+            preciseAccessCard
         }
     }
 
-    @ViewBuilder
-    private func basisDisclosure(_ result: DisplayResult) -> some View {
-        switch result.basis {
-        case .free(let key):
-            basisRow(
-                symbol: "sun.max.fill",
-                title: "Free · Sun-sign pair",
-                detail: "\(key.first.displayName) × \(key.second.displayName) catalog · not natal synastry.",
-                accent: .gold
-            )
-            .accessibilityIdentifier("compatibility.basis.free")
+    private func relationshipHero(_ result: DisplayResult) -> some View {
+        ViewThatFits(in: .horizontal) {
+            HStack(alignment: .center, spacing: HumaySpacing.hero) {
+                pairIdentity(result.pair)
+                    .frame(minWidth: 420, maxWidth: 560)
+                relationshipCopy(result)
+                    .frame(minWidth: 320, maxWidth: 460, alignment: .leading)
+            }
+            .frame(maxWidth: .infinity, alignment: .center)
 
-        case .precise:
-            basisRow(
-                symbol: "scope",
-                title: "Precise presentation sample",
-                detail: "Development only · no provider calculation or synastry generation.",
-                accent: .lavender
-            )
-            .accessibilityIdentifier("compatibility.basis.precise")
+            VStack(spacing: HumaySpacing.extraExtraLarge) {
+                pairIdentity(result.pair)
+                relationshipCopy(result)
+            }
+        }
+        .padding(.vertical, HumaySpacing.large)
+    }
+
+    private func pairIdentity(_ pair: CompatibilityPair) -> some View {
+        VStack(spacing: HumaySpacing.extraLarge) {
+            ZStack {
+                HumayConnectionMotif()
+                    .frame(maxWidth: 430)
+                    .frame(height: 190)
+
+                HStack(spacing: 108) {
+                    relationshipPerson(pair.first, accent: .lavender)
+                    relationshipPerson(pair.second, accent: .gold)
+                }
+            }
+
+            Text("\(pair.first.name) & \(pair.second.name)")
+                .font(HumayTypography.displayTitle)
+                .multilineTextAlignment(.center)
+                .fixedSize(horizontal: false, vertical: true)
+                .accessibilityAddTraits(.isHeader)
+        }
+        .accessibilityElement(children: .contain)
+    }
+
+    private func relationshipPerson(_ person: CirclePerson, accent: HumayAccent) -> some View {
+        VStack(spacing: HumaySpacing.small) {
+            CirclePersonMedallion(person: person, accent: accent, size: 82)
+            Text(person.westernSunSign.map { "\($0.displayName) Sun" } ?? "Sign unavailable")
+                .font(HumayTypography.caption)
+                .foregroundStyle(Color.humayTextSecondary)
+                .multilineTextAlignment(.center)
+        }
+        .accessibilityElement(children: .combine)
+        .accessibilityLabel(
+            "\(person.name), \(person.westernSunSign?.displayName ?? "Sun sign unavailable")"
+        )
+    }
+
+    private func relationshipCopy(_ result: DisplayResult) -> some View {
+        VStack(alignment: .leading, spacing: HumaySpacing.extraLarge) {
+            HumayEyebrow(text: result.basis.eyebrow)
+
+            Text(result.relationshipLabel)
+                .font(HumayTypography.editorialTitle)
+                .fixedSize(horizontal: false, vertical: true)
+
+            Text(result.shortSummary)
+                .font(HumayTypography.body)
+                .foregroundStyle(Color.humayTextSecondary)
+                .fixedSize(horizontal: false, vertical: true)
+
+            Text("Overall context · \(result.overallScore.value)/100")
+                .font(HumayTypography.technicalSmall)
+                .foregroundStyle(Color.humayTextSecondary)
+                .monospacedDigit()
+                .accessibilityLabel("Overall compatibility context")
+                .accessibilityValue("\(result.overallScore.value) out of 100")
+                .accessibilityIdentifier("compatibility.score")
         }
     }
 
-    private func basisRow(
-        symbol: String,
-        title: String,
-        detail: String,
-        accent: HumayAccent
-    ) -> some View {
-        HStack(alignment: .top, spacing: HumaySpacing.medium) {
-            Image(systemName: symbol)
-                .font(.body.weight(.semibold))
-                .foregroundStyle(accent.color)
-                .frame(width: 32, height: 32)
-                .background(accent.color.opacity(0.14), in: Circle())
-                .accessibilityHidden(true)
+    private func dimensions(_ metrics: [CompatibilityMetric]) -> some View {
+        VStack(alignment: .leading, spacing: HumaySpacing.extraLarge) {
+            HumaySectionHeader(
+                title: "How this connection moves",
+                subtitle: "A relationship has texture. These dimensions matter more than one headline score."
+            )
+
+            VStack(alignment: .leading, spacing: HumaySpacing.extraLarge) {
+                ForEach(metrics) { metric in
+                    HumayMetricBand(
+                        label: metric.kind.premiumDisplayName,
+                        score: metric.score.value,
+                        detail: metric.kind.dimensionDetail,
+                        accent: metric.kind.accent
+                    )
+                }
+            }
+        }
+        .accessibilityIdentifier("compatibility.metrics")
+    }
+
+    private func connectionNotes(_ result: DisplayResult) -> some View {
+        let strongest = result.metrics.max { $0.score < $1.score }
+        let growthEdge = result.metrics.min { $0.score < $1.score }
+
+        return HumayHairlineSurface(style: .celestial) {
+            VStack(alignment: .leading, spacing: HumaySpacing.extraLarge) {
+                HumayEyebrow(text: "Connection notes")
+
+                if let strongest {
+                    note(
+                        glyph: .connection,
+                        title: "Where you connect",
+                        detail: "\(strongest.kind.premiumDisplayName) carries the strongest signal in this reading."
+                    )
+                }
+
+                if let growthEdge {
+                    note(
+                        glyph: .eclipse,
+                        title: "Where friction may appear",
+                        detail: "\(growthEdge.kind.premiumDisplayName) asks for more conscious attention."
+                    )
+                    note(
+                        glyph: .feather,
+                        title: "What each person needs",
+                        detail: growthEdge.kind.practice(
+                            firstName: result.pair.first.name,
+                            secondName: result.pair.second.name
+                        )
+                    )
+                }
+            }
+        }
+    }
+
+    private func note(glyph: HumayGlyphKind, title: String, detail: String) -> some View {
+        HStack(alignment: .top, spacing: HumaySpacing.large) {
+            HumayGlyph(kind: glyph)
+                .frame(width: 34, height: 34)
+                .foregroundStyle(Color.humayAccentPrestige)
 
             VStack(alignment: .leading, spacing: HumaySpacing.extraSmall) {
                 Text(title)
@@ -217,276 +287,86 @@ struct CompatibilityView: View {
                     .foregroundStyle(Color.humayTextSecondary)
                     .fixedSize(horizontal: false, vertical: true)
             }
-            .frame(maxWidth: .infinity, alignment: .leading)
         }
         .accessibilityElement(children: .combine)
     }
 
-    private func pairHeader(_ pair: CompatibilityPair) -> some View {
-        VStack(spacing: HumaySpacing.large) {
-            Text("\(pair.first.name) & \(pair.second.name)")
-                .font(HumayTypography.editorialTitle)
-                .multilineTextAlignment(.center)
-                .lineLimit(2)
-                .fixedSize(horizontal: false, vertical: true)
+    private func reading(_ ourTake: String) -> some View {
+        HStack(alignment: .top, spacing: HumaySpacing.extraLarge) {
+            HumayGlyph(kind: .feather)
+                .frame(width: 48, height: 48)
+                .foregroundStyle(Color.humayAccentPrestige)
 
-            pairAxis(pair)
-        }
-        .frame(maxWidth: .infinity)
-        .padding(HumaySpacing.extraLarge)
-        .background(Color.humayRaisedSurface, in: RoundedRectangle(cornerRadius: HumayRadius.feature))
-        .overlay {
-            RoundedRectangle(cornerRadius: HumayRadius.feature)
-                .stroke(Color.humayHairline)
-        }
-        .accessibilityElement(children: .ignore)
-        .accessibilityLabel("\(pair.first.name) and \(pair.second.name)")
-    }
-
-    private func relationshipField(_ result: DisplayResult, useWideLayout: Bool) -> some View {
-        VStack(alignment: .leading, spacing: HumaySpacing.extraLarge) {
-            basisDisclosure(result)
-
-            Divider()
-
-            if useWideLayout, !dynamicTypeSize.isAccessibilitySize {
-                HStack(alignment: .center, spacing: HumaySpacing.extraExtraLarge) {
-                    relationshipIdentity(result.pair)
-                        .frame(maxWidth: .infinity)
-
-                    Divider()
-                        .frame(minHeight: 280)
-
-                    relationshipResult(result)
-                        .frame(minWidth: 330, maxWidth: 420)
-                }
-            } else {
-                VStack(spacing: HumaySpacing.extraLarge) {
-                    relationshipIdentity(result.pair)
-                    Divider()
-                    relationshipResult(result)
-                }
-                .frame(maxWidth: .infinity)
-            }
-        }
-        .padding(useWideLayout ? HumaySpacing.extraExtraLarge : HumaySpacing.extraLarge)
-        .background(relationshipBackground, in: RoundedRectangle(cornerRadius: 28, style: .continuous))
-        .overlay {
-            RoundedRectangle(cornerRadius: 28, style: .continuous)
-                .stroke(Color.humayHairline)
-        }
-        .shadow(
-            color: colorScheme == .light ? .black.opacity(0.06) : .clear,
-            radius: 16,
-            y: 6
-        )
-    }
-
-    private func relationshipIdentity(_ pair: CompatibilityPair) -> some View {
-        VStack(spacing: HumaySpacing.extraLarge) {
-            Text("\(pair.first.name) & \(pair.second.name)")
-                .font(HumayTypography.editorialTitle)
-                .multilineTextAlignment(.center)
-                .lineLimit(2)
-                .fixedSize(horizontal: false, vertical: true)
-                .accessibilityElement(children: .ignore)
-                .accessibilityLabel("\(pair.first.name) and \(pair.second.name)")
-
-            pairAxis(pair)
-        }
-        .frame(maxWidth: .infinity)
-    }
-
-    private func pairAxis(_ pair: CompatibilityPair) -> some View {
-        HStack(alignment: .top, spacing: HumaySpacing.small) {
-            relationshipPerson(pair.first, accent: .lavender)
-                .frame(maxWidth: .infinity)
-
-            CompatibilityConnector(state: .active)
-                .frame(minWidth: 58, maxWidth: 130, minHeight: 90)
-
-            relationshipPerson(pair.second, accent: .coral)
-                .frame(maxWidth: .infinity)
-        }
-        .accessibilityElement(children: .ignore)
-        .accessibilityLabel(
-            "\(pair.first.westernSunSign?.displayName ?? "Sign unavailable") Sun and "
-                + "\(pair.second.westernSunSign?.displayName ?? "Sign unavailable") Sun"
-        )
-    }
-
-    private func relationshipPerson(_ person: CirclePerson, accent: HumayAccent) -> some View {
-        VStack(spacing: HumaySpacing.small) {
-            CirclePersonMedallion(person: person, accent: accent, size: 88)
-            Text("\(person.westernSunSign?.displayName ?? "Sign unavailable") Sun")
-                .font(HumayTypography.supporting)
-                .foregroundStyle(Color.humayTextSecondary)
-                .lineLimit(2)
-                .multilineTextAlignment(.center)
-                .fixedSize(horizontal: false, vertical: true)
-        }
-    }
-
-    private func relationshipResult(_ result: DisplayResult) -> some View {
-        VStack(spacing: HumaySpacing.medium) {
-            Text("\(result.overallScore.value)%")
-                .font(HumayTypography.compatibilityScore)
-                .tracking(-2)
-                .monospacedDigit()
-                .foregroundStyle(scoreGradient)
-                .accessibilityLabel("Compatibility score")
-                .accessibilityValue("\(result.overallScore.value) percent")
-                .accessibilityIdentifier("compatibility.score")
-
-            Text(result.relationshipLabel)
-                .font(HumayTypography.sectionTitle)
-                .multilineTextAlignment(.center)
-                .fixedSize(horizontal: false, vertical: true)
-
-            Text(result.shortSummary)
-                .font(HumayTypography.body)
-                .foregroundStyle(Color.humayTextSecondary)
-                .multilineTextAlignment(.center)
-                .fixedSize(horizontal: false, vertical: true)
-        }
-        .frame(maxWidth: .infinity)
-    }
-
-    private var relationshipBackground: LinearGradient {
-        LinearGradient(
-            colors: colorScheme == .light
-                ? [
-                    Color.humaySurface,
-                    Color.humayLavender.opacity(0.10),
-                    Color.humayCoral.opacity(0.10),
-                    Color.humaySurface
-                ]
-                : [
-                    Color.humayRaisedSurface,
-                    Color.humayLavender.opacity(0.16),
-                    Color.humayCoral.opacity(0.12),
-                    Color.humayRaisedSurface
-                ],
-            startPoint: .topLeading,
-            endPoint: .bottomTrailing
-        )
-    }
-
-    private var scoreGradient: LinearGradient {
-        LinearGradient(
-            colors: [Color.humayLavender, Color.humayCoral, Color.humaySolarGold],
-            startPoint: .leading,
-            endPoint: .trailing
-        )
-    }
-
-    private func metricsCard(_ metrics: [CompatibilityMetric]) -> some View {
-        VStack(alignment: .leading, spacing: HumaySpacing.extraLarge) {
-            ForEach(metrics) { metric in
-                HStack(spacing: HumaySpacing.medium) {
-                    Image(systemName: metric.kind.symbol)
-                        .font(.body.weight(.semibold))
-                        .foregroundStyle(metric.kind.accent.color)
-                        .frame(width: 28, height: 28)
-                        .accessibilityHidden(true)
-
-                    Text(metric.kind.displayName)
-                        .font(HumayTypography.supporting)
-                        .frame(minWidth: 112, alignment: .leading)
-
-                    GeometryReader { geometry in
-                        ZStack(alignment: .leading) {
-                            Capsule()
-                                .fill(Color.humayHairline.opacity(0.80))
-
-                            Capsule()
-                                .fill(
-                                    LinearGradient(
-                                        colors: [metric.kind.accent.color, Color.humayCoral],
-                                        startPoint: .leading,
-                                        endPoint: .trailing
-                                    )
-                                )
-                                .frame(
-                                    width: geometry.size.width * CGFloat(metric.score.value) / 100
-                                )
-                        }
-                    }
-                    .frame(height: 6)
-
-                    Text("\(metric.score.value)%")
-                        .font(HumayTypography.supportingEmphasized)
-                        .monospacedDigit()
-                        .frame(width: 42, alignment: .trailing)
-                }
-                .frame(minHeight: 38)
-                .accessibilityElement(children: .combine)
-                .accessibilityLabel(metric.kind.displayName)
-                .accessibilityValue("\(metric.score.value) percent")
-            }
-        }
-        .padding(.vertical, HumaySpacing.small)
-        .accessibilityIdentifier("compatibility.metrics")
-    }
-
-    private func ourTakeCard(_ ourTake: String) -> some View {
-        HStack(alignment: .center, spacing: HumaySpacing.large) {
-            VStack(alignment: .leading, spacing: HumaySpacing.small) {
-                Text("Our Take")
-                    .font(HumayTypography.utility)
-                    .textCase(.uppercase)
-                    .tracking(1.1)
-                    .foregroundStyle(Color.humayCoral)
+            VStack(alignment: .leading, spacing: HumaySpacing.large) {
+                HumayEyebrow(text: "Humay's reading")
                 Text(ourTake)
-                    .font(HumayTypography.body)
+                    .font(HumayTypography.narrativeSectionTitle)
                     .fixedSize(horizontal: false, vertical: true)
             }
-            .frame(maxWidth: .infinity, alignment: .leading)
-
-            RoastPlanetArt()
         }
-        .padding(HumaySpacing.extraLarge)
-        .background(
-            LinearGradient(
-                colors: colorScheme == .light
-                    ? [Color.humaySurface, Color.humaySolarGold.opacity(0.12)]
-                    : [Color.humayRaisedSurface, Color.humayCoral.opacity(0.12)],
-                startPoint: .leading,
-                endPoint: .trailing
-            ),
-            in: RoundedRectangle(cornerRadius: HumayRadius.surface)
-        )
-        .overlay {
-            RoundedRectangle(cornerRadius: HumayRadius.surface)
-                .stroke(Color.humayHairline)
-        }
+        .padding(.vertical, HumaySpacing.extraLarge)
         .accessibilityElement(children: .combine)
         .accessibilityIdentifier("compatibility.our-take")
     }
 
+    private func technicalDisclosure(_ result: DisplayResult) -> some View {
+        HumayDisclosureGroup(
+            eyebrow: "Technical astrology",
+            title: result.basis.title,
+            summary: result.basis.summary
+        ) {
+            HumayHairlineSurface(style: .quiet) {
+                VStack(alignment: .leading, spacing: HumaySpacing.extraLarge) {
+                    Text(result.basis.detail)
+                        .font(HumayTypography.body)
+                        .foregroundStyle(Color.humayTextSecondary)
+                        .fixedSize(horizontal: false, vertical: true)
+
+                    ForEach(result.metrics) { metric in
+                        HumayFactRow(
+                            label: metric.kind.premiumDisplayName,
+                            value: "\(metric.score.value)%",
+                            technical: true
+                        )
+                    }
+                }
+            }
+        }
+        .accessibilityElement(children: .contain)
+        .accessibilityIdentifier(result.basis.identifier)
+    }
+
+    private func compactPairHeader(_ pair: CompatibilityPair) -> some View {
+        HStack(spacing: HumaySpacing.extraLarge) {
+            HumayGlyph(kind: .connection)
+                .frame(width: 52, height: 52)
+                .foregroundStyle(Color.humayAccentPrestige)
+            Text("\(pair.first.name) & \(pair.second.name)")
+                .font(HumayTypography.editorialTitle)
+                .fixedSize(horizontal: false, vertical: true)
+                .accessibilityAddTraits(.isHeader)
+        }
+    }
+
     private var preciseAccessCard: some View {
-        HumaySurface(level: .raised) {
-            VStack(alignment: .leading, spacing: HumaySpacing.medium) {
-                Label("Precise Compatibility", systemImage: "lock.fill")
-                    .font(HumayTypography.bodyEmphasized)
-                    .foregroundStyle(Color.humayLavender)
+        HumayHairlineSurface(style: .raised) {
+            VStack(alignment: .leading, spacing: HumaySpacing.large) {
+                HumayEyebrow(text: "Deeper comparison", color: .humayAccentCelestial)
+                Text("Precise compatibility")
+                    .font(HumayTypography.narrativeSectionTitle)
                 Text("Unlock precise synastry when personalized chart generation is available.")
                     .font(HumayTypography.supporting)
                     .foregroundStyle(Color.humayTextSecondary)
                     .fixedSize(horizontal: false, vertical: true)
-                Button("Unlock Precise") {
-                    showUnlockInfo = true
-                }
-                .buttonStyle(.humaySecondary)
-                .accessibilityIdentifier("compatibility.precise.unlock")
+                Button("Unlock precise") { showUnlockInfo = true }
+                    .buttonStyle(.humaySecondary)
+                    .accessibilityIdentifier("compatibility.precise.unlock")
 
                 if source.isDevelopmentSample, let precisePreview {
-                    Button("Preview precise layout") {
-                        previewOverride = precisePreview
-                    }
-                    .font(HumayTypography.control)
-                    .frame(minHeight: HumayMetrics.minimumHitTarget)
-                    .accessibilityIdentifier("compatibility.precise.preview")
+                    Button("Preview precise layout") { previewOverride = precisePreview }
+                        .font(HumayTypography.control)
+                        .frame(minHeight: HumayMetrics.minimumHitTarget)
+                        .accessibilityIdentifier("compatibility.precise.preview")
                 }
             }
         }
@@ -502,7 +382,7 @@ struct CompatibilityView: View {
     }
 
     private func shareText(_ result: DisplayResult) -> String {
-        "\(result.pair.first.name) + \(result.pair.second.name)\n\(result.overallScore.value)% · \(result.relationshipLabel)\n\(result.ourTake)"
+        "\(result.pair.first.name) + \(result.pair.second.name)\n\(result.relationshipLabel)\n\(result.ourTake)"
     }
 }
 
@@ -510,6 +390,43 @@ private struct DisplayResult {
     enum Basis {
         case free(WesternSunSignPairKey)
         case precise
+
+        var eyebrow: String {
+            switch self {
+            case .free: "Sun-sign connection"
+            case .precise: "Precise connection"
+            }
+        }
+
+        var title: String {
+            switch self {
+            case .free: "Sun-sign basis"
+            case .precise: "Precise presentation basis"
+            }
+        }
+
+        var summary: String {
+            switch self {
+            case .free(let key): "\(key.first.displayName) × \(key.second.displayName) · not natal synastry"
+            case .precise: "Development presentation sample · not provider-calculated"
+            }
+        }
+
+        var detail: String {
+            switch self {
+            case .free(let key):
+                "This reading comes from the \(key.first.displayName) Sun × \(key.second.displayName) Sun catalog. Natal aspects and orbs are not supplied, so Humay does not invent them."
+            case .precise:
+                "This is a development-only presentation sample. It contains no provider calculation or generated synastry aspects."
+            }
+        }
+
+        var identifier: String {
+            switch self {
+            case .free: "compatibility.basis.free"
+            case .precise: "compatibility.basis.precise"
+            }
+        }
     }
 
     let pair: CompatibilityPair
@@ -541,22 +458,44 @@ private struct DisplayResult {
     }
 }
 
-extension CompatibilityMetricKind {
-    var symbol: String {
+private extension CompatibilityMetricKind {
+    var premiumDisplayName: String {
         switch self {
-        case .chemistry: "heart"
-        case .communication: "message"
-        case .emotionalConnection: "face.smiling"
-        case .adventure: "paperplane"
+        case .chemistry: "Chemistry"
+        case .communication: "Communication"
+        case .emotionalConnection: "Emotional Safety"
+        case .adventure: "Shared Rhythm"
         }
     }
 
-    var accent: HumayAccent {
+    var dimensionDetail: String {
         switch self {
-        case .chemistry: .coral
-        case .communication: .gold
-        case .emotionalConnection: .lavender
-        case .adventure: .blue
+        case .chemistry: "Attraction, warmth, and the pull toward one another."
+        case .communication: "How easily intent becomes shared understanding."
+        case .emotionalConnection: "Room for vulnerability, reassurance, and repair."
+        case .adventure: "The balance between novelty, pacing, and everyday cadence."
+        }
+    }
+
+    var accent: Color {
+        switch self {
+        case .chemistry: .humayAccentRoast
+        case .communication: .humayAccentPrestige
+        case .emotionalConnection: .humayAccentCelestial
+        case .adventure: .humayChartHarmonious
+        }
+    }
+
+    func practice(firstName: String, secondName: String) -> String {
+        switch self {
+        case .chemistry:
+            "\(firstName) and \(secondName) benefit from naming affection and desire instead of assuming it is understood."
+        case .communication:
+            "Both people benefit from checking what was heard before reacting to what was meant."
+        case .emotionalConnection:
+            "Make room for different emotional pacing; reassurance works best when it is specific."
+        case .adventure:
+            "Protect both novelty and routine so one person's momentum does not set the entire pace."
         }
     }
 }

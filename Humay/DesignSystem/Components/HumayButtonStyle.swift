@@ -7,7 +7,6 @@ enum HumayButtonKind {
 
 struct HumayButtonStyle: ButtonStyle {
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
-    @Environment(\.colorScheme) private var colorScheme
     @Environment(\.displayScale) private var displayScale
     @Environment(\.isEnabled) private var isEnabled
 
@@ -36,9 +35,9 @@ struct HumayButtonStyle: ButtonStyle {
             }
             .contentShape(buttonShape)
             .opacity(isEnabled ? 1 : 0.55)
-            .scaleEffect(configuration.isPressed && !reduceMotion ? 0.985 : 1)
+            .scaleEffect(configuration.isPressed && !reduceMotion ? 0.98 : 1)
             .animation(
-                reduceMotion ? nil : .easeOut(duration: 0.12),
+                reduceMotion ? nil : .easeOut(duration: HumayMotion.pressDuration),
                 value: configuration.isPressed
             )
     }
@@ -55,17 +54,7 @@ struct HumayButtonStyle: ButtonStyle {
 
         switch kind {
         case .primary:
-            if colorScheme == .light {
-                return AnyShapeStyle(Color.humayTextPrimary)
-            }
-
-            return AnyShapeStyle(
-                LinearGradient(
-                    colors: [.humayCoral, .humayLavender],
-                    startPoint: .leading,
-                    endPoint: .trailing
-                )
-            )
+            return AnyShapeStyle(Color.humayAccentPrestige)
         case .secondary:
             return AnyShapeStyle(Color.humaySurface)
         }
@@ -76,8 +65,8 @@ struct HumayButtonStyle: ButtonStyle {
 
         return switch kind {
         case .primary:
-            // Dark foreground remains readable across both approved gradient endpoints.
-            Color.humayGround
+            // Prestige gold uses dark ink in both appearances for stable contrast.
+            Color.humayInkOnGold
         case .secondary:
             Color.humayTextPrimary
         }

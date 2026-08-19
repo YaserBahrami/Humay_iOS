@@ -1,8 +1,10 @@
 # Soulful Celestial Design Direction
 
-**Status:** Current visual authority  
+**Status:** Legacy post-onboarding reference; retained D1 onboarding authority
 **Approved visual source:** D0 Light/Dark references selected on 2026-08-12  
 **Scope:** Humay iPhone + iPad UI, Light + Dark appearance, illustration language, components, motion and hierarchy
+
+> As of 2026-08-19, [`PREMIUM_CELESTIAL_REDESIGN.md`](PREMIUM_CELESTIAL_REDESIGN.md) supersedes this document for post-onboarding visual treatment and information architecture. Keep this document for implemented onboarding authority and historical behavior/state context only.
 
 ## 1. Product feeling
 
@@ -153,7 +155,7 @@ Large serif typography provides soul; system typography keeps the product modern
 
 ## 9. Canonical information architecture
 
-Current product IA remains **Today / Circle / Sky / Chart / Ask**. Calendar lives under Sky, Profile/Settings comes from the profile/header entry, and Compatibility is a Circle/people flow.
+The historical IA was **Today / Circle / Sky / Chart / Ask**. Current post-onboarding IA is defined only by [`PREMIUM_CELESTIAL_REDESIGN.md`](PREMIUM_CELESTIAL_REDESIGN.md).
 
 On iPad, navigation may present differently when appropriate to the platform, but route hierarchy and feature ownership do not change.
 

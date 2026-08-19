@@ -1,7 +1,7 @@
 # Humay Design Authority
 
 **Status:** Current and exclusive design authority
-**Effective:** 2026-08-14
+**Effective:** 2026-08-19
 **Repository authority:** `main`
 
 `main` contains one current design program only. Temporary feature/design branches must merge back here and must not become separate authorities.
@@ -12,37 +12,39 @@ For implementation, use this order:
 
 1. [`../development/PRODUCT_ACCESS_MODEL.md`](../development/PRODUCT_ACCESS_MODEL.md) — access/cost behavior.
 2. This document — design authority and non-negotiable product/device constraints.
-3. [`SOULFUL_CELESTIAL_DESIGN_DIRECTION.md`](SOULFUL_CELESTIAL_DESIGN_DIRECTION.md) — current visual language.
-4. [`SCREEN_DESIGN_PLAN.md`](SCREEN_DESIGN_PLAN.md) — screen inventory and sequencing.
-5. Approved references under [`soulful-reference/`](soulful-reference/README.md).
-6. [`../development/METHODOLOGY_TRACK.md`](../development/METHODOLOGY_TRACK.md) — methodology gates for real astrology output.
+3. [`PREMIUM_CELESTIAL_REDESIGN.md`](PREMIUM_CELESTIAL_REDESIGN.md) — current post-onboarding visual language, information architecture, tokens, components, and implementation record.
+4. [`SCREEN_DESIGN_PLAN.md`](SCREEN_DESIGN_PLAN.md) — screen inventory and propagation sequencing.
+5. Approved references under [`soulful-reference/`](soulful-reference/README.md) only where the premium redesign has not superseded their visual treatment.
+6. [`SOULFUL_CELESTIAL_DESIGN_DIRECTION.md`](SOULFUL_CELESTIAL_DESIGN_DIRECTION.md) — legacy reference plus retained D1 onboarding authority.
+7. [`../development/METHODOLOGY_TRACK.md`](../development/METHODOLOGY_TRACK.md) — methodology gates for real astrology output.
 
 If a mockup conflicts with product access, methodology, device behavior or accessibility, the mockup is corrected.
 
 ## 2. Canonical information architecture
 
-Primary navigation remains:
+Primary navigation is:
 
-**Today / Circle / Sky / Chart / Ask**
+**Today / Chart / Explore / Connections / You**
 
-- Calendar is nested under Sky.
-- Profile / Settings is opened from the profile/header entry.
-- Compatibility is reached through Circle/people flows.
-- Reference screenshots may contain temporary navigation labels; they do not redefine IA.
+- Current Sky, Calendar, and Ask are reached through Explore.
+- Circle/people and Compatibility are reached through Connections.
+- Profile, birth details, preferences, access, and settings are reached through You.
+- Existing internal feature/domain names such as `Circle`, `Sky`, and `Ask` remain valid implementation names.
+- Reference screenshots with the former tab labels are historical and do not redefine IA.
 
 ## 3. Current visual direction
 
-The selected Humay style is **cosmic editorial with selective cute illustration**:
+The selected post-onboarding Humay style is **Premium Celestial**:
 
-- warm cream Light mode and deep navy Dark mode;
-- strong serif editorial headlines with clean system UI typography;
-- restrained coral/lavender/gold/blue/sage accents;
-- soft rounded cards and simple line/flat illustrations;
-- friendly celestial characters/objects used sparingly;
-- clean utility surfaces with minimal decoration;
-- intentional Light and Dark composition.
+- warm ivory/parchment Light mode and midnight/obsidian Dark mode;
+- large editorial typography with clean system UI and monospaced technical roles;
+- restrained celestial gold plus quiet indigo support accents;
+- extremely thin orbital geometry, generous space, and minimal card chrome;
+- Huma identity expressed through wing, feather, eye, plume, flight-path, and paired-orbit motifs;
+- modern Apple-platform hierarchy first, Persian celestial heritage second, Huma mythology third;
+- intentional Light and Dark composition rather than color inversion.
 
-The D0 Today, Daily Horoscope and Compatibility references under `soulful-reference/anchors/` define the visual source of truth.
+[`PREMIUM_CELESTIAL_REDESIGN.md`](PREMIUM_CELESTIAL_REDESIGN.md) defines the post-onboarding visual source of truth. The approved D1 onboarding package remains authoritative for onboarding until that family receives its own migration phase. Older post-onboarding references retain behavioral and state value but no longer override Premium Celestial styling.
 
 The old Paper/minimal direction and painterly/watercolor explorations are superseded and must not be used for implementation.
 
@@ -76,7 +78,7 @@ Before a screen is considered ready for final visual implementation, the reposit
 4. iPad Dark reference;
 5. notes for iPad landscape/adaptive behavior if the static portrait reference is insufficient.
 
-Existing approved iPhone D0/D1 references remain valid. The complete D1 cross-device package was approved on 2026-08-12 and is now the production onboarding implementation authority.
+Existing D0 references remain historical behavior/state evidence where Premium Celestial has superseded their styling. The complete D1 cross-device package was approved on 2026-08-12 and remains the production onboarding implementation authority.
 
 ## 6. Typography
 
@@ -91,11 +93,11 @@ Dynamic Type is mandatory. iPad does not justify fixed text sizes or oversized e
 
 ## 7. Illustration and visual intensity
 
-- **Level A:** one major emotional moment on Today, Compatibility, onboarding welcome/reveal and selected premium surfaces.
-- **Level B:** one compact simple illustration for meaningful feature/category cards.
-- **Level C:** quiet native utility surfaces for forms, settings and dense technical data.
+- **Level A:** one code-drawn celestial/Huma composition on Today, Compatibility, onboarding welcome/reveal, or another selected emotional hero.
+- **Level B:** one compact custom glyph or restrained orbit/feather motif for a meaningful feature group.
+- **Level C:** quiet native utility surfaces for forms, settings, and dense technical data.
 
-Approved illustration is simple line/flat cosmic art with minimal shading, small stars/orbit details and occasional friendly faces. Avoid chibi, 3D emoji, sticker density, painterly landscapes, thick cartoon outlines and generic purple-neon galaxy styling.
+Prefer reusable SwiftUI geometry and optically reviewed vectors. Avoid cute celestial characters, chibi, 3D emoji, sticker density, painterly landscapes, thick cartoon outlines, stock zodiac art, and generic purple-neon galaxy styling.
 
 ## 8. Product and astrology boundaries
 

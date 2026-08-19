@@ -51,41 +51,41 @@ struct MainDestinationPlaceholderView: View {
 
     private var title: String {
         switch destination {
-        case .sky: "Sky"
+        case .explore: "Explore"
         case .chart: "Chart"
-        case .ask: "Ask"
+        case .you: "You"
         case .today: "Today"
-        case .circle: "Circle"
+        case .connections: "Connections"
         }
     }
 
     private var artworkName: String {
         switch destination {
-        case .sky: "IllustrationCurrentSky"
+        case .explore: "IllustrationCurrentSky"
         case .chart: "IllustrationWesternChart"
-        case .ask: "IllustrationAskStars"
+        case .you: "IllustrationProfileReveal"
         case .today: "IllustrationCosmicWeather"
-        case .circle: "IllustrationTodayTogether"
+        case .connections: "IllustrationTodayTogether"
         }
     }
 
     private var headline: String {
         switch destination {
-        case .sky: "Your sky is taking shape"
+        case .explore: "Explore is taking shape"
         case .chart: "Your chart is taking shape"
-        case .ask: "Ask the Stars is taking shape"
+        case .you: "Your Humay is taking shape"
         case .today: "Today is taking shape"
-        case .circle: "Your Circle is taking shape"
+        case .connections: "Your connections are taking shape"
         }
     }
 
     private var detail: String {
         switch destination {
-        case .sky: "Current sky, calendar and meaningful astrological events will live here."
+        case .explore: "Questions, current sky, calendar, and Ask Humay live here."
         case .chart: "Your chart, placements and system comparisons will live here."
-        case .ask: "A focused place for questions and personalized astrology answers will live here."
+        case .you: "Profile, birth details, saved people, and preferences live here."
         case .today: "Your daily guidance will live here."
-        case .circle: "People and compatibility will live here."
+        case .connections: "People and compatibility live here."
         }
     }
 }

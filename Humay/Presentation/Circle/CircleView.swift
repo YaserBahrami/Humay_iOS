@@ -16,8 +16,8 @@ struct CircleView: View {
         GeometryReader { proxy in
             ScrollView {
                 VStack(alignment: .leading, spacing: HumaySpacing.extraLarge) {
-                    D2WordmarkHeader(
-                        title: "Circle",
+                    HumayScreenHeader(
+                        section: "Connections",
                         profileName: profileName,
                         profileAction: openProfile
                     )
@@ -56,7 +56,7 @@ struct CircleView: View {
                     ProgressView()
                         .controlSize(.large)
                         .tint(Color.humayLavender)
-                    Text("Opening your Circle…")
+                    Text("Opening your connections…")
                         .font(HumayTypography.cardTitle)
                     Text("Gathering the people you keep close.")
                         .font(HumayTypography.supporting)
@@ -94,7 +94,7 @@ struct CircleView: View {
         case .failed(let message):
             D2UnavailableState(
                 symbol: "person.2.slash",
-                title: "Circle is unavailable",
+                title: "Connections are unavailable",
                 detail: message
             )
         }
@@ -104,7 +104,7 @@ struct CircleView: View {
     private func loadedContent(people: [CirclePerson], availableWidth: CGFloat) -> some View {
         HStack(alignment: .center, spacing: HumaySpacing.large) {
             VStack(alignment: .leading, spacing: HumaySpacing.small) {
-                Text("Your cosmic circle")
+                Text("Your connections")
                     .font(HumayTypography.heroTitle)
                     .accessibilityAddTraits(.isHeader)
                 Text("Keep the people who matter close, then explore how your energies meet.")
@@ -114,8 +114,8 @@ struct CircleView: View {
             }
             .frame(maxWidth: .infinity, alignment: .leading)
 
-            HumayIllustration(name: D2Artwork.todayTogether)
-                .frame(width: availableWidth >= 820 ? 150 : 104, height: availableWidth >= 820 ? 116 : 84)
+            HumayConnectionMotif()
+                .frame(width: availableWidth >= 820 ? 176 : 116, height: availableWidth >= 820 ? 116 : 84)
         }
 
         if availableWidth >= 820 {
@@ -218,7 +218,7 @@ struct CircleView: View {
                         }
                         .frame(maxWidth: .infinity, alignment: .leading)
 
-                        HumayIllustration(name: D2Artwork.compatibilityPair)
+                        HumayConnectionMotif()
                             .frame(width: 110, height: 84)
                     }
 
@@ -246,9 +246,9 @@ struct CircleView: View {
     private var emptyState: some View {
         HumaySurface(level: .raised) {
             VStack(spacing: HumaySpacing.large) {
-                HumayIllustration(name: D2Artwork.todayTogether)
-                    .frame(width: 154, height: 108)
-                Text("Your Circle starts here")
+                HumayConnectionMotif()
+                    .frame(width: 176, height: 108)
+                Text("Your connections start here")
                     .font(HumayTypography.cardTitle)
                     .accessibilityAddTraits(.isHeader)
                 Text("Add someone’s basic birth details. Exact time and location can stay unknown until a feature genuinely needs them.")

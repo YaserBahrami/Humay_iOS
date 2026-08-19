@@ -43,10 +43,10 @@ struct AppNavigationTests {
     func mainDestinationOrderIsCanonical() {
         #expect(MainDestination.canonicalOrder == [
             .today,
-            .circle,
-            .sky,
             .chart,
-            .ask
+            .explore,
+            .connections,
+            .you
         ])
         #expect(MainDestination.allCases == MainDestination.canonicalOrder)
     }
@@ -54,8 +54,8 @@ struct AppNavigationTests {
     @Test("Feature ownership stays under its primary destination")
     func featureOwnershipStaysUnderPrimaryDestination() {
         #expect(TodayRoute.dailyHoroscope.owningDestination == .today)
-        #expect(CircleRoute.compatibility.owningDestination == .circle)
-        #expect(SkyRoute.calendar.owningDestination == .sky)
+        #expect(CircleRoute.compatibility.owningDestination == .connections)
+        #expect(SkyRoute.calendar.owningDestination == .explore)
         #expect(AppAuxiliaryRoute.allCases == [.profileSettings])
         #expect(MainDestination.allCases.count == 5)
     }

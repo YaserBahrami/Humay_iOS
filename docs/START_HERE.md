@@ -1,6 +1,6 @@
 # Humay — Start Here
 
-**Status:** current production documentation index as of 2026-08-14.
+**Status:** current production documentation index as of 2026-08-19.
 
 `main` is the repository source of truth. Feature branches are temporary implementation workspaces and must not become separate product/design authorities.
 
@@ -17,14 +17,15 @@
 9. [`architecture/IOS_ARCHITECTURE.md`](architecture/IOS_ARCHITECTURE.md) — SwiftUI + Clean Architecture boundaries for iPhone and iPad.
 10. [`development/VERIFICATION.md`](development/VERIFICATION.md) — canonical repository, build and test verification commands.
 11. [`design/DESIGN_AUTHORITY.md`](design/DESIGN_AUTHORITY.md) — exclusive visual/product-device authority.
-12. [`design/SOULFUL_CELESTIAL_DESIGN_DIRECTION.md`](design/SOULFUL_CELESTIAL_DESIGN_DIRECTION.md) — current visual system.
-13. [`design/SCREEN_DESIGN_PLAN.md`](design/SCREEN_DESIGN_PLAN.md) — D0–D9 screen/design sequence.
-14. The approved screen package under [`design/soulful-reference/`](design/soulful-reference/README.md) for the feature being implemented.
-15. [`development/METHODOLOGY_TRACK.md`](development/METHODOLOGY_TRACK.md) when a feature depends on astrology conventions that are not yet signed off.
+12. [`design/PREMIUM_CELESTIAL_REDESIGN.md`](design/PREMIUM_CELESTIAL_REDESIGN.md) — current post-onboarding visual system, IA, and implementation record.
+13. [`design/SCREEN_DESIGN_PLAN.md`](design/SCREEN_DESIGN_PLAN.md) — D0–D9 screen inventory and propagation sequence.
+14. [`design/SOULFUL_CELESTIAL_DESIGN_DIRECTION.md`](design/SOULFUL_CELESTIAL_DESIGN_DIRECTION.md) — retained onboarding authority and legacy context.
+15. The approved screen package under [`design/soulful-reference/`](design/soulful-reference/README.md) when it has not been visually superseded.
+16. [`development/METHODOLOGY_TRACK.md`](development/METHODOLOGY_TRACK.md) when a feature depends on astrology conventions that are not yet signed off.
 
 ## Current implementation state
 
-The old generated mock-first application was removed before production development. The clean app foundation, approved D1 onboarding, local profile persistence, provider-independent astrology Domain contracts and approved D2 presentation shell are now in place.
+The old generated mock-first application was removed before production development. The clean app foundation, approved D1 onboarding, local profile persistence, provider-independent astrology Domain contracts, D2–D4 presentation contracts, and Premium Celestial representative redesign are now in place.
 
 Phase 01 IOS-001 through IOS-007 are complete. Post-D2 foundation verification, iPhone/iPad builds, Swift Testing and complete iPhone/iPad UI suites passed on 2026-08-12.
 
@@ -41,7 +42,7 @@ ARCH-007 entitlement and ARCH-008 privacy/security remain open before production
 
 Phase 02 ASTRO-001 and ASTRO-002 are implemented. ASTRO-003 has the provider-independent Western fact/structural-validation foundation, but real engine/provider integration and golden validation are deliberately deferred.
 
-**D4.1 Chart UI foundation** is approved, implemented and reconciled over an explicit Debug-only sample. It includes the Chart root/Free entry, typed access/cache/offline/error states, Western known-time overview, data-driven wheel plus ordered placement list, Moon Placement Detail and unknown birth-time handling. Production calculation, provider, access, cache, entitlement and methodology gates remain open.
+**D4.1 Chart UI foundation** is approved and implemented over an explicit Debug-only sample. Premium Celestial now supplies its chart-first hero, interactive wheel/focus treatment, ordered accessibility alternative, Placement Detail disclosure hierarchy, and adaptive iPad composition. Typed access/cache/offline/error and unknown-time behavior remain intact. Production calculation, provider, access, cache, entitlement, and methodology gates remain open.
 
 ## Current implementation order
 
@@ -65,11 +66,11 @@ real Data/API integration
 
 Development sample data is allowed only as explicit development/preview/test content conforming to Humay-owned contracts. It must not restore the deleted mock-provider architecture and must not ship in Release as real personalized astrology.
 
-**D2 — Today + Circle** is implemented with Debug-only development sample data. It includes Today, Daily Horoscope, Circle, a minimal Add Person shell and Compatibility plus explicit Free/precise/cache/offline/error states. Release uses production-unavailable/empty composition and contains no development sample astrology payload.
+**D2 — Today + Circle** is implemented with Debug-only development sample data. Premium Celestial now supersedes Today and Compatibility styling; Daily Horoscope and remaining people flows await propagation. Release uses production-unavailable/empty composition and contains no development sample astrology payload.
 
-**D3 — Sky + Calendar** now has an implemented Current Sky presentation over the Debug-only deterministic sample, plus approved cross-device references for Current Sky, Calendar and Event Detail. Humay-owned Domain event/timing/calendar contracts, typed Presentation states and Release-safe unavailable composition remain in force. Calendar month/week and event-detail production UI remain task-gated until `SKY-004` and `SKY-005`.
+**D3 — Sky + Calendar** has implemented Current Sky, Calendar month/week, and Event Detail presentation over Debug-only deterministic samples. Their contracts and Release-safe unavailable composition remain in force; their visual migration under Explore is a later Premium Celestial phase.
 
-Backend/API/provider, entitlement/monetization and Saved People persistence remain deferred. D4 production Chart and D5 Ask have not been started.
+Backend/API/provider, entitlement/monetization, and Saved People persistence remain deferred. The Premium Celestial representative phase redesigned Today, Chart, Placement Detail, Compatibility, and the new Explore hub without changing those boundaries. Ask remains an existing experience reached through Explore; no provider work was added.
 
 ## Foundation target
 
@@ -96,7 +97,7 @@ See:
 
 ## Current design state
 
-The only active direction is **Soulful Celestial — cosmic editorial with selective cute line/flat celestial illustration**.
+The active post-onboarding direction is **Premium Celestial**: contemporary premium iOS, restrained Persian celestial heritage, and subtle Huma-derived geometry. [`design/PREMIUM_CELESTIAL_REDESIGN.md`](design/PREMIUM_CELESTIAL_REDESIGN.md) is authoritative. Soulful Celestial remains authority only for the existing D1 onboarding implementation until its own migration phase.
 
 Canonical onboarding is exactly four beats:
 
@@ -107,12 +108,12 @@ Canonical onboarding is exactly four beats:
 
 Birth time and birth location are not onboarding steps. They can be added later from Profile for precision-dependent features.
 
-Current approved references:
+Current reference status:
 
-- D0 iPhone Light/Dark anchors: Today, Daily Horoscope, Compatibility;
+- D0 iPhone Light/Dark anchors: historical behavior/state reference for Today and Compatibility; Daily Horoscope still awaits propagation;
 - D1 Welcome, Birth Date, Tradition and Profile Reveal cross-device package approved 2026-08-12;
 - D2 Today, Daily Horoscope and Compatibility iPhone Light/Dark composites approved 2026-08-12;
-- D4.1 Chart foundation cross-device package approved 2026-08-14.
+- D4.1 Chart foundation cross-device package approved 2026-08-14 and visually superseded by Premium Celestial on 2026-08-19.
 
 The D1 onboarding UI is implemented under `Humay/Presentation/Onboarding/`.
 The D2 UI is implemented under `Humay/Presentation/Today/`, `Humay/Presentation/Circle/` and `Humay/Presentation/Main/`; evidence is under [`design/implementation-evidence/d2-today-circle/`](design/implementation-evidence/d2-today-circle/README.md).
