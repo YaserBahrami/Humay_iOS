@@ -40,7 +40,7 @@ The selected post-onboarding Humay style is **Premium Celestial**:
 - large editorial typography with clean system UI and monospaced technical roles;
 - restrained celestial gold plus quiet indigo support accents;
 - extremely thin orbital geometry, generous space, and minimal card chrome;
-- Huma identity expressed through wing, feather, eye, plume, flight-path, and paired-orbit motifs;
+- Huma identity expressed only through approved production vector assets; no approximate bird, wing, feather, or orbital stand-in;
 - modern Apple-platform hierarchy first, Persian celestial heritage second, Huma mythology third;
 - intentional Light and Dark composition rather than color inversion.
 
@@ -93,11 +93,11 @@ Dynamic Type is mandatory. iPad does not justify fixed text sizes or oversized e
 
 ## 7. Illustration and visual intensity
 
-- **Level A:** one code-drawn celestial/Huma composition on Today, Compatibility, onboarding welcome/reveal, or another selected emotional hero.
-- **Level B:** one compact custom glyph or restrained orbit/feather motif for a meaningful feature group.
+- **Level A:** at most one approved bundled production vector composition on a selected emotional hero.
+- **Level B:** one semantically correct bundled vector glyph or SF Symbol for a meaningful feature group.
 - **Level C:** quiet native utility surfaces for forms, settings, and dense technical data.
 
-Prefer reusable SwiftUI geometry and optically reviewed vectors. Avoid cute celestial characters, chibi, 3D emoji, sticker density, painterly landscapes, thick cartoon outlines, stock zodiac art, and generic purple-neon galaxy styling.
+SwiftUI `Shape`, custom `Path`, `Canvas`, Bézier construction, and primitive geometry must never create icons, illustrations, brand art, astrology symbols, or decorative celestial motifs. They remain valid only for geometry derived from real application data. Follow the complete Asset & Iconography Authority in [`PREMIUM_CELESTIAL_REDESIGN.md`](PREMIUM_CELESTIAL_REDESIGN.md) and the ledger in [`ASSET_INVENTORY.md`](ASSET_INVENTORY.md). Avoid cute celestial characters, chibi, 3D emoji, sticker density, painterly landscapes, thick cartoon outlines, stock zodiac art, and generic purple-neon galaxy styling.
 
 ## 8. Product and astrology boundaries
 

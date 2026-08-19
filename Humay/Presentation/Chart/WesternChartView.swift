@@ -328,8 +328,7 @@ private struct ChartPlacementsLink: View {
     var body: some View {
         HumayHairlineSurface(style: .celestial) {
             HStack(alignment: .center, spacing: HumaySpacing.extraLarge) {
-                HumayGlyph(kind: .feather)
-                    .frame(width: 46, height: 46)
+                HumaySystemSymbolImage(symbol: .placements, size: .feature)
                     .foregroundStyle(Color.humayAccentPrestige)
 
                 VStack(alignment: .leading, spacing: HumaySpacing.small) {

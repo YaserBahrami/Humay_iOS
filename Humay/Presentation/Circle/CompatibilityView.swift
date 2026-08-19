@@ -46,7 +46,7 @@ struct CompatibilityView: View {
             HumayStateView(
                 title: "Choose two people",
                 message: "Return to Connections and select a pair before opening compatibility.",
-                glyph: .connection
+                symbol: .compatibility
             )
 
         case .loading(let pair):
@@ -99,7 +99,7 @@ struct CompatibilityView: View {
                 HumayStateView(
                     title: "Compatibility unavailable offline",
                     message: "Reconnect to open an available result.",
-                    glyph: .eclipse
+                    symbol: .offline
                 )
             }
 
@@ -108,7 +108,7 @@ struct CompatibilityView: View {
             HumayStateView(
                 title: "Connection unavailable",
                 message: message,
-                glyph: .eclipse
+                symbol: .unavailable
             )
         }
     }
@@ -160,15 +160,16 @@ struct CompatibilityView: View {
 
     private func pairIdentity(_ pair: CompatibilityPair) -> some View {
         VStack(spacing: HumaySpacing.extraLarge) {
-            ZStack {
-                HumayConnectionMotif()
-                    .frame(maxWidth: 430)
-                    .frame(height: 190)
+            HStack(alignment: .top, spacing: HumaySpacing.extraLarge) {
+                relationshipPerson(pair.first, accent: .lavender)
+                    .frame(maxWidth: .infinity)
 
-                HStack(spacing: 108) {
-                    relationshipPerson(pair.first, accent: .lavender)
-                    relationshipPerson(pair.second, accent: .gold)
-                }
+                HumaySystemSymbolImage(symbol: .love, size: .standard)
+                    .foregroundStyle(Color.humayAccentPrestige)
+                    .padding(.top, HumaySpacing.extraLarge)
+
+                relationshipPerson(pair.second, accent: .gold)
+                    .frame(maxWidth: .infinity)
             }
 
             Text("\(pair.first.name) & \(pair.second.name)")
@@ -248,7 +249,6 @@ struct CompatibilityView: View {
 
                 if let strongest {
                     note(
-                        glyph: .connection,
                         title: "Where you connect",
                         detail: "\(strongest.kind.premiumDisplayName) carries the strongest signal in this reading."
                     )
@@ -256,12 +256,10 @@ struct CompatibilityView: View {
 
                 if let growthEdge {
                     note(
-                        glyph: .eclipse,
                         title: "Where friction may appear",
                         detail: "\(growthEdge.kind.premiumDisplayName) asks for more conscious attention."
                     )
                     note(
-                        glyph: .feather,
                         title: "What each person needs",
                         detail: growthEdge.kind.practice(
                             firstName: result.pair.first.name,
@@ -273,36 +271,24 @@ struct CompatibilityView: View {
         }
     }
 
-    private func note(glyph: HumayGlyphKind, title: String, detail: String) -> some View {
-        HStack(alignment: .top, spacing: HumaySpacing.large) {
-            HumayGlyph(kind: glyph)
-                .frame(width: 34, height: 34)
-                .foregroundStyle(Color.humayAccentPrestige)
-
-            VStack(alignment: .leading, spacing: HumaySpacing.extraSmall) {
-                Text(title)
-                    .font(HumayTypography.bodyEmphasized)
-                Text(detail)
-                    .font(HumayTypography.supporting)
-                    .foregroundStyle(Color.humayTextSecondary)
-                    .fixedSize(horizontal: false, vertical: true)
-            }
+    private func note(title: String, detail: String) -> some View {
+        VStack(alignment: .leading, spacing: HumaySpacing.extraSmall) {
+            Text(title)
+                .font(HumayTypography.bodyEmphasized)
+            Text(detail)
+                .font(HumayTypography.supporting)
+                .foregroundStyle(Color.humayTextSecondary)
+                .fixedSize(horizontal: false, vertical: true)
         }
         .accessibilityElement(children: .combine)
     }
 
     private func reading(_ ourTake: String) -> some View {
-        HStack(alignment: .top, spacing: HumaySpacing.extraLarge) {
-            HumayGlyph(kind: .feather)
-                .frame(width: 48, height: 48)
-                .foregroundStyle(Color.humayAccentPrestige)
-
-            VStack(alignment: .leading, spacing: HumaySpacing.large) {
-                HumayEyebrow(text: "Humay's reading")
-                Text(ourTake)
-                    .font(HumayTypography.narrativeSectionTitle)
-                    .fixedSize(horizontal: false, vertical: true)
-            }
+        VStack(alignment: .leading, spacing: HumaySpacing.large) {
+            HumayEyebrow(text: "Humay's reading")
+            Text(ourTake)
+                .font(HumayTypography.narrativeSectionTitle)
+                .fixedSize(horizontal: false, vertical: true)
         }
         .padding(.vertical, HumaySpacing.extraLarge)
         .accessibilityElement(children: .combine)
@@ -338,8 +324,7 @@ struct CompatibilityView: View {
 
     private func compactPairHeader(_ pair: CompatibilityPair) -> some View {
         HStack(spacing: HumaySpacing.extraLarge) {
-            HumayGlyph(kind: .connection)
-                .frame(width: 52, height: 52)
+            HumaySystemSymbolImage(symbol: .compatibility, size: .feature)
                 .foregroundStyle(Color.humayAccentPrestige)
             Text("\(pair.first.name) & \(pair.second.name)")
                 .font(HumayTypography.editorialTitle)

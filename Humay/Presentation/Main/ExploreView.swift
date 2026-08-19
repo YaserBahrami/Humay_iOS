@@ -27,22 +27,8 @@ struct ExploreView: View {
     }
 
     private var hero: some View {
-        ViewThatFits(in: .horizontal) {
-            HStack(alignment: .center, spacing: HumaySpacing.hero) {
-                heroCopy
-                    .frame(minWidth: 360, maxWidth: 560, alignment: .leading)
-                Spacer(minLength: 0)
-                HumayCelestialStage()
-                    .frame(width: 260, height: 260)
-            }
-
-            VStack(alignment: .leading, spacing: HumaySpacing.extraLarge) {
-                heroCopy
-                HumayCelestialStage(compact: true)
-                    .frame(maxWidth: .infinity)
-                    .frame(height: 210)
-            }
-        }
+        heroCopy
+            .frame(maxWidth: 620, alignment: .leading)
         .padding(.vertical, HumaySpacing.large)
     }
 
@@ -90,8 +76,7 @@ struct ExploreView: View {
 
     private func topicTile(_ topic: ExploreTopic) -> some View {
         HStack(alignment: .top, spacing: HumaySpacing.large) {
-            HumayGlyph(kind: topic.glyph)
-                .frame(width: 38, height: 38)
+            HumaySystemSymbolImage(symbol: topic.symbol)
                 .foregroundStyle(topic.accent)
 
             VStack(alignment: .leading, spacing: HumaySpacing.small) {
@@ -133,7 +118,7 @@ struct ExploreView: View {
                 toolLink(
                     title: "Current sky & calendar",
                     subtitle: "Planetary events, timing, and observation context",
-                    glyph: .orbit,
+                    symbol: .currentSky,
                     accent: .humayAccentCelestial,
                     identifier: "explore.tool.current-sky"
                 ) {
@@ -145,7 +130,7 @@ struct ExploreView: View {
                 toolLink(
                     title: "Ask Humay",
                     subtitle: "Bring a personal question to available chart context",
-                    glyph: .eye,
+                    symbol: .ask,
                     accent: .humayAccentPrestige,
                     identifier: "explore.tool.ask"
                 ) {
@@ -161,7 +146,7 @@ struct ExploreView: View {
                 toolLink(
                     title: "Natal chart",
                     subtitle: "Placements, houses, aspects, and interpretation",
-                    glyph: .crown,
+                    symbol: .chart,
                     accent: .humayAccentPrestige,
                     identifier: "explore.tool.chart"
                 ) {
@@ -178,15 +163,14 @@ struct ExploreView: View {
     private func toolLink<Destination: View>(
         title: String,
         subtitle: String,
-        glyph: HumayGlyphKind,
+        symbol: HumaySystemSymbol,
         accent: Color,
         identifier: String,
         @ViewBuilder destination: () -> Destination
     ) -> some View {
         NavigationLink(destination: destination()) {
             HStack(spacing: HumaySpacing.large) {
-                HumayGlyph(kind: glyph)
-                    .frame(width: 36, height: 36)
+                HumaySystemSymbolImage(symbol: symbol)
                     .foregroundStyle(accent)
 
                 VStack(alignment: .leading, spacing: HumaySpacing.extraSmall) {
@@ -358,17 +342,17 @@ private enum ExploreTopic: String, CaseIterable, Identifiable {
         }
     }
 
-    var glyph: HumayGlyphKind {
+    var symbol: HumaySystemSymbol {
         switch self {
-        case .love: .connection
-        case .career: .feather
-        case .money: .crown
-        case .health: .orbit
-        case .personality: .eye
-        case .strengths: .crown
-        case .challenges: .eclipse
-        case .currentTiming: .orbit
-        case .lifeThemes: .feather
+        case .love: .love
+        case .career: .career
+        case .money: .money
+        case .health: .health
+        case .personality: .personality
+        case .strengths: .strength
+        case .challenges: .challenge
+        case .currentTiming: .timing
+        case .lifeThemes: .lifeThemes
         }
     }
 

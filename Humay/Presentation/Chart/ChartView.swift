@@ -131,9 +131,10 @@ private struct ChartFreeEntry: View {
 
             HumayHairlineSurface(style: .celestial) {
                 VStack(alignment: .leading, spacing: HumaySpacing.medium) {
-                    HumayCelestialStage(compact: true)
+                    HumaySystemSymbolImage(symbol: .chart, size: .feature)
+                        .foregroundStyle(Color.humayAccentCelestial)
                         .frame(maxWidth: .infinity)
-                        .frame(height: 210)
+                        .padding(.vertical, HumaySpacing.extraLarge)
 
                     Text("Illustrative preview · not your chart")
                         .font(HumayTypography.utility)
@@ -408,9 +409,10 @@ private struct ChartUnknownTimeState: View {
                 }
                 HumaySurface(level: .raised, padding: HumaySpacing.large) {
                     VStack(alignment: .leading, spacing: HumaySpacing.medium) {
-                        HumayIllustration(name: "IllustrationUnknownBirthTime")
+                        HumaySystemSymbolImage(symbol: .timing, size: .feature)
+                            .foregroundStyle(Color.humayAccentCelestial)
                             .frame(maxWidth: .infinity)
-                            .frame(height: 142)
+                            .padding(.vertical, HumaySpacing.large)
 
                         HStack(spacing: HumaySpacing.medium) {
                             Image(systemName: "questionmark.circle")

@@ -1,9 +1,9 @@
 # Humay Premium Celestial Redesign
 
 **Status:** Current redesign authority
-**Effective:** 2026-08-19
+**Effective:** 2026-08-20
 **Scope:** iPhone and iPad, Light and Dark, all post-onboarding product surfaces
-**Implementation phase:** Representative foundation implemented and verified
+**Implementation phase:** Representative foundation retained; asset foundation corrected
 
 This document supersedes the visual treatment and post-onboarding information architecture in `SOULFUL_CELESTIAL_DESIGN_DIRECTION.md`. Existing product, calculation, access, privacy, persistence, and sample-data boundaries remain authoritative.
 
@@ -15,7 +15,7 @@ Humay is a premium astrology product shaped by Huma mythology, celestial mechani
 - 15% Persian celestial and astronomical heritage
 - 10% Huma mythology
 
-The interface uses editorial hierarchy, quiet surfaces, extremely thin orbital geometry, and generous negative space. Huma appears as a recurring visual grammar—wing, feather, eye, crown plume, flight path, and paired orbit—not as a mascot placed on every screen.
+The interface uses editorial hierarchy, quiet surfaces, data-derived celestial geometry, and generous negative space. Huma identity appears only through approved production vector artwork and only where it carries identity value. Until that artwork is commissioned and accepted, the interface deliberately uses typography and whitespace instead of a fake bird mark.
 
 Avoid generic purple horoscope styling, neon glow, crystal-shop imagery, constant gradients, excessive glass, cartoon birds, and a card around every content block.
 
@@ -28,7 +28,7 @@ Avoid generic purple horoscope styling, neon glow, crystal-shop imagery, constan
 - Release-safe production states separated from Debug-only development samples.
 - Native SwiftUI navigation, safe-area behavior, Dynamic Type foundations, VoiceOver identifiers, and 44 pt interaction targets.
 - Newsreader for editorial roles, SF Pro for interface text, and monospaced technical values.
-- Existing structured zodiac, planet, and moon-phase vectors where their geometry remains visually suitable.
+- Existing structured zodiac and planet concepts, supplied through a corrected, coherent vector family.
 - Adaptive width helpers and explicit iPhone/iPad layouts.
 
 ### Current visual problems
@@ -106,8 +106,8 @@ Gold is rare and meaningful. Indigo supports information hierarchy. Roast ember 
 - Radius: 10 compact control, 16 grouped surface, 24 hero only, pill only for status/filters.
 - Hairlines use one physical pixel where possible.
 - Shadows appear only for floating hierarchy; tonal separation and lines do most work.
-- Motion: 120 ms press, 220 ms selection, 420 ms reveal, slow orbit only during loading or an intentional hero moment.
-- Reduce Motion replaces orbit/flight movement with opacity and state changes.
+- Motion: 120 ms press, 220 ms selection, and 420 ms reveal. Loading uses native progress treatment.
+- Reduce Motion replaces nonessential movement with opacity and state changes.
 
 ## Typography hierarchy
 
@@ -126,14 +126,14 @@ Hierarchy uses space, weight, and measure before large size jumps. Body copy rem
 - `HumayPage` — adaptive page margins, max widths, canvas, and bottom clearance.
 - `HumayScreenHeader` — wordmark/context/profile treatment without decorative clutter.
 - `HumaySectionHeader` — editorial or utility variants.
-- `HumayEditorialHero` — one dominant thought with optional celestial stage.
-- `HumayCelestialStage` — code-drawn Huma/orbit composition with no implied data.
+- `HumayEditorialHero` — one dominant thought; any optional art must be an approved bundled asset.
 - `HumayHairlineSurface` — minimal grouping; raised variants are explicit.
 - `HumayDisclosureStack` — Human meaning / Why / Astrology details.
 - `HumayMetricBand` — qualitative relationship dimension with optional technical score.
 - `HumayFactRow` — accessible fact/value/reliability presentation.
-- `HumayStateView` and `HumayLoadingMark` — shared empty, offline, error, locked, and loading language.
-- `HumayOrbitGlyph`, `HumayFeatherGlyph`, `HumayEyeGlyph`, and `HumayConnectionGlyph` — reusable SwiftUI shapes.
+- `HumayStateView` and native progress treatment — shared empty, offline, error, locked, and loading language.
+- `HumayAsset` / `HumayAssetImage` — typed catalog access, rendering mode, aspect preservation, and accessibility defaults.
+- `HumaySystemSymbol` / `HumaySystemSymbolImage` — semantic SF Symbol vocabulary with consistent weight and optical frames.
 - `HumayMotion` — shared durations and Reduce Motion-aware animation selection.
 
 ## Representative-screen direction
@@ -152,19 +152,49 @@ Starts with interpretation, then explanation, then structured technical facts. R
 
 ### Compatibility
 
-Pair identity and intertwined orbits lead. Relationship label and summary replace a giant percentage. Chemistry, Communication, Emotional Safety, and Shared Rhythm become primary dimensions. Overall score remains available only as supporting technical context because current contracts still carry it. Free Sun-sign and unavailable synastry limitations are explicit.
+Pair identity leads through names, avatars, and clear relationship UI. Relationship label and summary replace a giant percentage. Chemistry, Communication, Emotional Safety, and Shared Rhythm become primary dimensions. Overall score remains available only as supporting technical context because current contracts still carry it. Free Sun-sign and unavailable synastry limitations are explicit; decorative orbits never imply calculated synastry.
 
 ### Explore
 
 Questions lead, technical systems follow. Love, Career, Money, Health, Personality, Strengths, Challenges, Current Timing, and Major Life Themes route into existing Today, Chart, Sky, Ask, and Compatibility capabilities. Explore does not fabricate content for unavailable topics.
 
-## Asset strategy
+## Asset & Iconography Authority
+
+This section is non-negotiable for all future implementation.
+
+### No programmatic artwork
+
+Icons, illustrations, brand marks, zodiac or planet symbols, moon phases, compatibility art, and decorative celestial motifs must not be drawn with SwiftUI `Shape`, custom `Path`, `Canvas`, Bézier construction, `CGPath`, or arrangements of primitive circles, ellipses, rectangles, and lines. Translating rejected SwiftUI curves into SVG does not make them acceptable artwork.
+
+Programmatic drawing is allowed only when geometry represents real application data: natal-chart house divisions, actual aspect lines, planetary positions, provider-backed transit trajectories, numeric progress, and charts/graphs. Every surviving drawing implementation must be traceable to structured values; decorative geometry is not data visualization.
+
+### SF Symbols
+
+Use SF Symbols for standard actions, navigation utilities, toolbar controls, states, and clear generic interface concepts. Do not recreate settings, search, back, close, add, delete, edit, share, calendar, notification, profile, chevron, overflow, information, or root-navigation actions. Use one coherent symbol weight and optical sizing strategy. Do not use SF Symbols as invented astrology glyphs when established astrology symbols exist.
+
+### Third-party icon libraries
+
+Add no icon dependency while SF Symbols cover the generic need. A future library requires a documented repository, pinned version, permissive commercial license, exact icon categories, reason SF Symbols are insufficient, binary/dependency impact, no runtime network dependency, and preferably no icon font. Generic bird, feather, zodiac, or astrology clip art is never a Humay identity substitute.
+
+### Bundled vector assets
+
+Humay identity and astrology-specific symbols use reviewed production SVG source and vector-preserving asset-catalog imagesets. Assets must preserve aspect ratio and contain intentional optical bounds; they must not rely on embedded raster images, live fonts, external resources, unsupported filters, or noisy generated paths. Monochrome technical glyphs render as templates using semantic colors. Multicolor brand/illustration assets render as original; Light/Dark variants exist only when composition or contrast genuinely changes.
+
+All runtime catalog access goes through the small typed `HumayAsset` vocabulary. Feature code must not scatter `Image("asset-name")` strings or construct asset names. SF Symbols go through native APIs or the centralized semantic symbol vocabulary when repeated optical treatment is useful.
+
+### Astrology correctness
+
+Informational symbols must use established, verified astrology glyphs where they exist. Each asset must have one documented semantic meaning; screens may not reuse a decorative celestial-looking mark for unrelated concepts. Unsupported entities are not added to make a family look complete. The supported zodiac, planet, point, aspect, and phase inventory follows actual domain models and is recorded in [`ASSET_INVENTORY.md`](ASSET_INVENTORY.md).
+
+### Identity, source, and licensing
+
+The Huma requires dedicated production design against [`HUMA_ASSET_REQUIREMENTS.md`](HUMA_ASSET_REQUIREMENTS.md). No temporary bird drawing is presented as completed identity work. Source repository, version, license, attribution obligations, rendering intent, appearance variants, and verification state are recorded in [`ASSET_INVENTORY.md`](ASSET_INVENTORY.md); required license text lives under [`licenses/`](licenses/). The catalog assets plus that inventory are the source of truth. Assets may be removed only after reachability analysis.
 
 ### Retain and refine
 
 - Newsreader and Cormorant font files.
-- Zodiac, planet, and moon-phase glyph vectors after optical review.
-- Native SF Symbols for standard navigation and system actions only.
+- Coherent licensed zodiac, supported-planet, and aspect vectors after optical review.
+- Native SF Symbols for standard navigation, system actions, states, and generic UI concepts.
 
 ### Deprecate from redesigned surfaces
 
@@ -172,7 +202,7 @@ Questions lead, technical systems follow. Love, Career, Money, Health, Personali
 - Legacy navigation/category art that duplicates native actions or does not express Humay.
 - Decorative gradients and star clusters used without semantic purpose.
 
-Assets are not deleted during the representative phase if unaffected screens still reference them. New Huma identity primitives are drawn in SwiftUI. Production emblem/app-icon artwork needs a later dedicated vector design pass; no fake production-ready placeholder will be generated.
+Assets are deleted only after reachability analysis confirms no shipping call site. Production Huma emblem/app-icon artwork requires a dedicated vector identity deliverable; the app ships no fake production-ready placeholder.
 
 ## Phase acceptance criteria
 
@@ -185,9 +215,9 @@ Assets are not deleted during the representative phase if unaffected screens sti
 - Debug samples remain labeled; Release never displays them as real astrology.
 - Build, tests, screenshots, and this document are updated after each implementation phase.
 
-## Phase 1 implementation record
+## Phase 1 and corrective asset implementation record
 
-Completed on 2026-08-19. Product-code changes are confined to app composition/navigation, Presentation, DesignSystem, and visual resources; the phase added no dependency, backend, provider, persistence, Data-layer, or astrology-domain change.
+Phase 1 completed on 2026-08-19; the corrective asset pass completed on 2026-08-20. Product-code changes are confined to app composition/navigation, Presentation, DesignSystem, and visual resources; neither pass added a backend, provider, persistence, Data-layer, or astrology-domain change.
 
 ### System delivered
 
@@ -195,8 +225,18 @@ Completed on 2026-08-19. Product-code changes are confined to app composition/na
 - Global accent and launch-background assets now match the gold/canvas system; two identical nested legacy copies were removed to eliminate asset-catalog ambiguity.
 - Editorial and technical typography roles, a shared spacing/radius/motion scale, adaptive page gutters, and a 54 pt primary-control standard.
 - `HumayPage`, screen/section headers, hairline surfaces, progressive disclosure, fact rows, relationship metric bands, and shared state presentation.
-- SwiftUI-drawn feather, eye, wing, crown, orbit, eclipse, connection, Huma-mark, and celestial-stage motifs. Reduce Motion removes intentional orbit movement.
+- Typed vector access for conventional astrology glyphs and centralized SF Symbol treatment for generic UI concepts.
 - Primary navigation mapped to **Today / Chart / Explore / Connections / You**. Current Sky, Calendar, and Ask live under Explore; Circle/people and Compatibility live under Connections; profile and settings content live under You.
+
+### Corrective asset system delivered
+
+- Deleted the code-drawn `HumayMotifs.swift` artwork system and the decorative compatibility connector. No rejected Huma, wing, feather, eye, crown, eclipse, fake orbit, or connection drawing remains.
+- Replaced all 12 technical zodiac glyphs and all 10 supported planet glyphs with licensed, vector-preserving Noto outlines using standardized optical bounds.
+- Added conventional conjunction, opposition, square, trine, and sextile vectors; actual chart lines remain computed data visualization.
+- Centralized catalog access and rendering behavior in `HumayAsset` / `HumayAssetImage`; centralized recurring native symbols in `HumaySystemSymbol`.
+- Removed unreachable legacy navigation/category icons, decorative motifs, moon phases, unsupported nodes/elements, obsolete illustrations, and the constellation path after reachability analysis.
+- Added no icon package. Generic actions and all five root destinations use coherent SF Symbols.
+- Deferred Huma identity artwork rather than shipping a fake substitute; the production brief and acceptance gate live in `HUMA_ASSET_REQUIREMENTS.md`.
 
 ### Representative experiences delivered
 
@@ -205,23 +245,24 @@ Completed on 2026-08-19. Product-code changes are confined to app composition/na
 | Today | Editorial Cosmic Weather flow, one primary insight, quiet theme/category entry points, and progressive basis disclosure using existing state contracts. |
 | Natal Chart | Chart-first hero, tappable planets/houses/aspects, selected focus interpretation, accessible ordered alternatives, and adaptive iPad wheel/detail composition. |
 | Placement Detail | Human meaning first, placement explanation second, structured degrees/house/reliability/methodology last. |
-| Compatibility | Intertwined-orbit identity, multidimensional relationship reading, needs/friction/strengths, and demoted overall score with honest technical limitations. |
+| Compatibility | Clear pair identity, multidimensional relationship reading, needs/friction/strengths, and demoted overall score with honest technical limitations. |
 | Explore | Question-first discovery mapped to real Today, Chart, Current Sky, Ask, and Connections destinations without invented content. |
 
 `You` was added as the fifth root destination so the new information architecture is complete; its existing profile, birth, preference, people, privacy, and settings data remains presentation-only.
 
 ### Verification
 
-- Debug app builds passed for iPhone 17 Pro and iPad Pro 13-inch simulator destinations; the Release simulator build also passed, confirming Debug sample routing stays compilation-safe.
-- Swift Testing passed: **112 tests across 13 suites**.
-- Targeted XCUITests passed for the five-destination shell/Explore hub, Current Sky routing, Ask routing, Compatibility, and interactive Western Chart/Placement Detail.
-- Visual inspection passed on iPhone Light/Dark and iPad Light/Dark. Reviewed Today, Chart root, Western Chart, Placement Detail, Explore, and Compatibility; regular-width chart and compatibility use deliberate two-region layouts.
-- Typography, architecture layering, nomenclature, and diagnostics foundation checks pass. The aggregate foundation script still returns nonzero at its historical `Latest committed diff whitespace` gate because the repository baseline contains trailing whitespace in legacy SVG/reference files; none is introduced by this redesign diff.
+- Debug builds passed for iPhone 17 Pro and iPad Pro 13-inch simulator destinations. The generic Simulator Release build also passed.
+- Swift Testing passed: **113 tests across 13 suites**.
+- The complete XCUITest target passed: **46 tests, 0 failures, 0 skips** on iPhone 17 Pro.
+- Asset-focused screenshot routes passed and were visually inspected on standard iPhone Light/Dark, iPhone Pro Max Light, iPad portrait Light, and iPad landscape Light. Reviewed Today, Explore, Western Chart, Placement Detail, Compatibility selection/result, 16–24 pt technical glyphs, tab symbols, and regular-width two-region compositions.
+- Every bundled replacement SVG passed XML/catalog compilation checks and contains no embedded raster, live text, external resource, filter, gradient, or generator metadata.
+- Repository survivor search finds SwiftUI `Canvas` / `Path` only in `ChartWheel.swift`, where house divisions and aspect lines are computed from `ChartWheelModel`. No rejected motif type or raw feature-level `Image("asset-name")` access remains.
 
 ### Deliberate boundaries and next phase
 
 - Propagate the new primitives through Daily Horoscope, Current Sky/Calendar/Event Detail, Ask, remaining Connections people flows, settings, and monetization surfaces.
 - Keep approved onboarding behavior intact; visually migrate it only as its own reviewed phase.
-- Retire legacy cute raster/vector illustrations only after a complete reachability audit confirms no unaffected screen still needs them.
-- Commission final production Huma emblem/app-icon artwork as a dedicated vector identity deliverable. Current code-drawn motifs are interface primitives, not fake final brand artwork.
+- Retain the still-reachable legacy onboarding, Ask, Current Sky, Daily Horoscope, Connections, and zodiac-art illustrations until those screens receive their own reviewed propagation pass; all unreachable shipping copies have been removed.
+- Commission final production Huma emblem/app-icon artwork against `HUMA_ASSET_REQUIREMENTS.md`; no code-drawn identity primitive is permitted.
 - Add real synastry-aspect detail only when an owning provider supplies structured aspects. Current compatibility dimensions are presentation mappings of the existing four domain metrics, not new calculated claims.

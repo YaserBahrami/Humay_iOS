@@ -192,7 +192,7 @@ private struct BirthDateMotif: View {
     let compactHeight: Bool
 
     var body: some View {
-        HumayIllustration(name: "IllustrationCalendarCelestial")
+        HumayIllustration(asset: .calendarCelestial)
             .frame(
                 width: compactHeight ? 132 : 180,
                 height: compactHeight ? 58 : 88

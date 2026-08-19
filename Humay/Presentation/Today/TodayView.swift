@@ -62,7 +62,7 @@ struct TodayView: View {
                 HumayStateView(
                     title: "Today is unavailable",
                     message: "Reconnect to open a current reading.",
-                    glyph: .eclipse
+                    symbol: .offline
                 )
             }
 
@@ -70,7 +70,7 @@ struct TodayView: View {
             HumayStateView(
                 title: "Today needs a moment",
                 message: message,
-                glyph: .orbit
+                symbol: .unavailable
             )
         }
     }
@@ -126,21 +126,7 @@ struct TodayView: View {
             )
         } label: {
             VStack(alignment: .leading, spacing: 0) {
-                ViewThatFits(in: .horizontal) {
-                    HStack(alignment: .center, spacing: HumaySpacing.extraLarge) {
-                        cosmicWeatherCopy(content)
-                        Spacer(minLength: 0)
-                        HumayCelestialStage(compact: true)
-                            .frame(width: 190, height: 190)
-                    }
-
-                    VStack(alignment: .leading, spacing: HumaySpacing.large) {
-                        cosmicWeatherCopy(content)
-                        HumayCelestialStage(compact: true)
-                            .frame(maxWidth: .infinity)
-                            .frame(height: 190)
-                    }
-                }
+                cosmicWeatherCopy(content)
 
                 HStack(spacing: HumaySpacing.small) {
                     Text("Read your full day")
@@ -232,8 +218,7 @@ struct TodayView: View {
             )
         } label: {
             HStack(alignment: .top, spacing: HumaySpacing.large) {
-                HumayGlyph(kind: category.glyphKind)
-                    .frame(width: 34, height: 34)
+                HumaySystemSymbolImage(symbol: category.premiumSymbol)
                     .foregroundStyle(category.premiumAccent)
 
                 VStack(alignment: .leading, spacing: HumaySpacing.small) {
@@ -266,8 +251,7 @@ struct TodayView: View {
         HumayHairlineSurface(style: .raised, padding: HumaySpacing.extraLarge) {
             VStack(alignment: .leading, spacing: HumaySpacing.large) {
                 HStack(alignment: .top, spacing: HumaySpacing.large) {
-                    HumayGlyph(kind: .feather)
-                        .frame(width: 42, height: 42)
+                    HumaySystemSymbolImage(symbol: .insight, size: .feature)
                         .foregroundStyle(Color.humayAccentPrestige)
 
                     VStack(alignment: .leading, spacing: HumaySpacing.small) {
@@ -334,8 +318,7 @@ struct TodayView: View {
             )
         } label: {
             HStack(spacing: HumaySpacing.large) {
-                HumayGlyph(kind: .orbit)
-                    .frame(width: 40, height: 40)
+                HumaySystemSymbolImage(symbol: .timing, size: .feature)
                     .foregroundStyle(Color.humayAccentCelestial)
 
                 VStack(alignment: .leading, spacing: HumaySpacing.extraSmall) {
@@ -375,8 +358,7 @@ struct TodayView: View {
                 }
                 .frame(maxWidth: .infinity, alignment: .leading)
 
-                HumayGlyph(kind: .eye)
-                    .frame(width: 58, height: 58)
+                HumaySystemSymbolImage(symbol: .roast, size: .feature)
                     .foregroundStyle(Color.humayAccentRoast)
 
                 Image(systemName: "arrow.up.right")
@@ -436,15 +418,12 @@ struct TodayView: View {
 }
 
 private struct TodayLoadingView: View {
-    @Environment(\.accessibilityReduceMotion) private var reduceMotion
-    @State private var visible = false
-
     var body: some View {
         HumayHairlineSurface(style: .raised) {
             VStack(spacing: HumaySpacing.extraLarge) {
-                HumayCelestialStage(compact: true)
-                    .frame(width: 150, height: 150)
-                    .opacity(visible || reduceMotion ? 1 : 0.45)
+                ProgressView()
+                    .controlSize(.large)
+                    .tint(Color.humayAccentPrestige)
 
                 Text("Reading today’s sky…")
                     .font(HumayTypography.editorialTitle)
@@ -456,23 +435,18 @@ private struct TodayLoadingView: View {
             .frame(maxWidth: .infinity)
             .padding(.vertical, HumaySpacing.section)
         }
-        .onAppear {
-            withAnimation(HumayMotion.reveal(reduceMotion: reduceMotion)) {
-                visible = true
-            }
-        }
         .accessibilityElement(children: .combine)
         .accessibilityLabel("Loading Today")
     }
 }
 
 private extension DailyReadingCategory {
-    var glyphKind: HumayGlyphKind {
+    var premiumSymbol: HumaySystemSymbol {
         switch self {
-        case .love: .connection
-        case .career: .feather
-        case .money: .crown
-        case .health: .orbit
+        case .love: .love
+        case .career: .career
+        case .money: .money
+        case .health: .health
         }
     }
 

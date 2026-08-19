@@ -785,6 +785,81 @@ final class LaunchUITests: XCTestCase {
         }
     }
 
+    func testCapturePremiumAssetCorrectionPortraitLightEvidence() {
+        XCUIDevice.shared.orientation = .portrait
+        capturePremiumAssetCorrection(
+            interfaceStyle: "Light",
+            orientationLabel: "portrait"
+        )
+    }
+
+    func testCapturePremiumAssetCorrectionPortraitDarkEvidence() {
+        XCUIDevice.shared.orientation = .portrait
+        capturePremiumAssetCorrection(
+            interfaceStyle: "Dark",
+            orientationLabel: "portrait"
+        )
+    }
+
+    func testCapturePremiumAssetCorrectionLandscapeEvidence() {
+        XCUIDevice.shared.orientation = .landscapeRight
+        capturePremiumAssetCorrection(
+            interfaceStyle: "Light",
+            orientationLabel: "landscape"
+        )
+        XCUIDevice.shared.orientation = .portrait
+    }
+
+    private func capturePremiumAssetCorrection(
+        interfaceStyle: String,
+        orientationLabel: String
+    ) {
+        let appearance = interfaceStyle.lowercased()
+        let suffix = ["asset", evidenceDevice, orientationLabel, appearance]
+            .joined(separator: "-")
+        let arguments = [
+            "-AppleInterfaceStyle", interfaceStyle,
+            "-HumayD4ChartState", "loaded",
+            "-HumayD2CompatibilityState", "precise"
+        ]
+
+        let primary = d2App(extraArguments: arguments)
+        capture(primary, named: "today-" + suffix)
+
+        selectPrimaryDestination("Explore", in: primary)
+        XCTAssertTrue(element("explore.screen", in: primary).waitForExistence(timeout: 3))
+        capture(primary, named: "explore-" + suffix)
+
+        selectPrimaryDestination("Chart", in: primary)
+        XCTAssertTrue(element("chart.state.loaded", in: primary).waitForExistence(timeout: 3))
+        primary.buttons["chart.western.open"].tap()
+        XCTAssertTrue(element("chart.western.screen", in: primary).waitForExistence(timeout: 3))
+        capture(primary, named: "western-chart-" + suffix)
+
+        let placement = primary.buttons["chart.placement.moon.open"]
+        for _ in 0..<4 where !placement.isHittable {
+            primary.swipeUp()
+        }
+        XCTAssertTrue(placement.isHittable)
+        placement.tap()
+        XCTAssertTrue(element("chart.placement-detail.screen", in: primary).waitForExistence(timeout: 3))
+        capture(primary, named: "placement-detail-" + suffix)
+        primary.terminate()
+
+        let compatibility = d2App(extraArguments: arguments)
+        selectPrimaryDestination("Connections", in: compatibility)
+        compatibility.buttons["circle.compatibility.open"].tap()
+        XCTAssertTrue(
+            compatibility.buttons["compatibility.selection.continue"]
+                .waitForExistence(timeout: 3)
+        )
+        capture(compatibility, named: "compatibility-selection-" + suffix)
+        compatibility.buttons["compatibility.selection.continue"].tap()
+        XCTAssertTrue(compatibility.staticTexts["compatibility.score"].waitForExistence(timeout: 3))
+        capture(compatibility, named: "compatibility-result-" + suffix)
+        compatibility.terminate()
+    }
+
     func testCaptureOnboardingEvidence() {
         let app = freshApp()
 

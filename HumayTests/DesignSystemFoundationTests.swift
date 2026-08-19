@@ -39,39 +39,26 @@ struct DesignSystemFoundationTests {
         }
     }
 
-    @Test("D2 artwork resolves for Light and Dark, including all twelve zodiac signs")
-    func d2ArtworkExists() {
-        let allAssetNames = D2Artwork.allAdaptiveAssetNames
-        let zodiacAssetNames = WesternZodiacSign.allCases.map(\.d2ArtworkAssetName)
-        let expectedScreenAssetNames = [
-            "IllustrationCosmicCoffee",
-            "IllustrationCosmicWeather",
-            "IllustrationDailyTipCrystalBall",
-            "IllustrationRoastMode",
-            "IllustrationTodayTogether",
-            "IllustrationCompatibilityPair"
-        ]
-        let expectedZodiacAssetNames: Set = [
-            "ZodiacAries",
-            "ZodiacTaurus",
-            "ZodiacGemini",
-            "ZodiacCancer",
-            "ZodiacLeo",
-            "ZodiacVirgo",
-            "ZodiacLibra",
-            "ZodiacScorpio",
-            "ZodiacSagittarius",
-            "ZodiacCapricorn",
-            "ZodiacAquarius",
-            "ZodiacPisces"
+    @Test("Typed astrology glyphs resolve for Light and Dark")
+    func astrologyGlyphsExist() {
+        let assetNames = HumayAsset.astrologyGlyphs.map(\.catalogName)
+        let expectedAssetNames: Set = [
+            "ZodiacGlyphAries", "ZodiacGlyphTaurus", "ZodiacGlyphGemini",
+            "ZodiacGlyphCancer", "ZodiacGlyphLeo", "ZodiacGlyphVirgo",
+            "ZodiacGlyphLibra", "ZodiacGlyphScorpio", "ZodiacGlyphSagittarius",
+            "ZodiacGlyphCapricorn", "ZodiacGlyphAquarius", "ZodiacGlyphPisces",
+            "PlanetGlyphSun", "PlanetGlyphMoon", "PlanetGlyphMercury",
+            "PlanetGlyphVenus", "PlanetGlyphMars", "PlanetGlyphJupiter",
+            "PlanetGlyphSaturn", "PlanetGlyphUranus", "PlanetGlyphNeptune",
+            "PlanetGlyphPluto", "AspectGlyphConjunction", "AspectGlyphOpposition",
+            "AspectGlyphTrine", "AspectGlyphSquare", "AspectGlyphSextile"
         ]
 
-        #expect(D2Artwork.requiredScreenAssetNames == expectedScreenAssetNames)
-        #expect(Set(zodiacAssetNames) == expectedZodiacAssetNames)
-        #expect(allAssetNames == expectedScreenAssetNames + zodiacAssetNames)
-        #expect(Set(allAssetNames).count == allAssetNames.count)
+        #expect(assetNames.count == 27)
+        #expect(Set(assetNames) == expectedAssetNames)
+        #expect(Set(assetNames).count == assetNames.count)
 
-        for assetName in allAssetNames {
+        for assetName in assetNames {
             let lightImage = UIImage(
                 named: assetName,
                 in: .main,
@@ -83,8 +70,21 @@ struct DesignSystemFoundationTests {
                 compatibleWith: darkTraits
             )
 
-            #expect(lightImage != nil, "Missing Light artwork: \(assetName)")
-            #expect(darkImage != nil, "Missing Dark artwork: \(assetName)")
+            #expect(lightImage != nil, "Missing Light glyph: \(assetName)")
+            #expect(darkImage != nil, "Missing Dark glyph: \(assetName)")
+        }
+    }
+
+    @Test("Retained adaptive artwork resolves through typed access")
+    func retainedAdaptiveArtworkExists() {
+        let assetNames = HumayAsset.retainedAdaptiveArtwork.map(\.catalogName)
+
+        #expect(assetNames.count == 22)
+        #expect(Set(assetNames).count == assetNames.count)
+
+        for assetName in assetNames {
+            #expect(UIImage(named: assetName, in: .main, compatibleWith: lightTraits) != nil)
+            #expect(UIImage(named: assetName, in: .main, compatibleWith: darkTraits) != nil)
         }
     }
 

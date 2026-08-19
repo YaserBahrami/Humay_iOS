@@ -158,18 +158,6 @@ enum ChartPoint: String, Sendable, Hashable, CaseIterable {
         }
     }
 
-    var symbol: String {
-        switch self {
-        case .sun: "sun.max.fill"
-        case .moon: "moon.fill"
-        case .mercury: "waveform.path.ecg"
-        case .venus: "heart.fill"
-        case .mars: "flame.fill"
-        case .jupiter: "circle.dotted"
-        case .saturn: "circle.dashed"
-        case .ascendant: "arrow.up"
-        }
-    }
 }
 
 enum ChartHouse: Int, Sendable, Hashable, CaseIterable {

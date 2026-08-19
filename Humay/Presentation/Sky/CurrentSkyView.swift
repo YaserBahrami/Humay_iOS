@@ -256,9 +256,7 @@ private struct CurrentSkyHero: View {
 
             if !dynamicTypeSize.isAccessibilitySize {
                 Spacer(minLength: 0)
-                Image("IllustrationCurrentSky")
-                    .resizable()
-                    .scaledToFit()
+                HumayAssetImage(asset: .illustration(.currentSky))
                     .frame(
                         width: showsObservation ? 132 : 194,
                         height: showsObservation ? 104 : 156
@@ -723,9 +721,7 @@ private struct SkyCalendarEntry: View {
             )
         } label: {
             HStack(spacing: HumaySpacing.medium) {
-                Image("IllustrationCalendarCelestial")
-                    .resizable()
-                    .scaledToFit()
+                HumayAssetImage(asset: .illustration(.calendarCelestial))
                     .frame(width: 42, height: 42)
                     .accessibilityHidden(true)
 

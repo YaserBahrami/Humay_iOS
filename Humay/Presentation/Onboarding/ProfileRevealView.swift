@@ -236,7 +236,7 @@ private struct ProfileRevealHero: View {
         let artworkHeight = max(height - (verticalPadding * 2) - titleBudget - spacing, 82)
 
         VStack(spacing: spacing) {
-            HumayIllustration(name: "IllustrationProfileReveal")
+            HumayIllustration(asset: .profileReveal)
                 .frame(maxWidth: .infinity)
                 .frame(height: artworkHeight)
                 .accessibilityHidden(true)

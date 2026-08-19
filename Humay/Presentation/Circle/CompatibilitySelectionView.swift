@@ -366,7 +366,7 @@ private struct CompatibilityPairComposer: View {
             if dynamicTypeSize.isAccessibilitySize {
                 VStack(spacing: HumaySpacing.medium) {
                     slot(for: people.first, index: 0)
-                    CompatibilityConnector(state: connectorState, orientation: .vertical)
+                    CompatibilityConnector(state: connectorState)
                         .frame(width: 52, height: 58)
                     slot(for: people.dropFirst().first, index: 1)
                 }
@@ -517,101 +517,15 @@ struct CompatibilityConnector: View {
         case active
     }
 
-    enum Orientation {
-        case horizontal
-        case vertical
-    }
-
     let state: State
-    var orientation: Orientation = .horizontal
 
     var body: some View {
-        GeometryReader { proxy in
-            let size = proxy.size
-
-            ZStack {
-                CompatibilityOrbitShape(orientation: orientation)
-                    .trim(from: 0, to: state == .waiting ? 0.62 : 1)
-                    .stroke(
-                        connectorGradient,
-                        style: StrokeStyle(
-                            lineWidth: state == .empty ? 1.5 : 2.5,
-                            lineCap: .round,
-                            dash: state == .active ? [] : [6, 6]
-                        )
-                    )
-
-                endpoint(at: startPoint(in: size))
-                if state != .waiting {
-                    endpoint(at: endPoint(in: size))
-                }
-
-                Image(systemName: state == .active ? "heart.fill" : "heart")
-                    .font(.caption.weight(.semibold))
-                    .foregroundStyle(state == .active ? Color.humayCoral : Color.humayTextSecondary)
-                    .position(heartPoint(in: size))
-            }
-        }
+        Image(systemName: state == .active ? "heart.fill" : "heart")
+            .font(.title3.weight(.medium))
+            .symbolRenderingMode(.monochrome)
+            .foregroundStyle(state == .active ? Color.humayCoral : Color.humayTextSecondary)
+            .opacity(state == .empty ? 0.48 : 1)
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
         .accessibilityHidden(true)
-    }
-
-    private var connectorGradient: LinearGradient {
-        LinearGradient(
-            colors: state == .active
-                ? [Color.humayLavender, Color.humayCoral, Color.humaySolarGold]
-                : [Color.humayTextSecondary.opacity(0.55), Color.humayTextSecondary.opacity(0.30)],
-            startPoint: orientation == .horizontal ? .leading : .top,
-            endPoint: orientation == .horizontal ? .trailing : .bottom
-        )
-    }
-
-    private func endpoint(at point: CGPoint) -> some View {
-        Circle()
-            .fill(state == .active ? Color.humayCoral : Color.humayTextSecondary)
-            .frame(width: 7, height: 7)
-            .position(point)
-    }
-
-    private func startPoint(in size: CGSize) -> CGPoint {
-        orientation == .horizontal
-            ? CGPoint(x: 3.5, y: size.height * 0.70)
-            : CGPoint(x: size.width * 0.30, y: 3.5)
-    }
-
-    private func endPoint(in size: CGSize) -> CGPoint {
-        orientation == .horizontal
-            ? CGPoint(x: size.width - 3.5, y: size.height * 0.70)
-            : CGPoint(x: size.width * 0.70, y: size.height - 3.5)
-    }
-
-    private func heartPoint(in size: CGSize) -> CGPoint {
-        orientation == .horizontal
-            ? CGPoint(x: size.width * 0.50, y: size.height * 0.24)
-            : CGPoint(x: size.width * 0.70, y: size.height * 0.50)
-    }
-}
-
-private struct CompatibilityOrbitShape: Shape {
-    let orientation: CompatibilityConnector.Orientation
-
-    func path(in rect: CGRect) -> Path {
-        var path = Path()
-        switch orientation {
-        case .horizontal:
-            path.move(to: CGPoint(x: rect.minX, y: rect.height * 0.70))
-            path.addCurve(
-                to: CGPoint(x: rect.maxX, y: rect.height * 0.70),
-                control1: CGPoint(x: rect.width * 0.26, y: rect.height * 0.12),
-                control2: CGPoint(x: rect.width * 0.74, y: rect.height * 0.12)
-            )
-        case .vertical:
-            path.move(to: CGPoint(x: rect.width * 0.30, y: rect.minY))
-            path.addCurve(
-                to: CGPoint(x: rect.width * 0.70, y: rect.maxY),
-                control1: CGPoint(x: rect.width * 0.92, y: rect.height * 0.26),
-                control2: CGPoint(x: rect.width * 0.08, y: rect.height * 0.74)
-            )
-        }
-        return path
     }
 }

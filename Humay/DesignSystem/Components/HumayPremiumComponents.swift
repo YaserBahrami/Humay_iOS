@@ -373,13 +373,12 @@ struct HumayMetricBand: View {
 struct HumayStateView: View {
     let title: String
     let message: String
-    var glyph: HumayGlyphKind = .eclipse
+    var symbol: HumaySystemSymbol = .unavailable
 
     var body: some View {
         HumayHairlineSurface(style: .raised) {
             VStack(alignment: .leading, spacing: HumaySpacing.extraLarge) {
-                HumayGlyph(kind: glyph)
-                    .frame(width: 52, height: 52)
+                HumaySystemSymbolImage(symbol: symbol, size: .feature)
                     .foregroundStyle(Color.humayAccentPrestige)
 
                 Text(title)

@@ -287,43 +287,10 @@ struct CirclePersonMedallion: View {
     }
 }
 
-struct CelestialCoffeeArt: View {
-    var body: some View {
-        D2ArtworkImage(name: D2Artwork.todayCoffee)
-            .frame(width: 142, height: 126)
-    }
-}
-
-struct OrbitPlanetArt: View {
-    var compact = false
-
-    var body: some View {
-        D2ArtworkImage(name: D2Artwork.cosmicPlanet)
-            .frame(
-                width: compact ? 108 : 132,
-                height: compact ? 78 : 98
-            )
-    }
-}
-
 struct CrystalBallArt: View {
     var body: some View {
-        D2ArtworkImage(name: D2Artwork.crystalBall)
+        HumayAssetImage(asset: .illustration(.dailyTipCrystalBall))
             .frame(width: 86, height: 86)
-    }
-}
-
-struct RoastFireArt: View {
-    var body: some View {
-        D2ArtworkImage(name: D2Artwork.roastMode)
-            .frame(width: 88, height: 76)
-    }
-}
-
-struct RoastPlanetArt: View {
-    var body: some View {
-        D2ArtworkImage(name: D2Artwork.roastMode)
-            .frame(width: 90, height: 78)
     }
 }
 
@@ -332,68 +299,16 @@ struct ZodiacSignArt: View {
     var size: CGFloat = 76
 
     var body: some View {
-        D2ArtworkImage(name: sign.d2ArtworkAssetName)
+        HumayAssetImage(asset: .zodiacArtwork(sign))
             .frame(width: size, height: size)
     }
 }
 
 struct HumayIllustration: View {
-    let name: String
+    let asset: HumayIllustrationAsset
 
     var body: some View {
-        D2ArtworkImage(name: name)
-    }
-}
-
-private struct D2ArtworkImage: View {
-    let name: String
-
-    var body: some View {
-        Image(name)
-            .resizable()
-            .scaledToFit()
-            .accessibilityHidden(true)
-    }
-}
-
-enum D2Artwork {
-    static let todayCoffee = "IllustrationCosmicCoffee"
-    static let cosmicPlanet = "IllustrationCosmicWeather"
-    static let crystalBall = "IllustrationDailyTipCrystalBall"
-    static let roastMode = "IllustrationRoastMode"
-    static let todayTogether = "IllustrationTodayTogether"
-    static let compatibilityPair = "IllustrationCompatibilityPair"
-
-    static let requiredScreenAssetNames = [
-        todayCoffee,
-        cosmicPlanet,
-        crystalBall,
-        roastMode,
-        todayTogether,
-        compatibilityPair
-    ]
-
-    static var allAdaptiveAssetNames: [String] {
-        requiredScreenAssetNames + WesternZodiacSign.allCases.map(\.d2ArtworkAssetName)
-    }
-}
-
-extension WesternZodiacSign {
-    var d2ArtworkAssetName: String {
-        switch self {
-        case .aries: "ZodiacAries"
-        case .taurus: "ZodiacTaurus"
-        case .gemini: "ZodiacGemini"
-        case .cancer: "ZodiacCancer"
-        case .leo: "ZodiacLeo"
-        case .virgo: "ZodiacVirgo"
-        case .libra: "ZodiacLibra"
-        case .scorpio: "ZodiacScorpio"
-        case .sagittarius: "ZodiacSagittarius"
-        case .capricorn: "ZodiacCapricorn"
-        case .aquarius: "ZodiacAquarius"
-        case .pisces: "ZodiacPisces"
-        }
+        HumayAssetImage(asset: .illustration(asset))
     }
 }
 

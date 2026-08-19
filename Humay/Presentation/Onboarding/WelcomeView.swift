@@ -175,7 +175,7 @@ private struct WelcomeHeroCard: View {
                     alignment: .leading
                 )
 
-                HumayIllustration(name: "IllustrationCosmicCoffee")
+                HumayIllustration(asset: .cosmicCoffee)
                     .frame(
                         width: compactHeight ? 92 : (isCompactWidth ? 126 : 200),
                         height: compactHeight ? 100 : (isCompactWidth ? 150 : 200)

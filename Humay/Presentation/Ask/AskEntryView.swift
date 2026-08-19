@@ -99,7 +99,7 @@ struct AskIllustrationView: View {
     let size: CGSize
 
     var body: some View {
-        HumayIllustration(name: "IllustrationAskStars")
+        HumayIllustration(asset: .askStars)
             .frame(width: size.width, height: size.height)
             .accessibilityHidden(true)
     }

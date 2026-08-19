@@ -51,7 +51,7 @@ struct CircleView: View {
         case .loading:
             HumaySurface(level: .raised) {
                 VStack(spacing: HumaySpacing.large) {
-                    HumayIllustration(name: D2Artwork.todayTogether)
+                    HumayIllustration(asset: .todayTogether)
                         .frame(width: 132, height: 98)
                     ProgressView()
                         .controlSize(.large)
@@ -114,8 +114,6 @@ struct CircleView: View {
             }
             .frame(maxWidth: .infinity, alignment: .leading)
 
-            HumayConnectionMotif()
-                .frame(width: availableWidth >= 820 ? 176 : 116, height: availableWidth >= 820 ? 116 : 84)
         }
 
         if availableWidth >= 820 {
@@ -218,8 +216,8 @@ struct CircleView: View {
                         }
                         .frame(maxWidth: .infinity, alignment: .leading)
 
-                        HumayConnectionMotif()
-                            .frame(width: 110, height: 84)
+                        HumaySystemSymbolImage(symbol: .compatibility, size: .feature)
+                            .foregroundStyle(Color.humayCoral)
                     }
 
                     Text("Start with a simple Sun-sign connection. Deeper compatibility can use precise birth details when they are available.")
@@ -246,8 +244,8 @@ struct CircleView: View {
     private var emptyState: some View {
         HumaySurface(level: .raised) {
             VStack(spacing: HumaySpacing.large) {
-                HumayConnectionMotif()
-                    .frame(width: 176, height: 108)
+                HumaySystemSymbolImage(symbol: .compatibility, size: .feature)
+                    .foregroundStyle(Color.humayCoral)
                 Text("Your connections start here")
                     .font(HumayTypography.cardTitle)
                     .accessibilityAddTraits(.isHeader)

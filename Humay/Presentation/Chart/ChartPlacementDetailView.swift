@@ -72,35 +72,42 @@ struct ChartPlacementDetailView: View {
                 HumayEyebrow(text: "Why this shows up", color: .humayAccentCelestial)
 
                 explanationRow(
-                    glyph: .eye,
                     title: placement.point.label,
                     detail: placement.point.humanRole
-                )
+                ) {
+                    HumayChartPointGlyph(point: placement.point)
+                        .foregroundStyle(Color.humayAccentPrestige)
+                }
                 explanationRow(
-                    glyph: .feather,
                     title: placement.position.sign.displayName,
                     detail: placement.position.sign.humanStyle
-                )
+                ) {
+                    HumayAssetImage(asset: .zodiac(placement.position.sign))
+                        .foregroundStyle(Color.humayAccentCelestial)
+                }
                 if let house = placement.house {
                     explanationRow(
-                        glyph: .orbit,
                         title: house.label,
                         detail: "The life area where this placement is most visibly expressed."
-                    )
+                    ) {
+                        Text("\(house.rawValue)")
+                            .font(HumayTypography.technicalSmall)
+                            .foregroundStyle(Color.humayAccentPrestige)
+                    }
                 }
             }
         }
     }
 
-    private func explanationRow(
-        glyph: HumayGlyphKind,
+    private func explanationRow<Icon: View>(
         title: String,
-        detail: String
+        detail: String,
+        @ViewBuilder icon: () -> Icon
     ) -> some View {
         HStack(alignment: .top, spacing: HumaySpacing.large) {
-            HumayGlyph(kind: glyph)
+            icon()
                 .frame(width: 34, height: 34)
-                .foregroundStyle(Color.humayAccentPrestige)
+                .accessibilityHidden(true)
 
             VStack(alignment: .leading, spacing: HumaySpacing.extraSmall) {
                 Text(title)

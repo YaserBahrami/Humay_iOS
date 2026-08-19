@@ -40,9 +40,7 @@ struct ChartWheelView: View {
                 .accessibilityHidden(true)
 
                 ForEach(Array(WesternZodiacSign.allCases.enumerated()), id: \.element) { index, sign in
-                    Image(sign.glyphAssetName)
-                        .resizable()
-                        .scaledToFit()
+                    HumayAssetImage(asset: .zodiac(sign))
                         .foregroundStyle(Color.humayTextSecondary)
                         .frame(width: max(14, diameter * 0.045), height: max(14, diameter * 0.045))
                         .position(
@@ -142,10 +140,12 @@ struct ChartWheelView: View {
                 Text("\(house.rawValue)")
                     .font(HumayTypography.technical)
                     .foregroundStyle(Color.humayAccentPrestige)
-            case .aspect:
-                HumayGlyph(kind: .connection)
-                    .foregroundStyle(Color.humayAccentPrestige)
-                    .padding(12)
+            case .aspect(let id):
+                if let aspect = model.aspects.first(where: { $0.id == id }) {
+                    HumayAssetImage(asset: .aspect(aspect.kind))
+                        .foregroundStyle(aspectColor(aspect))
+                        .padding(13)
+                }
             }
         }
         .accessibilityHidden(true)
@@ -228,10 +228,8 @@ struct HumayChartPointGlyph: View {
 
     var body: some View {
         Group {
-            if let assetName = point.glyphAssetName {
-                Image(assetName)
-                    .resizable()
-                    .scaledToFit()
+            if let planet = point.westernPlanet {
+                HumayAssetImage(asset: .planet(planet))
             } else {
                 Text("AC")
                     .font(HumayTypography.micro)
@@ -275,35 +273,16 @@ private struct ChartWheelMarker: View {
 }
 
 private extension ChartPoint {
-    var glyphAssetName: String? {
+    var westernPlanet: WesternPlanet? {
         switch self {
-        case .sun: "PlanetGlyphSun"
-        case .moon: "PlanetGlyphMoon"
-        case .mercury: "PlanetGlyphMercury"
-        case .venus: "PlanetGlyphVenus"
-        case .mars: "PlanetGlyphMars"
-        case .jupiter: "PlanetGlyphJupiter"
-        case .saturn: "PlanetGlyphSaturn"
+        case .sun: .sun
+        case .moon: .moon
+        case .mercury: .mercury
+        case .venus: .venus
+        case .mars: .mars
+        case .jupiter: .jupiter
+        case .saturn: .saturn
         case .ascendant: nil
-        }
-    }
-}
-
-private extension WesternZodiacSign {
-    var glyphAssetName: String {
-        switch self {
-        case .aries: "ZodiacGlyphAries"
-        case .taurus: "ZodiacGlyphTaurus"
-        case .gemini: "ZodiacGlyphGemini"
-        case .cancer: "ZodiacGlyphCancer"
-        case .leo: "ZodiacGlyphLeo"
-        case .virgo: "ZodiacGlyphVirgo"
-        case .libra: "ZodiacGlyphLibra"
-        case .scorpio: "ZodiacGlyphScorpio"
-        case .sagittarius: "ZodiacGlyphSagittarius"
-        case .capricorn: "ZodiacGlyphCapricorn"
-        case .aquarius: "ZodiacGlyphAquarius"
-        case .pisces: "ZodiacGlyphPisces"
         }
     }
 }

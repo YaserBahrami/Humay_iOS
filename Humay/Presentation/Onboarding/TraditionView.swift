@@ -178,7 +178,7 @@ private struct TraditionChoiceCard: View {
     var body: some View {
         Button(action: onSelect) {
             HStack(alignment: .center, spacing: compactHeight ? HumaySpacing.small : HumaySpacing.medium) {
-                HumayIllustration(name: artworkName)
+                HumayIllustration(asset: artwork)
                     .frame(
                         width: compactHeight ? 46 : 58,
                         height: compactHeight ? 46 : 58
@@ -228,11 +228,11 @@ private struct TraditionChoiceCard: View {
         .accessibilityIdentifier("onboarding.tradition.\(tradition.rawValue)")
     }
 
-    private var artworkName: String {
+    private var artwork: HumayIllustrationAsset {
         switch tradition {
-        case .western: "IllustrationTraditionWestern"
-        case .vedic: "IllustrationTraditionVedic"
-        case .chinese: "IllustrationTraditionChinese"
+        case .western: .traditionWestern
+        case .vedic: .traditionVedic
+        case .chinese: .traditionChinese
         }
     }
 

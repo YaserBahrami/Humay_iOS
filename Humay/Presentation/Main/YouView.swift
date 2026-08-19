@@ -35,8 +35,9 @@ struct YouView: View {
                         .fill(Color.humaySurfaceElevated)
                     Circle()
                         .stroke(Color.humayAccentPrestige, lineWidth: 1)
-                    HumayHumaMark()
-                        .padding(18)
+                    Text(profileInitials)
+                        .font(HumayTypography.heroTitle)
+                        .foregroundStyle(Color.humayTextPrimary)
                 }
                 .frame(width: 96, height: 96)
                 .accessibilityHidden(true)
@@ -86,12 +87,12 @@ struct YouView: View {
             preferenceRow(
                 title: "Leading tradition",
                 value: environment.settings.leadingTradition.displayName,
-                glyph: .orbit
+                symbol: .tradition
             )
             preferenceRow(
                 title: "Reading tone",
                 value: environment.settings.tone.displayName,
-                glyph: environment.settings.tone == .roast ? .eye : .feather
+                symbol: environment.settings.tone == .roast ? .roast : .reading
             )
         }
     }
@@ -99,11 +100,10 @@ struct YouView: View {
     private func preferenceRow(
         title: String,
         value: String,
-        glyph: HumayGlyphKind
+        symbol: HumaySystemSymbol
     ) -> some View {
         HStack(spacing: HumaySpacing.large) {
-            HumayGlyph(kind: glyph)
-                .frame(width: 34, height: 34)
+            HumaySystemSymbolImage(symbol: symbol, size: .standard)
                 .foregroundStyle(Color.humayAccentPrestige)
 
             Text(title)
@@ -152,8 +152,7 @@ struct YouView: View {
     private var privacyNote: some View {
         HumayHairlineSurface(style: .celestial) {
             HStack(alignment: .top, spacing: HumaySpacing.large) {
-                HumayGlyph(kind: .eye)
-                    .frame(width: 38, height: 38)
+                HumaySystemSymbolImage(symbol: .privacy, size: .standard)
                     .foregroundStyle(Color.humayAccentCelestial)
 
                 VStack(alignment: .leading, spacing: HumaySpacing.small) {
@@ -172,6 +171,12 @@ struct YouView: View {
         let stored = environment.profile?.displayName
             .trimmingCharacters(in: .whitespacesAndNewlines) ?? ""
         return stored.isEmpty ? profileName : stored
+    }
+
+    private var profileInitials: String {
+        let words = displayName.split(whereSeparator: \.isWhitespace)
+        let initials = words.prefix(2).compactMap(\.first).map(String.init).joined().uppercased()
+        return initials.isEmpty ? "H" : initials
     }
 
     private func birthTimeText(_ birthTime: BirthTime) -> String {
