@@ -44,10 +44,29 @@ struct HumayApp: App {
             )
                 .environment(environment)
                 .environment(navigation)
+                .preferredColorScheme(developmentColorScheme)
                 .task {
                     await bootstrap(environment: environment)
                 }
         }
+    }
+
+    private var developmentColorScheme: ColorScheme? {
+#if DEBUG
+        let arguments = ProcessInfo.processInfo.arguments
+        guard let keyIndex = arguments.firstIndex(of: "-HumayInterfaceStyle"),
+              arguments.indices.contains(keyIndex + 1) else {
+            return nil
+        }
+
+        switch arguments[keyIndex + 1].lowercased() {
+        case "light": return .light
+        case "dark": return .dark
+        default: return nil
+        }
+#else
+        nil
+#endif
     }
 
     @MainActor

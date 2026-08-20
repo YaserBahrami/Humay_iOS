@@ -3,7 +3,7 @@
 **Status:** Current redesign authority
 **Effective:** 2026-08-20
 **Scope:** iPhone and iPad, Light and Dark, all post-onboarding product surfaces
-**Implementation phase:** Representative foundation retained; asset foundation corrected
+**Implementation phase:** Phase 2 Today + Connections propagation complete
 
 This document supersedes the visual treatment and post-onboarding information architecture in `SOULFUL_CELESTIAL_DESIGN_DIRECTION.md`. Existing product, calculation, access, privacy, persistence, and sample-data boundaries remain authoritative.
 
@@ -20,6 +20,9 @@ The interface uses editorial hierarchy, quiet surfaces, data-derived celestial g
 Avoid generic purple horoscope styling, neon glow, crystal-shop imagery, constant gradients, excessive glass, cartoon birds, and a card around every content block.
 
 ## Current audit
+
+The findings below record the pre-redesign baseline. The Phase 1, corrective asset,
+and Phase 2 implementation records later in this document supersede resolved items.
 
 ### What works and stays
 
@@ -206,7 +209,7 @@ Assets are deleted only after reachability analysis confirms no shipping call si
 
 ## Phase acceptance criteria
 
-- Today, Chart, Placement Detail, Compatibility, and Explore share one token/component language.
+- Today, Daily Horoscope, Chart, Placement Detail, Explore, Connections people flows, and Compatibility share one token/component language.
 - Existing data and state contracts remain intact.
 - New navigation preserves Sky, Calendar, Ask, Circle/people, Compatibility, and Profile access.
 - Light and Dark are deliberately composed.
@@ -261,8 +264,79 @@ Phase 1 completed on 2026-08-19; the corrective asset pass completed on 2026-08-
 
 ### Deliberate boundaries and next phase
 
-- Propagate the new primitives through Daily Horoscope, Current Sky/Calendar/Event Detail, Ask, remaining Connections people flows, settings, and monetization surfaces.
+- Propagate the new primitives through Current Sky/Calendar/Event Detail, Ask, settings, and monetization surfaces.
 - Keep approved onboarding behavior intact; visually migrate it only as its own reviewed phase.
-- Retain the still-reachable legacy onboarding, Ask, Current Sky, Daily Horoscope, Connections, and zodiac-art illustrations until those screens receive their own reviewed propagation pass; all unreachable shipping copies have been removed.
+- Retain the still-reachable legacy onboarding, Ask, and Current Sky/Calendar illustrations until those screens receive their own reviewed propagation pass; all unreachable shipping copies have been removed.
 - Commission final production Huma emblem/app-icon artwork against `HUMA_ASSET_REQUIREMENTS.md`; no code-drawn identity primitive is permitted.
 - Add real synastry-aspect detail only when an owning provider supplies structured aspects. Current compatibility dimensions are presentation mappings of the existing four domain metrics, not new calculated claims.
+
+## Phase 2 — Today + Connections propagation
+
+Completed on 2026-08-20. This phase preserved the five-destination root information
+architecture and all Domain, Data, persistence, provider, backend, and API contracts.
+No dependency or astrology calculation was added.
+
+### Surfaces migrated
+
+- Daily Horoscope is now an editorial reading: typed technical zodiac identity,
+  period/status context, headline and opening interpretation, quiet life-area rows,
+  composition-led Daily Tip, progressive basis disclosure, and system sharing.
+- Loading, Free, precise locked, Debug-only precise preview, precise loaded, cached,
+  offline-with-cache, offline-without-cache, and failed Daily states remain distinct.
+  Locked precision explicitly states that provider, Rewarded, and Premium generation
+  are not connected; it does not simulate a purchase or generation.
+- Connections now establishes people first and compatibility second. Saved people use
+  restrained initials, typed zodiac glyphs, concise birth context, and adaptive rows.
+  Loaded, empty, loading, cached/offline, offline-without-cache, and failure states are
+  preserved without fake synastry or Today Together content.
+- Add Person now uses a bounded native form with clear known/unknown birth semantics,
+  keyboard focus, validation focus, and iPad sheet sizing. Birth time remains optional;
+  location remains unavailable in this existing flow.
+- Person Detail now presents only stored identity, Sun sign, birth facts, missing data,
+  and current limitations. It adds no natal, personality, relationship, or provider-backed
+  claim.
+- Compatibility Selection and Compatibility were reconciled through the shared person
+  identity and typed zodiac treatments. Their approved pair-selection, multidimensional
+  result, Free/Precise honesty, and provider boundaries were not redesigned.
+
+### Asset-policy enforcement and removal
+
+- `Scripts/check-asset-policy.sh` mechanically rejects production custom artwork paths
+  and uncontrolled asset-catalog strings. `Scripts/verify-foundation.sh` runs it.
+- The only drawing allowlist entry is `Humay/Presentation/Chart/ChartWheel.swift`, whose
+  paths represent chart houses and aspects derived from `ChartWheelModel` data.
+- The only non-system `Image(...)` allowlist entry is the centralized typed renderer in
+  `Humay/DesignSystem/Assets/HumayAssets.swift`.
+- Deleted the twelve cute zodiac illustration imagesets,
+  `IllustrationDailyTipCrystalBall`, and `IllustrationTodayTogether` after reachability
+  analysis. Daily and Connections no longer reference legacy illustration types.
+- Retained only still-reachable illustration assets for untouched onboarding, Ask, and
+  Current Sky/Calendar surfaces. Production Huma primary/compact marks remain pending.
+
+### Cross-device QA
+
+- Inspected normal/free, precise locked, populated, empty, Add Person, Person Detail,
+  and compatibility-entry compositions on iPhone 17 Pro and 13-inch iPad Pro simulators.
+- Verified Light and Dark on both devices. The iPad review covers portrait and its
+  1032-point regular-width composition; reading measure, adaptive people grid, bounded
+  sheets, surface hierarchy, muted text, gold, and zodiac contrast remain controlled.
+- iPadOS 26.5 XCTest kept the app window in portrait geometry after a requested device
+  rotation, so no false landscape screenshot claim is made. The captured regular-width
+  layout is the wide-layout acceptance artifact for this phase.
+- Phase 3 was not started. Current Sky, Calendar, Event Detail, Ask the Stars, Settings,
+  monetization/paywalls, onboarding, unfinished Vedic/BaZi/Compare Systems, sharing,
+  widgets, app icon, and final Huma integration remain incomplete or separately scoped.
+
+### Verification
+
+- Debug builds pass on iPhone 17 Pro and 13-inch iPad Pro simulators; the generic
+  Simulator Release build passes.
+- Swift Testing passes **113 tests in 13 suites**.
+- The focused Phase 2 UI suite passes **7 tests**; the complete iPhone XCUITest target
+  passes **52 tests with 0 failures**. The Phase 2 evidence test also passes on the
+  13-inch iPad Pro destination.
+- `Scripts/verify-foundation.sh`, direct asset-policy validation, `git diff --check`,
+  asset-catalog compilation, all catalog JSON parsing, and all SVG XML parsing pass.
+- Survivor scans find no drawing API, raw catalog string, Unicode zodiac-icon rendering,
+  or legacy illustration type in affected Today/Connections code. Repository drawing
+  matches remain only the three approved `ChartWheel.swift` data-visualization lines.

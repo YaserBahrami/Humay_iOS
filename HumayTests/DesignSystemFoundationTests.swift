@@ -78,13 +78,33 @@ struct DesignSystemFoundationTests {
     @Test("Retained adaptive artwork resolves through typed access")
     func retainedAdaptiveArtworkExists() {
         let assetNames = HumayAsset.retainedAdaptiveArtwork.map(\.catalogName)
+        let expectedAssetNames: Set = [
+            "IllustrationAskStars",
+            "IllustrationCalendarCelestial",
+            "IllustrationCosmicCoffee",
+            "IllustrationCurrentSky",
+            "IllustrationProfileReveal",
+            "IllustrationTraditionChinese",
+            "IllustrationTraditionVedic",
+            "IllustrationTraditionWestern"
+        ]
 
-        #expect(assetNames.count == 22)
+        #expect(assetNames.count == 8)
+        #expect(Set(assetNames) == expectedAssetNames)
         #expect(Set(assetNames).count == assetNames.count)
 
         for assetName in assetNames {
             #expect(UIImage(named: assetName, in: .main, compatibleWith: lightTraits) != nil)
             #expect(UIImage(named: assetName, in: .main, compatibleWith: darkTraits) != nil)
+        }
+
+        let removedPhase2Artwork = [
+            "IllustrationDailyTipCrystalBall",
+            "IllustrationTodayTogether",
+            "ZodiacLeo"
+        ]
+        for assetName in removedPhase2Artwork {
+            #expect(UIImage(named: assetName, in: .main, compatibleWith: lightTraits) == nil)
         }
     }
 

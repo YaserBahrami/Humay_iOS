@@ -1,10 +1,10 @@
 # Development Status
 
-Last updated: **2026-08-19**
+Last updated: **2026-08-20**
 
 ## Active priorities
 
-1. Propagate [`../design/PREMIUM_CELESTIAL_REDESIGN.md`](../design/PREMIUM_CELESTIAL_REDESIGN.md) from the completed representative phase into Daily Horoscope, Current Sky/Calendar/Event Detail, Ask, remaining Connections flows, settings, and monetization surfaces.
+1. Continue [`../design/PREMIUM_CELESTIAL_REDESIGN.md`](../design/PREMIUM_CELESTIAL_REDESIGN.md) propagation after completed Daily Horoscope + Connections work; remaining families are Current Sky/Calendar/Event Detail, Ask, settings, monetization, and separately reviewed onboarding.
 2. Preserve the new Today / Chart / Explore / Connections / You information architecture while retaining all existing Sky, Calendar, Ask, people, Compatibility, and profile functionality.
 3. Keep D2–D4 development content behind explicit Debug composition; Release must expose only safe unavailable/empty states until real owning providers exist.
 4. Defer backend/API/provider and monetization work; ARCH-007 entitlement, ARCH-008 privacy/security, and methodology validation remain prerequisites for production precision rollout.
@@ -12,9 +12,46 @@ Last updated: **2026-08-19**
 
 ## Premium Celestial representative phase
 
-**IMPLEMENTED AND VERIFIED — 2026-08-19.** Today, Chart, Placement Detail, Compatibility, and Explore now establish the post-onboarding design system. The primary shell is Today / Chart / Explore / Connections / You. Shared semantic tokens, editorial primitives, Huma/orbit geometry, progressive astrology disclosure, interactive chart focus, and multidimensional compatibility are implemented without changing astrology domain models or adding dependencies/backend work.
+**IMPLEMENTED AND VERIFIED — 2026-08-19.** Today, Chart, Placement Detail, Compatibility, and Explore establish the post-onboarding design system. The primary shell is Today / Chart / Explore / Connections / You. Shared semantic tokens, editorial primitives, typed technical astrology glyphs, progressive astrology disclosure, interactive chart focus, and multidimensional compatibility are implemented without changing astrology domain models or adding dependencies/backend work.
 
-Representative iPhone and iPad Debug builds and an iPhone Release simulator build pass. Swift Testing passes 112 tests across 13 suites. Targeted shell/Explore, Current Sky, Ask, Compatibility, and Western Chart/Placement XCUITests pass. Light/Dark iPhone and iPad simulator compositions were visually inspected. The foundation script passes typography, layering, nomenclature, and diagnostics checks; its historical committed-diff whitespace gate remains red because of existing legacy SVG/reference whitespace outside this redesign diff.
+Current regression validation after Phase 2 passes representative iPhone/iPad Debug builds, a generic Simulator Release build, 113 Swift tests across 13 suites, and the complete 52-test iPhone XCUITest target. Light/Dark iPhone and iPad regular-width compositions were visually inspected. The foundation script, asset policy, catalog compilation/JSON/XML checks, and working-tree whitespace validation pass.
+
+## Phase 2 — Today + Connections propagation
+
+**IMPLEMENTED AND VERIFIED — 2026-08-20.** Daily Horoscope, Connections root, Add Person, and Person Detail now use
+Premium Celestial. Compatibility Selection/Result were reconciled only where shared
+people and zodiac components changed. Root IA and all Domain/Data/provider/persistence
+contracts remain unchanged.
+
+Delivered:
+
+- editorial Daily reading hierarchy with typed zodiac glyphs, native period selection,
+  quiet life-area rows, composition-led tip, progressive basis disclosure, sharing, and
+  honest Free/Precise/cache/offline/failure state separation;
+- people-first Connections, adaptive identity rows, restrained initials, empty/loading/
+  cached/offline/failure handling, and a secondary existing compatibility entry;
+- bounded native Add Person form with correct optional time/location semantics,
+  keyboard/validation focus, and iPad sizing;
+- factual Person Detail with explicit unknowns and no invented natal or relationship
+  interpretation;
+- mechanical asset-policy guard integrated into `Scripts/verify-foundation.sh`;
+- deletion of the Daily crystal ball, all twelve cute zodiac imagesets, and the legacy
+  Today Together decoration after reachability audit;
+- Light/Dark simulator inspection on iPhone 17 Pro and 13-inch iPad Pro regular width,
+  including normal/free, precise locked, populated, empty, Add Person, Person Detail,
+  and compatibility-entry evidence.
+
+The first chosen iPad simulator had an environment-owned test-runner chmod fault; a
+clean 13-inch iPad Pro destination passed the same evidence test. iPadOS 26.5 retained
+portrait window geometry after a requested rotation, so regular width—not a false
+landscape artifact—is the wide-layout evidence. Phase 3 has not started.
+
+Validation: Debug iPhone, Debug iPad, and generic Simulator Release builds pass;
+Swift Testing passes 113 tests in 13 suites; the focused Phase 2 UI suite passes 7 tests;
+the complete iPhone XCUITest target passes 52 tests with no failures; the Phase 2 iPad
+evidence test passes; foundation, asset-policy, SVG XML, catalog JSON/compilation, and
+`git diff --check` checks pass. Six SVG-content scan matches are the documented legacy
+gradient/filter definitions in retained, out-of-scope `IllustrationCurrentSky` assets.
 
 ## Repository authority
 
@@ -143,7 +180,7 @@ Development sample data is never production truth, methodology evidence or a shi
 
 ### D2 implementation
 
-**D2 — Today + Circle** is implemented as a UI-first presentation slice using Debug-only development sample data.
+**D2 — Today + Connections** is implemented as a UI-first presentation slice using Debug-only development sample data. Phase 2 propagated Premium Celestial through its remaining Daily and people surfaces.
 
 It establishes:
 
@@ -153,7 +190,7 @@ It establishes:
 - coarse compatibility vs precise-upgrade states;
 - cache/reopen/loading/offline/error states needed by the new architecture;
 - iPhone/iPad Light/Dark and adaptive behavior;
-- Today, Daily Horoscope, Circle, minimal Add Person and Compatibility presentation;
+- Today, editorial Daily Horoscope, Connections people root, full current-contract Add Person, Person Detail, and Compatibility presentation;
 - explicit loading, loaded, Free, precise-locked, precise-loaded, cached, offline, failed and empty states where applicable;
 - a Release composition that exposes no development astrology sample payload.
 

@@ -149,6 +149,7 @@ enum DevelopmentD2Sample {
             case "precise": .preciseLoaded(preciseDailyReading)
             case "cached": .cached(preciseDailyReading, savedAt: sampleDate)
             case "offline": .offline(cached: preciseDailyReading)
+            case "offline-empty": .offline(cached: nil)
             case "failed": .failed(period: .today, message: "The sample reading could not be opened.")
             default: .free(todayReading)
             }
@@ -209,6 +210,7 @@ enum DevelopmentD2Sample {
         case "loading": .loading
         case "empty": .empty
         case "offline": .offline(cached: [yaser, salma])
+        case "offline-empty": .offline(cached: [])
         case "failed": .failed(message: "Your development Connections sample could not be opened.")
         default: .loaded([yaser, salma])
         }

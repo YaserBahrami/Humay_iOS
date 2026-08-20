@@ -16,6 +16,7 @@ run_step() {
 }
 
 run_step "Typography" bash ./Scripts/verify-typography.sh
+run_step "Asset policy" bash ./Scripts/check-asset-policy.sh
 run_step "Layering" bash ./Scripts/check-layering.sh
 run_step "Nomenclature" bash ./Scripts/check-nomenclature.sh
 run_step "Diagnostics" bash ./Scripts/check-diagnostics.sh

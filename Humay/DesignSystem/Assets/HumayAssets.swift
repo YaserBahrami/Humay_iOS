@@ -6,7 +6,6 @@ import SwiftUI
 /// strings. This keeps replacement, rendering intent, and accessibility behavior in one place.
 enum HumayAsset: Sendable, Hashable {
     case zodiac(WesternZodiacSign)
-    case zodiacArtwork(WesternZodiacSign)
     case planet(WesternPlanet)
     case aspect(WesternAspectKind)
     case illustration(HumayIllustrationAsset)
@@ -15,8 +14,6 @@ enum HumayAsset: Sendable, Hashable {
         switch self {
         case .zodiac(let sign):
             "ZodiacGlyph\(sign.assetSuffix)"
-        case .zodiacArtwork(let sign):
-            "Zodiac\(sign.assetSuffix)"
         case .planet(let planet):
             "PlanetGlyph\(planet.assetSuffix)"
         case .aspect(let aspect):
@@ -30,7 +27,7 @@ enum HumayAsset: Sendable, Hashable {
         switch self {
         case .zodiac, .planet, .aspect:
             .template
-        case .zodiacArtwork, .illustration:
+        case .illustration:
             .original
         }
     }
@@ -42,8 +39,7 @@ enum HumayAsset: Sendable, Hashable {
     }
 
     static var retainedAdaptiveArtwork: [Self] {
-        WesternZodiacSign.allCases.map(Self.zodiacArtwork)
-            + HumayIllustrationAsset.allCases.map { .illustration($0) }
+        HumayIllustrationAsset.allCases.map { .illustration($0) }
     }
 }
 
@@ -52,9 +48,7 @@ enum HumayIllustrationAsset: String, CaseIterable, Sendable, Hashable {
     case calendarCelestial = "IllustrationCalendarCelestial"
     case cosmicCoffee = "IllustrationCosmicCoffee"
     case currentSky = "IllustrationCurrentSky"
-    case dailyTipCrystalBall = "IllustrationDailyTipCrystalBall"
     case profileReveal = "IllustrationProfileReveal"
-    case todayTogether = "IllustrationTodayTogether"
     case traditionChinese = "IllustrationTraditionChinese"
     case traditionVedic = "IllustrationTraditionVedic"
     case traditionWestern = "IllustrationTraditionWestern"

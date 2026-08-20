@@ -14,12 +14,35 @@ bash Scripts/verify-foundation.sh
 
 This orchestrates:
 
+- `Scripts/check-asset-policy.sh`;
 - `Scripts/check-layering.sh`;
 - `Scripts/check-nomenclature.sh`;
 - `Scripts/check-diagnostics.sh`;
 - whitespace validation for both the latest committed diff and the current working tree.
 
 The script does not choose or boot a simulator and does not mutate application data.
+
+### Asset-policy guard
+
+Run the asset check directly when changing Presentation or DesignSystem code:
+
+```bash
+bash Scripts/check-asset-policy.sh
+```
+
+It rejects production Swift use of custom `Shape` conformances, `Canvas`, `Path`,
+Core Graphics/Bézier path construction, and non-system `Image(...)` access outside
+the typed asset renderer.
+
+Exact-file exceptions are deliberately small:
+
+- `Humay/Presentation/Chart/ChartWheel.swift` may draw because every path represents
+  chart houses or aspects derived from `ChartWheelModel` application data.
+- `Humay/DesignSystem/Assets/HumayAssets.swift` may call non-system `Image(...)`
+  because it is the centralized typed catalog rendering boundary.
+
+Add no directory-level exclusion. Any future visualization or framework-level image
+exception requires an exact file entry plus its data or rendering justification here.
 
 ## 2. Resolve representative simulator destinations
 

@@ -81,16 +81,14 @@ final class LaunchUITests: XCTestCase {
         )
         app.buttons["today.daily.open"].tap()
         XCTAssertTrue(
-            app.otherElements["daily.reading.card"].waitForExistence(timeout: 3)
-                || app.staticTexts["daily.reading.card"].waitForExistence(timeout: 1)
+            element("daily.reading.card", in: app).waitForExistence(timeout: 3)
         )
 
         app.navigationBars["Daily Horoscope"].buttons.element(boundBy: 0).tap()
         selectPrimaryDestination("Connections", in: app)
-        XCTAssertTrue(
-            app.buttons["circle.compatibility.open"].waitForExistence(timeout: 3)
-        )
-        app.buttons["circle.compatibility.open"].tap()
+        let compatibilityEntry = app.buttons["circle.compatibility.open"]
+        XCTAssertTrue(scrollToHittable(compatibilityEntry, in: app))
+        compatibilityEntry.tap()
         XCTAssertTrue(
             app.buttons["compatibility.selection.continue"].waitForExistence(timeout: 3)
         )
@@ -123,10 +121,9 @@ final class LaunchUITests: XCTestCase {
         let app = d2App()
 
         selectPrimaryDestination("Connections", in: app)
-        XCTAssertTrue(
-            app.buttons["circle.add-person"].waitForExistence(timeout: 3)
-        )
-        app.buttons["circle.add-person"].tap()
+        let addPerson = app.buttons["circle.add-person"]
+        XCTAssertTrue(scrollToHittable(addPerson, in: app))
+        addPerson.tap()
         XCTAssertTrue(
             app.buttons["circle.add-person.save"].waitForExistence(timeout: 3)
         )
@@ -135,6 +132,112 @@ final class LaunchUITests: XCTestCase {
             app.staticTexts["circle.add-person.error"].waitForExistence(timeout: 3)
                 || app.otherElements["circle.add-person.error"].waitForExistence(timeout: 1)
         )
+    }
+
+    func testPhase2DailyPeriodSwitchingAndFreeReading() {
+        let app = d2App()
+        openDaily(in: app)
+
+        XCTAssertTrue(element("daily.reading.card", in: app).waitForExistence(timeout: 3))
+        XCTAssertTrue(app.staticTexts["You’re the main character today"].exists)
+
+        let periodPicker = app.segmentedControls["daily.period.picker"]
+        XCTAssertTrue(periodPicker.waitForExistence(timeout: 3))
+        periodPicker.buttons["Tomorrow"].tap()
+
+        XCTAssertTrue(
+            app.staticTexts["Leave room for a pleasant surprise"].waitForExistence(timeout: 3)
+        )
+    }
+
+    func testPhase2DailyLoadingCachedOfflineAndFailureStates() {
+        let cases: [(String, String)] = [
+            ("loading", "daily.state.loading"),
+            ("cached", "Saved precise reading"),
+            ("offline", "Showing the saved reading available on this device."),
+            ("offline-empty", "daily.state.offline.no-cache"),
+            ("failed", "daily.state.failed")
+        ]
+
+        for (state, expected) in cases {
+            let app = d2App(extraArguments: ["-HumayD2DailyState", state])
+            openDaily(in: app)
+
+            XCTAssertTrue(
+                element(expected, in: app).waitForExistence(timeout: 3)
+                    || app.staticTexts[expected].waitForExistence(timeout: 1),
+                "Missing Daily Horoscope state \(state)"
+            )
+            app.terminate()
+        }
+    }
+
+    func testPhase2DailyPreciseLockedAndDebugPreview() {
+        let app = d2App(extraArguments: ["-HumayD2DailyState", "locked"])
+        openDaily(in: app)
+
+        let availability = app.staticTexts["daily.precise.availability"]
+        XCTAssertTrue(scrollToExistence(availability, in: app))
+        XCTAssertTrue(app.buttons["daily.precise.unlock"].exists)
+
+        let preview = app.buttons["daily.precise.preview"]
+        XCTAssertTrue(scrollToHittable(preview, in: app))
+        preview.tap()
+
+        XCTAssertTrue(
+            app.staticTexts["Lead warmly, then listen closely"].waitForExistence(timeout: 3)
+        )
+    }
+
+    func testPhase2ConnectionsLoadedEmptyOfflineAndFailureStates() {
+        let cases: [(String?, String)] = [
+            (nil, "circle.person.row.0"),
+            ("loading", "connections.state.loading"),
+            ("empty", "No people yet"),
+            ("offline", "circle.person.row.0"),
+            ("offline-empty", "No people yet"),
+            ("failed", "connections.state.failed")
+        ]
+
+        for (state, expected) in cases {
+            var arguments: [String] = []
+            if let state {
+                arguments = ["-HumayD2CircleState", state]
+            }
+            let app = d2App(extraArguments: arguments)
+            selectPrimaryDestination("Connections", in: app)
+
+            XCTAssertTrue(
+                element(expected, in: app).waitForExistence(timeout: 3)
+                    || app.staticTexts[expected].waitForExistence(timeout: 1),
+                "Missing Connections state \(state ?? "loaded")"
+            )
+            app.terminate()
+        }
+    }
+
+    func testPhase2AddPersonAndPersonDetailFlow() {
+        let app = d2App()
+        selectPrimaryDestination("Connections", in: app)
+
+        let addPerson = app.buttons["circle.add-person"]
+        XCTAssertTrue(scrollToHittable(addPerson, in: app))
+        addPerson.tap()
+
+        let name = app.textFields["circle.add-person.name"]
+        XCTAssertTrue(name.waitForExistence(timeout: 3))
+        name.tap()
+        name.typeText("Mina")
+        app.buttons["circle.add-person.save"].tap()
+
+        let addedPerson = app.buttons["circle.person.row.2"]
+        XCTAssertTrue(scrollToHittable(addedPerson, in: app))
+        addedPerson.tap()
+
+        XCTAssertTrue(element("circle.person-detail.screen", in: app).waitForExistence(timeout: 3))
+        XCTAssertTrue(app.staticTexts["Birth information"].exists)
+        XCTAssertTrue(app.staticTexts["Sun sign unavailable"].exists)
+        XCTAssertTrue(app.buttons["Done"].exists)
     }
 
     func testD3CurrentSkyLoadedRendersApprovedHierarchy() {
@@ -272,7 +375,7 @@ final class LaunchUITests: XCTestCase {
     private func captureD3EventDetailEvidence(interfaceStyle: String) {
         XCUIDevice.shared.orientation = .portrait
         let appearance = interfaceStyle.lowercased()
-        let appearanceArguments = ["-AppleInterfaceStyle", interfaceStyle]
+        let appearanceArguments = ["-HumayInterfaceStyle", interfaceStyle]
 
         let current = d3App(extraArguments: appearanceArguments)
         let lunar = element("sky.current.event.development.sky.lunar", in: current)
@@ -428,7 +531,7 @@ final class LaunchUITests: XCTestCase {
     private func captureD3CalendarEvidence(interfaceStyle: String) {
         XCUIDevice.shared.orientation = .portrait
         let appearance = interfaceStyle.lowercased()
-        let appearanceArguments = ["-AppleInterfaceStyle", interfaceStyle]
+        let appearanceArguments = ["-HumayInterfaceStyle", interfaceStyle]
 
         let loaded = d3App(extraArguments: appearanceArguments)
         loaded.buttons["sky.current.calendar-entry"].tap()
@@ -547,12 +650,11 @@ final class LaunchUITests: XCTestCase {
 
         app.navigationBars["Daily Horoscope"].buttons.element(boundBy: 0).tap()
         selectPrimaryDestination("Connections", in: app)
-        XCTAssertTrue(
-            app.buttons["circle.compatibility.open"].waitForExistence(timeout: 3)
-        )
         capture(app, named: "d2-circle")
 
-        app.buttons["circle.compatibility.open"].tap()
+        let compatibilityEntry = app.buttons["circle.compatibility.open"]
+        XCTAssertTrue(scrollToHittable(compatibilityEntry, in: app))
+        compatibilityEntry.tap()
         XCTAssertTrue(
             app.buttons["compatibility.selection.continue"].waitForExistence(timeout: 3)
         )
@@ -570,10 +672,9 @@ final class LaunchUITests: XCTestCase {
         let app = d2App()
 
         selectPrimaryDestination("Connections", in: app)
-        XCTAssertTrue(
-            app.buttons["circle.compatibility.open"].waitForExistence(timeout: 3)
-        )
-        app.buttons["circle.compatibility.open"].tap()
+        let compatibilityEntry = app.buttons["circle.compatibility.open"]
+        XCTAssertTrue(scrollToHittable(compatibilityEntry, in: app))
+        compatibilityEntry.tap()
         XCTAssertTrue(
             app.buttons["compatibility.selection.continue"].waitForExistence(timeout: 3)
         )
@@ -601,7 +702,9 @@ final class LaunchUITests: XCTestCase {
         capture(app, named: "d2-today-landscape")
 
         selectPrimaryDestination("Connections", in: app)
-        app.buttons["circle.compatibility.open"].tap()
+        let compatibilityEntry = app.buttons["circle.compatibility.open"]
+        XCTAssertTrue(scrollToHittable(compatibilityEntry, in: app))
+        compatibilityEntry.tap()
         XCTAssertTrue(
             app.buttons["compatibility.selection.continue"].waitForExistence(timeout: 3)
         )
@@ -612,6 +715,83 @@ final class LaunchUITests: XCTestCase {
         capture(app, named: "d2-compatibility-landscape")
 
         XCUIDevice.shared.orientation = .portrait
+    }
+
+    func testCapturePhase2PropagationEvidence() {
+        XCUIDevice.shared.orientation = .portrait
+
+        for interfaceStyle in ["Light", "Dark"] {
+            let appearance = interfaceStyle.lowercased()
+            let appearanceArguments = ["-HumayInterfaceStyle", interfaceStyle]
+            let prefix = "phase2-\(evidenceDevice)-portrait-\(appearance)"
+
+            let daily = d2App(extraArguments: appearanceArguments)
+            openDaily(in: daily)
+            capture(daily, named: "\(prefix)-daily-free")
+            daily.terminate()
+
+            let locked = d2App(extraArguments: appearanceArguments + [
+                "-HumayD2DailyState", "locked"
+            ])
+            openDaily(in: locked)
+            let precisePreview = locked.buttons["daily.precise.preview"]
+            XCTAssertTrue(scrollToHittable(precisePreview, in: locked))
+            capture(locked, named: "\(prefix)-daily-precise-locked")
+            locked.terminate()
+
+            let connections = d2App(extraArguments: appearanceArguments)
+            selectPrimaryDestination("Connections", in: connections)
+            capture(connections, named: "\(prefix)-connections-populated")
+
+            let addPerson = connections.buttons["circle.add-person"]
+            XCTAssertTrue(scrollToHittable(addPerson, in: connections))
+            addPerson.tap()
+            XCTAssertTrue(
+                connections.textFields["circle.add-person.name"].waitForExistence(timeout: 3)
+            )
+            capture(connections, named: "\(prefix)-add-person")
+            connections.buttons["Cancel"].tap()
+
+            let person = connections.buttons["circle.person.row.0"]
+            XCTAssertTrue(scrollToHittable(person, in: connections))
+            person.tap()
+            XCTAssertTrue(
+                element("circle.person-detail.screen", in: connections)
+                    .waitForExistence(timeout: 3)
+            )
+            capture(connections, named: "\(prefix)-person-detail")
+            connections.buttons["Done"].tap()
+
+            let compatibilityEntry = connections.buttons["circle.compatibility.open"]
+            XCTAssertTrue(scrollToHittable(compatibilityEntry, in: connections))
+            capture(connections, named: "\(prefix)-compatibility-entry")
+            connections.terminate()
+
+            let empty = d2App(extraArguments: appearanceArguments + [
+                "-HumayD2CircleState", "empty"
+            ])
+            selectPrimaryDestination("Connections", in: empty)
+            XCTAssertTrue(empty.staticTexts["No people yet"].waitForExistence(timeout: 3))
+            capture(empty, named: "\(prefix)-connections-empty")
+            empty.terminate()
+        }
+
+        if evidenceDevice == "ipad" {
+            XCUIDevice.shared.orientation = .landscapeRight
+            let prefix = "phase2-ipad-landscape-light"
+
+            let daily = d2App(extraArguments: ["-HumayInterfaceStyle", "Light"])
+            openDaily(in: daily)
+            capture(daily, named: "\(prefix)-daily-free")
+            daily.terminate()
+
+            let connections = d2App(extraArguments: ["-HumayInterfaceStyle", "Light"])
+            selectPrimaryDestination("Connections", in: connections)
+            capture(connections, named: "\(prefix)-connections-populated")
+            connections.terminate()
+
+            XCUIDevice.shared.orientation = .portrait
+        }
     }
 
     func testBirthDateBackReturnsToWelcome() {
@@ -723,7 +903,7 @@ final class LaunchUITests: XCTestCase {
     func testCaptureD4HardeningEvidence() {
         for interfaceStyle in ["Light", "Dark"] {
             let appearance = interfaceStyle.lowercased()
-            let appearanceArguments = ["-AppleInterfaceStyle", interfaceStyle]
+            let appearanceArguments = ["-HumayInterfaceStyle", interfaceStyle]
 
             let free = d4App(extraArguments: appearanceArguments)
             XCTAssertTrue(element("chart.state.free", in: free).waitForExistence(timeout: 3))
@@ -818,7 +998,7 @@ final class LaunchUITests: XCTestCase {
         let suffix = ["asset", evidenceDevice, orientationLabel, appearance]
             .joined(separator: "-")
         let arguments = [
-            "-AppleInterfaceStyle", interfaceStyle,
+            "-HumayInterfaceStyle", interfaceStyle,
             "-HumayD4ChartState", "loaded",
             "-HumayD2CompatibilityState", "precise"
         ]
@@ -848,7 +1028,9 @@ final class LaunchUITests: XCTestCase {
 
         let compatibility = d2App(extraArguments: arguments)
         selectPrimaryDestination("Connections", in: compatibility)
-        compatibility.buttons["circle.compatibility.open"].tap()
+        let compatibilityEntry = compatibility.buttons["circle.compatibility.open"]
+        XCTAssertTrue(scrollToHittable(compatibilityEntry, in: compatibility))
+        compatibilityEntry.tap()
         XCTAssertTrue(
             compatibility.buttons["compatibility.selection.continue"]
                 .waitForExistence(timeout: 3)
@@ -984,6 +1166,41 @@ final class LaunchUITests: XCTestCase {
 
     private func element(_ identifier: String, in app: XCUIApplication) -> XCUIElement {
         app.descendants(matching: .any)[identifier]
+    }
+
+    private func openDaily(in app: XCUIApplication) {
+        let daily = app.buttons["today.daily.open"]
+        XCTAssertTrue(daily.waitForExistence(timeout: 3))
+        daily.tap()
+        XCTAssertTrue(app.navigationBars["Daily Horoscope"].waitForExistence(timeout: 3))
+    }
+
+    private func scrollToExistence(
+        _ target: XCUIElement,
+        in app: XCUIApplication,
+        maximumSwipes: Int = 8
+    ) -> Bool {
+        if target.waitForExistence(timeout: 1) { return true }
+
+        for _ in 0..<maximumSwipes {
+            app.swipeUp()
+            if target.waitForExistence(timeout: 0.5) { return true }
+        }
+        return target.exists
+    }
+
+    private func scrollToHittable(
+        _ target: XCUIElement,
+        in app: XCUIApplication,
+        maximumSwipes: Int = 8
+    ) -> Bool {
+        if target.waitForExistence(timeout: 1), target.isHittable { return true }
+
+        for _ in 0..<maximumSwipes {
+            app.swipeUp()
+            if target.exists, target.isHittable { return true }
+        }
+        return target.exists && target.isHittable
     }
 
     private func selectPrimaryDestination(_ name: String, in app: XCUIApplication) {

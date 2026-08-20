@@ -440,7 +440,7 @@ private struct TodayLoadingView: View {
     }
 }
 
-private extension DailyReadingCategory {
+extension DailyReadingCategory {
     var premiumSymbol: HumaySystemSymbol {
         switch self {
         case .love: .love

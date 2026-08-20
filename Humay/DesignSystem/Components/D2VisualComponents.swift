@@ -254,24 +254,18 @@ struct CirclePersonMedallion: View {
         portraitFallback
             .frame(width: size, height: size)
             .clipShape(Circle())
-            .overlay(Circle().stroke(accent.color.opacity(0.34), lineWidth: 1))
+            .overlay(Circle().stroke(accent.color.opacity(0.58), lineWidth: 1))
             .accessibilityHidden(true)
     }
 
     private var portraitFallback: some View {
         ZStack {
             Circle()
-                .fill(
-                    LinearGradient(
-                        colors: [accent.color.opacity(0.72), Color.humayRaisedSurface],
-                        startPoint: .topLeading,
-                        endPoint: .bottomTrailing
-                    )
-                )
+                .fill(Color.humaySurfaceElevated)
 
             Text(personInitials)
-                .font(.system(size: size * 0.30, weight: .semibold, design: .rounded))
-                .foregroundStyle(Color.humayTextPrimary)
+                .font(size >= 72 ? HumayTypography.sectionTitle : HumayTypography.supportingEmphasized)
+                .foregroundStyle(accent.color)
         }
     }
 
@@ -284,23 +278,6 @@ struct CirclePersonMedallion: View {
             .joined()
             .uppercased()
             .nonempty ?? "H"
-    }
-}
-
-struct CrystalBallArt: View {
-    var body: some View {
-        HumayAssetImage(asset: .illustration(.dailyTipCrystalBall))
-            .frame(width: 86, height: 86)
-    }
-}
-
-struct ZodiacSignArt: View {
-    let sign: WesternZodiacSign
-    var size: CGFloat = 76
-
-    var body: some View {
-        HumayAssetImage(asset: .zodiacArtwork(sign))
-            .frame(width: size, height: size)
     }
 }
 

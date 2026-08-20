@@ -1,8 +1,8 @@
 # Humay Asset Inventory
 
-**Status:** Corrective redesign audit and migration ledger
+**Status:** Corrective redesign and Phase 2 migration ledger
 **Audit date:** 2026-08-20
-**Scope:** Shipping asset catalog, custom SwiftUI artwork, Phase 1 Premium Celestial surfaces, and root navigation
+**Scope:** Shipping asset catalog, custom SwiftUI artwork, Premium Celestial surfaces through Today + Connections propagation, and root navigation
 
 This inventory is the source of truth for asset reachability, semantics, licensing, and replacement status. A visual is not approved merely because it builds or exists in an asset catalog.
 
@@ -128,7 +128,11 @@ The legacy `Nav*` vector family is unreachable and superseded by SF Symbols: **R
 
 ## Zodiac illustration family
 
-`ZodiacAries` through `ZodiacPisces` are coherent with one another but intentionally cute, object/animal-based, and visually superseded by Premium Celestial. They remain reachable from the existing Daily Horoscope surface, which is outside this corrective Phase 1 propagation pass. Decision: **REPLACE later**, retain temporarily, original rendering, intentional Light/Dark variants. They must never substitute for technical zodiac glyphs.
+`ZodiacAries` through `ZodiacPisces` were intentionally cute, object/animal-based,
+and visually superseded by Premium Celestial. Phase 2 migrated the last shipping call
+site in Daily Horoscope to `HumayAsset.zodiac(_:)`; all twelve illustration imagesets
+were then removed. Decision: **REMOVE completed**. Technical zodiac identity remains
+the licensed template glyph family documented above.
 
 ## Illustration catalog reachability
 
@@ -136,9 +140,9 @@ The legacy `Nav*` vector family is unreachable and superseded by SF Symbols: **R
 |---|---|---|---|
 | `IllustrationCalendarCelestial`, `IllustrationCosmicCoffee`, `IllustrationProfileReveal`, `IllustrationTraditionWestern`, `IllustrationTraditionVedic`, `IllustrationTraditionChinese` | Approved onboarding dependency | KEEP for current onboarding authority | Original rendering; Light/Dark variants. Onboarding migration is out of scope. |
 | `IllustrationAskStars` | Ask dependency | KEEP temporarily / REPLACE with later Ask propagation | Existing screen remains out of scope. |
-| `IllustrationCurrentSky`, `IllustrationCalendarCelestial` | Current Sky dependency | KEEP temporarily / REPLACE with later Sky propagation | Existing screen remains out of scope. |
-| `IllustrationDailyTipCrystalBall`, twelve `Zodiac*` illustrations | Daily Horoscope dependency | KEEP temporarily / REPLACE with later Daily Horoscope propagation | Cute visual language is superseded, but screen migration is not part of this pass. |
-| `IllustrationTodayTogether` | Connections people screen dependency | KEEP temporarily / REPLACE with later Connections propagation | Code-drawn connection motif is removed independently. |
+| `IllustrationCurrentSky`, `IllustrationCalendarCelestial` | Current Sky dependency | KEEP temporarily / REPLACE with later Sky propagation | Existing screen remains out of scope. Current Sky SVGs still contain legacy gradients/filter markup; they compile today but are not a pattern for new assets. |
+| deleted `IllustrationDailyTipCrystalBall`, twelve `Zodiac*` illustrations | Former Daily Horoscope dependency | REMOVE completed in Phase 2 | Replaced with editorial composition, SF Symbol support, and typed technical zodiac glyphs. |
+| deleted `IllustrationTodayTogether` | Former Connections dependency | REMOVE completed in Phase 2 | Removed after Connections stopped using it as decoration; Today Together itself remains unimplemented. |
 | deleted `IllustrationUnknownBirthTime` | Former Phase 1 Chart dependency | REPLACE A completed | Replaced by a neutral SF uncertainty/time symbol and text; the precision warning is no longer decorative. |
 | `IllustrationAllCaughtUp`, `IllustrationAskEmpty`, `IllustrationBaZiChart`, `IllustrationCelestialMoon`, `IllustrationCelestialSun`, `IllustrationCompareSystems`, `IllustrationCompatibilityPair`, `IllustrationConjunction`, `IllustrationCosmicWeather`, `IllustrationEclipse`, `IllustrationFullMoon`, `IllustrationMeteorShower`, `IllustrationNewMoon`, `IllustrationNoData`, `IllustrationOffline`, `IllustrationPremiumCelestial`, `IllustrationRetrograde`, `IllustrationRewardUnlock`, `IllustrationRoastMode`, `IllustrationVedicChart`, `IllustrationWesternChart` | No shipping call site after typed-access migration | REMOVE | Reference mockups remain under `docs/design/soulful-reference`; unused shipping copies should not survive. |
 | `ProfileRevealConstellationPath` | No shipping call site | REMOVE | Unreachable shipping asset; design references remain in docs. |
@@ -153,6 +157,18 @@ The legacy `Nav*` vector family is unreachable and superseded by SF Symbols: **R
 - Aspect ratio is always preserved. Optical padding lives in the vector's standardized viewBox, not ad-hoc stretched frames.
 - Informational glyphs receive meaning from adjacent text or an explicit accessibility label. Decorative duplicates are hidden.
 - Light/Dark variants exist only when composition or contrast genuinely changes.
+
+The repository enforces these rules with `bash Scripts/check-asset-policy.sh`, also
+invoked by `Scripts/verify-foundation.sh`. Drawing exceptions are exact-file allowlist
+entries, never directory exclusions. `ChartWheel.swift` is allowed because its paths
+encode application data; `HumayAssets.swift` is allowed non-system `Image(...)` access
+because it is the typed catalog rendering boundary. No other production exception exists.
+
+Legacy original-rendering illustrations retained for untouched screens may predate the
+clean-SVG rule. The only current forbidden-content scan matches are six gradient/filter
+definitions in `IllustrationCurrentSky` Light/Dark. They remain solely because Current
+Sky is outside Phase 2 and must be replaced during its own migration; no new asset may
+copy this exception.
 
 ## License and source record
 
@@ -171,3 +187,18 @@ No third-party Swift package or icon framework is introduced.
 - Actual-size visual QA passed on standard iPhone Light/Dark, iPhone Pro Max Light, iPad portrait Light, and iPad landscape Light. Review included 16–20 pt inline glyphs, 24 pt symbols, tab icons, chart glyphs, placement detail, compatibility, and empty/state treatments.
 - Debug iPhone, Debug iPad, and generic Simulator Release builds passed. Swift Testing passed 113 tests across 13 suites; the complete XCUITest target passed 46 tests with no failures or skips.
 - The required survivor search finds `Canvas` and `Path` only in `ChartWheel.swift`; those paths encode houses and aspect geometry from `ChartWheelModel`. No rejected motif type or raw feature-level catalog string remains.
+
+## Phase 2 reachability and verification
+
+- Daily Horoscope and Connections no longer reach cute zodiac art,
+  `IllustrationDailyTipCrystalBall`, or `IllustrationTodayTogether`; those imagesets and
+  typed enum cases were deleted.
+- Still-reachable illustrations are deliberately limited to Ask Stars, Calendar
+  Celestial, Cosmic Coffee, Current Sky, Profile Reveal, and the three Tradition images.
+  Their owning screens are outside Phase 2 and remain scheduled for separate migration.
+- Typed asset foundation tests assert the retained illustration set and the absence of
+  the deleted Phase 2 cases. Catalog compilation and SVG XML/content validation pass.
+- The new asset-policy guard passes with only the two documented exact-file exceptions.
+- Complete validation passes: 113 Swift tests in 13 suites, 52 iPhone XCUITests, focused
+  13-inch iPad evidence, Debug iPhone/iPad and generic Simulator Release builds,
+  foundation checks, and `git diff --check`.

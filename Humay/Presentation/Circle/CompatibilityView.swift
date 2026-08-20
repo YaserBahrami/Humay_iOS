@@ -161,7 +161,7 @@ struct CompatibilityView: View {
     private func pairIdentity(_ pair: CompatibilityPair) -> some View {
         VStack(spacing: HumaySpacing.extraLarge) {
             HStack(alignment: .top, spacing: HumaySpacing.extraLarge) {
-                relationshipPerson(pair.first, accent: .lavender)
+                relationshipPerson(pair.first, accent: .blue)
                     .frame(maxWidth: .infinity)
 
                 HumaySystemSymbolImage(symbol: .love, size: .standard)
@@ -184,10 +184,22 @@ struct CompatibilityView: View {
     private func relationshipPerson(_ person: CirclePerson, accent: HumayAccent) -> some View {
         VStack(spacing: HumaySpacing.small) {
             CirclePersonMedallion(person: person, accent: accent, size: 82)
-            Text(person.westernSunSign.map { "\($0.displayName) Sun" } ?? "Sign unavailable")
-                .font(HumayTypography.caption)
-                .foregroundStyle(Color.humayTextSecondary)
-                .multilineTextAlignment(.center)
+            if let sign = person.westernSunSign {
+                HStack(spacing: HumaySpacing.small) {
+                    HumayZodiacGlyph(
+                        sign: sign,
+                        size: .inline,
+                        color: accent.color
+                    )
+                    Text("\(sign.displayName) Sun")
+                        .font(HumayTypography.caption)
+                        .foregroundStyle(Color.humayTextSecondary)
+                }
+            } else {
+                Text("Sign unavailable")
+                    .font(HumayTypography.caption)
+                    .foregroundStyle(Color.humayTextSecondary)
+            }
         }
         .accessibilityElement(children: .combine)
         .accessibilityLabel(
@@ -347,12 +359,14 @@ struct CompatibilityView: View {
                     .buttonStyle(.humaySecondary)
                     .accessibilityIdentifier("compatibility.precise.unlock")
 
+#if DEBUG
                 if source.isDevelopmentSample, let precisePreview {
                     Button("Preview precise layout") { previewOverride = precisePreview }
                         .font(HumayTypography.control)
                         .frame(minHeight: HumayMetrics.minimumHitTarget)
                         .accessibilityIdentifier("compatibility.precise.preview")
                 }
+#endif
             }
         }
     }

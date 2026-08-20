@@ -179,19 +179,11 @@ struct CompatibilitySelectionView: View {
             selection.toggle(person.id)
         } label: {
             HStack(spacing: HumaySpacing.large) {
-                CirclePersonMedallion(person: person, accent: accent, size: 58)
-
-                VStack(alignment: .leading, spacing: HumaySpacing.extraSmall) {
-                    Text(person.name)
-                        .font(HumayTypography.bodyEmphasized)
-                        .lineLimit(2)
-                        .fixedSize(horizontal: false, vertical: true)
-                    Text("\(person.westernSunSign?.displayName ?? "Sign unavailable") Sun")
-                        .font(HumayTypography.supporting)
-                        .foregroundStyle(Color.humayTextSecondary)
-                        .lineLimit(2)
-                        .fixedSize(horizontal: false, vertical: true)
-                }
+                HumayPersonIdentityRow(
+                    person: person,
+                    accent: accent,
+                    medallionSize: 58
+                )
                 .frame(maxWidth: .infinity, alignment: .leading)
                 .layoutPriority(1)
 
@@ -214,7 +206,7 @@ struct CompatibilitySelectionView: View {
             .padding(.horizontal, HumaySpacing.large)
             .padding(.vertical, HumaySpacing.medium)
             .frame(maxWidth: .infinity, alignment: .leading)
-            .frame(height: selectionRowHeight, alignment: .leading)
+            .frame(minHeight: selectionRowHeight, alignment: .leading)
             .background(
                 selected ? accent.color.opacity(0.10) : Color.humaySurface,
                 in: RoundedRectangle(cornerRadius: HumayRadius.compact, style: .continuous)
@@ -305,7 +297,7 @@ struct CompatibilitySelectionView: View {
 
     private func accent(for person: CirclePerson, fallbackIndex: Int) -> HumayAccent {
         if let selectedIndex = selection.selectedIDs.firstIndex(of: person.id) {
-            return selectedIndex == 0 ? .lavender : .coral
+            return selectedIndex == 0 ? .blue : .gold
         }
         return fallbackIndex.isMultiple(of: 2) ? .gold : .blue
     }
@@ -384,7 +376,7 @@ private struct CompatibilityPairComposer: View {
             }
         }
         .padding(HumaySpacing.extraLarge)
-        .background(pairBackground, in: RoundedRectangle(cornerRadius: HumayRadius.feature, style: .continuous))
+        .background(Color.humaySurface, in: RoundedRectangle(cornerRadius: HumayRadius.feature, style: .continuous))
         .overlay {
             RoundedRectangle(cornerRadius: HumayRadius.feature, style: .continuous)
                 .stroke(Color.humayHairline)
@@ -399,7 +391,7 @@ private struct CompatibilityPairComposer: View {
             .font(HumayTypography.utility)
             .textCase(.uppercase)
             .tracking(1.2)
-            .foregroundStyle(Color.humayCoral)
+            .foregroundStyle(Color.humayAccentCelestial)
             .fixedSize(horizontal: false, vertical: true)
     }
 
@@ -417,7 +409,7 @@ private struct CompatibilityPairComposer: View {
             if let person {
                 CirclePersonMedallion(
                     person: person,
-                    accent: index == 0 ? .lavender : .coral,
+                    accent: index == 0 ? .blue : .gold,
                     size: 72
                 )
                 Text(person.name)
@@ -425,12 +417,22 @@ private struct CompatibilityPairComposer: View {
                     .lineLimit(2)
                     .multilineTextAlignment(.center)
                     .fixedSize(horizontal: false, vertical: true)
-                Text(person.westernSunSign?.displayName ?? "Sign unavailable")
-                    .font(HumayTypography.supporting)
-                    .foregroundStyle(Color.humayTextSecondary)
-                    .lineLimit(2)
-                    .multilineTextAlignment(.center)
-                    .fixedSize(horizontal: false, vertical: true)
+                if let sign = person.westernSunSign {
+                    HStack(spacing: HumaySpacing.small) {
+                        HumayZodiacGlyph(
+                            sign: sign,
+                            size: .inline,
+                            color: index == 0 ? .humayAccentCelestial : .humayAccentPrestige
+                        )
+                        Text("\(sign.displayName) Sun")
+                            .font(HumayTypography.supporting)
+                            .foregroundStyle(Color.humayTextSecondary)
+                    }
+                } else {
+                    Text("Sign unavailable")
+                        .font(HumayTypography.supporting)
+                        .foregroundStyle(Color.humayTextSecondary)
+                }
             } else {
                 ZStack {
                     Circle()
@@ -455,18 +457,6 @@ private struct CompatibilityPairComposer: View {
                     .foregroundStyle(Color.humayTextSecondary)
             }
         }
-    }
-
-    private var pairBackground: LinearGradient {
-        LinearGradient(
-            colors: [
-                Color.humayLavender.opacity(0.12),
-                Color.humaySurface,
-                Color.humayCoral.opacity(0.12)
-            ],
-            startPoint: .topLeading,
-            endPoint: .bottomTrailing
-        )
     }
 
     private var connectorState: CompatibilityConnector.State {
@@ -523,7 +513,7 @@ struct CompatibilityConnector: View {
         Image(systemName: state == .active ? "heart.fill" : "heart")
             .font(.title3.weight(.medium))
             .symbolRenderingMode(.monochrome)
-            .foregroundStyle(state == .active ? Color.humayCoral : Color.humayTextSecondary)
+            .foregroundStyle(state == .active ? Color.humayAccentPrestige : Color.humayTextSecondary)
             .opacity(state == .empty ? 0.48 : 1)
             .frame(maxWidth: .infinity, maxHeight: .infinity)
         .accessibilityHidden(true)

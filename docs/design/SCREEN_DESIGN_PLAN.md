@@ -117,6 +117,35 @@ The iPad landscape two-region paths are covered by the UI test. iOS 26.5 simulat
 - Today Together is not implemented; it remains CIRCLE-006 and was not invented from an unfrozen design.
 - Backend/API/provider, Saved People persistence and monetization remain outside D2.
 
+### Phase 2 — Today + Connections propagation
+
+**IMPLEMENTED AND VERIFIED — 2026-08-20.** Premium Celestial now covers Daily
+Horoscope, Connections root/people states, Add Person, and Person Detail. Compatibility
+Selection/Result were reconciled through shared person identity and typed zodiac
+components without reopening their approved design direction.
+
+- Daily preserves period switching, loading, Free, precise locked, Debug-only precise
+  preview, precise loaded, cached, offline cached/no-cache, failure, basis disclosure,
+  and share behavior.
+- Connections preserves loading, populated, empty, cached/offline, offline no-cache,
+  failure, Add Person persistence behavior, Person Detail, and compatibility entry.
+- Today Together remains unimplemented. No placeholder UI, provider, result, or
+  calculation was introduced.
+- Removed the Daily crystal ball, twelve cute zodiac illustrations, and Connections
+  Today Together decoration. Remaining production illustrations belong only to untouched
+  onboarding, Ask, and Current Sky/Calendar surfaces.
+- iPhone 17 Pro and 13-inch iPad Pro simulator evidence was captured and inspected in
+  Light and Dark for normal/free, precise locked, populated, empty, Add Person, Person
+  Detail, and compatibility entry. The 1032-point iPad regular-width composition is the
+  wide-layout acceptance artifact. iPadOS 26.5 retained portrait window geometry after
+  XCTest requested rotation, so this record does not claim a valid landscape capture.
+- Asset-policy enforcement is now part of the canonical repository validation workflow.
+  The only drawing exception is the data-derived `ChartWheel.swift` visualization.
+- Final validation passes: 113 Swift tests in 13 suites, 7 focused Phase 2 UI tests,
+  the complete 52-test iPhone XCUITest target, the Phase 2 iPad evidence test, Debug
+  iPhone/iPad builds, generic Simulator Release, foundation/catalog checks, and
+  `git diff --check`.
+
 ## D3 — Sky + Calendar
 
 1. Current Sky

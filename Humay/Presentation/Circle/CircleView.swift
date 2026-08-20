@@ -8,260 +8,322 @@ struct CircleView: View {
     let profileName: String
     let openProfile: () -> Void
 
+    @Environment(\.dynamicTypeSize) private var dynamicTypeSize
     @State private var addedPeople: [CirclePerson] = []
     @State private var showAddPerson = false
     @State private var selectedPerson: CirclePerson?
 
     var body: some View {
-        GeometryReader { proxy in
-            ScrollView {
-                VStack(alignment: .leading, spacing: HumaySpacing.extraLarge) {
-                    HumayScreenHeader(
-                        section: "Connections",
-                        profileName: profileName,
-                        profileAction: openProfile
-                    )
+        HumayPage(maximum: .immersive) {
+            HumayScreenHeader(
+                section: "Connections",
+                profileName: profileName,
+                profileAction: openProfile
+            )
 
-                    stateContent(availableWidth: proxy.size.width)
-                }
-                .frame(maxWidth: HumayContentWidth.expanded.rawValue)
-                .frame(maxWidth: .infinity, alignment: .top)
-                .padding(.horizontal, HumayLayout.screenGutter(for: proxy.size.width))
-                .padding(.top, HumaySpacing.large)
-                .padding(.bottom, HumaySpacing.extraExtraLarge)
-            }
-            .scrollIndicators(.hidden)
+            stateContent
         }
-        .background(Color.humayGround.ignoresSafeArea())
-        .foregroundStyle(Color.humayTextPrimary)
         .navigationBarHidden(true)
         .sheet(isPresented: $showAddPerson) {
             AddPersonView { person in
                 addedPeople.append(person)
             }
+            .presentationDetents([.large])
+            .presentationDragIndicator(.visible)
         }
         .sheet(item: $selectedPerson) { person in
             CirclePersonDetailView(person: person)
+                .presentationDetents([.large])
+                .presentationDragIndicator(.visible)
         }
     }
 
     @ViewBuilder
-    private func stateContent(availableWidth: CGFloat) -> some View {
+    private var stateContent: some View {
         switch state {
         case .loading:
-            HumaySurface(level: .raised) {
-                VStack(spacing: HumaySpacing.large) {
-                    HumayIllustration(asset: .todayTogether)
-                        .frame(width: 132, height: 98)
-                    ProgressView()
-                        .controlSize(.large)
-                        .tint(Color.humayLavender)
-                    Text("Opening your connections…")
-                        .font(HumayTypography.cardTitle)
-                    Text("Gathering the people you keep close.")
-                        .font(HumayTypography.supporting)
-                        .foregroundStyle(Color.humayTextSecondary)
-                }
-                .frame(maxWidth: .infinity)
-                .padding(.vertical, HumaySpacing.extraExtraLarge)
-            }
+            ConnectionsLoadingView()
+                .accessibilityIdentifier("connections.state.loading")
 
         case .loaded(let people):
-            loadedContent(people: people + addedPeople, availableWidth: availableWidth)
+            loadedContent(people: people + addedPeople)
 
         case .empty:
             if addedPeople.isEmpty {
-                emptyState
+                emptyContent
             } else {
-                loadedContent(people: addedPeople, availableWidth: availableWidth)
+                loadedContent(people: addedPeople)
             }
 
         case .offline(let cached):
-            D2StatusBanner(
-                symbol: "wifi.slash",
-                title: "Offline",
-                detail: cached.isEmpty
-                    ? "No saved people are available."
-                    : "Showing people already available on this device.",
-                accent: .gold
-            )
-            if cached.isEmpty && addedPeople.isEmpty {
-                emptyState
-            } else {
-                loadedContent(people: cached + addedPeople, availableWidth: availableWidth)
+            VStack(alignment: .leading, spacing: HumaySpacing.section) {
+                D2StatusBanner(
+                    symbol: "wifi.slash",
+                    title: "Offline",
+                    detail: cached.isEmpty
+                        ? "No saved people are available on this device."
+                        : "Showing people already available on this device.",
+                    accent: .gold
+                )
+
+                if cached.isEmpty && addedPeople.isEmpty {
+                    emptyContent
+                } else {
+                    loadedContent(people: cached + addedPeople)
+                }
             }
 
         case .failed(let message):
-            D2UnavailableState(
-                symbol: "person.2.slash",
+            HumayStateView(
                 title: "Connections are unavailable",
-                detail: message
+                message: message,
+                symbol: .unavailable
             )
+            .accessibilityIdentifier("connections.state.failed")
         }
     }
 
-    @ViewBuilder
-    private func loadedContent(people: [CirclePerson], availableWidth: CGFloat) -> some View {
-        HStack(alignment: .center, spacing: HumaySpacing.large) {
-            VStack(alignment: .leading, spacing: HumaySpacing.small) {
-                Text("Your connections")
-                    .font(HumayTypography.heroTitle)
-                    .accessibilityAddTraits(.isHeader)
-                Text("Keep the people who matter close, then explore how your energies meet.")
-                    .font(HumayTypography.body)
-                    .foregroundStyle(Color.humayTextSecondary)
-                    .fixedSize(horizontal: false, vertical: true)
-            }
-            .frame(maxWidth: .infinity, alignment: .leading)
+    private func loadedContent(people: [CirclePerson]) -> some View {
+        VStack(alignment: .leading, spacing: HumaySpacing.section) {
+            connectionsIntroduction(
+                detail: "The people you keep here come first. Relationship analysis starts only when you choose it."
+            )
 
-        }
+            ViewThatFits(in: .horizontal) {
+                HStack(alignment: .top, spacing: HumaySpacing.hero) {
+                    peopleSection(people)
+                        .frame(minWidth: 520, maxWidth: 720, alignment: .topLeading)
+                    compatibilityEntry(people)
+                        .frame(minWidth: 300, maxWidth: 380, alignment: .topLeading)
+                }
+                .frame(maxWidth: .infinity, alignment: .center)
 
-        if availableWidth >= 820 {
-            HStack(alignment: .top, spacing: HumaySpacing.extraLarge) {
-                peopleSection(people)
-                    .frame(maxWidth: .infinity, alignment: .topLeading)
-                compatibilityEntry(people)
-                    .frame(maxWidth: .infinity, alignment: .topLeading)
+                VStack(alignment: .leading, spacing: HumaySpacing.section) {
+                    peopleSection(people)
+                    compatibilityEntry(people)
+                }
             }
-        } else {
-            peopleSection(people)
-            compatibilityEntry(people)
         }
+    }
+
+    private func connectionsIntroduction(detail: String) -> some View {
+        VStack(alignment: .leading, spacing: HumaySpacing.large) {
+            HumayEyebrow(text: "People first", color: .humayAccentCelestial)
+            Text("Your connections")
+                .font(HumayTypography.displayTitle)
+                .fixedSize(horizontal: false, vertical: true)
+                .accessibilityAddTraits(.isHeader)
+            Text(detail)
+                .font(HumayTypography.body)
+                .foregroundStyle(Color.humayTextSecondary)
+                .fixedSize(horizontal: false, vertical: true)
+                .frame(maxWidth: 600, alignment: .leading)
+        }
+        .accessibilityElement(children: .combine)
+        .accessibilityIdentifier("connections.introduction")
     }
 
     private func peopleSection(_ people: [CirclePerson]) -> some View {
-        VStack(alignment: .leading, spacing: HumaySpacing.large) {
-            HStack(spacing: HumaySpacing.medium) {
-                Text("People")
-                    .font(HumayTypography.sectionTitle)
-                    .accessibilityAddTraits(.isHeader)
-
-                Spacer()
-
-                Button {
-                    showAddPerson = true
-                } label: {
-                    Label("Add Person", systemImage: "plus")
-                        .font(HumayTypography.control)
-                        .frame(minHeight: HumayMetrics.minimumHitTarget)
+        VStack(alignment: .leading, spacing: HumaySpacing.extraLarge) {
+            if dynamicTypeSize.isAccessibilitySize {
+                VStack(alignment: .leading, spacing: HumaySpacing.large) {
+                    peopleHeading(count: people.count)
+                    addPersonButton
                 }
-                .accessibilityIdentifier("circle.add-person")
+            } else {
+                HStack(alignment: .center, spacing: HumaySpacing.large) {
+                    peopleHeading(count: people.count)
+                    Spacer(minLength: HumaySpacing.large)
+                    addPersonButton
+                }
             }
 
             LazyVGrid(
-                columns: [GridItem(.adaptive(minimum: 152), spacing: HumaySpacing.medium)],
-                spacing: HumaySpacing.medium
+                columns: [
+                    GridItem(
+                        .adaptive(minimum: 300, maximum: 420),
+                        spacing: HumaySpacing.large,
+                        alignment: .top
+                    )
+                ],
+                alignment: .leading,
+                spacing: HumaySpacing.large
             ) {
                 ForEach(Array(people.enumerated()), id: \.element.id) { index, person in
-                    Button {
-                        selectedPerson = person
-                    } label: {
-                        VStack(spacing: HumaySpacing.small) {
-                            CirclePersonMedallion(
-                                person: person,
-                                accent: index.isMultiple(of: 2) ? .lavender : .coral,
-                                size: 78
-                            )
-
-                            Text(person.name)
-                                .font(HumayTypography.bodyEmphasized)
-                                .foregroundStyle(Color.humayTextPrimary)
-                                .lineLimit(2)
-                                .multilineTextAlignment(.center)
-
-                            Text(person.westernSunSign?.displayName ?? "Sign pending")
-                                .font(HumayTypography.supporting)
-                                .foregroundStyle(Color.humayTextSecondary)
-                        }
-                        .frame(maxWidth: .infinity)
-                        .padding(HumaySpacing.large)
-                        .background(Color.humaySurface, in: RoundedRectangle(cornerRadius: HumayRadius.surface))
-                        .overlay {
-                            RoundedRectangle(cornerRadius: HumayRadius.surface)
-                                .stroke(Color.humayHairline)
-                        }
-                    }
-                    .buttonStyle(.plain)
-                    .accessibilityLabel("\(person.name), \(person.westernSunSign?.displayName ?? "Sun sign unavailable")")
-                    .accessibilityHint("Opens person details")
+                    personRow(person, index: index)
                 }
             }
         }
+    }
+
+    private func peopleHeading(count: Int) -> some View {
+        HumaySectionHeader(
+            title: "People",
+            subtitle: "\(count) \(count == 1 ? "person" : "people") available",
+            editorial: false
+        )
+    }
+
+    private var addPersonButton: some View {
+        Button {
+            showAddPerson = true
+        } label: {
+            Label("Add Person", systemImage: "plus")
+                .frame(minHeight: HumayMetrics.minimumHitTarget)
+        }
+        .buttonStyle(.humaySecondary)
+        .accessibilityHint("Opens the Add Person form")
+        .accessibilityIdentifier("circle.add-person")
+    }
+
+    private func personRow(_ person: CirclePerson, index: Int) -> some View {
+        Button {
+            selectedPerson = person
+        } label: {
+            HStack(spacing: HumaySpacing.medium) {
+                HumayPersonIdentityRow(
+                    person: person,
+                    accent: index.isMultiple(of: 2) ? .blue : .gold,
+                    metadata: person.birth.dateFormatted()
+                )
+
+                Image(systemName: "chevron.right")
+                    .font(.footnote.weight(.semibold))
+                    .foregroundStyle(Color.humayTextSecondary)
+                    .frame(
+                        width: HumayMetrics.minimumHitTarget,
+                        height: HumayMetrics.minimumHitTarget
+                    )
+                    .accessibilityHidden(true)
+            }
+            .padding(.horizontal, HumaySpacing.large)
+            .padding(.vertical, HumaySpacing.medium)
+            .frame(maxWidth: .infinity, minHeight: 84, alignment: .leading)
+            .background(Color.humaySurface, in: RoundedRectangle(cornerRadius: HumayRadius.compact))
+            .overlay {
+                RoundedRectangle(cornerRadius: HumayRadius.compact)
+                    .stroke(Color.humaySeparator)
+            }
+            .contentShape(RoundedRectangle(cornerRadius: HumayRadius.compact))
+        }
+        .buttonStyle(.plain)
+        .hoverEffect(.highlight)
+        .accessibilityElement(children: .combine)
+        .accessibilityLabel(personAccessibilityLabel(person))
+        .accessibilityHint("Opens person details")
+        .accessibilityIdentifier("circle.person.row.\(index)")
     }
 
     private func compatibilityEntry(_ people: [CirclePerson]) -> some View {
         let eligiblePeople = people.filter { $0.westernSunSign != nil }
 
-        return NavigationLink {
-            CompatibilitySelectionView(
-                people: eligiblePeople,
-                state: compatibilityState,
-                precisePreview: precisePreview,
-                source: source
-            )
-        } label: {
-            HumaySurface {
-                VStack(alignment: .leading, spacing: HumaySpacing.large) {
-                    HStack(alignment: .center, spacing: HumaySpacing.medium) {
-                        VStack(alignment: .leading, spacing: HumaySpacing.small) {
-                            Text("Compatibility")
-                                .font(HumayTypography.utility)
-                                .textCase(.uppercase)
-                                .tracking(1.1)
-                                .foregroundStyle(Color.humayCoral)
-                            Text("See how two energies meet")
-                                .font(HumayTypography.cardTitle)
-                                .foregroundStyle(Color.humayTextPrimary)
-                                .fixedSize(horizontal: false, vertical: true)
-                        }
-                        .frame(maxWidth: .infinity, alignment: .leading)
+        return HumayHairlineSurface(style: .celestial) {
+            VStack(alignment: .leading, spacing: HumaySpacing.extraLarge) {
+                HumaySystemSymbolImage(symbol: .compatibility, size: .feature)
+                    .foregroundStyle(Color.humayAccentCelestial)
 
-                        HumaySystemSymbolImage(symbol: .compatibility, size: .feature)
-                            .foregroundStyle(Color.humayCoral)
-                    }
-
-                    Text("Start with a simple Sun-sign connection. Deeper compatibility can use precise birth details when they are available.")
+                VStack(alignment: .leading, spacing: HumaySpacing.small) {
+                    HumayEyebrow(text: "Relationship analysis", color: .humayAccentCelestial)
+                    Text("Compatibility")
+                        .font(HumayTypography.narrativeSectionTitle)
+                    Text("Choose two people for the existing Sun-sign comparison. Precise synastry remains unavailable until provider-backed generation is connected.")
                         .font(HumayTypography.supporting)
                         .foregroundStyle(Color.humayTextSecondary)
                         .fixedSize(horizontal: false, vertical: true)
+                }
 
+                Text(
+                    eligiblePeople.count >= 2
+                        ? "\(eligiblePeople.count) people have Sun-sign data."
+                        : "Add at least two people with Sun-sign data to continue."
+                )
+                .font(HumayTypography.caption)
+                .foregroundStyle(Color.humayTextSecondary)
+
+                NavigationLink {
+                    CompatibilitySelectionView(
+                        people: eligiblePeople,
+                        state: compatibilityState,
+                        precisePreview: precisePreview,
+                        source: source
+                    )
+                } label: {
                     Label(
-                        eligiblePeople.count >= 2 ? "Choose two people" : "Add two people with sign data",
+                        eligiblePeople.count >= 2 ? "Choose two people" : "Compatibility unavailable",
                         systemImage: "arrow.right"
                     )
-                    .font(HumayTypography.control)
-                    .foregroundStyle(Color.humayCoral)
-                    .frame(minHeight: HumayMetrics.minimumHitTarget)
-                }
-            }
-        }
-        .buttonStyle(.plain)
-        .disabled(eligiblePeople.count < 2)
-        .accessibilityHint("Opens compatibility person selection")
-        .accessibilityIdentifier("circle.compatibility.open")
-    }
-
-    private var emptyState: some View {
-        HumaySurface(level: .raised) {
-            VStack(spacing: HumaySpacing.large) {
-                HumaySystemSymbolImage(symbol: .compatibility, size: .feature)
-                    .foregroundStyle(Color.humayCoral)
-                Text("Your connections start here")
-                    .font(HumayTypography.cardTitle)
-                    .accessibilityAddTraits(.isHeader)
-                Text("Add someone’s basic birth details. Exact time and location can stay unknown until a feature genuinely needs them.")
-                    .font(HumayTypography.body)
-                    .foregroundStyle(Color.humayTextSecondary)
-                    .multilineTextAlignment(.center)
-                    .fixedSize(horizontal: false, vertical: true)
-                Button("Add Person") {
-                    showAddPerson = true
+                    .frame(maxWidth: .infinity)
                 }
                 .buttonStyle(.humayPrimary)
-                .accessibilityIdentifier("circle.empty.add-person")
+                .disabled(eligiblePeople.count < 2)
+                .accessibilityHint(
+                    eligiblePeople.count >= 2
+                        ? "Opens compatibility person selection"
+                        : "Two people with Sun-sign data are required"
+                )
+                .accessibilityIdentifier("circle.compatibility.open")
             }
-            .frame(maxWidth: .infinity)
         }
+    }
+
+    private var emptyContent: some View {
+        VStack(alignment: .leading, spacing: HumaySpacing.section) {
+            connectionsIntroduction(
+                detail: "Add someone with the birth information you know. Unknown details stay explicitly unknown."
+            )
+
+            HumayHairlineSurface(style: .raised) {
+                VStack(alignment: .leading, spacing: HumaySpacing.extraLarge) {
+                    HumaySystemSymbolImage(symbol: .compatibility, size: .feature)
+                        .foregroundStyle(Color.humayAccentCelestial)
+
+                    Text("No people yet")
+                        .font(HumayTypography.editorialTitle)
+                        .accessibilityAddTraits(.isHeader)
+
+                    Text("A name and birth date are enough for this form. Birth time and location are not required here.")
+                        .font(HumayTypography.body)
+                        .foregroundStyle(Color.humayTextSecondary)
+                        .fixedSize(horizontal: false, vertical: true)
+
+                    Button("Add Person") {
+                        showAddPerson = true
+                    }
+                    .buttonStyle(.humayPrimary)
+                    .accessibilityIdentifier("circle.empty.add-person")
+                }
+                .frame(maxWidth: .infinity, alignment: .leading)
+            }
+            .frame(maxWidth: HumayContentWidth.readable.rawValue, alignment: .leading)
+        }
+    }
+
+    private func personAccessibilityLabel(_ person: CirclePerson) -> String {
+        let sign = person.westernSunSign.map { "\($0.displayName) Sun" } ?? "Sun sign unavailable"
+        return "\(person.name), \(sign), born \(person.birth.dateFormatted())"
+    }
+}
+
+private struct ConnectionsLoadingView: View {
+    var body: some View {
+        HumayHairlineSurface(style: .raised) {
+            HStack(alignment: .center, spacing: HumaySpacing.extraLarge) {
+                ProgressView()
+                    .controlSize(.large)
+                    .tint(Color.humayAccentPrestige)
+
+                VStack(alignment: .leading, spacing: HumaySpacing.small) {
+                    Text("Opening Connections…")
+                        .font(HumayTypography.narrativeSectionTitle)
+                    Text("Loading the people available to you.")
+                        .font(HumayTypography.supporting)
+                        .foregroundStyle(Color.humayTextSecondary)
+                }
+            }
+            .frame(maxWidth: .infinity, alignment: .leading)
+        }
+        .accessibilityElement(children: .combine)
+        .accessibilityLabel("Loading Connections")
     }
 }
 
@@ -271,49 +333,128 @@ private struct CirclePersonDetailView: View {
 
     var body: some View {
         NavigationStack {
-            Form {
-                Section {
-                    HStack(spacing: HumaySpacing.large) {
-                        CirclePersonMedallion(person: person, accent: .lavender, size: 72)
-                        VStack(alignment: .leading, spacing: HumaySpacing.extraSmall) {
-                            Text(person.name)
-                                .font(HumayTypography.sectionTitle)
-                            Text(person.westernSunSign?.displayName ?? "Sun sign unavailable")
-                                .foregroundStyle(Color.humayTextSecondary)
-                        }
+            GeometryReader { proxy in
+                ScrollView {
+                    VStack(alignment: .leading, spacing: HumaySpacing.section) {
+                        identity
+                        birthInformation
+                        availabilityNote
                     }
-                    .accessibilityElement(children: .combine)
+                    .frame(maxWidth: HumayContentWidth.readable.rawValue, alignment: .leading)
+                    .frame(maxWidth: .infinity, alignment: .top)
+                    .padding(.horizontal, HumayLayout.screenGutter(for: proxy.size.width))
+                    .padding(.top, HumaySpacing.extraLarge)
+                    .padding(.bottom, HumaySpacing.expansive)
                 }
-
-                Section("Birth details") {
-                    LabeledContent("Date", value: person.birth.dateFormatted())
-                    LabeledContent("Time", value: timeText)
-                    LabeledContent("Place", value: person.birth.place.name ?? "Not provided")
-                }
-
-                Section {
-                    Text("Birth time and place can remain unknown. Humay only needs them for features whose accuracy genuinely depends on them.")
-                        .font(HumayTypography.supporting)
-                        .foregroundStyle(Color.humayTextSecondary)
-                }
+                .scrollIndicators(.hidden)
+                .scrollContentBackground(.hidden)
             }
-            .scrollContentBackground(.hidden)
-            .background(Color.humayGround)
+            .background(Color.humayCanvas.ignoresSafeArea())
+            .foregroundStyle(Color.humayTextPrimary)
             .navigationTitle("Person")
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .confirmationAction) {
                     Button("Done") { dismiss() }
+                        .keyboardShortcut(.cancelAction)
                 }
             }
         }
     }
 
+    private var identity: some View {
+        VStack(alignment: .leading, spacing: HumaySpacing.extraLarge) {
+            HumayEyebrow(text: "Person")
+            HumayPersonIdentityRow(
+                person: person,
+                accent: .gold,
+                medallionSize: 80,
+                metadata: person.birth.dateFormatted()
+            )
+            Text(person.westernSunSign == nil
+                ? "No Sun sign is stored for this person."
+                : "Sun-sign identity is shown with Humay's verified technical zodiac glyph.")
+                .font(HumayTypography.supporting)
+                .foregroundStyle(Color.humayTextSecondary)
+                .fixedSize(horizontal: false, vertical: true)
+        }
+        .accessibilityIdentifier("circle.person-detail.screen")
+    }
+
+    private var birthInformation: some View {
+        VStack(alignment: .leading, spacing: HumaySpacing.extraLarge) {
+            HumaySectionHeader(
+                title: "Birth information",
+                subtitle: "Only information already available for this person is shown."
+            )
+
+            HumayHairlineSurface(style: .quiet) {
+                VStack(spacing: HumaySpacing.small) {
+                    HumayFactRow(label: "Date", value: person.birth.dateFormatted())
+                    factDivider
+                    HumayFactRow(
+                        label: "Time",
+                        value: timeText,
+                        note: person.birth.time.isKnown ? nil : "Unknown remains unknown."
+                    )
+                    factDivider
+                    HumayFactRow(
+                        label: "Place",
+                        value: placeText,
+                        note: person.birth.place.isKnown ? nil : "No location is stored."
+                    )
+                    factDivider
+                    HumayFactRow(
+                        label: "Precision",
+                        value: person.birth.supportsPrecision
+                            ? "Time and place available"
+                            : "More details would be needed"
+                    )
+                }
+            }
+        }
+        .accessibilityIdentifier("circle.person-detail.birth")
+    }
+
+    private var factDivider: some View {
+        Rectangle()
+            .fill(Color.humaySeparator)
+            .frame(height: 1)
+            .accessibilityHidden(true)
+    }
+
+    private var availabilityNote: some View {
+        HumayHairlineSurface(style: .celestial) {
+            HStack(alignment: .top, spacing: HumaySpacing.large) {
+                HumaySystemSymbolImage(symbol: .privacy, size: .standard)
+                    .foregroundStyle(Color.humayAccentCelestial)
+
+                VStack(alignment: .leading, spacing: HumaySpacing.small) {
+                    Text(person.birth.supportsPrecision ? "Details available" : "Some details are unknown")
+                        .font(HumayTypography.bodyEmphasized)
+                    Text("This view currently supports reviewing birth information. Editing, natal analysis, and person-specific relationship readings are not connected here.")
+                        .font(HumayTypography.supporting)
+                        .foregroundStyle(Color.humayTextSecondary)
+                        .fixedSize(horizontal: false, vertical: true)
+                }
+            }
+        }
+        .accessibilityElement(children: .combine)
+        .accessibilityIdentifier("circle.person-detail.availability")
+    }
+
     private var timeText: String {
         switch person.birth.time {
-        case .unknown: "Unknown"
-        case .exact: person.birth.time.formatted() ?? "Exact"
-        case .approximate: person.birth.time.formatted() ?? "Approximate"
+        case .unknown:
+            "Unknown"
+        case .exact:
+            person.birth.time.formatted() ?? "Exact time available"
+        case .approximate:
+            person.birth.time.formatted() ?? "Approximate time available"
         }
+    }
+
+    private var placeText: String {
+        person.birth.place.name ?? "Not provided"
     }
 }

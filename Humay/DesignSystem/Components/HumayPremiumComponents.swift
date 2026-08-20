@@ -128,6 +128,125 @@ struct HumaySectionHeader: View {
     }
 }
 
+enum HumayZodiacGlyphSize: Sendable, Hashable {
+    case inline
+    case standard
+    case feature
+
+    var dimension: CGFloat {
+        switch self {
+        case .inline: 20
+        case .standard: 32
+        case .feature: 48
+        }
+    }
+}
+
+/// Verified technical zodiac glyph with semantic sizing and typed catalog access.
+struct HumayZodiacGlyph: View {
+    let sign: WesternZodiacSign
+    var size: HumayZodiacGlyphSize = .standard
+    var color: Color = .humayAccentPrestige
+    var accessibilityLabel: String?
+
+    var body: some View {
+        HumayAssetImage(
+            asset: .zodiac(sign),
+            accessibilityLabel: accessibilityLabel
+        )
+        .foregroundStyle(color)
+        .frame(width: size.dimension, height: size.dimension)
+    }
+}
+
+/// Editorial sign identity used when zodiac context leads a reading.
+struct HumayZodiacIdentity: View {
+    let sign: WesternZodiacSign
+    var subtitle: String?
+
+    var body: some View {
+        HStack(alignment: .center, spacing: HumaySpacing.large) {
+            HumayZodiacGlyph(sign: sign, size: .feature)
+                .frame(width: 64, height: 64)
+                .background(Color.humaySurfaceElevated, in: RoundedRectangle(cornerRadius: HumayRadius.surface))
+                .overlay {
+                    RoundedRectangle(cornerRadius: HumayRadius.surface)
+                        .stroke(Color.humaySeparator)
+                }
+
+            VStack(alignment: .leading, spacing: HumaySpacing.extraSmall) {
+                Text(sign.displayName)
+                    .font(HumayTypography.narrativeSectionTitle)
+
+                if let subtitle {
+                    Text(subtitle)
+                        .font(HumayTypography.supporting)
+                        .foregroundStyle(Color.humayTextSecondary)
+                        .fixedSize(horizontal: false, vertical: true)
+                }
+            }
+            .frame(maxWidth: .infinity, alignment: .leading)
+        }
+        .accessibilityElement(children: .combine)
+        .accessibilityLabel(
+            [sign.displayName, subtitle]
+                .compactMap { $0 }
+                .joined(separator: ", ")
+        )
+    }
+}
+
+/// Stable people identity row shared by Connections and Compatibility.
+struct HumayPersonIdentityRow: View {
+    let person: CirclePerson
+    var accent: HumayAccent = .gold
+    var medallionSize: CGFloat = 52
+    var metadata: String?
+
+    var body: some View {
+        HStack(alignment: .center, spacing: HumaySpacing.large) {
+            CirclePersonMedallion(
+                person: person,
+                accent: accent,
+                size: medallionSize
+            )
+
+            VStack(alignment: .leading, spacing: HumaySpacing.extraSmall) {
+                Text(person.name)
+                    .font(HumayTypography.bodyEmphasized)
+                    .foregroundStyle(Color.humayTextPrimary)
+                    .fixedSize(horizontal: false, vertical: true)
+
+                if let sign = person.westernSunSign {
+                    HStack(spacing: HumaySpacing.small) {
+                        HumayZodiacGlyph(
+                            sign: sign,
+                            size: .inline,
+                            color: accent.color
+                        )
+                        Text("\(sign.displayName) Sun")
+                            .font(HumayTypography.supporting)
+                            .foregroundStyle(Color.humayTextSecondary)
+                    }
+                } else {
+                    Label("Sun sign unavailable", systemImage: "questionmark.circle")
+                        .font(HumayTypography.supporting)
+                        .foregroundStyle(Color.humayTextSecondary)
+                }
+
+                if let metadata {
+                    Text(metadata)
+                        .font(HumayTypography.caption)
+                        .foregroundStyle(Color.humayTextSecondary)
+                        .fixedSize(horizontal: false, vertical: true)
+                }
+            }
+            .frame(maxWidth: .infinity, alignment: .leading)
+        }
+        .accessibilityElement(children: .combine)
+    }
+}
+
 enum HumayHairlineSurfaceStyle {
     case quiet
     case raised

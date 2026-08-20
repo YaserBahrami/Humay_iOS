@@ -140,6 +140,23 @@ struct D2FeatureModelTests {
             Issue.record("Expected precise compatibility locked state")
             return
         }
+
+        let noCache = DevelopmentD2Sample.makeInput(arguments: [
+            "-HumayD2DailyState", "offline-empty",
+            "-HumayD2CircleState", "offline-empty"
+        ])
+
+        guard case .offline(let dailyCache) = noCache.dailyState(for: .today) else {
+            Issue.record("Expected Daily Horoscope offline state")
+            return
+        }
+        #expect(dailyCache == nil)
+
+        guard case .offline(let peopleCache) = noCache.circle else {
+            Issue.record("Expected Connections offline state")
+            return
+        }
+        #expect(peopleCache.isEmpty)
     }
 #endif
 
