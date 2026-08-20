@@ -14,6 +14,7 @@ cd "$ROOT"
 PROJECT="Humay.xcodeproj"
 SCHEME="Humay"
 MODE="${1:-standard}"
+INVALID_MODE=0
 
 case "$MODE" in
     quick|standard|full|doctor)
@@ -24,6 +25,7 @@ case "$MODE" in
     *)
         printf 'Unknown mode: %s\n\n' "$MODE" >&2
         MODE="help"
+        INVALID_MODE=1
         ;;
 esac
 
@@ -47,6 +49,9 @@ EOF
 
 if [[ "$MODE" == "help" ]]; then
     usage
+    if [[ "$INVALID_MODE" -eq 1 ]]; then
+        exit 2
+    fi
     exit 0
 fi
 
@@ -515,6 +520,10 @@ has_prebootstrap_infrastructure_failure() {
     grep -Eiq 'Failed to install or launch the test runner|App installation failed|Unable to Install.*Runner|IDELaunchiPhoneSimulatorLauncher|testmanagerd.*(failed|unavailable)|Test manager.*(failed|unavailable)|CoreSimulator.*(failed|unavailable)|destination.*(not available|unavailable|not found)' "$1"
 }
 
+has_build_infrastructure_failure() {
+    grep -Eiq 'CoreSimulator.*(failed|unavailable|invalid|error)|Simulator service.*(failed|unavailable)|Unable to boot|[Ff]ailed to boot|destination.*(not available|unavailable|not found)|Failed to locate any simulator|Lost connection.*Simulator|com\.apple\.CoreSimulator\.SimError' "$1"
+}
+
 json_number() {
     local field="$1"
     local file="$2"
@@ -653,6 +662,7 @@ run_build() {
     local identifier="$3"
     local slug="$4"
     local log="$RUN_DIR/${slug}.log"
+    local detail
 
     printf 'Running %s...\n' "$label"
     if run_logged "$log" \
@@ -667,9 +677,18 @@ run_build() {
         return 0
     fi
 
-    record "$label" "PRODUCT/TEST FAILURE" "$(first_error_line "$log"); $log"
+    if has_build_infrastructure_failure "$log"; then
+        detail="$(infrastructure_reason "$log")"
+        record "$label" "INFRASTRUCTURE FAILURE" "$detail; $log"
+        mark_failure infrastructure
+        report_failure "$label" "INFRASTRUCTURE FAILURE" "$detail" "$log"
+        return 1
+    fi
+
+    detail="$(first_error_line "$log")"
+    record "$label" "PRODUCT/TEST FAILURE" "$detail; $log"
     mark_failure product
-    report_failure "$label" "PRODUCT/TEST FAILURE" "$(first_error_line "$log")" "$log"
+    report_failure "$label" "PRODUCT/TEST FAILURE" "$detail" "$log"
     return 1
 }
 
@@ -836,6 +855,7 @@ print_doctor_device() {
     local identifier="$3"
     local state
     local health=""
+    local device_status=0
 
     state="$(device_state "$identifier")"
     if [[ "$state" == "Booted" ]]; then
@@ -843,12 +863,17 @@ print_doctor_device() {
             health="responsive"
         else
             health="SpringBoard probe failed"
+            device_status=1
         fi
-    else
+    elif [[ "$state" == "Shutdown" ]]; then
         health="shutdown (doctor does not boot devices)"
+    else
+        health="missing or unavailable"
+        device_status=1
     fi
 
     printf '%s: %s (%s) — %s; %s\n' "$label" "$name" "$identifier" "${state:-missing}" "$health"
+    return "$device_status"
 }
 
 run_doctor() {
@@ -863,14 +888,18 @@ run_doctor() {
     df -h "$ROOT"
 
     if resolve_family iphone; then
-        print_doctor_device "iPhone" "$IPHONE_NAME" "$IPHONE_ID"
+        if ! print_doctor_device "iPhone" "$IPHONE_NAME" "$IPHONE_ID"; then
+            doctor_status=1
+        fi
     else
         printf 'iPhone: unavailable — %s\n' "$LAST_RESOLUTION_REASON"
         doctor_status=1
     fi
 
     if resolve_family ipad; then
-        print_doctor_device "iPad" "$IPAD_NAME" "$IPAD_ID"
+        if ! print_doctor_device "iPad" "$IPAD_NAME" "$IPAD_ID"; then
+            doctor_status=1
+        fi
     else
         printf 'iPad: unavailable — %s\n' "$LAST_RESOLUTION_REASON"
         doctor_status=1
