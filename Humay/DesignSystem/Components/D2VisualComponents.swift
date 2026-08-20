@@ -45,7 +45,10 @@ struct D2WordmarkHeader: View {
 
             Button(action: profileAction) {
                 profileFallback
-                    .frame(width: 44, height: 44)
+                .frame(
+                    width: HumayMetrics.minimumHitTarget,
+                    height: HumayMetrics.minimumHitTarget
+                )
                     .clipShape(Circle())
                     .overlay(Circle().stroke(Color.humayHairline))
                     .contentShape(Circle())
@@ -91,22 +94,6 @@ struct D2WordmarkHeader: View {
             .joined()
             .uppercased()
             .nonempty ?? "H"
-    }
-}
-
-struct D2SampleNotice: View {
-    let source: D2ContentSource
-
-    var body: some View {
-        if source.isDevelopmentSample {
-            Label("Development sample · not calculated", systemImage: "hammer.fill")
-                .font(HumayTypography.utility)
-                .foregroundStyle(Color.humayTextSecondary)
-                .padding(.horizontal, HumaySpacing.medium)
-                .padding(.vertical, HumaySpacing.small)
-                .background(Color.humayRaisedSurface, in: Capsule())
-                .accessibilityIdentifier("d2.development-sample.notice")
-        }
     }
 }
 
@@ -156,7 +143,10 @@ struct D2UnavailableState: View {
                 Image(systemName: symbol)
                     .font(.system(.largeTitle, design: .rounded, weight: .medium))
                     .foregroundStyle(Color.humayLavender)
-                    .frame(minWidth: 44, minHeight: 44)
+                    .frame(
+                        minWidth: HumayMetrics.minimumHitTarget,
+                        minHeight: HumayMetrics.minimumHitTarget
+                    )
                     .accessibilityHidden(true)
 
                 Text(title)
@@ -217,31 +207,6 @@ struct HumayCosmicSurface<Content: View>: View {
 
     private var foreground: Color {
         colorScheme == .light ? Color.humayGround : Color.humayTextPrimary
-    }
-}
-
-struct HumayCategoryIcon: View {
-    let symbol: String
-    let accent: HumayAccent
-    var size: CGFloat = 48
-
-    var body: some View {
-        Image(systemName: symbol)
-            .font(.system(size: size * 0.36, weight: .semibold))
-            .foregroundStyle(accent.color)
-            .frame(width: size, height: size)
-            .background(
-                LinearGradient(
-                    colors: [
-                        accent.color.opacity(0.20),
-                        accent.color.opacity(0.10)
-                    ],
-                    startPoint: .topLeading,
-                    endPoint: .bottomTrailing
-                ),
-                in: Circle()
-            )
-            .accessibilityHidden(true)
     }
 }
 

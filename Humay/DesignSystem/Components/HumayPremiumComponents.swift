@@ -68,7 +68,10 @@ struct HumayScreenHeader: View {
                     Text(initials)
                         .font(HumayTypography.supportingEmphasized)
                         .foregroundStyle(Color.humayTextPrimary)
-                        .frame(width: HumayMetrics.minimumHitTarget, height: HumayMetrics.minimumHitTarget)
+                        .frame(
+                            width: HumayMetrics.minimumHitTarget,
+                            height: HumayMetrics.minimumHitTarget
+                        )
                         .background(Color.humaySurface, in: Circle())
                         .overlay {
                             Circle()

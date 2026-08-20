@@ -225,7 +225,7 @@ Phase 1 completed on 2026-08-19; the corrective asset pass completed on 2026-08-
 ### System delivered
 
 - Semantic ivory/midnight, ink, gold, indigo, status, orbit, and chart color roles with deliberate Light/Dark values.
-- Global accent and launch-background assets now match the gold/canvas system; two identical nested legacy copies were removed to eliminate asset-catalog ambiguity.
+- Global accent and launch-background assets now match the gold/canvas system; the unused nested legacy color family was removed to eliminate asset-catalog ambiguity.
 - Editorial and technical typography roles, a shared spacing/radius/motion scale, adaptive page gutters, and a 54 pt primary-control standard.
 - `HumayPage`, screen/section headers, hairline surfaces, progressive disclosure, fact rows, relationship metric bands, and shared state presentation.
 - Typed vector access for conventional astrology glyphs and centralized SF Symbol treatment for generic UI concepts.

@@ -147,6 +147,14 @@ the licensed template glyph family documented above.
 | `IllustrationAllCaughtUp`, `IllustrationAskEmpty`, `IllustrationBaZiChart`, `IllustrationCelestialMoon`, `IllustrationCelestialSun`, `IllustrationCompareSystems`, `IllustrationCompatibilityPair`, `IllustrationConjunction`, `IllustrationCosmicWeather`, `IllustrationEclipse`, `IllustrationFullMoon`, `IllustrationMeteorShower`, `IllustrationNewMoon`, `IllustrationNoData`, `IllustrationOffline`, `IllustrationPremiumCelestial`, `IllustrationRetrograde`, `IllustrationRewardUnlock`, `IllustrationRoastMode`, `IllustrationVedicChart`, `IllustrationWesternChart` | No shipping call site after typed-access migration | REMOVE | Reference mockups remain under `docs/design/soulful-reference`; unused shipping copies should not survive. |
 | `ProfileRevealConstellationPath` | No shipping call site | REMOVE | Unreachable shipping asset; design references remain in docs. |
 
+## Color catalog reachability
+
+| Assets | Runtime status | Decision | Notes |
+|---|---|---|---|
+| `HumayGround`, `HumaySurface`, `HumayRaisedSurface`, `HumayTextPrimary`, `HumayTextSecondary`, `HumayHairline`, `HumayCoral`, `HumayLavender`, `HumaySolarGold`, `HumayCelestialBlue`, `HumaySage` | Referenced by semantic `Color` roles and foundation tests | KEEP | Canonical Light/Dark semantic palette. |
+| `AccentColor`, `LaunchBackground` | Referenced by project build settings and launch configuration | KEEP | Platform configuration assets, not feature artwork. |
+| deleted `Colors/` legacy color family | No production `Color`/`UIColor` call site or project setting | REMOVE completed in cleanup | Superseded by root-level `Humay*` semantic colors; deleting duplicate catalog entries removes ambiguity without changing rendered values. |
+
 ## Catalog and rendering rules
 
 - Custom asset names are accessed only through `HumayAsset`; feature views do not construct catalog strings.
