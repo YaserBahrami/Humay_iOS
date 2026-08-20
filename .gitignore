@@ -9,6 +9,7 @@
 # Xcode
 DerivedData/
 build/
+.verification-results/
 *.xcuserstate
 xcuserdata/
 *.xccheckout
