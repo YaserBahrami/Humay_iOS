@@ -14,8 +14,9 @@ struct SkyCalendarMonthView: View {
         Group {
             switch state {
             case .loading:
-                SkyCalendarLoadingView(
+                SkyLoadingPresentation(
                     title: "Loading Calendar…",
+                    message: "Waiting for supplied month and event data.",
                     identifier: "sky.calendar.month.state.loading"
                 )
 
@@ -38,18 +39,23 @@ struct SkyCalendarMonthView: View {
                 .accessibilityIdentifier("sky.calendar.month.state.empty")
 
             case .unavailable(_, let reason):
-                SkyCalendarStateMessage(
+                SkyStatePresentation(
                     symbol: unavailableSymbol(reason),
                     title: "Calendar unavailable",
-                    detail: unavailableDetail(reason),
-                    accent: .lavender,
-                    identifier: "sky.calendar.month.state.unavailable"
+                    message: unavailableDetail(reason),
+                    identifier: "sky.calendar.month.state.unavailable",
+                    eyebrow: "Month view",
+                    accent: .humayAccentCelestial
                 )
 
             case .offline(_, let cached):
                 if let cached {
                     VStack(alignment: .leading, spacing: HumaySpacing.large) {
-                        SkyCalendarOfflineNotice()
+                        SkyOfflineBanner(
+                            title: "Offline · saved Calendar",
+                            detail: "Showing saved civil dates and event metadata.",
+                            identifier: "sky.calendar.offline.cached.notice"
+                        )
                         loadedSurface(
                             monthID: cached.selection,
                             context: cached.context,
@@ -60,22 +66,23 @@ struct SkyCalendarMonthView: View {
                     .accessibilityElement(children: .contain)
                     .accessibilityIdentifier("sky.calendar.month.state.offline.cached")
                 } else {
-                    SkyCalendarStateMessage(
+                    SkyStatePresentation(
                         symbol: "wifi.slash",
                         title: "No saved Calendar",
-                        detail: "Reconnect to load these dates.",
-                        accent: .solarGold,
-                        identifier: "sky.calendar.month.state.offline.no-cache"
+                        message: "Reconnect to load these dates.",
+                        identifier: "sky.calendar.month.state.offline.no-cache",
+                        eyebrow: "Month view"
                     )
                 }
 
             case .failed:
-                SkyCalendarStateMessage(
+                SkyStatePresentation(
                     symbol: "exclamationmark.triangle",
                     title: "Calendar couldn’t load",
-                    detail: "The source could not be loaded.",
-                    accent: .coral,
-                    identifier: "sky.calendar.month.state.failed"
+                    message: "The source could not be loaded.",
+                    identifier: "sky.calendar.month.state.failed",
+                    eyebrow: "Month view",
+                    accent: .humayAccentRoast
                 )
             }
         }
@@ -217,8 +224,9 @@ struct SkyCalendarWeekView: View {
         Group {
             switch state {
             case .loading:
-                SkyCalendarLoadingView(
+                SkyLoadingPresentation(
                     title: "Loading Calendar…",
+                    message: "Waiting for supplied week and event data.",
                     identifier: "sky.calendar.week.state.loading"
                 )
 
@@ -241,18 +249,23 @@ struct SkyCalendarWeekView: View {
                 .accessibilityIdentifier("sky.calendar.week.state.empty")
 
             case .unavailable(_, let reason):
-                SkyCalendarStateMessage(
+                SkyStatePresentation(
                     symbol: unavailableSymbol(reason),
                     title: "Calendar unavailable",
-                    detail: unavailableDetail(reason),
-                    accent: .lavender,
-                    identifier: "sky.calendar.week.state.unavailable"
+                    message: unavailableDetail(reason),
+                    identifier: "sky.calendar.week.state.unavailable",
+                    eyebrow: "Week view",
+                    accent: .humayAccentCelestial
                 )
 
             case .offline(_, let cached):
                 if let cached {
                     VStack(alignment: .leading, spacing: HumaySpacing.large) {
-                        SkyCalendarOfflineNotice()
+                        SkyOfflineBanner(
+                            title: "Offline · saved Calendar",
+                            detail: "Showing saved civil dates and event metadata.",
+                            identifier: "sky.calendar.offline.cached.notice"
+                        )
                         loadedSurface(
                             startDate: cached.startDate,
                             context: cached.context,
@@ -263,22 +276,23 @@ struct SkyCalendarWeekView: View {
                     .accessibilityElement(children: .contain)
                     .accessibilityIdentifier("sky.calendar.week.state.offline.cached")
                 } else {
-                    SkyCalendarStateMessage(
+                    SkyStatePresentation(
                         symbol: "wifi.slash",
                         title: "No saved Calendar",
-                        detail: "Reconnect to load these dates.",
-                        accent: .solarGold,
-                        identifier: "sky.calendar.week.state.offline.no-cache"
+                        message: "Reconnect to load these dates.",
+                        identifier: "sky.calendar.week.state.offline.no-cache",
+                        eyebrow: "Week view"
                     )
                 }
 
             case .failed:
-                SkyCalendarStateMessage(
+                SkyStatePresentation(
                     symbol: "exclamationmark.triangle",
                     title: "Calendar couldn’t load",
-                    detail: "The source could not be loaded.",
-                    accent: .coral,
-                    identifier: "sky.calendar.week.state.failed"
+                    message: "The source could not be loaded.",
+                    identifier: "sky.calendar.week.state.failed",
+                    eyebrow: "Week view",
+                    accent: .humayAccentRoast
                 )
             }
         }
@@ -363,7 +377,7 @@ struct SkyCalendarWeekView: View {
             }
 
             if let context {
-                SkyCalendarObservationFooter(context: context, suffix: "civil week begins Monday")
+                SkyCalendarObservationFooter(context: context, suffix: "Civil week begins Monday")
             }
         }
         .onChange(of: selectedDate) { _, newDate in
@@ -442,9 +456,9 @@ private struct SkyCalendarRangeHeader: View {
     ) -> some View {
         Button(action: action) {
             Image(systemName: systemImage)
-                .font(.title3.weight(.semibold))
+                .font(.body.weight(.semibold))
                 .frame(width: HumayMetrics.minimumHitTarget, height: HumayMetrics.minimumHitTarget)
-                .background(Color.humayRaisedSurface, in: Circle())
+                .contentShape(Rectangle())
         }
         .buttonStyle(.plain)
         .disabled(!navigationIsAvailable)
@@ -469,7 +483,7 @@ private struct SkyCalendarCivilGrid: View {
     }
 
     private var rowHeight: CGFloat {
-        if dynamicTypeSize.isAccessibilitySize { return 56 }
+        if dynamicTypeSize.isAccessibilitySize { return 72 }
         return usesRegularRows ? 50 : HumayMetrics.minimumHitTarget
     }
 
@@ -477,12 +491,13 @@ private struct SkyCalendarCivilGrid: View {
         VStack(spacing: 0) {
             HStack(spacing: 0) {
                 ForEach(SkyCalendarSupport.weekdaySymbols, id: \.self) { weekday in
-                    Text(weekday)
+                    Text(dynamicTypeSize.isAccessibilitySize ? String(weekday.prefix(1)) : weekday)
                         .font(HumayTypography.calendarWeekday)
                         .tracking(1.1)
                         .foregroundStyle(Color.humayTextSecondary)
                         .frame(maxWidth: .infinity)
-                        .frame(height: 30)
+                        .frame(height: dynamicTypeSize.isAccessibilitySize ? 44 : 30)
+                        .accessibilityLabel(SkyCalendarSupport.fullWeekdayName(for: weekday))
                 }
             }
 
@@ -510,12 +525,12 @@ private struct SkyCalendarCivilGrid: View {
                 }
             }
         }
-        .padding(.horizontal, HumaySpacing.extraSmall)
-        .padding(.vertical, HumaySpacing.extraSmall)
-        .background(Color.humaySurface, in: RoundedRectangle(cornerRadius: HumayRadius.feature))
+        .padding(.horizontal, HumaySpacing.small)
+        .padding(.vertical, HumaySpacing.small)
+        .background(Color.humaySurface, in: RoundedRectangle(cornerRadius: HumayRadius.surface))
         .overlay {
-            RoundedRectangle(cornerRadius: HumayRadius.feature)
-                .stroke(Color.humayHairline)
+            RoundedRectangle(cornerRadius: HumayRadius.surface)
+                .stroke(Color.humaySeparator)
         }
         .accessibilityElement(children: .contain)
     }
@@ -531,6 +546,8 @@ private struct SkyCalendarDateCell: View {
     let rowHeight: CGFloat
     let action: () -> Void
 
+    @Environment(\.dynamicTypeSize) private var dynamicTypeSize
+
     private var isSelected: Bool { selectedDate == date }
     private var isToday: Bool { today == date }
     private var isOutsideMonth: Bool { date.month != monthID.month || date.year != monthID.year }
@@ -540,20 +557,12 @@ private struct SkyCalendarDateCell: View {
             ZStack {
                 if isSelected {
                     Circle()
-                        .fill(Color.humayCoral)
+                        .fill(Color.humayAccentPrestige)
                         .frame(width: 32, height: 32)
                 } else if isToday {
                     Circle()
-                        .stroke(Color.humayCoral, lineWidth: 2)
+                        .stroke(Color.humayAccentCelestial, lineWidth: 2)
                         .frame(width: 32, height: 32)
-                }
-
-                if isToday {
-                    Capsule()
-                        .fill(Color.humayCoral)
-                        .frame(width: 12, height: 3)
-                        .offset(y: -18)
-                        .accessibilityHidden(true)
                 }
 
                 Text(String(date.day))
@@ -562,9 +571,9 @@ private struct SkyCalendarDateCell: View {
                     .foregroundStyle(textColor)
 
                 marker
-                    .offset(y: 14)
+                    .offset(y: (rowHeight / 2) - 4)
 
-                if isOutsideMonth && showsBoundaryLabel {
+                if isOutsideMonth && showsBoundaryLabel && !dynamicTypeSize.isAccessibilitySize {
                     Text(SkyCalendarSupport.shortMonth(date))
                         .font(HumayTypography.calendarBoundary)
                         .tracking(0.6)
@@ -589,19 +598,12 @@ private struct SkyCalendarDateCell: View {
         if events.count == 1, events[0].type == .lunarPhase {
             Image(systemName: "moon.fill")
                 .font(.system(size: 7, weight: .bold))
-                .foregroundStyle(isSelected ? selectedForeground : Color.humaySolarGold)
+                .foregroundStyle(Color.humayAccentPrestige)
                 .accessibilityHidden(true)
         } else if !events.isEmpty {
-            HStack(spacing: 3) {
-                Circle()
-                    .fill(markerColor)
-                    .frame(width: 5, height: 5)
-                if events.count > 1 {
-                    Text(String(events.count))
-                        .font(HumayTypography.calendarMarker)
-                        .foregroundStyle(isSelected ? selectedForeground : Color.humayTextSecondary)
-                }
-            }
+            Capsule()
+                .fill(markerColor)
+                .frame(width: events.count > 1 ? 14 : 6, height: 3)
             .accessibilityHidden(true)
         } else {
             Color.clear
@@ -617,18 +619,12 @@ private struct SkyCalendarDateCell: View {
     }
 
     private var markerColor: Color {
-        if isSelected { return selectedForeground }
-        if events.contains(where: { $0.type == .planetaryAspect }) {
-            return Color.humayLavender
-        }
-        if events.contains(where: { $0.system == .astrological(.vedic) }) {
-            return Color.humayCelestialBlue
-        }
-        return Color.humayCoral
+        if isSelected { return Color.humayAccentPrestige }
+        return Color.humayAccentCelestial
     }
 
     private var selectedForeground: Color {
-        Color.humayGround
+        Color.humayInkOnGold
     }
 
     private var accessibilityLabel: String {
@@ -657,7 +653,7 @@ private struct SkyCalendarWeekRail: View {
             if dynamicTypeSize.isAccessibilitySize {
                 ScrollView(.horizontal) {
                     HStack(spacing: 0) {
-                        weekCells(fixedWidth: 60)
+                        weekCells(fixedWidth: 88)
                     }
                 }
                 .scrollIndicators(.hidden)
@@ -667,12 +663,12 @@ private struct SkyCalendarWeekRail: View {
                 }
             }
         }
-        .padding(.horizontal, HumaySpacing.extraSmall)
-        .padding(.vertical, HumaySpacing.extraSmall)
-        .background(Color.humaySurface, in: RoundedRectangle(cornerRadius: HumayRadius.feature))
+        .padding(.horizontal, HumaySpacing.small)
+        .padding(.vertical, HumaySpacing.small)
+        .background(Color.humaySurface, in: RoundedRectangle(cornerRadius: HumayRadius.surface))
         .overlay {
-            RoundedRectangle(cornerRadius: HumayRadius.feature)
-                .stroke(Color.humayHairline)
+            RoundedRectangle(cornerRadius: HumayRadius.surface)
+                .stroke(Color.humaySeparator)
         }
         .accessibilityElement(children: .contain)
         .accessibilityIdentifier("sky.calendar.week.rail")
@@ -717,33 +713,25 @@ private struct SkyCalendarWeekDateCell: View {
                 ZStack {
                     if isSelected {
                         Circle()
-                            .fill(Color.humayCoral)
+                            .fill(Color.humayAccentPrestige)
                     } else if isToday {
                         Circle()
-                            .stroke(Color.humayCoral, lineWidth: 2)
-                    }
-
-                    if isToday {
-                        Capsule()
-                            .fill(Color.humayCoral)
-                            .frame(width: 14, height: 3)
-                            .offset(y: -21)
-                            .accessibilityHidden(true)
+                            .stroke(Color.humayAccentCelestial, lineWidth: 2)
                     }
 
                     Text(String(date.day))
                         .font(HumayTypography.calendarDate)
                         .monospacedDigit()
                         .foregroundStyle(isSelected ? selectedForeground : Color.humayTextPrimary)
-
-                    marker
-                        .offset(y: 14)
                 }
                 .frame(width: 40, height: 40)
+
+                marker
+                    .frame(height: 6)
             }
             .frame(
                 minWidth: HumayMetrics.minimumHitTarget,
-                minHeight: dynamicTypeSize.isAccessibilitySize ? 72 : 60
+                minHeight: dynamicTypeSize.isAccessibilitySize ? 96 : 60
             )
             .frame(maxWidth: .infinity)
             .contentShape(Rectangle())
@@ -761,19 +749,12 @@ private struct SkyCalendarWeekDateCell: View {
         if events.count == 1, events[0].type == .lunarPhase {
             Image(systemName: "moon.fill")
                 .font(.system(size: 7, weight: .bold))
-                .foregroundStyle(isSelected ? selectedForeground : Color.humaySolarGold)
+                .foregroundStyle(Color.humayAccentPrestige)
                 .accessibilityHidden(true)
         } else if !events.isEmpty {
-            HStack(spacing: 3) {
-                Circle()
-                    .fill(isSelected ? selectedForeground : Color.humayLavender)
-                    .frame(width: 5, height: 5)
-                if events.count > 1 {
-                    Text(String(events.count))
-                        .font(HumayTypography.calendarMarker)
-                        .foregroundStyle(isSelected ? selectedForeground : Color.humayTextSecondary)
-                }
-            }
+            Capsule()
+                .fill(isSelected ? Color.humayAccentPrestige : Color.humayAccentCelestial)
+                .frame(width: events.count > 1 ? 14 : 6, height: 3)
             .accessibilityHidden(true)
         } else {
             Color.clear.frame(width: 5, height: 5)
@@ -782,7 +763,7 @@ private struct SkyCalendarWeekDateCell: View {
     }
 
     private var selectedForeground: Color {
-        Color.humayGround
+        Color.humayInkOnGold
     }
 
     private var accessibilityLabel: String {
@@ -802,189 +783,72 @@ private struct SkyCalendarAgenda: View {
     let eventDetailState: (SkyEventID) -> SkyEventDetailFeatureState
 
     var body: some View {
-        VStack(alignment: .leading, spacing: HumaySpacing.medium) {
-            HStack(alignment: .lastTextBaseline) {
-                VStack(alignment: .leading, spacing: HumaySpacing.extraSmall) {
-                    Text("Selected date")
-                        .font(HumayTypography.utility)
-                        .tracking(1.1)
-                        .foregroundStyle(Color.humayCoral)
+        VStack(alignment: .leading, spacing: HumaySpacing.large) {
+            SkySelectedDateHeader(date: selectedDate, eventCount: events.count)
 
-                    Text(SkyCalendarSupport.selectedDateTitle(selectedDate))
-                        .font(HumayTypography.editorialTitle)
-                        .fixedSize(horizontal: false, vertical: true)
-                        .accessibilityAddTraits(.isHeader)
-                }
-                Spacer(minLength: HumaySpacing.small)
-                Text(eventCount)
-                    .font(HumayTypography.utility)
-                    .foregroundStyle(Color.humayTextSecondary)
-                    .textCase(.uppercase)
-            }
+            Divider()
+                .overlay(Color.humaySeparator)
 
             if events.isEmpty {
                 SkyCalendarQuietDay()
             } else {
                 VStack(spacing: 0) {
                     ForEach(Array(events.enumerated()), id: \.element.id) { index, event in
-                        SkyCalendarEventRow(
-                            event: event,
-                            context: context,
-                            source: source,
-                            eventDetailState: eventDetailState
-                        )
+                        NavigationLink {
+                            SkyEventDetailView(
+                                source: source,
+                                state: eventDetailState(event.id),
+                                context: context
+                            )
+                        } label: {
+                            SkyEventRow(
+                                event: event,
+                                context: context,
+                                timingPresentation: .calendar
+                            )
                             .padding(.vertical, HumaySpacing.small)
+                        }
+                        .buttonStyle(.plain)
+                        .accessibilityHint("Opens Event Detail")
+                        .accessibilityIdentifier("sky.calendar.event.\(event.id.rawValue)")
 
                         if index < events.count - 1 {
-                            Divider().overlay(Color.humayHairline)
+                            Divider().overlay(Color.humaySeparator)
                         }
                     }
                 }
-                .padding(.horizontal, HumaySpacing.large)
-                .background(Color.humaySurface, in: RoundedRectangle(cornerRadius: HumayRadius.feature))
-                .overlay {
-                    RoundedRectangle(cornerRadius: HumayRadius.feature)
-                        .stroke(Color.humayHairline)
-                }
             }
+
+            Divider()
+                .overlay(Color.humaySeparator)
         }
         .accessibilityElement(children: .contain)
         .accessibilityIdentifier(events.isEmpty ? "sky.calendar.agenda.quiet" : identifier)
-    }
-
-    private var eventCount: String {
-        "\(events.count) event\(events.count == 1 ? "" : "s")"
-    }
-}
-
-private struct SkyCalendarEventRow: View {
-    let event: SkyEvent
-    let context: SkyObservationContext?
-    let source: D3ContentSource
-    let eventDetailState: (SkyEventID) -> SkyEventDetailFeatureState
-
-    var body: some View {
-        NavigationLink {
-            SkyEventDetailView(
-                source: source,
-                state: eventDetailState(event.id),
-                context: context
-            )
-        } label: {
-            rowContent
-        }
-        .buttonStyle(.plain)
-        .accessibilityHint("Opens Event Detail")
-        .accessibilityIdentifier("sky.calendar.event.\(event.id.rawValue)")
-    }
-
-    private var rowContent: some View {
-        HStack(alignment: .top, spacing: HumaySpacing.medium) {
-            SkyCalendarEventGlyph(event: event)
-                .frame(width: HumayMetrics.minimumHitTarget, height: HumayMetrics.minimumHitTarget)
-
-            VStack(alignment: .leading, spacing: HumaySpacing.small) {
-                Text(event.title)
-                    .font(HumayTypography.bodyEmphasized)
-                    .fixedSize(horizontal: false, vertical: true)
-
-                if let summary = event.summary {
-                    Text(summary)
-                        .font(HumayTypography.supporting)
-                        .foregroundStyle(Color.humayTextSecondary)
-                        .fixedSize(horizontal: false, vertical: true)
-                }
-
-                ViewThatFits(in: .horizontal) {
-                    HStack(alignment: .firstTextBaseline, spacing: HumaySpacing.small) {
-                        timingText
-                        Spacer(minLength: HumaySpacing.small)
-                        methodologyText
-                    }
-                    VStack(alignment: .leading, spacing: HumaySpacing.small) {
-                        timingText
-                        methodologyText
-                    }
-                }
-            }
-            .frame(maxWidth: .infinity, alignment: .leading)
-        }
-        .frame(minHeight: HumayMetrics.minimumHitTarget, alignment: .leading)
-        .accessibilityElement(children: .ignore)
-        .accessibilityLabel(
-            "\(event.title), \(SkyEventTypeFormatter.label(for: event.type)), "
-                + "\(SkyMethodologyFormatter.label(for: event.system))"
-        )
-        .accessibilityValue(accessibilityValue)
-        .accessibilityIdentifier("sky.calendar.event.\(event.id.rawValue)")
-    }
-
-    private var timingText: some View {
-        Text(timing)
-            .font(HumayTypography.supportingEmphasized)
-            .monospacedDigit()
-            .foregroundStyle(Color.humayTextSecondary)
-            .fixedSize(horizontal: false, vertical: true)
-    }
-
-    private var methodologyText: some View {
-        HStack(spacing: HumaySpacing.extraSmall) {
-            Circle()
-                .fill(event.style.accent)
-                .frame(width: 8, height: 8)
-                .accessibilityHidden(true)
-            Text(SkyMethodologyFormatter.label(for: event.system))
-                .font(HumayTypography.utility)
-                .foregroundStyle(Color.humayTextSecondary)
-        }
-        .fixedSize(horizontal: true, vertical: false)
-    }
-
-    private var timing: String {
-        guard let context else { return "Timing unavailable" }
-        return SkyEventTimingFormatter.calendarText(for: event.timing, context: context)
-    }
-
-    private var accessibilityValue: String {
-        guard let context else { return "Timing unavailable" }
-        return SkyEventTimingFormatter.calendarAccessibilityText(for: event.timing, context: context)
-    }
-}
-
-private struct SkyCalendarEventGlyph: View {
-    let event: SkyEvent
-
-    var body: some View {
-        Image(systemName: event.style.symbol)
-            .font(.system(size: 16, weight: .medium))
-            .foregroundStyle(event.style.accent)
-            .frame(width: 30, height: 30)
-            .background(event.style.accent.opacity(0.12), in: Circle())
-            .frame(width: HumayMetrics.minimumHitTarget, height: HumayMetrics.minimumHitTarget)
-            .accessibilityHidden(true)
     }
 }
 
 private struct SkyCalendarQuietDay: View {
     var body: some View {
-        VStack(alignment: .leading, spacing: HumaySpacing.small) {
-            Image(systemName: "moon.stars")
-                .font(.title2.weight(.light))
-                .foregroundStyle(Color.humaySolarGold)
+        HStack(alignment: .top, spacing: HumaySpacing.medium) {
+            Image(systemName: "minus")
+                .font(.body.weight(.medium))
+                .foregroundStyle(Color.humayAccentPrestige)
+                .frame(
+                    width: HumayMetrics.minimumHitTarget,
+                    height: HumayMetrics.minimumHitTarget
+                )
                 .accessibilityHidden(true)
-            Text("Quiet sky this day")
-                .font(HumayTypography.cardTitle)
-            Text("No notable events are supplied.")
-                .font(HumayTypography.supporting)
-                .foregroundStyle(Color.humayTextSecondary)
+
+            VStack(alignment: .leading, spacing: HumaySpacing.small) {
+                Text("Quiet sky this day")
+                    .font(HumayTypography.bodyEmphasized)
+                Text("No notable events are supplied.")
+                    .font(HumayTypography.supporting)
+                    .foregroundStyle(Color.humayTextSecondary)
+            }
         }
         .frame(maxWidth: .infinity, alignment: .leading)
-        .padding(HumaySpacing.extraLarge)
-        .background(Color.humayRaisedSurface, in: RoundedRectangle(cornerRadius: HumayRadius.surface))
-        .overlay {
-            RoundedRectangle(cornerRadius: HumayRadius.surface)
-                .stroke(Color.humayHairline)
-        }
+        .padding(.vertical, HumaySpacing.medium)
         .accessibilityElement(children: .combine)
         .accessibilityIdentifier("sky.calendar.agenda.quiet")
     }
@@ -1010,17 +874,24 @@ private struct SkyCalendarWeekContext: View {
                 .font(HumayTypography.editorialTitle)
                 .accessibilityAddTraits(.isHeader)
 
-            VStack(alignment: .leading, spacing: HumaySpacing.large) {
-                ForEach(contextDates, id: \.self) { date in
+            VStack(spacing: 0) {
+                ForEach(Array(contextDates.enumerated()), id: \.element) { index, date in
                     contextRow(for: date)
+                        .padding(.vertical, HumaySpacing.medium)
+
+                    if index < contextDates.count - 1 {
+                        Divider()
+                            .overlay(Color.humaySeparator)
+                    }
                 }
             }
-            .padding(.leading, HumaySpacing.large)
-            .overlay(alignment: .leading) {
-                Rectangle()
-                    .fill(Color.humayHairline)
-                    .frame(width: 2)
-                    .padding(.vertical, HumaySpacing.small)
+            .overlay(alignment: .top) {
+                Divider()
+                    .overlay(Color.humaySeparator)
+            }
+            .overlay(alignment: .bottom) {
+                Divider()
+                    .overlay(Color.humaySeparator)
             }
         }
         .accessibilityIdentifier("sky.calendar.week.context")
@@ -1030,21 +901,20 @@ private struct SkyCalendarWeekContext: View {
     private func contextRow(for date: SkyCalendarDate) -> some View {
         let events = eventDays[date] ?? []
         HStack(alignment: .top, spacing: HumaySpacing.medium) {
-            Circle()
-                .fill(events.isEmpty ? Color.clear : (events.first?.style.accent ?? Color.humaySage))
-                .frame(width: 14, height: 14)
-                .overlay {
-                    if events.isEmpty {
-                        Circle().stroke(Color.humaySage, lineWidth: 2)
-                    }
-                }
+            Image(systemName: events.first?.style.symbol ?? "minus")
+                .font(.body.weight(.regular))
+                .foregroundStyle(events.first?.style.accent ?? Color.humayTextSecondary)
+                .frame(
+                    width: HumayMetrics.minimumHitTarget,
+                    height: HumayMetrics.minimumHitTarget
+                )
                 .accessibilityHidden(true)
 
             VStack(alignment: .leading, spacing: HumaySpacing.extraSmall) {
                 Text(SkyCalendarSupport.contextDateTitle(date))
                     .font(HumayTypography.utility)
                     .tracking(1.1)
-                    .foregroundStyle(events.isEmpty ? Color.humaySage : Color.humayCoral)
+                    .foregroundStyle(events.isEmpty ? Color.humayTextSecondary : Color.humayAccentPrestige)
 
                 if events.isEmpty {
                     Text("Quiet sky this day")
@@ -1082,17 +952,17 @@ private struct SkyCalendarWeekContext: View {
 
 private struct SkyCalendarObservationFooter: View {
     let context: SkyObservationContext
-    var suffix: String = "civil dates · sample not calculated"
+    var suffix: String = "Civil dates"
 
     var body: some View {
         VStack(alignment: .leading, spacing: HumaySpacing.small) {
-            Divider().overlay(Color.humayHairline)
-            Text("\(context.timeZoneIdentifier) · \(suffix)")
-                .font(HumayTypography.supporting)
-                .foregroundStyle(Color.humayTextSecondary)
-                .fixedSize(horizontal: false, vertical: true)
+            Divider().overlay(Color.humaySeparator)
+            SkyObservationMetadata(
+                context: context,
+                note: suffix
+            )
         }
-        .accessibilityElement(children: .combine)
+        .accessibilityElement(children: .contain)
         .accessibilityIdentifier("sky.calendar.observation-context")
     }
 }
@@ -1117,132 +987,21 @@ private struct SkyCalendarEmptyMonthNote: View {
     }
 }
 
-struct SkyCalendarLoadingView: View {
-    let title: String
-    let identifier: String
-
-    @Environment(\.accessibilityReduceMotion) private var reduceMotion
-
-    var body: some View {
-        VStack(alignment: .leading, spacing: HumaySpacing.large) {
-            skeleton(width: 220, height: 30)
-            skeleton(width: 180, height: 14)
-
-            VStack(spacing: HumaySpacing.medium) {
-                ForEach(0..<6, id: \.self) { _ in
-                    HStack(spacing: HumaySpacing.medium) {
-                        ForEach(0..<7, id: \.self) { _ in
-                            Circle()
-                                .fill(Color.humayHairline.opacity(0.62))
-                                .frame(width: 10, height: 10)
-                                .frame(maxWidth: .infinity, minHeight: HumayMetrics.minimumHitTarget)
-                        }
-                    }
-                }
-            }
-            .padding(HumaySpacing.large)
-            .background(Color.humaySurface, in: RoundedRectangle(cornerRadius: HumayRadius.feature))
-            .overlay {
-                RoundedRectangle(cornerRadius: HumayRadius.feature)
-                    .stroke(Color.humayHairline)
-            }
-
-            HStack(spacing: HumaySpacing.medium) {
-                if reduceMotion {
-                    Image(systemName: "sparkles")
-                        .font(.title2)
-                        .foregroundStyle(Color.humayLavender)
-                        .frame(width: HumayMetrics.minimumHitTarget, height: HumayMetrics.minimumHitTarget)
-                } else {
-                    ProgressView()
-                        .controlSize(.large)
-                        .tint(Color.humayLavender)
-                        .frame(width: HumayMetrics.minimumHitTarget, height: HumayMetrics.minimumHitTarget)
-                }
-                Text(title)
-                    .font(HumayTypography.bodyEmphasized)
-            }
-        }
-        .frame(maxWidth: .infinity, alignment: .leading)
-        .accessibilityElement(children: .combine)
-        .accessibilityLabel(title)
-        .accessibilityIdentifier(identifier)
-    }
-
-    private func skeleton(width: CGFloat, height: CGFloat) -> some View {
-        RoundedRectangle(cornerRadius: HumayRadius.compact)
-            .fill(Color.humayHairline.opacity(0.62))
-            .frame(maxWidth: width == .infinity ? .infinity : width, minHeight: height, maxHeight: height)
-            .redacted(reason: .placeholder)
-    }
-}
-
-private struct SkyCalendarStateMessage: View {
-    let symbol: String
-    let title: String
-    let detail: String
-    let accent: HumayColorRole
-    let identifier: String
-
-    var body: some View {
-        VStack(alignment: .leading, spacing: HumaySpacing.large) {
-            Image(systemName: symbol)
-                .font(.system(size: 40, weight: .light))
-                .foregroundStyle(accent.color)
-                .frame(width: 56, height: 56)
-                .accessibilityHidden(true)
-
-            VStack(alignment: .leading, spacing: HumaySpacing.small) {
-                Text(title)
-                    .font(HumayTypography.cardTitle)
-                    .fixedSize(horizontal: false, vertical: true)
-                Text(detail)
-                    .font(HumayTypography.supporting)
-                    .foregroundStyle(Color.humayTextSecondary)
-                    .fixedSize(horizontal: false, vertical: true)
-            }
-        }
-        .frame(maxWidth: .infinity, minHeight: 240, alignment: .center)
-        .padding(HumaySpacing.extraLarge)
-        .background(Color.humaySurface, in: RoundedRectangle(cornerRadius: HumayRadius.feature))
-        .overlay {
-            RoundedRectangle(cornerRadius: HumayRadius.feature)
-                .stroke(Color.humayHairline)
-        }
-        .accessibilityElement(children: .combine)
-        .accessibilityIdentifier(identifier)
-    }
-}
-
-private struct SkyCalendarOfflineNotice: View {
-    var body: some View {
-        Label {
-            VStack(alignment: .leading, spacing: HumaySpacing.extraSmall) {
-                Text("Offline · saved Calendar")
-                    .font(HumayTypography.bodyEmphasized)
-                Text("Showing saved civil dates and event metadata.")
-                    .font(HumayTypography.supporting)
-                    .foregroundStyle(Color.humayTextSecondary)
-                    .fixedSize(horizontal: false, vertical: true)
-            }
-        } icon: {
-            Image(systemName: "wifi.slash")
-                .foregroundStyle(Color.humaySolarGold)
-        }
-        .frame(maxWidth: .infinity, alignment: .leading)
-        .padding(HumaySpacing.large)
-        .background(Color.humayRaisedSurface, in: RoundedRectangle(cornerRadius: HumayRadius.compact))
-        .overlay {
-            RoundedRectangle(cornerRadius: HumayRadius.compact)
-                .stroke(Color.humayHairline)
-        }
-        .accessibilityElement(children: .combine)
-        .accessibilityIdentifier("sky.calendar.offline.cached.notice")
-    }
-}
-
 enum SkyCalendarSupport {
     static let weekdaySymbols = ["MON", "TUE", "WED", "THU", "FRI", "SAT", "SUN"]
+
+    static func fullWeekdayName(for symbol: String) -> String {
+        switch symbol {
+        case "MON": "Monday"
+        case "TUE": "Tuesday"
+        case "WED": "Wednesday"
+        case "THU": "Thursday"
+        case "FRI": "Friday"
+        case "SAT": "Saturday"
+        case "SUN": "Sunday"
+        default: symbol
+        }
+    }
 
     static func date(year: Int, month: Int, day: Int) -> SkyCalendarDate {
         guard let date = try? SkyCalendarDate(year: year, month: month, day: day) else {

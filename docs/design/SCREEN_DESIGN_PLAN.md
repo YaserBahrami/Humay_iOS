@@ -132,8 +132,9 @@ components without reopening their approved design direction.
 - Today Together remains unimplemented. No placeholder UI, provider, result, or
   calculation was introduced.
 - Removed the Daily crystal ball, twelve cute zodiac illustrations, and Connections
-  Today Together decoration. Remaining production illustrations belong only to untouched
-  onboarding, Ask, and Current Sky/Calendar surfaces.
+  Today Together decoration. At the Phase 2 checkpoint, remaining production
+  illustrations belonged only to untouched onboarding, Ask, and Current Sky/Calendar
+  surfaces; Phase 3 later removed the now-unreachable Current Sky asset.
 - iPhone 17 Pro and 13-inch iPad Pro simulator evidence was captured and inspected in
   Light and Dark for normal/free, precise locked, populated, empty, Add Person, Person
   Detail, and compatibility entry. The 1032-point iPad regular-width composition is the
@@ -163,6 +164,37 @@ components without reopening their approved design direction.
 - Non-visual Domain/Presentation contracts and Debug-only deterministic sample states are implemented.
 - Current Sky, Month/Week Calendar and Event Detail SwiftUI are implemented and reconciled over Debug-only development samples.
 - `SKY-002` and `SKY-006` remain pending. Current Sky, Calendar and Event Detail evidence does not imply production data or methodology completion.
+
+### Phase 3 — Sky Family Premium Celestial Propagation
+
+**IMPLEMENTED AND VERIFIED — 2026-08-21.** Current Sky, Calendar Month, Calendar Week, Event
+Detail, every existing typed state, and stable shared Sky presentation concepts now use
+Premium Celestial. Existing D3 behavior, supplied ordering, routes, timing semantics,
+observation context, factual/interpretive separation, and Debug-only sample honesty are
+unchanged.
+
+- Current Sky is an observation-led editorial briefing with one lead event, grouped
+  happening-now rows, ordered upcoming events, and a native Calendar continuation.
+- Month is a recognizable almanac with accessible selected/today/event states and a
+  selected-date agenda; Week exposes more vertical event detail and a regular-width
+  selected-day/across-week composition.
+- Event Detail leads with human meaning, then factual rows and disclosed supplied
+  astrological basis. It no longer wraps every section in an independent card.
+- Shared components cover Sky-specific state, offline, observation, timing, event-row,
+  event-cue, and selected-date semantics without introducing an everything-card.
+- `IllustrationCurrentSky` was removed after app-wide reachability proof.
+  `IllustrationCalendarCelestial` remains because onboarding still consumes it.
+- iPhone and 13-inch iPad Light/Dark simulator evidence covers loaded, technical, and
+  non-happy states. Accessibility-size iPad evidence remains unclipped. Requested iPad
+  landscape exports are rotated/letterboxed by iPadOS 26.5 XCTest, so no valid true
+  landscape visual claim is made.
+- Production provider/data (`SKY-002`) and methodology/provenance approval (`SKY-006`)
+  remain pending; this presentation phase does not advance either task.
+- Final repository verification passes foundation, Debug iPhone/iPad, Simulator
+  Release, 113/113 Swift tests, 4/4 UI smoke tests, 52/52 complete iPhone XCUITests,
+  and 51/52 iPad XCUITests with zero failures and one expected Ask keyboard skip. A
+  prior targeted iPad runner-install infrastructure incident remains recorded despite
+  the clean-destination pass.
 
 ## D4 — Chart + astrology systems
 

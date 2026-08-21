@@ -3,7 +3,7 @@
 **Status:** Current redesign authority
 **Effective:** 2026-08-20
 **Scope:** iPhone and iPad, Light and Dark, all post-onboarding product surfaces
-**Implementation phase:** Phase 2 Today + Connections propagation complete
+**Implementation phase:** Phase 3 Sky Family Premium Celestial propagation complete
 
 This document supersedes the visual treatment and post-onboarding information architecture in `SOULFUL_CELESTIAL_DESIGN_DIRECTION.md`. Existing product, calculation, access, privacy, persistence, and sample-data boundaries remain authoritative.
 
@@ -22,7 +22,8 @@ Avoid generic purple horoscope styling, neon glow, crystal-shop imagery, constan
 ## Current audit
 
 The findings below record the pre-redesign baseline. The Phase 1, corrective asset,
-and Phase 2 implementation records later in this document supersede resolved items.
+Phase 2, and Phase 3 implementation records later in this document supersede resolved
+items.
 
 ### What works and stays
 
@@ -264,9 +265,12 @@ Phase 1 completed on 2026-08-19; the corrective asset pass completed on 2026-08-
 
 ### Deliberate boundaries and next phase
 
-- Propagate the new primitives through Current Sky/Calendar/Event Detail, Ask, settings, and monetization surfaces.
+- Propagate the new primitives through Ask, settings, and monetization surfaces.
 - Keep approved onboarding behavior intact; visually migrate it only as its own reviewed phase.
-- Retain the still-reachable legacy onboarding, Ask, and Current Sky/Calendar illustrations until those screens receive their own reviewed propagation pass; all unreachable shipping copies have been removed.
+- Retain only still-reachable legacy onboarding and Ask illustrations until those screens
+  receive their own reviewed propagation pass; all unreachable shipping copies have
+  been removed. `IllustrationCalendarCelestial` remains an onboarding dependency, not a
+  Sky dependency.
 - Commission final production Huma emblem/app-icon artwork against `HUMA_ASSET_REQUIREMENTS.md`; no code-drawn identity primitive is permitted.
 - Add real synastry-aspect detail only when an owning provider supplies structured aspects. Current compatibility dimensions are presentation mappings of the existing four domain metrics, not new calculated claims.
 
@@ -323,9 +327,10 @@ No dependency or astrology calculation was added.
 - iPadOS 26.5 XCTest kept the app window in portrait geometry after a requested device
   rotation, so no false landscape screenshot claim is made. The captured regular-width
   layout is the wide-layout acceptance artifact for this phase.
-- Phase 3 was not started. Current Sky, Calendar, Event Detail, Ask the Stars, Settings,
-  monetization/paywalls, onboarding, unfinished Vedic/BaZi/Compare Systems, sharing,
-  widgets, app icon, and final Huma integration remain incomplete or separately scoped.
+- This Phase 2 record did not start Phase 3. At that checkpoint, Current Sky, Calendar,
+  and Event Detail still awaited propagation alongside the separately scoped Ask the
+  Stars, Settings, monetization/paywalls, onboarding, unfinished
+  Vedic/BaZi/Compare Systems, sharing, widgets, app icon, and final Huma integration.
 
 ### Verification
 
@@ -340,3 +345,85 @@ No dependency or astrology calculation was added.
 - Survivor scans find no drawing API, raw catalog string, Unicode zodiac-icon rendering,
   or legacy illustration type in affected Today/Connections code. Repository drawing
   matches remain only the three approved `ChartWheel.swift` data-visualization lines.
+
+## Phase 3 — Sky Family Premium Celestial Propagation
+
+Completed on 2026-08-21. This phase migrated Current Sky, Calendar Month, Calendar Week,
+Event Detail, and their shared presentation components without changing the validated
+root information architecture or any Domain, Data, provider, persistence, timing,
+methodology, cache, navigation, or event-detail contract.
+
+### Surfaces migrated
+
+- Current Sky is now an astronomical/astrological briefing led by observation context,
+  supplied timing, one lead event, editorial event rows, ordered upcoming events, and a
+  native Calendar continuation. The decorative hero illustration, gradient treatment,
+  ornamental composition, and stacked-card dashboard language were removed.
+- Calendar Month remains a recognizable native calendar with clear month/year, Today,
+  selected/today/event-bearing states, accessible non-color event markers, and a shared
+  selected-date agenda. It does not fabricate unavailable adjacent payloads.
+- Calendar Week uses the same almanac language while exposing additional event detail.
+  Regular width presents the selected-day agenda beside an honest across-the-week
+  summary; accessibility sizes collapse instead of clipping.
+- Event Detail preserves event identity, human interpretation, factual context, and
+  supplied astrological basis as distinct layers. Human meaning leads; facts and the
+  technical basis remain available without dominating the page.
+- Current Sky, Month, Week, and Event Detail keep their distinct loading, loaded, empty
+  where applicable, unavailable/event-not-found, offline cached, offline without cache,
+  and failed contracts. Debug fixtures remain explicitly labeled as uncalculated
+  development samples.
+
+### Shared presentation and assets
+
+- Shared Sky presentation now owns the development notice, offline banner, loading and
+  state treatments, observation metadata, event timing, event rows, event-family cues,
+  and selected-date heading. These are semantic Sky concepts, not a generic card layer.
+- Event cues use generic SF Symbols because the current `SkyEvent` contract does not
+  identify exact participating planets or aspects. No technical glyph is inferred from
+  prose, and no decorative orbit, moon phase, or celestial drawing was added.
+- `IllustrationCurrentSky` and its typed case were deleted after a production-wide
+  reachability audit. `IllustrationCalendarCelestial` is intentionally retained because
+  onboarding still uses it. No Sky production surface uses legacy illustration artwork.
+
+### Cross-device and accessibility QA
+
+- Simulator output was inspected for Current Sky, Month, Week, Event Detail, technical
+  detail, and representative offline/unavailable states on iPhone and 13-inch iPad in
+  Light and Dark. Regular-width iPad layouts materially expose paired information
+  regions rather than scaling the phone composition.
+- Accessibility-size evidence confirms that Current Sky and both calendar modes remain
+  readable, day labels remain understandable, controls keep native sizing, and fixed
+  multi-column detail layouts collapse. Event rows keep at least 44-point targets,
+  semantic headings, text alternatives, logical ordering, and color-independent state
+  cues.
+- iPadOS 26.5 XCTest again exported requested landscape evidence rotated and
+  letterboxed. Raw artifacts are retained, but this phase does not claim valid true
+  landscape visual acceptance; portrait regular width is the verified iPad artifact.
+
+### Deliberate boundaries
+
+- `SKY-002` production provider/data work and `SKY-006` methodology/provenance approval
+  remain pending. Debug fixtures are not production astronomical output.
+- Ask the Stars, You/Profile/Settings, monetization, onboarding, Vedic/BaZi/Compare
+  Systems, final Huma identity, app icon, sharing, widgets, and Phase 4 were not started.
+
+### Verification
+
+- Final quick verification passes foundation, Debug iPhone, and **113/113** Swift tests.
+  An earlier implementation quick run exposed a missing Swift getter `return`; that
+  product compile failure was fixed and remains part of the phase record.
+- Final standard verification passes foundation, Debug iPhone/iPad, generic Simulator
+  Release, **113/113** Swift tests, and **4/4** iPhone UI smoke tests.
+- Full verification passes the same build/unit/smoke gates plus **52/52** complete
+  iPhone XCUITests and **51/52** iPad XCUITests with zero failures. The sole iPad skip is
+  the pre-existing Ask keyboard test because the simulator may use hardware keyboard
+  input.
+- Before the final full run, the first targeted iPad destination failed to install the
+  UI-test runner because an environment-owned `chmod` returned “Operation not
+  permitted.” The same focused tests and final full suite pass on a separate clean
+  13-inch iPad simulator; the successful rerun does not erase that infrastructure
+  incident.
+- Direct asset-policy, foundation, catalog/SVG, and `git diff --check` gates pass. Final
+  verification artifacts are under `.verification-results/20260821-030502-quick`,
+  `.verification-results/20260821-030527-standard`, and
+  `.verification-results/20260821-030734-full`.

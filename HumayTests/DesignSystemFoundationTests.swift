@@ -82,14 +82,13 @@ struct DesignSystemFoundationTests {
             "IllustrationAskStars",
             "IllustrationCalendarCelestial",
             "IllustrationCosmicCoffee",
-            "IllustrationCurrentSky",
             "IllustrationProfileReveal",
             "IllustrationTraditionChinese",
             "IllustrationTraditionVedic",
             "IllustrationTraditionWestern"
         ]
 
-        #expect(assetNames.count == 8)
+        #expect(assetNames.count == 7)
         #expect(Set(assetNames) == expectedAssetNames)
         #expect(Set(assetNames).count == assetNames.count)
 
@@ -98,12 +97,13 @@ struct DesignSystemFoundationTests {
             #expect(UIImage(named: assetName, in: .main, compatibleWith: darkTraits) != nil)
         }
 
-        let removedPhase2Artwork = [
+        let removedRedesignArtwork = [
             "IllustrationDailyTipCrystalBall",
             "IllustrationTodayTogether",
+            "IllustrationCurrentSky",
             "ZodiacLeo"
         ]
-        for assetName in removedPhase2Artwork {
+        for assetName in removedRedesignArtwork {
             #expect(UIImage(named: assetName, in: .main, compatibleWith: lightTraits) == nil)
         }
     }

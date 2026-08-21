@@ -47,7 +47,7 @@ struct SkyCalendarView: View {
     var body: some View {
         GeometryReader { proxy in
             ScrollView {
-                VStack(alignment: .leading, spacing: HumaySpacing.medium) {
+                VStack(alignment: .leading, spacing: HumaySpacing.large) {
                     if source.isDevelopmentSample {
                         SkyDevelopmentNotice()
                     }
@@ -56,22 +56,23 @@ struct SkyCalendarView: View {
 
                     content(availableWidth: proxy.size.width)
                 }
-                .frame(maxWidth: 1_120, alignment: .top)
+                .frame(maxWidth: HumayContentWidth.immersive.rawValue, alignment: .top)
                 .frame(maxWidth: .infinity, alignment: .top)
                 .padding(.horizontal, HumayLayout.screenGutter(for: proxy.size.width))
                 .padding(.top, HumaySpacing.medium)
-                .padding(.bottom, HumaySpacing.extraExtraLarge)
+                .padding(.bottom, HumaySpacing.expansive + HumaySpacing.extraLarge)
             }
             .scrollIndicators(.hidden)
         }
-        .background(Color.humayGround.ignoresSafeArea())
+        .background(Color.humayCanvas.ignoresSafeArea())
         .foregroundStyle(Color.humayTextPrimary)
         .navigationTitle("Calendar")
         .navigationBarTitleDisplayMode(.inline)
         .toolbar {
             ToolbarItem(placement: .topBarTrailing) {
                 Button("Today", action: goToToday)
-                    .foregroundStyle(Color.humayCoral)
+                    .font(HumayTypography.bodyEmphasized)
+                    .foregroundStyle(Color.humayAccentPrestige)
                     .frame(minWidth: HumayMetrics.minimumHitTarget, minHeight: HumayMetrics.minimumHitTarget)
                     .accessibilityIdentifier("sky.calendar.today")
             }
@@ -100,6 +101,7 @@ struct SkyCalendarView: View {
         }
         .pickerStyle(.segmented)
         .frame(maxWidth: 390)
+        .controlSize(.large)
         .accessibilityIdentifier("sky.calendar.mode")
         .accessibilityValue(mode.rawValue)
     }

@@ -8,21 +8,19 @@ struct SkyEventDetailView: View {
     let context: SkyObservationContext?
 
     @Environment(\.dynamicTypeSize) private var dynamicTypeSize
-    @Environment(\.accessibilityReduceMotion) private var reduceMotion
-
     var body: some View {
         GeometryReader { proxy in
             ScrollView {
                 content(availableWidth: proxy.size.width)
-                    .frame(maxWidth: 1_120, alignment: .top)
+                    .frame(maxWidth: HumayContentWidth.immersive.rawValue, alignment: .top)
                     .frame(maxWidth: .infinity, alignment: .top)
                     .padding(.horizontal, HumayLayout.screenGutter(for: proxy.size.width))
                     .padding(.top, HumaySpacing.large)
-                    .padding(.bottom, HumaySpacing.extraLarge)
+                    .padding(.bottom, HumaySpacing.expansive + HumaySpacing.extraLarge)
             }
             .scrollIndicators(.hidden)
         }
-        .background(Color.humayGround.ignoresSafeArea())
+        .background(Color.humayCanvas.ignoresSafeArea())
         .foregroundStyle(Color.humayTextPrimary)
         .navigationTitle("Event Detail")
         .navigationBarTitleDisplayMode(.inline)
@@ -33,7 +31,11 @@ struct SkyEventDetailView: View {
     private func content(availableWidth: CGFloat) -> some View {
         switch state {
         case .loading:
-            SkyEventDetailLoadingState(reduceMotion: reduceMotion)
+            SkyLoadingPresentation(
+                title: "Loading event detail…",
+                message: "Waiting for supplied event facts and interpretation.",
+                identifier: "sky.event-detail.state.loading"
+            )
 
         case .loaded(let detail):
             loadedContent(detail, availableWidth: availableWidth)
@@ -50,7 +52,11 @@ struct SkyEventDetailView: View {
         case .offline(_, let cached):
             if let cached {
                 VStack(alignment: .leading, spacing: HumaySpacing.large) {
-                    SkyEventDetailOfflineNotice()
+                    SkyOfflineBanner(
+                        title: "Offline · saved event detail",
+                        detail: "Showing the cached event detail supplied on this device.",
+                        identifier: "sky.event-detail.offline.cached.notice"
+                    )
                     loadedContent(cached, availableWidth: availableWidth)
                 }
                 .accessibilityElement(children: .contain)
@@ -127,141 +133,138 @@ struct SkyEventDetailView: View {
     }
 
     private func eventHero(_ detail: SkyEventDetail) -> some View {
-        HumaySurface(level: .raised, padding: HumaySpacing.large) {
-            HStack(alignment: .top, spacing: HumaySpacing.medium) {
-                VStack(alignment: .leading, spacing: HumaySpacing.small) {
-                    Text(SkyEventTypeFormatter.label(for: detail.event.type))
-                        .font(HumayTypography.utility)
-                        .textCase(.uppercase)
-                        .tracking(1.1)
-                        .foregroundStyle(detail.event.style.accent)
-
-                    Text(detail.event.title)
-                        .font(HumayTypography.detailTitle)
-                        .fixedSize(horizontal: false, vertical: true)
-                        .accessibilityAddTraits(.isHeader)
-
-                    Text(SkyMethodologyFormatter.label(for: detail.event.system))
-                        .font(HumayTypography.supporting)
-                        .foregroundStyle(Color.humayTextSecondary)
-                        .fixedSize(horizontal: false, vertical: true)
-
-                    HStack(alignment: .firstTextBaseline, spacing: HumaySpacing.small) {
-                        Image(systemName: "clock")
-                            .font(.system(size: 13, weight: .semibold))
-                            .accessibilityHidden(true)
-
-                        Text(timingText(for: detail.event.timing))
-                            .font(HumayTypography.supportingEmphasized)
-                            .monospacedDigit()
-                            .fixedSize(horizontal: false, vertical: true)
-                    }
-                    .foregroundStyle(Color.humayTextPrimary)
-                }
-                .frame(maxWidth: .infinity, alignment: .leading)
-
-                Image(systemName: detail.event.style.symbol)
-                    .font(.system(size: 18, weight: .medium))
-                    .foregroundStyle(detail.event.style.accent)
-                    .frame(width: 36, height: 36)
-                    .background(detail.event.style.accent.opacity(0.12), in: Circle())
-                    .accessibilityHidden(true)
+        VStack(alignment: .leading, spacing: HumaySpacing.extraLarge) {
+            HStack(alignment: .center, spacing: HumaySpacing.medium) {
+                SkyEventGlyph(event: detail.event, size: 20)
+                HumayEyebrow(
+                    text: SkyEventTypeFormatter.label(for: detail.event.type),
+                    color: detail.event.style.accent
+                )
             }
+
+            Text(detail.event.title)
+                .font(HumayTypography.displayTitle)
+                .fixedSize(horizontal: false, vertical: true)
+                .accessibilityAddTraits(.isHeader)
+
+            ViewThatFits(in: .horizontal) {
+                HStack(alignment: .firstTextBaseline, spacing: HumaySpacing.large) {
+                    eventIdentityMetadata(detail.event)
+                }
+                VStack(alignment: .leading, spacing: HumaySpacing.small) {
+                    eventIdentityMetadata(detail.event)
+                }
+            }
+
+            Divider()
+                .overlay(Color.humaySeparator)
         }
         .accessibilityElement(children: .combine)
         .accessibilityLabel(heroAccessibilityLabel(for: detail))
         .accessibilityIdentifier("sky.event-detail.title")
     }
 
-    private func meaningSection(_ meaning: String) -> some View {
-        HumaySurface {
-            VStack(alignment: .leading, spacing: HumaySpacing.medium) {
-                sectionHeading("What this means")
+    @ViewBuilder
+    private func eventIdentityMetadata(_ event: SkyEvent) -> some View {
+        Label(
+            SkyMethodologyFormatter.label(for: event.system),
+            systemImage: "books.vertical"
+        )
+        .font(HumayTypography.supporting)
+        .foregroundStyle(Color.humayTextSecondary)
 
-                Text(meaning)
-                    .font(HumayTypography.body)
-                    .fixedSize(horizontal: false, vertical: true)
-            }
+        Label(
+            timingText(for: event.timing),
+            systemImage: "clock"
+        )
+        .font(HumayTypography.supporting)
+        .monospacedDigit()
+        .foregroundStyle(Color.humayTextSecondary)
+    }
+
+    private func meaningSection(_ meaning: String) -> some View {
+        VStack(alignment: .leading, spacing: HumaySpacing.large) {
+            HumayEyebrow(text: "Human interpretation", color: .humayAccentPrestige)
+            sectionHeading("What this means")
+
+            Text(meaning)
+                .font(HumayTypography.body)
+                .fixedSize(horizontal: false, vertical: true)
+                .frame(maxWidth: HumayContentWidth.readable.rawValue, alignment: .leading)
+        }
+        .padding(.leading, HumaySpacing.large)
+        .overlay(alignment: .leading) {
+            Rectangle()
+                .fill(Color.humayAccentPrestige)
+                .frame(width: 2)
         }
         .accessibilityIdentifier("sky.event-detail.meaning")
     }
 
     private func factualContext(_ detail: SkyEventDetail) -> some View {
-        HumaySurface {
-            VStack(alignment: .leading, spacing: HumaySpacing.medium) {
-                sectionHeading("Factual context")
+        VStack(alignment: .leading, spacing: HumaySpacing.large) {
+            HumayEyebrow(text: "Supplied information", color: .humayAccentCelestial)
+            sectionHeading("Factual context")
 
-                VStack(alignment: .leading, spacing: HumaySpacing.medium) {
-                    factRow(
-                        label: "Timing",
-                        value: timingText(for: detail.event.timing),
-                        monospaced: true
-                    )
-                    factRow(
-                        label: "System",
-                        value: SkyMethodologyFormatter.label(for: detail.event.system)
-                    )
-                    factRow(
-                        label: "Event type",
-                        value: SkyEventTypeFormatter.label(for: detail.event.type)
-                    )
-                    factRow(
-                        label: "Relevance",
-                        value: SkyEventRelevanceFormatter.label(for: detail.event.relevance)
-                    )
-                    factRow(
-                        label: "Reliability",
-                        value: SkyEventReliabilityFormatter.label(for: detail.event.reliability)
-                    )
+            Divider()
+                .overlay(Color.humaySeparator)
+
+            VStack(spacing: 0) {
+                factRow(label: "Timing", value: timingText(for: detail.event.timing), technical: true)
+                factDivider
+                factRow(label: "System", value: SkyMethodologyFormatter.label(for: detail.event.system))
+                factDivider
+                factRow(label: "Event type", value: SkyEventTypeFormatter.label(for: detail.event.type))
+                factDivider
+                factRow(label: "Relevance", value: SkyEventRelevanceFormatter.label(for: detail.event.relevance))
+                factDivider
+                factRow(label: "Reliability", value: SkyEventReliabilityFormatter.label(for: detail.event.reliability))
+
+                if let context {
+                    factDivider
+                    factRow(label: "Timezone", value: context.timeZoneIdentifier, technical: true)
+
+                    if let locationName = context.locationName {
+                        factDivider
+                        factRow(label: "Location", value: locationName)
+                    }
                 }
             }
+
+            Divider()
+                .overlay(Color.humaySeparator)
         }
         .accessibilityIdentifier("sky.event-detail.facts")
     }
 
     private func basisSection(_ basis: String) -> some View {
-        HumaySurface {
-            VStack(alignment: .leading, spacing: HumaySpacing.medium) {
-                sectionHeading("Astrological basis")
-
-                Text(basis)
-                    .font(HumayTypography.body)
-                    .foregroundStyle(Color.humayTextSecondary)
-                    .fixedSize(horizontal: false, vertical: true)
-            }
+        HumayDisclosureGroup(
+            eyebrow: "Technical context",
+            title: "Astrological basis",
+            summary: "How the supplied interpretation is framed"
+        ) {
+            Text(basis)
+                .font(HumayTypography.body)
+                .foregroundStyle(Color.humayTextSecondary)
+                .fixedSize(horizontal: false, vertical: true)
+        }
+        .padding(.vertical, HumaySpacing.small)
+        .overlay(alignment: .top) {
+            Divider().overlay(Color.humaySeparator)
+        }
+        .overlay(alignment: .bottom) {
+            Divider().overlay(Color.humaySeparator)
         }
         .accessibilityIdentifier("sky.event-detail.basis")
     }
 
-    private func factRow(label: String, value: String, monospaced: Bool = false) -> some View {
-        HStack(alignment: .top, spacing: HumaySpacing.medium) {
-            Text(label)
-                .font(HumayTypography.utility)
-                .textCase(.uppercase)
-                .tracking(0.8)
-                .foregroundStyle(Color.humayTextSecondary)
-                .frame(width: 112, alignment: .leading)
-
-            factValue(value, monospaced: monospaced)
-        }
-        .accessibilityElement(children: .combine)
-        .accessibilityLabel("\(label), \(value)")
+    private func factRow(label: String, value: String, technical: Bool = false) -> some View {
+        HumayFactRow(label: label, value: value, technical: technical)
+            .padding(.vertical, HumaySpacing.small)
     }
 
-    @ViewBuilder
-    private func factValue(_ value: String, monospaced: Bool) -> some View {
-        if monospaced {
-            Text(value)
-                .font(HumayTypography.supporting)
-                .monospacedDigit()
-                .fixedSize(horizontal: false, vertical: true)
-                .frame(maxWidth: .infinity, alignment: .leading)
-        } else {
-            Text(value)
-                .font(HumayTypography.supporting)
-                .fixedSize(horizontal: false, vertical: true)
-                .frame(maxWidth: .infinity, alignment: .leading)
-        }
+    private var factDivider: some View {
+        Divider().overlay(Color.humaySeparator)
     }
 
     private func sectionHeading(_ title: String) -> some View {
@@ -272,12 +275,7 @@ struct SkyEventDetailView: View {
     }
 
     private var detailDevelopmentNotice: some View {
-        Label("Development sample · not calculated", systemImage: "hammer")
-            .font(HumayTypography.caption)
-            .foregroundStyle(Color.humayTextSecondary)
-            .frame(minHeight: 22, alignment: .leading)
-            .accessibilityElement(children: .combine)
-            .accessibilityIdentifier("sky.event-detail.development-sample.notice")
+        SkyDevelopmentNotice(identifier: "sky.event-detail.development-sample.notice")
     }
 
     private func timingText(for timing: SkyEventTiming) -> String {
@@ -306,109 +304,14 @@ struct SkyEventDetailView: View {
         _ copy: SkyEventDetailStateCopy,
         identifier: String
     ) -> some View {
-        VStack(alignment: .leading, spacing: HumaySpacing.large) {
-            Image(systemName: copy.symbol)
-                .font(.system(size: 40, weight: .light))
-                .foregroundStyle(Color.humayLavender)
-                .frame(width: 56, height: 56)
-                .accessibilityHidden(true)
-
-            VStack(alignment: .leading, spacing: HumaySpacing.small) {
-                Text(copy.title)
-                    .font(HumayTypography.cardTitle)
-                    .fixedSize(horizontal: false, vertical: true)
-                    .accessibilityAddTraits(.isHeader)
-
-                Text(copy.detail)
-                    .font(HumayTypography.body)
-                    .foregroundStyle(Color.humayTextSecondary)
-                    .fixedSize(horizontal: false, vertical: true)
-            }
-        }
-        .frame(maxWidth: .infinity, minHeight: 240, alignment: .center)
-        .padding(HumaySpacing.extraLarge)
-        .background(Color.humaySurface, in: RoundedRectangle(cornerRadius: HumayRadius.feature))
-        .overlay {
-            RoundedRectangle(cornerRadius: HumayRadius.feature)
-                .stroke(Color.humayHairline)
-        }
-        .accessibilityElement(children: .combine)
-        .accessibilityIdentifier(identifier)
-    }
-}
-
-private struct SkyEventDetailOfflineNotice: View {
-    var body: some View {
-        HStack(alignment: .top, spacing: HumaySpacing.medium) {
-            Image(systemName: "wifi.slash")
-                .font(.body.weight(.semibold))
-                .foregroundStyle(Color.humaySolarGold)
-                .frame(width: 32, height: 32)
-                .background(Color.humaySolarGold.opacity(0.14), in: Circle())
-                .accessibilityHidden(true)
-
-            VStack(alignment: .leading, spacing: HumaySpacing.extraSmall) {
-                Text("Offline · saved event detail")
-                    .font(HumayTypography.bodyEmphasized)
-                Text("Showing the cached event detail supplied on this device.")
-                    .font(HumayTypography.supporting)
-                    .foregroundStyle(Color.humayTextSecondary)
-                    .fixedSize(horizontal: false, vertical: true)
-            }
-        }
-        .frame(maxWidth: .infinity, alignment: .leading)
-        .padding(HumaySpacing.large)
-        .background(Color.humayRaisedSurface, in: RoundedRectangle(cornerRadius: HumayRadius.compact))
-        .overlay {
-            RoundedRectangle(cornerRadius: HumayRadius.compact)
-                .stroke(Color.humayHairline)
-        }
-        .accessibilityElement(children: .combine)
-        .accessibilityIdentifier("sky.event-detail.offline.cached.notice")
-    }
-}
-
-private struct SkyEventDetailLoadingState: View {
-    let reduceMotion: Bool
-
-    var body: some View {
-        VStack(alignment: .leading, spacing: HumaySpacing.large) {
-            skeleton(width: 170, height: 14)
-            skeleton(width: .infinity, height: 44)
-            skeleton(width: 220, height: 14)
-
-            HStack(spacing: HumaySpacing.medium) {
-                if reduceMotion {
-                    Image(systemName: "sparkles")
-                        .font(.title2)
-                        .foregroundStyle(Color.humayLavender)
-                        .frame(width: HumayMetrics.minimumHitTarget, height: HumayMetrics.minimumHitTarget)
-                        .accessibilityHidden(true)
-                } else {
-                    ProgressView()
-                        .controlSize(.large)
-                        .tint(Color.humayLavender)
-                        .frame(width: HumayMetrics.minimumHitTarget, height: HumayMetrics.minimumHitTarget)
-                }
-
-                Text("Loading event detail…")
-                    .font(HumayTypography.bodyEmphasized)
-            }
-
-            skeleton(width: .infinity, height: 120)
-        }
-        .frame(maxWidth: .infinity, alignment: .leading)
-        .accessibilityElement(children: .combine)
-        .accessibilityLabel("Loading event detail")
-        .accessibilityIdentifier("sky.event-detail.state.loading")
-    }
-
-    private func skeleton(width: CGFloat, height: CGFloat) -> some View {
-        RoundedRectangle(cornerRadius: height / 2)
-            .fill(Color.humayRaisedSurface)
-            .frame(maxWidth: width == .infinity ? .infinity : nil)
-            .frame(width: width == .infinity ? nil : width, height: height)
-            .accessibilityHidden(true)
+        SkyStatePresentation(
+            symbol: copy.symbol,
+            title: copy.title,
+            message: copy.detail,
+            identifier: identifier,
+            eyebrow: "Event detail",
+            accent: .humayAccentCelestial
+        )
     }
 }
 

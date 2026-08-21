@@ -1,10 +1,10 @@
 # Development Status
 
-Last updated: **2026-08-20**
+Last updated: **2026-08-21**
 
 ## Active priorities
 
-1. Continue [`../design/PREMIUM_CELESTIAL_REDESIGN.md`](../design/PREMIUM_CELESTIAL_REDESIGN.md) propagation after completed Daily Horoscope + Connections work; remaining families are Current Sky/Calendar/Event Detail, Ask, settings, monetization, and separately reviewed onboarding.
+1. Continue [`../design/PREMIUM_CELESTIAL_REDESIGN.md`](../design/PREMIUM_CELESTIAL_REDESIGN.md) only when a later phase is explicitly started; after completed Sky propagation, remaining families are Ask, settings, monetization, and separately reviewed onboarding.
 2. Preserve the new Today / Chart / Explore / Connections / You information architecture while retaining all existing Sky, Calendar, Ask, people, Compatibility, and profile functionality.
 3. Keep D2–D4 development content behind explicit Debug composition; Release must expose only safe unavailable/empty states until real owning providers exist.
 4. Defer backend/API/provider and monetization work; ARCH-007 entitlement, ARCH-008 privacy/security, and methodology validation remain prerequisites for production precision rollout.
@@ -14,7 +14,59 @@ Last updated: **2026-08-20**
 
 **IMPLEMENTED AND VERIFIED — 2026-08-19.** Today, Chart, Placement Detail, Compatibility, and Explore establish the post-onboarding design system. The primary shell is Today / Chart / Explore / Connections / You. Shared semantic tokens, editorial primitives, typed technical astrology glyphs, progressive astrology disclosure, interactive chart focus, and multidimensional compatibility are implemented without changing astrology domain models or adding dependencies/backend work.
 
-Current regression validation after Phase 2 passes representative iPhone/iPad Debug builds, a generic Simulator Release build, 113 Swift tests across 13 suites, and the complete 52-test iPhone XCUITest target. Light/Dark iPhone and iPad regular-width compositions were visually inspected. The foundation script, asset policy, catalog compilation/JSON/XML checks, and working-tree whitespace validation pass.
+Current regression validation after Phase 3 passes representative iPhone/iPad Debug
+builds, a generic Simulator Release build, and 113 Swift tests across 13 suites. Phase 3
+targeted behavior/evidence tests pass on iPhone and a clean 13-inch iPad destination;
+Light/Dark iPhone and iPad regular-width compositions were visually inspected. The
+foundation script, asset policy, catalog compilation/JSON/XML checks, and working-tree
+whitespace validation pass.
+
+## Phase 3 — Sky Family Premium Celestial Propagation
+
+**IMPLEMENTED AND VERIFIED — 2026-08-21.** Current Sky, Calendar Month, Calendar Week, Event
+Detail, all existing typed states, and their stable shared presentation components now
+use Premium Celestial. The Today / Chart / Explore / Connections / You root architecture
+and all Domain, Data, navigation, provider, persistence, cache, timing, observation, and
+methodology contracts remain unchanged.
+
+Delivered:
+
+- observation-led Current Sky briefing with development honesty, lead event, shared
+  editorial rows, ordered upcoming events, and native Calendar continuation;
+- recognizable Month almanac and detail-optimized Week with accessible selected, today,
+  event-bearing, and quiet-day semantics, plus regular-width calendar/agenda layouts;
+- human-first Event Detail with identity, interpretation, factual context, and supplied
+  astrological basis kept conceptually distinct;
+- shared Sky state, loading, offline, observation, timing, event-row, event-cue, and
+  selected-date presentation without a generic card abstraction;
+- removal of `IllustrationCurrentSky` and its typed case after app-wide reachability
+  proof; `IllustrationCalendarCelestial` retained solely for onboarding;
+- Light/Dark iPhone and 13-inch iPad inspection for loaded, technical, cached/offline,
+  unavailable, Month, Week, and selected-date/event states; accessibility-size iPad
+  evidence remains readable and unclipped.
+
+The first targeted iPad UI run hit an environment-owned test-runner chmod/install fault.
+The same tests passed on a separate clean 13-inch iPad destination; the incident remains
+recorded. iPadOS 26.5 XCTest exported requested landscape frames rotated and letterboxed,
+so portrait regular width—not the invalid raw landscape image—is the verified iPad
+visual artifact.
+
+Production Sky provider/data (`SKY-002`) and methodology/provenance (`SKY-006`) remain
+pending. No fixture became production output, and no provider, API, calculation,
+entitlement, monetization, or persistence work was added. Phase 4 has not started.
+
+Validation: final quick passes foundation, Debug iPhone, and 113/113 Swift tests; final
+standard passes foundation, Debug iPhone/iPad, generic Simulator Release, 113/113 Swift
+tests, and 4/4 UI smoke tests; full passes those gates plus 52/52 complete iPhone
+XCUITests and 51/52 iPad XCUITests with zero failures. The sole iPad skip is the existing
+Ask composer keyboard test because iPad Simulator may use hardware keyboard input. An
+earlier implementation quick run exposed and led to correction of a missing Swift
+getter `return`; it is not reclassified as a pass. The first targeted iPad destination's
+environment-owned test-runner chmod/install failure also remains recorded despite the
+separate clean-destination pass. Final results are under
+`.verification-results/20260821-030502-quick`,
+`.verification-results/20260821-030527-standard`, and
+`.verification-results/20260821-030734-full`.
 
 ## Phase 2 — Today + Connections propagation
 
@@ -44,14 +96,16 @@ Delivered:
 The first chosen iPad simulator had an environment-owned test-runner chmod fault; a
 clean 13-inch iPad Pro destination passed the same evidence test. iPadOS 26.5 retained
 portrait window geometry after a requested rotation, so regular width—not a false
-landscape artifact—is the wide-layout evidence. Phase 3 has not started.
+landscape artifact—is the wide-layout evidence. This is the historical Phase 2
+checkpoint; Phase 3 was completed separately on 2026-08-21.
 
 Validation: Debug iPhone, Debug iPad, and generic Simulator Release builds pass;
 Swift Testing passes 113 tests in 13 suites; the focused Phase 2 UI suite passes 7 tests;
 the complete iPhone XCUITest target passes 52 tests with no failures; the Phase 2 iPad
 evidence test passes; foundation, asset-policy, SVG XML, catalog JSON/compilation, and
-`git diff --check` checks pass. Six SVG-content scan matches are the documented legacy
-gradient/filter definitions in retained, out-of-scope `IllustrationCurrentSky` assets.
+`git diff --check` checks pass. At this Phase 2 checkpoint six SVG-content scan matches
+belonged to the retained `IllustrationCurrentSky`; Phase 3 later removed that asset and
+the matches.
 
 ## Repository authority
 

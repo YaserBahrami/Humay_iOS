@@ -47,7 +47,6 @@ enum HumayIllustrationAsset: String, CaseIterable, Sendable, Hashable {
     case askStars = "IllustrationAskStars"
     case calendarCelestial = "IllustrationCalendarCelestial"
     case cosmicCoffee = "IllustrationCosmicCoffee"
-    case currentSky = "IllustrationCurrentSky"
     case profileReveal = "IllustrationProfileReveal"
     case traditionChinese = "IllustrationTraditionChinese"
     case traditionVedic = "IllustrationTraditionVedic"

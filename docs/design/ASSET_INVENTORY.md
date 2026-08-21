@@ -1,8 +1,8 @@
 # Humay Asset Inventory
 
-**Status:** Corrective redesign and Phase 2 migration ledger
-**Audit date:** 2026-08-20
-**Scope:** Shipping asset catalog, custom SwiftUI artwork, Premium Celestial surfaces through Today + Connections propagation, and root navigation
+**Status:** Corrective redesign through Phase 3 migration ledger
+**Audit date:** 2026-08-21
+**Scope:** Shipping asset catalog, custom SwiftUI artwork, Premium Celestial surfaces through Sky Family propagation, and root navigation
 
 This inventory is the source of truth for asset reachability, semantics, licensing, and replacement status. A visual is not approved merely because it builds or exists in an asset catalog.
 
@@ -140,7 +140,7 @@ the licensed template glyph family documented above.
 |---|---|---|---|
 | `IllustrationCalendarCelestial`, `IllustrationCosmicCoffee`, `IllustrationProfileReveal`, `IllustrationTraditionWestern`, `IllustrationTraditionVedic`, `IllustrationTraditionChinese` | Approved onboarding dependency | KEEP for current onboarding authority | Original rendering; Light/Dark variants. Onboarding migration is out of scope. |
 | `IllustrationAskStars` | Ask dependency | KEEP temporarily / REPLACE with later Ask propagation | Existing screen remains out of scope. |
-| `IllustrationCurrentSky`, `IllustrationCalendarCelestial` | Current Sky dependency | KEEP temporarily / REPLACE with later Sky propagation | Existing screen remains out of scope. Current Sky SVGs still contain legacy gradients/filter markup; they compile today but are not a pattern for new assets. |
+| deleted `IllustrationCurrentSky` | Former Current Sky dependency | REMOVE completed in Phase 3 | Replaced by observation context, supplied event data, typography, spacing, and generic SF event cues after a production-wide reachability audit. |
 | deleted `IllustrationDailyTipCrystalBall`, twelve `Zodiac*` illustrations | Former Daily Horoscope dependency | REMOVE completed in Phase 2 | Replaced with editorial composition, SF Symbol support, and typed technical zodiac glyphs. |
 | deleted `IllustrationTodayTogether` | Former Connections dependency | REMOVE completed in Phase 2 | Removed after Connections stopped using it as decoration; Today Together itself remains unimplemented. |
 | deleted `IllustrationUnknownBirthTime` | Former Phase 1 Chart dependency | REPLACE A completed | Replaced by a neutral SF uncertainty/time symbol and text; the precision warning is no longer decorative. |
@@ -173,10 +173,9 @@ encode application data; `HumayAssets.swift` is allowed non-system `Image(...)` 
 because it is the typed catalog rendering boundary. No other production exception exists.
 
 Legacy original-rendering illustrations retained for untouched screens may predate the
-clean-SVG rule. The only current forbidden-content scan matches are six gradient/filter
-definitions in `IllustrationCurrentSky` Light/Dark. They remain solely because Current
-Sky is outside Phase 2 and must be replaced during its own migration; no new asset may
-copy this exception.
+clean-SVG rule. Phase 3 removed `IllustrationCurrentSky`, eliminating its six legacy
+gradient/filter matches. No Sky-specific content exception or drawing exception exists;
+`ChartWheel.swift` remains the sole legitimate custom data-visualization exception.
 
 ## License and source record
 
@@ -210,3 +209,23 @@ No third-party Swift package or icon framework is introduced.
 - Complete validation passes: 113 Swift tests in 13 suites, 52 iPhone XCUITests, focused
   13-inch iPad evidence, Debug iPhone/iPad and generic Simulator Release builds,
   foundation checks, and `git diff --check`.
+
+## Phase 3 — Sky Family Premium Celestial Propagation
+
+- No production Sky surface references `IllustrationCurrentSky`; its imageset and typed
+  `HumayIllustrationAsset.currentSky` case were deleted. Foundation tests assert both the
+  seven retained illustration cases and absence of the deleted catalog asset.
+- `IllustrationCalendarCelestial` remains reachable from onboarding's birth-date step.
+  It is therefore retained even though Calendar no longer uses decorative artwork.
+- Remaining illustrations are limited to still-reachable onboarding and Ask surfaces:
+  Ask Stars, Calendar Celestial, Cosmic Coffee, Profile Reveal, and the three Tradition
+  images. Phase 3 did not redesign those owners.
+- Sky event identity uses SF Symbols for generic lunar, ingress, aspect, station,
+  seasonal, and tradition concepts. The current event contract does not provide exact
+  participating planet/aspect identifiers, so no typed technical glyph is guessed.
+- Asset-policy, foundation, catalog compilation, JSON/XML/SVG validation, and working-
+  tree whitespace checks pass with no new package or artwork exception.
+- Final verification passes 113 Swift tests, 4 UI smoke tests, 52/52 iPhone XCUITests,
+  and 51/52 iPad XCUITests with zero failures and one expected Ask hardware-keyboard
+  skip. The first targeted iPad destination had an environment-owned test-runner
+  install/chmod failure; a separate clean simulator passed without changing asset code.
