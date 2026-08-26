@@ -60,16 +60,28 @@ enum HumayContentEngine {
 
     static func yearlyForecast(profileID: UUID, birth: BirthDetails) -> YearlyForecast {
         let days = (0..<YearlyForecast.dayCount).map { offset -> DailyMood in
-            var rng = makeRNG("year", profileID.uuidString, String(offset))
-            let scores = moodScores(offset: offset, birth: birth, rng: &rng)
-            let note = dayNote(offset: offset, birth: birth)
-            return DailyMood(dayOffset: offset, scores: scores, note: note)
+            let base = baseScores(profileID: profileID, birth: birth, dayOffset: offset)
+            return DailyMood(dayOffset: offset, scores: base.scores, note: base.note)
         }
         return YearlyForecast(
             profileID: profileID,
             days: days,
             provenance: .fixture(generatorVersion: YearlyForecast.currentGeneratorVersion)
         )
+    }
+
+    /// Deterministic per-day base scores shared by the fixture feed and the
+    /// intelligence layer's deterministic provider, so fallback content and
+    /// enriched content never disagree about the underlying numbers.
+    static func baseScores(
+        profileID: UUID,
+        birth: BirthDetails,
+        dayOffset: Int
+    ) -> (scores: MoodScores, note: String?) {
+        var rng = makeRNG("year", profileID.uuidString, String(dayOffset))
+        let scores = moodScores(offset: dayOffset, birth: birth, rng: &rng)
+        let note = dayNote(offset: dayOffset, birth: birth)
+        return (scores, note)
     }
 
     static func compatibility(
@@ -383,6 +395,34 @@ enum HumayContentEngine {
         max(8, min(97, raw))
     }
 
+    // MARK: - Expression surface (mode-local, used by the intelligence layer)
+
+    /// Mode-flavored roast copy. Expression only — never changes data.
+    static func roastCopy(mode: PersonalityMode, rng: inout SeededGenerator) -> (title: String, body: String) {
+        let pair: (String, String)
+        switch mode {
+        case .delulu: pair = DeluluRoasts.all.pick(using: &rng)!
+        case .drama: pair = DramaRoasts.all.pick(using: &rng)!
+        case .roast, .savage: pair = SpicyRoasts.all.pick(using: &rng)!
+        case .bestie: pair = BestieRoasts.all.pick(using: &rng)!
+        case .soft: pair = SoftRoasts.all.pick(using: &rng)!
+        case .normal: pair = NormalRoasts.all.pick(using: &rng)!
+        }
+        return (pair.0, pair.1)
+    }
+
+    static func meterCaption(for metric: FunMetric, value: Int) -> String {
+        MeterCopy.caption(for: metric, value: value)
+    }
+
+    static func flagPair(rng: inout SeededGenerator) -> (red: String, green: String) {
+        (RedFlags.all.pick(using: &rng)!, GreenFlags.all.pick(using: &rng)!)
+    }
+
+    static func revealSecret(rng: inout SeededGenerator) -> (secret: String, followUp: String) {
+        (RevealSecrets.all.pick(using: &rng)!, RevealFollowUps.all.pick(using: &rng)!)
+    }
+
     // MARK: - Seeding
 
     static func makeRNG(_ domain: String, _ keys: String...) -> SeededGenerator {
@@ -429,7 +469,7 @@ struct SeededGenerator: RandomNumberGenerator {
     }
 }
 
-private extension RandomAccessCollection where Self: Collection {
+extension RandomAccessCollection where Self: Collection {
     func pick(using generator: inout SeededGenerator) -> Element? {
         guard !isEmpty else { return nil }
         let offset = index(startIndex, offsetBy: Int.random(in: 0..<count, using: &generator))
@@ -541,7 +581,7 @@ enum SignFlavor {
     }
 }
 
-private enum BaseHeadlines {
+enum BaseHeadlines {
     static let all = [
         "You woke up confident. That's the first problem.",
         "Don't start anything today. Finish one thing instead.",
@@ -556,7 +596,7 @@ private enum BaseHeadlines {
     ]
 }
 
-private enum SpicyHeadlines {
+enum SpicyHeadlines {
     static let all = [
         "Today's emotional stability: questionable.",
         "Humay checked. You are indeed the problem today.",
@@ -567,7 +607,7 @@ private enum SpicyHeadlines {
     ]
 }
 
-private enum DeluluHeadlines {
+enum DeluluHeadlines {
     static let all = [
         "Everyone is secretly talking about you. Positively!",
         "Today is your montage scene. Trust it.",
@@ -577,7 +617,7 @@ private enum DeluluHeadlines {
     ]
 }
 
-private enum DramaHeadlines {
+enum DramaHeadlines {
     static let all = [
         "Everything changes today. Or Tuesday. Soon.",
         "A message arrives. Everything depends on it. No pressure.",
@@ -586,7 +626,7 @@ private enum DramaHeadlines {
     ]
 }
 
-private enum MeterCopy {
+enum MeterCopy {
     static func caption(for metric: FunMetric, value: Int) -> String {
         let band: Int = value < 40 ? 0 : value < 75 ? 1 : 2
         switch metric {
@@ -624,7 +664,7 @@ private enum MeterCopy {
     }
 }
 
-private enum RevealSecrets {
+enum RevealSecrets {
     static let all = [
         "Someone thinks about you more than they admit.",
         "The thing you're postponing will take eleven minutes.",
@@ -639,7 +679,7 @@ private enum RevealSecrets {
     ]
 }
 
-private enum RevealFollowUps {
+enum RevealFollowUps {
     static let all = [
         "You didn't hear this from Humay.",
         "The stars insist this stays between us.",
@@ -648,7 +688,7 @@ private enum RevealFollowUps {
     ]
 }
 
-private enum RedFlags {
+enum RedFlags {
     static let all = [
         "You will reread one message exactly nine times.",
         "The snooze button is winning arguments today.",
@@ -661,7 +701,7 @@ private enum RedFlags {
     ]
 }
 
-private enum GreenFlags {
+enum GreenFlags {
     static let all = [
         "You will drink water without being told. Growth.",
         "One honest sentence will fix something small.",
@@ -674,7 +714,7 @@ private enum GreenFlags {
     ]
 }
 
-private enum GenericSkyLines {
+enum GenericSkyLines {
     static let all: [(String, String)] = [
         ("The moon is doing something.", "Lunar motion continues as scheduled."),
         ("Planets are moving. Slowly. As usual.", "All bodies maintain standard orbital speeds."),
@@ -682,7 +722,7 @@ private enum GenericSkyLines {
     ]
 }
 
-private enum NormalRoasts {
+enum NormalRoasts {
     static let all = [
         ("A gentle observation", "The stars reviewed your decisions. Mixed feedback, encouraging tone."),
         ("Perspective", "You're doing better than you think and worse than you tell people. Balanced."),
@@ -690,7 +730,7 @@ private enum NormalRoasts {
     ]
 }
 
-private enum BestieRoasts {
+enum BestieRoasts {
     static let all = [
         ("Bestie check", "You're allowed to rest AND allowed to want things. Wild concept, try both."),
         ("Real talk", "They're not confused about how you feel. They saw the paragraph."),
@@ -698,7 +738,7 @@ private enum BestieRoasts {
     ]
 }
 
-private enum SpicyRoasts {
+enum SpicyRoasts {
     static let all = [
         ("Official notice", "Humay cannot legally confiscate your phone. Unfortunately."),
         ("Observation", "You've spent longer deciding what to watch than most people spend deciding their careers."),
@@ -706,28 +746,28 @@ private enum SpicyRoasts {
     ]
 }
 
-private enum DeluluRoasts {
+enum DeluluRoasts {
     static let all = [
         ("Certified icon", "The universe reviewed you again and gave you a ten. Bias confirmed."),
         ("Prophecy", "Something amazing is loading. Estimated arrival: whenever you believe hard enough.")
     ]
 }
 
-private enum DramaRoasts {
+enum DramaRoasts {
     static let all = [
         ("Previously, on your life", "Tensions rise. Alliances shift. Someone will reply-all. This is the finale."),
         ("Breaking", "A single emoji response threatens to end everything as we know it.")
     ]
 }
 
-private enum SoftRoasts {
+enum SoftRoasts {
     static let all = [
         ("Softly noted", "You're carrying more than you mention. Put one thing down today."),
         ("Gentle reminder", "Being tender in a loud world is a skill, not a weakness.")
     ]
 }
 
-private enum VerdictAnswers {
+enum VerdictAnswers {
     static let apology = [
         "Whoever broke it first. Which means both.",
         "The taller one. Physics of guilt.",

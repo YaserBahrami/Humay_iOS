@@ -5,6 +5,7 @@ import SwiftUI
 struct YouView: View {
     @Environment(AppEnvironment.self) private var environment
     @Environment(AppNavigationState.self) private var navigation
+    @Environment(ForecastStore.self) private var forecasts
 
     var body: some View {
         GeometryReader { proxy in
@@ -22,7 +23,7 @@ struct YouView: View {
                         ArchetypeCard(archetype: HumayContentEngine.archetype(profileID: profile.id))
                             .accessibilityIdentifier("you.archetype")
 
-                        YearTimelineSection(profileID: profile.id, birth: profile.birth)
+                        YearTimelineSection(subject: profile.forecastSubject)
                             .accessibilityIdentifier("you.timeline")
                     } else {
                         Text("Add your birth date in Profile to unlock this.")
@@ -41,6 +42,11 @@ struct YouView: View {
         .background(Color.humayGround.ignoresSafeArea())
         .foregroundStyle(Color.humayTextPrimary)
         .navigationBarHidden(true)
+        .task {
+            if let profile = environment.profile {
+                forecasts.ensureForecast(for: profile.forecastSubject)
+            }
+        }
     }
 
     private var profileDisplayName: String {

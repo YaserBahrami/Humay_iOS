@@ -4,6 +4,7 @@ import SwiftUI
 struct HumayApp: App {
     @State private var environment: AppEnvironment
     @State private var navigation: AppNavigationState
+    @State private var forecastStore: ForecastStore
     private let skyInput: D3FeatureInput
 
     init() {
@@ -18,6 +19,26 @@ struct HumayApp: App {
         let environment = AppEnvironment(store: store)
         _environment = State(initialValue: environment)
         _navigation = State(initialValue: AppNavigationState(environment: environment))
+
+        // Personalized intelligence composition. The deterministic provider is
+        // always available; the remote AI boundary activates only when a real
+        // endpoint + transport are configured (§5, §36).
+        let forecastRepository: any ForecastRepository
+        do {
+            forecastRepository = try FileForecastRepository()
+        } catch {
+            ForecastLog.repositoryIssue("durable forecast storage unavailable; using in-memory")
+            forecastRepository = InMemoryForecastRepository()
+        }
+        let coordinator = ForecastGenerationCoordinator(
+            provider: DeterministicContentProvider(),
+            repository: forecastRepository
+        )
+        _forecastStore = State(initialValue: ForecastStore(
+            repository: forecastRepository,
+            coordinator: coordinator
+        ))
+
 #if DEBUG
         skyInput = DevelopmentD3Sample.makeInput()
 #else
@@ -30,6 +51,7 @@ struct HumayApp: App {
             RootView(skyInput: skyInput)
                 .environment(environment)
                 .environment(navigation)
+                .environment(forecastStore)
                 .task {
                     await bootstrap(environment: environment)
                 }

@@ -1,23 +1,26 @@
 import SwiftUI
 
 /// The rolling one-year mood timeline: an explorable, scrubbable year of
-/// entertainment data. Playful and exploratory by design — never analytics-flavored.
+/// entertainment data. Consumes the forecast repository through `ForecastStore`
+/// (personalized days merged over deterministic fill); never generates itself.
 struct YearTimelineSection: View {
-    let profileID: UUID
-    let birth: BirthDetails
+    let subject: ForecastSubject
 
+    @Environment(ForecastStore.self) private var forecasts
     @Environment(\.calendar) private var calendar
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
     @State private var shareActivity: ShareActivity?
 
-    @State private var forecast: YearlyForecast?
-    @State private var anchor: ForecastAnchor?
     @State private var dimension: MoodDimension = .overall
     @State private var selectedOffset = 0
+    @State private var canvasWidth: CGFloat?
+
+    private var effective: EffectiveForecast {
+        forecasts.effectiveForecast(for: subject)
+    }
 
     private var todayOffset: Int {
-        guard let anchor else { return 0 }
-        return max(0, min(YearlyForecast.dayCount - 1, anchor.dayOffset(for: .now, calendar: calendar) ?? 0))
+        max(0, min(YearlyForecast.dayCount - 1, effective.anchor.dayOffset(for: .now, calendar: calendar) ?? 0))
     }
 
     var body: some View {
@@ -28,33 +31,32 @@ struct YearTimelineSection: View {
                 .font(HumayTypography.cardTitle)
                 .fixedSize(horizontal: false, vertical: true)
 
-            if let forecast, let anchor {
-                dimensionChips
+            personalizationStatus
 
-                GeometryReader { proxy in
-                    TimelineCanvas(
-                        values: forecast.days.map { Double($0.scores[dimension]) },
-                        selectedIndex: selectedOffset,
-                        accent: Color.humay(accent(for: dimension))
-                    )
-                    .onAppear { canvasWidth = proxy.size.width }
-                    .onChange(of: proxy.size.width) { _, newWidth in
-                        canvasWidth = newWidth
-                    }
+            dimensionChips
+
+            GeometryReader { proxy in
+                TimelineCanvas(
+                    values: effective.days.map { Double($0.scores[dimension]) },
+                    selectedIndex: selectedOffset,
+                    accent: Color.humay(accent(for: dimension))
+                )
+                .onAppear { canvasWidth = proxy.size.width }
+                .onChange(of: proxy.size.width) { _, newWidth in
+                    canvasWidth = newWidth
                 }
-                .frame(height: 180)
-                .gesture(scrubGesture)
-
-                monthLabels
-
-                quickJumps
-
-                dayCard(forecast, anchor: anchor)
-            } else {
-                ProgressView()
-                    .frame(maxWidth: .infinity, minHeight: 180)
-                    .task { load() }
             }
+            .frame(height: 180)
+            .gesture(scrubGesture)
+
+            monthLabels
+
+            quickJumps
+
+            dayCard
+        }
+        .onAppear {
+            selectedOffset = todayOffset
         }
         .sheet(item: $shareActivity) { activity in
             ShareSheet(activity: activity)
@@ -62,10 +64,28 @@ struct YearTimelineSection: View {
         .accessibilityElement(children: .contain)
     }
 
-    private func load() {
-        anchor = ForecastAnchor(date: .now, calendar: calendar)
-        forecast = HumayContentEngine.yearlyForecast(profileID: profileID, birth: birth)
-        selectedOffset = todayOffset
+    /// Honest disclosure of what is personalized versus standby (§33).
+    @ViewBuilder
+    private var personalizationStatus: some View {
+        let document = forecasts.document(for: subject)
+        let phase = document?.resolvedPhase(for: subject) ?? .notGenerated
+
+        switch phase {
+        case .complete:
+            EmptyView()
+        case .generating, .partial, .preparing:
+            if let through = effective.personalizedThroughOffset {
+                Label("Personalized through \(effective.anchor.date(forDayOffset: through)?.formatted(.dateTime.day().month(.wide)) ?? "…") — the rest is Humay's standby forecast.", systemImage: "sparkles")
+                    .font(HumayTypography.caption)
+                    .foregroundStyle(Color.humayTextSecondary)
+            } else {
+                Label("Personalized forecast is being prepared — showing Humay's standby year meanwhile.", systemImage: "sparkles")
+                    .font(HumayTypography.caption)
+                    .foregroundStyle(Color.humayTextSecondary)
+            }
+        default:
+            EmptyView()
+        }
     }
 
     // MARK: - Controls
@@ -138,8 +158,6 @@ struct YearTimelineSection: View {
             }
     }
 
-    @State private var canvasWidth: CGFloat?
-
     /// Moves the scrubber with a light haptic tick. Cheap enough to call per-day.
     private func moveTo(_ offset: Int) {
         let clamped = max(0, min(YearlyForecast.dayCount - 1, offset))
@@ -150,11 +168,11 @@ struct YearTimelineSection: View {
     }
 
     private func jumpToExtreme(maximizing: Bool, dimension target: MoodDimension) {
-        guard let forecast else { return }
-        let days = maximizing
-            ? forecast.topDays(in: target, count: 1)
-            : forecast.bottomDays(in: target, count: 1)
-        if let day = days.first {
+        let days = effective.days
+        let candidate = maximizing
+            ? days.max { $0.scores[target] < $1.scores[target] }
+            : days.min { $0.scores[target] < $1.scores[target] }
+        if let day = candidate {
             withAnimation(reduceMotion ? nil : HumayMotion.smooth) {
                 selectedOffset = day.dayOffset
                 dimension = target
@@ -165,12 +183,12 @@ struct YearTimelineSection: View {
 
     // MARK: - Day detail
 
-    private func dayCard(_ forecast: YearlyForecast, anchor: ForecastAnchor) -> some View {
+    private var dayCard: some View {
         Group {
-            if let day = forecast.mood(atDayOffset: selectedOffset) {
+            if let day = effective.day(atOffset: selectedOffset) {
                 VStack(alignment: .leading, spacing: HumaySpacing.medium) {
                     HStack(alignment: .firstTextBaseline) {
-                        Text(anchor.date(forDayOffset: day.dayOffset)?
+                        Text(effective.anchor.date(forDayOffset: day.dayOffset)?
                             .formatted(.dateTime.weekday(.wide).day().month().year()) ?? "")
                             .font(HumayTypography.bodyEmphasized)
                         Spacer()
@@ -191,7 +209,7 @@ struct YearTimelineSection: View {
                     scoreRow("Chaos", value: day.scores[.chaos], tint: .coral)
 
                     Button {
-                        shareActivity = ShareActivity(kind: .dayCard(anchor: anchor, mood: day))
+                        shareActivity = ShareActivity(kind: .dayCard(anchor: effective.anchor, mood: day))
                     } label: {
                         Label("Share this day", systemImage: "square.and.arrow.up")
                             .font(HumayTypography.supportingEmphasized)
@@ -237,8 +255,7 @@ struct YearTimelineSection: View {
     }
 
     private func monthInitial(_ index: Int) -> String {
-        guard let anchor else { return "" }
-        let name = anchor.monthName(index: index, calendar: calendar)
+        let name = effective.anchor.monthName(index: index, calendar: calendar)
         return String(name.prefix(1))
     }
 

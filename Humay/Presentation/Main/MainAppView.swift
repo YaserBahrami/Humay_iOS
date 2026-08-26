@@ -85,9 +85,17 @@ struct MainAppView: View {
 /// Profile & settings sheet: facts, personality mode, honest precision note.
 struct ProfileSettingsSheet: View {
     @Environment(AppEnvironment.self) private var environment
+    @Environment(ForecastStore.self) private var forecastStore
     @Environment(\.dismiss) private var dismiss
 
     @State private var saveFailed = false
+    @State private var exportWrapper: IdentifiableURL?
+    @State private var exportError = false
+
+    private struct IdentifiableURL: Identifiable {
+        let url: URL
+        var id: String { url.absoluteString }
+    }
 
     var body: some View {
         @Bindable var environment = environment
@@ -140,6 +148,30 @@ struct ProfileSettingsSheet: View {
                 } footer: {
                     Text("Humay is entertainment, not advice. The stars have opinions; they are not experts.")
                 }
+
+#if DEBUG
+                Section {
+                    Button {
+                        guard let profile = environment.profile else { return }
+                        Task { @MainActor in
+                            do {
+                                let url = try await forecastStore.exportFileURL(for: profile.forecastSubject)
+                                exportWrapper = IdentifiableURL(url: url)
+                            } catch {
+                                exportError = true
+                            }
+                        }
+                    } label: {
+                        Label("Export forecast JSON", systemImage: "square.and.arrow.up")
+                    }
+                    .disabled(environment.profile == nil)
+                    .accessibilityIdentifier("profile.export.forecast")
+                } header: {
+                    Text("Debug")
+                } footer: {
+                    Text("Writes the normalized forecast to a shareable JSON file for QA and prompt debugging. Debug builds only.")
+                }
+#endif
             }
             .navigationTitle("You, technically")
             .navigationBarTitleDisplayMode(.inline)
@@ -152,6 +184,18 @@ struct ProfileSettingsSheet: View {
                 Button("OK", role: .cancel) { saveFailed = false }
             } message: {
                 Text("Your change didn't stick. Check your connection and try again.")
+            }
+            .sheet(item: $exportWrapper) { wrapper in
+                ShareLink(item: wrapper.url) {
+                    Label("Share forecast JSON", systemImage: "square.and.arrow.up")
+                        .frame(maxWidth: .infinity)
+                }
+                .presentationDetents([.medium])
+            }
+            .alert("Nothing to export yet", isPresented: $exportError) {
+                Button("OK", role: .cancel) {}
+            } message: {
+                Text("Generate a forecast first — open Today or You to trigger generation.")
             }
         }
         .presentationDetents([.medium, .large])

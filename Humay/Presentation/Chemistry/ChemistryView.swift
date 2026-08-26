@@ -10,6 +10,7 @@ struct ChemistryView: View {
     @State private var detailPerson: ConnectionPerson?
     @State private var selection: [ConnectionPerson] = []
     @State private var activePair: (ConnectionPerson, ConnectionPerson)?
+    @State private var comparisonSubjects: (ForecastSubject, ForecastSubject)?
 
     var body: some View {
         GeometryReader { proxy in
@@ -55,6 +56,9 @@ struct ChemistryView: View {
         }
         .fullScreenCover(item: activePairWrapper) { pair in
             CompatibilityCollisionView(first: pair.first, second: pair.second)
+        }
+        .sheet(item: comparisonSubjectsWrapper) { pair in
+            YearComparisonView(firstSubject: pair.first, secondSubject: pair.second)
         }
     }
 
@@ -168,7 +172,11 @@ struct ChemistryView: View {
                 }
             }
 
-            if selection.count == 2 {
+            if selection.count == 1 {
+                Text("One selected. Compare your year together below.")
+                    .font(HumayTypography.caption)
+                    .foregroundStyle(Color.humayTextSecondary)
+            } else if selection.count == 2 {
                 Text("Two selected. See what the universe thinks.")
                     .font(HumayTypography.caption)
                     .foregroundStyle(Color.humayTextSecondary)
@@ -176,10 +184,23 @@ struct ChemistryView: View {
         }
     }
 
-    /// Sticky call-to-action once two people are selected.
     @ViewBuilder
     private var compareBar: some View {
-        if let first = selection.first, let second = selection.last, selection.count == 2 {
+        if selection.count == 1, let selected = selection.first, let profile = environment.profile {
+            Button {
+                HumayHaptics.thump()
+                comparisonSubjects = (profile.forecastSubject, selected.forecastSubject)
+            } label: {
+                Label("Your year with \(selected.name)", systemImage: "calendar.badge.clock")
+                    .font(HumayTypography.control)
+                    .frame(maxWidth: .infinity)
+                    .frame(minHeight: HumayMetrics.primaryControlMinimumHeight)
+            }
+            .buttonStyle(.humayPrimary)
+            .shadow(color: .black.opacity(0.18), radius: 16, y: 6)
+            .transition(.move(edge: .bottom).combined(with: .opacity))
+            .accessibilityIdentifier("chemistry.compare.year")
+        } else if selection.count == 2, let first = selection.first, let second = selection.last {
             Button {
                 HumayHaptics.thump()
                 activePair = (first, second)
@@ -194,6 +215,25 @@ struct ChemistryView: View {
             .transition(.move(edge: .bottom).combined(with: .opacity))
             .accessibilityIdentifier("chemistry.compare.run")
         }
+    }
+
+    private struct ComparisonPair: Identifiable {
+        let first: ForecastSubject
+        let second: ForecastSubject
+        var id: String { first.id.uuidString + second.id.uuidString }
+    }
+
+    private var comparisonSubjectsWrapper: Binding<ComparisonPair?> {
+        Binding(
+            get: {
+                guard let pair = comparisonSubjects else { return nil }
+                return ComparisonPair(first: pair.0, second: pair.1)
+            },
+            set: { newValue in
+                comparisonSubjects = newValue.map { ($0.first, $0.second) }
+                if newValue == nil { selection = [] }
+            }
+        )
     }
 
     private func selectionRank(of person: ConnectionPerson) -> Int? {

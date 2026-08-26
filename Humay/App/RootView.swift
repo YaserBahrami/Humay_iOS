@@ -96,9 +96,18 @@ struct RootView: View {
         initialRestorationState: .ready
     )
     let navigation = AppNavigationState(environment: environment)
+    let inMemoryRepo = InMemoryForecastRepository()
+    let store = ForecastStore(
+        repository: inMemoryRepo,
+        coordinator: ForecastGenerationCoordinator(
+            provider: DeterministicContentProvider(),
+            repository: inMemoryRepo
+        )
+    )
 
     return RootView(skyInput: DevelopmentD3Sample.makeInput())
         .environment(environment)
         .environment(navigation)
+        .environment(store)
 }
 #endif

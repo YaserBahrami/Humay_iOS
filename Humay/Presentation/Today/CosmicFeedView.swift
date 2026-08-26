@@ -2,12 +2,13 @@ import SwiftUI
 
 /// Today — the personalized entertainment feed.
 ///
-/// Content comes from `HumayContentEngine` (deterministic fixture generation today,
-/// AI personalization later behind the same models). Composition rotates daily and
-/// reacts to personality mode immediately.
+/// Content is composed by `FeedComposer` from the personalized forecast
+/// repository where it exists, falling back to the deterministic engine.
+/// Composition rotates daily and reacts to personality mode immediately.
 struct CosmicFeedView: View {
     @Environment(AppEnvironment.self) private var environment
     @Environment(AppNavigationState.self) private var navigation
+    @Environment(ForecastStore.self) private var forecasts
 
     @Environment(\.calendar) private var calendar
     @State private var shareActivity: ShareActivity?
@@ -39,6 +40,11 @@ struct CosmicFeedView: View {
         .navigationBarHidden(true)
         .sheet(item: $shareActivity) { activity in
             ShareSheet(activity: activity)
+        }
+        .task {
+            if let profile = environment.profile {
+                forecasts.ensureForecast(for: profile.forecastSubject)
+            }
         }
     }
 
@@ -113,14 +119,15 @@ struct CosmicFeedView: View {
 
     private var feedItems: [FeedItem] {
         guard let profile = environment.profile else { return [] }
+        let subject = profile.forecastSubject
 
-        let skyEvent = translatedSkyEvent()
-        return HumayContentEngine.dailyFeed(
-            profile: profile,
+        return FeedComposer.dailyFeed(
+            subject: subject,
+            document: forecasts.document(for: subject),
             date: .now,
             calendar: calendar,
             mode: environment.settings.personalityMode,
-            skyEvent: skyEvent
+            skyEvent: translatedSkyEvent()
         )
     }
 
