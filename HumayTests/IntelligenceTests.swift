@@ -285,6 +285,15 @@ actor MockContentProvider: PersonalizedContentProviding {
     var delayNanoseconds: UInt64 = 0
     var outlineCallCount = 0
     var monthCallCounts: [Int: Int] = [:]
+    nonisolated var descriptor: PersonalizedContentProviderDescriptor {
+        PersonalizedContentProviderDescriptor(
+            providerIdentifier: "mock",
+            generatorVersion: "mock-v1",
+            promptCatalogVersion: IntelligenceVersions.promptCatalog,
+            basis: .entertainmentFixture,
+            modelIdentifier: "mock"
+        )
+    }
 
     init(failMonths: Set<Int> = [], malformedMonths: Set<Int> = [], delayNanoseconds: UInt64 = 0) {
         self.failMonths = failMonths

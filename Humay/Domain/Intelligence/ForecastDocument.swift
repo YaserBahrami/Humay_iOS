@@ -242,15 +242,40 @@ struct PersonalizedForecastDocument: Sendable, Hashable, Codable {
     }
 
     /// Whether this document was generated for the subject's current birth data
-    /// and the current generator. Anything else is stale by definition (§15).
+    /// and the indicated generator. Anything else is stale by definition (§15).
     func isStale(for subject: ForecastSubject) -> Bool {
-        let expected = ProfileFingerprint(subject: subject, generatorVersion: provenance.generatorVersion)
-        return fingerprint != expected
-            || provenance.generatorVersion != Self.generatorVersion
+        isStale(for: subject, currentGeneratorVersion: nil)
+    }
+
+    func isStale(for subject: ForecastSubject, currentGeneratorVersion: String?) -> Bool {
+        let effectiveGenerator = currentGeneratorVersion ?? provenance.generatorVersion
+        let expected = ProfileFingerprint(subject: subject, generatorVersion: effectiveGenerator)
+        // Fingerprint mismatch captures both birth-data and generator-version changes.
+        // If caller supplied a currentGeneratorVersion that differs from the stored
+        // provenance, the fingerprint will differ and the doc is stale.
+        if fingerprint != expected { return true }
+        // Also stale if stored provenance generator differs from current when supplied.
+        if let current = currentGeneratorVersion, provenance.generatorVersion != current { return true }
+        // Legacy check against static deterministic version only for deterministic docs.
+        // Remote docs carry their own generatorVersion and are not compared to static.
+        if provenance.providerIdentifier == PersonalizedContentProviderDescriptor.deterministicIdentifier
+            || provenance.providerIdentifier == "pending" {
+            if provenance.generatorVersion != Self.generatorVersion { return true }
+        }
+        return false
     }
 
     func resolvedPhase(for subject: ForecastSubject) -> ForecastGenerationPhase {
         if isStale(for: subject) { return .stale }
+        return GenerationStateRecord.resolvedPhase(
+            chunks: generationState.chunks,
+            fingerprintMatches: true,
+            generatorMatches: true
+        )
+    }
+
+    func resolvedPhase(for subject: ForecastSubject, currentGeneratorVersion: String?) -> ForecastGenerationPhase {
+        if isStale(for: subject, currentGeneratorVersion: currentGeneratorVersion) { return .stale }
         return GenerationStateRecord.resolvedPhase(
             chunks: generationState.chunks,
             fingerprintMatches: true,

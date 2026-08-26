@@ -82,23 +82,28 @@ extension WesternZodiacSign {
 struct IdentitySection: View {
     let profile: UserProfile
 
-    private var bigThree: BigThree? {
-        profile.forecastSubject.bigThree()
-    }
-
     var body: some View {
+        // Single canonical Big Three per input fingerprint — computed once, passed to rows.
+        let bigThree = profile.forecastSubject.bigThree()
         VStack(alignment: .leading, spacing: HumaySpacing.large) {
             HumayKickerLabel(text: "The big three")
 
             VStack(spacing: HumaySpacing.medium) {
-                sunRow
-                moonRow
-                risingRow
+                sunRow(bigThree)
+                moonRow(bigThree)
+                risingRow(bigThree)
             }
 
             #if DEBUG
-            if let bt = bigThree, let json = BigThreeDebug.json(for: profile.birth) {
-                BigThreeDebugView(json: json, birthUTC: bt.metadata.calculatedAt.formatted())
+            if let bt = bigThree {
+                let debugPayload = BigThreeDebug.payload(for: profile.birth, bigThree: bt)
+                if let json = BigThreeDebug.jsonString(from: debugPayload) {
+                    BigThreeDebugView(
+                        json: json,
+                        birthUTC: debugPayload.birthUTC ?? "—",
+                        calculatedAt: debugPayload.calculator.calculatedAt
+                    )
+                }
             }
             #endif
         }
@@ -107,7 +112,7 @@ struct IdentitySection: View {
     // MARK: - Rows driven by deterministic BigThree
 
     @ViewBuilder
-    private var sunRow: some View {
+    private func sunRow(_ bigThree: BigThree?) -> some View {
         if let bt = bigThree {
             switch bt.sun {
             case .available(let pos):
@@ -149,7 +154,7 @@ struct IdentitySection: View {
     }
 
     @ViewBuilder
-    private var moonRow: some View {
+    private func moonRow(_ bigThree: BigThree?) -> some View {
         if let bt = bigThree {
             switch bt.moon {
             case .available(let pos):
@@ -183,7 +188,7 @@ struct IdentitySection: View {
     }
 
     @ViewBuilder
-    private var risingRow: some View {
+    private func risingRow(_ bigThree: BigThree?) -> some View {
         if let bt = bigThree {
             switch bt.rising {
             case .available(let pos):
@@ -220,6 +225,7 @@ struct IdentitySection: View {
 private struct BigThreeDebugView: View {
     let json: String
     let birthUTC: String
+    let calculatedAt: String
     @State private var expanded = false
     var body: some View {
         VStack(alignment: .leading, spacing: HumaySpacing.small) {
@@ -237,13 +243,21 @@ private struct BigThreeDebugView: View {
             }
             .buttonStyle(.plain)
             if expanded {
-                Text(json)
-                    .font(.system(.caption, design: .monospaced))
-                    .foregroundStyle(Color.humayTextSecondary)
-                    .textSelection(.enabled)
-                    .fixedSize(horizontal: false, vertical: true)
-                    .padding(HumaySpacing.small)
-                    .background(Color.humayRaisedSurface.opacity(0.6), in: RoundedRectangle(cornerRadius: 8))
+                VStack(alignment: .leading, spacing: 4) {
+                    Text("birthUTC: \(birthUTC)")
+                        .font(.system(.caption, design: .monospaced))
+                        .foregroundStyle(Color.humayTextSecondary)
+                    Text("calculatedAt: \(calculatedAt)")
+                        .font(.system(.caption, design: .monospaced))
+                        .foregroundStyle(Color.humayTextSecondary)
+                    Text(json)
+                        .font(.system(.caption, design: .monospaced))
+                        .foregroundStyle(Color.humayTextSecondary)
+                        .textSelection(.enabled)
+                        .fixedSize(horizontal: false, vertical: true)
+                }
+                .padding(HumaySpacing.small)
+                .background(Color.humayRaisedSurface.opacity(0.6), in: RoundedRectangle(cornerRadius: 8))
             }
         }
         .padding(HumaySpacing.medium)

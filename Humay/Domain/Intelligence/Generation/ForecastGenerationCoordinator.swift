@@ -45,11 +45,12 @@ actor ForecastGenerationCoordinator {
         anchor: ForecastAnchor
     ) async throws -> Outcome {
         let existing = try await repository.load(subject: subject)
+        let currentGenerator = provider.descriptor.generatorVersion
 
         // Fresh, complete document: pure cache hit (§22).
         if let existing,
-           !existing.isStale(for: subject),
-           existing.resolvedPhase(for: subject) == .complete {
+           !existing.isStale(for: subject, currentGeneratorVersion: currentGenerator),
+           existing.resolvedPhase(for: subject, currentGeneratorVersion: currentGenerator) == .complete {
             ForecastLog.cacheHit(profileID: subject.id)
             return .cached(existing)
         }
@@ -62,14 +63,14 @@ actor ForecastGenerationCoordinator {
 
         // Create or repair the document and its chunk plan.
         var document: PersonalizedForecastDocument
-        if let existing, !existing.isStale(for: subject) {
+        if let existing, !existing.isStale(for: subject, currentGeneratorVersion: currentGenerator) {
             document = existing
             document.generationState.phase = .generating
             if document.generationState.chunks.count != configuration.chunkCount {
                 document.generationState.chunks = Self.chunkPlan(count: configuration.chunkCount)
             }
         } else {
-            document = Self.freshDocument(subject: subject, anchor: anchor, configuration: configuration)
+            document = freshDocument(subject: subject, anchor: anchor, configuration: configuration)
         }
         try await repository.save(document)
 
@@ -203,28 +204,33 @@ actor ForecastGenerationCoordinator {
 
     // MARK: - Helpers
 
-    private static func freshDocument(
+    private func freshDocument(
         subject: ForecastSubject,
         anchor: ForecastAnchor,
         configuration: Configuration
     ) -> PersonalizedForecastDocument {
+        let descriptor = provider.descriptor
         let state = GenerationStateRecord(
             phase: .preparing,
-            chunks: chunkPlan(count: configuration.chunkCount),
+            chunks: Self.chunkPlan(count: configuration.chunkCount),
             fingerprintAtGeneration: ProfileFingerprint(
                 subject: subject,
-                generatorVersion: PersonalizedForecastDocument.generatorVersion
+                generatorVersion: descriptor.generatorVersion
             ),
-            generatorVersion: DeterministicContentProvider.generatorVersion,
+            generatorVersion: descriptor.generatorVersion,
             startedAt: .now
         )
+        // Include modelIdentifier and prompt catalog for full provenance
+        let basis: ContentBasis = descriptor.basis
         return PersonalizedForecastDocument(
             subject: subject,
             anchor: anchor,
             provenance: .init(
-                generatorVersion: DeterministicContentProvider.generatorVersion,
-                providerIdentifier: "pending",
-                basis: .entertainmentFixture
+                generatorVersion: descriptor.generatorVersion,
+                promptCatalogVersion: descriptor.promptCatalogVersion,
+                providerIdentifier: descriptor.providerIdentifier,
+                modelIdentifier: descriptor.modelIdentifier,
+                basis: basis
             ),
             generationState: state
         )

@@ -12,6 +12,16 @@ actor DeterministicContentProvider: PersonalizedContentProviding {
     static let identifier = "deterministic"
     static let generatorVersion = YearlyForecast.currentGeneratorVersion
 
+    nonisolated var descriptor: PersonalizedContentProviderDescriptor {
+        PersonalizedContentProviderDescriptor(
+            providerIdentifier: Self.identifier,
+            generatorVersion: Self.generatorVersion,
+            promptCatalogVersion: IntelligenceVersions.promptCatalog,
+            basis: .entertainmentFixture,
+            modelIdentifier: nil
+        )
+    }
+
     init() {}
 
     // MARK: - Outline

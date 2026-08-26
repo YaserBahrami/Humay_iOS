@@ -9,9 +9,9 @@ struct PromptIdentifier: Sendable, Hashable, Codable, RawRepresentable {
         self.rawValue = rawValue
     }
 
-    static let yearOutline = PromptIdentifier(rawValue: "forecast.year-outline.v1")
-    static let monthChunk = PromptIdentifier(rawValue: "forecast.month.v1")
-    static let dayRegeneration = PromptIdentifier(rawValue: "forecast.day.v1")
+    static let yearOutline = PromptIdentifier(rawValue: "forecast.year-outline.v2")
+    static let monthChunk = PromptIdentifier(rawValue: "forecast.month.v2")
+    static let dayRegeneration = PromptIdentifier(rawValue: "forecast.day.v2")
     static let comparisonCommentary = PromptIdentifier(rawValue: "comparison.commentary.v1")
 }
 
@@ -47,8 +47,10 @@ struct PromptTemplate<Input>: Sendable {
     let build: @Sendable (Input) -> String
 }
 
-/// The v1 prompt catalog. Inputs are structured domain values; outputs are the
+/// The v2 prompt catalog. Inputs are structured domain values; outputs are the
 /// JSON-schema payloads defined alongside the remote provider contracts.
+/// v2 adds explicit PersonalizationContext to month/day generation so they no
+/// longer depend only on prose from the year outline.
 enum PromptCatalog {
     static let yearOutline = PromptTemplate<YearOutlineInput>(
         identifier: .yearOutline
@@ -86,6 +88,14 @@ enum PromptCatalog {
         Task: generate days \(input.startDayOffset)–\(input.endDayOffset) \
         (month \(input.monthIndex + 1) of 12) for this person.
 
+        Person context (same canonical Big Three as year outline — do not re-derive):
+        - Sun sign: \(input.personalization.sunSign ?? "unavailable")
+        - Moon sign: \(input.personalization.moonSign ?? "unavailable")
+        - Rising sign: \(input.personalization.risingSign ?? "unavailable")
+        - Humay archetype: \(input.personalization.archetypeName)
+        - Birth time known: \(input.personalization.birthTimeKnown)
+        - Astrology context: \(input.personalization.astrologyContextJSON)
+
         Annual context you must stay coherent with:
         - Year theme: \(input.yearTheme)
         - This month: \(input.monthTheme) — \(input.monthTendency)
@@ -119,6 +129,13 @@ enum PromptCatalog {
         Task: regenerate exactly one day (dayOffset \(input.startDayOffset)) \
         consistent with month \(input.monthIndex + 1) theme: \
         \(input.monthTheme).
+
+        Person context (same canonical Big Three):
+        - Sun sign: \(input.personalization.sunSign ?? "unavailable")
+        - Moon sign: \(input.personalization.moonSign ?? "unavailable")
+        - Rising sign: \(input.personalization.risingSign ?? "unavailable")
+        - Humay archetype: \(input.personalization.archetypeName)
+        - Astrology context: \(input.personalization.astrologyContextJSON)
 
         Return the same day JSON shape as monthly generation, with exactly \
         one day.
@@ -179,6 +196,17 @@ struct YearOutlineInput: Sendable {
         self.archetypeName = archetypeName
         self.birthTimeKnown = birthTimeKnown
     }
+
+    /// Factory from PersonalizationContext
+    init(context: PersonalizationContext, startDateDescription: String) {
+        self.startDateDescription = startDateDescription
+        self.sunSign = context.sunSign
+        self.moonSign = context.moonSign
+        self.risingSign = context.risingSign
+        self.astrologyContextJSON = context.astrologyContextJSON
+        self.archetypeName = context.archetypeName
+        self.birthTimeKnown = context.birthTimeKnown
+    }
 }
 
 struct MonthChunkInput: Sendable {
@@ -190,6 +218,41 @@ struct MonthChunkInput: Sendable {
     let monthTheme: String
     let monthTendency: String
     let notablePeriodsSummary: String
+    let personalization: PersonalizationContext
+
+    /// Legacy init for deterministic fallback / tests that don't need personalization.
+    init(monthIndex: Int, startDayOffset: Int, endDayOffset: Int, dayCount: Int,
+         yearTheme: String, monthTheme: String, monthTendency: String, notablePeriodsSummary: String) {
+        self.monthIndex = monthIndex
+        self.startDayOffset = startDayOffset
+        self.endDayOffset = endDayOffset
+        self.dayCount = dayCount
+        self.yearTheme = yearTheme
+        self.monthTheme = monthTheme
+        self.monthTendency = monthTendency
+        self.notablePeriodsSummary = notablePeriodsSummary
+        // Fallback personalization with no astrology (deterministic provider not sensitive)
+        self.personalization = PersonalizationContext(
+            sunSign: nil, sunDegreeWithinSign: nil,
+            moonSign: nil, moonDegreeWithinSign: nil,
+            risingSign: nil, risingDegreeWithinSign: nil,
+            birthTimeKnown: false, archetypeID: "fallback", archetypeName: "Humay"
+        )
+    }
+
+    init(monthIndex: Int, startDayOffset: Int, endDayOffset: Int, dayCount: Int,
+         yearTheme: String, monthTheme: String, monthTendency: String,
+         notablePeriodsSummary: String, personalization: PersonalizationContext) {
+        self.monthIndex = monthIndex
+        self.startDayOffset = startDayOffset
+        self.endDayOffset = endDayOffset
+        self.dayCount = dayCount
+        self.yearTheme = yearTheme
+        self.monthTheme = monthTheme
+        self.monthTendency = monthTendency
+        self.notablePeriodsSummary = notablePeriodsSummary
+        self.personalization = personalization
+    }
 }
 
 struct ComparisonCommentaryInput: Sendable {

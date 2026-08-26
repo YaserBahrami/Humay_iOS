@@ -9,6 +9,9 @@ import Foundation
 /// All methods are chunk-scoped and resumable by design (§6): a year is generated
 /// as one outline plus bounded month chunks, never one giant request.
 protocol PersonalizedContentProviding: Sendable {
+    /// Provider identity for provenance and stale detection.
+    var descriptor: PersonalizedContentProviderDescriptor { get }
+
     /// Step 2 of the plan: lightweight annual structure (theme, monthly
     /// tendencies, notable periods) that later chunks must stay coherent with.
     func generateYearOutline(
@@ -31,6 +34,19 @@ protocol PersonalizedContentProviding: Sendable {
         anchor: ForecastAnchor,
         dayOffset: Int
     ) async throws -> DailyMood
+}
+
+/// Vendor-neutral provenance descriptor. Coordinator uses this to stamp
+/// documents with the actual provider that generated the data.
+struct PersonalizedContentProviderDescriptor: Sendable, Hashable {
+    static let deterministicIdentifier = "deterministic"
+    static let remoteIdentifier = "remote-ai"
+
+    let providerIdentifier: String
+    let generatorVersion: String
+    let promptCatalogVersion: String
+    let basis: ContentBasis
+    let modelIdentifier: String?
 }
 
 /// Provider-reported usage for cost control (§22).

@@ -7,14 +7,14 @@ import Foundation
 // sufficient for Sun/Moon ecliptic longitude and Ascendant sign accuracy.
 //
 // Why not Swiss Ephemeris: overkill for three signs, heavy C dependency,
-// LGPL complexities, larger binary. See BIG_THREE_CALCULATION.md for full
-// trade-off.
+// AGPL (or Swiss Ephemeris Professional License) complexities, larger binary.
+// See BIG_THREE_CALCULATION.md for full trade-off.
 //
-// Accuracy target: Sun ±0.01°, Moon ±0.5°, Ascendant ±1.0° — well inside
-// sign-level correctness (sign = 30° wide). Moon error is the tightest but
-// even 0.5° only matters in the ~1/60 days when the Moon is within 0.5° of a
-// cusp at the birth moment; in that narrow slice we prefer honest ambiguity
-// handling over professional-ephemeris precision.
+// Accuracy target (measured vs Swiss oracle 1900–2100): Sun ~0.02°,
+// Moon ~0.2° (max ~0.5°), Ascendant ~0.6° (max ~1.2°). Sign is 30° wide,
+// but near a 30° boundary a small error can change the sign — see
+// BigThreeCalculationCore cusp margins which return ambiguous rather than
+// asserting false exactness.
 
 enum HumayAstronomyEngine: Sendable {
     static let identifier = "humay-meeus-lite"
@@ -173,10 +173,11 @@ enum HumayAstronomyEngine: Sendable {
         let eps = 23.439291 - 0.0130042 * T - 0.000000164 * T * T + 0.000000504 * T * T * T
         let epsRad = deg2rad(eps)
 
-        // Greenwich Mean Sidereal Time (degrees) — Meeus 12.4 simplified
-        // GMST = 280.46061837 + 360.98564736629*(JD-2451545) + 0.000387933 T^2 - ...
+        // Greenwich Mean Sidereal Time (degrees) — Meeus 12.4
+        // T = (JD - 2451545.0) / 36525
+        // GMST = 280.46061837 + 360.98564736629*(JD-2451545) + 0.000387933*T^2 - T^3/38710000
         let gmst = normalizeDegrees(280.46061837 + 360.98564736629 * (jd - 2451545.0)
-            + 0.000387933 * T * T - (jd - 2451545.0) * (jd - 2451545.0) / 38710000.0)
+            + 0.000387933 * T * T - (T * T * T) / 38710000.0)
         let lst = normalizeDegrees(gmst + longitude) // east positive
         let ramc = lst // Right Ascension of MC = LST (degrees)
         let ramcRad = deg2rad(ramc)

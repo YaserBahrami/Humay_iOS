@@ -52,6 +52,17 @@ struct UnavailableAITransport: AITransport {
 /// remains fully functional on the deterministic provider (§5).
 actor RemoteAIContentProvider: PersonalizedContentProviding {
     static let identifier = "remote-ai"
+    static let generatorVersion = "humay-remote-v1"
+
+    nonisolated var descriptor: PersonalizedContentProviderDescriptor {
+        PersonalizedContentProviderDescriptor(
+            providerIdentifier: Self.identifier,
+            generatorVersion: Self.generatorVersion,
+            promptCatalogVersion: IntelligenceVersions.promptCatalog,
+            basis: .aiGenerated(modelIdentifier: "remote"),
+            modelIdentifier: nil
+        )
+    }
 
     private let endpoint: RemoteForecastEndpoint
     private let transport: any AITransport
@@ -65,25 +76,9 @@ actor RemoteAIContentProvider: PersonalizedContentProviding {
         subject: ForecastSubject,
         anchor: ForecastAnchor
     ) async throws -> GeneratedOutline {
-        let bigThree = subject.bigThree()
-        let contextJSON: String = {
-            if let bt = bigThree {
-                let source = bt.astrologyContextWithDegreesForAI.isEmpty ? bt.astrologyContextForAI : bt.astrologyContextWithDegreesForAI
-                if let data = try? JSONSerialization.data(withJSONObject: source, options: [.sortedKeys]),
-                   let s = String(data: data, encoding: .utf8) { return s }
-                return "{}"
-            }
-            return "{\"sun\":\"\(subject.sunSign?.rawValue ?? "unavailable")\"}"
-        }()
-        let input = YearOutlineInput(
-            startDateDescription: "\(anchor.startYear)-\(anchor.startMonth)-\(anchor.startDay)",
-            sunSign: bigThree?.sunSign?.rawValue ?? subject.sunSign?.rawValue,
-            moonSign: bigThree?.moonSign?.rawValue,
-            risingSign: bigThree?.risingSign?.rawValue,
-            astrologyContextJSON: contextJSON,
-            archetypeName: HumayContentEngine.archetype(profileID: subject.id).name,
-            birthTimeKnown: subject.birth.time.isKnown
-        )
+        let context = PersonalizationContext.from(subject: subject)
+        let input = YearOutlineInput(context: context,
+                                      startDateDescription: "\(anchor.startYear)-\(anchor.startMonth)-\(anchor.startDay)")
         let template = PromptCatalog.yearOutline
 
         let payload = try JSONEncoder().encode(RemoteRequestPayload(
@@ -94,7 +89,7 @@ actor RemoteAIContentProvider: PersonalizedContentProviding {
 
         do {
             let decoded = try JSONDecoder().decode(RemoteOutlinePayload.self, from: response.data)
-            let context = try YearContext(
+            let yc = try YearContext(
                 yearTheme: decoded.yearTheme,
                 monthlyThemes: decoded.monthlyThemes.map {
                     MonthlyTheme(monthIndex: $0.monthIndex, theme: $0.theme, tendency: $0.tendency)
@@ -109,7 +104,7 @@ actor RemoteAIContentProvider: PersonalizedContentProviding {
                 }
             )
             return GeneratedOutline(
-                context: context,
+                context: yc,
                 usage: GenerationUsage(usageUnits: response.usageUnits),
                 modelIdentifier: response.modelIdentifier
             )
@@ -131,6 +126,7 @@ actor RemoteAIContentProvider: PersonalizedContentProviding {
             throw GenerationError.validationFailed(.invalidMonthIndex(monthIndex))
         }
         let monthTheme = outline.monthlyThemes.first { $0.monthIndex == monthIndex }
+        let context = PersonalizationContext.from(subject: subject)
 
         let input = MonthChunkInput(
             monthIndex: monthIndex,
@@ -140,7 +136,8 @@ actor RemoteAIContentProvider: PersonalizedContentProviding {
             yearTheme: outline.yearTheme,
             monthTheme: monthTheme?.theme ?? "Transit season",
             monthTendency: monthTheme?.tendency ?? "Leans steady.",
-            notablePeriodsSummary: outline.notablePeriods.map { "\($0.label) (days \($0.startDayOffset)–\($0.endDayOffset))" }.joined(separator: "; ")
+            notablePeriodsSummary: outline.notablePeriods.map { "\($0.label) (days \($0.startDayOffset)–\($0.endDayOffset))" }.joined(separator: "; "),
+            personalization: context
         )
         let template = PromptCatalog.monthChunk
 
@@ -175,6 +172,7 @@ actor RemoteAIContentProvider: PersonalizedContentProviding {
     ) async throws -> DailyMood {
         let monthIndex = anchorMonthIndex(forDayOffset: dayOffset, anchor: anchor)
         let monthTheme = outline.monthlyThemes.first { $0.monthIndex == monthIndex }
+        let context = PersonalizationContext.from(subject: subject)
 
         let input = MonthChunkInput(
             monthIndex: monthIndex,
@@ -184,7 +182,8 @@ actor RemoteAIContentProvider: PersonalizedContentProviding {
             yearTheme: outline.yearTheme,
             monthTheme: monthTheme?.theme ?? "Transit season",
             monthTendency: monthTheme?.tendency ?? "Leans steady.",
-            notablePeriodsSummary: "n/a"
+            notablePeriodsSummary: "n/a",
+            personalization: context
         )
         let template = PromptCatalog.dayRegeneration
 

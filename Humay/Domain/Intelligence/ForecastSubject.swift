@@ -48,8 +48,9 @@ enum IntelligenceVersions {
     static let astrologyCalculation = "bigthree-v1"
     /// Version of the persisted document schema.
     static let forecastSchema = 1
-    /// Prompt catalog version recorded in provenance.
-    static let promptCatalog = "prompts-v1"
+    /// Prompt catalog version recorded in provenance — bumped to v2 for
+    /// PersonalizationContext addition to month/day prompts.
+    static let promptCatalog = "prompts-v2"
 }
 
 /// Stable fingerprint over every material input of forecast generation.
