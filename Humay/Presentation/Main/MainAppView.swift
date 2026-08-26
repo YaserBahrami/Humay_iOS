@@ -1,116 +1,80 @@
 import SwiftUI
 
+/// Main shell for the entertainment-first IA:
+/// Today (Cosmic Feed) · Chemistry · You · Sky.
 struct MainAppView: View {
     @Environment(AppEnvironment.self) private var environment
     @Environment(AppNavigationState.self) private var navigation
 
-    let d2FeatureInput: D2FeatureInput
-    let d3FeatureInput: D3FeatureInput
-    let d4FeatureInput: D4FeatureInput
-    let d5FeatureInput: D5FeatureInput
+    let skyInput: D3FeatureInput
 
     var body: some View {
         @Bindable var navigation = navigation
 
         TabView(selection: $navigation.mainDestination) {
-            MainTabRoot {
+            Tab(value: MainDestination.today) {
                 NavigationStack {
-                    TodayView(
-                        state: d2FeatureInput.today,
-                        dailyStates: d2FeatureInput.dailyHoroscope,
-                        precisePreview: d2FeatureInput.preciseDailyPreview,
-                        source: d2FeatureInput.source,
-                        profileName: profileName,
-                        openProfile: openProfile
-                    )
+                    CosmicFeedView()
                 }
+            } label: {
+                Label("Today", systemImage: "sun.max")
             }
-            .tabItem { Label("Today", systemImage: "sun.max") }
-            .tag(MainDestination.today)
 
-            MainTabRoot {
+            Tab(value: MainDestination.chemistry) {
                 NavigationStack {
-                    CircleView(
-                        state: d2FeatureInput.circle,
-                        compatibilityState: d2FeatureInput.compatibility,
-                        precisePreview: d2FeatureInput.preciseCompatibilityPreview,
-                        source: d2FeatureInput.source,
-                        profileName: profileName,
-                        openProfile: openProfile
-                    )
+                    ChemistryView()
                 }
+            } label: {
+                Label("Chemistry", systemImage: "heart.text.square")
             }
-            .tabItem { Label("Circle", systemImage: "person.2") }
-            .tag(MainDestination.circle)
 
-            MainTabRoot {
+            Tab(value: MainDestination.you) {
+                NavigationStack {
+                    YouView()
+                }
+            } label: {
+                Label("You", systemImage: "person.crop.circle")
+            }
+
+            Tab(value: MainDestination.sky) {
                 NavigationStack {
                     CurrentSkyView(
-                        state: d3FeatureInput.currentSky,
-                        source: d3FeatureInput.source,
-                        calendarMonth: d3FeatureInput.calendarMonth,
-                        calendarWeek: d3FeatureInput.calendarWeek,
-                        calendarToday: calendarToday ?? SkyCalendarSupport.currentDate(),
-                        eventDetailState: d3FeatureInput.eventDetailState,
-                        profileName: profileName,
-                        openProfile: openProfile
+                        state: skyInput.currentSky,
+                        source: skyInput.source,
+                        calendarMonth: skyInput.calendarMonth,
+                        calendarWeek: skyInput.calendarWeek,
+                        calendarToday: calendarToday,
+                        eventDetailState: skyInput.eventDetailState,
+                        profileName: profileDisplayName,
+                        openProfile: { navigation.auxiliaryRoute = .profileSettings }
                     )
                 }
+            } label: {
+                Label("Sky", systemImage: "sparkles")
             }
-            .tabItem { Label("Sky", systemImage: "sparkles") }
-            .tag(MainDestination.sky)
-
-            MainTabRoot {
-                NavigationStack {
-                    ChartView(
-                        input: d4FeatureInput,
-                        profileName: profileName,
-                        openProfile: openProfile
-                    )
-                }
-            }
-            .tabItem { Label("Chart", systemImage: "circle.hexagongrid") }
-            .tag(MainDestination.chart)
-
-            MainTabRoot {
-                NavigationStack {
-                    AskView(
-                        input: d5FeatureInput,
-                        profileName: profileName,
-                        openProfile: openProfile
-                    )
-                }
-            }
-            .tabItem { Label("Ask", systemImage: "bubble.left.and.text.bubble.right") }
-            .tag(MainDestination.ask)
         }
-        .tabViewStyle(.sidebarAdaptable)
         .tint(Color.humayCoral)
         .sheet(item: $navigation.auxiliaryRoute) { route in
             switch route {
             case .profileSettings:
-                ProfileSettingsSummaryView()
+                ProfileSettingsSheet()
                     .environment(environment)
             }
         }
     }
 
-    private var profileName: String {
-        let persistedName = environment.profile?.displayName
+    private var profileDisplayName: String {
+        let persisted = environment.profile?.displayName
             .trimmingCharacters(in: .whitespacesAndNewlines)
-        if let persistedName, !persistedName.isEmpty {
-            return persistedName
+        if let persisted, !persisted.isEmpty {
+            return persisted
         }
-        return d2FeatureInput.circle.people.first?.name ?? "Humay"
-    }
-
-    private func openProfile() {
-        navigation.auxiliaryRoute = .profileSettings
+        return environment.people.first?.name ?? "Humay"
     }
 
     private var calendarToday: SkyCalendarDate? {
 #if DEBUG
-        if d3FeatureInput.source.isDevelopmentSample {
+        if skyInput.source.isDevelopmentSample {
             return DevelopmentD3Sample.referenceToday
         }
 #endif
@@ -118,54 +82,76 @@ struct MainAppView: View {
     }
 }
 
-private struct MainTabRoot<Content: View>: View {
-    let content: Content
-
-    init(@ViewBuilder content: () -> Content) {
-        self.content = content()
-    }
-
-    var body: some View {
-        content
-            .safeAreaInset(edge: .bottom, spacing: 0) {
-                Color.clear
-                    .frame(height: HumayMetrics.rootTabContentBreathingRoom)
-                    .allowsHitTesting(false)
-                    .accessibilityHidden(true)
-            }
-    }
-}
-
-private struct ProfileSettingsSummaryView: View {
+/// Profile & settings sheet: facts, personality mode, honest precision note.
+struct ProfileSettingsSheet: View {
     @Environment(AppEnvironment.self) private var environment
     @Environment(\.dismiss) private var dismiss
 
+    @State private var saveFailed = false
+
     var body: some View {
+        @Bindable var environment = environment
+
         NavigationStack {
             Form {
-                Section("Profile") {
+                Section {
                     LabeledContent("Name", value: displayName)
                     if let profile = environment.profile {
                         LabeledContent("Birth date", value: profile.birth.dateFormatted())
                         LabeledContent("Birth time", value: birthTimeText(profile.birth.time))
                         LabeledContent("Birth place", value: profile.birth.place.name ?? "Not provided")
                     }
+                } header: {
+                    Text("Profile")
+                } footer: {
+                    Text("Humay keeps things honest: missing birth details stay missing.")
                 }
 
-                Section("About your details") {
-                    Text("Birth time and place can stay unknown. Humay only uses them when a feature genuinely needs more precision.")
-                        .font(HumayTypography.supporting)
-                        .foregroundStyle(Color.humayTextSecondary)
+                Section {
+                    Picker("Mode", selection: $environment.settings.personalityMode) {
+                        ForEach(PersonalityMode.allCases) { mode in
+                            Text(mode.displayName).tag(mode)
+                        }
+                    }
+                    .onChange(of: environment.settings.personalityMode) { _, newMode in
+                        Task { @MainActor in
+                            do {
+                                try await environment.setPersonalityMode(newMode)
+                            } catch {
+                                saveFailed = true
+                            }
+                        }
+                    }
+                    if let selected = PersonalityMode.allCases.first(where: { $0 == environment.settings.personalityMode }) {
+                        Text(selected.tagline)
+                            .font(HumayTypography.supporting)
+                            .foregroundStyle(Color.humayTextSecondary)
+                    }
+                } header: {
+                    Text("Humay's tone")
+                } footer: {
+                    Text("Changes how Humay talks. Never changes the underlying data.")
+                }
+
+                Section {
+                    LabeledContent("Leading tradition", value: environment.settings.leadingTradition.shortName)
+                } header: {
+                    Text("Astrology")
+                } footer: {
+                    Text("Humay is entertainment, not advice. The stars have opinions; they are not experts.")
                 }
             }
-            .scrollContentBackground(.hidden)
-            .background(Color.humayGround)
-            .navigationTitle("Profile & Settings")
+            .navigationTitle("You, technically")
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .confirmationAction) {
                     Button("Done") { dismiss() }
                 }
+            }
+            .alert("Couldn't save that", isPresented: $saveFailed) {
+                Button("OK", role: .cancel) { saveFailed = false }
+            } message: {
+                Text("Your change didn't stick. Check your connection and try again.")
             }
         }
         .presentationDetents([.medium, .large])

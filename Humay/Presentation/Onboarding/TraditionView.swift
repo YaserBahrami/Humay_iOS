@@ -48,14 +48,14 @@ struct TraditionView: View {
     ) -> some View {
         VStack(alignment: .leading, spacing: sectionSpacing) {
             OnboardingChrome(
-                stepLabel: "02 · Tradition",
-                progressIndex: 2,
+                stepLabel: "03 · Tradition",
+                progressIndex: 3,
                 onBack: onBack
             )
 
             OnboardingTitleBlock(
-                title: "Choose your starting tradition",
-                supporting: "This sets the language Humay leads with. You can explore the others anytime.",
+                title: "Choose your flavor of stars",
+                supporting: "This sets the language Humay leads with. The others stay one tap away.",
                 hero: false
             )
 
@@ -74,14 +74,14 @@ struct TraditionView: View {
         HStack(alignment: .top, spacing: compactHeight ? HumaySpacing.large : HumaySpacing.extraExtraLarge) {
             VStack(alignment: .leading, spacing: sectionSpacing) {
                 OnboardingChrome(
-                    stepLabel: "02 · Tradition",
-                    progressIndex: 2,
+                    stepLabel: "03 · Tradition",
+                    progressIndex: 3,
                     onBack: onBack
                 )
 
                 OnboardingTitleBlock(
-                    title: "Choose your starting tradition",
-                    supporting: "This sets the language Humay leads with. You can explore the others anytime.",
+                    title: "Choose your flavor of stars",
+                    supporting: "This sets the language Humay leads with. The others stay one tap away.",
                     hero: false
                 )
 

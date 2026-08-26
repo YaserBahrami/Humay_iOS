@@ -29,10 +29,16 @@ struct PersistenceTests {
         )
         let settings = AppSettings(
             leadingTradition: .chinese,
-            tone: .roast,
+            personalityMode: .roast,
             onboardingCompletedAt: timestamp
         )
-        let expected = UserStateSnapshot(profile: profile, settings: settings)
+        let person = ConnectionPerson(
+            id: UUID(uuidString: "11111111-1111-4111-8111-111111111111")!,
+            name: "Salma",
+            relationshipKind: .crush,
+            birth: BirthDetails(year: 1995, month: 6, day: 3)
+        )
+        let expected = UserStateSnapshot(profile: profile, settings: settings, people: [person])
         let store = FileUserStateStore(fileURL: fixture.fileURL)
 
         try await store.save(expected)
@@ -45,29 +51,37 @@ struct PersistenceTests {
         #expect(restored.profile?.birth.time == .unknown)
         #expect(restored.profile?.birth.place == .notProvided)
         #expect(restored.settings.leadingTradition == .chinese)
-        #expect(restored.settings.tone == .roast)
+        #expect(restored.settings.personalityMode == .roast)
+        #expect(restored.people == [person])
         #expect(restored.settings.onboardingCompletedAt == timestamp)
     }
 
-    @Test("Version 1 snapshot loads with stable enum values")
-    func supportedSchemaVersionLoads() async throws {
+    @Test("Version 1 snapshot migrates to version 2 with preserved facts")
+    func schemaV1MigratesToCurrent() async throws {
         let fixture = try TemporaryStoreFixture()
         defer { fixture.remove() }
 
         try write(
             """
-            {"schemaVersion":1,"profile":null,"settings":{"leadingTradition":"vedic","onboardingCompletedAt":null,"tone":"normal"}}
+            {"schemaVersion":1,"profile":null,"settings":{"leadingTradition":"vedic","onboardingCompletedAt":null,"tone":"roast"}}
             """,
             to: fixture.fileURL
         )
 
         let store = FileUserStateStore(fileURL: fixture.fileURL)
-        let restored = try #require(await store.load())
 
+        // First load migrates.
+        let restored = try #require(await store.load())
         #expect(restored.profile == nil)
         #expect(restored.settings.leadingTradition == .vedic)
-        #expect(restored.settings.tone == .normal)
+        #expect(restored.settings.personalityMode == .roast)
         #expect(restored.settings.onboardingCompletedAt == nil)
+        #expect(restored.people.isEmpty)
+
+        // Re-saving persists in the current schema; loading it again stays stable.
+        try await store.save(restored)
+        let reloaded = try #require(await store.load())
+        #expect(reloaded == restored)
     }
 
     @Test("Unsupported schema version fails explicitly")
@@ -284,7 +298,7 @@ struct PersistenceTests {
         let store = InMemoryUserStateStore()
         let expectedSettings = AppSettings(
             leadingTradition: .vedic,
-            tone: .roast,
+            personalityMode: .roast,
             onboardingCompletedAt: nil
         )
         try await store.save(

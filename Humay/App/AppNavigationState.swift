@@ -21,16 +21,18 @@ enum AppRootState: String, CaseIterable, Hashable, Sendable {
     }
 }
 
-/// Canonical onboarding ownership. Presentation renders exactly these four routes.
+/// Canonical onboarding ownership. Presentation renders exactly these five routes.
 enum OnboardingRoute: String, CaseIterable, Hashable, Sendable {
     case welcome
     case birthDate
+    case name
     case tradition
     case profileReveal
 
     static let canonicalSequence: [OnboardingRoute] = [
         .welcome,
         .birthDate,
+        .name,
         .tradition,
         .profileReveal
     ]
@@ -38,7 +40,8 @@ enum OnboardingRoute: String, CaseIterable, Hashable, Sendable {
     var next: Self? {
         switch self {
         case .welcome: .birthDate
-        case .birthDate: .tradition
+        case .birthDate: .name
+        case .name: .tradition
         case .tradition: .profileReveal
         case .profileReveal: nil
         }
@@ -48,54 +51,34 @@ enum OnboardingRoute: String, CaseIterable, Hashable, Sendable {
         switch self {
         case .welcome: nil
         case .birthDate: .welcome
-        case .tradition: .birthDate
+        case .name: .birthDate
+        case .tradition: .name
         case .profileReveal: .tradition
         }
     }
 }
 
-/// Canonical primary information architecture. Feature-specific child routes are
-/// intentionally owned by their feature and are not modeled here.
+/// Canonical primary information architecture for the entertainment-first app.
+///
+/// Today = Cosmic Feed · Chemistry = people + compatibility · You = identity +
+/// year timeline · Sky = cosmic events + calendar. Profile/settings stay an
+/// auxiliary sheet and can never become a fifth tab by accident.
 enum MainDestination: String, CaseIterable, Hashable, Sendable {
     case today
-    case circle
+    case chemistry
+    case you
     case sky
-    case chart
-    case ask
 
     static let canonicalOrder: [MainDestination] = [
         .today,
-        .circle,
-        .sky,
-        .chart,
-        .ask
+        .chemistry,
+        .you,
+        .sky
     ]
 }
 
-/// Circle-owned child route boundary. Compatibility belongs to Circle/people flows.
-enum CircleRoute: String, Hashable, Sendable {
-    case compatibility
-
-    var owningDestination: MainDestination { .circle }
-}
-
-/// Today-owned child route boundary.
-enum TodayRoute: String, Hashable, Sendable {
-    case dailyHoroscope
-
-    var owningDestination: MainDestination { .today }
-}
-
-/// Sky-owned child route boundary. Calendar belongs under Sky.
-enum SkyRoute: String, Hashable, Sendable {
-    case calendar
-
-    var owningDestination: MainDestination { .sky }
-}
-
 /// Auxiliary routes opened from the profile/header entry. This is deliberately a
-/// separate type from `MainDestination`, so Profile/Settings cannot become a sixth
-/// primary destination by accident.
+/// separate type from `MainDestination`.
 enum AppAuxiliaryRoute: String, CaseIterable, Hashable, Sendable, Identifiable {
     case profileSettings
 

@@ -27,6 +27,12 @@ enum HumayTypography {
 
     static let compatibilityScore = newsreader(size: 68, relativeTo: .largeTitle)
 
+    /// Big numerals for meters and counters.
+    static let meterValue = Font.system(.title3, design: .rounded, weight: .semibold)
+
+    /// Oversized editorial numeral for hero metrics (share cards, collisions).
+    static let heroNumber = newsreader(size: 64, relativeTo: .largeTitle, weight: .medium)
+
     static let cardTitle = newsreader(size: 25, relativeTo: .title2, weight: .medium)
 
     static let body = Font.body

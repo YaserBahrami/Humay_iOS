@@ -6,14 +6,14 @@ import Foundation
 /// the clean baseline. They are introduced when those production phases are designed.
 struct AppSettings: Sendable, Hashable {
     var leadingTradition: AstrologyTradition
-    var tone: Tone
+    var personalityMode: PersonalityMode
     var onboardingCompletedAt: Date?
 
     var hasCompletedOnboarding: Bool { onboardingCompletedAt != nil }
 
     static let `default` = AppSettings(
         leadingTradition: .western,
-        tone: .normal,
+        personalityMode: .normal,
         onboardingCompletedAt: nil
     )
 }

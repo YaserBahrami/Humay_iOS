@@ -59,16 +59,22 @@ See [`docs/development/PRODUCT_ACCESS_MODEL.md`](docs/development/PRODUCT_ACCESS
 
 ## Current design program
 
-Humay has one design authority: **Soulful Celestial, Light + Dark**.
+Humay has two design layers.
 
-Start here:
+**Product/voice direction (current authority):** **Playful Editorial — entertainment-first.**
+Start here: [`docs/design/PLAYFUL_EDITORIAL_DIRECTION.md`](docs/design/PLAYFUL_EDITORIAL_DIRECTION.md).
+Astrology is the content engine; Humay is a personalized entertainment feed. Smart,
+mischievous, premium, self-aware. IA: Today (Cosmic Feed) · Chemistry · You · Sky.
+
+**Material foundation:** the Soulful Celestial token system (palette, type, spacing)
+remains the visual material underneath the new direction:
 
 1. [`docs/design/DESIGN_AUTHORITY.md`](docs/design/DESIGN_AUTHORITY.md)
 2. [`docs/design/SOULFUL_CELESTIAL_DESIGN_DIRECTION.md`](docs/design/SOULFUL_CELESTIAL_DESIGN_DIRECTION.md)
-3. [`docs/design/SCREEN_DESIGN_PLAN.md`](docs/design/SCREEN_DESIGN_PLAN.md)
-4. [`docs/design/soulful-reference/`](docs/design/soulful-reference/README.md)
 
-The target feeling is warm, soulful, colorful, charming and premium with editorial typography and **restrained simple line/flat celestial illustration**. The old Paper/minimal and painterly/watercolor explorations are superseded.
+The target feeling is warm, soulful, colorful, charming and premium with editorial
+typography. Screen-level Soulful Celestial references that conflict with the
+entertainment-first direction are superseded by it.
 
 ### Cross-device rule
 
@@ -88,17 +94,17 @@ Existing iPhone Welcome and Birth Date references remain approved. Their iPad co
 
 1. Welcome
 2. Birth Date
-3. Tradition
-4. Profile Reveal
+3. Name
+4. Tradition
+5. Profile Reveal (Sun sign moment)
 
-Birth time and birth location are not onboarding steps. They may be added later from Profile for precision-dependent features.
+Birth time and birth location are not onboarding steps. They may be added later from Profile for precision-dependent features — Humay never substitutes a fake time.
 
 ## Canonical IA
 
-- Today / Circle / Sky / Chart / Ask
-- Calendar nested under Sky
+- Today / Chemistry / You / Sky
 - Profile / Settings through the header/profile entry
-- Compatibility through Circle/people flows
+- Compatibility lives inside Chemistry (people flows)
 
 ## Development cadence
 

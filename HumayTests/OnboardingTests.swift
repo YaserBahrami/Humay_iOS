@@ -9,8 +9,10 @@ struct OnboardingTests {
     func routeTransitions() {
         #expect(OnboardingRoute.welcome.next == .birthDate)
         #expect(OnboardingRoute.birthDate.previous == .welcome)
-        #expect(OnboardingRoute.birthDate.next == .tradition)
-        #expect(OnboardingRoute.tradition.previous == .birthDate)
+        #expect(OnboardingRoute.birthDate.next == .name)
+        #expect(OnboardingRoute.name.previous == .birthDate)
+        #expect(OnboardingRoute.name.next == .tradition)
+        #expect(OnboardingRoute.tradition.previous == .name)
         #expect(OnboardingRoute.tradition.next == .profileReveal)
         #expect(OnboardingRoute.profileReveal.previous == .tradition)
         #expect(OnboardingRoute.profileReveal.next == nil)

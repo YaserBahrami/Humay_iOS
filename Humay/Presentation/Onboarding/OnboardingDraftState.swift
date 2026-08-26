@@ -61,6 +61,7 @@ final class OnboardingDraftState {
     }
 
     var selectedTradition: AstrologyTradition
+    var displayName: String
     private(set) var confirmedBirthDate: OnboardingBirthDate?
 
     init(
@@ -83,6 +84,7 @@ final class OnboardingDraftState {
         self.latestValidDate = latest
         self.pickerDate = max(earliest, latest)
         self.selectedTradition = selectedTradition
+        self.displayName = ""
         self.confirmedBirthDate = nil
     }
 
@@ -103,7 +105,7 @@ final class OnboardingDraftState {
         guard let confirmedBirthDate else { return nil }
 
         return UserProfile(
-            displayName: "",
+            displayName: displayName.trimmingCharacters(in: .whitespacesAndNewlines),
             birth: confirmedBirthDate.birthDetails
         )
     }

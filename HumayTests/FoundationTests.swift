@@ -40,6 +40,6 @@ struct FoundationTests {
     func freshSettingsAreIncomplete() {
         #expect(!AppSettings.default.hasCompletedOnboarding)
         #expect(AppSettings.default.leadingTradition == .western)
-        #expect(AppSettings.default.tone == .normal)
+        #expect(AppSettings.default.personalityMode == .normal)
     }
 }

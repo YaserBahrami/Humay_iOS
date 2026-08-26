@@ -8,7 +8,7 @@ import Foundation
 actor FileUserStateStore: UserStateStore {
     private static let applicationDirectoryName = "Humay"
     private static let fileName = "user-state.json"
-    private static let currentSchemaVersion = 1
+    private static let currentSchemaVersion = 2
 
     private let fileURL: URL
 
@@ -53,17 +53,28 @@ actor FileUserStateStore: UserStateStore {
             throw UserStatePersistenceError.malformedPayload
         }
 
-        guard schemaVersion == Self.currentSchemaVersion else {
-            throw UserStatePersistenceError.unsupportedSchema(version: schemaVersion)
-        }
+        switch schemaVersion {
+        case Self.currentSchemaVersion:
+            do {
+                return try makeDecoder().decode(UserStateDocument.self, from: data).snapshot()
+            } catch {
+                throw UserStatePersistenceError.malformedPayload
+            }
 
-        do {
-            let document = try makeDecoder().decode(UserStateDocument.self, from: data)
-            return try document.snapshot()
-        } catch let error as UserStatePersistenceError {
-            throw error
-        } catch {
-            throw UserStatePersistenceError.malformedPayload
+        case 1:
+            // One-way migration from the Tone-era schema. Saved facts are preserved;
+            // the old two-tone register maps onto the closest personality mode.
+            do {
+                let legacy = try makeDecoder().decode(LegacyUserStateDocument.self, from: data)
+                return try legacy.migratedSnapshot()
+            } catch let error as UserStatePersistenceError {
+                throw error
+            } catch {
+                throw UserStatePersistenceError.malformedPayload
+            }
+
+        default:
+            throw UserStatePersistenceError.unsupportedSchema(version: schemaVersion)
         }
     }
 
@@ -150,21 +161,60 @@ private struct SchemaVersionEnvelope: Decodable {
     let schemaVersion: Int
 }
 
+/// Schema v2 document. Adds saved people and personality mode.
 private struct UserStateDocument: Codable {
     let schemaVersion: Int
     let profile: ProfileRecord?
     let settings: SettingsRecord
+    let people: [PersonRecord]
 
     init(snapshot: UserStateSnapshot) throws {
-        schemaVersion = 1
+        schemaVersion = 2
         profile = try snapshot.profile.map(ProfileRecord.init)
         settings = try SettingsRecord(settings: snapshot.settings)
+        people = try snapshot.people.map(PersonRecord.init)
     }
 
     func snapshot() throws -> UserStateSnapshot {
         UserStateSnapshot(
             profile: try profile.map { try $0.userProfile() },
-            settings: try settings.appSettings()
+            settings: try settings.appSettings(),
+            people: try people.map { try $0.person() }
+        )
+    }
+}
+
+/// Schema v1 shape kept solely for migration.
+private struct LegacyUserStateDocument: Decodable {
+    struct LegacySettings: Decodable {
+        let leadingTradition: String
+        let tone: String
+        let onboardingCompletedAt: TimeInterval?
+    }
+
+    let profile: ProfileRecord?
+    let settings: LegacySettings
+
+    func migratedSnapshot() throws -> UserStateSnapshot {
+        guard let tradition = AstrologyTradition(rawValue: settings.leadingTradition),
+              settings.onboardingCompletedAt.map({ $0.isFinite }) ?? true else {
+            throw UserStatePersistenceError.invalidPayload
+        }
+
+        let mode: PersonalityMode = switch settings.tone {
+        case "roast": .roast
+        case "normal": .normal
+        default: .normal
+        }
+
+        return UserStateSnapshot(
+            profile: try profile.map { try $0.userProfile() },
+            settings: AppSettings(
+                leadingTradition: tradition,
+                personalityMode: mode,
+                onboardingCompletedAt: settings.onboardingCompletedAt.map(Date.init(timeIntervalSince1970:))
+            ),
+            people: []
         )
     }
 }
@@ -184,6 +234,35 @@ private struct ProfileRecord: Codable {
         UserProfile(
             id: id,
             displayName: displayName,
+            birth: try birth.birthDetails()
+        )
+    }
+}
+
+private struct PersonRecord: Codable {
+    let id: UUID
+    let name: String
+    let relationshipKind: String
+    let customLabel: String?
+    let birth: BirthDetailsRecord
+
+    init(_ person: ConnectionPerson) throws {
+        id = person.id
+        name = person.name
+        relationshipKind = person.relationshipKind.rawValue
+        customLabel = person.customLabel
+        birth = try BirthDetailsRecord(person.birth)
+    }
+
+    func person() throws -> ConnectionPerson {
+        guard let kind = RelationshipKind(rawValue: relationshipKind) else {
+            throw UserStatePersistenceError.invalidPayload
+        }
+        return ConnectionPerson(
+            id: id,
+            name: name,
+            relationshipKind: kind,
+            customLabel: customLabel,
             birth: try birth.birthDetails()
         )
     }
@@ -414,12 +493,12 @@ private struct BirthPlaceRecord: Codable {
 
 private struct SettingsRecord: Codable {
     let leadingTradition: String
-    let tone: String
+    let personalityMode: String
     let onboardingCompletedAt: TimeInterval?
 
     init(settings: AppSettings) throws {
         leadingTradition = settings.leadingTradition.rawValue
-        tone = settings.tone.rawValue
+        personalityMode = settings.personalityMode.rawValue
         if let date = settings.onboardingCompletedAt {
             guard date.timeIntervalSince1970.isFinite else {
                 throw UserStatePersistenceError.invalidPayload
@@ -432,14 +511,14 @@ private struct SettingsRecord: Codable {
 
     func appSettings() throws -> AppSettings {
         guard let leadingTradition = AstrologyTradition(rawValue: leadingTradition),
-              let tone = Tone(rawValue: tone),
+              let personalityMode = PersonalityMode(rawValue: personalityMode),
               onboardingCompletedAt.map({ $0.isFinite }) ?? true else {
             throw UserStatePersistenceError.invalidPayload
         }
 
         return AppSettings(
             leadingTradition: leadingTradition,
-            tone: tone,
+            personalityMode: personalityMode,
             onboardingCompletedAt: onboardingCompletedAt.map(Date.init(timeIntervalSince1970:))
         )
     }

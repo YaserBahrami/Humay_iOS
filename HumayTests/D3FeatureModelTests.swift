@@ -353,7 +353,7 @@ struct D3FeatureModelTests {
         #expect(production.source == .productionUnavailable)
 
 #if DEBUG
-        let development = AppFeatureComposition.makeD3Input(arguments: [])
+        let development = DevelopmentD3Sample.makeInput(arguments: [])
         #expect(development.source == .developmentSample)
         #expect(development.currentSky == .loaded(DevelopmentD3Sample.snapshot))
 #endif

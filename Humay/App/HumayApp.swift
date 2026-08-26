@@ -4,10 +4,7 @@ import SwiftUI
 struct HumayApp: App {
     @State private var environment: AppEnvironment
     @State private var navigation: AppNavigationState
-    private let d2FeatureInput: D2FeatureInput
-    private let d3FeatureInput: D3FeatureInput
-    private let d4FeatureInput: D4FeatureInput
-    private let d5FeatureInput: D5FeatureInput
+    private let skyInput: D3FeatureInput
 
     init() {
         let store: any UserStateStore
@@ -22,26 +19,15 @@ struct HumayApp: App {
         _environment = State(initialValue: environment)
         _navigation = State(initialValue: AppNavigationState(environment: environment))
 #if DEBUG
-        d2FeatureInput = AppFeatureComposition.makeD2Input()
-        d3FeatureInput = AppFeatureComposition.makeD3Input()
-        d4FeatureInput = AppFeatureComposition.makeD4Input()
-        d5FeatureInput = AppFeatureComposition.makeD5Input()
+        skyInput = DevelopmentD3Sample.makeInput()
 #else
-        d2FeatureInput = .productionUnavailable
-        d3FeatureInput = .productionUnavailable
-        d4FeatureInput = .productionUnavailable
-        d5FeatureInput = .productionUnavailable
+        skyInput = .productionUnavailable
 #endif
     }
 
     var body: some Scene {
         WindowGroup {
-            RootView(
-                d2FeatureInput: d2FeatureInput,
-                d3FeatureInput: d3FeatureInput,
-                d4FeatureInput: d4FeatureInput,
-                d5FeatureInput: d5FeatureInput
-            )
+            RootView(skyInput: skyInput)
                 .environment(environment)
                 .environment(navigation)
                 .task {
@@ -65,26 +51,43 @@ struct HumayApp: App {
         await environment.restore()
 
 #if DEBUG
-        if ProcessInfo.processInfo.arguments.contains("-HumayD2Demo"),
+        if ProcessInfo.processInfo.arguments.contains("-HumayDemo"),
            !environment.hasCompletedOnboarding {
-            do {
-                try await environment.completeOnboarding(
-                    profile: DevelopmentD2Sample.profile,
-                    tradition: .western
-                )
-            } catch {
-                return
+            try? await environment.completeOnboarding(
+                profile: DevelopmentSample.profile,
+                tradition: .western
+            )
+            for person in DevelopmentSample.people {
+                try? await environment.addPerson(person)
             }
-        }
-
-        if ProcessInfo.processInfo.arguments.contains("-HumayD4Demo") {
-            navigation.mainDestination = .chart
-        }
-
-        if d5FeatureInput.source.isDevelopmentSample,
-           d5FeatureInput.state != .empty {
-            navigation.mainDestination = .ask
         }
 #endif
     }
 }
+
+#if DEBUG
+/// Development-owned sample composition. Excluded from Release compilation.
+enum DevelopmentSample {
+    static let profile = UserProfile(
+        id: UUID(uuidString: "77777777-7777-4777-8777-777777777777")!,
+        displayName: "Yaser",
+        birth: BirthDetails(year: 1993, month: 8, day: 7)
+    )
+
+    static let salma = ConnectionPerson(
+        id: UUID(uuidString: "22222222-2222-4222-8222-222222222222")!,
+        name: "Salma",
+        relationshipKind: .crush,
+        birth: BirthDetails(year: 1995, month: 6, day: 3)
+    )
+
+    static let mahtab = ConnectionPerson(
+        id: UUID(uuidString: "33333333-3333-4333-8333-333333333333")!,
+        name: "Mahtab",
+        relationshipKind: .friend,
+        birth: BirthDetails(year: 1994, month: 11, day: 21)
+    )
+
+    static let people = [salma, mahtab]
+}
+#endif

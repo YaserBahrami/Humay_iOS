@@ -20,6 +20,7 @@ final class AppEnvironment {
 
     var profile: UserProfile?
     var settings: AppSettings
+    var people: [ConnectionPerson]
     private(set) var restorationState: AppRestorationState
     private(set) var isSaving = false
 
@@ -27,11 +28,13 @@ final class AppEnvironment {
         store: any UserStateStore,
         profile: UserProfile? = nil,
         settings: AppSettings = .default,
+        people: [ConnectionPerson] = [],
         initialRestorationState: AppRestorationState = .restoring
     ) {
         self.userStateStore = store
         self.profile = profile
         self.settings = settings
+        self.people = people
         self.restorationState = initialRestorationState
     }
 
@@ -48,9 +51,11 @@ final class AppEnvironment {
             if let state = try await userStateStore.load() {
                 profile = state.profile
                 settings = state.settings
+                people = state.people
             } else {
                 profile = nil
                 settings = .default
+                people = []
             }
             restorationState = .ready
         } catch let error as UserStatePersistenceError {
@@ -88,7 +93,8 @@ final class AppEnvironment {
 
         let state = UserStateSnapshot(
             profile: profile,
-            settings: updatedSettings
+            settings: updatedSettings,
+            people: people
         )
 
         do {
@@ -103,6 +109,87 @@ final class AppEnvironment {
         restorationState = .ready
     }
 
+    // MARK: - Connections
+
+    /// Adds a person and persists the change. In-memory state updates first so the
+    /// UI feels immediate; persistence failures surface through the returned error.
+    func addPerson(_ person: ConnectionPerson) async throws {
+        guard !people.contains(where: { $0.id == person.id }) else { return }
+        let previous = people
+        people.append(person)
+
+        do {
+            try await persistCurrentState()
+        } catch {
+            people = previous
+            throw error
+        }
+    }
+
+    func removePerson(id: UUID) async throws {
+        let previous = people
+        people.removeAll { $0.id == id }
+
+        do {
+            try await persistCurrentState()
+        } catch {
+            people = previous
+            throw error
+        }
+    }
+
+    func updatePerson(_ person: ConnectionPerson) async throws {
+        guard let index = people.firstIndex(where: { $0.id == person.id }) else { return }
+        let previous = people
+        people[index] = person
+
+        do {
+            try await persistCurrentState()
+        } catch {
+            people = previous
+            throw error
+        }
+    }
+
+    // MARK: - Preferences
+
+    func setPersonalityMode(_ mode: PersonalityMode) async throws {
+        let previous = settings
+        settings.personalityMode = mode
+
+        do {
+            try await persistCurrentState()
+        } catch {
+            settings = previous
+            throw error
+        }
+    }
+
+    private func persistCurrentState() async throws {
+        guard restorationState == .ready else {
+            throw AppEnvironmentError.notReady
+        }
+        guard !isSaving else {
+            throw AppEnvironmentError.operationInProgress
+        }
+
+        isSaving = true
+        defer { isSaving = false }
+
+        let state = UserStateSnapshot(
+            profile: profile,
+            settings: settings,
+            people: people
+        )
+
+        do {
+            try await userStateStore.save(state)
+        } catch {
+            HumayLog.persistence(.saveFailed)
+            throw error
+        }
+    }
+
     func resetForDevelopment() async throws {
         do {
             try await userStateStore.clear()
@@ -114,6 +201,7 @@ final class AppEnvironment {
 
         profile = nil
         settings = .default
+        people = []
         restorationState = .ready
     }
 }

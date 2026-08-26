@@ -1,12 +1,20 @@
 import Foundation
 
-/// The user-owned profile/settings aggregate that the application must keep durable.
+/// The user-owned profile/settings/people aggregate that the application must keep
+/// durable.
 ///
 /// This is a domain boundary value, not a storage representation. Data owns the
 /// Codable mapping and file format.
 struct UserStateSnapshot: Sendable, Hashable {
     var profile: UserProfile?
     var settings: AppSettings
+    var people: [ConnectionPerson]
+
+    init(profile: UserProfile?, settings: AppSettings, people: [ConnectionPerson] = []) {
+        self.profile = profile
+        self.settings = settings
+        self.people = people
+    }
 }
 
 /// Durable ownership boundary for the local user-state aggregate.

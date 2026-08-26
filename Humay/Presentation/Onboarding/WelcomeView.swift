@@ -53,8 +53,8 @@ struct WelcomeView: View {
             )
 
             OnboardingTitleBlock(
-                title: "Read the sky. Keep the fun.",
-                supporting: "Astrology that feels human — with the reasoning close enough to open whenever you want it.",
+                title: "Astrology, but make it fun.",
+                supporting: "Daily chaos forecasts, ridiculous meters, compatibility verdicts. Zero belief required.",
                 hero: true
             )
             .frame(maxWidth: horizontalSizeClass == .compact ? 300 : .infinity, alignment: .leading)
@@ -80,8 +80,8 @@ struct WelcomeView: View {
                 )
 
                 OnboardingTitleBlock(
-                    title: "Read the sky. Keep the fun.",
-                    supporting: "Astrology that feels human — with the reasoning close enough to open whenever you want it.",
+                    title: "Astrology, but make it fun.",
+                    supporting: "Daily chaos forecasts, ridiculous meters, compatibility verdicts. Zero belief required.",
                     hero: false
                 )
 
@@ -108,22 +108,22 @@ struct WelcomeView: View {
             OnboardingFeatureCue(
                 symbol: "sun.max",
                 tint: .humayCoral,
-                title: "Daily readings",
-                detail: "Personal guidance without cosmic homework"
+                title: "A feed that knows you",
+                detail: "Moods, meters and questionable advice — daily"
             )
 
             OnboardingFeatureCue(
-                symbol: "heart",
+                symbol: "heart.text.square",
                 tint: .humayLavender,
-                title: "Compatibility",
-                detail: "People, chemistry, and the messy bits"
+                title: "Chemistry, scientifically-ish",
+                detail: "Partners, crushes, exes. We go there"
             )
 
             OnboardingFeatureCue(
                 symbol: "sparkles",
                 tint: .humaySolarGold,
-                title: "Three traditions",
-                detail: "Western, Vedic and Chinese stay distinct"
+                title: "Your year, mapped",
+                detail: "Best days, chaos peaks, romance windows"
             )
         }
     }

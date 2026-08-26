@@ -80,28 +80,3 @@ enum AstrologyTradition: String, Sendable, CaseIterable, Identifiable, Codable {
         }
     }
 }
-
-/// The register a reading is written in.
-///
-/// Both registers are produced from the same facts and the same underlying reading.
-/// Roast changes expression only; it never changes what the chart is held to say.
-enum Tone: String, Sendable, CaseIterable, Identifiable, Codable {
-    case normal
-    case roast
-
-    var id: String { rawValue }
-
-    var displayName: String {
-        switch self {
-        case .normal: "Normal"
-        case .roast: "Roast"
-        }
-    }
-
-    var descriptor: String {
-        switch self {
-        case .normal: "Considered, warm, specific."
-        case .roast: "Sharp, funny, still useful — never cruel."
-        }
-    }
-}

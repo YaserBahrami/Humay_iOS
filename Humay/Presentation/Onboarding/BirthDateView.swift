@@ -56,8 +56,8 @@ struct BirthDateView: View {
             )
 
             OnboardingTitleBlock(
-                title: "When were you born?",
-                supporting: "Your date is enough to start.",
+                title: "When did you arrive?",
+                supporting: "The universe allegedly had its reasons.",
                 hero: false
             )
 
@@ -82,8 +82,8 @@ struct BirthDateView: View {
                 )
 
                 OnboardingTitleBlock(
-                    title: "When were you born?",
-                    supporting: "Your date is enough to start.",
+                    title: "When did you arrive?",
+                    supporting: "The universe allegedly had its reasons.",
                     hero: false
                 )
 
@@ -129,7 +129,7 @@ struct BirthDateView: View {
 
     private func explanatoryContent(compactHeight: Bool) -> some View {
         VStack(alignment: .leading, spacing: compactHeight ? 7 : HumaySpacing.medium) {
-            Text("This is all the general reading needs — your Sun sign, your Chinese year and sign-to-sign compatibility all follow from the date alone.")
+            Text("Your date unlocks your Sun sign, your archetype and sign-to-sign chemistry. That's plenty to start.")
                 .font(compactHeight ? HumayTypography.caption : HumayTypography.supporting)
                 .foregroundStyle(Color.humayTextPrimary)
                 .fixedSize(horizontal: false, vertical: true)
@@ -137,7 +137,7 @@ struct BirthDateView: View {
             Divider()
                 .overlay(Color.humayHairline)
 
-            Text("Birth time and place are not required now. You can add them later in Profile, and they unlock the parts of a chart that genuinely depend on them.")
+            Text("Birth time and place stay optional. Humay never fakes them — features that need them will ask honestly.")
                 .font(compactHeight ? HumayTypography.caption : HumayTypography.supporting)
                 .foregroundStyle(Color.humayTextSecondary)
                 .fixedSize(horizontal: false, vertical: true)

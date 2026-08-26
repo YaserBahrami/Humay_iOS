@@ -1,6 +1,6 @@
 import SwiftUI
 
-/// Root presenter for transient onboarding and the approved post-onboarding shell.
+/// Root presenter for transient onboarding and the main shell.
 struct RootView: View {
     @Environment(AppEnvironment.self) private var environment
     @Environment(AppNavigationState.self) private var navigation
@@ -8,21 +8,10 @@ struct RootView: View {
     @State private var onboardingDraft = OnboardingDraftState()
     @State private var saveFailed = false
 
-    private let d2FeatureInput: D2FeatureInput
-    private let d3FeatureInput: D3FeatureInput
-    private let d4FeatureInput: D4FeatureInput
-    private let d5FeatureInput: D5FeatureInput
+    private let skyInput: D3FeatureInput
 
-    init(
-        d2FeatureInput: D2FeatureInput = .productionUnavailable,
-        d3FeatureInput: D3FeatureInput = .productionUnavailable,
-        d4FeatureInput: D4FeatureInput = .productionUnavailable,
-        d5FeatureInput: D5FeatureInput = .productionUnavailable
-    ) {
-        self.d2FeatureInput = d2FeatureInput
-        self.d3FeatureInput = d3FeatureInput
-        self.d4FeatureInput = d4FeatureInput
-        self.d5FeatureInput = d5FeatureInput
+    init(skyInput: D3FeatureInput = .productionUnavailable) {
+        self.skyInput = skyInput
     }
 
     var body: some View {
@@ -44,12 +33,7 @@ struct RootView: View {
                 )
 
             case .main:
-                MainAppView(
-                    d2FeatureInput: d2FeatureInput,
-                    d3FeatureInput: d3FeatureInput,
-                    d4FeatureInput: d4FeatureInput,
-                    d5FeatureInput: d5FeatureInput
-                )
+                MainAppView(skyInput: skyInput)
             }
         }
         .alert("Couldn't save your profile", isPresented: $saveFailed) {
@@ -106,19 +90,14 @@ struct RootView: View {
 }
 
 #if DEBUG
-#Preview("D2 Foundation") {
+#Preview("Root · Demo") {
     let environment = AppEnvironment(
         store: UnavailableUserStateStore(),
         initialRestorationState: .ready
     )
     let navigation = AppNavigationState(environment: environment)
 
-    RootView(
-        d2FeatureInput: DevelopmentD2Sample.makeInput(arguments: []),
-        d3FeatureInput: DevelopmentD3Sample.makeInput(arguments: []),
-        d4FeatureInput: DevelopmentD4Sample.makeInput(arguments: []),
-        d5FeatureInput: DevelopmentD5Sample.makeInput(arguments: [])
-    )
+    return RootView(skyInput: DevelopmentD3Sample.makeInput())
         .environment(environment)
         .environment(navigation)
 }

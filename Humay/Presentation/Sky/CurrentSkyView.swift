@@ -16,7 +16,7 @@ struct CurrentSkyView: View {
         GeometryReader { proxy in
             ScrollView {
                 VStack(alignment: .leading, spacing: HumaySpacing.large) {
-                    D2WordmarkHeader(
+                    HumayWordmarkHeader(
                         title: "Sky",
                         profileName: profileName,
                         profileAction: openProfile

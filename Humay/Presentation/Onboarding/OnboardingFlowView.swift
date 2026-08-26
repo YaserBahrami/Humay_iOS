@@ -32,14 +32,21 @@ struct OnboardingFlowView: View {
                     onBack: { route = .welcome },
                     onContinue: {
                         guard draft.confirmBirthDate() else { return }
-                        route = .tradition
+                        route = .name
                     }
+                )
+
+            case .name:
+                NameView(
+                    draft: draft,
+                    onBack: { route = .birthDate },
+                    onContinue: { route = .tradition }
                 )
 
             case .tradition:
                 TraditionView(
                     draft: draft,
-                    onBack: { route = .birthDate },
+                    onBack: { route = .name },
                     onContinue: { route = .profileReveal }
                 )
 
@@ -47,6 +54,7 @@ struct OnboardingFlowView: View {
                 if let birthDate = draft.confirmedBirthDate {
                     ProfileRevealView(
                         birthDate: birthDate,
+                        displayName: draft.displayName.trimmingCharacters(in: .whitespacesAndNewlines),
                         tradition: draft.selectedTradition,
                         onBack: { route = .tradition },
                         onEnterHumay: onComplete
@@ -57,7 +65,7 @@ struct OnboardingFlowView: View {
                         onBack: { route = .welcome },
                         onContinue: {
                             guard draft.confirmBirthDate() else { return }
-                            route = .tradition
+                            route = .name
                         }
                     )
                 }
@@ -145,7 +153,7 @@ struct OnboardingProgress: View {
 
     var body: some View {
         HStack(spacing: HumaySpacing.small) {
-            ForEach(0..<4, id: \.self) { step in
+            ForEach(0..<5, id: \.self) { step in
                 Capsule()
                     .fill(step == index ? Color.humayCoral : Color.humayHairline)
                     .frame(
@@ -156,7 +164,7 @@ struct OnboardingProgress: View {
         }
         .accessibilityElement(children: .ignore)
         .accessibilityLabel("Onboarding progress")
-        .accessibilityValue("Step \(index + 1) of 4")
+        .accessibilityValue("Step \(index + 1) of 5")
     }
 }
 

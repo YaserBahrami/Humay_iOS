@@ -2,11 +2,27 @@ import SwiftUI
 
 struct ProfileRevealView: View {
     let birthDate: OnboardingBirthDate
+    var displayName: String = ""
     let tradition: AstrologyTradition
     let onBack: () -> Void
     let onEnterHumay: () -> Void
 
     @Environment(\.dynamicTypeSize) private var dynamicTypeSize
+
+    private var firstName: String {
+        String(displayName.split(whereSeparator: \.isWhitespace).first ?? "")
+    }
+
+    private var sunSign: WesternZodiacSign? {
+        SunSignCalendar.westernSunSign(month: birthDate.month, day: birthDate.day)
+    }
+
+    private var headlineTitle: String {
+        if firstName.isEmpty {
+            return "Your starting profile is ready"
+        }
+        return "\(firstName), meet your Sun sign."
+    }
 
     var body: some View {
         GeometryReader { proxy in
@@ -41,21 +57,20 @@ struct ProfileRevealView: View {
     private func portraitContent(metrics: ProfileRevealLayoutMetrics) -> some View {
         VStack(alignment: .leading, spacing: metrics.sectionSpacing) {
             OnboardingChrome(
-                stepLabel: "03 · Your profile",
-                progressIndex: 3,
+                stepLabel: "04 · Your reveal",
+                progressIndex: 4,
                 onBack: onBack
             )
 
             OnboardingTitleBlock(
-                title: "Your starting profile is ready",
+                title: headlineTitle,
                 supporting: "A simple beginning — no fake precision.",
                 hero: false
             )
 
-            ProfileRevealHero(
-                height: metrics.heroHeight,
-                compact: metrics.isCompactHeight
-            )
+            if let sunSign {
+                SunSignRevealCard(sign: sunSign)
+            }
 
             profileFacts(
                 compact: metrics.isCompactHeight,
@@ -77,34 +92,31 @@ struct ProfileRevealView: View {
     private func landscapeContent(metrics: ProfileRevealLayoutMetrics) -> some View {
         VStack(alignment: .leading, spacing: metrics.sectionSpacing) {
             OnboardingChrome(
-                stepLabel: "03 · Your profile",
-                progressIndex: 3,
+                stepLabel: "04 · Your reveal",
+                progressIndex: 4,
                 onBack: onBack
             )
 
             OnboardingTitleBlock(
-                title: "Your starting profile is ready",
+                title: headlineTitle,
                 supporting: "A simple beginning — no fake precision.",
                 hero: false
             )
 
             HStack(alignment: .top, spacing: HumaySpacing.extraExtraLarge) {
-                ProfileRevealHero(
-                    height: min(metrics.heroHeight * 1.16, 280),
-                    compact: false
-                )
-                .frame(maxWidth: 430)
-
                 VStack(alignment: .leading, spacing: metrics.sectionSpacing) {
-                    profileFacts(
-                        compact: false,
-                        padding: metrics.cardPadding
-                    )
-
-                    Spacer(minLength: 0)
+                    if let sunSign {
+                        SunSignRevealCard(sign: sunSign)
+                    }
 
                     primaryAction
                 }
+                .frame(maxWidth: 430)
+
+                profileFacts(
+                    compact: false,
+                    padding: metrics.cardPadding
+                )
                 .frame(maxWidth: 520)
             }
             .frame(maxWidth: 1000)
@@ -134,38 +146,17 @@ struct ProfileRevealView: View {
                     .foregroundStyle(Color.humayCoral)
                     .tracking(1.2)
 
-                Text("You gave Humay just enough to begin.")
-                    .font(compact ? HumayTypography.onboardingCardTitle : HumayTypography.editorialTitle)
-                    .foregroundStyle(Color.humayTextPrimary)
-                    .fixedSize(horizontal: false, vertical: true)
-
-                if compact {
-                    HStack(alignment: .top, spacing: HumaySpacing.large) {
-                        ProfileFactRow(
-                            label: "Birth date",
-                            value: birthDate.formatted()
-                        )
-                        .frame(maxWidth: .infinity, alignment: .leading)
-
-                        ProfileFactRow(
-                            label: "Starting tradition",
-                            value: tradition.shortName
-                        )
-                        .frame(maxWidth: .infinity, alignment: .leading)
-                    }
-                } else {
-                    VStack(alignment: .leading, spacing: HumaySpacing.medium) {
-                        ProfileFactRow(
-                            label: "Birth date",
-                            value: birthDate.formatted()
-                        )
-
-                        ProfileFactRow(
-                            label: "Starting tradition",
-                            value: tradition.shortName
-                        )
-                    }
+                if !firstName.isEmpty {
+                    ProfileFactRow(label: "Name", value: firstName)
                 }
+                ProfileFactRow(
+                    label: "Birth date",
+                    value: birthDate.formatted()
+                )
+                ProfileFactRow(
+                    label: "Starting tradition",
+                    value: tradition.shortName
+                )
 
                 Divider()
                     .overlay(Color.humayHairline)
@@ -181,9 +172,8 @@ struct ProfileRevealView: View {
                     VStack(alignment: .leading, spacing: HumaySpacing.extraSmall) {
                         Text("Precision stays optional")
                             .font(HumayTypography.bodyEmphasized)
-                            .foregroundStyle(Color.humayTextPrimary)
 
-                        Text("Add birth time and place later only when a feature genuinely needs them.")
+                        Text("Add birth time and place later only when something genuinely needs them — Humay will say when.")
                             .font(HumayTypography.supporting)
                             .foregroundStyle(Color.humayTextSecondary)
                             .fixedSize(horizontal: false, vertical: true)
@@ -206,6 +196,42 @@ struct ProfileRevealView: View {
     }
 }
 
+/// The Sun sign moment: zodiac art + Humay's one-liner. Level 1 fun only.
+private struct SunSignRevealCard: View {
+    let sign: WesternZodiacSign
+
+    var body: some View {
+        HStack(alignment: .center, spacing: HumaySpacing.large) {
+            ZodiacSignArt(sign: sign, size: 84)
+
+            VStack(alignment: .leading, spacing: HumaySpacing.extraSmall) {
+                Text("SUN SIGN")
+                    .font(HumayTypography.utility)
+                    .tracking(1.3)
+                    .foregroundStyle(Color.humayCoral)
+
+                Text("\(sign.displayName) \(sign.glyph)")
+                    .font(HumayTypography.editorialTitle)
+                    .accessibilityAddTraits(.isHeader)
+
+                Text(sign.humayTagline)
+                    .font(HumayTypography.body)
+                    .foregroundStyle(Color.humayTextSecondary)
+                    .fixedSize(horizontal: false, vertical: true)
+            }
+            .frame(maxWidth: .infinity, alignment: .leading)
+        }
+        .padding(HumaySpacing.extraLarge)
+        .background(Color.humayRaisedSurface, in: RoundedRectangle(cornerRadius: HumayRadius.feature))
+        .overlay {
+            RoundedRectangle(cornerRadius: HumayRadius.feature)
+                .stroke(Color.humayHairline, lineWidth: 1)
+        }
+        .accessibilityElement(children: .combine)
+        .accessibilityIdentifier("onboarding.profileReveal.sunSign")
+    }
+}
+
 private struct ProfileFactRow: View {
     let label: String
     let value: String
@@ -222,43 +248,6 @@ private struct ProfileFactRow: View {
                 .fixedSize(horizontal: false, vertical: true)
         }
         .accessibilityElement(children: .combine)
-    }
-}
-
-private struct ProfileRevealHero: View {
-    let height: CGFloat
-    let compact: Bool
-
-    var body: some View {
-        let verticalPadding: CGFloat = compact ? 8 : 12
-        let titleBudget: CGFloat = compact ? 34 : 44
-        let spacing: CGFloat = compact ? 4 : 8
-        let artworkHeight = max(height - (verticalPadding * 2) - titleBudget - spacing, 82)
-
-        VStack(spacing: spacing) {
-            HumayIllustration(name: "IllustrationProfileReveal")
-                .frame(maxWidth: .infinity)
-                .frame(height: artworkHeight)
-                .accessibilityHidden(true)
-
-            Text("Ready to meet your sky?")
-                .font(compact ? HumayTypography.onboardingCardTitle : HumayTypography.editorialTitle)
-                .foregroundStyle(Color.humayTextPrimary)
-                .multilineTextAlignment(.center)
-                .lineLimit(2)
-                .minimumScaleFactor(0.9)
-        }
-        .padding(.horizontal, compact ? HumaySpacing.medium : HumaySpacing.large)
-        .padding(.vertical, verticalPadding)
-        .frame(height: height)
-        .frame(maxWidth: .infinity)
-        .background(Color.humayRaisedSurface, in: RoundedRectangle(cornerRadius: HumayRadius.feature))
-        .overlay {
-            RoundedRectangle(cornerRadius: HumayRadius.feature)
-                .stroke(Color.humayHairline, lineWidth: 1)
-        }
-        .accessibilityElement(children: .contain)
-        .accessibilityIdentifier("onboarding.profileReveal.hero")
     }
 }
 
