@@ -1,0 +1,59 @@
+{
+  "greenFlags": [
+    "You send the message without rewriting it four times.",
+    "You drink water before coffee. Growth is quiet.",
+    "You leave the group chat on read and feel fine.",
+    "You finish the boring task first. Elite behavior.",
+    "You compliment someone without needing anything back.",
+    "You make your bed and surprisingly feel smug about it.",
+    "You ask for help before you need rescuing.",
+    "You choose the walk over the scroll."
+  ],
+  "redFlags": [
+    "You explain a joke that already landed.",
+    "You reread a message nine times before replying.",
+    "You add one more unnecessary apology.",
+    "You say 'quick question' before a long story.",
+    "You check the cart you promised to close.",
+    "You rehearse a conversation that will never happen.",
+    "You turn a small delay into a moral failure.",
+    "You keep one tab open just to feel busy."
+  ],
+  "revealSecrets": [
+    "Someone thinks about you more than they admit.",
+    "You will finish something you started last week.",
+    "An old idea deserves another look.",
+    "Today favors asking directly."
+  ],
+  "revealFollowUps": [
+    "You didn't hear this from Humay.",
+    "Use responsibly."
+  ],
+  "genericHeadlines": [
+    "Steady day. Suspiciously manageable.",
+    "No headlines. Just a decent Tuesday."
+  ],
+  "roastByMode": {
+    "normal": [
+      "Balanced. Playful. Mostly harmless."
+    ],
+    "roast": [
+      "Humay has had enough."
+    ],
+    "bestie": [
+      "Like advice from your least judgmental friend."
+    ],
+    "savage": [
+      "No mercy. Still funny."
+    ],
+    "delulu": [
+      "Unreasonably optimistic. On purpose."
+    ],
+    "drama": [
+      "Everything is the season finale."
+    ],
+    "soft": [
+      "Warm. Gentle. Emotionally supportive."
+    ]
+  }
+}

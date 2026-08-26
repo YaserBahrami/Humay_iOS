@@ -1,0 +1,4370 @@
+[
+  {
+    "dayKey": "03-01",
+    "sunSign": "aries",
+    "scores": {
+      "overall": 81,
+      "romance": 71,
+      "social": 72,
+      "career": 34,
+      "energy": 56,
+      "confidence": 84,
+      "patience": 73,
+      "chaos": 25
+    },
+    "tags": [
+      "confidence",
+      "overall"
+    ],
+    "headline": "Speed is your love language today.",
+    "personal": "Your energy finds a clear target. Stop second-guessing the first instinct and commit to one move. Keep the window short.",
+    "love": "Warm, direct, and slightly disarming. Say the smaller true thing.",
+    "career": "Progress comes from finishing one thing properly, not starting three.",
+    "social": "One invitation deserves a yes. The rest can wait.",
+    "greenFlag": "You send the message without rewriting it four times.",
+    "redFlag": "You explain a joke that already landed.",
+    "summary": "Aries 03-01: overall 81, patience 73."
+  },
+  {
+    "dayKey": "03-01",
+    "sunSign": "taurus",
+    "scores": {
+      "overall": 77,
+      "romance": 58,
+      "social": 43,
+      "career": 56,
+      "energy": 51,
+      "confidence": 60,
+      "patience": 19,
+      "chaos": 83
+    },
+    "tags": [
+      "chaos",
+      "overall"
+    ],
+    "headline": "Comfort is strategy today, not avoidance.",
+    "personal": "Steadiness is magnetic today. Keep one small ritual intact and let the rest arrange around it. Keep the window short.",
+    "love": "Cozy beats dramatic. A low-key invitation wins.",
+    "career": "A difficult email gets easier if you send it before lunch.",
+    "social": "You're energizing to be around today. Choose the right room.",
+    "greenFlag": "You drink water before coffee. Growth is quiet.",
+    "redFlag": "You say 'quick question' before a long story.",
+    "summary": "Taurus 03-01: overall 77, patience 19."
+  },
+  {
+    "dayKey": "03-01",
+    "sunSign": "gemini",
+    "scores": {
+      "overall": 80,
+      "romance": 76,
+      "social": 54,
+      "career": 45,
+      "energy": 46,
+      "confidence": 56,
+      "patience": 43,
+      "chaos": 54
+    },
+    "tags": [
+      "overall",
+      "romance"
+    ],
+    "headline": "Your punchline lands before the setup.",
+    "personal": "Conversation unlocks the day. Ask the sharper second question, not the polite first one. Keep the window short.",
+    "love": "Chemistry hums quietly. Don't narrate it, let it hum.",
+    "career": "Protect two hours from meetings. That's where the work happens.",
+    "social": "Group chats are louder than useful. Exit one early.",
+    "greenFlag": "You leave the group chat on read and feel fine.",
+    "redFlag": "You turn a small delay into a moral failure.",
+    "summary": "Gemini 03-01: overall 80, patience 43."
+  },
+  {
+    "dayKey": "03-01",
+    "sunSign": "cancer",
+    "scores": {
+      "overall": 63,
+      "romance": 49,
+      "social": 62,
+      "career": 73,
+      "energy": 37,
+      "confidence": 78,
+      "patience": 69,
+      "chaos": 35
+    },
+    "tags": [
+      "confidence",
+      "career"
+    ],
+    "headline": "You feel the weather before the forecast.",
+    "personal": "Your attention to texture matters. One quiet check-in carries further than a speech. Keep the window short.",
+    "love": "Someone notices effort more than charm today. Show up on time.",
+    "career": "A loose thread is worth pulling. Something useful unravels.",
+    "social": "A short walk with one person beats a noisy dinner.",
+    "greenFlag": "You finish the boring task first. Elite behavior.",
+    "redFlag": "You reread a message nine times before replying.",
+    "summary": "Cancer 03-01: overall 63, patience 69."
+  },
+  {
+    "dayKey": "03-01",
+    "sunSign": "leo",
+    "scores": {
+      "overall": 67,
+      "romance": 79,
+      "social": 76,
+      "career": 34,
+      "energy": 51,
+      "confidence": 31,
+      "patience": 66,
+      "chaos": 34
+    },
+    "tags": [
+      "romance",
+      "social"
+    ],
+    "headline": "Your timing is cinematic today.",
+    "personal": "You are visible today without trying. Point that light at something real, not the mirror. Keep the window short.",
+    "love": "Flirting is edit mode: fewer words, better timing.",
+    "career": "Say no once today and mean it. The calendar thanks you.",
+    "social": "Someone needs your humor specifically. Deploy it sparingly.",
+    "greenFlag": "You compliment someone without needing anything back.",
+    "redFlag": "You check the cart you promised to close.",
+    "summary": "Leo 03-01: overall 67, patience 66."
+  },
+  {
+    "dayKey": "03-01",
+    "sunSign": "virgo",
+    "scores": {
+      "overall": 58,
+      "romance": 37,
+      "social": 47,
+      "career": 60,
+      "energy": 49,
+      "confidence": 63,
+      "patience": 48,
+      "chaos": 51
+    },
+    "tags": [
+      "confidence",
+      "career"
+    ],
+    "headline": "Small fix, big ripple.",
+    "personal": "Precision beats volume. One clean edit makes the whole thing publishable. Keep the window short.",
+    "love": "Attachment is tender today. Ask for what you actually want.",
+    "career": "Progress comes from finishing one thing properly, not starting three.",
+    "social": "Solitude restores faster than scrolling. Try ten minutes.",
+    "greenFlag": "You make your bed and surprisingly feel smug about it.",
+    "redFlag": "You keep one tab open just to feel busy.",
+    "summary": "Virgo 03-01: overall 58, patience 48."
+  },
+  {
+    "dayKey": "03-01",
+    "sunSign": "libra",
+    "scores": {
+      "overall": 85,
+      "romance": 71,
+      "social": 72,
+      "career": 34,
+      "energy": 38,
+      "confidence": 75,
+      "patience": 33,
+      "chaos": 69
+    },
+    "tags": [
+      "overall",
+      "confidence"
+    ],
+    "headline": "You mediate what you didn't start. Again.",
+    "personal": "You naturally harmonize the room. Use that taste to choose, not just to smooth. Keep the window short.",
+    "love": "An honest compliment lands further than a clever one.",
+    "career": "A difficult email gets easier if you send it before lunch.",
+    "social": "You don't have to mediate everything. Let two adults disagree.",
+    "greenFlag": "You ask for help before you need rescuing.",
+    "redFlag": "You add one more unnecessary apology.",
+    "summary": "Libra 03-01: overall 85, patience 33."
+  },
+  {
+    "dayKey": "03-01",
+    "sunSign": "scorpio",
+    "scores": {
+      "overall": 62,
+      "romance": 88,
+      "social": 41,
+      "career": 80,
+      "energy": 68,
+      "confidence": 70,
+      "patience": 76,
+      "chaos": 27
+    },
+    "tags": [
+      "romance",
+      "career"
+    ],
+    "headline": "Your silence is doing most of the talking.",
+    "personal": "Depth is your default. One direct sentence saves five strategic ones. Keep the window short.",
+    "love": "If you're waiting for a sign, this sentence is it. Text first.",
+    "career": "Protect two hours from meetings. That's where the work happens.",
+    "social": "Small talk leads to the real talk if you stay two minutes longer.",
+    "greenFlag": "You choose the walk over the scroll.",
+    "redFlag": "You rehearse a conversation that will never happen.",
+    "summary": "Scorpio 03-01: overall 62, patience 76."
+  },
+  {
+    "dayKey": "03-01",
+    "sunSign": "sagittarius",
+    "scores": {
+      "overall": 60,
+      "romance": 55,
+      "social": 91,
+      "career": 67,
+      "energy": 62,
+      "confidence": 63,
+      "patience": 28,
+      "chaos": 73
+    },
+    "tags": [
+      "social",
+      "chaos"
+    ],
+    "headline": "You tell the truth and it sort-of lands.",
+    "personal": "Honesty travels fast today. Add one detail that makes it land softer. Keep the window short.",
+    "love": "Distance helps today. Miss them on purpose for a day.",
+    "career": "A loose thread is worth pulling. Something useful unravels.",
+    "social": "Your boundaries are legible today. Keep them legible.",
+    "greenFlag": "You send the message without rewriting it four times.",
+    "redFlag": "You explain a joke that already landed.",
+    "summary": "Sagittarius 03-01: overall 60, patience 28."
+  },
+  {
+    "dayKey": "03-01",
+    "sunSign": "capricorn",
+    "scores": {
+      "overall": 80,
+      "romance": 74,
+      "social": 86,
+      "career": 79,
+      "energy": 48,
+      "confidence": 37,
+      "patience": 74,
+      "chaos": 23
+    },
+    "tags": [
+      "social",
+      "overall"
+    ],
+    "headline": "Feelings, but with a project plan.",
+    "personal": "Structure is kindness today. Name the next step out loud and watch momentum follow. Keep the window short.",
+    "love": "Old patterns knock. You don't have to answer.",
+    "career": "Say no once today and mean it. The calendar thanks you.",
+    "social": "An old friend crosses your mind. That's the prompt.",
+    "greenFlag": "You drink water before coffee. Growth is quiet.",
+    "redFlag": "You say 'quick question' before a long story.",
+    "summary": "Capricorn 03-01: overall 80, patience 74."
+  },
+  {
+    "dayKey": "03-01",
+    "sunSign": "aquarius",
+    "scores": {
+      "overall": 80,
+      "romance": 54,
+      "social": 43,
+      "career": 32,
+      "energy": 47,
+      "confidence": 53,
+      "patience": 67,
+      "chaos": 30
+    },
+    "tags": [
+      "overall",
+      "patience"
+    ],
+    "headline": "Normal was never the plan.",
+    "personal": "Your sideways view clarifies what everyone missed. Offer it once, plainly. Keep the window short.",
+    "love": "Warm, direct, and slightly disarming. Say the smaller true thing.",
+    "career": "Progress comes from finishing one thing properly, not starting three.",
+    "social": "One invitation deserves a yes. The rest can wait.",
+    "greenFlag": "You leave the group chat on read and feel fine.",
+    "redFlag": "You turn a small delay into a moral failure.",
+    "summary": "Aquarius 03-01: overall 80, patience 67."
+  },
+  {
+    "dayKey": "03-01",
+    "sunSign": "pisces",
+    "scores": {
+      "overall": 66,
+      "romance": 88,
+      "social": 73,
+      "career": 74,
+      "energy": 84,
+      "confidence": 71,
+      "patience": 28,
+      "chaos": 71
+    },
+    "tags": [
+      "romance",
+      "energy"
+    ],
+    "headline": "Imagination edits reality today.",
+    "personal": "Your antenna is sensitive. Ground one intuition in a concrete action before noon. Keep the window short.",
+    "love": "Cozy beats dramatic. A low-key invitation wins.",
+    "career": "A difficult email gets easier if you send it before lunch.",
+    "social": "You're energizing to be around today. Choose the right room.",
+    "greenFlag": "You finish the boring task first. Elite behavior.",
+    "redFlag": "You reread a message nine times before replying.",
+    "summary": "Pisces 03-01: overall 66, patience 28."
+  },
+  {
+    "dayKey": "03-02",
+    "sunSign": "aries",
+    "scores": {
+      "overall": 74,
+      "romance": 38,
+      "social": 52,
+      "career": 37,
+      "energy": 74,
+      "confidence": 79,
+      "patience": 77,
+      "chaos": 22
+    },
+    "tags": [
+      "confidence",
+      "patience"
+    ],
+    "headline": "You move first. Everyone else negotiates.",
+    "personal": "Your energy finds a clear target. Stop second-guessing the first instinct and commit to one move. The effect compounds by evening.",
+    "love": "Chemistry hums quietly. Don't narrate it, let it hum.",
+    "career": "Momentum builds from the second task, not the first. Start messy.",
+    "social": "Solitude restores faster than scrolling. Try ten minutes.",
+    "greenFlag": "You drink water before coffee. Growth is quiet.",
+    "redFlag": "You add one more unnecessary apology.",
+    "summary": "Aries 03-02: overall 74, patience 77."
+  },
+  {
+    "dayKey": "03-02",
+    "sunSign": "taurus",
+    "scores": {
+      "overall": 60,
+      "romance": 81,
+      "social": 88,
+      "career": 35,
+      "energy": 44,
+      "confidence": 68,
+      "patience": 28,
+      "chaos": 73
+    },
+    "tags": [
+      "social",
+      "romance"
+    ],
+    "headline": "Something you planted finally nudges.",
+    "personal": "Steadiness is magnetic today. Keep one small ritual intact and let the rest arrange around it. The effect compounds by evening.",
+    "love": "Someone notices effort more than charm today. Show up on time.",
+    "career": "Negotiate by naming what you actually need, not the position.",
+    "social": "You don't have to mediate everything. Let two adults disagree.",
+    "greenFlag": "You leave the group chat on read and feel fine.",
+    "redFlag": "You rehearse a conversation that will never happen.",
+    "summary": "Taurus 03-02: overall 60, patience 28."
+  },
+  {
+    "dayKey": "03-02",
+    "sunSign": "gemini",
+    "scores": {
+      "overall": 54,
+      "romance": 53,
+      "social": 67,
+      "career": 42,
+      "energy": 49,
+      "confidence": 90,
+      "patience": 46,
+      "chaos": 57
+    },
+    "tags": [
+      "confidence",
+      "social"
+    ],
+    "headline": "Three tabs open. All of them correct.",
+    "personal": "Conversation unlocks the day. Ask the sharper second question, not the polite first one. The effect compounds by evening.",
+    "love": "Flirting is edit mode: fewer words, better timing.",
+    "career": "Documentation you write today saves future you an hour.",
+    "social": "Small talk leads to the real talk if you stay two minutes longer.",
+    "greenFlag": "You finish the boring task first. Elite behavior.",
+    "redFlag": "You explain a joke that already landed.",
+    "summary": "Gemini 03-02: overall 54, patience 46."
+  },
+  {
+    "dayKey": "03-02",
+    "sunSign": "cancer",
+    "scores": {
+      "overall": 83,
+      "romance": 66,
+      "social": 32,
+      "career": 72,
+      "energy": 82,
+      "confidence": 66,
+      "patience": 72,
+      "chaos": 28
+    },
+    "tags": [
+      "overall",
+      "energy"
+    ],
+    "headline": "Soft launch your boundaries.",
+    "personal": "Your attention to texture matters. One quiet check-in carries further than a speech. The effect compounds by evening.",
+    "love": "Attachment is tender today. Ask for what you actually want.",
+    "career": "Credit is shared faster than you think. Share first.",
+    "social": "Your boundaries are legible today. Keep them legible.",
+    "greenFlag": "You compliment someone without needing anything back.",
+    "redFlag": "You say 'quick question' before a long story.",
+    "summary": "Cancer 03-02: overall 83, patience 72."
+  },
+  {
+    "dayKey": "03-02",
+    "sunSign": "leo",
+    "scores": {
+      "overall": 73,
+      "romance": 65,
+      "social": 72,
+      "career": 34,
+      "energy": 65,
+      "confidence": 40,
+      "patience": 54,
+      "chaos": 44
+    },
+    "tags": [
+      "overall",
+      "social"
+    ],
+    "headline": "The room has been waiting. Don't disappoint it.",
+    "personal": "You are visible today without trying. Point that light at something real, not the mirror. The effect compounds by evening.",
+    "love": "An honest compliment lands further than a clever one.",
+    "career": "Your competence is visible without the slideshow. Let it be.",
+    "social": "An old friend crosses your mind. That's the prompt.",
+    "greenFlag": "You make your bed and surprisingly feel smug about it.",
+    "redFlag": "You turn a small delay into a moral failure.",
+    "summary": "Leo 03-02: overall 73, patience 54."
+  },
+  {
+    "dayKey": "03-02",
+    "sunSign": "virgo",
+    "scores": {
+      "overall": 58,
+      "romance": 46,
+      "social": 33,
+      "career": 76,
+      "energy": 64,
+      "confidence": 31,
+      "patience": 18,
+      "chaos": 81
+    },
+    "tags": [
+      "chaos",
+      "career"
+    ],
+    "headline": "Your edit is the whole point today.",
+    "personal": "Precision beats volume. One clean edit makes the whole thing publishable. The effect compounds by evening.",
+    "love": "If you're waiting for a sign, this sentence is it. Text first.",
+    "career": "Momentum builds from the second task, not the first. Start messy.",
+    "social": "One invitation deserves a yes. The rest can wait.",
+    "greenFlag": "You ask for help before you need rescuing.",
+    "redFlag": "You reread a message nine times before replying.",
+    "summary": "Virgo 03-02: overall 58, patience 18."
+  },
+  {
+    "dayKey": "03-02",
+    "sunSign": "libra",
+    "scores": {
+      "overall": 51,
+      "romance": 71,
+      "social": 60,
+      "career": 33,
+      "energy": 40,
+      "confidence": 63,
+      "patience": 48,
+      "chaos": 52
+    },
+    "tags": [
+      "romance",
+      "confidence"
+    ],
+    "headline": "You have opinions today. So does everyone else.",
+    "personal": "You naturally harmonize the room. Use that taste to choose, not just to smooth. The effect compounds by evening.",
+    "love": "Distance helps today. Miss them on purpose for a day.",
+    "career": "Negotiate by naming what you actually need, not the position.",
+    "social": "You're energizing to be around today. Choose the right room.",
+    "greenFlag": "You choose the walk over the scroll.",
+    "redFlag": "You check the cart you promised to close.",
+    "summary": "Libra 03-02: overall 51, patience 48."
+  },
+  {
+    "dayKey": "03-02",
+    "sunSign": "scorpio",
+    "scores": {
+      "overall": 84,
+      "romance": 41,
+      "social": 70,
+      "career": 74,
+      "energy": 89,
+      "confidence": 46,
+      "patience": 31,
+      "chaos": 70
+    },
+    "tags": [
+      "energy",
+      "overall"
+    ],
+    "headline": "You already know. The rest is performance.",
+    "personal": "Depth is your default. One direct sentence saves five strategic ones. The effect compounds by evening.",
+    "love": "Old patterns knock. You don't have to answer.",
+    "career": "Documentation you write today saves future you an hour.",
+    "social": "Group chats are louder than useful. Exit one early.",
+    "greenFlag": "You send the message without rewriting it four times.",
+    "redFlag": "You keep one tab open just to feel busy.",
+    "summary": "Scorpio 03-02: overall 84, patience 31."
+  },
+  {
+    "dayKey": "03-02",
+    "sunSign": "sagittarius",
+    "scores": {
+      "overall": 71,
+      "romance": 30,
+      "social": 79,
+      "career": 46,
+      "energy": 50,
+      "confidence": 54,
+      "patience": 31,
+      "chaos": 73
+    },
+    "tags": [
+      "social",
+      "chaos"
+    ],
+    "headline": "Freedom, but with consequences you actually like.",
+    "personal": "Honesty travels fast today. Add one detail that makes it land softer. The effect compounds by evening.",
+    "love": "Warm, direct, and slightly disarming. Say the smaller true thing.",
+    "career": "Credit is shared faster than you think. Share first.",
+    "social": "A short walk with one person beats a noisy dinner.",
+    "greenFlag": "You drink water before coffee. Growth is quiet.",
+    "redFlag": "You add one more unnecessary apology.",
+    "summary": "Sagittarius 03-02: overall 71, patience 31."
+  },
+  {
+    "dayKey": "03-02",
+    "sunSign": "capricorn",
+    "scores": {
+      "overall": 63,
+      "romance": 72,
+      "social": 42,
+      "career": 76,
+      "energy": 69,
+      "confidence": 45,
+      "patience": 47,
+      "chaos": 57
+    },
+    "tags": [
+      "career",
+      "romance"
+    ],
+    "headline": "The long game briefly looks short.",
+    "personal": "Structure is kindness today. Name the next step out loud and watch momentum follow. The effect compounds by evening.",
+    "love": "Cozy beats dramatic. A low-key invitation wins.",
+    "career": "Your competence is visible without the slideshow. Let it be.",
+    "social": "Someone needs your humor specifically. Deploy it sparingly.",
+    "greenFlag": "You leave the group chat on read and feel fine.",
+    "redFlag": "You rehearse a conversation that will never happen.",
+    "summary": "Capricorn 03-02: overall 63, patience 47."
+  },
+  {
+    "dayKey": "03-02",
+    "sunSign": "aquarius",
+    "scores": {
+      "overall": 82,
+      "romance": 32,
+      "social": 62,
+      "career": 58,
+      "energy": 79,
+      "confidence": 94,
+      "patience": 26,
+      "chaos": 73
+    },
+    "tags": [
+      "confidence",
+      "overall"
+    ],
+    "headline": "You love humanity. Individuals, case by case.",
+    "personal": "Your sideways view clarifies what everyone missed. Offer it once, plainly. The effect compounds by evening.",
+    "love": "Chemistry hums quietly. Don't narrate it, let it hum.",
+    "career": "Momentum builds from the second task, not the first. Start messy.",
+    "social": "Solitude restores faster than scrolling. Try ten minutes.",
+    "greenFlag": "You finish the boring task first. Elite behavior.",
+    "redFlag": "You explain a joke that already landed.",
+    "summary": "Aquarius 03-02: overall 82, patience 26."
+  },
+  {
+    "dayKey": "03-02",
+    "sunSign": "pisces",
+    "scores": {
+      "overall": 74,
+      "romance": 66,
+      "social": 79,
+      "career": 74,
+      "energy": 87,
+      "confidence": 40,
+      "patience": 66,
+      "chaos": 33
+    },
+    "tags": [
+      "energy",
+      "social"
+    ],
+    "headline": "You're in three timelines. All are tender.",
+    "personal": "Your antenna is sensitive. Ground one intuition in a concrete action before noon. The effect compounds by evening.",
+    "love": "Someone notices effort more than charm today. Show up on time.",
+    "career": "Negotiate by naming what you actually need, not the position.",
+    "social": "You don't have to mediate everything. Let two adults disagree.",
+    "greenFlag": "You compliment someone without needing anything back.",
+    "redFlag": "You say 'quick question' before a long story.",
+    "summary": "Pisces 03-02: overall 74, patience 66."
+  },
+  {
+    "dayKey": "03-03",
+    "sunSign": "aries",
+    "scores": {
+      "overall": 73,
+      "romance": 91,
+      "social": 41,
+      "career": 80,
+      "energy": 36,
+      "confidence": 52,
+      "patience": 75,
+      "chaos": 23
+    },
+    "tags": [
+      "romance",
+      "career"
+    ],
+    "headline": "Your bluntness is a gift. Wrap it nicely.",
+    "personal": "Your energy finds a clear target. Stop second-guessing the first instinct and commit to one move. Let the evidence, not the anxiety, lead.",
+    "love": "Flirting is edit mode: fewer words, better timing.",
+    "career": "A loose thread is worth pulling. Something useful unravels.",
+    "social": "One invitation deserves a yes. The rest can wait.",
+    "greenFlag": "You leave the group chat on read and feel fine.",
+    "redFlag": "You check the cart you promised to close.",
+    "summary": "Aries 03-03: overall 73, patience 75."
+  },
+  {
+    "dayKey": "03-03",
+    "sunSign": "taurus",
+    "scores": {
+      "overall": 55,
+      "romance": 66,
+      "social": 90,
+      "career": 71,
+      "energy": 51,
+      "confidence": 60,
+      "patience": 51,
+      "chaos": 53
+    },
+    "tags": [
+      "social",
+      "career"
+    ],
+    "headline": "You keep the room together by staying put.",
+    "personal": "Steadiness is magnetic today. Keep one small ritual intact and let the rest arrange around it. Let the evidence, not the anxiety, lead.",
+    "love": "Attachment is tender today. Ask for what you actually want.",
+    "career": "Say no once today and mean it. The calendar thanks you.",
+    "social": "You're energizing to be around today. Choose the right room.",
+    "greenFlag": "You finish the boring task first. Elite behavior.",
+    "redFlag": "You keep one tab open just to feel busy.",
+    "summary": "Taurus 03-03: overall 55, patience 51."
+  },
+  {
+    "dayKey": "03-03",
+    "sunSign": "gemini",
+    "scores": {
+      "overall": 49,
+      "romance": 31,
+      "social": 85,
+      "career": 59,
+      "energy": 54,
+      "confidence": 35,
+      "patience": 78,
+      "chaos": 20
+    },
+    "tags": [
+      "social",
+      "patience"
+    ],
+    "headline": "Two truths and a better lie. Choose one.",
+    "personal": "Conversation unlocks the day. Ask the sharper second question, not the polite first one. Let the evidence, not the anxiety, lead.",
+    "love": "An honest compliment lands further than a clever one.",
+    "career": "Progress comes from finishing one thing properly, not starting three.",
+    "social": "Group chats are louder than useful. Exit one early.",
+    "greenFlag": "You compliment someone without needing anything back.",
+    "redFlag": "You add one more unnecessary apology.",
+    "summary": "Gemini 03-03: overall 49, patience 78."
+  },
+  {
+    "dayKey": "03-03",
+    "sunSign": "cancer",
+    "scores": {
+      "overall": 70,
+      "romance": 39,
+      "social": 64,
+      "career": 69,
+      "energy": 42,
+      "confidence": 63,
+      "patience": 48,
+      "chaos": 55
+    },
+    "tags": [
+      "overall",
+      "career"
+    ],
+    "headline": "Someone needs your exact kind of attention.",
+    "personal": "Your attention to texture matters. One quiet check-in carries further than a speech. Let the evidence, not the anxiety, lead.",
+    "love": "If you're waiting for a sign, this sentence is it. Text first.",
+    "career": "A difficult email gets easier if you send it before lunch.",
+    "social": "A short walk with one person beats a noisy dinner.",
+    "greenFlag": "You make your bed and surprisingly feel smug about it.",
+    "redFlag": "You rehearse a conversation that will never happen.",
+    "summary": "Cancer 03-03: overall 70, patience 48."
+  },
+  {
+    "dayKey": "03-03",
+    "sunSign": "leo",
+    "scores": {
+      "overall": 48,
+      "romance": 37,
+      "social": 78,
+      "career": 83,
+      "energy": 77,
+      "confidence": 32,
+      "patience": 34,
+      "chaos": 63
+    },
+    "tags": [
+      "career",
+      "social"
+    ],
+    "headline": "Confidence looks expensive on you. Keep it.",
+    "personal": "You are visible today without trying. Point that light at something real, not the mirror. Let the evidence, not the anxiety, lead.",
+    "love": "Distance helps today. Miss them on purpose for a day.",
+    "career": "Protect two hours from meetings. That's where the work happens.",
+    "social": "Someone needs your humor specifically. Deploy it sparingly.",
+    "greenFlag": "You ask for help before you need rescuing.",
+    "redFlag": "You explain a joke that already landed.",
+    "summary": "Leo 03-03: overall 48, patience 34."
+  },
+  {
+    "dayKey": "03-03",
+    "sunSign": "virgo",
+    "scores": {
+      "overall": 49,
+      "romance": 42,
+      "social": 62,
+      "career": 82,
+      "energy": 70,
+      "confidence": 74,
+      "patience": 33,
+      "chaos": 65
+    },
+    "tags": [
+      "career",
+      "confidence"
+    ],
+    "headline": "Correct again. Try being smug about it.",
+    "personal": "Precision beats volume. One clean edit makes the whole thing publishable. Let the evidence, not the anxiety, lead.",
+    "love": "Old patterns knock. You don't have to answer.",
+    "career": "A loose thread is worth pulling. Something useful unravels.",
+    "social": "Solitude restores faster than scrolling. Try ten minutes.",
+    "greenFlag": "You choose the walk over the scroll.",
+    "redFlag": "You say 'quick question' before a long story.",
+    "summary": "Virgo 03-03: overall 49, patience 33."
+  },
+  {
+    "dayKey": "03-03",
+    "sunSign": "libra",
+    "scores": {
+      "overall": 55,
+      "romance": 58,
+      "social": 71,
+      "career": 50,
+      "energy": 82,
+      "confidence": 53,
+      "patience": 47,
+      "chaos": 57
+    },
+    "tags": [
+      "energy",
+      "social"
+    ],
+    "headline": "Your taste is the quiet flex.",
+    "personal": "You naturally harmonize the room. Use that taste to choose, not just to smooth. Let the evidence, not the anxiety, lead.",
+    "love": "Warm, direct, and slightly disarming. Say the smaller true thing.",
+    "career": "Say no once today and mean it. The calendar thanks you.",
+    "social": "You don't have to mediate everything. Let two adults disagree.",
+    "greenFlag": "You send the message without rewriting it four times.",
+    "redFlag": "You turn a small delay into a moral failure.",
+    "summary": "Libra 03-03: overall 55, patience 47."
+  },
+  {
+    "dayKey": "03-03",
+    "sunSign": "scorpio",
+    "scores": {
+      "overall": 58,
+      "romance": 83,
+      "social": 89,
+      "career": 83,
+      "energy": 82,
+      "confidence": 85,
+      "patience": 73,
+      "chaos": 26
+    },
+    "tags": [
+      "social",
+      "confidence"
+    ],
+    "headline": "No one is fooled. Especially not you.",
+    "personal": "Depth is your default. One direct sentence saves five strategic ones. Let the evidence, not the anxiety, lead.",
+    "love": "Cozy beats dramatic. A low-key invitation wins.",
+    "career": "Progress comes from finishing one thing properly, not starting three.",
+    "social": "Small talk leads to the real talk if you stay two minutes longer.",
+    "greenFlag": "You drink water before coffee. Growth is quiet.",
+    "redFlag": "You reread a message nine times before replying.",
+    "summary": "Scorpio 03-03: overall 58, patience 73."
+  },
+  {
+    "dayKey": "03-03",
+    "sunSign": "sagittarius",
+    "scores": {
+      "overall": 70,
+      "romance": 35,
+      "social": 63,
+      "career": 37,
+      "energy": 69,
+      "confidence": 52,
+      "patience": 79,
+      "chaos": 24
+    },
+    "tags": [
+      "patience",
+      "overall"
+    ],
+    "headline": "Your exit plan has an exit plan.",
+    "personal": "Honesty travels fast today. Add one detail that makes it land softer. Let the evidence, not the anxiety, lead.",
+    "love": "Chemistry hums quietly. Don't narrate it, let it hum.",
+    "career": "A difficult email gets easier if you send it before lunch.",
+    "social": "Your boundaries are legible today. Keep them legible.",
+    "greenFlag": "You leave the group chat on read and feel fine.",
+    "redFlag": "You check the cart you promised to close.",
+    "summary": "Sagittarius 03-03: overall 70, patience 79."
+  },
+  {
+    "dayKey": "03-03",
+    "sunSign": "capricorn",
+    "scores": {
+      "overall": 85,
+      "romance": 80,
+      "social": 34,
+      "career": 59,
+      "energy": 56,
+      "confidence": 59,
+      "patience": 23,
+      "chaos": 79
+    },
+    "tags": [
+      "overall",
+      "romance"
+    ],
+    "headline": "Ambition is calm today.",
+    "personal": "Structure is kindness today. Name the next step out loud and watch momentum follow. Let the evidence, not the anxiety, lead.",
+    "love": "Someone notices effort more than charm today. Show up on time.",
+    "career": "Protect two hours from meetings. That's where the work happens.",
+    "social": "An old friend crosses your mind. That's the prompt.",
+    "greenFlag": "You finish the boring task first. Elite behavior.",
+    "redFlag": "You keep one tab open just to feel busy.",
+    "summary": "Capricorn 03-03: overall 85, patience 23."
+  },
+  {
+    "dayKey": "03-03",
+    "sunSign": "aquarius",
+    "scores": {
+      "overall": 53,
+      "romance": 39,
+      "social": 88,
+      "career": 55,
+      "energy": 86,
+      "confidence": 71,
+      "patience": 28,
+      "chaos": 74
+    },
+    "tags": [
+      "social",
+      "energy"
+    ],
+    "headline": "Detachment is your superpower today.",
+    "personal": "Your sideways view clarifies what everyone missed. Offer it once, plainly. Let the evidence, not the anxiety, lead.",
+    "love": "Flirting is edit mode: fewer words, better timing.",
+    "career": "A loose thread is worth pulling. Something useful unravels.",
+    "social": "One invitation deserves a yes. The rest can wait.",
+    "greenFlag": "You compliment someone without needing anything back.",
+    "redFlag": "You add one more unnecessary apology.",
+    "summary": "Aquarius 03-03: overall 53, patience 28."
+  },
+  {
+    "dayKey": "03-03",
+    "sunSign": "pisces",
+    "scores": {
+      "overall": 64,
+      "romance": 37,
+      "social": 70,
+      "career": 74,
+      "energy": 75,
+      "confidence": 39,
+      "patience": 66,
+      "chaos": 31
+    },
+    "tags": [
+      "energy",
+      "career"
+    ],
+    "headline": "You feel twice. Choose the useful feeling.",
+    "personal": "Your antenna is sensitive. Ground one intuition in a concrete action before noon. Let the evidence, not the anxiety, lead.",
+    "love": "Attachment is tender today. Ask for what you actually want.",
+    "career": "Say no once today and mean it. The calendar thanks you.",
+    "social": "You're energizing to be around today. Choose the right room.",
+    "greenFlag": "You make your bed and surprisingly feel smug about it.",
+    "redFlag": "You rehearse a conversation that will never happen.",
+    "summary": "Pisces 03-03: overall 64, patience 66."
+  },
+  {
+    "dayKey": "03-04",
+    "sunSign": "aries",
+    "scores": {
+      "overall": 58,
+      "romance": 61,
+      "social": 65,
+      "career": 86,
+      "energy": 65,
+      "confidence": 71,
+      "patience": 80,
+      "chaos": 19
+    },
+    "tags": [
+      "career",
+      "patience"
+    ],
+    "headline": "A door you didn't knock on opens anyway — especially after 7:00.",
+    "personal": "Your energy finds a clear target. Stop second-guessing the first instinct and commit to one move. Two sentences is enough.",
+    "love": "An honest compliment lands further than a clever one.",
+    "career": "Credit is shared faster than you think. Share first.",
+    "social": "Solitude restores faster than scrolling. Try ten minutes.",
+    "greenFlag": "You finish the boring task first. Elite behavior.",
+    "redFlag": "You turn a small delay into a moral failure.",
+    "summary": "Aries 03-04: overall 58, patience 80."
+  },
+  {
+    "dayKey": "03-04",
+    "sunSign": "taurus",
+    "scores": {
+      "overall": 72,
+      "romance": 69,
+      "social": 30,
+      "career": 59,
+      "energy": 63,
+      "confidence": 79,
+      "patience": 37,
+      "chaos": 60
+    },
+    "tags": [
+      "confidence",
+      "overall"
+    ],
+    "headline": "Slow is the shortcut — especially after 7:00.",
+    "personal": "Steadiness is magnetic today. Keep one small ritual intact and let the rest arrange around it. Two sentences is enough.",
+    "love": "If you're waiting for a sign, this sentence is it. Text first.",
+    "career": "Your competence is visible without the slideshow. Let it be.",
+    "social": "You don't have to mediate everything. Let two adults disagree.",
+    "greenFlag": "You compliment someone without needing anything back.",
+    "redFlag": "You reread a message nine times before replying.",
+    "summary": "Taurus 03-04: overall 72, patience 37."
+  },
+  {
+    "dayKey": "03-04",
+    "sunSign": "gemini",
+    "scores": {
+      "overall": 51,
+      "romance": 55,
+      "social": 55,
+      "career": 81,
+      "energy": 63,
+      "confidence": 86,
+      "patience": 37,
+      "chaos": 63
+    },
+    "tags": [
+      "confidence",
+      "career"
+    ],
+    "headline": "Curiosity pays rent today — especially after 7:00.",
+    "personal": "Conversation unlocks the day. Ask the sharper second question, not the polite first one. Two sentences is enough.",
+    "love": "Distance helps today. Miss them on purpose for a day.",
+    "career": "Momentum builds from the second task, not the first. Start messy.",
+    "social": "Small talk leads to the real talk if you stay two minutes longer.",
+    "greenFlag": "You make your bed and surprisingly feel smug about it.",
+    "redFlag": "You check the cart you promised to close.",
+    "summary": "Gemini 03-04: overall 51, patience 37."
+  },
+  {
+    "dayKey": "03-04",
+    "sunSign": "cancer",
+    "scores": {
+      "overall": 55,
+      "romance": 67,
+      "social": 63,
+      "career": 57,
+      "energy": 84,
+      "confidence": 64,
+      "patience": 76,
+      "chaos": 28
+    },
+    "tags": [
+      "energy",
+      "patience"
+    ],
+    "headline": "Your care is precision, not softness — especially after 7:00.",
+    "personal": "Your attention to texture matters. One quiet check-in carries further than a speech. Two sentences is enough.",
+    "love": "Old patterns knock. You don't have to answer.",
+    "career": "Negotiate by naming what you actually need, not the position.",
+    "social": "Your boundaries are legible today. Keep them legible.",
+    "greenFlag": "You ask for help before you need rescuing.",
+    "redFlag": "You keep one tab open just to feel busy.",
+    "summary": "Cancer 03-04: overall 55, patience 76."
+  },
+  {
+    "dayKey": "03-04",
+    "sunSign": "leo",
+    "scores": {
+      "overall": 51,
+      "romance": 90,
+      "social": 53,
+      "career": 33,
+      "energy": 47,
+      "confidence": 53,
+      "patience": 19,
+      "chaos": 81
+    },
+    "tags": [
+      "romance",
+      "chaos"
+    ],
+    "headline": "You don't need the spotlight; it needs you — especially after 7:00.",
+    "personal": "You are visible today without trying. Point that light at something real, not the mirror. Two sentences is enough.",
+    "love": "Warm, direct, and slightly disarming. Say the smaller true thing.",
+    "career": "Documentation you write today saves future you an hour.",
+    "social": "An old friend crosses your mind. That's the prompt.",
+    "greenFlag": "You choose the walk over the scroll.",
+    "redFlag": "You add one more unnecessary apology.",
+    "summary": "Leo 03-04: overall 51, patience 19."
+  },
+  {
+    "dayKey": "03-04",
+    "sunSign": "virgo",
+    "scores": {
+      "overall": 86,
+      "romance": 68,
+      "social": 42,
+      "career": 52,
+      "energy": 68,
+      "confidence": 78,
+      "patience": 25,
+      "chaos": 78
+    },
+    "tags": [
+      "overall",
+      "confidence"
+    ],
+    "headline": "You see the flaw nobody named. Name it kindly — especially after 7:00.",
+    "personal": "Precision beats volume. One clean edit makes the whole thing publishable. Two sentences is enough.",
+    "love": "Cozy beats dramatic. A low-key invitation wins.",
+    "career": "Credit is shared faster than you think. Share first.",
+    "social": "One invitation deserves a yes. The rest can wait.",
+    "greenFlag": "You send the message without rewriting it four times.",
+    "redFlag": "You rehearse a conversation that will never happen.",
+    "summary": "Virgo 03-04: overall 86, patience 25."
+  },
+  {
+    "dayKey": "03-04",
+    "sunSign": "libra",
+    "scores": {
+      "overall": 80,
+      "romance": 50,
+      "social": 62,
+      "career": 57,
+      "energy": 70,
+      "confidence": 69,
+      "patience": 24,
+      "chaos": 73
+    },
+    "tags": [
+      "overall",
+      "chaos"
+    ],
+    "headline": "Balance is not neutrality — especially after 7:00.",
+    "personal": "You naturally harmonize the room. Use that taste to choose, not just to smooth. Two sentences is enough.",
+    "love": "Chemistry hums quietly. Don't narrate it, let it hum.",
+    "career": "Your competence is visible without the slideshow. Let it be.",
+    "social": "You're energizing to be around today. Choose the right room.",
+    "greenFlag": "You drink water before coffee. Growth is quiet.",
+    "redFlag": "You explain a joke that already landed.",
+    "summary": "Libra 03-04: overall 80, patience 24."
+  },
+  {
+    "dayKey": "03-04",
+    "sunSign": "scorpio",
+    "scores": {
+      "overall": 75,
+      "romance": 84,
+      "social": 89,
+      "career": 51,
+      "energy": 89,
+      "confidence": 68,
+      "patience": 44,
+      "chaos": 56
+    },
+    "tags": [
+      "social",
+      "energy"
+    ],
+    "headline": "Intensity, but make it useful — especially after 7:00.",
+    "personal": "Depth is your default. One direct sentence saves five strategic ones. Two sentences is enough.",
+    "love": "Someone notices effort more than charm today. Show up on time.",
+    "career": "Momentum builds from the second task, not the first. Start messy.",
+    "social": "Group chats are louder than useful. Exit one early.",
+    "greenFlag": "You leave the group chat on read and feel fine.",
+    "redFlag": "You say 'quick question' before a long story.",
+    "summary": "Scorpio 03-04: overall 75, patience 44."
+  },
+  {
+    "dayKey": "03-04",
+    "sunSign": "sagittarius",
+    "scores": {
+      "overall": 70,
+      "romance": 53,
+      "social": 87,
+      "career": 83,
+      "energy": 40,
+      "confidence": 47,
+      "patience": 31,
+      "chaos": 72
+    },
+    "tags": [
+      "social",
+      "career"
+    ],
+    "headline": "Blunt is a love language, apparently — especially after 7:00.",
+    "personal": "Honesty travels fast today. Add one detail that makes it land softer. Two sentences is enough.",
+    "love": "Flirting is edit mode: fewer words, better timing.",
+    "career": "Negotiate by naming what you actually need, not the position.",
+    "social": "A short walk with one person beats a noisy dinner.",
+    "greenFlag": "You finish the boring task first. Elite behavior.",
+    "redFlag": "You turn a small delay into a moral failure.",
+    "summary": "Sagittarius 03-04: overall 70, patience 31."
+  },
+  {
+    "dayKey": "03-04",
+    "sunSign": "capricorn",
+    "scores": {
+      "overall": 67,
+      "romance": 58,
+      "social": 49,
+      "career": 44,
+      "energy": 53,
+      "confidence": 38,
+      "patience": 50,
+      "chaos": 50
+    },
+    "tags": [
+      "overall",
+      "romance"
+    ],
+    "headline": "You make discipline look like taste — especially after 7:00.",
+    "personal": "Structure is kindness today. Name the next step out loud and watch momentum follow. Two sentences is enough.",
+    "love": "Attachment is tender today. Ask for what you actually want.",
+    "career": "Documentation you write today saves future you an hour.",
+    "social": "Someone needs your humor specifically. Deploy it sparingly.",
+    "greenFlag": "You compliment someone without needing anything back.",
+    "redFlag": "You reread a message nine times before replying.",
+    "summary": "Capricorn 03-04: overall 67, patience 50."
+  },
+  {
+    "dayKey": "03-04",
+    "sunSign": "aquarius",
+    "scores": {
+      "overall": 77,
+      "romance": 31,
+      "social": 83,
+      "career": 62,
+      "energy": 43,
+      "confidence": 31,
+      "patience": 38,
+      "chaos": 64
+    },
+    "tags": [
+      "social",
+      "overall"
+    ],
+    "headline": "You invent the room you want to be in — especially after 7:00.",
+    "personal": "Your sideways view clarifies what everyone missed. Offer it once, plainly. Two sentences is enough.",
+    "love": "An honest compliment lands further than a clever one.",
+    "career": "Credit is shared faster than you think. Share first.",
+    "social": "Solitude restores faster than scrolling. Try ten minutes.",
+    "greenFlag": "You make your bed and surprisingly feel smug about it.",
+    "redFlag": "You check the cart you promised to close.",
+    "summary": "Aquarius 03-04: overall 77, patience 38."
+  },
+  {
+    "dayKey": "03-04",
+    "sunSign": "pisces",
+    "scores": {
+      "overall": 63,
+      "romance": 33,
+      "social": 75,
+      "career": 46,
+      "energy": 37,
+      "confidence": 36,
+      "patience": 74,
+      "chaos": 30
+    },
+    "tags": [
+      "social",
+      "patience"
+    ],
+    "headline": "Your intuition has receipts — especially after 7:00.",
+    "personal": "Your antenna is sensitive. Ground one intuition in a concrete action before noon. Two sentences is enough.",
+    "love": "If you're waiting for a sign, this sentence is it. Text first.",
+    "career": "Your competence is visible without the slideshow. Let it be.",
+    "social": "You don't have to mediate everything. Let two adults disagree.",
+    "greenFlag": "You ask for help before you need rescuing.",
+    "redFlag": "You keep one tab open just to feel busy.",
+    "summary": "Pisces 03-04: overall 63, patience 74."
+  },
+  {
+    "dayKey": "03-05",
+    "sunSign": "aries",
+    "scores": {
+      "overall": 68,
+      "romance": 90,
+      "social": 41,
+      "career": 48,
+      "energy": 54,
+      "confidence": 40,
+      "patience": 74,
+      "chaos": 27
+    },
+    "tags": [
+      "romance",
+      "patience"
+    ],
+    "headline": "Speed is your love language today.",
+    "personal": "Your energy finds a clear target. Stop second-guessing the first instinct and commit to one move. Notice what shifts after you do.",
+    "love": "Distance helps today. Miss them on purpose for a day.",
+    "career": "A difficult email gets easier if you send it before lunch.",
+    "social": "One invitation deserves a yes. The rest can wait.",
+    "greenFlag": "You compliment someone without needing anything back.",
+    "redFlag": "You explain a joke that already landed.",
+    "summary": "Aries 03-05: overall 68, patience 74."
+  },
+  {
+    "dayKey": "03-05",
+    "sunSign": "taurus",
+    "scores": {
+      "overall": 59,
+      "romance": 88,
+      "social": 55,
+      "career": 77,
+      "energy": 78,
+      "confidence": 81,
+      "patience": 81,
+      "chaos": 19
+    },
+    "tags": [
+      "romance",
+      "confidence"
+    ],
+    "headline": "Comfort is strategy today, not avoidance.",
+    "personal": "Steadiness is magnetic today. Keep one small ritual intact and let the rest arrange around it. Notice what shifts after you do.",
+    "love": "Old patterns knock. You don't have to answer.",
+    "career": "Protect two hours from meetings. That's where the work happens.",
+    "social": "You're energizing to be around today. Choose the right room.",
+    "greenFlag": "You make your bed and surprisingly feel smug about it.",
+    "redFlag": "You say 'quick question' before a long story.",
+    "summary": "Taurus 03-05: overall 59, patience 81."
+  },
+  {
+    "dayKey": "03-05",
+    "sunSign": "gemini",
+    "scores": {
+      "overall": 70,
+      "romance": 54,
+      "social": 67,
+      "career": 34,
+      "energy": 37,
+      "confidence": 86,
+      "patience": 57,
+      "chaos": 46
+    },
+    "tags": [
+      "confidence",
+      "overall"
+    ],
+    "headline": "Your punchline lands before the setup.",
+    "personal": "Conversation unlocks the day. Ask the sharper second question, not the polite first one. Notice what shifts after you do.",
+    "love": "Warm, direct, and slightly disarming. Say the smaller true thing.",
+    "career": "A loose thread is worth pulling. Something useful unravels.",
+    "social": "Group chats are louder than useful. Exit one early.",
+    "greenFlag": "You ask for help before you need rescuing.",
+    "redFlag": "You turn a small delay into a moral failure.",
+    "summary": "Gemini 03-05: overall 70, patience 57."
+  },
+  {
+    "dayKey": "03-05",
+    "sunSign": "cancer",
+    "scores": {
+      "overall": 57,
+      "romance": 74,
+      "social": 72,
+      "career": 58,
+      "energy": 74,
+      "confidence": 65,
+      "patience": 64,
+      "chaos": 34
+    },
+    "tags": [
+      "romance",
+      "energy"
+    ],
+    "headline": "You feel the weather before the forecast.",
+    "personal": "Your attention to texture matters. One quiet check-in carries further than a speech. Notice what shifts after you do.",
+    "love": "Cozy beats dramatic. A low-key invitation wins.",
+    "career": "Say no once today and mean it. The calendar thanks you.",
+    "social": "A short walk with one person beats a noisy dinner.",
+    "greenFlag": "You choose the walk over the scroll.",
+    "redFlag": "You reread a message nine times before replying.",
+    "summary": "Cancer 03-05: overall 57, patience 64."
+  },
+  {
+    "dayKey": "03-05",
+    "sunSign": "leo",
+    "scores": {
+      "overall": 52,
+      "romance": 90,
+      "social": 67,
+      "career": 70,
+      "energy": 85,
+      "confidence": 48,
+      "patience": 75,
+      "chaos": 26
+    },
+    "tags": [
+      "romance",
+      "energy"
+    ],
+    "headline": "Your timing is cinematic today.",
+    "personal": "You are visible today without trying. Point that light at something real, not the mirror. Notice what shifts after you do.",
+    "love": "Chemistry hums quietly. Don't narrate it, let it hum.",
+    "career": "Progress comes from finishing one thing properly, not starting three.",
+    "social": "Someone needs your humor specifically. Deploy it sparingly.",
+    "greenFlag": "You send the message without rewriting it four times.",
+    "redFlag": "You check the cart you promised to close.",
+    "summary": "Leo 03-05: overall 52, patience 75."
+  },
+  {
+    "dayKey": "03-05",
+    "sunSign": "virgo",
+    "scores": {
+      "overall": 87,
+      "romance": 43,
+      "social": 86,
+      "career": 83,
+      "energy": 56,
+      "confidence": 73,
+      "patience": 52,
+      "chaos": 52
+    },
+    "tags": [
+      "overall",
+      "social"
+    ],
+    "headline": "Small fix, big ripple.",
+    "personal": "Precision beats volume. One clean edit makes the whole thing publishable. Notice what shifts after you do.",
+    "love": "Someone notices effort more than charm today. Show up on time.",
+    "career": "A difficult email gets easier if you send it before lunch.",
+    "social": "Solitude restores faster than scrolling. Try ten minutes.",
+    "greenFlag": "You drink water before coffee. Growth is quiet.",
+    "redFlag": "You keep one tab open just to feel busy.",
+    "summary": "Virgo 03-05: overall 87, patience 52."
+  },
+  {
+    "dayKey": "03-05",
+    "sunSign": "libra",
+    "scores": {
+      "overall": 68,
+      "romance": 58,
+      "social": 89,
+      "career": 63,
+      "energy": 56,
+      "confidence": 64,
+      "patience": 24,
+      "chaos": 77
+    },
+    "tags": [
+      "social",
+      "chaos"
+    ],
+    "headline": "You mediate what you didn't start. Again.",
+    "personal": "You naturally harmonize the room. Use that taste to choose, not just to smooth. Notice what shifts after you do.",
+    "love": "Flirting is edit mode: fewer words, better timing.",
+    "career": "Protect two hours from meetings. That's where the work happens.",
+    "social": "You don't have to mediate everything. Let two adults disagree.",
+    "greenFlag": "You leave the group chat on read and feel fine.",
+    "redFlag": "You add one more unnecessary apology.",
+    "summary": "Libra 03-05: overall 68, patience 24."
+  },
+  {
+    "dayKey": "03-05",
+    "sunSign": "scorpio",
+    "scores": {
+      "overall": 82,
+      "romance": 68,
+      "social": 72,
+      "career": 82,
+      "energy": 68,
+      "confidence": 93,
+      "patience": 53,
+      "chaos": 46
+    },
+    "tags": [
+      "confidence",
+      "overall"
+    ],
+    "headline": "Your silence is doing most of the talking.",
+    "personal": "Depth is your default. One direct sentence saves five strategic ones. Notice what shifts after you do.",
+    "love": "Attachment is tender today. Ask for what you actually want.",
+    "career": "A loose thread is worth pulling. Something useful unravels.",
+    "social": "Small talk leads to the real talk if you stay two minutes longer.",
+    "greenFlag": "You finish the boring task first. Elite behavior.",
+    "redFlag": "You rehearse a conversation that will never happen.",
+    "summary": "Scorpio 03-05: overall 82, patience 53."
+  },
+  {
+    "dayKey": "03-05",
+    "sunSign": "sagittarius",
+    "scores": {
+      "overall": 62,
+      "romance": 30,
+      "social": 65,
+      "career": 41,
+      "energy": 78,
+      "confidence": 73,
+      "patience": 40,
+      "chaos": 63
+    },
+    "tags": [
+      "energy",
+      "confidence"
+    ],
+    "headline": "You tell the truth and it sort-of lands.",
+    "personal": "Honesty travels fast today. Add one detail that makes it land softer. Notice what shifts after you do.",
+    "love": "An honest compliment lands further than a clever one.",
+    "career": "Say no once today and mean it. The calendar thanks you.",
+    "social": "Your boundaries are legible today. Keep them legible.",
+    "greenFlag": "You compliment someone without needing anything back.",
+    "redFlag": "You explain a joke that already landed.",
+    "summary": "Sagittarius 03-05: overall 62, patience 40."
+  },
+  {
+    "dayKey": "03-05",
+    "sunSign": "capricorn",
+    "scores": {
+      "overall": 58,
+      "romance": 66,
+      "social": 30,
+      "career": 35,
+      "energy": 38,
+      "confidence": 63,
+      "patience": 72,
+      "chaos": 27
+    },
+    "tags": [
+      "patience",
+      "romance"
+    ],
+    "headline": "Feelings, but with a project plan.",
+    "personal": "Structure is kindness today. Name the next step out loud and watch momentum follow. Notice what shifts after you do.",
+    "love": "If you're waiting for a sign, this sentence is it. Text first.",
+    "career": "Progress comes from finishing one thing properly, not starting three.",
+    "social": "An old friend crosses your mind. That's the prompt.",
+    "greenFlag": "You make your bed and surprisingly feel smug about it.",
+    "redFlag": "You say 'quick question' before a long story.",
+    "summary": "Capricorn 03-05: overall 58, patience 72."
+  },
+  {
+    "dayKey": "03-05",
+    "sunSign": "aquarius",
+    "scores": {
+      "overall": 57,
+      "romance": 66,
+      "social": 58,
+      "career": 37,
+      "energy": 49,
+      "confidence": 76,
+      "patience": 73,
+      "chaos": 25
+    },
+    "tags": [
+      "confidence",
+      "patience"
+    ],
+    "headline": "Normal was never the plan.",
+    "personal": "Your sideways view clarifies what everyone missed. Offer it once, plainly. Notice what shifts after you do.",
+    "love": "Distance helps today. Miss them on purpose for a day.",
+    "career": "A difficult email gets easier if you send it before lunch.",
+    "social": "One invitation deserves a yes. The rest can wait.",
+    "greenFlag": "You ask for help before you need rescuing.",
+    "redFlag": "You turn a small delay into a moral failure.",
+    "summary": "Aquarius 03-05: overall 57, patience 73."
+  },
+  {
+    "dayKey": "03-05",
+    "sunSign": "pisces",
+    "scores": {
+      "overall": 70,
+      "romance": 85,
+      "social": 49,
+      "career": 40,
+      "energy": 51,
+      "confidence": 63,
+      "patience": 68,
+      "chaos": 35
+    },
+    "tags": [
+      "romance",
+      "overall"
+    ],
+    "headline": "Imagination edits reality today.",
+    "personal": "Your antenna is sensitive. Ground one intuition in a concrete action before noon. Notice what shifts after you do.",
+    "love": "Old patterns knock. You don't have to answer.",
+    "career": "Protect two hours from meetings. That's where the work happens.",
+    "social": "You're energizing to be around today. Choose the right room.",
+    "greenFlag": "You choose the walk over the scroll.",
+    "redFlag": "You reread a message nine times before replying.",
+    "summary": "Pisces 03-05: overall 70, patience 68."
+  },
+  {
+    "dayKey": "03-06",
+    "sunSign": "aries",
+    "scores": {
+      "overall": 70,
+      "romance": 85,
+      "social": 77,
+      "career": 74,
+      "energy": 84,
+      "confidence": 73,
+      "patience": 72,
+      "chaos": 31
+    },
+    "tags": [
+      "romance",
+      "energy"
+    ],
+    "headline": "You move first. Everyone else negotiates.",
+    "personal": "Your energy finds a clear target. Stop second-guessing the first instinct and commit to one move. The quieter move works.",
+    "love": "Warm, direct, and slightly disarming. Say the smaller true thing.",
+    "career": "Negotiate by naming what you actually need, not the position.",
+    "social": "Solitude restores faster than scrolling. Try ten minutes.",
+    "greenFlag": "You make your bed and surprisingly feel smug about it.",
+    "redFlag": "You add one more unnecessary apology.",
+    "summary": "Aries 03-06: overall 70, patience 72."
+  },
+  {
+    "dayKey": "03-06",
+    "sunSign": "taurus",
+    "scores": {
+      "overall": 73,
+      "romance": 37,
+      "social": 60,
+      "career": 37,
+      "energy": 67,
+      "confidence": 80,
+      "patience": 53,
+      "chaos": 45
+    },
+    "tags": [
+      "confidence",
+      "overall"
+    ],
+    "headline": "Something you planted finally nudges.",
+    "personal": "Steadiness is magnetic today. Keep one small ritual intact and let the rest arrange around it. The quieter move works.",
+    "love": "Cozy beats dramatic. A low-key invitation wins.",
+    "career": "Documentation you write today saves future you an hour.",
+    "social": "You don't have to mediate everything. Let two adults disagree.",
+    "greenFlag": "You ask for help before you need rescuing.",
+    "redFlag": "You rehearse a conversation that will never happen.",
+    "summary": "Taurus 03-06: overall 73, patience 53."
+  },
+  {
+    "dayKey": "03-06",
+    "sunSign": "gemini",
+    "scores": {
+      "overall": 50,
+      "romance": 49,
+      "social": 90,
+      "career": 59,
+      "energy": 45,
+      "confidence": 46,
+      "patience": 75,
+      "chaos": 24
+    },
+    "tags": [
+      "social",
+      "patience"
+    ],
+    "headline": "Three tabs open. All of them correct.",
+    "personal": "Conversation unlocks the day. Ask the sharper second question, not the polite first one. The quieter move works.",
+    "love": "Chemistry hums quietly. Don't narrate it, let it hum.",
+    "career": "Credit is shared faster than you think. Share first.",
+    "social": "Small talk leads to the real talk if you stay two minutes longer.",
+    "greenFlag": "You choose the walk over the scroll.",
+    "redFlag": "You explain a joke that already landed.",
+    "summary": "Gemini 03-06: overall 50, patience 75."
+  },
+  {
+    "dayKey": "03-06",
+    "sunSign": "cancer",
+    "scores": {
+      "overall": 67,
+      "romance": 63,
+      "social": 70,
+      "career": 54,
+      "energy": 66,
+      "confidence": 39,
+      "patience": 62,
+      "chaos": 38
+    },
+    "tags": [
+      "social",
+      "overall"
+    ],
+    "headline": "Soft launch your boundaries.",
+    "personal": "Your attention to texture matters. One quiet check-in carries further than a speech. The quieter move works.",
+    "love": "Someone notices effort more than charm today. Show up on time.",
+    "career": "Your competence is visible without the slideshow. Let it be.",
+    "social": "Your boundaries are legible today. Keep them legible.",
+    "greenFlag": "You send the message without rewriting it four times.",
+    "redFlag": "You say 'quick question' before a long story.",
+    "summary": "Cancer 03-06: overall 67, patience 62."
+  },
+  {
+    "dayKey": "03-06",
+    "sunSign": "leo",
+    "scores": {
+      "overall": 80,
+      "romance": 84,
+      "social": 33,
+      "career": 39,
+      "energy": 56,
+      "confidence": 83,
+      "patience": 81,
+      "chaos": 16
+    },
+    "tags": [
+      "romance",
+      "confidence"
+    ],
+    "headline": "The room has been waiting. Don't disappoint it.",
+    "personal": "You are visible today without trying. Point that light at something real, not the mirror. The quieter move works.",
+    "love": "Flirting is edit mode: fewer words, better timing.",
+    "career": "Momentum builds from the second task, not the first. Start messy.",
+    "social": "An old friend crosses your mind. That's the prompt.",
+    "greenFlag": "You drink water before coffee. Growth is quiet.",
+    "redFlag": "You turn a small delay into a moral failure.",
+    "summary": "Leo 03-06: overall 80, patience 81."
+  },
+  {
+    "dayKey": "03-06",
+    "sunSign": "virgo",
+    "scores": {
+      "overall": 60,
+      "romance": 37,
+      "social": 45,
+      "career": 56,
+      "energy": 58,
+      "confidence": 32,
+      "patience": 62,
+      "chaos": 39
+    },
+    "tags": [
+      "patience",
+      "overall"
+    ],
+    "headline": "Your edit is the whole point today.",
+    "personal": "Precision beats volume. One clean edit makes the whole thing publishable. The quieter move works.",
+    "love": "Attachment is tender today. Ask for what you actually want.",
+    "career": "Negotiate by naming what you actually need, not the position.",
+    "social": "One invitation deserves a yes. The rest can wait.",
+    "greenFlag": "You leave the group chat on read and feel fine.",
+    "redFlag": "You reread a message nine times before replying.",
+    "summary": "Virgo 03-06: overall 60, patience 62."
+  },
+  {
+    "dayKey": "03-06",
+    "sunSign": "libra",
+    "scores": {
+      "overall": 53,
+      "romance": 70,
+      "social": 44,
+      "career": 32,
+      "energy": 46,
+      "confidence": 74,
+      "patience": 24,
+      "chaos": 78
+    },
+    "tags": [
+      "chaos",
+      "confidence"
+    ],
+    "headline": "You have opinions today. So does everyone else.",
+    "personal": "You naturally harmonize the room. Use that taste to choose, not just to smooth. The quieter move works.",
+    "love": "An honest compliment lands further than a clever one.",
+    "career": "Documentation you write today saves future you an hour.",
+    "social": "You're energizing to be around today. Choose the right room.",
+    "greenFlag": "You finish the boring task first. Elite behavior.",
+    "redFlag": "You check the cart you promised to close.",
+    "summary": "Libra 03-06: overall 53, patience 24."
+  },
+  {
+    "dayKey": "03-06",
+    "sunSign": "scorpio",
+    "scores": {
+      "overall": 73,
+      "romance": 66,
+      "social": 33,
+      "career": 43,
+      "energy": 55,
+      "confidence": 71,
+      "patience": 48,
+      "chaos": 50
+    },
+    "tags": [
+      "overall",
+      "confidence"
+    ],
+    "headline": "You already know. The rest is performance.",
+    "personal": "Depth is your default. One direct sentence saves five strategic ones. The quieter move works.",
+    "love": "If you're waiting for a sign, this sentence is it. Text first.",
+    "career": "Credit is shared faster than you think. Share first.",
+    "social": "Group chats are louder than useful. Exit one early.",
+    "greenFlag": "You compliment someone without needing anything back.",
+    "redFlag": "You keep one tab open just to feel busy.",
+    "summary": "Scorpio 03-06: overall 73, patience 48."
+  },
+  {
+    "dayKey": "03-06",
+    "sunSign": "sagittarius",
+    "scores": {
+      "overall": 64,
+      "romance": 30,
+      "social": 47,
+      "career": 36,
+      "energy": 53,
+      "confidence": 40,
+      "patience": 26,
+      "chaos": 71
+    },
+    "tags": [
+      "chaos",
+      "overall"
+    ],
+    "headline": "Freedom, but with consequences you actually like.",
+    "personal": "Honesty travels fast today. Add one detail that makes it land softer. The quieter move works.",
+    "love": "Distance helps today. Miss them on purpose for a day.",
+    "career": "Your competence is visible without the slideshow. Let it be.",
+    "social": "A short walk with one person beats a noisy dinner.",
+    "greenFlag": "You make your bed and surprisingly feel smug about it.",
+    "redFlag": "You add one more unnecessary apology.",
+    "summary": "Sagittarius 03-06: overall 64, patience 26."
+  },
+  {
+    "dayKey": "03-06",
+    "sunSign": "capricorn",
+    "scores": {
+      "overall": 85,
+      "romance": 30,
+      "social": 51,
+      "career": 37,
+      "energy": 58,
+      "confidence": 79,
+      "patience": 37,
+      "chaos": 65
+    },
+    "tags": [
+      "overall",
+      "confidence"
+    ],
+    "headline": "The long game briefly looks short.",
+    "personal": "Structure is kindness today. Name the next step out loud and watch momentum follow. The quieter move works.",
+    "love": "Old patterns knock. You don't have to answer.",
+    "career": "Momentum builds from the second task, not the first. Start messy.",
+    "social": "Someone needs your humor specifically. Deploy it sparingly.",
+    "greenFlag": "You ask for help before you need rescuing.",
+    "redFlag": "You rehearse a conversation that will never happen.",
+    "summary": "Capricorn 03-06: overall 85, patience 37."
+  },
+  {
+    "dayKey": "03-06",
+    "sunSign": "aquarius",
+    "scores": {
+      "overall": 75,
+      "romance": 34,
+      "social": 84,
+      "career": 55,
+      "energy": 80,
+      "confidence": 55,
+      "patience": 51,
+      "chaos": 49
+    },
+    "tags": [
+      "social",
+      "energy"
+    ],
+    "headline": "You love humanity. Individuals, case by case.",
+    "personal": "Your sideways view clarifies what everyone missed. Offer it once, plainly. The quieter move works.",
+    "love": "Warm, direct, and slightly disarming. Say the smaller true thing.",
+    "career": "Negotiate by naming what you actually need, not the position.",
+    "social": "Solitude restores faster than scrolling. Try ten minutes.",
+    "greenFlag": "You choose the walk over the scroll.",
+    "redFlag": "You explain a joke that already landed.",
+    "summary": "Aquarius 03-06: overall 75, patience 51."
+  },
+  {
+    "dayKey": "03-06",
+    "sunSign": "pisces",
+    "scores": {
+      "overall": 57,
+      "romance": 56,
+      "social": 67,
+      "career": 50,
+      "energy": 39,
+      "confidence": 72,
+      "patience": 81,
+      "chaos": 17
+    },
+    "tags": [
+      "patience",
+      "confidence"
+    ],
+    "headline": "You're in three timelines. All are tender.",
+    "personal": "Your antenna is sensitive. Ground one intuition in a concrete action before noon. The quieter move works.",
+    "love": "Cozy beats dramatic. A low-key invitation wins.",
+    "career": "Documentation you write today saves future you an hour.",
+    "social": "You don't have to mediate everything. Let two adults disagree.",
+    "greenFlag": "You send the message without rewriting it four times.",
+    "redFlag": "You say 'quick question' before a long story.",
+    "summary": "Pisces 03-06: overall 57, patience 81."
+  },
+  {
+    "dayKey": "03-07",
+    "sunSign": "aries",
+    "scores": {
+      "overall": 71,
+      "romance": 91,
+      "social": 59,
+      "career": 45,
+      "energy": 55,
+      "confidence": 77,
+      "patience": 52,
+      "chaos": 52
+    },
+    "tags": [
+      "romance",
+      "confidence"
+    ],
+    "headline": "Your bluntness is a gift. Wrap it nicely.",
+    "personal": "Your energy finds a clear target. Stop second-guessing the first instinct and commit to one move. Apply it to one real thing, not everything.",
+    "love": "Chemistry hums quietly. Don't narrate it, let it hum.",
+    "career": "Say no once today and mean it. The calendar thanks you.",
+    "social": "One invitation deserves a yes. The rest can wait.",
+    "greenFlag": "You ask for help before you need rescuing.",
+    "redFlag": "You check the cart you promised to close.",
+    "summary": "Aries 03-07: overall 71, patience 52."
+  },
+  {
+    "dayKey": "03-07",
+    "sunSign": "taurus",
+    "scores": {
+      "overall": 86,
+      "romance": 90,
+      "social": 35,
+      "career": 84,
+      "energy": 54,
+      "confidence": 78,
+      "patience": 29,
+      "chaos": 74
+    },
+    "tags": [
+      "romance",
+      "overall"
+    ],
+    "headline": "You keep the room together by staying put.",
+    "personal": "Steadiness is magnetic today. Keep one small ritual intact and let the rest arrange around it. Apply it to one real thing, not everything.",
+    "love": "Someone notices effort more than charm today. Show up on time.",
+    "career": "Progress comes from finishing one thing properly, not starting three.",
+    "social": "You're energizing to be around today. Choose the right room.",
+    "greenFlag": "You choose the walk over the scroll.",
+    "redFlag": "You keep one tab open just to feel busy.",
+    "summary": "Taurus 03-07: overall 86, patience 29."
+  },
+  {
+    "dayKey": "03-07",
+    "sunSign": "gemini",
+    "scores": {
+      "overall": 51,
+      "romance": 46,
+      "social": 60,
+      "career": 37,
+      "energy": 81,
+      "confidence": 62,
+      "patience": 40,
+      "chaos": 60
+    },
+    "tags": [
+      "energy",
+      "confidence"
+    ],
+    "headline": "Two truths and a better lie. Choose one.",
+    "personal": "Conversation unlocks the day. Ask the sharper second question, not the polite first one. Apply it to one real thing, not everything.",
+    "love": "Flirting is edit mode: fewer words, better timing.",
+    "career": "A difficult email gets easier if you send it before lunch.",
+    "social": "Group chats are louder than useful. Exit one early.",
+    "greenFlag": "You send the message without rewriting it four times.",
+    "redFlag": "You add one more unnecessary apology.",
+    "summary": "Gemini 03-07: overall 51, patience 40."
+  },
+  {
+    "dayKey": "03-07",
+    "sunSign": "cancer",
+    "scores": {
+      "overall": 70,
+      "romance": 75,
+      "social": 36,
+      "career": 56,
+      "energy": 36,
+      "confidence": 63,
+      "patience": 56,
+      "chaos": 47
+    },
+    "tags": [
+      "romance",
+      "overall"
+    ],
+    "headline": "Someone needs your exact kind of attention.",
+    "personal": "Your attention to texture matters. One quiet check-in carries further than a speech. Apply it to one real thing, not everything.",
+    "love": "Attachment is tender today. Ask for what you actually want.",
+    "career": "Protect two hours from meetings. That's where the work happens.",
+    "social": "A short walk with one person beats a noisy dinner.",
+    "greenFlag": "You drink water before coffee. Growth is quiet.",
+    "redFlag": "You rehearse a conversation that will never happen.",
+    "summary": "Cancer 03-07: overall 70, patience 56."
+  },
+  {
+    "dayKey": "03-07",
+    "sunSign": "leo",
+    "scores": {
+      "overall": 76,
+      "romance": 39,
+      "social": 34,
+      "career": 48,
+      "energy": 41,
+      "confidence": 81,
+      "patience": 77,
+      "chaos": 24
+    },
+    "tags": [
+      "confidence",
+      "patience"
+    ],
+    "headline": "Confidence looks expensive on you. Keep it.",
+    "personal": "You are visible today without trying. Point that light at something real, not the mirror. Apply it to one real thing, not everything.",
+    "love": "An honest compliment lands further than a clever one.",
+    "career": "A loose thread is worth pulling. Something useful unravels.",
+    "social": "Someone needs your humor specifically. Deploy it sparingly.",
+    "greenFlag": "You leave the group chat on read and feel fine.",
+    "redFlag": "You explain a joke that already landed.",
+    "summary": "Leo 03-07: overall 76, patience 77."
+  },
+  {
+    "dayKey": "03-07",
+    "sunSign": "virgo",
+    "scores": {
+      "overall": 71,
+      "romance": 53,
+      "social": 65,
+      "career": 85,
+      "energy": 50,
+      "confidence": 37,
+      "patience": 34,
+      "chaos": 70
+    },
+    "tags": [
+      "career",
+      "overall"
+    ],
+    "headline": "Correct again. Try being smug about it.",
+    "personal": "Precision beats volume. One clean edit makes the whole thing publishable. Apply it to one real thing, not everything.",
+    "love": "If you're waiting for a sign, this sentence is it. Text first.",
+    "career": "Say no once today and mean it. The calendar thanks you.",
+    "social": "Solitude restores faster than scrolling. Try ten minutes.",
+    "greenFlag": "You finish the boring task first. Elite behavior.",
+    "redFlag": "You say 'quick question' before a long story.",
+    "summary": "Virgo 03-07: overall 71, patience 34."
+  },
+  {
+    "dayKey": "03-07",
+    "sunSign": "libra",
+    "scores": {
+      "overall": 72,
+      "romance": 33,
+      "social": 31,
+      "career": 43,
+      "energy": 48,
+      "confidence": 51,
+      "patience": 55,
+      "chaos": 42
+    },
+    "tags": [
+      "overall",
+      "patience"
+    ],
+    "headline": "Your taste is the quiet flex.",
+    "personal": "You naturally harmonize the room. Use that taste to choose, not just to smooth. Apply it to one real thing, not everything.",
+    "love": "Distance helps today. Miss them on purpose for a day.",
+    "career": "Progress comes from finishing one thing properly, not starting three.",
+    "social": "You don't have to mediate everything. Let two adults disagree.",
+    "greenFlag": "You compliment someone without needing anything back.",
+    "redFlag": "You turn a small delay into a moral failure.",
+    "summary": "Libra 03-07: overall 72, patience 55."
+  },
+  {
+    "dayKey": "03-07",
+    "sunSign": "scorpio",
+    "scores": {
+      "overall": 79,
+      "romance": 56,
+      "social": 81,
+      "career": 46,
+      "energy": 44,
+      "confidence": 48,
+      "patience": 23,
+      "chaos": 81
+    },
+    "tags": [
+      "social",
+      "chaos"
+    ],
+    "headline": "No one is fooled. Especially not you.",
+    "personal": "Depth is your default. One direct sentence saves five strategic ones. Apply it to one real thing, not everything.",
+    "love": "Old patterns knock. You don't have to answer.",
+    "career": "A difficult email gets easier if you send it before lunch.",
+    "social": "Small talk leads to the real talk if you stay two minutes longer.",
+    "greenFlag": "You make your bed and surprisingly feel smug about it.",
+    "redFlag": "You reread a message nine times before replying.",
+    "summary": "Scorpio 03-07: overall 79, patience 23."
+  },
+  {
+    "dayKey": "03-07",
+    "sunSign": "sagittarius",
+    "scores": {
+      "overall": 58,
+      "romance": 74,
+      "social": 90,
+      "career": 47,
+      "energy": 78,
+      "confidence": 94,
+      "patience": 42,
+      "chaos": 57
+    },
+    "tags": [
+      "confidence",
+      "social"
+    ],
+    "headline": "Your exit plan has an exit plan.",
+    "personal": "Honesty travels fast today. Add one detail that makes it land softer. Apply it to one real thing, not everything.",
+    "love": "Warm, direct, and slightly disarming. Say the smaller true thing.",
+    "career": "Protect two hours from meetings. That's where the work happens.",
+    "social": "Your boundaries are legible today. Keep them legible.",
+    "greenFlag": "You ask for help before you need rescuing.",
+    "redFlag": "You check the cart you promised to close.",
+    "summary": "Sagittarius 03-07: overall 58, patience 42."
+  },
+  {
+    "dayKey": "03-07",
+    "sunSign": "capricorn",
+    "scores": {
+      "overall": 57,
+      "romance": 53,
+      "social": 77,
+      "career": 62,
+      "energy": 86,
+      "confidence": 71,
+      "patience": 60,
+      "chaos": 38
+    },
+    "tags": [
+      "energy",
+      "social"
+    ],
+    "headline": "Ambition is calm today.",
+    "personal": "Structure is kindness today. Name the next step out loud and watch momentum follow. Apply it to one real thing, not everything.",
+    "love": "Cozy beats dramatic. A low-key invitation wins.",
+    "career": "A loose thread is worth pulling. Something useful unravels.",
+    "social": "An old friend crosses your mind. That's the prompt.",
+    "greenFlag": "You choose the walk over the scroll.",
+    "redFlag": "You keep one tab open just to feel busy.",
+    "summary": "Capricorn 03-07: overall 57, patience 60."
+  },
+  {
+    "dayKey": "03-07",
+    "sunSign": "aquarius",
+    "scores": {
+      "overall": 57,
+      "romance": 53,
+      "social": 77,
+      "career": 54,
+      "energy": 89,
+      "confidence": 40,
+      "patience": 18,
+      "chaos": 80
+    },
+    "tags": [
+      "energy",
+      "chaos"
+    ],
+    "headline": "Detachment is your superpower today.",
+    "personal": "Your sideways view clarifies what everyone missed. Offer it once, plainly. Apply it to one real thing, not everything.",
+    "love": "Chemistry hums quietly. Don't narrate it, let it hum.",
+    "career": "Say no once today and mean it. The calendar thanks you.",
+    "social": "One invitation deserves a yes. The rest can wait.",
+    "greenFlag": "You send the message without rewriting it four times.",
+    "redFlag": "You add one more unnecessary apology.",
+    "summary": "Aquarius 03-07: overall 57, patience 18."
+  },
+  {
+    "dayKey": "03-07",
+    "sunSign": "pisces",
+    "scores": {
+      "overall": 57,
+      "romance": 31,
+      "social": 73,
+      "career": 58,
+      "energy": 68,
+      "confidence": 62,
+      "patience": 72,
+      "chaos": 26
+    },
+    "tags": [
+      "social",
+      "patience"
+    ],
+    "headline": "You feel twice. Choose the useful feeling.",
+    "personal": "Your antenna is sensitive. Ground one intuition in a concrete action before noon. Apply it to one real thing, not everything.",
+    "love": "Someone notices effort more than charm today. Show up on time.",
+    "career": "Progress comes from finishing one thing properly, not starting three.",
+    "social": "You're energizing to be around today. Choose the right room.",
+    "greenFlag": "You drink water before coffee. Growth is quiet.",
+    "redFlag": "You rehearse a conversation that will never happen.",
+    "summary": "Pisces 03-07: overall 57, patience 72."
+  },
+  {
+    "dayKey": "03-08",
+    "sunSign": "aries",
+    "scores": {
+      "overall": 69,
+      "romance": 89,
+      "social": 39,
+      "career": 36,
+      "energy": 54,
+      "confidence": 64,
+      "patience": 40,
+      "chaos": 62
+    },
+    "tags": [
+      "romance",
+      "overall"
+    ],
+    "headline": "A door you didn't knock on opens anyway.",
+    "personal": "Your energy finds a clear target. Stop second-guessing the first instinct and commit to one move. Keep the window short.",
+    "love": "Flirting is edit mode: fewer words, better timing.",
+    "career": "Your competence is visible without the slideshow. Let it be.",
+    "social": "Solitude restores faster than scrolling. Try ten minutes.",
+    "greenFlag": "You choose the walk over the scroll.",
+    "redFlag": "You turn a small delay into a moral failure.",
+    "summary": "Aries 03-08: overall 69, patience 40."
+  },
+  {
+    "dayKey": "03-08",
+    "sunSign": "taurus",
+    "scores": {
+      "overall": 84,
+      "romance": 84,
+      "social": 41,
+      "career": 48,
+      "energy": 38,
+      "confidence": 41,
+      "patience": 22,
+      "chaos": 79
+    },
+    "tags": [
+      "overall",
+      "romance"
+    ],
+    "headline": "Slow is the shortcut.",
+    "personal": "Steadiness is magnetic today. Keep one small ritual intact and let the rest arrange around it. Keep the window short.",
+    "love": "Attachment is tender today. Ask for what you actually want.",
+    "career": "Momentum builds from the second task, not the first. Start messy.",
+    "social": "You don't have to mediate everything. Let two adults disagree.",
+    "greenFlag": "You send the message without rewriting it four times.",
+    "redFlag": "You reread a message nine times before replying.",
+    "summary": "Taurus 03-08: overall 84, patience 22."
+  },
+  {
+    "dayKey": "03-08",
+    "sunSign": "gemini",
+    "scores": {
+      "overall": 57,
+      "romance": 90,
+      "social": 73,
+      "career": 82,
+      "energy": 56,
+      "confidence": 73,
+      "patience": 36,
+      "chaos": 62
+    },
+    "tags": [
+      "romance",
+      "career"
+    ],
+    "headline": "Curiosity pays rent today.",
+    "personal": "Conversation unlocks the day. Ask the sharper second question, not the polite first one. Keep the window short.",
+    "love": "An honest compliment lands further than a clever one.",
+    "career": "Negotiate by naming what you actually need, not the position.",
+    "social": "Small talk leads to the real talk if you stay two minutes longer.",
+    "greenFlag": "You drink water before coffee. Growth is quiet.",
+    "redFlag": "You check the cart you promised to close.",
+    "summary": "Gemini 03-08: overall 57, patience 36."
+  },
+  {
+    "dayKey": "03-08",
+    "sunSign": "cancer",
+    "scores": {
+      "overall": 54,
+      "romance": 34,
+      "social": 40,
+      "career": 60,
+      "energy": 81,
+      "confidence": 87,
+      "patience": 69,
+      "chaos": 34
+    },
+    "tags": [
+      "confidence",
+      "energy"
+    ],
+    "headline": "Your care is precision, not softness.",
+    "personal": "Your attention to texture matters. One quiet check-in carries further than a speech. Keep the window short.",
+    "love": "If you're waiting for a sign, this sentence is it. Text first.",
+    "career": "Documentation you write today saves future you an hour.",
+    "social": "Your boundaries are legible today. Keep them legible.",
+    "greenFlag": "You leave the group chat on read and feel fine.",
+    "redFlag": "You keep one tab open just to feel busy.",
+    "summary": "Cancer 03-08: overall 54, patience 69."
+  },
+  {
+    "dayKey": "03-08",
+    "sunSign": "leo",
+    "scores": {
+      "overall": 79,
+      "romance": 70,
+      "social": 74,
+      "career": 78,
+      "energy": 69,
+      "confidence": 61,
+      "patience": 80,
+      "chaos": 24
+    },
+    "tags": [
+      "patience",
+      "overall"
+    ],
+    "headline": "You don't need the spotlight; it needs you.",
+    "personal": "You are visible today without trying. Point that light at something real, not the mirror. Keep the window short.",
+    "love": "Distance helps today. Miss them on purpose for a day.",
+    "career": "Credit is shared faster than you think. Share first.",
+    "social": "An old friend crosses your mind. That's the prompt.",
+    "greenFlag": "You finish the boring task first. Elite behavior.",
+    "redFlag": "You add one more unnecessary apology.",
+    "summary": "Leo 03-08: overall 79, patience 80."
+  },
+  {
+    "dayKey": "03-08",
+    "sunSign": "virgo",
+    "scores": {
+      "overall": 85,
+      "romance": 77,
+      "social": 36,
+      "career": 47,
+      "energy": 69,
+      "confidence": 38,
+      "patience": 42,
+      "chaos": 60
+    },
+    "tags": [
+      "overall",
+      "romance"
+    ],
+    "headline": "You see the flaw nobody named. Name it kindly.",
+    "personal": "Precision beats volume. One clean edit makes the whole thing publishable. Keep the window short.",
+    "love": "Old patterns knock. You don't have to answer.",
+    "career": "Your competence is visible without the slideshow. Let it be.",
+    "social": "One invitation deserves a yes. The rest can wait.",
+    "greenFlag": "You compliment someone without needing anything back.",
+    "redFlag": "You rehearse a conversation that will never happen.",
+    "summary": "Virgo 03-08: overall 85, patience 42."
+  },
+  {
+    "dayKey": "03-08",
+    "sunSign": "libra",
+    "scores": {
+      "overall": 50,
+      "romance": 71,
+      "social": 88,
+      "career": 75,
+      "energy": 59,
+      "confidence": 70,
+      "patience": 20,
+      "chaos": 79
+    },
+    "tags": [
+      "social",
+      "chaos"
+    ],
+    "headline": "Balance is not neutrality.",
+    "personal": "You naturally harmonize the room. Use that taste to choose, not just to smooth. Keep the window short.",
+    "love": "Warm, direct, and slightly disarming. Say the smaller true thing.",
+    "career": "Momentum builds from the second task, not the first. Start messy.",
+    "social": "You're energizing to be around today. Choose the right room.",
+    "greenFlag": "You make your bed and surprisingly feel smug about it.",
+    "redFlag": "You explain a joke that already landed.",
+    "summary": "Libra 03-08: overall 50, patience 20."
+  },
+  {
+    "dayKey": "03-08",
+    "sunSign": "scorpio",
+    "scores": {
+      "overall": 81,
+      "romance": 68,
+      "social": 36,
+      "career": 80,
+      "energy": 77,
+      "confidence": 46,
+      "patience": 55,
+      "chaos": 43
+    },
+    "tags": [
+      "overall",
+      "career"
+    ],
+    "headline": "Intensity, but make it useful.",
+    "personal": "Depth is your default. One direct sentence saves five strategic ones. Keep the window short.",
+    "love": "Cozy beats dramatic. A low-key invitation wins.",
+    "career": "Negotiate by naming what you actually need, not the position.",
+    "social": "Group chats are louder than useful. Exit one early.",
+    "greenFlag": "You ask for help before you need rescuing.",
+    "redFlag": "You say 'quick question' before a long story.",
+    "summary": "Scorpio 03-08: overall 81, patience 55."
+  },
+  {
+    "dayKey": "03-08",
+    "sunSign": "sagittarius",
+    "scores": {
+      "overall": 62,
+      "romance": 71,
+      "social": 62,
+      "career": 53,
+      "energy": 66,
+      "confidence": 43,
+      "patience": 27,
+      "chaos": 76
+    },
+    "tags": [
+      "chaos",
+      "romance"
+    ],
+    "headline": "Blunt is a love language, apparently.",
+    "personal": "Honesty travels fast today. Add one detail that makes it land softer. Keep the window short.",
+    "love": "Chemistry hums quietly. Don't narrate it, let it hum.",
+    "career": "Documentation you write today saves future you an hour.",
+    "social": "A short walk with one person beats a noisy dinner.",
+    "greenFlag": "You choose the walk over the scroll.",
+    "redFlag": "You turn a small delay into a moral failure.",
+    "summary": "Sagittarius 03-08: overall 62, patience 27."
+  },
+  {
+    "dayKey": "03-08",
+    "sunSign": "capricorn",
+    "scores": {
+      "overall": 87,
+      "romance": 44,
+      "social": 50,
+      "career": 49,
+      "energy": 41,
+      "confidence": 88,
+      "patience": 69,
+      "chaos": 35
+    },
+    "tags": [
+      "confidence",
+      "overall"
+    ],
+    "headline": "You make discipline look like taste.",
+    "personal": "Structure is kindness today. Name the next step out loud and watch momentum follow. Keep the window short.",
+    "love": "Someone notices effort more than charm today. Show up on time.",
+    "career": "Credit is shared faster than you think. Share first.",
+    "social": "Someone needs your humor specifically. Deploy it sparingly.",
+    "greenFlag": "You send the message without rewriting it four times.",
+    "redFlag": "You reread a message nine times before replying.",
+    "summary": "Capricorn 03-08: overall 87, patience 69."
+  },
+  {
+    "dayKey": "03-08",
+    "sunSign": "aquarius",
+    "scores": {
+      "overall": 62,
+      "romance": 69,
+      "social": 42,
+      "career": 44,
+      "energy": 78,
+      "confidence": 46,
+      "patience": 23,
+      "chaos": 80
+    },
+    "tags": [
+      "chaos",
+      "energy"
+    ],
+    "headline": "You invent the room you want to be in.",
+    "personal": "Your sideways view clarifies what everyone missed. Offer it once, plainly. Keep the window short.",
+    "love": "Flirting is edit mode: fewer words, better timing.",
+    "career": "Your competence is visible without the slideshow. Let it be.",
+    "social": "Solitude restores faster than scrolling. Try ten minutes.",
+    "greenFlag": "You drink water before coffee. Growth is quiet.",
+    "redFlag": "You check the cart you promised to close.",
+    "summary": "Aquarius 03-08: overall 62, patience 23."
+  },
+  {
+    "dayKey": "03-08",
+    "sunSign": "pisces",
+    "scores": {
+      "overall": 63,
+      "romance": 45,
+      "social": 52,
+      "career": 45,
+      "energy": 37,
+      "confidence": 59,
+      "patience": 19,
+      "chaos": 85
+    },
+    "tags": [
+      "chaos",
+      "overall"
+    ],
+    "headline": "Your intuition has receipts.",
+    "personal": "Your antenna is sensitive. Ground one intuition in a concrete action before noon. Keep the window short.",
+    "love": "Attachment is tender today. Ask for what you actually want.",
+    "career": "Momentum builds from the second task, not the first. Start messy.",
+    "social": "You don't have to mediate everything. Let two adults disagree.",
+    "greenFlag": "You leave the group chat on read and feel fine.",
+    "redFlag": "You keep one tab open just to feel busy.",
+    "summary": "Pisces 03-08: overall 63, patience 19."
+  },
+  {
+    "dayKey": "03-09",
+    "sunSign": "aries",
+    "scores": {
+      "overall": 86,
+      "romance": 46,
+      "social": 50,
+      "career": 41,
+      "energy": 80,
+      "confidence": 84,
+      "patience": 21,
+      "chaos": 82
+    },
+    "tags": [
+      "overall",
+      "confidence"
+    ],
+    "headline": "Speed is your love language today.",
+    "personal": "Your energy finds a clear target. Stop second-guessing the first instinct and commit to one move. The effect compounds by evening.",
+    "love": "An honest compliment lands further than a clever one.",
+    "career": "Protect two hours from meetings. That's where the work happens.",
+    "social": "One invitation deserves a yes. The rest can wait.",
+    "greenFlag": "You send the message without rewriting it four times.",
+    "redFlag": "You explain a joke that already landed.",
+    "summary": "Aries 03-09: overall 86, patience 21."
+  },
+  {
+    "dayKey": "03-09",
+    "sunSign": "taurus",
+    "scores": {
+      "overall": 53,
+      "romance": 46,
+      "social": 86,
+      "career": 75,
+      "energy": 84,
+      "confidence": 57,
+      "patience": 39,
+      "chaos": 63
+    },
+    "tags": [
+      "social",
+      "energy"
+    ],
+    "headline": "Comfort is strategy today, not avoidance.",
+    "personal": "Steadiness is magnetic today. Keep one small ritual intact and let the rest arrange around it. The effect compounds by evening.",
+    "love": "If you're waiting for a sign, this sentence is it. Text first.",
+    "career": "A loose thread is worth pulling. Something useful unravels.",
+    "social": "You're energizing to be around today. Choose the right room.",
+    "greenFlag": "You drink water before coffee. Growth is quiet.",
+    "redFlag": "You say 'quick question' before a long story.",
+    "summary": "Taurus 03-09: overall 53, patience 39."
+  },
+  {
+    "dayKey": "03-09",
+    "sunSign": "gemini",
+    "scores": {
+      "overall": 77,
+      "romance": 37,
+      "social": 32,
+      "career": 59,
+      "energy": 38,
+      "confidence": 71,
+      "patience": 76,
+      "chaos": 26
+    },
+    "tags": [
+      "overall",
+      "patience"
+    ],
+    "headline": "Your punchline lands before the setup.",
+    "personal": "Conversation unlocks the day. Ask the sharper second question, not the polite first one. The effect compounds by evening.",
+    "love": "Distance helps today. Miss them on purpose for a day.",
+    "career": "Say no once today and mean it. The calendar thanks you.",
+    "social": "Group chats are louder than useful. Exit one early.",
+    "greenFlag": "You leave the group chat on read and feel fine.",
+    "redFlag": "You turn a small delay into a moral failure.",
+    "summary": "Gemini 03-09: overall 77, patience 76."
+  },
+  {
+    "dayKey": "03-09",
+    "sunSign": "cancer",
+    "scores": {
+      "overall": 68,
+      "romance": 72,
+      "social": 60,
+      "career": 81,
+      "energy": 43,
+      "confidence": 67,
+      "patience": 56,
+      "chaos": 45
+    },
+    "tags": [
+      "career",
+      "romance"
+    ],
+    "headline": "You feel the weather before the forecast.",
+    "personal": "Your attention to texture matters. One quiet check-in carries further than a speech. The effect compounds by evening.",
+    "love": "Old patterns knock. You don't have to answer.",
+    "career": "Progress comes from finishing one thing properly, not starting three.",
+    "social": "A short walk with one person beats a noisy dinner.",
+    "greenFlag": "You finish the boring task first. Elite behavior.",
+    "redFlag": "You reread a message nine times before replying.",
+    "summary": "Cancer 03-09: overall 68, patience 56."
+  },
+  {
+    "dayKey": "03-09",
+    "sunSign": "leo",
+    "scores": {
+      "overall": 66,
+      "romance": 42,
+      "social": 44,
+      "career": 84,
+      "energy": 43,
+      "confidence": 82,
+      "patience": 33,
+      "chaos": 66
+    },
+    "tags": [
+      "career",
+      "confidence"
+    ],
+    "headline": "Your timing is cinematic today.",
+    "personal": "You are visible today without trying. Point that light at something real, not the mirror. The effect compounds by evening.",
+    "love": "Warm, direct, and slightly disarming. Say the smaller true thing.",
+    "career": "A difficult email gets easier if you send it before lunch.",
+    "social": "Someone needs your humor specifically. Deploy it sparingly.",
+    "greenFlag": "You compliment someone without needing anything back.",
+    "redFlag": "You check the cart you promised to close.",
+    "summary": "Leo 03-09: overall 66, patience 33."
+  },
+  {
+    "dayKey": "03-09",
+    "sunSign": "virgo",
+    "scores": {
+      "overall": 59,
+      "romance": 65,
+      "social": 71,
+      "career": 74,
+      "energy": 84,
+      "confidence": 71,
+      "patience": 60,
+      "chaos": 40
+    },
+    "tags": [
+      "energy",
+      "career"
+    ],
+    "headline": "Small fix, big ripple.",
+    "personal": "Precision beats volume. One clean edit makes the whole thing publishable. The effect compounds by evening.",
+    "love": "Cozy beats dramatic. A low-key invitation wins.",
+    "career": "Protect two hours from meetings. That's where the work happens.",
+    "social": "Solitude restores faster than scrolling. Try ten minutes.",
+    "greenFlag": "You make your bed and surprisingly feel smug about it.",
+    "redFlag": "You keep one tab open just to feel busy.",
+    "summary": "Virgo 03-09: overall 59, patience 60."
+  },
+  {
+    "dayKey": "03-09",
+    "sunSign": "libra",
+    "scores": {
+      "overall": 77,
+      "romance": 47,
+      "social": 31,
+      "career": 40,
+      "energy": 39,
+      "confidence": 76,
+      "patience": 57,
+      "chaos": 45
+    },
+    "tags": [
+      "overall",
+      "confidence"
+    ],
+    "headline": "You mediate what you didn't start. Again.",
+    "personal": "You naturally harmonize the room. Use that taste to choose, not just to smooth. The effect compounds by evening.",
+    "love": "Chemistry hums quietly. Don't narrate it, let it hum.",
+    "career": "A loose thread is worth pulling. Something useful unravels.",
+    "social": "You don't have to mediate everything. Let two adults disagree.",
+    "greenFlag": "You ask for help before you need rescuing.",
+    "redFlag": "You add one more unnecessary apology.",
+    "summary": "Libra 03-09: overall 77, patience 57."
+  },
+  {
+    "dayKey": "03-09",
+    "sunSign": "scorpio",
+    "scores": {
+      "overall": 51,
+      "romance": 68,
+      "social": 80,
+      "career": 42,
+      "energy": 58,
+      "confidence": 80,
+      "patience": 41,
+      "chaos": 59
+    },
+    "tags": [
+      "social",
+      "confidence"
+    ],
+    "headline": "Your silence is doing most of the talking.",
+    "personal": "Depth is your default. One direct sentence saves five strategic ones. The effect compounds by evening.",
+    "love": "Someone notices effort more than charm today. Show up on time.",
+    "career": "Say no once today and mean it. The calendar thanks you.",
+    "social": "Small talk leads to the real talk if you stay two minutes longer.",
+    "greenFlag": "You choose the walk over the scroll.",
+    "redFlag": "You rehearse a conversation that will never happen.",
+    "summary": "Scorpio 03-09: overall 51, patience 41."
+  },
+  {
+    "dayKey": "03-09",
+    "sunSign": "sagittarius",
+    "scores": {
+      "overall": 53,
+      "romance": 62,
+      "social": 38,
+      "career": 76,
+      "energy": 87,
+      "confidence": 66,
+      "patience": 32,
+      "chaos": 70
+    },
+    "tags": [
+      "energy",
+      "career"
+    ],
+    "headline": "You tell the truth and it sort-of lands.",
+    "personal": "Honesty travels fast today. Add one detail that makes it land softer. The effect compounds by evening.",
+    "love": "Flirting is edit mode: fewer words, better timing.",
+    "career": "Progress comes from finishing one thing properly, not starting three.",
+    "social": "Your boundaries are legible today. Keep them legible.",
+    "greenFlag": "You send the message without rewriting it four times.",
+    "redFlag": "You explain a joke that already landed.",
+    "summary": "Sagittarius 03-09: overall 53, patience 32."
+  },
+  {
+    "dayKey": "03-09",
+    "sunSign": "capricorn",
+    "scores": {
+      "overall": 82,
+      "romance": 66,
+      "social": 35,
+      "career": 63,
+      "energy": 45,
+      "confidence": 38,
+      "patience": 38,
+      "chaos": 61
+    },
+    "tags": [
+      "overall",
+      "romance"
+    ],
+    "headline": "Feelings, but with a project plan.",
+    "personal": "Structure is kindness today. Name the next step out loud and watch momentum follow. The effect compounds by evening.",
+    "love": "Attachment is tender today. Ask for what you actually want.",
+    "career": "A difficult email gets easier if you send it before lunch.",
+    "social": "An old friend crosses your mind. That's the prompt.",
+    "greenFlag": "You drink water before coffee. Growth is quiet.",
+    "redFlag": "You say 'quick question' before a long story.",
+    "summary": "Capricorn 03-09: overall 82, patience 38."
+  },
+  {
+    "dayKey": "03-09",
+    "sunSign": "aquarius",
+    "scores": {
+      "overall": 62,
+      "romance": 53,
+      "social": 31,
+      "career": 55,
+      "energy": 57,
+      "confidence": 37,
+      "patience": 74,
+      "chaos": 29
+    },
+    "tags": [
+      "patience",
+      "overall"
+    ],
+    "headline": "Normal was never the plan.",
+    "personal": "Your sideways view clarifies what everyone missed. Offer it once, plainly. The effect compounds by evening.",
+    "love": "An honest compliment lands further than a clever one.",
+    "career": "Protect two hours from meetings. That's where the work happens.",
+    "social": "One invitation deserves a yes. The rest can wait.",
+    "greenFlag": "You leave the group chat on read and feel fine.",
+    "redFlag": "You turn a small delay into a moral failure.",
+    "summary": "Aquarius 03-09: overall 62, patience 74."
+  },
+  {
+    "dayKey": "03-09",
+    "sunSign": "pisces",
+    "scores": {
+      "overall": 49,
+      "romance": 74,
+      "social": 82,
+      "career": 55,
+      "energy": 63,
+      "confidence": 52,
+      "patience": 47,
+      "chaos": 51
+    },
+    "tags": [
+      "social",
+      "romance"
+    ],
+    "headline": "Imagination edits reality today.",
+    "personal": "Your antenna is sensitive. Ground one intuition in a concrete action before noon. The effect compounds by evening.",
+    "love": "If you're waiting for a sign, this sentence is it. Text first.",
+    "career": "A loose thread is worth pulling. Something useful unravels.",
+    "social": "You're energizing to be around today. Choose the right room.",
+    "greenFlag": "You finish the boring task first. Elite behavior.",
+    "redFlag": "You reread a message nine times before replying.",
+    "summary": "Pisces 03-09: overall 49, patience 47."
+  },
+  {
+    "dayKey": "03-10",
+    "sunSign": "aries",
+    "scores": {
+      "overall": 83,
+      "romance": 91,
+      "social": 75,
+      "career": 78,
+      "energy": 59,
+      "confidence": 85,
+      "patience": 29,
+      "chaos": 71
+    },
+    "tags": [
+      "romance",
+      "confidence"
+    ],
+    "headline": "You move first. Everyone else negotiates.",
+    "personal": "Your energy finds a clear target. Stop second-guessing the first instinct and commit to one move. Let the evidence, not the anxiety, lead.",
+    "love": "Distance helps today. Miss them on purpose for a day.",
+    "career": "Documentation you write today saves future you an hour.",
+    "social": "Solitude restores faster than scrolling. Try ten minutes.",
+    "greenFlag": "You drink water before coffee. Growth is quiet.",
+    "redFlag": "You add one more unnecessary apology.",
+    "summary": "Aries 03-10: overall 83, patience 29."
+  },
+  {
+    "dayKey": "03-10",
+    "sunSign": "taurus",
+    "scores": {
+      "overall": 67,
+      "romance": 56,
+      "social": 59,
+      "career": 33,
+      "energy": 38,
+      "confidence": 60,
+      "patience": 72,
+      "chaos": 28
+    },
+    "tags": [
+      "patience",
+      "overall"
+    ],
+    "headline": "Something you planted finally nudges.",
+    "personal": "Steadiness is magnetic today. Keep one small ritual intact and let the rest arrange around it. Let the evidence, not the anxiety, lead.",
+    "love": "Old patterns knock. You don't have to answer.",
+    "career": "Credit is shared faster than you think. Share first.",
+    "social": "You don't have to mediate everything. Let two adults disagree.",
+    "greenFlag": "You leave the group chat on read and feel fine.",
+    "redFlag": "You rehearse a conversation that will never happen.",
+    "summary": "Taurus 03-10: overall 67, patience 72."
+  },
+  {
+    "dayKey": "03-10",
+    "sunSign": "gemini",
+    "scores": {
+      "overall": 74,
+      "romance": 47,
+      "social": 44,
+      "career": 68,
+      "energy": 60,
+      "confidence": 63,
+      "patience": 68,
+      "chaos": 31
+    },
+    "tags": [
+      "overall",
+      "career"
+    ],
+    "headline": "Three tabs open. All of them correct.",
+    "personal": "Conversation unlocks the day. Ask the sharper second question, not the polite first one. Let the evidence, not the anxiety, lead.",
+    "love": "Warm, direct, and slightly disarming. Say the smaller true thing.",
+    "career": "Your competence is visible without the slideshow. Let it be.",
+    "social": "Small talk leads to the real talk if you stay two minutes longer.",
+    "greenFlag": "You finish the boring task first. Elite behavior.",
+    "redFlag": "You explain a joke that already landed.",
+    "summary": "Gemini 03-10: overall 74, patience 68."
+  },
+  {
+    "dayKey": "03-10",
+    "sunSign": "cancer",
+    "scores": {
+      "overall": 65,
+      "romance": 72,
+      "social": 86,
+      "career": 63,
+      "energy": 40,
+      "confidence": 42,
+      "patience": 59,
+      "chaos": 39
+    },
+    "tags": [
+      "social",
+      "romance"
+    ],
+    "headline": "Soft launch your boundaries.",
+    "personal": "Your attention to texture matters. One quiet check-in carries further than a speech. Let the evidence, not the anxiety, lead.",
+    "love": "Cozy beats dramatic. A low-key invitation wins.",
+    "career": "Momentum builds from the second task, not the first. Start messy.",
+    "social": "Your boundaries are legible today. Keep them legible.",
+    "greenFlag": "You compliment someone without needing anything back.",
+    "redFlag": "You say 'quick question' before a long story.",
+    "summary": "Cancer 03-10: overall 65, patience 59."
+  },
+  {
+    "dayKey": "03-10",
+    "sunSign": "leo",
+    "scores": {
+      "overall": 61,
+      "romance": 37,
+      "social": 37,
+      "career": 63,
+      "energy": 43,
+      "confidence": 75,
+      "patience": 49,
+      "chaos": 53
+    },
+    "tags": [
+      "confidence",
+      "career"
+    ],
+    "headline": "The room has been waiting. Don't disappoint it.",
+    "personal": "You are visible today without trying. Point that light at something real, not the mirror. Let the evidence, not the anxiety, lead.",
+    "love": "Chemistry hums quietly. Don't narrate it, let it hum.",
+    "career": "Negotiate by naming what you actually need, not the position.",
+    "social": "An old friend crosses your mind. That's the prompt.",
+    "greenFlag": "You make your bed and surprisingly feel smug about it.",
+    "redFlag": "You turn a small delay into a moral failure.",
+    "summary": "Leo 03-10: overall 61, patience 49."
+  },
+  {
+    "dayKey": "03-10",
+    "sunSign": "virgo",
+    "scores": {
+      "overall": 62,
+      "romance": 88,
+      "social": 71,
+      "career": 62,
+      "energy": 77,
+      "confidence": 88,
+      "patience": 41,
+      "chaos": 62
+    },
+    "tags": [
+      "romance",
+      "confidence"
+    ],
+    "headline": "Your edit is the whole point today.",
+    "personal": "Precision beats volume. One clean edit makes the whole thing publishable. Let the evidence, not the anxiety, lead.",
+    "love": "Someone notices effort more than charm today. Show up on time.",
+    "career": "Documentation you write today saves future you an hour.",
+    "social": "One invitation deserves a yes. The rest can wait.",
+    "greenFlag": "You ask for help before you need rescuing.",
+    "redFlag": "You reread a message nine times before replying.",
+    "summary": "Virgo 03-10: overall 62, patience 41."
+  },
+  {
+    "dayKey": "03-10",
+    "sunSign": "libra",
+    "scores": {
+      "overall": 60,
+      "romance": 62,
+      "social": 49,
+      "career": 52,
+      "energy": 57,
+      "confidence": 36,
+      "patience": 70,
+      "chaos": 31
+    },
+    "tags": [
+      "patience",
+      "romance"
+    ],
+    "headline": "You have opinions today. So does everyone else.",
+    "personal": "You naturally harmonize the room. Use that taste to choose, not just to smooth. Let the evidence, not the anxiety, lead.",
+    "love": "Flirting is edit mode: fewer words, better timing.",
+    "career": "Credit is shared faster than you think. Share first.",
+    "social": "You're energizing to be around today. Choose the right room.",
+    "greenFlag": "You choose the walk over the scroll.",
+    "redFlag": "You check the cart you promised to close.",
+    "summary": "Libra 03-10: overall 60, patience 70."
+  },
+  {
+    "dayKey": "03-10",
+    "sunSign": "scorpio",
+    "scores": {
+      "overall": 60,
+      "romance": 69,
+      "social": 38,
+      "career": 60,
+      "energy": 40,
+      "confidence": 40,
+      "patience": 63,
+      "chaos": 38
+    },
+    "tags": [
+      "romance",
+      "patience"
+    ],
+    "headline": "You already know. The rest is performance.",
+    "personal": "Depth is your default. One direct sentence saves five strategic ones. Let the evidence, not the anxiety, lead.",
+    "love": "Attachment is tender today. Ask for what you actually want.",
+    "career": "Your competence is visible without the slideshow. Let it be.",
+    "social": "Group chats are louder than useful. Exit one early.",
+    "greenFlag": "You send the message without rewriting it four times.",
+    "redFlag": "You keep one tab open just to feel busy.",
+    "summary": "Scorpio 03-10: overall 60, patience 63."
+  },
+  {
+    "dayKey": "03-10",
+    "sunSign": "sagittarius",
+    "scores": {
+      "overall": 52,
+      "romance": 52,
+      "social": 61,
+      "career": 69,
+      "energy": 81,
+      "confidence": 55,
+      "patience": 51,
+      "chaos": 50
+    },
+    "tags": [
+      "energy",
+      "career"
+    ],
+    "headline": "Freedom, but with consequences you actually like.",
+    "personal": "Honesty travels fast today. Add one detail that makes it land softer. Let the evidence, not the anxiety, lead.",
+    "love": "An honest compliment lands further than a clever one.",
+    "career": "Momentum builds from the second task, not the first. Start messy.",
+    "social": "A short walk with one person beats a noisy dinner.",
+    "greenFlag": "You drink water before coffee. Growth is quiet.",
+    "redFlag": "You add one more unnecessary apology.",
+    "summary": "Sagittarius 03-10: overall 52, patience 51."
+  },
+  {
+    "dayKey": "03-10",
+    "sunSign": "capricorn",
+    "scores": {
+      "overall": 61,
+      "romance": 49,
+      "social": 38,
+      "career": 40,
+      "energy": 50,
+      "confidence": 39,
+      "patience": 38,
+      "chaos": 64
+    },
+    "tags": [
+      "chaos",
+      "overall"
+    ],
+    "headline": "The long game briefly looks short.",
+    "personal": "Structure is kindness today. Name the next step out loud and watch momentum follow. Let the evidence, not the anxiety, lead.",
+    "love": "If you're waiting for a sign, this sentence is it. Text first.",
+    "career": "Negotiate by naming what you actually need, not the position.",
+    "social": "Someone needs your humor specifically. Deploy it sparingly.",
+    "greenFlag": "You leave the group chat on read and feel fine.",
+    "redFlag": "You rehearse a conversation that will never happen.",
+    "summary": "Capricorn 03-10: overall 61, patience 38."
+  },
+  {
+    "dayKey": "03-10",
+    "sunSign": "aquarius",
+    "scores": {
+      "overall": 75,
+      "romance": 84,
+      "social": 69,
+      "career": 66,
+      "energy": 83,
+      "confidence": 85,
+      "patience": 65,
+      "chaos": 35
+    },
+    "tags": [
+      "confidence",
+      "romance"
+    ],
+    "headline": "You love humanity. Individuals, case by case.",
+    "personal": "Your sideways view clarifies what everyone missed. Offer it once, plainly. Let the evidence, not the anxiety, lead.",
+    "love": "Distance helps today. Miss them on purpose for a day.",
+    "career": "Documentation you write today saves future you an hour.",
+    "social": "Solitude restores faster than scrolling. Try ten minutes.",
+    "greenFlag": "You finish the boring task first. Elite behavior.",
+    "redFlag": "You explain a joke that already landed.",
+    "summary": "Aquarius 03-10: overall 75, patience 65."
+  },
+  {
+    "dayKey": "03-10",
+    "sunSign": "pisces",
+    "scores": {
+      "overall": 78,
+      "romance": 75,
+      "social": 88,
+      "career": 43,
+      "energy": 76,
+      "confidence": 52,
+      "patience": 63,
+      "chaos": 40
+    },
+    "tags": [
+      "social",
+      "overall"
+    ],
+    "headline": "You're in three timelines. All are tender.",
+    "personal": "Your antenna is sensitive. Ground one intuition in a concrete action before noon. Let the evidence, not the anxiety, lead.",
+    "love": "Old patterns knock. You don't have to answer.",
+    "career": "Credit is shared faster than you think. Share first.",
+    "social": "You don't have to mediate everything. Let two adults disagree.",
+    "greenFlag": "You compliment someone without needing anything back.",
+    "redFlag": "You say 'quick question' before a long story.",
+    "summary": "Pisces 03-10: overall 78, patience 63."
+  },
+  {
+    "dayKey": "03-11",
+    "sunSign": "aries",
+    "scores": {
+      "overall": 67,
+      "romance": 59,
+      "social": 53,
+      "career": 61,
+      "energy": 40,
+      "confidence": 45,
+      "patience": 59,
+      "chaos": 41
+    },
+    "tags": [
+      "overall",
+      "career"
+    ],
+    "headline": "Your bluntness is a gift. Wrap it nicely — especially after 21:00.",
+    "personal": "Your energy finds a clear target. Stop second-guessing the first instinct and commit to one move. Two sentences is enough.",
+    "love": "Warm, direct, and slightly disarming. Say the smaller true thing.",
+    "career": "Progress comes from finishing one thing properly, not starting three.",
+    "social": "One invitation deserves a yes. The rest can wait.",
+    "greenFlag": "You leave the group chat on read and feel fine.",
+    "redFlag": "You check the cart you promised to close.",
+    "summary": "Aries 03-11: overall 67, patience 59."
+  },
+  {
+    "dayKey": "03-11",
+    "sunSign": "taurus",
+    "scores": {
+      "overall": 83,
+      "romance": 59,
+      "social": 49,
+      "career": 68,
+      "energy": 74,
+      "confidence": 33,
+      "patience": 78,
+      "chaos": 22
+    },
+    "tags": [
+      "overall",
+      "patience"
+    ],
+    "headline": "You keep the room together by staying put — especially after 21:00.",
+    "personal": "Steadiness is magnetic today. Keep one small ritual intact and let the rest arrange around it. Two sentences is enough.",
+    "love": "Cozy beats dramatic. A low-key invitation wins.",
+    "career": "A difficult email gets easier if you send it before lunch.",
+    "social": "You're energizing to be around today. Choose the right room.",
+    "greenFlag": "You finish the boring task first. Elite behavior.",
+    "redFlag": "You keep one tab open just to feel busy.",
+    "summary": "Taurus 03-11: overall 83, patience 78."
+  },
+  {
+    "dayKey": "03-11",
+    "sunSign": "gemini",
+    "scores": {
+      "overall": 61,
+      "romance": 55,
+      "social": 63,
+      "career": 57,
+      "energy": 68,
+      "confidence": 63,
+      "patience": 44,
+      "chaos": 58
+    },
+    "tags": [
+      "energy",
+      "social"
+    ],
+    "headline": "Two truths and a better lie. Choose one — especially after 21:00.",
+    "personal": "Conversation unlocks the day. Ask the sharper second question, not the polite first one. Two sentences is enough.",
+    "love": "Chemistry hums quietly. Don't narrate it, let it hum.",
+    "career": "Protect two hours from meetings. That's where the work happens.",
+    "social": "Group chats are louder than useful. Exit one early.",
+    "greenFlag": "You compliment someone without needing anything back.",
+    "redFlag": "You add one more unnecessary apology.",
+    "summary": "Gemini 03-11: overall 61, patience 44."
+  },
+  {
+    "dayKey": "03-11",
+    "sunSign": "cancer",
+    "scores": {
+      "overall": 82,
+      "romance": 43,
+      "social": 32,
+      "career": 51,
+      "energy": 57,
+      "confidence": 67,
+      "patience": 64,
+      "chaos": 35
+    },
+    "tags": [
+      "overall",
+      "confidence"
+    ],
+    "headline": "Someone needs your exact kind of attention — especially after 21:00.",
+    "personal": "Your attention to texture matters. One quiet check-in carries further than a speech. Two sentences is enough.",
+    "love": "Someone notices effort more than charm today. Show up on time.",
+    "career": "A loose thread is worth pulling. Something useful unravels.",
+    "social": "A short walk with one person beats a noisy dinner.",
+    "greenFlag": "You make your bed and surprisingly feel smug about it.",
+    "redFlag": "You rehearse a conversation that will never happen.",
+    "summary": "Cancer 03-11: overall 82, patience 64."
+  },
+  {
+    "dayKey": "03-11",
+    "sunSign": "leo",
+    "scores": {
+      "overall": 74,
+      "romance": 72,
+      "social": 64,
+      "career": 41,
+      "energy": 76,
+      "confidence": 84,
+      "patience": 49,
+      "chaos": 50
+    },
+    "tags": [
+      "confidence",
+      "energy"
+    ],
+    "headline": "Confidence looks expensive on you. Keep it — especially after 21:00.",
+    "personal": "You are visible today without trying. Point that light at something real, not the mirror. Two sentences is enough.",
+    "love": "Flirting is edit mode: fewer words, better timing.",
+    "career": "Say no once today and mean it. The calendar thanks you.",
+    "social": "Someone needs your humor specifically. Deploy it sparingly.",
+    "greenFlag": "You ask for help before you need rescuing.",
+    "redFlag": "You explain a joke that already landed.",
+    "summary": "Leo 03-11: overall 74, patience 49."
+  },
+  {
+    "dayKey": "03-11",
+    "sunSign": "virgo",
+    "scores": {
+      "overall": 63,
+      "romance": 62,
+      "social": 79,
+      "career": 82,
+      "energy": 50,
+      "confidence": 62,
+      "patience": 28,
+      "chaos": 76
+    },
+    "tags": [
+      "career",
+      "social"
+    ],
+    "headline": "Correct again. Try being smug about it — especially after 21:00.",
+    "personal": "Precision beats volume. One clean edit makes the whole thing publishable. Two sentences is enough.",
+    "love": "Attachment is tender today. Ask for what you actually want.",
+    "career": "Progress comes from finishing one thing properly, not starting three.",
+    "social": "Solitude restores faster than scrolling. Try ten minutes.",
+    "greenFlag": "You choose the walk over the scroll.",
+    "redFlag": "You say 'quick question' before a long story.",
+    "summary": "Virgo 03-11: overall 63, patience 28."
+  },
+  {
+    "dayKey": "03-11",
+    "sunSign": "libra",
+    "scores": {
+      "overall": 63,
+      "romance": 81,
+      "social": 44,
+      "career": 64,
+      "energy": 42,
+      "confidence": 56,
+      "patience": 35,
+      "chaos": 69
+    },
+    "tags": [
+      "romance",
+      "chaos"
+    ],
+    "headline": "Your taste is the quiet flex — especially after 21:00.",
+    "personal": "You naturally harmonize the room. Use that taste to choose, not just to smooth. Two sentences is enough.",
+    "love": "An honest compliment lands further than a clever one.",
+    "career": "A difficult email gets easier if you send it before lunch.",
+    "social": "You don't have to mediate everything. Let two adults disagree.",
+    "greenFlag": "You send the message without rewriting it four times.",
+    "redFlag": "You turn a small delay into a moral failure.",
+    "summary": "Libra 03-11: overall 63, patience 35."
+  },
+  {
+    "dayKey": "03-11",
+    "sunSign": "scorpio",
+    "scores": {
+      "overall": 57,
+      "romance": 44,
+      "social": 74,
+      "career": 74,
+      "energy": 53,
+      "confidence": 91,
+      "patience": 78,
+      "chaos": 20
+    },
+    "tags": [
+      "confidence",
+      "patience"
+    ],
+    "headline": "No one is fooled. Especially not you — especially after 21:00.",
+    "personal": "Depth is your default. One direct sentence saves five strategic ones. Two sentences is enough.",
+    "love": "If you're waiting for a sign, this sentence is it. Text first.",
+    "career": "Protect two hours from meetings. That's where the work happens.",
+    "social": "Small talk leads to the real talk if you stay two minutes longer.",
+    "greenFlag": "You drink water before coffee. Growth is quiet.",
+    "redFlag": "You reread a message nine times before replying.",
+    "summary": "Scorpio 03-11: overall 57, patience 78."
+  },
+  {
+    "dayKey": "03-11",
+    "sunSign": "sagittarius",
+    "scores": {
+      "overall": 62,
+      "romance": 31,
+      "social": 33,
+      "career": 48,
+      "energy": 77,
+      "confidence": 54,
+      "patience": 75,
+      "chaos": 28
+    },
+    "tags": [
+      "energy",
+      "patience"
+    ],
+    "headline": "Your exit plan has an exit plan — especially after 21:00.",
+    "personal": "Honesty travels fast today. Add one detail that makes it land softer. Two sentences is enough.",
+    "love": "Distance helps today. Miss them on purpose for a day.",
+    "career": "A loose thread is worth pulling. Something useful unravels.",
+    "social": "Your boundaries are legible today. Keep them legible.",
+    "greenFlag": "You leave the group chat on read and feel fine.",
+    "redFlag": "You check the cart you promised to close.",
+    "summary": "Sagittarius 03-11: overall 62, patience 75."
+  },
+  {
+    "dayKey": "03-11",
+    "sunSign": "capricorn",
+    "scores": {
+      "overall": 60,
+      "romance": 51,
+      "social": 46,
+      "career": 56,
+      "energy": 36,
+      "confidence": 52,
+      "patience": 35,
+      "chaos": 66
+    },
+    "tags": [
+      "chaos",
+      "overall"
+    ],
+    "headline": "Ambition is calm today — especially after 21:00.",
+    "personal": "Structure is kindness today. Name the next step out loud and watch momentum follow. Two sentences is enough.",
+    "love": "Old patterns knock. You don't have to answer.",
+    "career": "Say no once today and mean it. The calendar thanks you.",
+    "social": "An old friend crosses your mind. That's the prompt.",
+    "greenFlag": "You finish the boring task first. Elite behavior.",
+    "redFlag": "You keep one tab open just to feel busy.",
+    "summary": "Capricorn 03-11: overall 60, patience 35."
+  },
+  {
+    "dayKey": "03-11",
+    "sunSign": "aquarius",
+    "scores": {
+      "overall": 57,
+      "romance": 40,
+      "social": 68,
+      "career": 38,
+      "energy": 42,
+      "confidence": 65,
+      "patience": 36,
+      "chaos": 62
+    },
+    "tags": [
+      "social",
+      "confidence"
+    ],
+    "headline": "Detachment is your superpower today — especially after 21:00.",
+    "personal": "Your sideways view clarifies what everyone missed. Offer it once, plainly. Two sentences is enough.",
+    "love": "Warm, direct, and slightly disarming. Say the smaller true thing.",
+    "career": "Progress comes from finishing one thing properly, not starting three.",
+    "social": "One invitation deserves a yes. The rest can wait.",
+    "greenFlag": "You compliment someone without needing anything back.",
+    "redFlag": "You add one more unnecessary apology.",
+    "summary": "Aquarius 03-11: overall 57, patience 36."
+  },
+  {
+    "dayKey": "03-11",
+    "sunSign": "pisces",
+    "scores": {
+      "overall": 72,
+      "romance": 77,
+      "social": 80,
+      "career": 82,
+      "energy": 82,
+      "confidence": 87,
+      "patience": 69,
+      "chaos": 28
+    },
+    "tags": [
+      "confidence",
+      "career"
+    ],
+    "headline": "You feel twice. Choose the useful feeling — especially after 21:00.",
+    "personal": "Your antenna is sensitive. Ground one intuition in a concrete action before noon. Two sentences is enough.",
+    "love": "Cozy beats dramatic. A low-key invitation wins.",
+    "career": "A difficult email gets easier if you send it before lunch.",
+    "social": "You're energizing to be around today. Choose the right room.",
+    "greenFlag": "You make your bed and surprisingly feel smug about it.",
+    "redFlag": "You rehearse a conversation that will never happen.",
+    "summary": "Pisces 03-11: overall 72, patience 69."
+  },
+  {
+    "dayKey": "03-12",
+    "sunSign": "aries",
+    "scores": {
+      "overall": 78,
+      "romance": 86,
+      "social": 77,
+      "career": 74,
+      "energy": 46,
+      "confidence": 37,
+      "patience": 50,
+      "chaos": 53
+    },
+    "tags": [
+      "romance",
+      "overall"
+    ],
+    "headline": "A door you didn't knock on opens anyway.",
+    "personal": "Your energy finds a clear target. Stop second-guessing the first instinct and commit to one move. Notice what shifts after you do.",
+    "love": "Chemistry hums quietly. Don't narrate it, let it hum.",
+    "career": "Momentum builds from the second task, not the first. Start messy.",
+    "social": "Solitude restores faster than scrolling. Try ten minutes.",
+    "greenFlag": "You finish the boring task first. Elite behavior.",
+    "redFlag": "You turn a small delay into a moral failure.",
+    "summary": "Aries 03-12: overall 78, patience 50."
+  },
+  {
+    "dayKey": "03-12",
+    "sunSign": "taurus",
+    "scores": {
+      "overall": 58,
+      "romance": 51,
+      "social": 65,
+      "career": 86,
+      "energy": 72,
+      "confidence": 74,
+      "patience": 36,
+      "chaos": 63
+    },
+    "tags": [
+      "career",
+      "confidence"
+    ],
+    "headline": "Slow is the shortcut.",
+    "personal": "Steadiness is magnetic today. Keep one small ritual intact and let the rest arrange around it. Notice what shifts after you do.",
+    "love": "Someone notices effort more than charm today. Show up on time.",
+    "career": "Negotiate by naming what you actually need, not the position.",
+    "social": "You don't have to mediate everything. Let two adults disagree.",
+    "greenFlag": "You compliment someone without needing anything back.",
+    "redFlag": "You reread a message nine times before replying.",
+    "summary": "Taurus 03-12: overall 58, patience 36."
+  },
+  {
+    "dayKey": "03-12",
+    "sunSign": "gemini",
+    "scores": {
+      "overall": 56,
+      "romance": 71,
+      "social": 44,
+      "career": 40,
+      "energy": 65,
+      "confidence": 75,
+      "patience": 77,
+      "chaos": 20
+    },
+    "tags": [
+      "patience",
+      "confidence"
+    ],
+    "headline": "Curiosity pays rent today.",
+    "personal": "Conversation unlocks the day. Ask the sharper second question, not the polite first one. Notice what shifts after you do.",
+    "love": "Flirting is edit mode: fewer words, better timing.",
+    "career": "Documentation you write today saves future you an hour.",
+    "social": "Small talk leads to the real talk if you stay two minutes longer.",
+    "greenFlag": "You make your bed and surprisingly feel smug about it.",
+    "redFlag": "You check the cart you promised to close.",
+    "summary": "Gemini 03-12: overall 56, patience 77."
+  },
+  {
+    "dayKey": "03-12",
+    "sunSign": "cancer",
+    "scores": {
+      "overall": 76,
+      "romance": 64,
+      "social": 91,
+      "career": 43,
+      "energy": 53,
+      "confidence": 39,
+      "patience": 22,
+      "chaos": 79
+    },
+    "tags": [
+      "social",
+      "chaos"
+    ],
+    "headline": "Your care is precision, not softness.",
+    "personal": "Your attention to texture matters. One quiet check-in carries further than a speech. Notice what shifts after you do.",
+    "love": "Attachment is tender today. Ask for what you actually want.",
+    "career": "Credit is shared faster than you think. Share first.",
+    "social": "Your boundaries are legible today. Keep them legible.",
+    "greenFlag": "You ask for help before you need rescuing.",
+    "redFlag": "You keep one tab open just to feel busy.",
+    "summary": "Cancer 03-12: overall 76, patience 22."
+  },
+  {
+    "dayKey": "03-12",
+    "sunSign": "leo",
+    "scores": {
+      "overall": 64,
+      "romance": 81,
+      "social": 80,
+      "career": 50,
+      "energy": 73,
+      "confidence": 65,
+      "patience": 48,
+      "chaos": 49
+    },
+    "tags": [
+      "romance",
+      "social"
+    ],
+    "headline": "You don't need the spotlight; it needs you.",
+    "personal": "You are visible today without trying. Point that light at something real, not the mirror. Notice what shifts after you do.",
+    "love": "An honest compliment lands further than a clever one.",
+    "career": "Your competence is visible without the slideshow. Let it be.",
+    "social": "An old friend crosses your mind. That's the prompt.",
+    "greenFlag": "You choose the walk over the scroll.",
+    "redFlag": "You add one more unnecessary apology.",
+    "summary": "Leo 03-12: overall 64, patience 48."
+  },
+  {
+    "dayKey": "03-12",
+    "sunSign": "virgo",
+    "scores": {
+      "overall": 57,
+      "romance": 72,
+      "social": 74,
+      "career": 62,
+      "energy": 66,
+      "confidence": 93,
+      "patience": 58,
+      "chaos": 40
+    },
+    "tags": [
+      "confidence",
+      "social"
+    ],
+    "headline": "You see the flaw nobody named. Name it kindly.",
+    "personal": "Precision beats volume. One clean edit makes the whole thing publishable. Notice what shifts after you do.",
+    "love": "If you're waiting for a sign, this sentence is it. Text first.",
+    "career": "Momentum builds from the second task, not the first. Start messy.",
+    "social": "One invitation deserves a yes. The rest can wait.",
+    "greenFlag": "You send the message without rewriting it four times.",
+    "redFlag": "You rehearse a conversation that will never happen.",
+    "summary": "Virgo 03-12: overall 57, patience 58."
+  },
+  {
+    "dayKey": "03-12",
+    "sunSign": "libra",
+    "scores": {
+      "overall": 87,
+      "romance": 36,
+      "social": 77,
+      "career": 74,
+      "energy": 45,
+      "confidence": 54,
+      "patience": 79,
+      "chaos": 25
+    },
+    "tags": [
+      "overall",
+      "patience"
+    ],
+    "headline": "Balance is not neutrality.",
+    "personal": "You naturally harmonize the room. Use that taste to choose, not just to smooth. Notice what shifts after you do.",
+    "love": "Distance helps today. Miss them on purpose for a day.",
+    "career": "Negotiate by naming what you actually need, not the position.",
+    "social": "You're energizing to be around today. Choose the right room.",
+    "greenFlag": "You drink water before coffee. Growth is quiet.",
+    "redFlag": "You explain a joke that already landed.",
+    "summary": "Libra 03-12: overall 87, patience 79."
+  },
+  {
+    "dayKey": "03-12",
+    "sunSign": "scorpio",
+    "scores": {
+      "overall": 74,
+      "romance": 47,
+      "social": 33,
+      "career": 68,
+      "energy": 69,
+      "confidence": 65,
+      "patience": 24,
+      "chaos": 75
+    },
+    "tags": [
+      "chaos",
+      "overall"
+    ],
+    "headline": "Intensity, but make it useful.",
+    "personal": "Depth is your default. One direct sentence saves five strategic ones. Notice what shifts after you do.",
+    "love": "Old patterns knock. You don't have to answer.",
+    "career": "Documentation you write today saves future you an hour.",
+    "social": "Group chats are louder than useful. Exit one early.",
+    "greenFlag": "You leave the group chat on read and feel fine.",
+    "redFlag": "You say 'quick question' before a long story.",
+    "summary": "Scorpio 03-12: overall 74, patience 24."
+  },
+  {
+    "dayKey": "03-12",
+    "sunSign": "sagittarius",
+    "scores": {
+      "overall": 58,
+      "romance": 56,
+      "social": 85,
+      "career": 55,
+      "energy": 36,
+      "confidence": 74,
+      "patience": 77,
+      "chaos": 22
+    },
+    "tags": [
+      "social",
+      "patience"
+    ],
+    "headline": "Blunt is a love language, apparently.",
+    "personal": "Honesty travels fast today. Add one detail that makes it land softer. Notice what shifts after you do.",
+    "love": "Warm, direct, and slightly disarming. Say the smaller true thing.",
+    "career": "Credit is shared faster than you think. Share first.",
+    "social": "A short walk with one person beats a noisy dinner.",
+    "greenFlag": "You finish the boring task first. Elite behavior.",
+    "redFlag": "You turn a small delay into a moral failure.",
+    "summary": "Sagittarius 03-12: overall 58, patience 77."
+  },
+  {
+    "dayKey": "03-12",
+    "sunSign": "capricorn",
+    "scores": {
+      "overall": 87,
+      "romance": 70,
+      "social": 32,
+      "career": 55,
+      "energy": 84,
+      "confidence": 83,
+      "patience": 61,
+      "chaos": 43
+    },
+    "tags": [
+      "overall",
+      "energy"
+    ],
+    "headline": "You make discipline look like taste.",
+    "personal": "Structure is kindness today. Name the next step out loud and watch momentum follow. Notice what shifts after you do.",
+    "love": "Cozy beats dramatic. A low-key invitation wins.",
+    "career": "Your competence is visible without the slideshow. Let it be.",
+    "social": "Someone needs your humor specifically. Deploy it sparingly.",
+    "greenFlag": "You compliment someone without needing anything back.",
+    "redFlag": "You reread a message nine times before replying.",
+    "summary": "Capricorn 03-12: overall 87, patience 61."
+  },
+  {
+    "dayKey": "03-12",
+    "sunSign": "aquarius",
+    "scores": {
+      "overall": 66,
+      "romance": 75,
+      "social": 36,
+      "career": 56,
+      "energy": 59,
+      "confidence": 41,
+      "patience": 79,
+      "chaos": 20
+    },
+    "tags": [
+      "patience",
+      "romance"
+    ],
+    "headline": "You invent the room you want to be in.",
+    "personal": "Your sideways view clarifies what everyone missed. Offer it once, plainly. Notice what shifts after you do.",
+    "love": "Chemistry hums quietly. Don't narrate it, let it hum.",
+    "career": "Momentum builds from the second task, not the first. Start messy.",
+    "social": "Solitude restores faster than scrolling. Try ten minutes.",
+    "greenFlag": "You make your bed and surprisingly feel smug about it.",
+    "redFlag": "You check the cart you promised to close.",
+    "summary": "Aquarius 03-12: overall 66, patience 79."
+  },
+  {
+    "dayKey": "03-12",
+    "sunSign": "pisces",
+    "scores": {
+      "overall": 70,
+      "romance": 47,
+      "social": 58,
+      "career": 73,
+      "energy": 75,
+      "confidence": 70,
+      "patience": 44,
+      "chaos": 59
+    },
+    "tags": [
+      "energy",
+      "career"
+    ],
+    "headline": "Your intuition has receipts.",
+    "personal": "Your antenna is sensitive. Ground one intuition in a concrete action before noon. Notice what shifts after you do.",
+    "love": "Someone notices effort more than charm today. Show up on time.",
+    "career": "Negotiate by naming what you actually need, not the position.",
+    "social": "You don't have to mediate everything. Let two adults disagree.",
+    "greenFlag": "You ask for help before you need rescuing.",
+    "redFlag": "You keep one tab open just to feel busy.",
+    "summary": "Pisces 03-12: overall 70, patience 44."
+  },
+  {
+    "dayKey": "03-13",
+    "sunSign": "aries",
+    "scores": {
+      "overall": 74,
+      "romance": 57,
+      "social": 57,
+      "career": 69,
+      "energy": 65,
+      "confidence": 86,
+      "patience": 69,
+      "chaos": 30
+    },
+    "tags": [
+      "confidence",
+      "overall"
+    ],
+    "headline": "Speed is your love language today.",
+    "personal": "Your energy finds a clear target. Stop second-guessing the first instinct and commit to one move. The quieter move works.",
+    "love": "Flirting is edit mode: fewer words, better timing.",
+    "career": "A loose thread is worth pulling. Something useful unravels.",
+    "social": "One invitation deserves a yes. The rest can wait.",
+    "greenFlag": "You compliment someone without needing anything back.",
+    "redFlag": "You explain a joke that already landed.",
+    "summary": "Aries 03-13: overall 74, patience 69."
+  },
+  {
+    "dayKey": "03-13",
+    "sunSign": "taurus",
+    "scores": {
+      "overall": 82,
+      "romance": 45,
+      "social": 34,
+      "career": 87,
+      "energy": 36,
+      "confidence": 54,
+      "patience": 71,
+      "chaos": 28
+    },
+    "tags": [
+      "career",
+      "overall"
+    ],
+    "headline": "Comfort is strategy today, not avoidance.",
+    "personal": "Steadiness is magnetic today. Keep one small ritual intact and let the rest arrange around it. The quieter move works.",
+    "love": "Attachment is tender today. Ask for what you actually want.",
+    "career": "Say no once today and mean it. The calendar thanks you.",
+    "social": "You're energizing to be around today. Choose the right room.",
+    "greenFlag": "You make your bed and surprisingly feel smug about it.",
+    "redFlag": "You say 'quick question' before a long story.",
+    "summary": "Taurus 03-13: overall 82, patience 71."
+  },
+  {
+    "dayKey": "03-13",
+    "sunSign": "gemini",
+    "scores": {
+      "overall": 56,
+      "romance": 80,
+      "social": 89,
+      "career": 35,
+      "energy": 54,
+      "confidence": 41,
+      "patience": 47,
+      "chaos": 50
+    },
+    "tags": [
+      "social",
+      "romance"
+    ],
+    "headline": "Your punchline lands before the setup.",
+    "personal": "Conversation unlocks the day. Ask the sharper second question, not the polite first one. The quieter move works.",
+    "love": "An honest compliment lands further than a clever one.",
+    "career": "Progress comes from finishing one thing properly, not starting three.",
+    "social": "Group chats are louder than useful. Exit one early.",
+    "greenFlag": "You ask for help before you need rescuing.",
+    "redFlag": "You turn a small delay into a moral failure.",
+    "summary": "Gemini 03-13: overall 56, patience 47."
+  },
+  {
+    "dayKey": "03-13",
+    "sunSign": "cancer",
+    "scores": {
+      "overall": 64,
+      "romance": 60,
+      "social": 77,
+      "career": 70,
+      "energy": 64,
+      "confidence": 75,
+      "patience": 40,
+      "chaos": 57
+    },
+    "tags": [
+      "social",
+      "confidence"
+    ],
+    "headline": "You feel the weather before the forecast.",
+    "personal": "Your attention to texture matters. One quiet check-in carries further than a speech. The quieter move works.",
+    "love": "If you're waiting for a sign, this sentence is it. Text first.",
+    "career": "A difficult email gets easier if you send it before lunch.",
+    "social": "A short walk with one person beats a noisy dinner.",
+    "greenFlag": "You choose the walk over the scroll.",
+    "redFlag": "You reread a message nine times before replying.",
+    "summary": "Cancer 03-13: overall 64, patience 40."
+  },
+  {
+    "dayKey": "03-13",
+    "sunSign": "leo",
+    "scores": {
+      "overall": 81,
+      "romance": 34,
+      "social": 66,
+      "career": 42,
+      "energy": 66,
+      "confidence": 84,
+      "patience": 65,
+      "chaos": 33
+    },
+    "tags": [
+      "confidence",
+      "overall"
+    ],
+    "headline": "Your timing is cinematic today.",
+    "personal": "You are visible today without trying. Point that light at something real, not the mirror. The quieter move works.",
+    "love": "Distance helps today. Miss them on purpose for a day.",
+    "career": "Protect two hours from meetings. That's where the work happens.",
+    "social": "Someone needs your humor specifically. Deploy it sparingly.",
+    "greenFlag": "You send the message without rewriting it four times.",
+    "redFlag": "You check the cart you promised to close.",
+    "summary": "Leo 03-13: overall 81, patience 65."
+  },
+  {
+    "dayKey": "03-13",
+    "sunSign": "virgo",
+    "scores": {
+      "overall": 71,
+      "romance": 85,
+      "social": 47,
+      "career": 60,
+      "energy": 77,
+      "confidence": 66,
+      "patience": 24,
+      "chaos": 80
+    },
+    "tags": [
+      "romance",
+      "chaos"
+    ],
+    "headline": "Small fix, big ripple.",
+    "personal": "Precision beats volume. One clean edit makes the whole thing publishable. The quieter move works.",
+    "love": "Old patterns knock. You don't have to answer.",
+    "career": "A loose thread is worth pulling. Something useful unravels.",
+    "social": "Solitude restores faster than scrolling. Try ten minutes.",
+    "greenFlag": "You drink water before coffee. Growth is quiet.",
+    "redFlag": "You keep one tab open just to feel busy.",
+    "summary": "Virgo 03-13: overall 71, patience 24."
+  },
+  {
+    "dayKey": "03-13",
+    "sunSign": "libra",
+    "scores": {
+      "overall": 81,
+      "romance": 64,
+      "social": 59,
+      "career": 33,
+      "energy": 76,
+      "confidence": 35,
+      "patience": 74,
+      "chaos": 24
+    },
+    "tags": [
+      "overall",
+      "energy"
+    ],
+    "headline": "You mediate what you didn't start. Again.",
+    "personal": "You naturally harmonize the room. Use that taste to choose, not just to smooth. The quieter move works.",
+    "love": "Warm, direct, and slightly disarming. Say the smaller true thing.",
+    "career": "Say no once today and mean it. The calendar thanks you.",
+    "social": "You don't have to mediate everything. Let two adults disagree.",
+    "greenFlag": "You leave the group chat on read and feel fine.",
+    "redFlag": "You add one more unnecessary apology.",
+    "summary": "Libra 03-13: overall 81, patience 74."
+  },
+  {
+    "dayKey": "03-13",
+    "sunSign": "scorpio",
+    "scores": {
+      "overall": 57,
+      "romance": 78,
+      "social": 37,
+      "career": 64,
+      "energy": 88,
+      "confidence": 52,
+      "patience": 35,
+      "chaos": 63
+    },
+    "tags": [
+      "energy",
+      "romance"
+    ],
+    "headline": "Your silence is doing most of the talking.",
+    "personal": "Depth is your default. One direct sentence saves five strategic ones. The quieter move works.",
+    "love": "Cozy beats dramatic. A low-key invitation wins.",
+    "career": "Progress comes from finishing one thing properly, not starting three.",
+    "social": "Small talk leads to the real talk if you stay two minutes longer.",
+    "greenFlag": "You finish the boring task first. Elite behavior.",
+    "redFlag": "You rehearse a conversation that will never happen.",
+    "summary": "Scorpio 03-13: overall 57, patience 35."
+  },
+  {
+    "dayKey": "03-13",
+    "sunSign": "sagittarius",
+    "scores": {
+      "overall": 74,
+      "romance": 51,
+      "social": 77,
+      "career": 70,
+      "energy": 56,
+      "confidence": 94,
+      "patience": 62,
+      "chaos": 37
+    },
+    "tags": [
+      "confidence",
+      "social"
+    ],
+    "headline": "You tell the truth and it sort-of lands.",
+    "personal": "Honesty travels fast today. Add one detail that makes it land softer. The quieter move works.",
+    "love": "Chemistry hums quietly. Don't narrate it, let it hum.",
+    "career": "A difficult email gets easier if you send it before lunch.",
+    "social": "Your boundaries are legible today. Keep them legible.",
+    "greenFlag": "You compliment someone without needing anything back.",
+    "redFlag": "You explain a joke that already landed.",
+    "summary": "Sagittarius 03-13: overall 74, patience 62."
+  },
+  {
+    "dayKey": "03-13",
+    "sunSign": "capricorn",
+    "scores": {
+      "overall": 64,
+      "romance": 35,
+      "social": 90,
+      "career": 83,
+      "energy": 75,
+      "confidence": 55,
+      "patience": 19,
+      "chaos": 78
+    },
+    "tags": [
+      "social",
+      "career"
+    ],
+    "headline": "Feelings, but with a project plan.",
+    "personal": "Structure is kindness today. Name the next step out loud and watch momentum follow. The quieter move works.",
+    "love": "Someone notices effort more than charm today. Show up on time.",
+    "career": "Protect two hours from meetings. That's where the work happens.",
+    "social": "An old friend crosses your mind. That's the prompt.",
+    "greenFlag": "You make your bed and surprisingly feel smug about it.",
+    "redFlag": "You say 'quick question' before a long story.",
+    "summary": "Capricorn 03-13: overall 64, patience 19."
+  },
+  {
+    "dayKey": "03-13",
+    "sunSign": "aquarius",
+    "scores": {
+      "overall": 50,
+      "romance": 32,
+      "social": 45,
+      "career": 56,
+      "energy": 38,
+      "confidence": 72,
+      "patience": 36,
+      "chaos": 63
+    },
+    "tags": [
+      "confidence",
+      "chaos"
+    ],
+    "headline": "Normal was never the plan.",
+    "personal": "Your sideways view clarifies what everyone missed. Offer it once, plainly. The quieter move works.",
+    "love": "Flirting is edit mode: fewer words, better timing.",
+    "career": "A loose thread is worth pulling. Something useful unravels.",
+    "social": "One invitation deserves a yes. The rest can wait.",
+    "greenFlag": "You ask for help before you need rescuing.",
+    "redFlag": "You turn a small delay into a moral failure.",
+    "summary": "Aquarius 03-13: overall 50, patience 36."
+  },
+  {
+    "dayKey": "03-13",
+    "sunSign": "pisces",
+    "scores": {
+      "overall": 64,
+      "romance": 41,
+      "social": 34,
+      "career": 48,
+      "energy": 66,
+      "confidence": 84,
+      "patience": 81,
+      "chaos": 16
+    },
+    "tags": [
+      "confidence",
+      "patience"
+    ],
+    "headline": "Imagination edits reality today.",
+    "personal": "Your antenna is sensitive. Ground one intuition in a concrete action before noon. The quieter move works.",
+    "love": "Attachment is tender today. Ask for what you actually want.",
+    "career": "Say no once today and mean it. The calendar thanks you.",
+    "social": "You're energizing to be around today. Choose the right room.",
+    "greenFlag": "You choose the walk over the scroll.",
+    "redFlag": "You reread a message nine times before replying.",
+    "summary": "Pisces 03-13: overall 64, patience 81."
+  },
+  {
+    "dayKey": "03-14",
+    "sunSign": "aries",
+    "scores": {
+      "overall": 82,
+      "romance": 41,
+      "social": 86,
+      "career": 75,
+      "energy": 68,
+      "confidence": 75,
+      "patience": 72,
+      "chaos": 27
+    },
+    "tags": [
+      "social",
+      "overall"
+    ],
+    "headline": "You move first. Everyone else negotiates.",
+    "personal": "Your energy finds a clear target. Stop second-guessing the first instinct and commit to one move. Apply it to one real thing, not everything.",
+    "love": "An honest compliment lands further than a clever one.",
+    "career": "Credit is shared faster than you think. Share first.",
+    "social": "Solitude restores faster than scrolling. Try ten minutes.",
+    "greenFlag": "You make your bed and surprisingly feel smug about it.",
+    "redFlag": "You add one more unnecessary apology.",
+    "summary": "Aries 03-14: overall 82, patience 72."
+  },
+  {
+    "dayKey": "03-14",
+    "sunSign": "taurus",
+    "scores": {
+      "overall": 71,
+      "romance": 69,
+      "social": 90,
+      "career": 39,
+      "energy": 55,
+      "confidence": 45,
+      "patience": 50,
+      "chaos": 54
+    },
+    "tags": [
+      "social",
+      "overall"
+    ],
+    "headline": "Something you planted finally nudges.",
+    "personal": "Steadiness is magnetic today. Keep one small ritual intact and let the rest arrange around it. Apply it to one real thing, not everything.",
+    "love": "If you're waiting for a sign, this sentence is it. Text first.",
+    "career": "Your competence is visible without the slideshow. Let it be.",
+    "social": "You don't have to mediate everything. Let two adults disagree.",
+    "greenFlag": "You ask for help before you need rescuing.",
+    "redFlag": "You rehearse a conversation that will never happen.",
+    "summary": "Taurus 03-14: overall 71, patience 50."
+  },
+  {
+    "dayKey": "03-14",
+    "sunSign": "gemini",
+    "scores": {
+      "overall": 83,
+      "romance": 77,
+      "social": 64,
+      "career": 81,
+      "energy": 57,
+      "confidence": 46,
+      "patience": 75,
+      "chaos": 25
+    },
+    "tags": [
+      "overall",
+      "career"
+    ],
+    "headline": "Three tabs open. All of them correct.",
+    "personal": "Conversation unlocks the day. Ask the sharper second question, not the polite first one. Apply it to one real thing, not everything.",
+    "love": "Distance helps today. Miss them on purpose for a day.",
+    "career": "Momentum builds from the second task, not the first. Start messy.",
+    "social": "Small talk leads to the real talk if you stay two minutes longer.",
+    "greenFlag": "You choose the walk over the scroll.",
+    "redFlag": "You explain a joke that already landed.",
+    "summary": "Gemini 03-14: overall 83, patience 75."
+  },
+  {
+    "dayKey": "03-14",
+    "sunSign": "cancer",
+    "scores": {
+      "overall": 52,
+      "romance": 87,
+      "social": 53,
+      "career": 73,
+      "energy": 89,
+      "confidence": 49,
+      "patience": 67,
+      "chaos": 34
+    },
+    "tags": [
+      "energy",
+      "romance"
+    ],
+    "headline": "Soft launch your boundaries.",
+    "personal": "Your attention to texture matters. One quiet check-in carries further than a speech. Apply it to one real thing, not everything.",
+    "love": "Old patterns knock. You don't have to answer.",
+    "career": "Negotiate by naming what you actually need, not the position.",
+    "social": "Your boundaries are legible today. Keep them legible.",
+    "greenFlag": "You send the message without rewriting it four times.",
+    "redFlag": "You say 'quick question' before a long story.",
+    "summary": "Cancer 03-14: overall 52, patience 67."
+  },
+  {
+    "dayKey": "03-14",
+    "sunSign": "leo",
+    "scores": {
+      "overall": 48,
+      "romance": 62,
+      "social": 70,
+      "career": 38,
+      "energy": 58,
+      "confidence": 45,
+      "patience": 66,
+      "chaos": 31
+    },
+    "tags": [
+      "social",
+      "patience"
+    ],
+    "headline": "The room has been waiting. Don't disappoint it.",
+    "personal": "You are visible today without trying. Point that light at something real, not the mirror. Apply it to one real thing, not everything.",
+    "love": "Warm, direct, and slightly disarming. Say the smaller true thing.",
+    "career": "Documentation you write today saves future you an hour.",
+    "social": "An old friend crosses your mind. That's the prompt.",
+    "greenFlag": "You drink water before coffee. Growth is quiet.",
+    "redFlag": "You turn a small delay into a moral failure.",
+    "summary": "Leo 03-14: overall 48, patience 66."
+  },
+  {
+    "dayKey": "03-14",
+    "sunSign": "virgo",
+    "scores": {
+      "overall": 58,
+      "romance": 88,
+      "social": 81,
+      "career": 43,
+      "energy": 64,
+      "confidence": 32,
+      "patience": 46,
+      "chaos": 53
+    },
+    "tags": [
+      "romance",
+      "social"
+    ],
+    "headline": "Your edit is the whole point today.",
+    "personal": "Precision beats volume. One clean edit makes the whole thing publishable. Apply it to one real thing, not everything.",
+    "love": "Cozy beats dramatic. A low-key invitation wins.",
+    "career": "Credit is shared faster than you think. Share first.",
+    "social": "One invitation deserves a yes. The rest can wait.",
+    "greenFlag": "You leave the group chat on read and feel fine.",
+    "redFlag": "You reread a message nine times before replying.",
+    "summary": "Virgo 03-14: overall 58, patience 46."
+  },
+  {
+    "dayKey": "03-14",
+    "sunSign": "libra",
+    "scores": {
+      "overall": 71,
+      "romance": 71,
+      "social": 50,
+      "career": 52,
+      "energy": 43,
+      "confidence": 86,
+      "patience": 65,
+      "chaos": 39
+    },
+    "tags": [
+      "confidence",
+      "overall"
+    ],
+    "headline": "You have opinions today. So does everyone else.",
+    "personal": "You naturally harmonize the room. Use that taste to choose, not just to smooth. Apply it to one real thing, not everything.",
+    "love": "Chemistry hums quietly. Don't narrate it, let it hum.",
+    "career": "Your competence is visible without the slideshow. Let it be.",
+    "social": "You're energizing to be around today. Choose the right room.",
+    "greenFlag": "You finish the boring task first. Elite behavior.",
+    "redFlag": "You check the cart you promised to close.",
+    "summary": "Libra 03-14: overall 71, patience 65."
+  },
+  {
+    "dayKey": "03-14",
+    "sunSign": "scorpio",
+    "scores": {
+      "overall": 63,
+      "romance": 30,
+      "social": 62,
+      "career": 74,
+      "energy": 52,
+      "confidence": 51,
+      "patience": 47,
+      "chaos": 57
+    },
+    "tags": [
+      "career",
+      "overall"
+    ],
+    "headline": "You already know. The rest is performance.",
+    "personal": "Depth is your default. One direct sentence saves five strategic ones. Apply it to one real thing, not everything.",
+    "love": "Someone notices effort more than charm today. Show up on time.",
+    "career": "Momentum builds from the second task, not the first. Start messy.",
+    "social": "Group chats are louder than useful. Exit one early.",
+    "greenFlag": "You compliment someone without needing anything back.",
+    "redFlag": "You keep one tab open just to feel busy.",
+    "summary": "Scorpio 03-14: overall 63, patience 47."
+  },
+  {
+    "dayKey": "03-14",
+    "sunSign": "sagittarius",
+    "scores": {
+      "overall": 75,
+      "romance": 64,
+      "social": 45,
+      "career": 60,
+      "energy": 79,
+      "confidence": 41,
+      "patience": 54,
+      "chaos": 46
+    },
+    "tags": [
+      "energy",
+      "overall"
+    ],
+    "headline": "Freedom, but with consequences you actually like.",
+    "personal": "Honesty travels fast today. Add one detail that makes it land softer. Apply it to one real thing, not everything.",
+    "love": "Flirting is edit mode: fewer words, better timing.",
+    "career": "Negotiate by naming what you actually need, not the position.",
+    "social": "A short walk with one person beats a noisy dinner.",
+    "greenFlag": "You make your bed and surprisingly feel smug about it.",
+    "redFlag": "You add one more unnecessary apology.",
+    "summary": "Sagittarius 03-14: overall 75, patience 54."
+  },
+  {
+    "dayKey": "03-14",
+    "sunSign": "capricorn",
+    "scores": {
+      "overall": 49,
+      "romance": 82,
+      "social": 57,
+      "career": 49,
+      "energy": 66,
+      "confidence": 59,
+      "patience": 60,
+      "chaos": 38
+    },
+    "tags": [
+      "romance",
+      "energy"
+    ],
+    "headline": "The long game briefly looks short.",
+    "personal": "Structure is kindness today. Name the next step out loud and watch momentum follow. Apply it to one real thing, not everything.",
+    "love": "Attachment is tender today. Ask for what you actually want.",
+    "career": "Documentation you write today saves future you an hour.",
+    "social": "Someone needs your humor specifically. Deploy it sparingly.",
+    "greenFlag": "You ask for help before you need rescuing.",
+    "redFlag": "You rehearse a conversation that will never happen.",
+    "summary": "Capricorn 03-14: overall 49, patience 60."
+  },
+  {
+    "dayKey": "03-14",
+    "sunSign": "aquarius",
+    "scores": {
+      "overall": 85,
+      "romance": 34,
+      "social": 61,
+      "career": 33,
+      "energy": 35,
+      "confidence": 43,
+      "patience": 79,
+      "chaos": 23
+    },
+    "tags": [
+      "overall",
+      "patience"
+    ],
+    "headline": "You love humanity. Individuals, case by case.",
+    "personal": "Your sideways view clarifies what everyone missed. Offer it once, plainly. Apply it to one real thing, not everything.",
+    "love": "An honest compliment lands further than a clever one.",
+    "career": "Credit is shared faster than you think. Share first.",
+    "social": "Solitude restores faster than scrolling. Try ten minutes.",
+    "greenFlag": "You choose the walk over the scroll.",
+    "redFlag": "You explain a joke that already landed.",
+    "summary": "Aquarius 03-14: overall 85, patience 79."
+  },
+  {
+    "dayKey": "03-14",
+    "sunSign": "pisces",
+    "scores": {
+      "overall": 76,
+      "romance": 59,
+      "social": 53,
+      "career": 77,
+      "energy": 75,
+      "confidence": 39,
+      "patience": 66,
+      "chaos": 35
+    },
+    "tags": [
+      "career",
+      "overall"
+    ],
+    "headline": "You're in three timelines. All are tender.",
+    "personal": "Your antenna is sensitive. Ground one intuition in a concrete action before noon. Apply it to one real thing, not everything.",
+    "love": "If you're waiting for a sign, this sentence is it. Text first.",
+    "career": "Your competence is visible without the slideshow. Let it be.",
+    "social": "You don't have to mediate everything. Let two adults disagree.",
+    "greenFlag": "You send the message without rewriting it four times.",
+    "redFlag": "You say 'quick question' before a long story.",
+    "summary": "Pisces 03-14: overall 76, patience 66."
+  }
+]

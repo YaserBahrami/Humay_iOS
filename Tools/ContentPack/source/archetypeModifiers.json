@@ -1,0 +1,170 @@
+[
+  {
+    "archetypeID": "unmovable-romantic",
+    "deltas": {
+      "overall": 0,
+      "romance": -2,
+      "social": 0,
+      "career": -1,
+      "energy": 1,
+      "confidence": -1,
+      "patience": 0,
+      "chaos": 1
+    },
+    "fragment": "You love like you've already picked the ending."
+  },
+  {
+    "archetypeID": "chaotic-diplomat",
+    "deltas": {
+      "overall": 2,
+      "romance": -1,
+      "social": 2,
+      "career": 0,
+      "energy": 2,
+      "confidence": 2,
+      "patience": 1,
+      "chaos": -1
+    },
+    "fragment": "You start the meeting and end the argument in one message."
+  },
+  {
+    "archetypeID": "quiet-storm",
+    "deltas": {
+      "overall": 1,
+      "romance": 0,
+      "social": 1,
+      "career": 2,
+      "energy": 1,
+      "confidence": 2,
+      "patience": -1,
+      "chaos": -2
+    },
+    "fragment": "Silence is your loudest sentence today."
+  },
+  {
+    "archetypeID": "main-character-off-duty",
+    "deltas": {
+      "overall": -1,
+      "romance": 1,
+      "social": -2,
+      "career": -2,
+      "energy": -2,
+      "confidence": -2,
+      "patience": -2,
+      "chaos": 1
+    },
+    "fragment": "Cinematic pause. The plot respects your nap."
+  },
+  {
+    "archetypeID": "overthinking-oracle",
+    "deltas": {
+      "overall": -1,
+      "romance": 0,
+      "social": -1,
+      "career": -1,
+      "energy": 0,
+      "confidence": 0,
+      "patience": -2,
+      "chaos": 2
+    },
+    "fragment": "You mapped twelve futures. Live one."
+  },
+  {
+    "archetypeID": "sunshine-menace",
+    "deltas": {
+      "overall": -2,
+      "romance": -2,
+      "social": -1,
+      "career": 0,
+      "energy": 1,
+      "confidence": -1,
+      "patience": 2,
+      "chaos": -1
+    },
+    "fragment": "Warmth first, mischief second. People forgive in that order."
+  },
+  {
+    "archetypeID": "elegant-chaos",
+    "deltas": {
+      "overall": 0,
+      "romance": -2,
+      "social": 1,
+      "career": 0,
+      "energy": 2,
+      "confidence": 1,
+      "patience": -1,
+      "chaos": 1
+    },
+    "fragment": "The fire is coordinated and wearing perfume."
+  },
+  {
+    "archetypeID": "reluctant-leader",
+    "deltas": {
+      "overall": 2,
+      "romance": 1,
+      "social": 2,
+      "career": 0,
+      "energy": 2,
+      "confidence": -2,
+      "patience": 0,
+      "chaos": -1
+    },
+    "fragment": "You didn't volunteer. You were selected."
+  },
+  {
+    "archetypeID": "soft-realist",
+    "deltas": {
+      "overall": -1,
+      "romance": -2,
+      "social": -1,
+      "career": 1,
+      "energy": 0,
+      "confidence": 0,
+      "patience": -2,
+      "chaos": 1
+    },
+    "fragment": "Tenderness without illusion."
+  },
+  {
+    "archetypeID": "midnight-strategist",
+    "deltas": {
+      "overall": -2,
+      "romance": 0,
+      "social": 0,
+      "career": 0,
+      "energy": 0,
+      "confidence": 0,
+      "patience": 2,
+      "chaos": -1
+    },
+    "fragment": "Your 1 AM idea wants daylight editing."
+  },
+  {
+    "archetypeID": "charming-skeptic",
+    "deltas": {
+      "overall": -2,
+      "romance": 0,
+      "social": -1,
+      "career": 2,
+      "energy": 0,
+      "confidence": -2,
+      "patience": 0,
+      "chaos": 2
+    },
+    "fragment": "You don't believe it, but you checked again. Interesting."
+  },
+  {
+    "archetypeID": "dramatic-stabilizer",
+    "deltas": {
+      "overall": -2,
+      "romance": -1,
+      "social": 0,
+      "career": -2,
+      "energy": 1,
+      "confidence": -2,
+      "patience": -1,
+      "chaos": 0
+    },
+    "fragment": "You announce collapse while holding the ceiling up."
+  }
+]

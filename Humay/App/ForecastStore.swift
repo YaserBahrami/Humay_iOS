@@ -13,20 +13,28 @@ enum ForecastAvailability: Sendable {
 ///
 /// Presentation asks one question — "give me the current forecast for this
 /// person" — and never knows whether content came from cache, the deterministic
-/// provider, a remote AI, or a partial generation (§27, §45).
+/// provider, a bundled offline pack, or a partial generation (§27, §45).
 @Observable
 @MainActor
 final class ForecastStore {
     private let repository: any ForecastRepository
     private let coordinator: ForecastGenerationCoordinator
+    private let bundledRepository: BundledContentPackRepository
+    private let hybridProvider: HybridOfflineContentProvider
 
     private var documents: [UUID: PersonalizedForecastDocument] = [:]
     private var fallbacks: [UUID: YearlyForecast] = [:]
     private var inFlight: [UUID: Task<Void, Never>] = [:]
 
-    init(repository: any ForecastRepository, coordinator: ForecastGenerationCoordinator) {
+    init(
+        repository: any ForecastRepository,
+        coordinator: ForecastGenerationCoordinator,
+        bundledRepository: BundledContentPackRepository = .shared
+    ) {
         self.repository = repository
         self.coordinator = coordinator
+        self.bundledRepository = bundledRepository
+        self.hybridProvider = HybridOfflineContentProvider(repository: bundledRepository)
     }
 
     // MARK: - Reads
@@ -36,10 +44,39 @@ final class ForecastStore {
         documents[subject.id]
     }
 
-    /// Deterministic fallback forecast, computed once per subject and memoized.
+    /// Hybrid offline fallback forecast — bundled AI content where available, deterministic fill otherwise.
+    /// Computed once per subject and memoized.
     func fallbackForecast(for subject: ForecastSubject) -> YearlyForecast {
         if let cached = fallbacks[subject.id] {
             return cached
+        }
+        if bundledRepository.isAvailable {
+            let anchor = fallbackAnchor()
+            let personalization = PersonalizationContext.from(subject: subject)
+            var days: [DailyMood] = []
+            days.reserveCapacity(YearlyForecast.dayCount)
+            var bundledHits = 0
+            for offset in 0..<YearlyForecast.dayCount {
+                if let date = anchor.date(forDayOffset: offset),
+                   let resolved = BundledContentResolver.resolve(
+                       date: date, dayOffset: offset, context: personalization, repository: bundledRepository
+                   ) {
+                    days.append(resolved.dailyMood)
+                    bundledHits += 1
+                } else {
+                    let base = HumayContentEngine.baseScores(profileID: subject.id, birth: subject.birth, dayOffset: offset)
+                    days.append(DailyMood(dayOffset: offset, scores: base.scores, note: base.note))
+                }
+            }
+            let basis: ContentBasis = bundledHits > 0 ? .aiGenerated(modelIdentifier: BundledAIContentProvider.identifier) : .entertainmentFixture
+            let genVersion = bundledHits > 0 ? BundledAIContentProvider.generatorVersion : YearlyForecast.currentGeneratorVersion
+            let forecast = YearlyForecast(
+                profileID: subject.id,
+                days: days,
+                provenance: ContentProvenance(generatorVersion: genVersion, generatedAt: .now, basis: basis)
+            )
+            fallbacks[subject.id] = forecast
+            return forecast
         }
         let forecast = HumayContentEngine.yearlyForecast(
             profileID: subject.id,
@@ -48,6 +85,9 @@ final class ForecastStore {
         fallbacks[subject.id] = forecast
         return forecast
     }
+
+    /// Expose hybrid fallback provenance for DEBUG.
+    var bundledAvailability: Bool { bundledRepository.isAvailable }
 
     /// The forecast presentation should render: personalized days where they
     /// exist, honest deterministic fill for the rest (§33).

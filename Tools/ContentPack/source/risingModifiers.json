@@ -1,0 +1,170 @@
+[
+  {
+    "risingSign": "aries",
+    "deltas": {
+      "overall": 3,
+      "romance": 3,
+      "social": 2,
+      "career": 1,
+      "energy": 2,
+      "confidence": -3,
+      "patience": 2,
+      "chaos": 1
+    },
+    "outwardFragment": "Your first impression today is approximately 'move.'"
+  },
+  {
+    "risingSign": "taurus",
+    "deltas": {
+      "overall": 0,
+      "romance": 2,
+      "social": 3,
+      "career": 0,
+      "energy": -3,
+      "confidence": 3,
+      "patience": 0,
+      "chaos": -1
+    },
+    "outwardFragment": "You enter rooms like you've already paid rent."
+  },
+  {
+    "risingSign": "gemini",
+    "deltas": {
+      "overall": 1,
+      "romance": -1,
+      "social": 2,
+      "career": -1,
+      "energy": 3,
+      "confidence": -3,
+      "patience": 2,
+      "chaos": 3
+    },
+    "outwardFragment": "You look like a group chat with good lighting."
+  },
+  {
+    "risingSign": "cancer",
+    "deltas": {
+      "overall": 2,
+      "romance": 3,
+      "social": -2,
+      "career": 0,
+      "energy": -3,
+      "confidence": -2,
+      "patience": 2,
+      "chaos": 2
+    },
+    "outwardFragment": "You seem approachable in a way people remember."
+  },
+  {
+    "risingSign": "leo",
+    "deltas": {
+      "overall": 2,
+      "romance": 0,
+      "social": 1,
+      "career": 2,
+      "energy": 3,
+      "confidence": 2,
+      "patience": 2,
+      "chaos": 3
+    },
+    "outwardFragment": "You look like you own the place. You don't. Keep acting like it."
+  },
+  {
+    "risingSign": "virgo",
+    "deltas": {
+      "overall": -2,
+      "romance": -2,
+      "social": -1,
+      "career": 1,
+      "energy": -2,
+      "confidence": 1,
+      "patience": -2,
+      "chaos": 0
+    },
+    "outwardFragment": "You seem competent before you speak. Use it wisely."
+  },
+  {
+    "risingSign": "libra",
+    "deltas": {
+      "overall": -3,
+      "romance": -1,
+      "social": 0,
+      "career": -1,
+      "energy": 1,
+      "confidence": 0,
+      "patience": -2,
+      "chaos": 3
+    },
+    "outwardFragment": "You look like a diplomatic solution with nice shoes."
+  },
+  {
+    "risingSign": "scorpio",
+    "deltas": {
+      "overall": -3,
+      "romance": -1,
+      "social": 0,
+      "career": -3,
+      "energy": -3,
+      "confidence": -2,
+      "patience": 2,
+      "chaos": -1
+    },
+    "outwardFragment": "You seem quiet. People lean in anyway."
+  },
+  {
+    "risingSign": "sagittarius",
+    "deltas": {
+      "overall": 3,
+      "romance": -2,
+      "social": -3,
+      "career": 3,
+      "energy": 3,
+      "confidence": -3,
+      "patience": 2,
+      "chaos": -2
+    },
+    "outwardFragment": "You look like you're about to recommend a trip you actually took."
+  },
+  {
+    "risingSign": "capricorn",
+    "deltas": {
+      "overall": 3,
+      "romance": -3,
+      "social": -2,
+      "career": -3,
+      "energy": -2,
+      "confidence": 2,
+      "patience": -3,
+      "chaos": 3
+    },
+    "outwardFragment": "You look like the plan. People relax around you."
+  },
+  {
+    "risingSign": "aquarius",
+    "deltas": {
+      "overall": -2,
+      "romance": -2,
+      "social": 0,
+      "career": -1,
+      "energy": 2,
+      "confidence": 3,
+      "patience": -2,
+      "chaos": -2
+    },
+    "outwardFragment": "You seem unbothered in a way that bothers people, pleasantly."
+  },
+  {
+    "risingSign": "pisces",
+    "deltas": {
+      "overall": 3,
+      "romance": 2,
+      "social": 3,
+      "career": -1,
+      "energy": -1,
+      "confidence": 1,
+      "patience": -2,
+      "chaos": -1
+    },
+    "outwardFragment": "You look like you know something tender about today."
+  }
+]

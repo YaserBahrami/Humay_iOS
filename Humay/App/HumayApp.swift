@@ -30,8 +30,11 @@ struct HumayApp: App {
             ForecastLog.repositoryIssue("durable forecast storage unavailable; using in-memory")
             forecastRepository = InMemoryForecastRepository()
         }
+        // Phase I: offline bundled pack is primary, deterministic is resilient fallback.
+        // No network, no AI API.
+        let offlineProvider = HybridOfflineContentProvider(repository: BundledContentPackRepository.shared)
         let coordinator = ForecastGenerationCoordinator(
-            provider: DeterministicContentProvider(),
+            provider: offlineProvider,
             repository: forecastRepository
         )
         _forecastStore = State(initialValue: ForecastStore(

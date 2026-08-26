@@ -1,0 +1,170 @@
+[
+  {
+    "moonSign": "aries",
+    "deltas": {
+      "overall": 1,
+      "romance": 1,
+      "social": 1,
+      "career": 3,
+      "energy": 1,
+      "confidence": 2,
+      "patience": 4,
+      "chaos": 1
+    },
+    "emotionalFragment": "Your feelings want to move before you explain them."
+  },
+  {
+    "moonSign": "taurus",
+    "deltas": {
+      "overall": 1,
+      "romance": 5,
+      "social": 3,
+      "career": 2,
+      "energy": 2,
+      "confidence": 4,
+      "patience": 4,
+      "chaos": 3
+    },
+    "emotionalFragment": "Emotions arrive slowly and stay for dinner."
+  },
+  {
+    "moonSign": "gemini",
+    "deltas": {
+      "overall": 2,
+      "romance": 0,
+      "social": -2,
+      "career": 2,
+      "energy": 2,
+      "confidence": -1,
+      "patience": -1,
+      "chaos": -1
+    },
+    "emotionalFragment": "You narrate feelings twice to decide what you feel."
+  },
+  {
+    "moonSign": "cancer",
+    "deltas": {
+      "overall": -1,
+      "romance": 2,
+      "social": -1,
+      "career": 1,
+      "energy": 1,
+      "confidence": 1,
+      "patience": -1,
+      "chaos": 2
+    },
+    "emotionalFragment": "Tenderness is close to the surface. Handle gently."
+  },
+  {
+    "moonSign": "leo",
+    "deltas": {
+      "overall": -1,
+      "romance": 2,
+      "social": -1,
+      "career": 2,
+      "energy": -2,
+      "confidence": 2,
+      "patience": 3,
+      "chaos": 2
+    },
+    "emotionalFragment": "You feel things at full brightness. Dim slightly."
+  },
+  {
+    "moonSign": "virgo",
+    "deltas": {
+      "overall": -1,
+      "romance": -1,
+      "social": -1,
+      "career": -1,
+      "energy": 2,
+      "confidence": 1,
+      "patience": 1,
+      "chaos": 0
+    },
+    "emotionalFragment": "You audit feelings like a spreadsheet. Most pass."
+  },
+  {
+    "moonSign": "libra",
+    "deltas": {
+      "overall": 0,
+      "romance": 0,
+      "social": 1,
+      "career": 0,
+      "energy": 1,
+      "confidence": 0,
+      "patience": -2,
+      "chaos": -2
+    },
+    "emotionalFragment": "You weigh feelings as if they were options."
+  },
+  {
+    "moonSign": "scorpio",
+    "deltas": {
+      "overall": 4,
+      "romance": 7,
+      "social": 3,
+      "career": 2,
+      "energy": 2,
+      "confidence": 5,
+      "patience": 4,
+      "chaos": 4
+    },
+    "emotionalFragment": "You're processing feelings like they need quarterly approval."
+  },
+  {
+    "moonSign": "sagittarius",
+    "deltas": {
+      "overall": 1,
+      "romance": 2,
+      "social": 1,
+      "career": 0,
+      "energy": 3,
+      "confidence": 0,
+      "patience": 0,
+      "chaos": 1
+    },
+    "emotionalFragment": "Feelings want an exit visa. Let them stay one night."
+  },
+  {
+    "moonSign": "capricorn",
+    "deltas": {
+      "overall": -2,
+      "romance": 0,
+      "social": -3,
+      "career": -2,
+      "energy": -2,
+      "confidence": -2,
+      "patience": 0,
+      "chaos": -1
+    },
+    "emotionalFragment": "Emotions file themselves under 'later'. Open the folder."
+  },
+  {
+    "moonSign": "aquarius",
+    "deltas": {
+      "overall": -1,
+      "romance": 1,
+      "social": -1,
+      "career": -1,
+      "energy": -1,
+      "confidence": -1,
+      "patience": -2,
+      "chaos": 0
+    },
+    "emotionalFragment": "You observe feelings from a polite distance."
+  },
+  {
+    "moonSign": "pisces",
+    "deltas": {
+      "overall": 0,
+      "romance": 1,
+      "social": -2,
+      "career": -2,
+      "energy": 0,
+      "confidence": -1,
+      "patience": 0,
+      "chaos": 1
+    },
+    "emotionalFragment": "Feelings arrive in every language at once."
+  }
+]
