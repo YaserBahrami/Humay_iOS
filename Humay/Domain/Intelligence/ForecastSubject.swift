@@ -16,6 +16,16 @@ struct ForecastSubject: Sendable, Hashable, Identifiable {
     var sunSign: WesternZodiacSign? {
         SunSignCalendar.westernSunSign(month: birth.month, day: birth.day)
     }
+
+    /// Trustworthy Big Three when calculable. Sync, deterministic, offline.
+    /// Returns nil only if calculation throws (invalid input) — callers should
+    /// treat nil as unavailable rather than guessing.
+    func bigThree() -> BigThree? {
+        // Use the synchronous helper — the engine is pure math + Foundation
+        // TimeZone, so sync execution is identical to the async calculator.
+        // Async call-sites (ForecastStore) should prefer `BigThreeCache` instead.
+        return BigThreeSyncHelper.compute(birth: birth)
+    }
 }
 
 extension UserProfile {
@@ -33,9 +43,9 @@ extension ConnectionPerson {
 /// Version inputs that materially change generated content. Bump these when the
 /// calculation basis or output shape changes so stale caches can be detected.
 enum IntelligenceVersions {
-    /// Version of the deterministic astrology inputs feeding generation. Until a
-    /// real engine exists, only the date-table Sun sign is available.
-    static let astrologyCalculation = "astro-date-table-v1"
+    /// Deterministic astrology inputs feeding generation — now real Sun/Moon/Rising
+    /// via `HumayAstronomyEngine`. Bump invalidates stale documents.
+    static let astrologyCalculation = "bigthree-v1"
     /// Version of the persisted document schema.
     static let forecastSchema = 1
     /// Prompt catalog version recorded in provenance.

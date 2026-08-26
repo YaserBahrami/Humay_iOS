@@ -65,9 +65,22 @@ actor RemoteAIContentProvider: PersonalizedContentProviding {
         subject: ForecastSubject,
         anchor: ForecastAnchor
     ) async throws -> GeneratedOutline {
+        let bigThree = subject.bigThree()
+        let contextJSON: String = {
+            if let bt = bigThree {
+                let source = bt.astrologyContextWithDegreesForAI.isEmpty ? bt.astrologyContextForAI : bt.astrologyContextWithDegreesForAI
+                if let data = try? JSONSerialization.data(withJSONObject: source, options: [.sortedKeys]),
+                   let s = String(data: data, encoding: .utf8) { return s }
+                return "{}"
+            }
+            return "{\"sun\":\"\(subject.sunSign?.rawValue ?? "unavailable")\"}"
+        }()
         let input = YearOutlineInput(
             startDateDescription: "\(anchor.startYear)-\(anchor.startMonth)-\(anchor.startDay)",
-            sunSign: subject.sunSign?.rawValue,
+            sunSign: bigThree?.sunSign?.rawValue ?? subject.sunSign?.rawValue,
+            moonSign: bigThree?.moonSign?.rawValue,
+            risingSign: bigThree?.risingSign?.rawValue,
+            astrologyContextJSON: contextJSON,
             archetypeName: HumayContentEngine.archetype(profileID: subject.id).name,
             birthTimeKnown: subject.birth.time.isKnown
         )

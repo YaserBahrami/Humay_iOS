@@ -82,8 +82,8 @@ extension WesternZodiacSign {
 struct IdentitySection: View {
     let profile: UserProfile
 
-    private var sunSign: WesternZodiacSign? {
-        SunSignCalendar.westernSunSign(month: profile.birth.month, day: profile.birth.day)
+    private var bigThree: BigThree? {
+        profile.forecastSubject.bigThree()
     }
 
     var body: some View {
@@ -95,18 +95,52 @@ struct IdentitySection: View {
                 moonRow
                 risingRow
             }
+
+            #if DEBUG
+            if let bt = bigThree, let json = BigThreeDebug.json(for: profile.birth) {
+                BigThreeDebugView(json: json, birthUTC: bt.metadata.calculatedAt.formatted())
+            }
+            #endif
         }
     }
 
-    /// Fun line per sign — Level 1. Expansion reveals Level 2/3 explanation.
+    // MARK: - Rows driven by deterministic BigThree
+
+    @ViewBuilder
     private var sunRow: some View {
-        Group {
-            if let sunSign {
+        if let bt = bigThree {
+            switch bt.sun {
+            case .available(let pos):
                 DisclosureRow(
-                    title: "\(sunSign.displayName) Sun",
-                    subtitle: sunSign.humayTagline,
+                    title: "\(pos.sign.displayName) Sun",
+                    subtitle: pos.sign.humayTagline,
                     humanExplanation: "Your Sun sign is the zodiac season you were born into — the classic \"what's your sign\" answer. Astrologers treat it as your core character sheet.",
-                    traditionalBasis: "Determined by the tropical date ranges of the Sun's apparent path. Computed here from your birth date alone; no ephemeris required."
+                    traditionalBasis: String(format: "Tropical Sun at %.1f° longitude — %.1f° %@. Deterministic, offline, no AI.", pos.longitudeDegrees, pos.degreeWithinSign, pos.sign.displayName)
+                )
+            case .ambiguous(let opts):
+                let names = opts.map(\.sign.displayName).joined(separator: " or ")
+                WithheldRow(
+                    title: "Sun sign",
+                    tease: "Could be \(names)",
+                    detail: "Your birth date sits on a Sun cusp. Add your birth time and Humay can lock it in exactly."
+                )
+            case .unavailable:
+                fallbackSunRow
+            }
+        } else {
+            fallbackSunRow
+        }
+    }
+
+    private var fallbackSunRow: some View {
+        let sign = SunSignCalendar.westernSunSign(month: profile.birth.month, day: profile.birth.day)
+        return Group {
+            if let sign {
+                DisclosureRow(
+                    title: "\(sign.displayName) Sun",
+                    subtitle: sign.humayTagline,
+                    humanExplanation: "Your Sun sign is the zodiac season you were born into — the classic \"what's your sign\" answer.",
+                    traditionalBasis: "Date-table Sun (no birth time). With time + place Humay upgrades to longitude-correct Sun."
                 )
             } else {
                 LabeledContent("Sun", value: "Add a birth date")
@@ -114,44 +148,111 @@ struct IdentitySection: View {
         }
     }
 
+    @ViewBuilder
     private var moonRow: some View {
-        Group {
-            if profile.birth.time.isKnown {
+        if let bt = bigThree {
+            switch bt.moon {
+            case .available(let pos):
                 DisclosureRow(
-                    title: "Moon sign",
-                    subtitle: "Requires real calculation — arriving with Humay's astrology engine.",
-                    humanExplanation: "The Moon moves fast; its sign changes every couple of days. Honest math needs an exact time and place.",
-                    traditionalBasis: "Computed from lunar ecliptic longitude at your exact birth moment."
+                    title: "\(pos.sign.displayName) Moon",
+                    subtitle: pos.sign.humayTagline,
+                    humanExplanation: "The Moon moves fast; its sign colours your emotional weather. Astrologers read it as your inner life.",
+                    traditionalBasis: String(format: "Tropical Moon at %.1f° longitude — %.1f° %@.", pos.longitudeDegrees, pos.degreeWithinSign, pos.sign.displayName)
                 )
-            } else {
+            case .ambiguous(let opts):
+                let names = opts.map(\.sign.displayName).joined(separator: " or ")
                 WithheldRow(
-                    title: "Moon sign",
-                    tease: "This one needs to know what time you showed up.",
+                    title: "Moon",
+                    tease: "Could be \(names)",
+                    detail: "Your birth time is needed to know for sure. The Moon changes signs every couple of days, so Humay won't guess."
+                )
+            case .unavailable(let reason):
+                WithheldRow(
+                    title: "Moon",
+                    tease: reason == .missingBirthPlace ? "Add your birth place to see your Moon." : "This one needs to know what time you showed up.",
                     detail: "The Moon changes signs every couple of days, so Humay won't guess. Add your birth time anytime — no fake precision, ever."
                 )
             }
+        } else {
+            WithheldRow(
+                title: "Moon",
+                tease: "This one needs to know what time you showed up.",
+                detail: "The Moon changes signs every couple of days, so Humay won't guess. Add your birth time anytime — no fake precision, ever."
+            )
         }
     }
 
+    @ViewBuilder
     private var risingRow: some View {
-        Group {
-            if profile.birth.supportsPrecision {
+        if let bt = bigThree {
+            switch bt.rising {
+            case .available(let pos):
                 DisclosureRow(
-                    title: "Rising sign",
-                    subtitle: "Requires real calculation — arriving with Humay's astrology engine.",
+                    title: "\(pos.sign.displayName) Rising",
+                    subtitle: pos.sign.humayTagline,
                     humanExplanation: "Your Rising is the sign coming over the horizon when you were born — astrologers' shorthand for first impressions.",
-                    traditionalBasis: "Computed from your exact time and place of birth."
+                    traditionalBasis: String(format: "Ascendant at %.1f° longitude — %.1f° %@. Computed from exact time, latitude and historical timezone.", pos.longitudeDegrees, pos.degreeWithinSign, pos.sign.displayName)
                 )
-            } else {
+            case .ambiguous:
                 WithheldRow(
-                    title: "Rising sign",
-                    tease: "Needs your birth time and place. Call your mom if necessary.",
+                    title: "Rising",
+                    tease: "Birth time needed",
+                    detail: "The Rising sign depends on the minute and coordinates of your arrival. Humay would rather show nothing than invent something."
+                )
+            case .unavailable:
+                WithheldRow(
+                    title: "Rising",
+                    tease: "Birth time needed",
                     detail: "The Rising sign depends on the minute and coordinates of your arrival. Humay would rather show nothing than invent something."
                 )
             }
+        } else {
+            WithheldRow(
+                title: "Rising",
+                tease: "Needs your birth time and place. Call your mom if necessary.",
+                detail: "The Rising sign depends on the minute and coordinates of your arrival. Humay would rather show nothing than invent something."
+            )
         }
     }
 }
+
+#if DEBUG
+private struct BigThreeDebugView: View {
+    let json: String
+    let birthUTC: String
+    @State private var expanded = false
+    var body: some View {
+        VStack(alignment: .leading, spacing: HumaySpacing.small) {
+            Button { withAnimation(HumayMotion.snappy) { expanded.toggle() } } label: {
+                HStack {
+                    Text("Big Three debug")
+                        .font(HumayTypography.caption.weight(.bold))
+                        .tracking(1.1)
+                        .foregroundStyle(Color.humayLavender)
+                    Spacer()
+                    Image(systemName: expanded ? "chevron.down" : "chevron.right")
+                        .font(.caption)
+                        .foregroundStyle(Color.humayTextSecondary)
+                }
+            }
+            .buttonStyle(.plain)
+            if expanded {
+                Text(json)
+                    .font(.system(.caption, design: .monospaced))
+                    .foregroundStyle(Color.humayTextSecondary)
+                    .textSelection(.enabled)
+                    .fixedSize(horizontal: false, vertical: true)
+                    .padding(HumaySpacing.small)
+                    .background(Color.humayRaisedSurface.opacity(0.6), in: RoundedRectangle(cornerRadius: 8))
+            }
+        }
+        .padding(HumaySpacing.medium)
+        .background(Color.humaySurface.opacity(0.7), in: RoundedRectangle(cornerRadius: HumayRadius.surface))
+        .overlay { RoundedRectangle(cornerRadius: HumayRadius.surface).strokeBorder(Color.humayHairline.opacity(0.6)) }
+        .accessibilityIdentifier("debug.bigThree")
+    }
+}
+#endif
 
 /// Progressive-disclosure row: fun line collapsed; human + traditional layers expand.
 struct DisclosureRow: View {

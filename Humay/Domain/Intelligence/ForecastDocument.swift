@@ -44,19 +44,118 @@ struct PersonalizedForecastDocument: Sendable, Hashable, Codable {
         }
     }
 
-    /// Deterministic astrology identity only. Moon/Rising stay nil until a real
-    /// calculation engine exists — AI never fills them (§3).
+    /// Deterministic astrology identity — now Sun/Moon/Rising from the offline
+    /// Big Three calculator. AI never fills them (§3). Facts carry numeric
+    /// longitude where available; formatting belongs to Presentation.
     struct AstrologyRecord: Sendable, Hashable, Codable {
         let sunSign: String?
+        let sunLongitude: Double?
+        let sunDegreeWithinSign: Double?
         let moonSign: String?
+        let moonLongitude: Double?
+        let moonDegreeWithinSign: Double?
+        let moonAmbiguousOptions: [String]?
         let risingSign: String?
+        let risingLongitude: Double?
+        let risingDegreeWithinSign: Double?
         let calculationVersion: String
+        let engineIdentifier: String?
+        let zodiacSystem: String?
+        let calculatedAt: Date?
 
         init(subject: ForecastSubject) {
-            sunSign = subject.sunSign?.rawValue
-            moonSign = nil
-            risingSign = nil
-            calculationVersion = IntelligenceVersions.astrologyCalculation
+            if let bigThree = subject.bigThree() {
+                switch bigThree.sun {
+                case .available(let pos):
+                    sunSign = pos.sign.rawValue
+                    sunLongitude = pos.longitudeDegrees
+                    sunDegreeWithinSign = pos.degreeWithinSign
+                case .ambiguous(let opts):
+                    sunSign = opts.first?.sign.rawValue
+                    sunLongitude = opts.first?.longitudeDegrees
+                    sunDegreeWithinSign = opts.first?.degreeWithinSign
+                case .unavailable:
+                    sunSign = subject.sunSign?.rawValue
+                    sunLongitude = nil
+                    sunDegreeWithinSign = nil
+                }
+                switch bigThree.moon {
+                case .available(let pos):
+                    moonSign = pos.sign.rawValue
+                    moonLongitude = pos.longitudeDegrees
+                    moonDegreeWithinSign = pos.degreeWithinSign
+                    moonAmbiguousOptions = nil
+                case .ambiguous(let opts):
+                    moonSign = nil
+                    moonLongitude = nil
+                    moonDegreeWithinSign = nil
+                    moonAmbiguousOptions = opts.map(\.sign.rawValue)
+                case .unavailable:
+                    moonSign = nil
+                    moonLongitude = nil
+                    moonDegreeWithinSign = nil
+                    moonAmbiguousOptions = nil
+                }
+                switch bigThree.rising {
+                case .available(let pos):
+                    risingSign = pos.sign.rawValue
+                    risingLongitude = pos.longitudeDegrees
+                    risingDegreeWithinSign = pos.degreeWithinSign
+                case .ambiguous(let opts):
+                    risingSign = opts.first?.sign.rawValue
+                    risingLongitude = opts.first?.longitudeDegrees
+                    risingDegreeWithinSign = opts.first?.degreeWithinSign
+                case .unavailable:
+                    risingSign = nil
+                    risingLongitude = nil
+                    risingDegreeWithinSign = nil
+                }
+                calculationVersion = bigThree.metadata.calculatorVersion
+                engineIdentifier = bigThree.metadata.astronomyEngineIdentifier
+                zodiacSystem = bigThree.metadata.zodiacSystem.rawValue
+                calculatedAt = bigThree.metadata.calculatedAt
+            } else {
+                // Invalid input fallback — preserve date-table Sun if possible.
+                sunSign = subject.sunSign?.rawValue
+                sunLongitude = nil
+                sunDegreeWithinSign = nil
+                moonSign = nil
+                moonLongitude = nil
+                moonDegreeWithinSign = nil
+                moonAmbiguousOptions = nil
+                risingSign = nil
+                risingLongitude = nil
+                risingDegreeWithinSign = nil
+                calculationVersion = IntelligenceVersions.astrologyCalculation
+                engineIdentifier = nil
+                zodiacSystem = ZodiacSystem.tropical.rawValue
+                calculatedAt = nil
+            }
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case sunSign, sunLongitude, sunDegreeWithinSign
+            case moonSign, moonLongitude, moonDegreeWithinSign, moonAmbiguousOptions
+            case risingSign, risingLongitude, risingDegreeWithinSign
+            case calculationVersion, engineIdentifier, zodiacSystem, calculatedAt
+        }
+
+        init(from decoder: any Decoder) throws {
+            let c = try decoder.container(keyedBy: CodingKeys.self)
+            sunSign = try c.decodeIfPresent(String.self, forKey: .sunSign)
+            sunLongitude = try c.decodeIfPresent(Double.self, forKey: .sunLongitude)
+            sunDegreeWithinSign = try c.decodeIfPresent(Double.self, forKey: .sunDegreeWithinSign)
+            moonSign = try c.decodeIfPresent(String.self, forKey: .moonSign)
+            moonLongitude = try c.decodeIfPresent(Double.self, forKey: .moonLongitude)
+            moonDegreeWithinSign = try c.decodeIfPresent(Double.self, forKey: .moonDegreeWithinSign)
+            moonAmbiguousOptions = try c.decodeIfPresent([String].self, forKey: .moonAmbiguousOptions)
+            risingSign = try c.decodeIfPresent(String.self, forKey: .risingSign)
+            risingLongitude = try c.decodeIfPresent(Double.self, forKey: .risingLongitude)
+            risingDegreeWithinSign = try c.decodeIfPresent(Double.self, forKey: .risingDegreeWithinSign)
+            calculationVersion = try c.decodeIfPresent(String.self, forKey: .calculationVersion) ?? IntelligenceVersions.astrologyCalculation
+            engineIdentifier = try c.decodeIfPresent(String.self, forKey: .engineIdentifier)
+            zodiacSystem = try c.decodeIfPresent(String.self, forKey: .zodiacSystem)
+            calculatedAt = try c.decodeIfPresent(Date.self, forKey: .calculatedAt)
         }
     }
 

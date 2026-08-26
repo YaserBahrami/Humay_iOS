@@ -18,7 +18,7 @@ enum WesternPlanet: String, CaseIterable, Sendable, Hashable {
 }
 
 /// Tropical zodiac signs in ecliptic-longitude order.
-enum WesternZodiacSign: String, CaseIterable, Sendable, Hashable {
+enum WesternZodiacSign: String, CaseIterable, Sendable, Hashable, Codable {
     case aries
     case taurus
     case gemini

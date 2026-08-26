@@ -59,10 +59,15 @@ enum PromptCatalog {
         Task: create the canonical annual plan for one person's entertainment \
         forecast year starting \(input.startDateDescription).
 
-        Person context (the only astrology Humay trusts for them):
-        - Sun sign: \(input.sunSign ?? "unavailable (no birth date)")
+        Person context (the only astrology Humay trusts for them — deterministic Big Three):
+        - Sun sign: \(input.sunSign ?? "unavailable")
+        - Moon sign: \(input.moonSign ?? "unavailable (needs birth time)")
+        - Rising sign: \(input.risingSign ?? "unavailable (needs birth time + place)")
         - Humay archetype: \(input.archetypeName)
         - Birth time known: \(input.birthTimeKnown)
+        - Astrology context for flavor (optional degrees): \(input.astrologyContextJSON)
+
+        AI must never overwrite these values or invent other placements.
 
         Return JSON: {"yearTheme": string (<=140 chars), "monthlyThemes": \
         exactly 12 objects {"monthIndex": 0-11, "theme": string, "tendency": \
@@ -140,8 +145,40 @@ enum PromptCatalog {
 struct YearOutlineInput: Sendable {
     let startDateDescription: String
     let sunSign: String?
+    let moonSign: String?
+    let risingSign: String?
+    let astrologyContextJSON: String
     let archetypeName: String
     let birthTimeKnown: Bool
+
+    /// Convenience for callers still using the v1 subset.
+    init(startDateDescription: String, sunSign: String?, archetypeName: String, birthTimeKnown: Bool) {
+        self.startDateDescription = startDateDescription
+        self.sunSign = sunSign
+        self.moonSign = nil
+        self.risingSign = nil
+        self.astrologyContextJSON = "{\"sun\":\"\(sunSign ?? "unavailable")\"}"
+        self.archetypeName = archetypeName
+        self.birthTimeKnown = birthTimeKnown
+    }
+
+    init(
+        startDateDescription: String,
+        sunSign: String?,
+        moonSign: String?,
+        risingSign: String?,
+        astrologyContextJSON: String,
+        archetypeName: String,
+        birthTimeKnown: Bool
+    ) {
+        self.startDateDescription = startDateDescription
+        self.sunSign = sunSign
+        self.moonSign = moonSign
+        self.risingSign = risingSign
+        self.astrologyContextJSON = astrologyContextJSON
+        self.archetypeName = archetypeName
+        self.birthTimeKnown = birthTimeKnown
+    }
 }
 
 struct MonthChunkInput: Sendable {
