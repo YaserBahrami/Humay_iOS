@@ -33,10 +33,13 @@ struct AppNavigationTests {
     @Test("Onboarding route sequence is canonical")
     func onboardingRouteSequenceIsCanonical() {
         #expect(OnboardingRoute.canonicalSequence == [
-            .welcome, .birthDate, .name, .tradition, .profileReveal
+            .welcome, .birthDate, .birthTime, .birthPlace, .name, .tradition, .profileReveal
         ])
         #expect(OnboardingRoute.welcome.next == .birthDate)
-        #expect(OnboardingRoute.name.previous == .birthDate)
+        #expect(OnboardingRoute.birthDate.next == .birthTime)
+        #expect(OnboardingRoute.birthTime.next == .birthPlace)
+        #expect(OnboardingRoute.birthPlace.next == .name)
+        #expect(OnboardingRoute.name.previous == .birthPlace)
         #expect(OnboardingRoute.tradition.next == .profileReveal)
         #expect(OnboardingRoute.profileReveal.next == nil)
     }

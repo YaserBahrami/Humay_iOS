@@ -9,8 +9,10 @@ struct OnboardingTests {
     func routeTransitions() {
         #expect(OnboardingRoute.welcome.next == .birthDate)
         #expect(OnboardingRoute.birthDate.previous == .welcome)
-        #expect(OnboardingRoute.birthDate.next == .name)
-        #expect(OnboardingRoute.name.previous == .birthDate)
+        #expect(OnboardingRoute.birthDate.next == .birthTime)
+        #expect(OnboardingRoute.birthTime.next == .birthPlace)
+        #expect(OnboardingRoute.birthPlace.next == .name)
+        #expect(OnboardingRoute.name.previous == .birthPlace)
         #expect(OnboardingRoute.name.next == .tradition)
         #expect(OnboardingRoute.tradition.previous == .name)
         #expect(OnboardingRoute.tradition.next == .profileReveal)
@@ -85,13 +87,14 @@ struct OnboardingTests {
         draft.selectedTradition = .chinese
 
         var route = OnboardingRoute.welcome
-        route = try #require(route.next)
-        route = try #require(route.next)
-        route = try #require(route.next)
-        route = try #require(route.previous)
-        route = try #require(route.previous)
+        route = try #require(route.next) // birthDate
+        route = try #require(route.next) // birthTime
+        route = try #require(route.next) // birthPlace
+        route = try #require(route.next) // name
+        route = try #require(route.previous) // birthPlace
+        route = try #require(route.previous) // birthTime
 
-        #expect(route == .birthDate)
+        #expect(route == .birthTime)
         #expect(draft.confirmedBirthDate == OnboardingBirthDate(year: 1994, month: 3, day: 14))
         #expect(draft.selectedTradition == .chinese)
     }

@@ -20,6 +20,17 @@ struct YouView: View {
                     if let profile = environment.profile {
                         IdentitySection(profile: profile)
 
+                        if profile.birth.time == .unknown || profile.birth.place == .notProvided {
+                            Button {
+                                navigation.auxiliaryRoute = .profileSettings
+                            } label: {
+                                Label("Complete birth details", systemImage: "pencil")
+                                    .font(HumayTypography.bodyEmphasized)
+                            }
+                            .buttonStyle(.humaySecondary)
+                            .accessibilityIdentifier("you.completeBirthDetails")
+                        }
+
                         ArchetypeCard(archetype: HumayContentEngine.archetype(profileID: profile.id))
                             .accessibilityIdentifier("you.archetype")
 

@@ -35,7 +35,10 @@ actor DeterministicContentProvider: PersonalizedContentProviding {
         return GeneratedOutline(
             context: context,
             usage: GenerationUsage(requestCount: 1),
-            modelIdentifier: nil
+            modelIdentifier: nil,
+            sourceDescriptor: descriptor,
+            packVersion: nil,
+            contentCycleVersion: nil
         )
     }
 
@@ -65,7 +68,7 @@ actor DeterministicContentProvider: PersonalizedContentProviding {
                 rng: &rng
             )
         }
-        return GeneratedMonth(days: days, usage: GenerationUsage(requestCount: 1), modelIdentifier: nil)
+        return GeneratedMonth(days: days, usage: GenerationUsage(requestCount: 1), modelIdentifier: nil, sourceDescriptor: descriptor, packVersion: nil, contentCycleVersion: nil)
     }
 
     func regenerateDay(

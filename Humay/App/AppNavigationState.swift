@@ -21,10 +21,12 @@ enum AppRootState: String, CaseIterable, Hashable, Sendable {
     }
 }
 
-/// Canonical onboarding ownership. Presentation renders exactly these five routes.
+/// Canonical onboarding ownership. Presentation renders exactly these routes (I.2.1 adds birthTime/Place).
 enum OnboardingRoute: String, CaseIterable, Hashable, Sendable {
     case welcome
     case birthDate
+    case birthTime
+    case birthPlace
     case name
     case tradition
     case profileReveal
@@ -32,6 +34,8 @@ enum OnboardingRoute: String, CaseIterable, Hashable, Sendable {
     static let canonicalSequence: [OnboardingRoute] = [
         .welcome,
         .birthDate,
+        .birthTime,
+        .birthPlace,
         .name,
         .tradition,
         .profileReveal
@@ -40,7 +44,9 @@ enum OnboardingRoute: String, CaseIterable, Hashable, Sendable {
     var next: Self? {
         switch self {
         case .welcome: .birthDate
-        case .birthDate: .name
+        case .birthDate: .birthTime
+        case .birthTime: .birthPlace
+        case .birthPlace: .name
         case .name: .tradition
         case .tradition: .profileReveal
         case .profileReveal: nil
@@ -51,7 +57,9 @@ enum OnboardingRoute: String, CaseIterable, Hashable, Sendable {
         switch self {
         case .welcome: nil
         case .birthDate: .welcome
-        case .name: .birthDate
+        case .birthTime: .birthDate
+        case .birthPlace: .birthTime
+        case .name: .birthPlace
         case .tradition: .name
         case .profileReveal: .tradition
         }

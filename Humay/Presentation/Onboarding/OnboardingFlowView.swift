@@ -5,16 +5,19 @@ struct OnboardingFlowView: View {
     @Bindable private var draft: OnboardingDraftState
 
     private let onComplete: () -> Void
+    private let birthPlaceSearchService: any BirthPlaceSearching
 
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
 
     init(
         route: Binding<OnboardingRoute>,
         draft: OnboardingDraftState,
+        birthPlaceSearchService: any BirthPlaceSearching = AppleBirthPlaceSearchService(),
         onComplete: @escaping () -> Void
     ) {
         self._route = route
         self._draft = Bindable(wrappedValue: draft)
+        self.birthPlaceSearchService = birthPlaceSearchService
         self.onComplete = onComplete
     }
 
@@ -32,14 +35,30 @@ struct OnboardingFlowView: View {
                     onBack: { route = .welcome },
                     onContinue: {
                         guard draft.confirmBirthDate() else { return }
-                        route = .name
+                        route = .birthTime
                     }
+                )
+
+            case .birthTime:
+                BirthTimeView(
+                    draft: draft,
+                    onBack: { route = .birthDate },
+                    onContinue: { route = .birthPlace }
+                )
+
+            case .birthPlace:
+                BirthPlaceSearchView(
+                    draft: draft,
+                    searchService: birthPlaceSearchService,
+                    onBack: { route = .birthTime },
+                    onContinue: { route = .name },
+                    onSkip: { route = .name }
                 )
 
             case .name:
                 NameView(
                     draft: draft,
-                    onBack: { route = .birthDate },
+                    onBack: { route = .birthPlace },
                     onContinue: { route = .tradition }
                 )
 
@@ -55,6 +74,7 @@ struct OnboardingFlowView: View {
                     ProfileRevealView(
                         birthDate: birthDate,
                         displayName: draft.displayName.trimmingCharacters(in: .whitespacesAndNewlines),
+                        birthDetails: draft.draftBirthDetails,
                         tradition: draft.selectedTradition,
                         onBack: { route = .tradition },
                         onEnterHumay: onComplete
@@ -65,7 +85,7 @@ struct OnboardingFlowView: View {
                         onBack: { route = .welcome },
                         onContinue: {
                             guard draft.confirmBirthDate() else { return }
-                            route = .name
+                            route = .birthTime
                         }
                     )
                 }
@@ -153,7 +173,7 @@ struct OnboardingProgress: View {
 
     var body: some View {
         HStack(spacing: HumaySpacing.small) {
-            ForEach(0..<5, id: \.self) { step in
+            ForEach(0..<7, id: \.self) { step in
                 Capsule()
                     .fill(step == index ? Color.humayCoral : Color.humayHairline)
                     .frame(
@@ -164,7 +184,7 @@ struct OnboardingProgress: View {
         }
         .accessibilityElement(children: .ignore)
         .accessibilityLabel("Onboarding progress")
-        .accessibilityValue("Step \(index + 1) of 5")
+        .accessibilityValue("Step \(index + 1) of 7")
     }
 }
 

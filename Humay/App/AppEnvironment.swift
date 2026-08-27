@@ -165,6 +165,48 @@ final class AppEnvironment {
         }
     }
 
+    // MARK: - Birth Details editing (§25-27)
+
+    /// Updates the current user's birth details. Invalidates derived caches when semantic inputs change.
+    /// Returns whether a semantic change (date/time/coordinates/timezone) occurred.
+    @discardableResult
+    func updateBirthDetails(_ newBirth: BirthDetails) async throws -> Bool {
+        guard var current = profile else { throw AppEnvironmentError.notReady }
+        let hadSemanticChange = BirthDetailsSemanticChange.hasSemanticChange(from: current.birth, to: newBirth)
+        let previousProfile = current
+        current.birth = newBirth
+        let previousInMemory = profile
+        profile = current
+        do {
+            try await persistCurrentState()
+        } catch {
+            profile = previousInMemory
+            throw error
+        }
+        // Invalidate shared BigThreeCache for old fingerprint
+        Task { await BigThreeCacheShared.shared.invalidate(for: previousProfile.birth) }
+        return hadSemanticChange
+    }
+
+    func updateDisplayName(_ newName: String) async throws {
+        guard var current = profile else { throw AppEnvironmentError.notReady }
+        let previous = profile
+        current.displayName = newName
+        profile = current
+        do {
+            try await persistCurrentState()
+        } catch {
+            profile = previous
+            throw error
+        }
+    }
+
+    /// Whether the current profile's semantic fingerprint changed vs a new BirthDetails.
+    func hasSemanticBirthChange(to newBirth: BirthDetails) -> Bool {
+        guard let current = profile else { return true }
+        return BirthDetailsSemanticChange.hasSemanticChange(from: current.birth, to: newBirth)
+    }
+
     private func persistCurrentState() async throws {
         guard restorationState == .ready else {
             throw AppEnvironmentError.notReady

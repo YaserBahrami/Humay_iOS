@@ -15,7 +15,7 @@ struct PersonalizedForecastDocument: Sendable, Hashable, Codable {
     let astrology: AstrologyRecord
     let identity: IdentityRecord
     var forecast: ForecastRecord
-    let provenance: ExtendedProvenance
+    var provenance: ExtendedProvenance
     var generationState: GenerationStateRecord
 
     // MARK: - Records
@@ -180,6 +180,7 @@ struct PersonalizedForecastDocument: Sendable, Hashable, Codable {
     }
 
     /// Provenance with generation-method detail beyond the base ContentProvenance.
+    /// I.2.1 adds packVersion/contentCycleVersion for bundled lifecycle staleness (§40-42).
     struct ExtendedProvenance: Sendable, Hashable, Codable {
         let generatorVersion: String
         let promptCatalogVersion: String
@@ -188,6 +189,8 @@ struct PersonalizedForecastDocument: Sendable, Hashable, Codable {
         let generatedAt: Date
         let basis: ContentBasis
         let usedFallback: Bool
+        let packVersion: String?
+        let contentCycleVersion: String?
 
         init(
             generatorVersion: String,
@@ -196,7 +199,9 @@ struct PersonalizedForecastDocument: Sendable, Hashable, Codable {
             modelIdentifier: String? = nil,
             generatedAt: Date = .now,
             basis: ContentBasis,
-            usedFallback: Bool = false
+            usedFallback: Bool = false,
+            packVersion: String? = nil,
+            contentCycleVersion: String? = nil
         ) {
             self.generatorVersion = generatorVersion
             self.promptCatalogVersion = promptCatalogVersion
@@ -205,6 +210,25 @@ struct PersonalizedForecastDocument: Sendable, Hashable, Codable {
             self.generatedAt = generatedAt
             self.basis = basis
             self.usedFallback = usedFallback
+            self.packVersion = packVersion
+            self.contentCycleVersion = contentCycleVersion
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case generatorVersion, promptCatalogVersion, providerIdentifier, modelIdentifier, generatedAt, basis, usedFallback, packVersion, contentCycleVersion
+        }
+
+        init(from decoder: any Decoder) throws {
+            let c = try decoder.container(keyedBy: CodingKeys.self)
+            generatorVersion = try c.decode(String.self, forKey: .generatorVersion)
+            promptCatalogVersion = try c.decodeIfPresent(String.self, forKey: .promptCatalogVersion) ?? IntelligenceVersions.promptCatalog
+            providerIdentifier = try c.decode(String.self, forKey: .providerIdentifier)
+            modelIdentifier = try c.decodeIfPresent(String.self, forKey: .modelIdentifier)
+            generatedAt = try c.decodeIfPresent(Date.self, forKey: .generatedAt) ?? Date.now
+            basis = try c.decodeIfPresent(ContentBasis.self, forKey: .basis) ?? .entertainmentFixture
+            usedFallback = try c.decodeIfPresent(Bool.self, forKey: .usedFallback) ?? false
+            packVersion = try c.decodeIfPresent(String.self, forKey: .packVersion)
+            contentCycleVersion = try c.decodeIfPresent(String.self, forKey: .contentCycleVersion)
         }
     }
 
@@ -263,6 +287,35 @@ struct PersonalizedForecastDocument: Sendable, Hashable, Codable {
             if provenance.generatorVersion != Self.generatorVersion { return true }
         }
         return false
+    }
+
+    /// Bundled content-cycle staleness (§40-42): a persisted bundled or mixed document must become
+    /// stale if originating cycle != currently installed active cycle, pack inactive, or pack unavailable.
+    /// Pure deterministic docs are unaffected appropriately.
+    func isStaleDueToContentCycle(currentContentCycleVersion: String?, currentPackVersion: String?, isBundledAvailable: Bool, isPackActive: Bool) -> Bool {
+        // Only bundled/mixed docs (aiGenerated basis) are subject to pack lifecycle.
+        guard case .aiGenerated = provenance.basis else { return false }
+        // If current bundle unavailable or inactive, bundled content is stale (must fallback to deterministic)
+        if !isBundledAvailable || !isPackActive { return true }
+        // If we stored a cycle and it differs from current, stale
+        if let stored = provenance.contentCycleVersion, let current = currentContentCycleVersion, stored != current { return true }
+        // Pack version semantic incompatibility: if stored != current, consider stale (conservative)
+        if let storedPack = provenance.packVersion, let currentPack = currentPackVersion, storedPack != currentPack {
+            // Check major version change as incompatible; for now any mismatch is stale to avoid masquerading old content
+            if storedPack != currentPack { return true }
+        }
+        return false
+    }
+
+    /// Combined staleness including both fingerprint and content-cycle (§41).
+    func isStaleForCurrentState(subject: ForecastSubject, provider: any PersonalizedContentProviding, bundledRepository: BundledContentPackRepository) -> Bool {
+        if isStale(for: subject, currentGeneratorVersion: provider.descriptor.generatorVersion) { return true }
+        let manifest = bundledRepository.manifest
+        let isAvailable = bundledRepository.isAvailable
+        let isActive = manifest?.isActive(on: Date()) ?? false
+        // Pilot bundles are always active; but Hybrid descriptor may be bundled-ai-v1 even if pilot. In pilot we don't enforce cycle staleness beyond fingerprint.
+        if manifest?.coverage.isPilot == true { return false }
+        return isStaleDueToContentCycle(currentContentCycleVersion: manifest?.contentCycleVersion, currentPackVersion: manifest?.packVersion, isBundledAvailable: isAvailable, isPackActive: isActive)
     }
 
     func resolvedPhase(for subject: ForecastSubject) -> ForecastGenerationPhase {

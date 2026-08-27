@@ -34,14 +34,16 @@ ALLOWED_GENERATION_METHODS = {"scripted-pilot","ai-batch-authored","human-curate
 
 MAX = {"headline":120,"reading":600,"flag":140,"summary":280,"tag":40,"moonFragment":180,"risingFragment":180,"archetypeFragment":160}
 
-# Production QA thresholds (§17-23)
+# Production QA thresholds (§17-23) — §43 adjacent similarity centralized
 THRESHOLDS = {
     "headline_unique_per_sign": 0.90,
     "personal_unique_per_sign": 0.90,
     "love_unique_per_sign": 0.75,
     "career_unique_per_sign": 0.75,
     "social_unique_per_sign": 0.75,
-    "adjacent_similarity_threshold": 0.88,  # SequenceMatcher ratio for near-identical
+    "adjacent_headline_similarity_error": 0.90,  # §43 headline adjacent >0.90 ERROR
+    "adjacent_personal_similarity_error": 0.92,  # §43 personal adjacent >0.92 ERROR
+    "adjacent_similarity_threshold": 0.88,  # legacy inclusive threshold (kept for QA near-duplicate analysis)
     "score_extreme_delta": 40,  # single jump suspicious
     "score_large_delta": 35,
     "max_extreme_jumps_per_sign_dim": 12,  # count of delta>35 per sign/dim before error
@@ -519,13 +521,13 @@ def check_adjacent_production_gates(records, mode):
                 err(f"Adjacent duplicate headline {sign} {a['dayKey']}->{b['dayKey']}")
             if a["personal"]==b["personal"]:
                 err(f"Adjacent duplicate personal {sign} {a['dayKey']}->{b['dayKey']}")
-            # highly similar headline above threshold
+            # §43 high-similarity is production blocker (not warn) with centralized thresholds
             seq_h = difflib.SequenceMatcher(None, normalize(a["headline"]), normalize(b["headline"])).ratio()
-            if seq_h > THRESHOLDS["adjacent_similarity_threshold"]:
-                warn(f"Adjacent highly similar headline {sign} {a['dayKey']}->{b['dayKey']} ratio {seq_h:.2f}")
+            if seq_h > THRESHOLDS["adjacent_headline_similarity_error"]:
+                err(f"Adjacent highly similar headline {sign} {a['dayKey']}->{b['dayKey']} ratio {seq_h:.2f} > {THRESHOLDS['adjacent_headline_similarity_error']}")
             seq_p = difflib.SequenceMatcher(None, normalize(a["personal"]), normalize(b["personal"])).ratio()
-            if seq_p > THRESHOLDS["adjacent_similarity_threshold"]:
-                warn(f"Adjacent highly similar personal {sign} {a['dayKey']}->{b['dayKey']} ratio {seq_p:.2f}")
+            if seq_p > THRESHOLDS["adjacent_personal_similarity_error"]:
+                err(f"Adjacent highly similar personal {sign} {a['dayKey']}->{b['dayKey']} ratio {seq_p:.2f} > {THRESHOLDS['adjacent_personal_similarity_error']}")
 
 def qa_score_coherence(records):
     stats={}

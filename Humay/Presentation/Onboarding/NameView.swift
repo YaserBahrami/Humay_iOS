@@ -14,8 +14,8 @@ struct NameView: View {
 
             VStack(alignment: .leading, spacing: compactHeight ? HumaySpacing.large : HumaySpacing.extraLarge) {
                 OnboardingChrome(
-                    stepLabel: "02 · Your name",
-                    progressIndex: 2,
+                    stepLabel: "04 · Your name",
+                    progressIndex: 4,
                     onBack: onBack
                 )
 

@@ -4,6 +4,7 @@ import SwiftUI
 struct RootView: View {
     @Environment(AppEnvironment.self) private var environment
     @Environment(AppNavigationState.self) private var navigation
+    @Environment(\.birthPlaceSearching) private var birthPlaceSearching
 
     @State private var onboardingDraft = OnboardingDraftState()
     @State private var saveFailed = false
@@ -29,6 +30,7 @@ struct RootView: View {
                 OnboardingFlowView(
                     route: $navigation.onboardingRoute,
                     draft: onboardingDraft,
+                    birthPlaceSearchService: birthPlaceSearching,
                     onComplete: completeOnboarding
                 )
 

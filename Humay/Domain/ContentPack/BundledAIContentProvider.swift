@@ -50,7 +50,7 @@ actor BundledAIContentProvider: PersonalizedContentProviding {
         }
         let notable = notablePeriods(subject: subject, anchor: anchor)
         let context = try YearContext(yearTheme: yearTheme, monthlyThemes: monthlyThemes, notablePeriods: notable)
-        return GeneratedOutline(context: context, usage: .zero, modelIdentifier: Self.identifier)
+        return GeneratedOutline(context: context, usage: .zero, modelIdentifier: Self.identifier, sourceDescriptor: descriptor, packVersion: repository.manifest?.packVersion, contentCycleVersion: repository.manifest?.contentCycleVersion)
     }
 
     func generateMonthChunk(
@@ -87,7 +87,7 @@ actor BundledAIContentProvider: PersonalizedContentProviding {
             }
             days.append(resolved.dailyMood)
         }
-        return GeneratedMonth(days: days, usage: .zero, modelIdentifier: Self.identifier)
+        return GeneratedMonth(days: days, usage: .zero, modelIdentifier: Self.identifier, sourceDescriptor: descriptor, packVersion: repository.manifest?.packVersion, contentCycleVersion: repository.manifest?.contentCycleVersion)
     }
 
     func regenerateDay(

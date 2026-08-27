@@ -87,10 +87,14 @@ struct ProfileSettingsSheet: View {
     @Environment(AppEnvironment.self) private var environment
     @Environment(ForecastStore.self) private var forecastStore
     @Environment(\.dismiss) private var dismiss
+    @Environment(\.birthPlaceSearching) private var birthPlaceSearchService
 
     @State private var saveFailed = false
     @State private var exportWrapper: IdentifiableURL?
     @State private var exportError = false
+    @State private var showBirthDetails = false
+    @State private var birthDetailsSaving = false
+    @State private var birthDetailsDraft: BirthDetailsDraftState?
 
     private struct IdentifiableURL: Identifiable {
         let url: URL
@@ -108,7 +112,21 @@ struct ProfileSettingsSheet: View {
                         LabeledContent("Birth date", value: profile.birth.dateFormatted())
                         LabeledContent("Birth time", value: birthTimeText(profile.birth.time))
                         LabeledContent("Birth place", value: profile.birth.place.name ?? "Not provided")
+                        if missingBirthDetails(profile.birth) {
+                            Label("Add birth time and place for your full Big Three.", systemImage: "sparkles")
+                                .font(HumayTypography.caption)
+                                .foregroundStyle(Color.humayLavender)
+                        }
                     }
+                    Button {
+                        guard let profile = environment.profile else { return }
+                        birthDetailsDraft = BirthDetailsDraftState(birth: profile.birth)
+                        showBirthDetails = true
+                    } label: {
+                        Label("Birth Details", systemImage: "pencil")
+                    }
+                    .disabled(environment.profile == nil)
+                    .accessibilityIdentifier("profile.birthDetails.edit")
                 } header: {
                     Text("Profile")
                 } footer: {
@@ -197,8 +215,48 @@ struct ProfileSettingsSheet: View {
             } message: {
                 Text("Generate a forecast first — open Today or You to trigger generation.")
             }
+            .navigationDestination(isPresented: $showBirthDetails) {
+                if let draft = birthDetailsDraft {
+                    BirthDetailsEditorView(
+                        draft: draft,
+                        searchService: birthPlaceSearchService,
+                        onSave: {
+                            Task { @MainActor in
+                                guard let profile = environment.profile else { return }
+                                let newBirth = draft.currentBirthDetails
+                                if let err = draft.validationError {
+                                    saveFailed = true
+                                    return
+                                }
+                                birthDetailsSaving = true
+                                do {
+                                    let hadChange = try await environment.updateBirthDetails(newBirth)
+                                    if hadChange {
+                                        await forecastStore.invalidateForBirthChange(subject: profile.forecastSubject)
+                                        // Recalculate immediately: ensure forecast uses new identity
+                                        forecastStore.ensureForecast(for: ForecastSubject(id: profile.id, name: profile.displayName, birth: newBirth))
+                                    } else {
+                                        // Even display-name-only place change still persisted but no invalidation
+                                    }
+                                    showBirthDetails = false
+                                } catch {
+                                    saveFailed = true
+                                }
+                                birthDetailsSaving = false
+                            }
+                        },
+                        onCancel: { showBirthDetails = false }
+                    )
+                }
+            }
         }
         .presentationDetents([.medium, .large])
+    }
+
+    private func missingBirthDetails(_ birth: BirthDetails) -> Bool {
+        if case .unknown = birth.time { return true }
+        if case .notProvided = birth.place { return true }
+        return false
     }
 
     private var displayName: String {

@@ -74,7 +74,7 @@ actor ForecastGenerationCoordinator {
         }
         try await repository.save(document)
 
-        // Step 2: canonical annual context.
+        // Step 2: canonical annual context — carry honest source (§38).
         if document.forecast.yearContext == nil {
             do {
                 let outline = try await provider.generateYearOutline(subject: subject, anchor: anchor)
@@ -82,6 +82,25 @@ actor ForecastGenerationCoordinator {
                 document.generationState.requestCount += outline.usage.requestCount
                 document.generationState.usageUnits += outline.usage.usageUnits
                 document.generationState.phase = .generating
+                // Update provenance to actual source (Hybrid may have fallen back to deterministic)
+                if let actual = outline.sourceDescriptor {
+                    let actualBasis = actual.basis
+                    let isDifferent = actual.providerIdentifier != document.provenance.providerIdentifier
+                    if isDifferent || outline.packVersion != document.provenance.packVersion || outline.contentCycleVersion != document.provenance.contentCycleVersion {
+                        document.provenance = PersonalizedForecastDocument.ExtendedProvenance(
+                            generatorVersion: actual.generatorVersion,
+                            promptCatalogVersion: actual.promptCatalogVersion,
+                            providerIdentifier: actual.providerIdentifier,
+                            modelIdentifier: outline.modelIdentifier ?? actual.modelIdentifier,
+                            basis: actualBasis,
+                            usedFallback: actual.providerIdentifier == PersonalizedContentProviderDescriptor.deterministicIdentifier,
+                            packVersion: outline.packVersion,
+                            contentCycleVersion: outline.contentCycleVersion
+                        )
+                        // Keep fingerprint aligned with updated generator version if changed
+                        document.generationState.generatorVersion = actual.generatorVersion
+                    }
+                }
                 try await repository.save(document)
             } catch let error as GenerationError {
                 try await recordFailure(error, on: document, subject: subject)
@@ -117,6 +136,27 @@ actor ForecastGenerationCoordinator {
                     anchor: anchor,
                     monthIndex: monthIndex
                 )
+
+                // Track actual source per month: if deterministic fallback occurred, mark document as mixed (§38)
+                if let actual = generated.sourceDescriptor, actual.providerIdentifier == PersonalizedContentProviderDescriptor.deterministicIdentifier,
+                   document.provenance.providerIdentifier != PersonalizedContentProviderDescriptor.deterministicIdentifier {
+                    // Mixed: some months bundled, this one deterministic — preserve pack info but flag fallback
+                    let mixedProvenance = PersonalizedForecastDocument.ExtendedProvenance(
+                        generatorVersion: document.provenance.generatorVersion,
+                        promptCatalogVersion: document.provenance.promptCatalogVersion,
+                        providerIdentifier: document.provenance.providerIdentifier,
+                        modelIdentifier: document.provenance.modelIdentifier,
+                        basis: document.provenance.basis,
+                        usedFallback: true,
+                        packVersion: document.provenance.packVersion,
+                        contentCycleVersion: document.provenance.contentCycleVersion
+                    )
+                    document.provenance = mixedProvenance
+                    try await repository.save(document)
+                } else if let actual = generated.sourceDescriptor, actual.providerIdentifier == PersonalizedContentProviderDescriptor.deterministicIdentifier,
+                          document.provenance.providerIdentifier == PersonalizedContentProviderDescriptor.deterministicIdentifier {
+                    // Pure deterministic — ensure provenance reflects that (already does for fresh docs)
+                }
 
                 let chunkState = GenerationChunkState(
                     monthIndex: monthIndex,
@@ -197,6 +237,23 @@ actor ForecastGenerationCoordinator {
         days.sort { $0.dayOffset < $1.dayOffset }
         document.forecast.days = days
         document.generationState.requestCount += 1
+        // Single-day provenance fix (§39): if this day required deterministic fallback, don't preserve false bundled identity.
+        // Heuristic: if document was pure bundled (no fallback) and this day would not resolve via bundled pack, mark mixed.
+        if case .aiGenerated = document.provenance.basis, !document.provenance.usedFallback {
+            let personalization = PersonalizationContext.from(subject: subject)
+            if BundledContentResolver.resolve(dayOffset: dayOffset, anchor: document.anchor, context: personalization, repository: BundledContentPackRepository.shared) == nil {
+                document.provenance = PersonalizedForecastDocument.ExtendedProvenance(
+                    generatorVersion: document.provenance.generatorVersion,
+                    promptCatalogVersion: document.provenance.promptCatalogVersion,
+                    providerIdentifier: document.provenance.providerIdentifier,
+                    modelIdentifier: document.provenance.modelIdentifier,
+                    basis: document.provenance.basis,
+                    usedFallback: true,
+                    packVersion: document.provenance.packVersion,
+                    contentCycleVersion: document.provenance.contentCycleVersion
+                )
+            }
+        }
 
         try await repository.save(document)
         return document
@@ -221,7 +278,24 @@ actor ForecastGenerationCoordinator {
             startedAt: .now
         )
         // Include modelIdentifier and prompt catalog for full provenance
+        // For bundled provider, attach pack lifecycle info so staleness can be detected (§40)
         let basis: ContentBasis = descriptor.basis
+        var packV: String? = nil
+        var cycleV: String? = nil
+        if descriptor.providerIdentifier == BundledAIContentProvider.identifier {
+            let shared = BundledContentPackRepository.shared
+            if shared.isAvailable, let manifest = shared.manifest {
+                packV = manifest.packVersion
+                cycleV = manifest.contentCycleVersion
+            }
+        } else if provider.descriptor.providerIdentifier == BundledAIContentProvider.identifier {
+            // Hybrid wrapping bundled — also try shared
+            let shared = BundledContentPackRepository.shared
+            if shared.isAvailable, let manifest = shared.manifest {
+                packV = manifest.packVersion
+                cycleV = manifest.contentCycleVersion
+            }
+        }
         return PersonalizedForecastDocument(
             subject: subject,
             anchor: anchor,
@@ -230,7 +304,9 @@ actor ForecastGenerationCoordinator {
                 promptCatalogVersion: descriptor.promptCatalogVersion,
                 providerIdentifier: descriptor.providerIdentifier,
                 modelIdentifier: descriptor.modelIdentifier,
-                basis: basis
+                basis: basis,
+                packVersion: packV,
+                contentCycleVersion: cycleV
             ),
             generationState: state
         )

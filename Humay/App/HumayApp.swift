@@ -49,12 +49,22 @@ struct HumayApp: App {
 #endif
     }
 
+    private var birthPlaceSearchService: any BirthPlaceSearching {
+#if DEBUG
+        if ProcessInfo.processInfo.arguments.contains("-HumayMockSearch") {
+            return InMemoryBirthPlaceSearchService()
+        }
+#endif
+        return AppleBirthPlaceSearchService()
+    }
+
     var body: some Scene {
         WindowGroup {
             RootView(skyInput: skyInput)
                 .environment(environment)
                 .environment(navigation)
                 .environment(forecastStore)
+                .environment(\.birthPlaceSearching, birthPlaceSearchService)
                 .task {
                     await bootstrap(environment: environment)
                 }

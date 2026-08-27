@@ -48,8 +48,8 @@ struct TraditionView: View {
     ) -> some View {
         VStack(alignment: .leading, spacing: sectionSpacing) {
             OnboardingChrome(
-                stepLabel: "03 · Tradition",
-                progressIndex: 3,
+                stepLabel: "05 · Tradition",
+                progressIndex: 5,
                 onBack: onBack
             )
 
@@ -74,8 +74,8 @@ struct TraditionView: View {
         HStack(alignment: .top, spacing: compactHeight ? HumaySpacing.large : HumaySpacing.extraExtraLarge) {
             VStack(alignment: .leading, spacing: sectionSpacing) {
                 OnboardingChrome(
-                    stepLabel: "03 · Tradition",
-                    progressIndex: 3,
+                    stepLabel: "05 · Tradition",
+                    progressIndex: 5,
                     onBack: onBack
                 )
 

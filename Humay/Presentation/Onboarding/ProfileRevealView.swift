@@ -3,6 +3,7 @@ import SwiftUI
 struct ProfileRevealView: View {
     let birthDate: OnboardingBirthDate
     var displayName: String = ""
+    var birthDetails: BirthDetails? = nil
     let tradition: AstrologyTradition
     let onBack: () -> Void
     let onEnterHumay: () -> Void
@@ -13,15 +14,24 @@ struct ProfileRevealView: View {
         String(displayName.split(whereSeparator: \.isWhitespace).first ?? "")
     }
 
+    private var resolvedBirthDetails: BirthDetails {
+        birthDetails ?? birthDate.birthDetails
+    }
+
+    private var bigThree: BigThree? {
+        BigThreeSyncHelper.compute(birth: resolvedBirthDetails)
+    }
+
     private var sunSign: WesternZodiacSign? {
-        SunSignCalendar.westernSunSign(month: birthDate.month, day: birthDate.day)
+        if let bt = bigThree, case .available(let pos) = bt.sun { return pos.sign }
+        return SunSignCalendar.westernSunSign(month: birthDate.month, day: birthDate.day)
     }
 
     private var headlineTitle: String {
         if firstName.isEmpty {
             return "Your starting profile is ready"
         }
-        return "\(firstName), meet your Sun sign."
+        return "\(firstName), meet your Big Three."
     }
 
     var body: some View {
@@ -57,18 +67,21 @@ struct ProfileRevealView: View {
     private func portraitContent(metrics: ProfileRevealLayoutMetrics) -> some View {
         VStack(alignment: .leading, spacing: metrics.sectionSpacing) {
             OnboardingChrome(
-                stepLabel: "04 · Your reveal",
-                progressIndex: 4,
+                stepLabel: "06 · Your reveal",
+                progressIndex: 6,
                 onBack: onBack
             )
 
             OnboardingTitleBlock(
                 title: headlineTitle,
-                supporting: "A simple beginning — no fake precision.",
+                supporting: "Honest, deterministic — and yours to edit anytime.",
                 hero: false
             )
 
-            if let sunSign {
+            if let bt = bigThree {
+                BigThreePreviewCard(bigThree: bt)
+                    .accessibilityIdentifier("onboarding.profileReveal.bigThree")
+            } else if let sunSign {
                 SunSignRevealCard(sign: sunSign)
             }
 
@@ -92,20 +105,22 @@ struct ProfileRevealView: View {
     private func landscapeContent(metrics: ProfileRevealLayoutMetrics) -> some View {
         VStack(alignment: .leading, spacing: metrics.sectionSpacing) {
             OnboardingChrome(
-                stepLabel: "04 · Your reveal",
-                progressIndex: 4,
+                stepLabel: "06 · Your reveal",
+                progressIndex: 6,
                 onBack: onBack
             )
 
             OnboardingTitleBlock(
                 title: headlineTitle,
-                supporting: "A simple beginning — no fake precision.",
+                supporting: "Honest, deterministic — and yours to edit anytime.",
                 hero: false
             )
 
             HStack(alignment: .top, spacing: HumaySpacing.extraExtraLarge) {
                 VStack(alignment: .leading, spacing: metrics.sectionSpacing) {
-                    if let sunSign {
+                    if let bt = bigThree {
+                        BigThreePreviewCard(bigThree: bt)
+                    } else if let sunSign {
                         SunSignRevealCard(sign: sunSign)
                     }
 
@@ -154,6 +169,14 @@ struct ProfileRevealView: View {
                     value: birthDate.formatted()
                 )
                 ProfileFactRow(
+                    label: "Birth time",
+                    value: birthTimeLabel
+                )
+                ProfileFactRow(
+                    label: "Birth place",
+                    value: birthPlaceLabel
+                )
+                ProfileFactRow(
                     label: "Starting tradition",
                     value: tradition.shortName
                 )
@@ -170,10 +193,10 @@ struct ProfileRevealView: View {
                         .accessibilityHidden(true)
 
                     VStack(alignment: .leading, spacing: HumaySpacing.extraSmall) {
-                        Text("Precision stays optional")
+                        Text("You can edit this anytime")
                             .font(HumayTypography.bodyEmphasized)
 
-                        Text("Add birth time and place later only when something genuinely needs them — Humay will say when.")
+                        Text("Birth Details lives in You → Settings. No reinstall needed.")
                             .font(HumayTypography.supporting)
                             .foregroundStyle(Color.humayTextSecondary)
                             .fixedSize(horizontal: false, vertical: true)
@@ -186,6 +209,28 @@ struct ProfileRevealView: View {
         .accessibilityIdentifier("onboarding.profileReveal.summary")
     }
 
+    private var birthTimeLabel: String {
+        switch resolvedBirthDetails.time {
+        case .exact(let m): Self.formatMinutes(m) + " · Exact"
+        case .approximate(let m, let t): "around \(Self.formatMinutes(m)) · ±\(t) min"
+        case .unknown: "Not provided"
+        }
+    }
+
+    private var birthPlaceLabel: String {
+        resolvedBirthDetails.place.name ?? "Not provided"
+    }
+
+    private static func formatMinutes(_ minutes: Int) -> String {
+        let h = minutes / 60
+        let m = minutes % 60
+        let comps = DateComponents(hour: h, minute: m)
+        if let date = Calendar(identifier: .gregorian).date(from: comps) {
+            return date.formatted(.dateTime.hour().minute().locale(.current))
+        }
+        return String(format: "%02d:%02d", h, m)
+    }
+
     private var primaryAction: some View {
         OnboardingPrimaryAction(
             title: "Enter Humay",
@@ -193,6 +238,87 @@ struct ProfileRevealView: View {
             action: onEnterHumay
         )
         .frame(maxWidth: .infinity, alignment: .center)
+    }
+}
+
+/// Honest Big Three preview for onboarding — reuses terminal presentation conventions.
+private struct BigThreePreviewCard: View {
+    let bigThree: BigThree
+
+    var body: some View {
+        VStack(alignment: .leading, spacing: HumaySpacing.medium) {
+            HumayKickerLabel(text: "Your big three — preview")
+            VStack(spacing: HumaySpacing.small) {
+                sunRow
+                moonRow
+                risingRow
+            }
+        }
+        .padding(HumaySpacing.extraLarge)
+        .background(Color.humaySurface, in: RoundedRectangle(cornerRadius: HumayRadius.feature))
+        .overlay { RoundedRectangle(cornerRadius: HumayRadius.feature).strokeBorder(Color.humayHairline) }
+    }
+
+    @ViewBuilder
+    private var sunRow: some View {
+        switch bigThree.sun {
+        case .available(let pos):
+            PreviewRow(icon: "sun.max.fill", tint: .humaySolarGold, title: "Sun · \(pos.sign.displayName)", subtitle: pos.sign.humayTagline)
+        case .ambiguous(let opts):
+            let names = opts.map(\.sign.displayName).joined(separator: " or ")
+            PreviewRow(icon: "sun.max", tint: .humaySolarGold, title: "Sun · \(names)", subtitle: "Could be either — on a cusp")
+        case .unavailable:
+            PreviewRow(icon: "sun.max", tint: .humayTextSecondary, title: "Sun · —", subtitle: "Add birth date")
+        }
+    }
+
+    @ViewBuilder
+    private var moonRow: some View {
+        switch bigThree.moon {
+        case .available(let pos):
+            PreviewRow(icon: "moon.fill", tint: .humayLavender, title: "Moon · \(pos.sign.displayName)", subtitle: pos.sign.humayTagline)
+        case .ambiguous(let opts):
+            let names = opts.map(\.sign.displayName).joined(separator: " or ")
+            PreviewRow(icon: "moon", tint: .humayLavender, title: "Moon · \(names)", subtitle: "Ambiguous without tighter time — Humay won't guess")
+        case .unavailable(let reason):
+            let tease = reason == .missingBirthPlace ? "Add birth place for Moon" : "Birth time needed"
+            PreviewRow(icon: "moon.zzz", tint: .humayTextSecondary, title: "Moon · —", subtitle: tease)
+        }
+    }
+
+    @ViewBuilder
+    private var risingRow: some View {
+        switch bigThree.rising {
+        case .available(let pos):
+            PreviewRow(icon: "arrow.up.right.circle.fill", tint: .humayCoral, title: "Rising · \(pos.sign.displayName)", subtitle: pos.sign.humayTagline)
+        case .ambiguous:
+            PreviewRow(icon: "arrow.up.right.circle", tint: .humayTextSecondary, title: "Rising · Birth time needed", subtitle: "Needs exact minutes + coordinates")
+        case .unavailable:
+            PreviewRow(icon: "arrow.up.right.circle", tint: .humayTextSecondary, title: "Rising · Birth time needed", subtitle: "Needs exact minutes + coordinates")
+        }
+    }
+}
+
+private struct PreviewRow: View {
+    let icon: String
+    let tint: Color
+    let title: String
+    let subtitle: String
+
+    var body: some View {
+        HStack(spacing: HumaySpacing.medium) {
+            Image(systemName: icon)
+                .font(.system(size: 16, weight: .semibold))
+                .foregroundStyle(tint)
+                .frame(width: 32, height: 32)
+                .background(tint.opacity(0.14), in: Circle())
+            VStack(alignment: .leading, spacing: 2) {
+                Text(title).font(HumayTypography.bodyEmphasized)
+                Text(subtitle).font(HumayTypography.caption).foregroundStyle(Color.humayTextSecondary).fixedSize(horizontal: false, vertical: true)
+            }
+            Spacer()
+        }
+        .accessibilityElement(children: .combine)
     }
 }
 
@@ -312,6 +438,8 @@ private struct ProfileRevealLayoutMetrics {
 #Preview("Profile Reveal Light") {
     ProfileRevealView(
         birthDate: OnboardingBirthDate(year: 1994, month: 3, day: 14),
+        displayName: "Ava",
+        birthDetails: BirthDetails(year: 1994, month: 3, day: 14, time: .exact(minutesFromMidnight: 17*60+5), place: .known(name: "Tehran, Iran", latitude: 35.6892, longitude: 51.3890, timeZoneIdentifier: "Asia/Tehran")),
         tradition: .western,
         onBack: {},
         onEnterHumay: {}

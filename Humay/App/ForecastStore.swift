@@ -107,11 +107,13 @@ final class ForecastStore {
     var bundledAvailability: Bool { bundledRepository.isAvailable }
 
     /// The forecast presentation should render: personalized days where they
-    /// exist, honest deterministic fill for the rest (§33).
+    /// exist, honest deterministic fill for the rest (§33). Handles content-cycle staleness (§40-42).
     func effectiveForecast(for subject: ForecastSubject) -> EffectiveForecast {
         let fallback = fallbackForecast(for: subject)
-
-        guard let document = documents[subject.id], !document.isStale(for: subject) else {
+        func isBundledStale(_ doc: PersonalizedForecastDocument) -> Bool {
+            doc.isStaleDueToContentCycle(currentContentCycleVersion: self.bundledRepository.manifest?.contentCycleVersion, currentPackVersion: self.bundledRepository.manifest?.packVersion, isBundledAvailable: self.bundledRepository.isAvailable, isPackActive: self.bundledRepository.manifest?.isActive(on: Date()) ?? false)
+        }
+        guard let document = documents[subject.id], !document.isStale(for: subject), !isBundledStale(document) else {
             return EffectiveForecast(
                 subject: subject,
                 days: fallback.days,
@@ -150,12 +152,16 @@ final class ForecastStore {
     // MARK: - Generation
 
     /// Ensures a personalized forecast exists and is current. Cache-first;
-    /// concurrent calls for the same subject are coalesced (§22).
+    /// concurrent calls for the same subject are coalesced (§22). Includes content-cycle invalidation (§40-42).
     func ensureForecast(for subject: ForecastSubject, anchor: ForecastAnchor? = nil) {
+        func isBundledStale(_ doc: PersonalizedForecastDocument) -> Bool {
+            doc.isStaleDueToContentCycle(currentContentCycleVersion: self.bundledRepository.manifest?.contentCycleVersion, currentPackVersion: self.bundledRepository.manifest?.packVersion, isBundledAvailable: self.bundledRepository.isAvailable, isPackActive: self.bundledRepository.manifest?.isActive(on: Date()) ?? false)
+        }
         guard inFlight[subject.id] == nil else { return }
 
         if let existing = documents[subject.id],
            !existing.isStale(for: subject),
+           !isBundledStale(existing),
            existing.resolvedPhase(for: subject) == .complete {
             return
         }
@@ -169,8 +175,14 @@ final class ForecastStore {
             if documents[subject.id] == nil {
                 documents[subject.id] = try? await repository.load(subject: subject)
             }
+            func bundledStaleInTask(_ doc: PersonalizedForecastDocument) -> Bool {
+                // Use shared repository directly (actor-safe snapshot)
+                let shared = BundledContentPackRepository.shared
+                return doc.isStaleDueToContentCycle(currentContentCycleVersion: shared.manifest?.contentCycleVersion, currentPackVersion: shared.manifest?.packVersion, isBundledAvailable: shared.isAvailable, isPackActive: shared.manifest?.isActive(on: Date()) ?? false)
+            }
             if let existing = documents[subject.id],
                !existing.isStale(for: subject),
+               !bundledStaleInTask(existing),
                existing.resolvedPhase(for: subject) == .complete {
                 inFlight[subject.id] = nil
                 return
@@ -201,6 +213,29 @@ final class ForecastStore {
         documents.removeValue(forKey: subject.id)
         fallbacks.removeValue(forKey: subject.id)
         try? await repository.remove(subject: subject)
+    }
+
+    /// Invalidates caches for a subject whose birth identity changed (§25) or content-cycle expired (§40).
+    /// Removes stale documents and forces fallback recomputation. Caller should
+    /// trigger `ensureForecast` afterward if personalized generation is desired.
+    func invalidateForBirthChange(subject: ForecastSubject) async {
+        fallbacks.removeValue(forKey: subject.id)
+        func bundledStale(_ doc: PersonalizedForecastDocument) -> Bool {
+            doc.isStaleDueToContentCycle(currentContentCycleVersion: self.bundledRepository.manifest?.contentCycleVersion, currentPackVersion: self.bundledRepository.manifest?.packVersion, isBundledAvailable: self.bundledRepository.isAvailable, isPackActive: self.bundledRepository.manifest?.isActive(on: Date()) ?? false)
+        }
+        if let doc = documents[subject.id], doc.isStale(for: subject) || bundledStale(doc) {
+            documents.removeValue(forKey: subject.id)
+        }
+        // Also remove on-disk stale documents proactively so they don't survive process restart
+        if let doc = try? await repository.load(subject: subject), doc.isStale(for: subject) || bundledStale(doc) {
+            try? await repository.remove(subject: subject)
+        }
+    }
+
+    /// Convenience for checking whether a subject's document is stale after birth edit.
+    func isStale(for subject: ForecastSubject) -> Bool {
+        guard let doc = documents[subject.id] else { return false }
+        return doc.isStale(for: subject)
     }
 
     // MARK: - Helpers

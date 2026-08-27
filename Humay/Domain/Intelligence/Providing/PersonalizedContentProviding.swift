@@ -63,12 +63,29 @@ struct GeneratedOutline: Sendable, Hashable {
     let context: YearContext
     let usage: GenerationUsage
     let modelIdentifier: String?
+    /// Honest source of this generated outline — the actual provider that produced it, not the outer Hybrid descriptor.
+    let sourceDescriptor: PersonalizedContentProviderDescriptor?
+    var effectiveDescriptor: PersonalizedContentProviderDescriptor? { sourceDescriptor }
+    let packVersion: String?
+    let contentCycleVersion: String?
+
+    init(context: YearContext, usage: GenerationUsage, modelIdentifier: String?, sourceDescriptor: PersonalizedContentProviderDescriptor? = nil, packVersion: String? = nil, contentCycleVersion: String? = nil) {
+        self.context = context; self.usage = usage; self.modelIdentifier = modelIdentifier; self.sourceDescriptor = sourceDescriptor; self.packVersion = packVersion; self.contentCycleVersion = contentCycleVersion
+    }
 }
 
 struct GeneratedMonth: Sendable, Hashable {
     let days: [DailyMood]
     let usage: GenerationUsage
     let modelIdentifier: String?
+    let sourceDescriptor: PersonalizedContentProviderDescriptor?
+    var effectiveDescriptor: PersonalizedContentProviderDescriptor? { sourceDescriptor }
+    let packVersion: String?
+    let contentCycleVersion: String?
+
+    init(days: [DailyMood], usage: GenerationUsage, modelIdentifier: String?, sourceDescriptor: PersonalizedContentProviderDescriptor? = nil, packVersion: String? = nil, contentCycleVersion: String? = nil) {
+        self.days = days; self.usage = usage; self.modelIdentifier = modelIdentifier; self.sourceDescriptor = sourceDescriptor; self.packVersion = packVersion; self.contentCycleVersion = contentCycleVersion
+    }
 }
 
 /// Domain-level generation failures (§34). Presentation translates these into
