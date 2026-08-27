@@ -84,7 +84,7 @@ actor HybridOfflineContentProvider: PersonalizedContentProviding {
     }
 
     /// Synchronous hybrid forecast build for `ForecastStore.effectiveForecast`-style use.
-    /// Produces a full `YearlyForecast` with bundled days where available.
+    /// Produces a full `YearlyForecast` with bundled days where available and honest mixed provenance.
     func yearlyForecast(subject: ForecastSubject, anchor: ForecastAnchor) -> (YearlyForecast, usedFallbackDays: Int) {
         let personalization = PersonalizationContext.from(subject: subject)
         var days: [DailyMood] = []
@@ -103,16 +103,32 @@ actor HybridOfflineContentProvider: PersonalizedContentProviding {
             }
         }
 
-        let basis: ContentBasis = fallbackCount == YearlyForecast.dayCount
-            ? .entertainmentFixture
-            : .aiGenerated(modelIdentifier: BundledAIContentProvider.identifier)
+        let bundledDays = YearlyForecast.dayCount - fallbackCount
+        let manifest = repository.manifest
+        let packVersion = manifest?.packVersion
+        let cycleVersion = manifest?.contentCycleVersion
+        let contentSource: ForecastContentSource
+        let basis: ContentBasis
+        let generatorVersion: String
+        if fallbackCount == YearlyForecast.dayCount {
+            contentSource = .deterministic(days: YearlyForecast.dayCount)
+            basis = .entertainmentFixture
+            generatorVersion = YearlyForecast.currentGeneratorVersion
+        } else if fallbackCount == 0 {
+            contentSource = .bundled(days: bundledDays, packVersion: packVersion, contentCycleVersion: cycleVersion)
+            basis = .aiGenerated(modelIdentifier: BundledAIContentProvider.identifier)
+            generatorVersion = BundledAIContentProvider.generatorVersion
+        } else {
+            contentSource = .mixed(bundledDays: bundledDays, deterministicDays: fallbackCount, packVersion: packVersion, contentCycleVersion: cycleVersion)
+            basis = .aiGenerated(modelIdentifier: BundledAIContentProvider.identifier)
+            generatorVersion = BundledAIContentProvider.generatorVersion
+        }
         let provenance = ContentProvenance(
-            generatorVersion: fallbackCount == YearlyForecast.dayCount
-                ? YearlyForecast.currentGeneratorVersion
-                : BundledAIContentProvider.generatorVersion,
+            generatorVersion: generatorVersion,
             generatedAt: .now,
             basis: basis
         )
-        return (YearlyForecast(profileID: subject.id, days: days, provenance: provenance), fallbackCount)
+        let forecast = YearlyForecast(profileID: subject.id, days: days, provenance: provenance, contentSource: contentSource)
+        return (forecast, fallbackCount)
     }
 }

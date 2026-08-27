@@ -75,28 +75,17 @@ actor BundledAIContentProvider: PersonalizedContentProviding {
         var days: [DailyMood] = []
         days.reserveCapacity(offsets.count)
         for offset in offsets {
-            if let resolved = BundledContentResolver.resolve(
+            guard let resolved = BundledContentResolver.resolve(
                 dayOffset: offset,
                 anchor: anchor,
                 context: personalization,
                 repository: repository
-            ) {
-                days.append(resolved.dailyMood)
-            } else {
-                // No bundled record for this day/sign → fall back to deterministic day
-                // so the month chunk is still schema-valid and the hybrid provider
-                // can distinguish provenance later. For pure bundled path we still
-                // include a deterministic day rather than failing the chunk.
-                var rng = HumayContentEngine.makeRNG("bundled-fallback", subject.id.uuidString, String(offset))
-                let fallback = DeterministicContentProvider.enrichedDay(
-                    subject: subject,
-                    anchor: anchor,
-                    dayOffset: offset,
-                    outline: outline,
-                    rng: &rng
-                )
-                days.append(fallback)
+            ) else {
+                // Bundled provider does not fabricate deterministic fallback.
+                // Hybrid owns fallback; report missing so caller can handle honestly.
+                throw GenerationError.providerUnavailable
             }
+            days.append(resolved.dailyMood)
         }
         return GeneratedMonth(days: days, usage: .zero, modelIdentifier: Self.identifier)
     }
@@ -115,22 +104,15 @@ actor BundledAIContentProvider: PersonalizedContentProviding {
             throw GenerationError.providerUnavailable
         }
         let personalization = PersonalizationContext.from(subject: subject)
-        if let resolved = BundledContentResolver.resolve(
+        guard let resolved = BundledContentResolver.resolve(
             dayOffset: dayOffset,
             anchor: anchor,
             context: personalization,
             repository: repository
-        ) {
-            return resolved.dailyMood
+        ) else {
+            throw GenerationError.providerUnavailable
         }
-        var rng = HumayContentEngine.makeRNG("bundled-fallback-day", subject.id.uuidString, String(dayOffset))
-        return DeterministicContentProvider.enrichedDay(
-            subject: subject,
-            anchor: anchor,
-            dayOffset: dayOffset,
-            outline: outline,
-            rng: &rng
-        )
+        return resolved.dailyMood
     }
 
     // MARK: - Helpers
@@ -145,11 +127,10 @@ actor BundledAIContentProvider: PersonalizedContentProviding {
     }
 
     private func notablePeriods(subject: ForecastSubject, anchor: ForecastAnchor) -> [NotablePeriod] {
-        // Cheap: scan via resolver if available, else deterministic.
+        let personalization = PersonalizationContext.from(subject: subject)
         var romanceBest: (offset: Int, value: Int)?
         var chaosBest: (offset: Int, value: Int)?
         for offset in 0..<YearlyForecast.dayCount {
-            let personalization = PersonalizationContext.from(subject: subject)
             if let resolved = BundledContentResolver.resolve(dayOffset: offset, anchor: anchor, context: personalization, repository: repository) {
                 let r = resolved.dailyMood.scores[.romance]
                 let c = resolved.dailyMood.scores[.chaos]

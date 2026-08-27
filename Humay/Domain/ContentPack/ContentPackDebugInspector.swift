@@ -20,6 +20,26 @@ struct ContentPackDebugInspector: Sendable {
         let fallbackUsed: Bool
         let packVersion: String?
         let loadError: String?
+        // I.1 expanded
+        let contentCycleVersion: String?
+        let generationMethod: String?
+        let batchID: String?
+        let dominantTheme: String?
+        let secondaryTheme: String?
+        let selectedMoonFragment: String?
+        let selectedRisingFragment: String?
+        let selectedArchetypeFragment: String?
+        let appliedDeltas: [String: Int]
+        let isPilot: Bool?
+    }
+
+    struct YearlySnapshot: Sendable, Hashable {
+        let bundledDays: Int
+        let fallbackDays: Int
+        let totalDays: Int
+        let kind: String // bundled, deterministic, mixed
+        let packVersion: String?
+        let contentCycleVersion: String?
     }
 
     static func snapshot(
@@ -54,7 +74,17 @@ struct ContentPackDebugInspector: Sendable {
                 provenance: "bundled-ai \(resolved.provenance.packVersion)",
                 fallbackUsed: false,
                 packVersion: resolved.provenance.packVersion,
-                loadError: nil
+                loadError: nil,
+                contentCycleVersion: resolved.provenance.contentCycleVersion,
+                generationMethod: resolved.provenance.generationMethod,
+                batchID: resolved.provenance.batchID,
+                dominantTheme: resolved.context.dominantTheme,
+                secondaryTheme: resolved.context.secondaryTheme,
+                selectedMoonFragment: resolved.context.selectedMoonFragment,
+                selectedRisingFragment: resolved.context.selectedRisingFragment,
+                selectedArchetypeFragment: resolved.context.selectedArchetypeFragment,
+                appliedDeltas: resolved.context.appliedDeltas,
+                isPilot: resolved.provenance.isPilot
             )
         } else {
             let base = HumayContentEngine.baseScores(profileID: subject.id, birth: subject.birth, dayOffset: offset)
@@ -74,9 +104,46 @@ struct ContentPackDebugInspector: Sendable {
                 provenance: "deterministic-fallback",
                 fallbackUsed: true,
                 packVersion: repository.manifest?.packVersion,
-                loadError: repository.loadError
+                loadError: repository.loadError,
+                contentCycleVersion: repository.manifest?.contentCycleVersion,
+                generationMethod: repository.manifest?.generationMethod ?? repository.manifest?.provenance.generationMethod,
+                batchID: nil,
+                dominantTheme: nil,
+                secondaryTheme: nil,
+                selectedMoonFragment: nil,
+                selectedRisingFragment: nil,
+                selectedArchetypeFragment: nil,
+                appliedDeltas: [:],
+                isPilot: repository.manifest?.coverage.isPilot
             )
         }
+    }
+
+    static func yearlySnapshot(
+        subject: ForecastSubject,
+        anchor: ForecastAnchor = ForecastAnchor(date: .now, calendar: .current),
+        repository: BundledContentPackRepository = .shared
+    ) -> YearlySnapshot {
+        let personalization = PersonalizationContext.from(subject: subject)
+        var bundled = 0
+        for offset in 0..<YearlyForecast.dayCount {
+            if BundledContentResolver.resolve(dayOffset: offset, anchor: anchor, context: personalization, repository: repository) != nil {
+                bundled += 1
+            }
+        }
+        let fallback = YearlyForecast.dayCount - bundled
+        let kind: String
+        if fallback == YearlyForecast.dayCount { kind = "deterministic" }
+        else if bundled == YearlyForecast.dayCount { kind = "bundled" }
+        else { kind = "mixed" }
+        return YearlySnapshot(
+            bundledDays: bundled,
+            fallbackDays: fallback,
+            totalDays: YearlyForecast.dayCount,
+            kind: kind,
+            packVersion: repository.manifest?.packVersion,
+            contentCycleVersion: repository.manifest?.contentCycleVersion
+        )
     }
 }
 #endif

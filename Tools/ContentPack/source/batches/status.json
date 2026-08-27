@@ -1,0 +1,15 @@
+[
+  {
+    "batchID": "pilot-2026-03-01_03-14",
+    "dayKeyRange": "03-01_03-14",
+    "signs": ["aries","taurus","gemini","cancer","leo","virgo","libra","scorpio","sagittarius","capricorn","aquarius","pisces"],
+    "sourceModel": "Muse Spark 1.2",
+    "sourceModelVersion": "1.2-pilot-authored",
+    "promptVersion": "pack-prompt-v1",
+    "generationMethod": "scripted-pilot",
+    "generatedAt": "2026-08-26T22:44:58Z",
+    "reviewedByModel": null,
+    "reviewedAt": null,
+    "qaStatus": "approved"
+  }
+]

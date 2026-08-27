@@ -1,16 +1,22 @@
 #!/usr/bin/env python3
-"""Generate pilot source dataset: 14 days x 12 signs + 36 modifiers."""
-import json, pathlib, random, hashlib
+"""Generate pilot source dataset: 14 days x 12 signs + 36 modifiers (deterministic, no Python hash)."""
+import json, pathlib, random, hashlib, argparse, datetime
 
 ROOT = pathlib.Path(__file__).resolve().parents[3]
 SRC = ROOT / "Tools" / "ContentPack" / "source"
 SIGNS = ["aries","taurus","gemini","cancer","leo","virgo","libra","scorpio","sagittarius","capricorn","aquarius","pisces"]
 DAY_KEYS = [f"03-{d:02d}" for d in range(1,15)]
 
+def stable_int(key: str) -> int:
+    return int(hashlib.sha256(key.encode("utf-8")).hexdigest()[:16], 16)
+
+def stable_int_range(key: str, lo: int, hi: int) -> int:
+    # hi exclusive
+    return lo + (stable_int(key) % (hi - lo))
+
 # Seed for determinism but content is authored (this script is the author)
 rng = random.Random(202603)
 
-# Humay voice fragments — crafted to be smart/mischievous/premium
 HEADLINE_TEMPLATES = {
     "aries": ["You move first. Everyone else negotiates.","Speed is your love language today.","A door you didn't knock on opens anyway.","Your bluntness is a gift. Wrap it nicely."],
     "taurus": ["Comfort is strategy today, not avoidance.","Slow is the shortcut.","You keep the room together by staying put.","Something you planted finally nudges."],
@@ -98,9 +104,7 @@ RED_POOL = [
     "You keep one tab open just to feel busy.",
 ]
 
-# Distinct per-record personal variation suffixes (to avoid identical paragraphs)
 PERSONAL_SUFFIXES = [
-    " Keep the window short.",
     " The effect compounds by evening.",
     " Let the evidence, not the anxiety, lead.",
     " Two sentences is enough.",
@@ -111,7 +115,6 @@ PERSONAL_SUFFIXES = [
 
 def stable_scores(day_idx, sign):
     h = int(hashlib.sha256(f"{day_idx}|{sign}".encode()).hexdigest()[:8], 16)
-    # produce varied but plausible scores 30-92 using hash to avoid repetition
     def v(seed_off, lo=32, hi=94):
         return lo + ((h >> seed_off) & 0xFF) % (hi-lo)
     overall = v(0, 48, 88)
@@ -121,9 +124,8 @@ def stable_scores(day_idx, sign):
     energy = v(16, 35, 90)
     confidence = v(20, 30, 96)
     patience = v(24, 18, 82)
-    chaos = 100 - patience + ((h & 7) - 3)  # inversely related with jitter
+    chaos = 100 - patience + ((h & 7) - 3)
     chaos = max(10, min(92, chaos))
-    # overall recomputed as weighted-ish for coherence but keep distinct
     return {
         "overall": max(10,min(100,overall)),
         "romance": max(10,min(100,romance)),
@@ -135,16 +137,34 @@ def stable_scores(day_idx, sign):
         "chaos": max(10,min(100,chaos)),
     }
 
+def humane_summary(scores):
+    # Production style: avoid "Taurus 03-01: overall 77..."
+    # Use qualitative hints
+    parts = []
+    if scores["confidence"] >= 75:
+        parts.append("High confidence")
+    elif scores["confidence"] <= 35:
+        parts.append("Low confidence")
+    if scores["patience"] <= 35:
+        parts.append("low patience")
+    elif scores["patience"] >= 75:
+        parts.append("steady patience")
+    if scores["romance"] >= 78:
+        parts.append("romance forward")
+    if scores["chaos"] >= 70:
+        parts.append("chaotic edge")
+    if not parts:
+        parts = ["Even keel", "quiet potential"]
+    # Join first two with comma, add guidance
+    head = ", ".join(parts[:2])
+    tail = "Pick one move and make it useful." if scores["confidence"] >= 60 else "Keep it simple and protect your time."
+    return f"{head}. {tail}"
+
 def make_record(day_key, sign, idx):
     scores = stable_scores(idx, sign)
     headlines = HEADLINE_TEMPLATES[sign]
-    # pick headline distinct per idx using hash + sign-specific pool extension
-    hi = (idx * 3 + hash(sign) % 3) % len(headlines)
-    # ensure variation across signs for same dayIdx via suffix
+    hi = (idx * 3 + stable_int(sign) % 3) % len(headlines)
     headline = headlines[hi]
-    # make headlines unique by appending day-tuned nuance occasionally
-    # but we want distinct strings; if headline would duplicate across records of same sign,
-    # we disambiguate with subtle day phrasing
     if idx % 7 == 3:
         headline = headline.rstrip(".") + f" — especially after {idx*2+1}:00."
     personal = PERSONAL_BASE[sign] + PERSONAL_SUFFIXES[idx % len(PERSONAL_SUFFIXES)]
@@ -153,11 +173,10 @@ def make_record(day_key, sign, idx):
     social = SOCIAL_POOL[(idx*5 + SIGNS.index(sign)) % len(SOCIAL_POOL)]
     green = GREEN_POOL[(idx + SIGNS.index(sign)) % len(GREEN_POOL)]
     red = RED_POOL[(idx*2 + SIGNS.index(sign)*3) % len(RED_POOL)]
-    # make some records have distinct green/red combos to avoid duplicate pairs
-    summary = f"{sign.capitalize()} {day_key}: overall {scores['overall']}, patience {scores['patience']}."
-    # tags based on top dimensions
+    summary = humane_summary(scores)
     top = sorted(scores.items(), key=lambda x: x[1], reverse=True)[:2]
     tags = [top[0][0], top[1][0]]
+    # Map tags to allowed ContentTheme/MoodDimension (ensure valid)
     return {
         "dayKey": day_key,
         "sunSign": sign,
@@ -173,140 +192,177 @@ def make_record(day_key, sign, idx):
         "summary": summary,
     }
 
-records = []
-for idx, dk in enumerate(DAY_KEYS):
-    for sign in SIGNS:
-        records.append(make_record(dk, sign, idx))
+def build_args():
+    p = argparse.ArgumentParser()
+    p.add_argument("--createdAt", help="ISO8601 timestamp for manifest (deterministic)")
+    p.add_argument("--seed", type=int, default=202603, help="RNG seed")
+    return p.parse_args()
 
-# Moon modifiers — 12
-MOON_FRAGMENTS = {
-    "aries": "Your feelings want to move before you explain them.",
-    "taurus": "Emotions arrive slowly and stay for dinner.",
-    "gemini": "You narrate feelings twice to decide what you feel.",
-    "cancer": "Tenderness is close to the surface. Handle gently.",
-    "leo": "You feel things at full brightness. Dim slightly.",
-    "virgo": "You audit feelings like a spreadsheet. Most pass.",
-    "libra": "You weigh feelings as if they were options.",
-    "scorpio": "You're processing feelings like they need quarterly approval.",
-    "sagittarius": "Feelings want an exit visa. Let them stay one night.",
-    "capricorn": "Emotions file themselves under 'later'. Open the folder.",
-    "aquarius": "You observe feelings from a polite distance.",
-    "pisces": "Feelings arrive in every language at once.",
-}
-moon_mods=[]
-for sign in SIGNS:
-    deltas = {}
-    h = hash(sign)
-    for dim in ["overall","romance","social","career","energy","confidence","patience","chaos"]:
-        # small bounded deltas deterministically
-        deltas[dim] = ((h >> (SIGNS.index(sign)*2)) & 3) -1 + (1 if dim in ["romance","patience"] else 0)
-        if sign in ["aries","scorpio"]: deltas[dim] = max(-14,min(14,deltas[dim]+2))
-        # keep within bounds
-        deltas[dim] = max(-14,min(14,deltas[dim] + (hash(dim+sign)%5 -2)))
-    # Override for sensible defaults
-    deltas = {k: max(-14,min(14,v)) for k,v in deltas.items()}
-    moon_mods.append({"moonSign": sign, "deltas": deltas, "emotionalFragment": MOON_FRAGMENTS[sign]})
+def main():
+    args = build_args()
+    # Determine timestamps deterministically: CLI > existing manifest > fixed default
+    existing_created = None
+    existing_generated = None
+    if (SRC / "manifest.json").exists():
+        try:
+            old = json.loads((SRC / "manifest.json").read_text(encoding="utf-8"))
+            existing_created = old.get("createdAt")
+            existing_generated = old.get("provenance", {}).get("generatedAt")
+        except: pass
+    fixed_default = "2026-08-26T22:44:58Z"
+    createdAt = args.createdAt or existing_created or fixed_default
+    generatedAt = args.createdAt or existing_generated or fixed_default
 
-RISING_FRAGMENTS = {
-    "aries": "Your first impression today is approximately 'move.'",
-    "taurus": "You enter rooms like you've already paid rent.",
-    "gemini": "You look like a group chat with good lighting.",
-    "cancer": "You seem approachable in a way people remember.",
-    "leo": "You look like you own the place. You don't. Keep acting like it.",
-    "virgo": "You seem competent before you speak. Use it wisely.",
-    "libra": "You look like a diplomatic solution with nice shoes.",
-    "scorpio": "You seem quiet. People lean in anyway.",
-    "sagittarius": "You look like you're about to recommend a trip you actually took.",
-    "capricorn": "You look like the plan. People relax around you.",
-    "aquarius": "You seem unbothered in a way that bothers people, pleasantly.",
-    "pisces": "You look like you know something tender about today.",
-}
-rising_mods=[]
-for sign in SIGNS:
-    deltas={}
-    for dim in ["overall","romance","social","career","energy","confidence","patience","chaos"]:
-        deltas[dim] = (hash(sign+dim) % 7) -3
-        deltas[dim] = max(-12,min(12,deltas[dim]))
-    rising_mods.append({"risingSign":sign,"deltas":deltas,"outwardFragment":RISING_FRAGMENTS[sign]})
+    records = []
+    for idx, dk in enumerate(DAY_KEYS):
+        for sign in SIGNS:
+            records.append(make_record(dk, sign, idx))
 
-ARCH_FRAGMENTS = {
-    "unmovable-romantic": "You love like you've already picked the ending.",
-    "chaotic-diplomat": "You start the meeting and end the argument in one message.",
-    "quiet-storm": "Silence is your loudest sentence today.",
-    "main-character-off-duty": "Cinematic pause. The plot respects your nap.",
-    "overthinking-oracle": "You mapped twelve futures. Live one.",
-    "sunshine-menace": "Warmth first, mischief second. People forgive in that order.",
-    "elegant-chaos": "The fire is coordinated and wearing perfume.",
-    "reluctant-leader": "You didn't volunteer. You were selected.",
-    "soft-realist": "Tenderness without illusion.",
-    "midnight-strategist": "Your 1 AM idea wants daylight editing.",
-    "charming-skeptic": "You don't believe it, but you checked again. Interesting.",
-    "dramatic-stabilizer": "You announce collapse while holding the ceiling up.",
-}
-arch_mods=[]
-for aid in ["unmovable-romantic","chaotic-diplomat","quiet-storm","main-character-off-duty","overthinking-oracle","sunshine-menace","elegant-chaos","reluctant-leader","soft-realist","midnight-strategist","charming-skeptic","dramatic-stabilizer"]:
-    deltas={}
-    for dim in ["overall","romance","social","career","energy","confidence","patience","chaos"]:
-        deltas[dim] = (hash(aid+dim) % 5) -2
-        deltas[dim] = max(-10,min(10,deltas[dim]))
-    arch_mods.append({"archetypeID":aid,"deltas":deltas,"fragment":ARCH_FRAGMENTS[aid]})
-
-# ensure output dirs
-SRC.mkdir(parents=True, exist_ok=True)
-import datetime
-manifest = {
-    "schemaVersion": 1,
-    "packVersion": "1.0.0-pilot",
-    "language": "en",
-    "contentCycleVersion": "2026-pilot-v1",
-    "createdAt": datetime.datetime.now(datetime.timezone.utc).isoformat().replace("+00:00","Z"),
-    "canonicalCalendar": "366-day",
-    "coverage": {
-        "startDayKey": DAY_KEYS[0],
-        "endDayKey": DAY_KEYS[-1],
-        "dayKeyCount": len(DAY_KEYS),
-        "isPilot": True,
-        "includesLeapDay": False,
-        "sunRecordCount": len(records)
-    },
-    "provenance": {
-        "sourceModel": "Muse Spark 1.2",
-        "sourceModelVersion": "1.2-pilot-authored",
-        "promptVersion": "pack-prompt-v1",
-        "generatedAt": datetime.datetime.now(datetime.timezone.utc).isoformat().replace("+00:00","Z"),
-        "contentLanguage": "en"
-    },
-    "compilerVersion": "humay-pack-compiler-v1"
-}
-copy_pools = {
-    "greenFlags": GREEN_POOL,
-    "redFlags": RED_POOL,
-    "revealSecrets": ["Someone thinks about you more than they admit.","You will finish something you started last week.","An old idea deserves another look.","Today favors asking directly."],
-    "revealFollowUps": ["You didn't hear this from Humay.","Use responsibly."],
-    "genericHeadlines": ["Steady day. Suspiciously manageable.","No headlines. Just a decent Tuesday."],
-    "roastByMode": {
-        "normal": ["Balanced. Playful. Mostly harmless."],
-        "roast": ["Humay has had enough."],
-        "bestie": ["Like advice from your least judgmental friend."],
-        "savage": ["No mercy. Still funny."],
-        "delulu": ["Unreasonably optimistic. On purpose."],
-        "drama": ["Everything is the season finale."],
-        "soft": ["Warm. Gentle. Emotionally supportive."]
+    MOON_FRAGMENTS = {
+        "aries": "Your feelings want to move before you explain them.",
+        "taurus": "Emotions arrive slowly and stay for dinner.",
+        "gemini": "You narrate feelings twice to decide what you feel.",
+        "cancer": "Tenderness is close to the surface. Handle gently.",
+        "leo": "You feel things at full brightness. Dim slightly.",
+        "virgo": "You audit feelings like a spreadsheet. Most pass.",
+        "libra": "You weigh feelings as if they were options.",
+        "scorpio": "You're processing feelings like they need quarterly approval.",
+        "sagittarius": "Feelings want an exit visa. Let them stay one night.",
+        "capricorn": "Emotions file themselves under 'later'. Open the folder.",
+        "aquarius": "You observe feelings from a polite distance.",
+        "pisces": "Feelings arrive in every language at once.",
     }
-}
+    # Thematic fragment pools for pilot to prove architecture (6 themes x 2-3 variants)
+    MOON_THEMES = ["romance","career","social","confidence","patience","chaos"]
+    moon_mods=[]
+    for sign in SIGNS:
+        deltas = {}
+        h = stable_int(sign)
+        for dim in ["overall","romance","social","career","energy","confidence","patience","chaos"]:
+            deltas[dim] = ((h >> (SIGNS.index(sign)*2)) & 3) -1 + (1 if dim in ["romance","patience"] else 0)
+            if sign in ["aries","scorpio"]: deltas[dim] = max(-14,min(14,deltas[dim]+2))
+            deltas[dim] = max(-14,min(14,deltas[dim] + (stable_int(dim+sign)%5 -2)))
+        deltas = {k: max(-14,min(14,v)) for k,v in deltas.items()}
+        fragments = {}
+        for theme in MOON_THEMES:
+            base = MOON_FRAGMENTS[sign]
+            # 2 variations per theme deterministically derived from base
+            fragments[theme] = [base, base + f" ({theme})"]
+        moon_mods.append({"moonSign": sign, "deltas": deltas, "emotionalFragment": MOON_FRAGMENTS[sign], "fragments": fragments})
 
-with open(SRC/"manifest.json","w",encoding="utf-8") as f:
-    json.dump(manifest,f,ensure_ascii=False,indent=2)
-with open(SRC/"sunBase.json","w",encoding="utf-8") as f:
-    json.dump(records,f,ensure_ascii=False,indent=2)
-with open(SRC/"moonModifiers.json","w",encoding="utf-8") as f:
-    json.dump(moon_mods,f,ensure_ascii=False,indent=2)
-with open(SRC/"risingModifiers.json","w",encoding="utf-8") as f:
-    json.dump(rising_mods,f,ensure_ascii=False,indent=2)
-with open(SRC/"archetypeModifiers.json","w",encoding="utf-8") as f:
-    json.dump(arch_mods,f,ensure_ascii=False,indent=2)
-with open(SRC/"copyPools.json","w",encoding="utf-8") as f:
-    json.dump(copy_pools,f,ensure_ascii=False,indent=2)
+    RISING_FRAGMENTS = {
+        "aries": "Your first impression today is approximately 'move.'",
+        "taurus": "You enter rooms like you've already paid rent.",
+        "gemini": "You look like a group chat with good lighting.",
+        "cancer": "You seem approachable in a way people remember.",
+        "leo": "You look like you own the place. You don't. Keep acting like it.",
+        "virgo": "You seem competent before you speak. Use it wisely.",
+        "libra": "You look like a diplomatic solution with nice shoes.",
+        "scorpio": "You seem quiet. People lean in anyway.",
+        "sagittarius": "You look like you're about to recommend a trip you actually took.",
+        "capricorn": "You look like the plan. People relax around you.",
+        "aquarius": "You seem unbothered in a way that bothers people, pleasantly.",
+        "pisces": "You look like you know something tender about today.",
+    }
+    RISING_THEMES = ["social","confidence","career","energy","chaos","reset"]
+    rising_mods=[]
+    for sign in SIGNS:
+        deltas={}
+        for dim in ["overall","romance","social","career","energy","confidence","patience","chaos"]:
+            deltas[dim] = (stable_int(sign+dim) % 7) -3
+            deltas[dim] = max(-12,min(12,deltas[dim]))
+        fragments = {}
+        for theme in RISING_THEMES:
+            base = RISING_FRAGMENTS[sign]
+            fragments[theme] = [base, base + f" [{theme}]"]
+        rising_mods.append({"risingSign":sign,"deltas":deltas,"outwardFragment":RISING_FRAGMENTS[sign],"fragments":fragments})
 
-print(f"Wrote {len(records)} sun records ({len(DAY_KEYS)} days x 12)")
-print(f"Manifest: {manifest['packVersion']}")
+    ARCH_FRAGMENTS = {
+        "unmovable-romantic": "You love like you've already picked the ending.",
+        "chaotic-diplomat": "You start the meeting and end the argument in one message.",
+        "quiet-storm": "Silence is your loudest sentence today.",
+        "main-character-off-duty": "Cinematic pause. The plot respects your nap.",
+        "overthinking-oracle": "You mapped twelve futures. Live one.",
+        "sunshine-menace": "Warmth first, mischief second. People forgive in that order.",
+        "elegant-chaos": "The fire is coordinated and wearing perfume.",
+        "reluctant-leader": "You didn't volunteer. You were selected.",
+        "soft-realist": "Tenderness without illusion.",
+        "midnight-strategist": "Your 1 AM idea wants daylight editing.",
+        "charming-skeptic": "You don't believe it, but you checked again. Interesting.",
+        "dramatic-stabilizer": "You announce collapse while holding the ceiling up.",
+    }
+    ARCH_THEMES = ["romance","career","social","confidence","focus","reset"]
+    arch_mods=[]
+    for aid in ["unmovable-romantic","chaotic-diplomat","quiet-storm","main-character-off-duty","overthinking-oracle","sunshine-menace","elegant-chaos","reluctant-leader","soft-realist","midnight-strategist","charming-skeptic","dramatic-stabilizer"]:
+        deltas={}
+        for dim in ["overall","romance","social","career","energy","confidence","patience","chaos"]:
+            deltas[dim] = (stable_int(aid+dim) % 5) -2
+            deltas[dim] = max(-10,min(10,deltas[dim]))
+        fragments = {}
+        for theme in ARCH_THEMES:
+            base = ARCH_FRAGMENTS[aid]
+            fragments[theme] = [base + f" — {theme} note."]
+        arch_mods.append({"archetypeID":aid,"deltas":deltas,"fragment":ARCH_FRAGMENTS[aid],"fragments":fragments})
+
+    SRC.mkdir(parents=True, exist_ok=True)
+    manifest = {
+        "schemaVersion": 1,
+        "packVersion": "1.0.0-pilot",
+        "language": "en",
+        "contentCycleVersion": "2026-pilot-v1",
+        "createdAt": createdAt,
+        "canonicalCalendar": "366-day",
+        "coverage": {
+            "startDayKey": DAY_KEYS[0],
+            "endDayKey": DAY_KEYS[-1],
+            "dayKeyCount": len(DAY_KEYS),
+            "isPilot": True,
+            "includesLeapDay": False,
+            "sunRecordCount": len(records)
+        },
+        "provenance": {
+            "sourceModel": "Muse Spark 1.2",
+            "sourceModelVersion": "1.2-pilot-authored",
+            "promptVersion": "pack-prompt-v1",
+            "generatedAt": generatedAt,
+            "contentLanguage": "en",
+            "generationMethod": "scripted-pilot"
+        },
+        "compilerVersion": "humay-pack-compiler-v1",
+        "generationMethod": "scripted-pilot"
+    }
+    copy_pools = {
+        "greenFlags": GREEN_POOL,
+        "redFlags": RED_POOL,
+        "revealSecrets": ["Someone thinks about you more than they admit.","You will finish something you started last week.","An old idea deserves another look.","Today favors asking directly."],
+        "revealFollowUps": ["You didn't hear this from Humay.","Use responsibly."],
+        "genericHeadlines": ["Steady day. Suspiciously manageable.","No headlines. Just a decent Tuesday."],
+        "roastByMode": {
+            "normal": ["Balanced. Playful. Mostly harmless."],
+            "roast": ["Humay has had enough."],
+            "bestie": ["Like advice from your least judgmental friend."],
+            "savage": ["No mercy. Still funny."],
+            "delulu": ["Unreasonably optimistic. On purpose."],
+            "drama": ["Everything is the season finale."],
+            "soft": ["Warm. Gentle. Emotionally supportive."]
+        }
+    }
+
+    with open(SRC/"manifest.json","w",encoding="utf-8") as f:
+        json.dump(manifest,f,ensure_ascii=False,indent=2,sort_keys=True)
+    with open(SRC/"sunBase.json","w",encoding="utf-8") as f:
+        json.dump(records,f,ensure_ascii=False,indent=2,sort_keys=True)
+    with open(SRC/"moonModifiers.json","w",encoding="utf-8") as f:
+        json.dump(moon_mods,f,ensure_ascii=False,indent=2,sort_keys=True)
+    with open(SRC/"risingModifiers.json","w",encoding="utf-8") as f:
+        json.dump(rising_mods,f,ensure_ascii=False,indent=2,sort_keys=True)
+    with open(SRC/"archetypeModifiers.json","w",encoding="utf-8") as f:
+        json.dump(arch_mods,f,ensure_ascii=False,indent=2,sort_keys=True)
+    with open(SRC/"copyPools.json","w",encoding="utf-8") as f:
+        json.dump(copy_pools,f,ensure_ascii=False,indent=2,sort_keys=True)
+
+    print(f"Wrote {len(records)} sun records ({len(DAY_KEYS)} days x 12)")
+    print(f"Manifest: {manifest['packVersion']}")
+
+if __name__ == "__main__":
+    main()

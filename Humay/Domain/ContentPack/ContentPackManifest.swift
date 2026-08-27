@@ -18,6 +18,13 @@ struct ContentPackManifest: Sendable, Hashable, Codable {
     let provenance: Provenance
     let compilerVersion: String
     let checksums: [String: String]?
+    // I.1 lifecycle — optional for pilot, required for production
+    let activeFrom: Date?
+    let activeThrough: Date?
+    /// Top-level generation method (scripted-pilot, ai-batch-authored, human-curated, mixed)
+    let generationMethod: String?
+    /// Compact batch provenance summary (detailed provenance stays in source tooling)
+    let batches: [BatchProvenance]?
 
     struct Coverage: Sendable, Hashable, Codable {
         /// Canonical start key inclusive, e.g. "03-01"
@@ -39,6 +46,23 @@ struct ContentPackManifest: Sendable, Hashable, Codable {
         let generatedAt: Date?
         let reviewedAt: Date?
         let contentLanguage: String
+        /// Generation method for this pack (scripted-pilot, ai-batch-authored, etc.)
+        let generationMethod: String?
+    }
+
+    /// Batch-level provenance summary — compact, manifest-level
+    struct BatchProvenance: Sendable, Hashable, Codable {
+        let batchID: String
+        let dayKeyRange: String? // e.g., "03-01_03-07"
+        let signs: [String]? // subset of 12, nil means all
+        let sourceModel: String
+        let sourceModelVersion: String?
+        let promptVersion: String?
+        let generationMethod: String?
+        let generatedAt: Date?
+        let reviewedByModel: String?
+        let reviewedAt: Date?
+        let qaStatus: String? // generated, validated, reviewed, rejected, approved
     }
 
     init(
@@ -50,7 +74,11 @@ struct ContentPackManifest: Sendable, Hashable, Codable {
         coverage: Coverage,
         provenance: Provenance,
         compilerVersion: String = currentCompilerVersion,
-        checksums: [String: String]? = nil
+        checksums: [String: String]? = nil,
+        activeFrom: Date? = nil,
+        activeThrough: Date? = nil,
+        generationMethod: String? = nil,
+        batches: [BatchProvenance]? = nil
     ) {
         self.schemaVersion = Self.currentSchemaVersion
         self.packVersion = packVersion
@@ -62,6 +90,10 @@ struct ContentPackManifest: Sendable, Hashable, Codable {
         self.provenance = provenance
         self.compilerVersion = compilerVersion
         self.checksums = checksums
+        self.activeFrom = activeFrom
+        self.activeThrough = activeThrough
+        self.generationMethod = generationMethod
+        self.batches = batches
     }
 
     func validate() throws {
@@ -70,6 +102,25 @@ struct ContentPackManifest: Sendable, Hashable, Codable {
         }
         guard !packVersion.trimmingCharacters(in: .whitespaces).isEmpty else {
             throw ContentPackError.malformedJSON("manifest.packVersion empty")
+        }
+        // Content cycle lifecycle: required for production, optional for pilot
+        if !coverage.isPilot {
+            guard !contentCycleVersion.trimmingCharacters(in: .whitespaces).isEmpty else {
+                throw ContentPackError.malformedJSON("contentCycleVersion required for production")
+            }
+            guard activeFrom != nil else {
+                throw ContentPackError.malformedJSON("activeFrom required for production")
+            }
+            guard activeThrough != nil else {
+                throw ContentPackError.malformedJSON("activeThrough required for production")
+            }
+            if let from = activeFrom, let through = activeThrough, from >= through {
+                throw ContentPackError.malformedJSON("activeFrom must be before activeThrough")
+            }
+            // generationMethod recommended for production
+            if let gm = generationMethod ?? provenance.generationMethod, gm.trimmingCharacters(in: .whitespaces).isEmpty {
+                throw ContentPackError.malformedJSON("generationMethod empty")
+            }
         }
     }
 }

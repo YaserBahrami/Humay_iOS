@@ -2,169 +2,409 @@
   {
     "archetypeID": "unmovable-romantic",
     "deltas": {
-      "overall": 0,
-      "romance": -2,
-      "social": 0,
-      "career": -1,
-      "energy": 1,
-      "confidence": -1,
-      "patience": 0,
-      "chaos": 1
+      "career": 1,
+      "chaos": 2,
+      "confidence": 2,
+      "energy": 0,
+      "overall": -2,
+      "patience": 1,
+      "romance": 1,
+      "social": 2
     },
-    "fragment": "You love like you've already picked the ending."
+    "fragment": "You love like you've already picked the ending.",
+    "fragments": {
+      "career": [
+        "You love like you've already picked the ending. — career note."
+      ],
+      "confidence": [
+        "You love like you've already picked the ending. — confidence note."
+      ],
+      "focus": [
+        "You love like you've already picked the ending. — focus note."
+      ],
+      "reset": [
+        "You love like you've already picked the ending. — reset note."
+      ],
+      "romance": [
+        "You love like you've already picked the ending. — romance note."
+      ],
+      "social": [
+        "You love like you've already picked the ending. — social note."
+      ]
+    }
   },
   {
     "archetypeID": "chaotic-diplomat",
     "deltas": {
+      "career": 2,
+      "chaos": -1,
+      "confidence": 0,
+      "energy": -2,
       "overall": 2,
+      "patience": -2,
       "romance": -1,
-      "social": 2,
-      "career": 0,
-      "energy": 2,
-      "confidence": 2,
-      "patience": 1,
-      "chaos": -1
+      "social": 1
     },
-    "fragment": "You start the meeting and end the argument in one message."
+    "fragment": "You start the meeting and end the argument in one message.",
+    "fragments": {
+      "career": [
+        "You start the meeting and end the argument in one message. — career note."
+      ],
+      "confidence": [
+        "You start the meeting and end the argument in one message. — confidence note."
+      ],
+      "focus": [
+        "You start the meeting and end the argument in one message. — focus note."
+      ],
+      "reset": [
+        "You start the meeting and end the argument in one message. — reset note."
+      ],
+      "romance": [
+        "You start the meeting and end the argument in one message. — romance note."
+      ],
+      "social": [
+        "You start the meeting and end the argument in one message. — social note."
+      ]
+    }
   },
   {
     "archetypeID": "quiet-storm",
     "deltas": {
-      "overall": 1,
+      "career": -2,
+      "chaos": 1,
+      "confidence": -1,
+      "energy": 0,
+      "overall": -2,
+      "patience": -2,
       "romance": 0,
-      "social": 1,
-      "career": 2,
-      "energy": 1,
-      "confidence": 2,
-      "patience": -1,
-      "chaos": -2
+      "social": 0
     },
-    "fragment": "Silence is your loudest sentence today."
+    "fragment": "Silence is your loudest sentence today.",
+    "fragments": {
+      "career": [
+        "Silence is your loudest sentence today. — career note."
+      ],
+      "confidence": [
+        "Silence is your loudest sentence today. — confidence note."
+      ],
+      "focus": [
+        "Silence is your loudest sentence today. — focus note."
+      ],
+      "reset": [
+        "Silence is your loudest sentence today. — reset note."
+      ],
+      "romance": [
+        "Silence is your loudest sentence today. — romance note."
+      ],
+      "social": [
+        "Silence is your loudest sentence today. — social note."
+      ]
+    }
   },
   {
     "archetypeID": "main-character-off-duty",
     "deltas": {
-      "overall": -1,
-      "romance": 1,
-      "social": -2,
-      "career": -2,
+      "career": 0,
+      "chaos": 0,
+      "confidence": 2,
       "energy": -2,
-      "confidence": -2,
-      "patience": -2,
-      "chaos": 1
+      "overall": 1,
+      "patience": 0,
+      "romance": -1,
+      "social": 0
     },
-    "fragment": "Cinematic pause. The plot respects your nap."
+    "fragment": "Cinematic pause. The plot respects your nap.",
+    "fragments": {
+      "career": [
+        "Cinematic pause. The plot respects your nap. — career note."
+      ],
+      "confidence": [
+        "Cinematic pause. The plot respects your nap. — confidence note."
+      ],
+      "focus": [
+        "Cinematic pause. The plot respects your nap. — focus note."
+      ],
+      "reset": [
+        "Cinematic pause. The plot respects your nap. — reset note."
+      ],
+      "romance": [
+        "Cinematic pause. The plot respects your nap. — romance note."
+      ],
+      "social": [
+        "Cinematic pause. The plot respects your nap. — social note."
+      ]
+    }
   },
   {
     "archetypeID": "overthinking-oracle",
     "deltas": {
-      "overall": -1,
-      "romance": 0,
-      "social": -1,
-      "career": -1,
-      "energy": 0,
-      "confidence": 0,
-      "patience": -2,
-      "chaos": 2
+      "career": -2,
+      "chaos": 2,
+      "confidence": -2,
+      "energy": -2,
+      "overall": 2,
+      "patience": 2,
+      "romance": 1,
+      "social": -1
     },
-    "fragment": "You mapped twelve futures. Live one."
+    "fragment": "You mapped twelve futures. Live one.",
+    "fragments": {
+      "career": [
+        "You mapped twelve futures. Live one. — career note."
+      ],
+      "confidence": [
+        "You mapped twelve futures. Live one. — confidence note."
+      ],
+      "focus": [
+        "You mapped twelve futures. Live one. — focus note."
+      ],
+      "reset": [
+        "You mapped twelve futures. Live one. — reset note."
+      ],
+      "romance": [
+        "You mapped twelve futures. Live one. — romance note."
+      ],
+      "social": [
+        "You mapped twelve futures. Live one. — social note."
+      ]
+    }
   },
   {
     "archetypeID": "sunshine-menace",
     "deltas": {
+      "career": 2,
+      "chaos": -2,
+      "confidence": 1,
+      "energy": 2,
       "overall": -2,
-      "romance": -2,
-      "social": -1,
-      "career": 0,
-      "energy": 1,
-      "confidence": -1,
-      "patience": 2,
-      "chaos": -1
+      "patience": -1,
+      "romance": -1,
+      "social": 2
     },
-    "fragment": "Warmth first, mischief second. People forgive in that order."
+    "fragment": "Warmth first, mischief second. People forgive in that order.",
+    "fragments": {
+      "career": [
+        "Warmth first, mischief second. People forgive in that order. — career note."
+      ],
+      "confidence": [
+        "Warmth first, mischief second. People forgive in that order. — confidence note."
+      ],
+      "focus": [
+        "Warmth first, mischief second. People forgive in that order. — focus note."
+      ],
+      "reset": [
+        "Warmth first, mischief second. People forgive in that order. — reset note."
+      ],
+      "romance": [
+        "Warmth first, mischief second. People forgive in that order. — romance note."
+      ],
+      "social": [
+        "Warmth first, mischief second. People forgive in that order. — social note."
+      ]
+    }
   },
   {
     "archetypeID": "elegant-chaos",
     "deltas": {
-      "overall": 0,
-      "romance": -2,
-      "social": 1,
-      "career": 0,
-      "energy": 2,
-      "confidence": 1,
-      "patience": -1,
-      "chaos": 1
+      "career": -1,
+      "chaos": 0,
+      "confidence": -1,
+      "energy": 0,
+      "overall": -1,
+      "patience": -2,
+      "romance": -1,
+      "social": -2
     },
-    "fragment": "The fire is coordinated and wearing perfume."
+    "fragment": "The fire is coordinated and wearing perfume.",
+    "fragments": {
+      "career": [
+        "The fire is coordinated and wearing perfume. — career note."
+      ],
+      "confidence": [
+        "The fire is coordinated and wearing perfume. — confidence note."
+      ],
+      "focus": [
+        "The fire is coordinated and wearing perfume. — focus note."
+      ],
+      "reset": [
+        "The fire is coordinated and wearing perfume. — reset note."
+      ],
+      "romance": [
+        "The fire is coordinated and wearing perfume. — romance note."
+      ],
+      "social": [
+        "The fire is coordinated and wearing perfume. — social note."
+      ]
+    }
   },
   {
     "archetypeID": "reluctant-leader",
     "deltas": {
-      "overall": 2,
-      "romance": 1,
-      "social": 2,
-      "career": 0,
-      "energy": 2,
+      "career": 2,
+      "chaos": 0,
       "confidence": -2,
-      "patience": 0,
-      "chaos": -1
+      "energy": 1,
+      "overall": -2,
+      "patience": -1,
+      "romance": 1,
+      "social": 1
     },
-    "fragment": "You didn't volunteer. You were selected."
+    "fragment": "You didn't volunteer. You were selected.",
+    "fragments": {
+      "career": [
+        "You didn't volunteer. You were selected. — career note."
+      ],
+      "confidence": [
+        "You didn't volunteer. You were selected. — confidence note."
+      ],
+      "focus": [
+        "You didn't volunteer. You were selected. — focus note."
+      ],
+      "reset": [
+        "You didn't volunteer. You were selected. — reset note."
+      ],
+      "romance": [
+        "You didn't volunteer. You were selected. — romance note."
+      ],
+      "social": [
+        "You didn't volunteer. You were selected. — social note."
+      ]
+    }
   },
   {
     "archetypeID": "soft-realist",
     "deltas": {
-      "overall": -1,
-      "romance": -2,
-      "social": -1,
-      "career": 1,
-      "energy": 0,
-      "confidence": 0,
+      "career": -2,
+      "chaos": -1,
+      "confidence": 2,
+      "energy": -1,
+      "overall": 2,
       "patience": -2,
-      "chaos": 1
+      "romance": 1,
+      "social": 1
     },
-    "fragment": "Tenderness without illusion."
+    "fragment": "Tenderness without illusion.",
+    "fragments": {
+      "career": [
+        "Tenderness without illusion. — career note."
+      ],
+      "confidence": [
+        "Tenderness without illusion. — confidence note."
+      ],
+      "focus": [
+        "Tenderness without illusion. — focus note."
+      ],
+      "reset": [
+        "Tenderness without illusion. — reset note."
+      ],
+      "romance": [
+        "Tenderness without illusion. — romance note."
+      ],
+      "social": [
+        "Tenderness without illusion. — social note."
+      ]
+    }
   },
   {
     "archetypeID": "midnight-strategist",
     "deltas": {
-      "overall": -2,
-      "romance": 0,
-      "social": 0,
-      "career": 0,
+      "career": -2,
+      "chaos": 2,
+      "confidence": -1,
       "energy": 0,
-      "confidence": 0,
-      "patience": 2,
-      "chaos": -1
+      "overall": -2,
+      "patience": 1,
+      "romance": -1,
+      "social": 0
     },
-    "fragment": "Your 1 AM idea wants daylight editing."
+    "fragment": "Your 1 AM idea wants daylight editing.",
+    "fragments": {
+      "career": [
+        "Your 1 AM idea wants daylight editing. — career note."
+      ],
+      "confidence": [
+        "Your 1 AM idea wants daylight editing. — confidence note."
+      ],
+      "focus": [
+        "Your 1 AM idea wants daylight editing. — focus note."
+      ],
+      "reset": [
+        "Your 1 AM idea wants daylight editing. — reset note."
+      ],
+      "romance": [
+        "Your 1 AM idea wants daylight editing. — romance note."
+      ],
+      "social": [
+        "Your 1 AM idea wants daylight editing. — social note."
+      ]
+    }
   },
   {
     "archetypeID": "charming-skeptic",
     "deltas": {
-      "overall": -2,
-      "romance": 0,
-      "social": -1,
-      "career": 2,
-      "energy": 0,
+      "career": -1,
+      "chaos": -1,
       "confidence": -2,
-      "patience": 0,
-      "chaos": 2
+      "energy": 0,
+      "overall": 2,
+      "patience": 2,
+      "romance": -1,
+      "social": 1
     },
-    "fragment": "You don't believe it, but you checked again. Interesting."
+    "fragment": "You don't believe it, but you checked again. Interesting.",
+    "fragments": {
+      "career": [
+        "You don't believe it, but you checked again. Interesting. — career note."
+      ],
+      "confidence": [
+        "You don't believe it, but you checked again. Interesting. — confidence note."
+      ],
+      "focus": [
+        "You don't believe it, but you checked again. Interesting. — focus note."
+      ],
+      "reset": [
+        "You don't believe it, but you checked again. Interesting. — reset note."
+      ],
+      "romance": [
+        "You don't believe it, but you checked again. Interesting. — romance note."
+      ],
+      "social": [
+        "You don't believe it, but you checked again. Interesting. — social note."
+      ]
+    }
   },
   {
     "archetypeID": "dramatic-stabilizer",
     "deltas": {
-      "overall": -2,
-      "romance": -1,
-      "social": 0,
-      "career": -2,
-      "energy": 1,
-      "confidence": -2,
-      "patience": -1,
-      "chaos": 0
+      "career": -1,
+      "chaos": 0,
+      "confidence": 0,
+      "energy": -2,
+      "overall": -1,
+      "patience": -2,
+      "romance": 2,
+      "social": 0
     },
-    "fragment": "You announce collapse while holding the ceiling up."
+    "fragment": "You announce collapse while holding the ceiling up.",
+    "fragments": {
+      "career": [
+        "You announce collapse while holding the ceiling up. — career note."
+      ],
+      "confidence": [
+        "You announce collapse while holding the ceiling up. — confidence note."
+      ],
+      "focus": [
+        "You announce collapse while holding the ceiling up. — focus note."
+      ],
+      "reset": [
+        "You announce collapse while holding the ceiling up. — reset note."
+      ],
+      "romance": [
+        "You announce collapse while holding the ceiling up. — romance note."
+      ],
+      "social": [
+        "You announce collapse while holding the ceiling up. — social note."
+      ]
+    }
   }
 ]

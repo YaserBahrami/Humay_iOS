@@ -1,170 +1,482 @@
 [
   {
-    "risingSign": "aries",
     "deltas": {
-      "overall": 3,
-      "romance": 3,
-      "social": 2,
-      "career": 1,
-      "energy": 2,
-      "confidence": -3,
-      "patience": 2,
-      "chaos": 1
-    },
-    "outwardFragment": "Your first impression today is approximately 'move.'"
-  },
-  {
-    "risingSign": "taurus",
-    "deltas": {
-      "overall": 0,
-      "romance": 2,
-      "social": 3,
-      "career": 0,
-      "energy": -3,
-      "confidence": 3,
-      "patience": 0,
-      "chaos": -1
-    },
-    "outwardFragment": "You enter rooms like you've already paid rent."
-  },
-  {
-    "risingSign": "gemini",
-    "deltas": {
-      "overall": 1,
-      "romance": -1,
-      "social": 2,
-      "career": -1,
-      "energy": 3,
-      "confidence": -3,
-      "patience": 2,
-      "chaos": 3
-    },
-    "outwardFragment": "You look like a group chat with good lighting."
-  },
-  {
-    "risingSign": "cancer",
-    "deltas": {
-      "overall": 2,
-      "romance": 3,
-      "social": -2,
-      "career": 0,
-      "energy": -3,
-      "confidence": -2,
-      "patience": 2,
-      "chaos": 2
-    },
-    "outwardFragment": "You seem approachable in a way people remember."
-  },
-  {
-    "risingSign": "leo",
-    "deltas": {
-      "overall": 2,
-      "romance": 0,
-      "social": 1,
-      "career": 2,
-      "energy": 3,
-      "confidence": 2,
-      "patience": 2,
-      "chaos": 3
-    },
-    "outwardFragment": "You look like you own the place. You don't. Keep acting like it."
-  },
-  {
-    "risingSign": "virgo",
-    "deltas": {
-      "overall": -2,
-      "romance": -2,
-      "social": -1,
-      "career": 1,
-      "energy": -2,
-      "confidence": 1,
-      "patience": -2,
-      "chaos": 0
-    },
-    "outwardFragment": "You seem competent before you speak. Use it wisely."
-  },
-  {
-    "risingSign": "libra",
-    "deltas": {
-      "overall": -3,
-      "romance": -1,
-      "social": 0,
-      "career": -1,
-      "energy": 1,
+      "career": -3,
+      "chaos": -1,
       "confidence": 0,
-      "patience": -2,
-      "chaos": 3
-    },
-    "outwardFragment": "You look like a diplomatic solution with nice shoes."
-  },
-  {
-    "risingSign": "scorpio",
-    "deltas": {
-      "overall": -3,
-      "romance": -1,
-      "social": 0,
-      "career": -3,
       "energy": -3,
-      "confidence": -2,
-      "patience": 2,
-      "chaos": -1
-    },
-    "outwardFragment": "You seem quiet. People lean in anyway."
-  },
-  {
-    "risingSign": "sagittarius",
-    "deltas": {
-      "overall": 3,
-      "romance": -2,
-      "social": -3,
-      "career": 3,
-      "energy": 3,
-      "confidence": -3,
-      "patience": 2,
-      "chaos": -2
-    },
-    "outwardFragment": "You look like you're about to recommend a trip you actually took."
-  },
-  {
-    "risingSign": "capricorn",
-    "deltas": {
-      "overall": 3,
+      "overall": 2,
+      "patience": -2,
       "romance": -3,
-      "social": -2,
-      "career": -3,
-      "energy": -2,
-      "confidence": 2,
-      "patience": -3,
-      "chaos": 3
+      "social": 2
     },
-    "outwardFragment": "You look like the plan. People relax around you."
+    "fragments": {
+      "career": [
+        "Your first impression today is approximately 'move.'",
+        "Your first impression today is approximately 'move.' [career]"
+      ],
+      "chaos": [
+        "Your first impression today is approximately 'move.'",
+        "Your first impression today is approximately 'move.' [chaos]"
+      ],
+      "confidence": [
+        "Your first impression today is approximately 'move.'",
+        "Your first impression today is approximately 'move.' [confidence]"
+      ],
+      "energy": [
+        "Your first impression today is approximately 'move.'",
+        "Your first impression today is approximately 'move.' [energy]"
+      ],
+      "reset": [
+        "Your first impression today is approximately 'move.'",
+        "Your first impression today is approximately 'move.' [reset]"
+      ],
+      "social": [
+        "Your first impression today is approximately 'move.'",
+        "Your first impression today is approximately 'move.' [social]"
+      ]
+    },
+    "outwardFragment": "Your first impression today is approximately 'move.'",
+    "risingSign": "aries"
   },
   {
-    "risingSign": "aquarius",
     "deltas": {
-      "overall": -2,
-      "romance": -2,
-      "social": 0,
-      "career": -1,
-      "energy": 2,
-      "confidence": 3,
-      "patience": -2,
-      "chaos": -2
-    },
-    "outwardFragment": "You seem unbothered in a way that bothers people, pleasantly."
-  },
-  {
-    "risingSign": "pisces",
-    "deltas": {
-      "overall": 3,
-      "romance": 2,
-      "social": 3,
-      "career": -1,
-      "energy": -1,
+      "career": 2,
+      "chaos": -1,
       "confidence": 1,
+      "energy": 0,
+      "overall": -2,
       "patience": -2,
-      "chaos": -1
+      "romance": -3,
+      "social": 3
     },
-    "outwardFragment": "You look like you know something tender about today."
+    "fragments": {
+      "career": [
+        "You enter rooms like you've already paid rent.",
+        "You enter rooms like you've already paid rent. [career]"
+      ],
+      "chaos": [
+        "You enter rooms like you've already paid rent.",
+        "You enter rooms like you've already paid rent. [chaos]"
+      ],
+      "confidence": [
+        "You enter rooms like you've already paid rent.",
+        "You enter rooms like you've already paid rent. [confidence]"
+      ],
+      "energy": [
+        "You enter rooms like you've already paid rent.",
+        "You enter rooms like you've already paid rent. [energy]"
+      ],
+      "reset": [
+        "You enter rooms like you've already paid rent.",
+        "You enter rooms like you've already paid rent. [reset]"
+      ],
+      "social": [
+        "You enter rooms like you've already paid rent.",
+        "You enter rooms like you've already paid rent. [social]"
+      ]
+    },
+    "outwardFragment": "You enter rooms like you've already paid rent.",
+    "risingSign": "taurus"
+  },
+  {
+    "deltas": {
+      "career": -2,
+      "chaos": 0,
+      "confidence": -2,
+      "energy": 1,
+      "overall": 3,
+      "patience": 1,
+      "romance": -2,
+      "social": 1
+    },
+    "fragments": {
+      "career": [
+        "You look like a group chat with good lighting.",
+        "You look like a group chat with good lighting. [career]"
+      ],
+      "chaos": [
+        "You look like a group chat with good lighting.",
+        "You look like a group chat with good lighting. [chaos]"
+      ],
+      "confidence": [
+        "You look like a group chat with good lighting.",
+        "You look like a group chat with good lighting. [confidence]"
+      ],
+      "energy": [
+        "You look like a group chat with good lighting.",
+        "You look like a group chat with good lighting. [energy]"
+      ],
+      "reset": [
+        "You look like a group chat with good lighting.",
+        "You look like a group chat with good lighting. [reset]"
+      ],
+      "social": [
+        "You look like a group chat with good lighting.",
+        "You look like a group chat with good lighting. [social]"
+      ]
+    },
+    "outwardFragment": "You look like a group chat with good lighting.",
+    "risingSign": "gemini"
+  },
+  {
+    "deltas": {
+      "career": -2,
+      "chaos": -1,
+      "confidence": 3,
+      "energy": -2,
+      "overall": 2,
+      "patience": 2,
+      "romance": -3,
+      "social": -3
+    },
+    "fragments": {
+      "career": [
+        "You seem approachable in a way people remember.",
+        "You seem approachable in a way people remember. [career]"
+      ],
+      "chaos": [
+        "You seem approachable in a way people remember.",
+        "You seem approachable in a way people remember. [chaos]"
+      ],
+      "confidence": [
+        "You seem approachable in a way people remember.",
+        "You seem approachable in a way people remember. [confidence]"
+      ],
+      "energy": [
+        "You seem approachable in a way people remember.",
+        "You seem approachable in a way people remember. [energy]"
+      ],
+      "reset": [
+        "You seem approachable in a way people remember.",
+        "You seem approachable in a way people remember. [reset]"
+      ],
+      "social": [
+        "You seem approachable in a way people remember.",
+        "You seem approachable in a way people remember. [social]"
+      ]
+    },
+    "outwardFragment": "You seem approachable in a way people remember.",
+    "risingSign": "cancer"
+  },
+  {
+    "deltas": {
+      "career": -1,
+      "chaos": 0,
+      "confidence": 1,
+      "energy": 0,
+      "overall": -1,
+      "patience": 2,
+      "romance": -1,
+      "social": 3
+    },
+    "fragments": {
+      "career": [
+        "You look like you own the place. You don't. Keep acting like it.",
+        "You look like you own the place. You don't. Keep acting like it. [career]"
+      ],
+      "chaos": [
+        "You look like you own the place. You don't. Keep acting like it.",
+        "You look like you own the place. You don't. Keep acting like it. [chaos]"
+      ],
+      "confidence": [
+        "You look like you own the place. You don't. Keep acting like it.",
+        "You look like you own the place. You don't. Keep acting like it. [confidence]"
+      ],
+      "energy": [
+        "You look like you own the place. You don't. Keep acting like it.",
+        "You look like you own the place. You don't. Keep acting like it. [energy]"
+      ],
+      "reset": [
+        "You look like you own the place. You don't. Keep acting like it.",
+        "You look like you own the place. You don't. Keep acting like it. [reset]"
+      ],
+      "social": [
+        "You look like you own the place. You don't. Keep acting like it.",
+        "You look like you own the place. You don't. Keep acting like it. [social]"
+      ]
+    },
+    "outwardFragment": "You look like you own the place. You don't. Keep acting like it.",
+    "risingSign": "leo"
+  },
+  {
+    "deltas": {
+      "career": -2,
+      "chaos": 2,
+      "confidence": 2,
+      "energy": 3,
+      "overall": 1,
+      "patience": 2,
+      "romance": 1,
+      "social": 0
+    },
+    "fragments": {
+      "career": [
+        "You seem competent before you speak. Use it wisely.",
+        "You seem competent before you speak. Use it wisely. [career]"
+      ],
+      "chaos": [
+        "You seem competent before you speak. Use it wisely.",
+        "You seem competent before you speak. Use it wisely. [chaos]"
+      ],
+      "confidence": [
+        "You seem competent before you speak. Use it wisely.",
+        "You seem competent before you speak. Use it wisely. [confidence]"
+      ],
+      "energy": [
+        "You seem competent before you speak. Use it wisely.",
+        "You seem competent before you speak. Use it wisely. [energy]"
+      ],
+      "reset": [
+        "You seem competent before you speak. Use it wisely.",
+        "You seem competent before you speak. Use it wisely. [reset]"
+      ],
+      "social": [
+        "You seem competent before you speak. Use it wisely.",
+        "You seem competent before you speak. Use it wisely. [social]"
+      ]
+    },
+    "outwardFragment": "You seem competent before you speak. Use it wisely.",
+    "risingSign": "virgo"
+  },
+  {
+    "deltas": {
+      "career": -2,
+      "chaos": -1,
+      "confidence": 1,
+      "energy": 1,
+      "overall": -3,
+      "patience": 1,
+      "romance": 3,
+      "social": 0
+    },
+    "fragments": {
+      "career": [
+        "You look like a diplomatic solution with nice shoes.",
+        "You look like a diplomatic solution with nice shoes. [career]"
+      ],
+      "chaos": [
+        "You look like a diplomatic solution with nice shoes.",
+        "You look like a diplomatic solution with nice shoes. [chaos]"
+      ],
+      "confidence": [
+        "You look like a diplomatic solution with nice shoes.",
+        "You look like a diplomatic solution with nice shoes. [confidence]"
+      ],
+      "energy": [
+        "You look like a diplomatic solution with nice shoes.",
+        "You look like a diplomatic solution with nice shoes. [energy]"
+      ],
+      "reset": [
+        "You look like a diplomatic solution with nice shoes.",
+        "You look like a diplomatic solution with nice shoes. [reset]"
+      ],
+      "social": [
+        "You look like a diplomatic solution with nice shoes.",
+        "You look like a diplomatic solution with nice shoes. [social]"
+      ]
+    },
+    "outwardFragment": "You look like a diplomatic solution with nice shoes.",
+    "risingSign": "libra"
+  },
+  {
+    "deltas": {
+      "career": 2,
+      "chaos": 1,
+      "confidence": 2,
+      "energy": 3,
+      "overall": -1,
+      "patience": 0,
+      "romance": -3,
+      "social": -3
+    },
+    "fragments": {
+      "career": [
+        "You seem quiet. People lean in anyway.",
+        "You seem quiet. People lean in anyway. [career]"
+      ],
+      "chaos": [
+        "You seem quiet. People lean in anyway.",
+        "You seem quiet. People lean in anyway. [chaos]"
+      ],
+      "confidence": [
+        "You seem quiet. People lean in anyway.",
+        "You seem quiet. People lean in anyway. [confidence]"
+      ],
+      "energy": [
+        "You seem quiet. People lean in anyway.",
+        "You seem quiet. People lean in anyway. [energy]"
+      ],
+      "reset": [
+        "You seem quiet. People lean in anyway.",
+        "You seem quiet. People lean in anyway. [reset]"
+      ],
+      "social": [
+        "You seem quiet. People lean in anyway.",
+        "You seem quiet. People lean in anyway. [social]"
+      ]
+    },
+    "outwardFragment": "You seem quiet. People lean in anyway.",
+    "risingSign": "scorpio"
+  },
+  {
+    "deltas": {
+      "career": 0,
+      "chaos": 2,
+      "confidence": -1,
+      "energy": -1,
+      "overall": -1,
+      "patience": -1,
+      "romance": 3,
+      "social": -3
+    },
+    "fragments": {
+      "career": [
+        "You look like you're about to recommend a trip you actually took.",
+        "You look like you're about to recommend a trip you actually took. [career]"
+      ],
+      "chaos": [
+        "You look like you're about to recommend a trip you actually took.",
+        "You look like you're about to recommend a trip you actually took. [chaos]"
+      ],
+      "confidence": [
+        "You look like you're about to recommend a trip you actually took.",
+        "You look like you're about to recommend a trip you actually took. [confidence]"
+      ],
+      "energy": [
+        "You look like you're about to recommend a trip you actually took.",
+        "You look like you're about to recommend a trip you actually took. [energy]"
+      ],
+      "reset": [
+        "You look like you're about to recommend a trip you actually took.",
+        "You look like you're about to recommend a trip you actually took. [reset]"
+      ],
+      "social": [
+        "You look like you're about to recommend a trip you actually took.",
+        "You look like you're about to recommend a trip you actually took. [social]"
+      ]
+    },
+    "outwardFragment": "You look like you're about to recommend a trip you actually took.",
+    "risingSign": "sagittarius"
+  },
+  {
+    "deltas": {
+      "career": 0,
+      "chaos": -2,
+      "confidence": 3,
+      "energy": 3,
+      "overall": 0,
+      "patience": -3,
+      "romance": 1,
+      "social": -2
+    },
+    "fragments": {
+      "career": [
+        "You look like the plan. People relax around you.",
+        "You look like the plan. People relax around you. [career]"
+      ],
+      "chaos": [
+        "You look like the plan. People relax around you.",
+        "You look like the plan. People relax around you. [chaos]"
+      ],
+      "confidence": [
+        "You look like the plan. People relax around you.",
+        "You look like the plan. People relax around you. [confidence]"
+      ],
+      "energy": [
+        "You look like the plan. People relax around you.",
+        "You look like the plan. People relax around you. [energy]"
+      ],
+      "reset": [
+        "You look like the plan. People relax around you.",
+        "You look like the plan. People relax around you. [reset]"
+      ],
+      "social": [
+        "You look like the plan. People relax around you.",
+        "You look like the plan. People relax around you. [social]"
+      ]
+    },
+    "outwardFragment": "You look like the plan. People relax around you.",
+    "risingSign": "capricorn"
+  },
+  {
+    "deltas": {
+      "career": -3,
+      "chaos": 3,
+      "confidence": 1,
+      "energy": -2,
+      "overall": -1,
+      "patience": 2,
+      "romance": -1,
+      "social": -1
+    },
+    "fragments": {
+      "career": [
+        "You seem unbothered in a way that bothers people, pleasantly.",
+        "You seem unbothered in a way that bothers people, pleasantly. [career]"
+      ],
+      "chaos": [
+        "You seem unbothered in a way that bothers people, pleasantly.",
+        "You seem unbothered in a way that bothers people, pleasantly. [chaos]"
+      ],
+      "confidence": [
+        "You seem unbothered in a way that bothers people, pleasantly.",
+        "You seem unbothered in a way that bothers people, pleasantly. [confidence]"
+      ],
+      "energy": [
+        "You seem unbothered in a way that bothers people, pleasantly.",
+        "You seem unbothered in a way that bothers people, pleasantly. [energy]"
+      ],
+      "reset": [
+        "You seem unbothered in a way that bothers people, pleasantly.",
+        "You seem unbothered in a way that bothers people, pleasantly. [reset]"
+      ],
+      "social": [
+        "You seem unbothered in a way that bothers people, pleasantly.",
+        "You seem unbothered in a way that bothers people, pleasantly. [social]"
+      ]
+    },
+    "outwardFragment": "You seem unbothered in a way that bothers people, pleasantly.",
+    "risingSign": "aquarius"
+  },
+  {
+    "deltas": {
+      "career": -3,
+      "chaos": 0,
+      "confidence": -3,
+      "energy": 1,
+      "overall": -3,
+      "patience": -1,
+      "romance": 3,
+      "social": -1
+    },
+    "fragments": {
+      "career": [
+        "You look like you know something tender about today.",
+        "You look like you know something tender about today. [career]"
+      ],
+      "chaos": [
+        "You look like you know something tender about today.",
+        "You look like you know something tender about today. [chaos]"
+      ],
+      "confidence": [
+        "You look like you know something tender about today.",
+        "You look like you know something tender about today. [confidence]"
+      ],
+      "energy": [
+        "You look like you know something tender about today.",
+        "You look like you know something tender about today. [energy]"
+      ],
+      "reset": [
+        "You look like you know something tender about today.",
+        "You look like you know something tender about today. [reset]"
+      ],
+      "social": [
+        "You look like you know something tender about today.",
+        "You look like you know something tender about today. [social]"
+      ]
+    },
+    "outwardFragment": "You look like you know something tender about today.",
+    "risingSign": "pisces"
   }
 ]

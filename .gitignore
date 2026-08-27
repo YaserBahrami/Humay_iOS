@@ -22,6 +22,9 @@ xcuserdata/
 playground.xcworkspace
 timeline.xctimeline
 
+# Content pack QA (development artifact, not bundled)
+Tools/ContentPack/.qa/
+
 # Archives / symbols
 *.ipa
 *.dSYM

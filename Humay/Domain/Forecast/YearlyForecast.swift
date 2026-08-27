@@ -311,6 +311,39 @@ struct ContentProvenance: Sendable, Hashable, Codable {
     }
 }
 
+/// Mixed bundled/deterministic source for an entire forecast year.
+///
+/// A forecast can contain both bundled AI-authored days and deterministic fallback
+/// days. The `kind` makes the mix honest so 14 bundled + 351 fallback is not
+/// presented as fully bundled AI content.
+struct ForecastContentSource: Sendable, Hashable, Codable {
+    enum Kind: String, Sendable, Hashable, Codable {
+        case bundled
+        case deterministic
+        case mixed
+    }
+    let kind: Kind
+    let bundledDays: Int
+    let deterministicDays: Int
+    let totalDays: Int
+    let packVersion: String?
+    let contentCycleVersion: String?
+
+    var isMixed: Bool { kind == .mixed }
+    var isFullyBundled: Bool { kind == .bundled }
+    var isFullyDeterministic: Bool { kind == .deterministic }
+
+    static func bundled(days: Int, packVersion: String?, contentCycleVersion: String? = nil) -> Self {
+        .init(kind: .bundled, bundledDays: days, deterministicDays: 0, totalDays: days, packVersion: packVersion, contentCycleVersion: contentCycleVersion)
+    }
+    static func deterministic(days: Int) -> Self {
+        .init(kind: .deterministic, bundledDays: 0, deterministicDays: days, totalDays: days, packVersion: nil, contentCycleVersion: nil)
+    }
+    static func mixed(bundledDays: Int, deterministicDays: Int, packVersion: String?, contentCycleVersion: String? = nil) -> Self {
+        .init(kind: .mixed, bundledDays: bundledDays, deterministicDays: deterministicDays, totalDays: bundledDays + deterministicDays, packVersion: packVersion, contentCycleVersion: contentCycleVersion)
+    }
+}
+
 /// Approximately one rolling year of daily entertainment mood data for a profile.
 ///
 /// Generation is per-profile and cacheable (generate once → persist → reuse).
@@ -325,12 +358,25 @@ struct YearlyForecast: Sendable, Hashable {
     let days: [DailyMood]
     let provenance: ContentProvenance
     let yearContext: YearContext?
+    /// Honest mixed-source accounting. New in I.1; defaults to provenance-derived for legacy decodes.
+    let contentSource: ForecastContentSource?
 
-    init(profileID: UUID, days: [DailyMood], provenance: ContentProvenance, yearContext: YearContext? = nil) {
+    init(profileID: UUID, days: [DailyMood], provenance: ContentProvenance, yearContext: YearContext? = nil, contentSource: ForecastContentSource? = nil) {
         self.profileID = profileID
         self.days = days
         self.provenance = provenance
         self.yearContext = yearContext
+        if let contentSource {
+            self.contentSource = contentSource
+        } else {
+            // Derive legacy fallback: aiGenerated -> bundled, fixture -> deterministic
+            switch provenance.basis {
+            case .aiGenerated:
+                self.contentSource = .bundled(days: days.count, packVersion: nil)
+            case .entertainmentFixture:
+                self.contentSource = .deterministic(days: days.count)
+            }
+        }
     }
 
     func mood(atDayOffset offset: Int) -> DailyMood? {

@@ -1,170 +1,482 @@
 [
   {
-    "moonSign": "aries",
     "deltas": {
-      "overall": 1,
-      "romance": 1,
-      "social": 1,
-      "career": 3,
-      "energy": 1,
+      "career": 5,
+      "chaos": 6,
       "confidence": 2,
-      "patience": 4,
-      "chaos": 1
-    },
-    "emotionalFragment": "Your feelings want to move before you explain them."
-  },
-  {
-    "moonSign": "taurus",
-    "deltas": {
-      "overall": 1,
-      "romance": 5,
-      "social": 3,
-      "career": 2,
-      "energy": 2,
-      "confidence": 4,
-      "patience": 4,
-      "chaos": 3
-    },
-    "emotionalFragment": "Emotions arrive slowly and stay for dinner."
-  },
-  {
-    "moonSign": "gemini",
-    "deltas": {
-      "overall": 2,
-      "romance": 0,
-      "social": -2,
-      "career": 2,
-      "energy": 2,
-      "confidence": -1,
-      "patience": -1,
-      "chaos": -1
-    },
-    "emotionalFragment": "You narrate feelings twice to decide what you feel."
-  },
-  {
-    "moonSign": "cancer",
-    "deltas": {
-      "overall": -1,
-      "romance": 2,
-      "social": -1,
-      "career": 1,
-      "energy": 1,
-      "confidence": 1,
-      "patience": -1,
-      "chaos": 2
-    },
-    "emotionalFragment": "Tenderness is close to the surface. Handle gently."
-  },
-  {
-    "moonSign": "leo",
-    "deltas": {
-      "overall": -1,
-      "romance": 2,
-      "social": -1,
-      "career": 2,
-      "energy": -2,
-      "confidence": 2,
-      "patience": 3,
-      "chaos": 2
-    },
-    "emotionalFragment": "You feel things at full brightness. Dim slightly."
-  },
-  {
-    "moonSign": "virgo",
-    "deltas": {
-      "overall": -1,
-      "romance": -1,
-      "social": -1,
-      "career": -1,
-      "energy": 2,
-      "confidence": 1,
-      "patience": 1,
-      "chaos": 0
-    },
-    "emotionalFragment": "You audit feelings like a spreadsheet. Most pass."
-  },
-  {
-    "moonSign": "libra",
-    "deltas": {
-      "overall": 0,
-      "romance": 0,
-      "social": 1,
-      "career": 0,
-      "energy": 1,
-      "confidence": 0,
-      "patience": -2,
-      "chaos": -2
-    },
-    "emotionalFragment": "You weigh feelings as if they were options."
-  },
-  {
-    "moonSign": "scorpio",
-    "deltas": {
-      "overall": 4,
-      "romance": 7,
-      "social": 3,
-      "career": 2,
-      "energy": 2,
-      "confidence": 5,
-      "patience": 4,
-      "chaos": 4
-    },
-    "emotionalFragment": "You're processing feelings like they need quarterly approval."
-  },
-  {
-    "moonSign": "sagittarius",
-    "deltas": {
-      "overall": 1,
-      "romance": 2,
-      "social": 1,
-      "career": 0,
       "energy": 3,
-      "confidence": 0,
-      "patience": 0,
-      "chaos": 1
+      "overall": 3,
+      "patience": 3,
+      "romance": 7,
+      "social": 2
     },
-    "emotionalFragment": "Feelings want an exit visa. Let them stay one night."
+    "emotionalFragment": "Your feelings want to move before you explain them.",
+    "fragments": {
+      "career": [
+        "Your feelings want to move before you explain them.",
+        "Your feelings want to move before you explain them. (career)"
+      ],
+      "chaos": [
+        "Your feelings want to move before you explain them.",
+        "Your feelings want to move before you explain them. (chaos)"
+      ],
+      "confidence": [
+        "Your feelings want to move before you explain them.",
+        "Your feelings want to move before you explain them. (confidence)"
+      ],
+      "patience": [
+        "Your feelings want to move before you explain them.",
+        "Your feelings want to move before you explain them. (patience)"
+      ],
+      "romance": [
+        "Your feelings want to move before you explain them.",
+        "Your feelings want to move before you explain them. (romance)"
+      ],
+      "social": [
+        "Your feelings want to move before you explain them.",
+        "Your feelings want to move before you explain them. (social)"
+      ]
+    },
+    "moonSign": "aries"
   },
   {
-    "moonSign": "capricorn",
     "deltas": {
-      "overall": -2,
-      "romance": 0,
-      "social": -3,
-      "career": -2,
-      "energy": -2,
-      "confidence": -2,
-      "patience": 0,
-      "chaos": -1
-    },
-    "emotionalFragment": "Emotions file themselves under 'later'. Open the folder."
-  },
-  {
-    "moonSign": "aquarius",
-    "deltas": {
-      "overall": -1,
-      "romance": 1,
-      "social": -1,
       "career": -1,
-      "energy": -1,
-      "confidence": -1,
-      "patience": -2,
-      "chaos": 0
+      "chaos": 1,
+      "confidence": -3,
+      "energy": -3,
+      "overall": -3,
+      "patience": 2,
+      "romance": 2,
+      "social": 0
     },
-    "emotionalFragment": "You observe feelings from a polite distance."
+    "emotionalFragment": "Emotions arrive slowly and stay for dinner.",
+    "fragments": {
+      "career": [
+        "Emotions arrive slowly and stay for dinner.",
+        "Emotions arrive slowly and stay for dinner. (career)"
+      ],
+      "chaos": [
+        "Emotions arrive slowly and stay for dinner.",
+        "Emotions arrive slowly and stay for dinner. (chaos)"
+      ],
+      "confidence": [
+        "Emotions arrive slowly and stay for dinner.",
+        "Emotions arrive slowly and stay for dinner. (confidence)"
+      ],
+      "patience": [
+        "Emotions arrive slowly and stay for dinner.",
+        "Emotions arrive slowly and stay for dinner. (patience)"
+      ],
+      "romance": [
+        "Emotions arrive slowly and stay for dinner.",
+        "Emotions arrive slowly and stay for dinner. (romance)"
+      ],
+      "social": [
+        "Emotions arrive slowly and stay for dinner.",
+        "Emotions arrive slowly and stay for dinner. (social)"
+      ]
+    },
+    "moonSign": "taurus"
   },
   {
-    "moonSign": "pisces",
     "deltas": {
-      "overall": 0,
-      "romance": 1,
-      "social": -2,
-      "career": -2,
-      "energy": 0,
-      "confidence": -1,
-      "patience": 0,
-      "chaos": 1
+      "career": 0,
+      "chaos": 0,
+      "confidence": 4,
+      "energy": 4,
+      "overall": 4,
+      "patience": 5,
+      "romance": 3,
+      "social": 4
     },
-    "emotionalFragment": "Feelings arrive in every language at once."
+    "emotionalFragment": "You narrate feelings twice to decide what you feel.",
+    "fragments": {
+      "career": [
+        "You narrate feelings twice to decide what you feel.",
+        "You narrate feelings twice to decide what you feel. (career)"
+      ],
+      "chaos": [
+        "You narrate feelings twice to decide what you feel.",
+        "You narrate feelings twice to decide what you feel. (chaos)"
+      ],
+      "confidence": [
+        "You narrate feelings twice to decide what you feel.",
+        "You narrate feelings twice to decide what you feel. (confidence)"
+      ],
+      "patience": [
+        "You narrate feelings twice to decide what you feel.",
+        "You narrate feelings twice to decide what you feel. (patience)"
+      ],
+      "romance": [
+        "You narrate feelings twice to decide what you feel.",
+        "You narrate feelings twice to decide what you feel. (romance)"
+      ],
+      "social": [
+        "You narrate feelings twice to decide what you feel.",
+        "You narrate feelings twice to decide what you feel. (social)"
+      ]
+    },
+    "moonSign": "gemini"
+  },
+  {
+    "deltas": {
+      "career": 0,
+      "chaos": 3,
+      "confidence": 2,
+      "energy": 1,
+      "overall": 1,
+      "patience": 5,
+      "romance": 2,
+      "social": 0
+    },
+    "emotionalFragment": "Tenderness is close to the surface. Handle gently.",
+    "fragments": {
+      "career": [
+        "Tenderness is close to the surface. Handle gently.",
+        "Tenderness is close to the surface. Handle gently. (career)"
+      ],
+      "chaos": [
+        "Tenderness is close to the surface. Handle gently.",
+        "Tenderness is close to the surface. Handle gently. (chaos)"
+      ],
+      "confidence": [
+        "Tenderness is close to the surface. Handle gently.",
+        "Tenderness is close to the surface. Handle gently. (confidence)"
+      ],
+      "patience": [
+        "Tenderness is close to the surface. Handle gently.",
+        "Tenderness is close to the surface. Handle gently. (patience)"
+      ],
+      "romance": [
+        "Tenderness is close to the surface. Handle gently.",
+        "Tenderness is close to the surface. Handle gently. (romance)"
+      ],
+      "social": [
+        "Tenderness is close to the surface. Handle gently.",
+        "Tenderness is close to the surface. Handle gently. (social)"
+      ]
+    },
+    "moonSign": "cancer"
+  },
+  {
+    "deltas": {
+      "career": 2,
+      "chaos": 0,
+      "confidence": 0,
+      "energy": 2,
+      "overall": 1,
+      "patience": 4,
+      "romance": 3,
+      "social": 2
+    },
+    "emotionalFragment": "You feel things at full brightness. Dim slightly.",
+    "fragments": {
+      "career": [
+        "You feel things at full brightness. Dim slightly.",
+        "You feel things at full brightness. Dim slightly. (career)"
+      ],
+      "chaos": [
+        "You feel things at full brightness. Dim slightly.",
+        "You feel things at full brightness. Dim slightly. (chaos)"
+      ],
+      "confidence": [
+        "You feel things at full brightness. Dim slightly.",
+        "You feel things at full brightness. Dim slightly. (confidence)"
+      ],
+      "patience": [
+        "You feel things at full brightness. Dim slightly.",
+        "You feel things at full brightness. Dim slightly. (patience)"
+      ],
+      "romance": [
+        "You feel things at full brightness. Dim slightly.",
+        "You feel things at full brightness. Dim slightly. (romance)"
+      ],
+      "social": [
+        "You feel things at full brightness. Dim slightly.",
+        "You feel things at full brightness. Dim slightly. (social)"
+      ]
+    },
+    "moonSign": "leo"
+  },
+  {
+    "deltas": {
+      "career": 1,
+      "chaos": -1,
+      "confidence": 1,
+      "energy": 0,
+      "overall": 0,
+      "patience": 0,
+      "romance": 1,
+      "social": 0
+    },
+    "emotionalFragment": "You audit feelings like a spreadsheet. Most pass.",
+    "fragments": {
+      "career": [
+        "You audit feelings like a spreadsheet. Most pass.",
+        "You audit feelings like a spreadsheet. Most pass. (career)"
+      ],
+      "chaos": [
+        "You audit feelings like a spreadsheet. Most pass.",
+        "You audit feelings like a spreadsheet. Most pass. (chaos)"
+      ],
+      "confidence": [
+        "You audit feelings like a spreadsheet. Most pass.",
+        "You audit feelings like a spreadsheet. Most pass. (confidence)"
+      ],
+      "patience": [
+        "You audit feelings like a spreadsheet. Most pass.",
+        "You audit feelings like a spreadsheet. Most pass. (patience)"
+      ],
+      "romance": [
+        "You audit feelings like a spreadsheet. Most pass.",
+        "You audit feelings like a spreadsheet. Most pass. (romance)"
+      ],
+      "social": [
+        "You audit feelings like a spreadsheet. Most pass.",
+        "You audit feelings like a spreadsheet. Most pass. (social)"
+      ]
+    },
+    "moonSign": "virgo"
+  },
+  {
+    "deltas": {
+      "career": -3,
+      "chaos": 1,
+      "confidence": 1,
+      "energy": -2,
+      "overall": -2,
+      "patience": -2,
+      "romance": -2,
+      "social": 0
+    },
+    "emotionalFragment": "You weigh feelings as if they were options.",
+    "fragments": {
+      "career": [
+        "You weigh feelings as if they were options.",
+        "You weigh feelings as if they were options. (career)"
+      ],
+      "chaos": [
+        "You weigh feelings as if they were options.",
+        "You weigh feelings as if they were options. (chaos)"
+      ],
+      "confidence": [
+        "You weigh feelings as if they were options.",
+        "You weigh feelings as if they were options. (confidence)"
+      ],
+      "patience": [
+        "You weigh feelings as if they were options.",
+        "You weigh feelings as if they were options. (patience)"
+      ],
+      "romance": [
+        "You weigh feelings as if they were options.",
+        "You weigh feelings as if they were options. (romance)"
+      ],
+      "social": [
+        "You weigh feelings as if they were options.",
+        "You weigh feelings as if they were options. (social)"
+      ]
+    },
+    "moonSign": "libra"
+  },
+  {
+    "deltas": {
+      "career": 4,
+      "chaos": 5,
+      "confidence": 1,
+      "energy": 3,
+      "overall": 1,
+      "patience": 2,
+      "romance": 6,
+      "social": 1
+    },
+    "emotionalFragment": "You're processing feelings like they need quarterly approval.",
+    "fragments": {
+      "career": [
+        "You're processing feelings like they need quarterly approval.",
+        "You're processing feelings like they need quarterly approval. (career)"
+      ],
+      "chaos": [
+        "You're processing feelings like they need quarterly approval.",
+        "You're processing feelings like they need quarterly approval. (chaos)"
+      ],
+      "confidence": [
+        "You're processing feelings like they need quarterly approval.",
+        "You're processing feelings like they need quarterly approval. (confidence)"
+      ],
+      "patience": [
+        "You're processing feelings like they need quarterly approval.",
+        "You're processing feelings like they need quarterly approval. (patience)"
+      ],
+      "romance": [
+        "You're processing feelings like they need quarterly approval.",
+        "You're processing feelings like they need quarterly approval. (romance)"
+      ],
+      "social": [
+        "You're processing feelings like they need quarterly approval.",
+        "You're processing feelings like they need quarterly approval. (social)"
+      ]
+    },
+    "moonSign": "scorpio"
+  },
+  {
+    "deltas": {
+      "career": -1,
+      "chaos": 1,
+      "confidence": 0,
+      "energy": -1,
+      "overall": 3,
+      "patience": 2,
+      "romance": 3,
+      "social": 2
+    },
+    "emotionalFragment": "Feelings want an exit visa. Let them stay one night.",
+    "fragments": {
+      "career": [
+        "Feelings want an exit visa. Let them stay one night.",
+        "Feelings want an exit visa. Let them stay one night. (career)"
+      ],
+      "chaos": [
+        "Feelings want an exit visa. Let them stay one night.",
+        "Feelings want an exit visa. Let them stay one night. (chaos)"
+      ],
+      "confidence": [
+        "Feelings want an exit visa. Let them stay one night.",
+        "Feelings want an exit visa. Let them stay one night. (confidence)"
+      ],
+      "patience": [
+        "Feelings want an exit visa. Let them stay one night.",
+        "Feelings want an exit visa. Let them stay one night. (patience)"
+      ],
+      "romance": [
+        "Feelings want an exit visa. Let them stay one night.",
+        "Feelings want an exit visa. Let them stay one night. (romance)"
+      ],
+      "social": [
+        "Feelings want an exit visa. Let them stay one night.",
+        "Feelings want an exit visa. Let them stay one night. (social)"
+      ]
+    },
+    "moonSign": "sagittarius"
+  },
+  {
+    "deltas": {
+      "career": 1,
+      "chaos": 2,
+      "confidence": 2,
+      "energy": 0,
+      "overall": -1,
+      "patience": 3,
+      "romance": 3,
+      "social": 2
+    },
+    "emotionalFragment": "Emotions file themselves under 'later'. Open the folder.",
+    "fragments": {
+      "career": [
+        "Emotions file themselves under 'later'. Open the folder.",
+        "Emotions file themselves under 'later'. Open the folder. (career)"
+      ],
+      "chaos": [
+        "Emotions file themselves under 'later'. Open the folder.",
+        "Emotions file themselves under 'later'. Open the folder. (chaos)"
+      ],
+      "confidence": [
+        "Emotions file themselves under 'later'. Open the folder.",
+        "Emotions file themselves under 'later'. Open the folder. (confidence)"
+      ],
+      "patience": [
+        "Emotions file themselves under 'later'. Open the folder.",
+        "Emotions file themselves under 'later'. Open the folder. (patience)"
+      ],
+      "romance": [
+        "Emotions file themselves under 'later'. Open the folder.",
+        "Emotions file themselves under 'later'. Open the folder. (romance)"
+      ],
+      "social": [
+        "Emotions file themselves under 'later'. Open the folder.",
+        "Emotions file themselves under 'later'. Open the folder. (social)"
+      ]
+    },
+    "moonSign": "capricorn"
+  },
+  {
+    "deltas": {
+      "career": 1,
+      "chaos": 1,
+      "confidence": -2,
+      "energy": 0,
+      "overall": -1,
+      "patience": -1,
+      "romance": -1,
+      "social": 0
+    },
+    "emotionalFragment": "You observe feelings from a polite distance.",
+    "fragments": {
+      "career": [
+        "You observe feelings from a polite distance.",
+        "You observe feelings from a polite distance. (career)"
+      ],
+      "chaos": [
+        "You observe feelings from a polite distance.",
+        "You observe feelings from a polite distance. (chaos)"
+      ],
+      "confidence": [
+        "You observe feelings from a polite distance.",
+        "You observe feelings from a polite distance. (confidence)"
+      ],
+      "patience": [
+        "You observe feelings from a polite distance.",
+        "You observe feelings from a polite distance. (patience)"
+      ],
+      "romance": [
+        "You observe feelings from a polite distance.",
+        "You observe feelings from a polite distance. (romance)"
+      ],
+      "social": [
+        "You observe feelings from a polite distance.",
+        "You observe feelings from a polite distance. (social)"
+      ]
+    },
+    "moonSign": "aquarius"
+  },
+  {
+    "deltas": {
+      "career": 3,
+      "chaos": 4,
+      "confidence": 2,
+      "energy": 1,
+      "overall": 0,
+      "patience": 3,
+      "romance": 4,
+      "social": 0
+    },
+    "emotionalFragment": "Feelings arrive in every language at once.",
+    "fragments": {
+      "career": [
+        "Feelings arrive in every language at once.",
+        "Feelings arrive in every language at once. (career)"
+      ],
+      "chaos": [
+        "Feelings arrive in every language at once.",
+        "Feelings arrive in every language at once. (chaos)"
+      ],
+      "confidence": [
+        "Feelings arrive in every language at once.",
+        "Feelings arrive in every language at once. (confidence)"
+      ],
+      "patience": [
+        "Feelings arrive in every language at once.",
+        "Feelings arrive in every language at once. (patience)"
+      ],
+      "romance": [
+        "Feelings arrive in every language at once.",
+        "Feelings arrive in every language at once. (romance)"
+      ],
+      "social": [
+        "Feelings arrive in every language at once.",
+        "Feelings arrive in every language at once. (social)"
+      ]
+    },
+    "moonSign": "pisces"
   }
 ]

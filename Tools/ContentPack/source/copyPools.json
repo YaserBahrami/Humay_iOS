@@ -1,4 +1,8 @@
 {
+  "genericHeadlines": [
+    "Steady day. Suspiciously manageable.",
+    "No headlines. Just a decent Tuesday."
+  ],
   "greenFlags": [
     "You send the message without rewriting it four times.",
     "You drink water before coffee. Growth is quiet.",
@@ -19,38 +23,34 @@
     "You turn a small delay into a moral failure.",
     "You keep one tab open just to feel busy."
   ],
+  "revealFollowUps": [
+    "You didn't hear this from Humay.",
+    "Use responsibly."
+  ],
   "revealSecrets": [
     "Someone thinks about you more than they admit.",
     "You will finish something you started last week.",
     "An old idea deserves another look.",
     "Today favors asking directly."
   ],
-  "revealFollowUps": [
-    "You didn't hear this from Humay.",
-    "Use responsibly."
-  ],
-  "genericHeadlines": [
-    "Steady day. Suspiciously manageable.",
-    "No headlines. Just a decent Tuesday."
-  ],
   "roastByMode": {
-    "normal": [
-      "Balanced. Playful. Mostly harmless."
-    ],
-    "roast": [
-      "Humay has had enough."
-    ],
     "bestie": [
       "Like advice from your least judgmental friend."
-    ],
-    "savage": [
-      "No mercy. Still funny."
     ],
     "delulu": [
       "Unreasonably optimistic. On purpose."
     ],
     "drama": [
       "Everything is the season finale."
+    ],
+    "normal": [
+      "Balanced. Playful. Mostly harmless."
+    ],
+    "roast": [
+      "Humay has had enough."
+    ],
+    "savage": [
+      "No mercy. Still funny."
     ],
     "soft": [
       "Warm. Gentle. Emotionally supportive."

@@ -26,6 +26,12 @@ final class BundledContentPackRepository: @unchecked Sendable {
     // Cached decode, protected by lock for Sendable compliance.
     private let lock = NSLock()
     private var _state: State = .notLoaded
+    // Immutable indexes built once after decode (O(1) lookups for 4392 records)
+    private var sunIndex: [String: SunDayRecord] = [:]
+    private var moonIndex: [String: MoonModifier] = [:]
+    private var risingIndex: [String: RisingModifier] = [:]
+    private var archetypeIndex: [String: ArchetypeModifier] = [:]
+    private var indexesBuilt = false
 
     init(
         bundle: Bundle = .main,
@@ -43,6 +49,26 @@ final class BundledContentPackRepository: @unchecked Sendable {
         self.subdirectory = subdirectory
         self.singleFileName = singleFileName
         self._state = .loaded(pack)
+        buildIndexes(for: pack)
+    }
+
+    private func buildIndexes(for pack: CompiledContentPack) {
+        var s: [String: SunDayRecord] = [:]
+        s.reserveCapacity(pack.sunRecords.count)
+        for r in pack.sunRecords {
+            s["\(r.dayKey)|\(r.sunSign)"] = r
+        }
+        sunIndex = s
+        moonIndex = Dictionary(uniqueKeysWithValues: pack.moonModifiers.map { ($0.moonSign, $0) })
+        risingIndex = Dictionary(uniqueKeysWithValues: pack.risingModifiers.map { ($0.risingSign, $0) })
+        archetypeIndex = Dictionary(uniqueKeysWithValues: pack.archetypeModifiers.map { ($0.archetypeID, $0) })
+        indexesBuilt = true
+    }
+
+    private func ensureIndexesIfNeeded(for pack: CompiledContentPack) {
+        if !indexesBuilt {
+            buildIndexes(for: pack)
+        }
     }
 
     // MARK: - Public accessors (cached)
@@ -71,24 +97,26 @@ final class BundledContentPackRepository: @unchecked Sendable {
 
     func sunRecord(dayKey: CanonicalDayKey, sunSign: WesternZodiacSign) -> SunDayRecord? {
         guard case .loaded(let pack) = loadIfNeeded() else { return nil }
-        let key = dayKey.key
-        let sign = sunSign.rawValue
-        return pack.sunRecords.first { $0.dayKey == key && $0.sunSign == sign }
+        ensureIndexesIfNeeded(for: pack)
+        return sunIndex["\(dayKey.key)|\(sunSign.rawValue)"]
     }
 
     func moonModifier(sign: WesternZodiacSign) -> MoonModifier? {
         guard case .loaded(let pack) = loadIfNeeded() else { return nil }
-        return pack.moonModifiers.first { $0.moonSign == sign.rawValue }
+        ensureIndexesIfNeeded(for: pack)
+        return moonIndex[sign.rawValue]
     }
 
     func risingModifier(sign: WesternZodiacSign) -> RisingModifier? {
         guard case .loaded(let pack) = loadIfNeeded() else { return nil }
-        return pack.risingModifiers.first { $0.risingSign == sign.rawValue }
+        ensureIndexesIfNeeded(for: pack)
+        return risingIndex[sign.rawValue]
     }
 
     func archetypeModifier(id: String) -> ArchetypeModifier? {
         guard case .loaded(let pack) = loadIfNeeded() else { return nil }
-        return pack.archetypeModifiers.first { $0.archetypeID == id }
+        ensureIndexesIfNeeded(for: pack)
+        return archetypeIndex[id]
     }
 
     var copyPools: CopyPools? {
@@ -100,6 +128,11 @@ final class BundledContentPackRepository: @unchecked Sendable {
     func reload() {
         lock.lock()
         _state = .notLoaded
+        sunIndex = [:]
+        moonIndex = [:]
+        risingIndex = [:]
+        archetypeIndex = [:]
+        indexesBuilt = false
         lock.unlock()
         _ = loadIfNeeded()
     }
@@ -147,6 +180,9 @@ final class BundledContentPackRepository: @unchecked Sendable {
             if pack.manifest.schemaVersion != ContentPackManifest.currentSchemaVersion {
                 return .failed("Unsupported schemaVersion \(pack.manifest.schemaVersion)")
             }
+            lock.lock()
+            buildIndexes(for: pack)
+            lock.unlock()
             return .loaded(pack)
         } catch let error as DecodingError {
             return .failed("Malformed JSON: \(error.localizedDescription)")
@@ -196,6 +232,9 @@ final class BundledContentPackRepository: @unchecked Sendable {
                 copyPools: copyPools
             )
             try pack.validate()
+            lock.lock()
+            buildIndexes(for: pack)
+            lock.unlock()
             return .loaded(pack)
         } catch {
             return .failed("Split load error: \(error.localizedDescription)")

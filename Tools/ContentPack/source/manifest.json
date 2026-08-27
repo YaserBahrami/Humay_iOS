@@ -1,24 +1,26 @@
 {
-  "schemaVersion": 1,
-  "packVersion": "1.0.0-pilot",
-  "language": "en",
-  "contentCycleVersion": "2026-pilot-v1",
-  "createdAt": "2026-08-26T22:44:58.948562Z",
   "canonicalCalendar": "366-day",
+  "compilerVersion": "humay-pack-compiler-v1",
+  "contentCycleVersion": "2026-pilot-v1",
   "coverage": {
-    "startDayKey": "03-01",
-    "endDayKey": "03-14",
     "dayKeyCount": 14,
-    "isPilot": true,
+    "endDayKey": "03-14",
     "includesLeapDay": false,
+    "isPilot": true,
+    "startDayKey": "03-01",
     "sunRecordCount": 168
   },
+  "createdAt": "2026-08-26T22:44:58.948562Z",
+  "generationMethod": "scripted-pilot",
+  "language": "en",
+  "packVersion": "1.0.0-pilot",
   "provenance": {
-    "sourceModel": "Muse Spark 1.2",
-    "sourceModelVersion": "1.2-pilot-authored",
-    "promptVersion": "pack-prompt-v1",
+    "contentLanguage": "en",
     "generatedAt": "2026-08-26T22:44:58.948729Z",
-    "contentLanguage": "en"
+    "generationMethod": "scripted-pilot",
+    "promptVersion": "pack-prompt-v1",
+    "sourceModel": "Muse Spark 1.2",
+    "sourceModelVersion": "1.2-pilot-authored"
   },
-  "compilerVersion": "humay-pack-compiler-v1"
+  "schemaVersion": 1
 }

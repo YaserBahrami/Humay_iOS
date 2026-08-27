@@ -23,6 +23,24 @@ private func compactArrayFromDict(_ dict: [String: Int]) -> [Int] {
     compactDimensionOrder.map { dict[$0] ?? 50 }
 }
 
+/// Central semantic theme taxonomy for deterministic composition (small, typed, compiler-validated).
+enum ContentTheme: String, CaseIterable, Sendable, Hashable, Codable {
+    case romance
+    case career
+    case social
+    case confidence
+    case patience
+    case energy
+    case chaos
+    case reset
+    case boundaries
+    case communication
+    case focus
+
+    /// Stable sort order for deterministic selection.
+    static var allRawValues: [String] { allCases.map(\.rawValue) }
+}
+
 // MARK: - Sun base record
 
 /// AI-authored daily Sun base (one per canonical day × 12 signs).
@@ -121,6 +139,15 @@ struct SunDayRecord: Sendable, Hashable {
             for t in tags where t.count > Self.tagMaxLength {
                 throw ContentPackError.invalidTextLength(field: "tags", length: t.count, max: Self.tagMaxLength)
             }
+            // Validate tags against central taxonomy — pilot may have arbitrary but production must not
+            // We validate strictly: any tag not in ContentTheme is invalid
+            let allowed = Set(ContentTheme.allRawValues)
+            for t in tags where !t.isEmpty {
+                // Allow MoodDimension raw values as aliases for now, but prefer ContentTheme
+                if !allowed.contains(t) && MoodDimension(rawValue: t) == nil {
+                    throw ContentPackError.invalidReference("unknown tag/theme \(t)")
+                }
+            }
         }
         if let w = influenceWeight, !(0.3...2.0).contains(w) {
             throw ContentPackError.malformedJSON("influenceWeight \(w) out of range")
@@ -203,6 +230,7 @@ extension SunDayRecord: Codable {
 // MARK: - Modifier records
 
 /// Moon modifier — one per sign, applied as delta to Sun base.
+/// I.1: thematic fragment pools for variation (fragments[theme] -> [String]).
 struct MoonModifier: Sendable, Hashable {
     static let deltaBound = 14
     static let fragmentMaxLength = 180
@@ -211,12 +239,15 @@ struct MoonModifier: Sendable, Hashable {
     /// Deltas per dimension (bounded small, e.g. -12...+12)
     let deltas: [String: Int]
     let emotionalFragment: String?
+    /// Theme-aware pools: romance, career, social, confidence, patience, energy, chaos, reset, boundaries, communication, focus
+    let fragments: [String: [String]]?
     let affinityTags: [String]?
 
-    init(moonSign: String, deltas: [String: Int], emotionalFragment: String? = nil, affinityTags: [String]? = nil) {
+    init(moonSign: String, deltas: [String: Int], emotionalFragment: String? = nil, fragments: [String: [String]]? = nil, affinityTags: [String]? = nil) {
         self.moonSign = moonSign
         self.deltas = deltas
         self.emotionalFragment = emotionalFragment
+        self.fragments = fragments
         self.affinityTags = affinityTags
     }
 
@@ -240,15 +271,41 @@ struct MoonModifier: Sendable, Hashable {
                 throw ContentPackError.invalidTextLength(field: "moonFragment", length: frag.count, max: Self.fragmentMaxLength)
             }
         }
+        if let fr = fragments {
+            for (theme, arr) in fr {
+                guard ContentTheme(rawValue: theme) != nil || MoodDimension(rawValue: theme) != nil else {
+                    throw ContentPackError.invalidReference("moon fragments unknown theme \(theme)")
+                }
+                for s in arr {
+                    guard !s.trimmingCharacters(in: .whitespaces).isEmpty else {
+                        throw ContentPackError.invalidTextLength(field: "moonFragment.\(theme)", length: 0, max: Self.fragmentMaxLength)
+                    }
+                    guard s.count <= Self.fragmentMaxLength else {
+                        throw ContentPackError.invalidTextLength(field: "moonFragment.\(theme)", length: s.count, max: Self.fragmentMaxLength)
+                    }
+                }
+            }
+        }
+    }
+
+    /// Deterministic fragment selection for a day — theme-aware, stable.
+    func fragment(for theme: String?, stableSeed: UInt64) -> String? {
+        if let theme, let pools = fragments?[theme], !pools.isEmpty {
+            let idx = Int(stableSeed % UInt64(pools.count))
+            return pools[idx]
+        }
+        if let alt = fragments?["reset"]?.first { return alt } // fallback theme?
+        return emotionalFragment
     }
 }
 extension MoonModifier: Codable {
-    enum LongKeys: String, CodingKey { case moonSign, deltas, emotionalFragment, affinityTags }
+    enum LongKeys: String, CodingKey { case moonSign, deltas, emotionalFragment, fragments, affinityTags }
     func encode(to encoder: any Encoder) throws {
         var c = encoder.container(keyedBy: LongKeys.self)
         try c.encode(moonSign, forKey: .moonSign)
         try c.encode(deltas, forKey: .deltas)
         try c.encodeIfPresent(emotionalFragment, forKey: .emotionalFragment)
+        try c.encodeIfPresent(fragments, forKey: .fragments)
         try c.encodeIfPresent(affinityTags, forKey: .affinityTags)
     }
     init(from decoder: any Decoder) throws {
@@ -260,11 +317,12 @@ extension MoonModifier: Codable {
         else if let arr = try? c.decode([Int].self, forKey: AnyCodingKey(stringValue: "deltas")) { deltas = dictFromCompactArray(arr) }
         else { deltas = [:] }
         emotionalFragment = (try? c.decode(String.self, forKey: AnyCodingKey(stringValue: "emotionalFragment"))) ?? (try? c.decode(String.self, forKey: AnyCodingKey(stringValue: "f")))
+        fragments = (try? c.decode([String: [String]].self, forKey: AnyCodingKey(stringValue: "fragments"))) ?? (try? c.decode([String: [String]].self, forKey: AnyCodingKey(stringValue: "fr")))
         affinityTags = (try? c.decode([String].self, forKey: AnyCodingKey(stringValue: "affinityTags"))) ?? (try? c.decode([String].self, forKey: AnyCodingKey(stringValue: "at")))
     }
 }
 
-/// Rising modifier — one per sign.
+/// Rising modifier — one per sign. I.1 thematic fragments.
 struct RisingModifier: Sendable, Hashable {
     static let deltaBound = 12
     static let fragmentMaxLength = 180
@@ -272,12 +330,14 @@ struct RisingModifier: Sendable, Hashable {
     let risingSign: String
     let deltas: [String: Int]
     let outwardFragment: String?
+    let fragments: [String: [String]]?
     let affinityTags: [String]?
 
-    init(risingSign: String, deltas: [String:Int], outwardFragment: String? = nil, affinityTags: [String]? = nil) {
+    init(risingSign: String, deltas: [String:Int], outwardFragment: String? = nil, fragments: [String: [String]]? = nil, affinityTags: [String]? = nil) {
         self.risingSign = risingSign
         self.deltas = deltas
         self.outwardFragment = outwardFragment
+        self.fragments = fragments
         self.affinityTags = affinityTags
     }
 
@@ -298,6 +358,23 @@ struct RisingModifier: Sendable, Hashable {
                 throw ContentPackError.invalidTextLength(field: "risingFragment", length: frag.count, max: Self.fragmentMaxLength)
             }
         }
+        if let fr = fragments {
+            for (theme, arr) in fr {
+                guard ContentTheme(rawValue: theme) != nil || MoodDimension(rawValue: theme) != nil else {
+                    throw ContentPackError.invalidReference("rising fragments unknown theme \(theme)")
+                }
+                for s in arr where s.count > Self.fragmentMaxLength {
+                    throw ContentPackError.invalidTextLength(field: "risingFragment.\(theme)", length: s.count, max: Self.fragmentMaxLength)
+                }
+            }
+        }
+    }
+
+    func fragment(for theme: String?, stableSeed: UInt64) -> String? {
+        if let theme, let pools = fragments?[theme], !pools.isEmpty {
+            return pools[Int(stableSeed % UInt64(pools.count))]
+        }
+        return outwardFragment
     }
 }
 extension RisingModifier: Codable {
@@ -306,6 +383,7 @@ extension RisingModifier: Codable {
         try c.encode(risingSign, forKey: AnyCodingKey(stringValue: "risingSign"))
         try c.encode(deltas, forKey: AnyCodingKey(stringValue: "deltas"))
         try c.encodeIfPresent(outwardFragment, forKey: AnyCodingKey(stringValue: "outwardFragment"))
+        try c.encodeIfPresent(fragments, forKey: AnyCodingKey(stringValue: "fragments"))
         try c.encodeIfPresent(affinityTags, forKey: AnyCodingKey(stringValue: "affinityTags"))
     }
     init(from decoder: any Decoder) throws {
@@ -317,11 +395,12 @@ extension RisingModifier: Codable {
         else if let arr = try? c.decode([Int].self, forKey: AnyCodingKey(stringValue: "d")) { deltas = dictFromCompactArray(arr) }
         else { deltas = [:] }
         outwardFragment = (try? c.decode(String.self, forKey: AnyCodingKey(stringValue: "outwardFragment"))) ?? (try? c.decode(String.self, forKey: AnyCodingKey(stringValue: "f")))
+        fragments = (try? c.decode([String: [String]].self, forKey: AnyCodingKey(stringValue: "fragments"))) ?? (try? c.decode([String: [String]].self, forKey: AnyCodingKey(stringValue: "fr")))
         affinityTags = (try? c.decode([String].self, forKey: AnyCodingKey(stringValue: "affinityTags"))) ?? (try? c.decode([String].self, forKey: AnyCodingKey(stringValue: "at")))
     }
 }
 
-/// Humay archetype modifier — one per archetype id (12 total).
+/// Humay archetype modifier — one per archetype id (12 total). I.1 adds thematic rotation.
 struct ArchetypeModifier: Sendable, Hashable {
     static let deltaBound = 10
     static let fragmentMaxLength = 160
@@ -329,12 +408,14 @@ struct ArchetypeModifier: Sendable, Hashable {
     let archetypeID: String
     let deltas: [String: Int]
     let fragment: String?
+    let fragments: [String: [String]]?
     let preferredTags: [String]?
 
-    init(archetypeID: String, deltas: [String:Int], fragment: String? = nil, preferredTags: [String]? = nil) {
+    init(archetypeID: String, deltas: [String:Int], fragment: String? = nil, fragments: [String: [String]]? = nil, preferredTags: [String]? = nil) {
         self.archetypeID = archetypeID
         self.deltas = deltas
         self.fragment = fragment
+        self.fragments = fragments
         self.preferredTags = preferredTags
     }
 
@@ -355,6 +436,23 @@ struct ArchetypeModifier: Sendable, Hashable {
                 throw ContentPackError.invalidTextLength(field: "archetypeFragment", length: frag.count, max: Self.fragmentMaxLength)
             }
         }
+        if let fr = fragments {
+            for (theme, arr) in fr {
+                guard ContentTheme(rawValue: theme) != nil || MoodDimension(rawValue: theme) != nil else {
+                    throw ContentPackError.invalidReference("archetype fragments unknown theme \(theme)")
+                }
+                for s in arr where s.count > Self.fragmentMaxLength {
+                    throw ContentPackError.invalidTextLength(field: "archetypeFragment.\(theme)", length: s.count, max: Self.fragmentMaxLength)
+                }
+            }
+        }
+    }
+
+    func fragment(for theme: String?, stableSeed: UInt64) -> String? {
+        if let theme, let pools = fragments?[theme], !pools.isEmpty {
+            return pools[Int(stableSeed % UInt64(pools.count))]
+        }
+        return fragment
     }
 }
 extension ArchetypeModifier: Codable {
@@ -363,6 +461,7 @@ extension ArchetypeModifier: Codable {
         try c.encode(archetypeID, forKey: AnyCodingKey(stringValue: "archetypeID"))
         try c.encode(deltas, forKey: AnyCodingKey(stringValue: "deltas"))
         try c.encodeIfPresent(fragment, forKey: AnyCodingKey(stringValue: "fragment"))
+        try c.encodeIfPresent(fragments, forKey: AnyCodingKey(stringValue: "fragments"))
         try c.encodeIfPresent(preferredTags, forKey: AnyCodingKey(stringValue: "preferredTags"))
     }
     init(from decoder: any Decoder) throws {
@@ -373,6 +472,7 @@ extension ArchetypeModifier: Codable {
         else if let arr = try? c.decode([Int].self, forKey: AnyCodingKey(stringValue: "d")) { deltas = dictFromCompactArray(arr) }
         else { deltas = [:] }
         fragment = (try? c.decode(String.self, forKey: AnyCodingKey(stringValue: "fragment"))) ?? (try? c.decode(String.self, forKey: AnyCodingKey(stringValue: "f")))
+        fragments = (try? c.decode([String: [String]].self, forKey: AnyCodingKey(stringValue: "fragments"))) ?? (try? c.decode([String: [String]].self, forKey: AnyCodingKey(stringValue: "fr")))
         preferredTags = (try? c.decode([String].self, forKey: AnyCodingKey(stringValue: "preferredTags"))) ?? (try? c.decode([String].self, forKey: AnyCodingKey(stringValue: "pt")))
     }
 }
@@ -421,8 +521,10 @@ struct CompiledContentPack: Sendable, Hashable, Codable {
 
     func validate() throws {
         try manifest.validate()
-        // Unique check: dayKey + sunSign
+        // Unique check: dayKey + sunSign + validate individual records
         var seen = Set<String>()
+        var keysSeen = Set<String>()
+        var signCountByKey: [String: Set<String>] = [:]
         for r in sunRecords {
             try r.validate()
             let key = "\(r.dayKey)|\(r.sunSign)"
@@ -430,8 +532,16 @@ struct CompiledContentPack: Sendable, Hashable, Codable {
                 throw ContentPackError.duplicateRecord(key)
             }
             seen.insert(key)
+            keysSeen.insert(r.dayKey)
+            signCountByKey[r.dayKey, default: []].insert(r.sunSign)
+            // Validate canonical day key parsing
+            _ = try CanonicalDayKey(key: r.dayKey)
         }
-        // Modifier uniqueness
+        // Extra date validation: no unexpected extra dates beyond canonical calendar
+        for k in keysSeen {
+            _ = try CanonicalDayKey(key: k)
+        }
+        // Modifier uniqueness & validation
         let moonSigns = moonModifiers.map(\.moonSign)
         guard Set(moonSigns).count == moonSigns.count else {
             throw ContentPackError.duplicateRecord("moonModifier")
@@ -452,9 +562,54 @@ struct CompiledContentPack: Sendable, Hashable, Codable {
 
         try copyPools?.validate()
 
-        // Pilot must be internally consistent with coverage
-        if manifest.coverage.isPilot {
-            // Allow missing records; just ensure counts match manifest hint when non-zero
+        // Coverage manifest vs actual must agree (do not trust manifest blindly)
+        if manifest.coverage.sunRecordCount != sunRecords.count {
+            throw ContentPackError.malformedJSON("manifest.coverage.sunRecordCount \(manifest.coverage.sunRecordCount) != actual \(sunRecords.count)")
+        }
+        if manifest.coverage.dayKeyCount != keysSeen.count {
+            throw ContentPackError.malformedJSON("manifest.coverage.dayKeyCount \(manifest.coverage.dayKeyCount) != actual \(keysSeen.count)")
+        }
+
+        // Production completeness contract
+        if !manifest.coverage.isPilot {
+            // Must have exactly 366 canonical keys including leap day
+            let allKeys = Set(CanonicalDayKey.all366.map(\.key))
+            if keysSeen != allKeys {
+                let missing = allKeys.subtracting(keysSeen)
+                let extra = keysSeen.subtracting(allKeys)
+                if !missing.isEmpty {
+                    throw ContentPackError.missingRecord("production missing dayKeys \(missing.sorted().prefix(5))")
+                }
+                if !extra.isEmpty {
+                    throw ContentPackError.duplicateRecord("unexpected extra date \(extra)")
+                }
+            }
+            if sunRecords.count != 366 * 12 {
+                throw ContentPackError.malformedJSON("production sunRecordCount must be 4392, got \(sunRecords.count)")
+            }
+            // Every key must have exactly 12 signs
+            for k in allKeys {
+                let signs = signCountByKey[k] ?? []
+                if signs.count != 12 {
+                    throw ContentPackError.missingRecord("production key \(k) missing signs: \(signs)")
+                }
+            }
+            // Modifier completeness
+            if moonModifiers.count != 12 {
+                throw ContentPackError.missingRecord("production requires 12 Moon modifiers, got \(moonModifiers.count)")
+            }
+            if risingModifiers.count != 12 {
+                throw ContentPackError.missingRecord("production requires 12 Rising modifiers, got \(risingModifiers.count)")
+            }
+            if archetypeModifiers.count != 12 {
+                throw ContentPackError.missingRecord("production requires 12 archetype modifiers, got \(archetypeModifiers.count)")
+            }
+            if !manifest.coverage.includesLeapDay {
+                throw ContentPackError.malformedJSON("production must include 02-29")
+            }
+        } else {
+            // Pilot: dayKeyCount / sunRecordCount already validated above; isPilot flag honest
+            // No extra enforcement beyond per-record checks.
         }
     }
 }

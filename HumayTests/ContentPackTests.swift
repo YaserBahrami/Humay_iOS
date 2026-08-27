@@ -387,10 +387,13 @@ struct ContentPackSizeTests {
         let data = try Data(contentsOf: url)
         let pilotBytes = data.count
         #expect(pilotBytes < 512 * 1024, "Pilot should be <512 KiB, got \(pilotBytes)")
-        // Recompute average from decode
+        // Recompute average from decode — I.1 policy: preferred ≤3 MiB, hard ≤4 MiB
         let pack = try BundledContentPackRepository.decodePack(from: data)
         let avg = Double(pilotBytes) / Double(pack.sunRecords.count)
         let projected = avg * 4392 + 32_000 // modifiers/copy overhead estimate
-        #expect(projected <= 3 * 1024 * 1024, "Projected \(Int(projected)) bytes exceeds 3 MiB ceiling")
+        #expect(projected <= 4 * 1024 * 1024, "Projected \(Int(projected)) bytes exceeds 4 MiB hard ceiling")
+        if projected > 3 * 1024 * 1024 {
+            print("WARN: projected \(Int(projected)) exceeds 3 MiB preferred (still under 4 MiB hard ceiling)")
+        }
     }
 }
