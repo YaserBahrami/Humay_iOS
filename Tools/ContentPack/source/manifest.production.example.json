@@ -1,0 +1,30 @@
+{
+  "schemaVersion": 1,
+  "packVersion": "1.0.0",
+  "language": "en",
+  "contentCycleVersion": "cycle-2027-v1",
+  "createdAt": "2027-01-01T00:00:00Z",
+  "canonicalCalendar": "366-day",
+  "coverage": {
+    "startDayKey": "01-01",
+    "endDayKey": "12-31",
+    "dayKeyCount": 366,
+    "isPilot": false,
+    "includesLeapDay": true,
+    "sunRecordCount": 4392
+  },
+  "provenance": {
+    "sourceModel": "Muse Spark 1.2",
+    "sourceModelVersion": "1.2",
+    "promptVersion": "pack-prompt-v2",
+    "generatedAt": "2027-01-01T00:00:00Z",
+    "contentLanguage": "en",
+    "generationMethod": "ai-batch-authored"
+  },
+  "compilerVersion": "humay-pack-compiler-v1",
+  "generationMethod": "ai-batch-authored",
+  "activeFrom": "2027-01-01T00:00:00Z",
+  "activeThrough": "2027-12-31T23:59:59Z",
+  "checksums": null,
+  "batches": null
+}

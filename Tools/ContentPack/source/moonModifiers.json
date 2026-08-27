@@ -13,28 +13,44 @@
     "emotionalFragment": "Your feelings want to move before you explain them.",
     "fragments": {
       "career": [
-        "Your feelings want to move before you explain them.",
-        "Your feelings want to move before you explain them. (career)"
+        "You choose depth over volume and it shows.",
+        "You name what you actually need, not the negotiating position.",
+        "You leave something at 80% and move on."
       ],
       "chaos": [
-        "Your feelings want to move before you explain them.",
-        "Your feelings want to move before you explain them. (chaos)"
+        "You turn the small fire into a story by evening.",
+        "You keep your keys, your kindness, and your charger.",
+        "You let change be the hallway, not the house."
+      ],
+      "communication": [
+        "You let the other person finish before you mind-read.",
+        "You let your voice match your message.",
+        "You let the email be three sentences."
       ],
       "confidence": [
-        "Your feelings want to move before you explain them.",
-        "Your feelings want to move before you explain them. (confidence)"
+        "You let your taste guide you without explaining it.",
+        "You keep your promises loud enough for you to hear.",
+        "You let your work be seen without footnotes."
       ],
       "patience": [
-        "Your feelings want to move before you explain them.",
-        "Your feelings want to move before you explain them. (patience)"
+        "You let the queue move without narrating it.",
+        "You let the dough rise.",
+        "You keep your cool when the Wi-Fi doesn't."
+      ],
+      "reset": [
+        "You clear the table, not your whole life.",
+        "You let the inbox be at inbox, not at you.",
+        "You let today have its own weather."
       ],
       "romance": [
-        "Your feelings want to move before you explain them.",
-        "Your feelings want to move before you explain them. (romance)"
+        "You let someone be tender without fixing it.",
+        "You hear the compliment without editing it.",
+        "You laugh and it actually relaxes the room."
       ],
       "social": [
-        "Your feelings want to move before you explain them.",
-        "Your feelings want to move before you explain them. (social)"
+        "You find one genuine question to ask.",
+        "Small talk leads to real talk if you stay two minutes longer.",
+        "You keep the banter kind."
       ]
     },
     "moonSign": "aries"
@@ -53,28 +69,44 @@
     "emotionalFragment": "Emotions arrive slowly and stay for dinner.",
     "fragments": {
       "career": [
-        "Emotions arrive slowly and stay for dinner.",
-        "Emotions arrive slowly and stay for dinner. (career)"
+        "You give credit first and it returns quickly.",
+        "You trade perfection for done, briefly.",
+        "You follow up plainly. No apology paragraph needed."
       ],
       "chaos": [
-        "Emotions arrive slowly and stay for dinner.",
-        "Emotions arrive slowly and stay for dinner. (chaos)"
+        "You let the storm pass without inviting it inside.",
+        "You keep your coffee warm and your expectations flexible.",
+        "You let the day be interesting instead of perfect."
+      ],
+      "communication": [
+        "You let your yes mean yes.",
+        "You keep your story under two minutes.",
+        "You say thank you and stop there."
       ],
       "confidence": [
-        "Emotions arrive slowly and stay for dinner.",
-        "Emotions arrive slowly and stay for dinner. (confidence)"
+        "You don't need to earn the room. You're in it.",
+        "You keep your promises loud enough for you to hear.",
+        "You let your work be seen without footnotes."
       ],
       "patience": [
-        "Emotions arrive slowly and stay for dinner.",
-        "Emotions arrive slowly and stay for dinner. (patience)"
+        "You wait for the full story.",
+        "You hold the question without forcing closure.",
+        "You keep your expectations on a human schedule."
+      ],
+      "reset": [
+        "You let the reset be small and true.",
+        "You let the new hour be new.",
+        "You take ten minutes and reset the room."
       ],
       "romance": [
-        "Emotions arrive slowly and stay for dinner.",
-        "Emotions arrive slowly and stay for dinner. (romance)"
+        "You trust the slow yes over the fast maybe.",
+        "A quick honesty clears yesterday's static.",
+        "You choose curiosity over the old story."
       ],
       "social": [
-        "Emotions arrive slowly and stay for dinner.",
-        "Emotions arrive slowly and stay for dinner. (social)"
+        "You don't need to be everywhere to belong.",
+        "You let someone else be interesting.",
+        "You stay curious instead of corrective."
       ]
     },
     "moonSign": "taurus"
@@ -93,28 +125,44 @@
     "emotionalFragment": "You narrate feelings twice to decide what you feel.",
     "fragments": {
       "career": [
-        "You narrate feelings twice to decide what you feel.",
-        "You narrate feelings twice to decide what you feel. (career)"
+        "You follow up plainly. No apology paragraph needed.",
+        "You finish one thing properly before starting two more.",
+        "You keep the long game in sight while handling today."
       ],
       "chaos": [
-        "You narrate feelings twice to decide what you feel.",
-        "You narrate feelings twice to decide what you feel. (chaos)"
+        "You keep your playlist calm while the outside isn't.",
+        "You make peace with the detour. It has snacks.",
+        "You keep your list short when the day is long."
+      ],
+      "communication": [
+        "You let the other person finish before you mind-read.",
+        "You keep your feedback about the work, not the person.",
+        "You keep the thread honest and kind."
       ],
       "confidence": [
-        "You narrate feelings twice to decide what you feel.",
-        "You narrate feelings twice to decide what you feel. (confidence)"
+        "You choose one brave sentence today.",
+        "You let the mirror be neutral information.",
+        "You let good enough be good."
       ],
       "patience": [
-        "You narrate feelings twice to decide what you feel.",
-        "You narrate feelings twice to decide what you feel. (patience)"
+        "You let the answer come after the walk.",
+        "You let today's pace be enough.",
+        "You let the second thought be kinder."
+      ],
+      "reset": [
+        "You let the night be a door, not a wall.",
+        "You let the mistake be data, not identity.",
+        "You close the loop you left open."
       ],
       "romance": [
-        "You narrate feelings twice to decide what you feel.",
-        "You narrate feelings twice to decide what you feel. (romance)"
+        "You keep your humor even when you're fond of someone.",
+        "You read the room and your own pulse.",
+        "A boundary makes the yes feel good."
       ],
       "social": [
-        "You narrate feelings twice to decide what you feel.",
-        "You narrate feelings twice to decide what you feel. (social)"
+        "Your boundaries read clearly today. Keep them clear.",
+        "You keep your phone down and your eyes up.",
+        "You keep your yes small and real."
       ]
     },
     "moonSign": "gemini"
@@ -133,28 +181,44 @@
     "emotionalFragment": "Tenderness is close to the surface. Handle gently.",
     "fragments": {
       "career": [
-        "Tenderness is close to the surface. Handle gently.",
-        "Tenderness is close to the surface. Handle gently. (career)"
+        "You make the decision with the information you have.",
+        "You turn a vague plan into a concrete next move.",
+        "You check the numbers without making a story about them."
       ],
       "chaos": [
-        "Tenderness is close to the surface. Handle gently.",
-        "Tenderness is close to the surface. Handle gently. (chaos)"
+        "You let spontaneity have a budget.",
+        "You let the improvisation be good enough.",
+        "You steer the mess lightly instead of wrestling it."
+      ],
+      "communication": [
+        "You let the email be three sentences.",
+        "You ask for clarification before correction.",
+        "You let clarity be kindness today."
       ],
       "confidence": [
-        "Tenderness is close to the surface. Handle gently.",
-        "Tenderness is close to the surface. Handle gently. (confidence)"
+        "You let your taste guide you without explaining it.",
+        "You let the compliment land without shrinking.",
+        "You wear what you like and stop adjusting it."
       ],
       "patience": [
-        "Tenderness is close to the surface. Handle gently.",
-        "Tenderness is close to the surface. Handle gently. (patience)"
+        "You keep one ritual slow and intact.",
+        "You allow today's progress to be invisible.",
+        "You let the delay be about timing, not rejection."
+      ],
+      "reset": [
+        "You let the reset take five minutes, not five days.",
+        "You close yesterday's tabs, literal and mental.",
+        "You keep the ritual and skip the commentary."
       ],
       "romance": [
-        "Tenderness is close to the surface. Handle gently.",
-        "Tenderness is close to the surface. Handle gently. (romance)"
+        "You laugh and it actually relaxes the room.",
+        "You read the room and your own pulse.",
+        "You notice the difference between chemistry and clarity."
       ],
       "social": [
-        "Tenderness is close to the surface. Handle gently.",
-        "Tenderness is close to the surface. Handle gently. (social)"
+        "You say hello first and mean it.",
+        "You choose the smaller gathering. It suits you today.",
+        "You let people be late without making it personal."
       ]
     },
     "moonSign": "cancer"
@@ -173,28 +237,44 @@
     "emotionalFragment": "You feel things at full brightness. Dim slightly.",
     "fragments": {
       "career": [
-        "You feel things at full brightness. Dim slightly.",
-        "You feel things at full brightness. Dim slightly. (career)"
+        "You keep your focus narrow and your standards kind.",
+        "You notice momentum starts on the second task, not the first.",
+        "You let structure be kindness today."
       ],
       "chaos": [
-        "You feel things at full brightness. Dim slightly.",
-        "You feel things at full brightness. Dim slightly. (chaos)"
+        "You keep your humor when the schedule wobbles.",
+        "You laugh before you fix. Fixing goes faster after.",
+        "You let the unexpected invite you elsewhere."
+      ],
+      "communication": [
+        "You let your yes mean yes.",
+        "You ask what you actually want to know.",
+        "You let the pause be part of the sentence."
       ],
       "confidence": [
-        "You feel things at full brightness. Dim slightly.",
-        "You feel things at full brightness. Dim slightly. (confidence)"
+        "You let your taste guide you without explaining it.",
+        "You move as if you belong. You do.",
+        "You let the mirror be neutral information."
       ],
       "patience": [
-        "You feel things at full brightness. Dim slightly.",
-        "You feel things at full brightness. Dim slightly. (patience)"
+        "You give the plant time. It’s still growing.",
+        "You wait for the full story.",
+        "You let the slow answer be the true one."
+      ],
+      "reset": [
+        "You breathe and lower the stakes.",
+        "You return to the habit without negotiating with it.",
+        "You let the reset be quiet, not dramatic."
       ],
       "romance": [
-        "You feel things at full brightness. Dim slightly.",
-        "You feel things at full brightness. Dim slightly. (romance)"
+        "You want to text twice. Send the better one once.",
+        "A boundary makes the yes feel good.",
+        "You choose one real question over three safe ones."
       ],
       "social": [
-        "You feel things at full brightness. Dim slightly.",
-        "You feel things at full brightness. Dim slightly. (social)"
+        "You bring humor, lightly. It lands better that way.",
+        "You remember names, not just stories.",
+        "You find one genuine question to ask."
       ]
     },
     "moonSign": "leo"
@@ -213,28 +293,44 @@
     "emotionalFragment": "You audit feelings like a spreadsheet. Most pass.",
     "fragments": {
       "career": [
-        "You audit feelings like a spreadsheet. Most pass.",
-        "You audit feelings like a spreadsheet. Most pass. (career)"
+        "You set a boundary around your best hours.",
+        "You separate what's urgent from what's merely loud.",
+        "A loose thread is worth pulling. Something useful unravels."
       ],
       "chaos": [
-        "You audit feelings like a spreadsheet. Most pass.",
-        "You audit feelings like a spreadsheet. Most pass. (chaos)"
+        "You keep your playlist calm while the outside isn't.",
+        "You let spontaneity have a budget.",
+        "You keep your tabs open but your head clearer."
+      ],
+      "communication": [
+        "You let someone be wrong without fixing it today.",
+        "You ask how they'd like to be supported.",
+        "You keep your feedback about the work, not the person."
       ],
       "confidence": [
-        "You audit feelings like a spreadsheet. Most pass.",
-        "You audit feelings like a spreadsheet. Most pass. (confidence)"
+        "You don't need to be loud to be clear.",
+        "You choose the bolder option for one hour.",
+        "You stop rehearsing the answer and give it."
       ],
       "patience": [
-        "You audit feelings like a spreadsheet. Most pass.",
-        "You audit feelings like a spreadsheet. Most pass. (patience)"
+        "You hold the question without forcing closure.",
+        "You let quiet be productive.",
+        "You give the plant time. It’s still growing."
+      ],
+      "reset": [
+        "You let today have its own weather.",
+        "You choose the gentle restart.",
+        "You let the reset be small and true."
       ],
       "romance": [
-        "You audit feelings like a spreadsheet. Most pass.",
-        "You audit feelings like a spreadsheet. Most pass. (romance)"
+        "You notice who stays when nothing's entertaining.",
+        "You choose curiosity over the old story.",
+        "You let yesterday's reflex sit out one round."
       ],
       "social": [
-        "You audit feelings like a spreadsheet. Most pass.",
-        "You audit feelings like a spreadsheet. Most pass. (social)"
+        "You let connection be light today.",
+        "You say hello first and mean it.",
+        "One invitation deserves a yes. The rest can wait."
       ]
     },
     "moonSign": "virgo"
@@ -253,28 +349,44 @@
     "emotionalFragment": "You weigh feelings as if they were options.",
     "fragments": {
       "career": [
-        "You weigh feelings as if they were options.",
-        "You weigh feelings as if they were options. (career)"
+        "You save the clever reply for later and send the clear one.",
+        "You keep your focus narrow and your standards kind.",
+        "You notice momentum starts on the second task, not the first."
       ],
       "chaos": [
-        "You weigh feelings as if they were options.",
-        "You weigh feelings as if they were options. (chaos)"
+        "You let the improvisation be good enough.",
+        "You make a decision before the options multiply.",
+        "You let the noise be background, not headline."
+      ],
+      "communication": [
+        "You ask one real follow-up.",
+        "You name the boundary and the care together.",
+        "You check if now is a good time to talk."
       ],
       "confidence": [
-        "You weigh feelings as if they were options.",
-        "You weigh feelings as if they were options. (confidence)"
+        "You take the photo without negotiating with yourself.",
+        "You take the compliment and keep walking.",
+        "You keep your eyes on your own work."
       ],
       "patience": [
-        "You weigh feelings as if they were options.",
-        "You weigh feelings as if they were options. (patience)"
+        "You let today's pace be enough.",
+        "You wait for the full story.",
+        "You keep your cool when the Wi-Fi doesn't."
+      ],
+      "reset": [
+        "You put your phone down and your list up.",
+        "You let today have its own weather.",
+        "You clear the counter and the mind follows."
       ],
       "romance": [
-        "You weigh feelings as if they were options.",
-        "You weigh feelings as if they were options. (romance)"
+        "A boundary makes the yes feel good.",
+        "You give them space to show effort.",
+        "You choose one real question over three safe ones."
       ],
       "social": [
-        "You weigh feelings as if they were options.",
-        "You weigh feelings as if they were options. (social)"
+        "You notice when you want to perform and choose not to.",
+        "You protect your energy by choosing the exit time early.",
+        "You stay curious instead of corrective."
       ]
     },
     "moonSign": "libra"
@@ -290,31 +402,47 @@
       "romance": 6,
       "social": 1
     },
-    "emotionalFragment": "You're processing feelings like they need quarterly approval.",
+    "emotionalFragment": "You process feelings like they need quarterly approval.",
     "fragments": {
       "career": [
-        "You're processing feelings like they need quarterly approval.",
-        "You're processing feelings like they need quarterly approval. (career)"
+        "You keep the long game in sight while handling today.",
+        "You make the room work better without announcing it.",
+        "You follow up plainly. No apology paragraph needed."
       ],
       "chaos": [
-        "You're processing feelings like they need quarterly approval.",
-        "You're processing feelings like they need quarterly approval. (chaos)"
+        "You let the day be interesting instead of perfect.",
+        "You keep your list short when the day is long.",
+        "You turn the small fire into a story by evening."
+      ],
+      "communication": [
+        "You listen for what isn't being said.",
+        "You let the conversation end when it ends.",
+        "You say the clear thing instead of the clever thing."
       ],
       "confidence": [
-        "You're processing feelings like they need quarterly approval.",
-        "You're processing feelings like they need quarterly approval. (confidence)"
+        "You say what you mean without the extra apology.",
+        "You wear what you like and stop adjusting it.",
+        "You let your experience speak plainly."
       ],
       "patience": [
-        "You're processing feelings like they need quarterly approval.",
-        "You're processing feelings like they need quarterly approval. (patience)"
+        "You choose one thing to wait well for.",
+        "You let someone finish their sentence.",
+        "You wait for the full story."
+      ],
+      "reset": [
+        "You choose the gentle restart.",
+        "You let the reset be quiet, not dramatic.",
+        "You close yesterday's tabs, literal and mental."
       ],
       "romance": [
-        "You're processing feelings like they need quarterly approval.",
-        "You're processing feelings like they need quarterly approval. (romance)"
+        "You say the kind thing plainly and it lands.",
+        "You keep your humor even when you're fond of someone.",
+        "You make amends without making a speech."
       ],
       "social": [
-        "You're processing feelings like they need quarterly approval.",
-        "You're processing feelings like they need quarterly approval. (social)"
+        "Your boundaries read clearly today. Keep them clear.",
+        "You text the old friend who just crossed your mind.",
+        "You let people be late without making it personal."
       ]
     },
     "moonSign": "scorpio"
@@ -333,28 +461,44 @@
     "emotionalFragment": "Feelings want an exit visa. Let them stay one night.",
     "fragments": {
       "career": [
-        "Feelings want an exit visa. Let them stay one night.",
-        "Feelings want an exit visa. Let them stay one night. (career)"
+        "You make the decision with the information you have.",
+        "You ask the sharper second question.",
+        "You choose depth over volume and it shows."
       ],
       "chaos": [
-        "Feelings want an exit visa. Let them stay one night.",
-        "Feelings want an exit visa. Let them stay one night. (chaos)"
+        "You keep your keys, your kindness, and your charger.",
+        "You keep one window closed so the others can stay open.",
+        "You keep your coffee warm and your expectations flexible."
+      ],
+      "communication": [
+        "You listen for what isn't being said.",
+        "You ask how they'd like to be supported.",
+        "You ask one real follow-up."
       ],
       "confidence": [
-        "Feelings want an exit visa. Let them stay one night.",
-        "Feelings want an exit visa. Let them stay one night. (confidence)"
+        "You say what you mean without the extra apology.",
+        "You let your work be seen without footnotes.",
+        "You let your taste guide you without explaining it."
       ],
       "patience": [
-        "Feelings want an exit visa. Let them stay one night.",
-        "Feelings want an exit visa. Let them stay one night. (patience)"
+        "You notice urgency and ask if it's real.",
+        "You keep your hands busy while time does its job.",
+        "You let people learn slowly too."
+      ],
+      "reset": [
+        "You choose again, accurately this time.",
+        "You drink water, open the window, begin again.",
+        "You put the laundry where it belongs and feel smug."
       ],
       "romance": [
-        "Feelings want an exit visa. Let them stay one night.",
-        "Feelings want an exit visa. Let them stay one night. (romance)"
+        "You keep your center while someone gets closer.",
+        "You notice who stays when nothing's entertaining.",
+        "You notice the smaller tell, not the grand gesture."
       ],
       "social": [
-        "Feelings want an exit visa. Let them stay one night.",
-        "Feelings want an exit visa. Let them stay one night. (social)"
+        "You leave the noisy chat early and feel better.",
+        "One invitation deserves a yes. The rest can wait.",
+        "You let people be late without making it personal."
       ]
     },
     "moonSign": "sagittarius"
@@ -373,28 +517,44 @@
     "emotionalFragment": "Emotions file themselves under 'later'. Open the folder.",
     "fragments": {
       "career": [
-        "Emotions file themselves under 'later'. Open the folder.",
-        "Emotions file themselves under 'later'. Open the folder. (career)"
+        "You document what you did so future you thanks you.",
+        "You say no once today and mean it. The calendar relaxes.",
+        "Your competence is visible without the extra slide."
       ],
       "chaos": [
-        "Emotions file themselves under 'later'. Open the folder.",
-        "Emotions file themselves under 'later'. Open the folder. (chaos)"
+        "You keep one thing stable while the rest rearranges.",
+        "You keep your keys, your kindness, and your charger.",
+        "You keep your feet on the floor when the head floats."
+      ],
+      "communication": [
+        "You let the translation be gentle.",
+        "You ask how they'd like to be supported.",
+        "You repeat back what you heard before replying."
       ],
       "confidence": [
-        "Emotions file themselves under 'later'. Open the folder.",
-        "Emotions file themselves under 'later'. Open the folder. (confidence)"
+        "You trust the decision you already made.",
+        "You wear what you like and stop adjusting it.",
+        "You let the quiet confidence count."
       ],
       "patience": [
-        "Emotions file themselves under 'later'. Open the folder.",
-        "Emotions file themselves under 'later'. Open the folder. (patience)"
+        "You keep your cool when the Wi-Fi doesn't.",
+        "You let the dough rise.",
+        "You protect the pause between stimulus and spin."
+      ],
+      "reset": [
+        "You drink water, open the window, begin again.",
+        "You choose again, accurately this time.",
+        "You start again without the apology tour."
       ],
       "romance": [
-        "Emotions file themselves under 'later'. Open the folder.",
-        "Emotions file themselves under 'later'. Open the folder. (romance)"
+        "You don't over-narrate what's working.",
+        "You give them space to show effort.",
+        "You stay when it's calm, not just when it's thrilling."
       ],
       "social": [
-        "Emotions file themselves under 'later'. Open the folder.",
-        "Emotions file themselves under 'later'. Open the folder. (social)"
+        "You protect your energy by choosing the exit time early.",
+        "You keep your plans simple and keep them.",
+        "You keep your yes small and real."
       ]
     },
     "moonSign": "capricorn"
@@ -413,28 +573,44 @@
     "emotionalFragment": "You observe feelings from a polite distance.",
     "fragments": {
       "career": [
-        "You observe feelings from a polite distance.",
-        "You observe feelings from a polite distance. (career)"
+        "You choose one metric that actually matters.",
+        "You notice momentum starts on the second task, not the first.",
+        "You make the room work better without announcing it."
       ],
       "chaos": [
-        "You observe feelings from a polite distance.",
-        "You observe feelings from a polite distance. (chaos)"
+        "You let the noise be background, not headline.",
+        "You let the storm pass without inviting it inside.",
+        "You keep your center while the periphery wiggles."
+      ],
+      "communication": [
+        "You check the tone before you hit send.",
+        "You keep the receipts and the warmth.",
+        "You name the boundary and the care together."
       ],
       "confidence": [
-        "You observe feelings from a polite distance.",
-        "You observe feelings from a polite distance. (confidence)"
+        "You keep your eyes on your own work.",
+        "You let good enough be good.",
+        "You choose the bolder option for one hour."
       ],
       "patience": [
-        "You observe feelings from a polite distance.",
-        "You observe feelings from a polite distance. (patience)"
+        "You let the queue move without narrating it.",
+        "You keep your expectations on a human schedule.",
+        "You decide tomorrow can hold one of today's tasks."
+      ],
+      "reset": [
+        "You press save and start a fresh section.",
+        "You start again without the apology tour.",
+        "You forgive the morning and meet the afternoon clean."
       ],
       "romance": [
-        "You observe feelings from a polite distance.",
-        "You observe feelings from a polite distance. (romance)"
+        "You stay when it's calm, not just when it's thrilling.",
+        "Your patience makes romance legible.",
+        "You read the room and your own pulse."
       ],
       "social": [
-        "You observe feelings from a polite distance.",
-        "You observe feelings from a polite distance. (social)"
+        "A short walk with one person beats a crowded dinner.",
+        "You listen twice before adding your take.",
+        "You keep your phone down and your eyes up."
       ]
     },
     "moonSign": "aquarius"
@@ -453,28 +629,44 @@
     "emotionalFragment": "Feelings arrive in every language at once.",
     "fragments": {
       "career": [
-        "Feelings arrive in every language at once.",
-        "Feelings arrive in every language at once. (career)"
+        "You name what you actually need, not the negotiating position.",
+        "You say no once today and mean it. The calendar relaxes.",
+        "You schedule the boring task first. It shrinks."
       ],
       "chaos": [
-        "Feelings arrive in every language at once.",
-        "Feelings arrive in every language at once. (chaos)"
+        "You keep your list short when the day is long.",
+        "You let the unexpected be information, not verdict.",
+        "You let the improvisation be good enough."
+      ],
+      "communication": [
+        "You ask for clarification before correction.",
+        "You name the feeling without blame.",
+        "You let your message be short enough to be read."
       ],
       "confidence": [
-        "Feelings arrive in every language at once.",
-        "Feelings arrive in every language at once. (confidence)"
+        "You let self-trust be a practice, not a prize.",
+        "You say what you mean without the extra apology.",
+        "You don't need to earn the room. You're in it."
       ],
       "patience": [
-        "Feelings arrive in every language at once.",
-        "Feelings arrive in every language at once. (patience)"
+        "You let rest do part of the work.",
+        "You choose one thing to wait well for.",
+        "You keep your cool when the Wi-Fi doesn't."
+      ],
+      "reset": [
+        "You clear the table, not your whole life.",
+        "You make your bed and let the day feel new.",
+        "You let the calendar have a soft start."
       ],
       "romance": [
-        "Feelings arrive in every language at once.",
-        "Feelings arrive in every language at once. (romance)"
+        "You laugh and it actually relaxes the room.",
+        "You let someone surprise you without testing them.",
+        "You make room for affection without auditioning for it."
       ],
       "social": [
-        "Feelings arrive in every language at once.",
-        "Feelings arrive in every language at once. (social)"
+        "You notice the quiet person and make space.",
+        "Small talk leads to real talk if you stay two minutes longer.",
+        "You give someone an honest compliment and leave it there."
       ]
     },
     "moonSign": "pisces"

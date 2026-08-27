@@ -96,6 +96,20 @@ struct ContentPackManifest: Sendable, Hashable, Codable {
         self.batches = batches
     }
 
+    /// Active lifecycle check: inclusive on both ends through calendar day (UTC).
+    /// Pilot packs are always active (exempt).
+    func isActive(on date: Date = Date()) -> Bool {
+        if coverage.isPilot { return true }
+        guard let from = activeFrom, let through = activeThrough else { return false }
+        // UTC calendar day inclusive comparison — avoids locale/tz surprises
+        var utc = Calendar(identifier: .gregorian)
+        utc.timeZone = TimeZone(secondsFromGMT: 0)!
+        let day = utc.startOfDay(for: date)
+        let start = utc.startOfDay(for: from)
+        let end = utc.startOfDay(for: through)
+        return day >= start && day <= end
+    }
+
     func validate() throws {
         guard schemaVersion == Self.currentSchemaVersion else {
             throw ContentPackError.unsupportedSchemaVersion(schemaVersion)
@@ -117,7 +131,17 @@ struct ContentPackManifest: Sendable, Hashable, Codable {
             if let from = activeFrom, let through = activeThrough, from >= through {
                 throw ContentPackError.malformedJSON("activeFrom must be before activeThrough")
             }
-            // generationMethod recommended for production
+            // generationMethod required for production (§11)
+            let gm = generationMethod ?? provenance.generationMethod
+            guard let g = gm, !g.trimmingCharacters(in: .whitespaces).isEmpty else {
+                throw ContentPackError.malformedJSON("generationMethod required for production (scripted-pilot|ai-batch-authored|human-curated|mixed)")
+            }
+            let allowed: Set<String> = ["scripted-pilot","ai-batch-authored","human-curated","mixed"]
+            if !allowed.contains(g) {
+                throw ContentPackError.malformedJSON("generationMethod '\(g)' not in allowed set \(allowed.sorted())")
+            }
+        } else {
+            // Pilot: if generationMethod present it must be non-empty but remains optional
             if let gm = generationMethod ?? provenance.generationMethod, gm.trimmingCharacters(in: .whitespaces).isEmpty {
                 throw ContentPackError.malformedJSON("generationMethod empty")
             }

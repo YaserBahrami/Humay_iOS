@@ -289,12 +289,13 @@ struct MoonModifier: Sendable, Hashable {
     }
 
     /// Deterministic fragment selection for a day — theme-aware, stable.
+    /// Fallback: requested theme → generic emotionalFragment → nil. Never uses unrelated theme's copy.
     func fragment(for theme: String?, stableSeed: UInt64) -> String? {
         if let theme, let pools = fragments?[theme], !pools.isEmpty {
             let idx = Int(stableSeed % UInt64(pools.count))
             return pools[idx]
         }
-        if let alt = fragments?["reset"]?.first { return alt } // fallback theme?
+        // Semantically sensible fallback: base fragment, not unrelated theme pool
         return emotionalFragment
     }
 }
@@ -375,6 +376,13 @@ struct RisingModifier: Sendable, Hashable {
             return pools[Int(stableSeed % UInt64(pools.count))]
         }
         return outwardFragment
+    }
+
+    /// Non-theme fallback accessor for coverage validation
+    var fragmentPoolCoverage: (themeCount: Int, minVariants: Int, maxVariants: Int) {
+        guard let fr = fragments else { return (0,0,0) }
+        let counts = fr.values.map(\.count)
+        return (fr.count, counts.min() ?? 0, counts.max() ?? 0)
     }
 }
 extension RisingModifier: Codable {

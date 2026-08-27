@@ -116,9 +116,10 @@ final class ForecastStore {
                 subject: subject,
                 days: fallback.days,
                 anchor: fallbackAnchor(),
-                yearContext: fallbackYearContext(subject),
+                yearContext: fallback.yearContext ?? fallbackYearContext(subject),
                 personalizedThroughOffset: nil,
-                basis: .entertainmentFixture,
+                basis: fallback.provenance.basis,
+                contentSource: fallback.contentSource,
                 usedFallbackOnly: true
             )
         }
@@ -133,13 +134,15 @@ final class ForecastStore {
             }
         }
 
+        // Preserve provenance honestly: persisted doc carries its own basis, fallback carries bundled/mixed truth
         return EffectiveForecast(
             subject: subject,
             days: merged,
             anchor: document.anchor,
-            yearContext: document.forecast.yearContext ?? fallbackYearContext(subject),
+            yearContext: document.forecast.yearContext ?? fallback.yearContext ?? fallbackYearContext(subject),
             personalizedThroughOffset: deepestPersonalized,
             basis: document.provenance.basis,
+            contentSource: fallback.contentSource,
             usedFallbackOnly: false
         )
     }
@@ -214,7 +217,7 @@ final class ForecastStore {
 
 /// The render-ready forecast presentation consumes. Personalized days are
 /// merged over deterministic fill; consumers can disclose honestly what is
-/// personalized versus standby.
+/// personalized versus standby. Retains honest bundled/deterministic/mixed provenance.
 struct EffectiveForecast: Sendable, Equatable {
     let subject: ForecastSubject
     let days: [DailyMood]
@@ -222,6 +225,8 @@ struct EffectiveForecast: Sendable, Equatable {
     let yearContext: YearContext?
     let personalizedThroughOffset: Int?
     let basis: ContentBasis
+    /// Honest content source (bundled/deterministic/mixed + counts) where available.
+    let contentSource: ForecastContentSource?
     let usedFallbackOnly: Bool
 
     func day(atOffset offset: Int) -> DailyMood? {

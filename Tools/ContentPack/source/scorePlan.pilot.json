@@ -1,3545 +1,3550 @@
-[
-  {
-    "dayKey": "03-01",
-    "plan": {
-      "primaryTheme": "confidence",
-      "scores": {
-        "career": 51,
-        "chaos": 50,
-        "confidence": 75,
-        "energy": 50,
-        "overall": 52,
-        "patience": 50,
-        "romance": 51,
-        "social": 46
-      },
-      "secondaryTheme": "reset",
-      "toneHints": [
-        "high social confidence"
-      ]
-    },
-    "sunSign": "aries"
-  },
-  {
-    "dayKey": "03-01",
-    "plan": {
-      "primaryTheme": "energy",
-      "scores": {
-        "career": 45,
-        "chaos": 54,
-        "confidence": 47,
-        "energy": 71,
-        "overall": 49,
-        "patience": 49,
-        "romance": 44,
-        "social": 50
-      },
-      "secondaryTheme": "chaos",
-      "toneHints": [
-        "even keel"
-      ]
-    },
-    "sunSign": "taurus"
-  },
-  {
-    "dayKey": "03-01",
-    "plan": {
-      "primaryTheme": "energy",
-      "scores": {
-        "career": 50,
-        "chaos": 60,
-        "confidence": 41,
-        "energy": 65,
-        "overall": 52,
-        "patience": 42,
-        "romance": 50,
-        "social": 48
-      },
-      "secondaryTheme": "chaos",
-      "toneHints": [
-        "even keel"
-      ]
-    },
-    "sunSign": "gemini"
-  },
-  {
-    "dayKey": "03-01",
-    "plan": {
-      "primaryTheme": "social",
-      "scores": {
-        "career": 45,
-        "chaos": 56,
-        "confidence": 43,
-        "energy": 43,
-        "overall": 50,
-        "patience": 41,
-        "romance": 49,
-        "social": 66
-      },
-      "secondaryTheme": "chaos",
-      "toneHints": [
-        "even keel"
-      ]
-    },
-    "sunSign": "cancer"
-  },
-  {
-    "dayKey": "03-01",
-    "plan": {
-      "primaryTheme": "romance",
-      "scores": {
-        "career": 40,
-        "chaos": 50,
-        "confidence": 72,
-        "energy": 63,
-        "overall": 62,
-        "patience": 47,
-        "romance": 78,
-        "social": 67
-      },
-      "secondaryTheme": "confidence",
-      "toneHints": [
-        "romance forward"
-      ]
-    },
-    "sunSign": "leo"
-  },
-  {
-    "dayKey": "03-01",
-    "plan": {
-      "primaryTheme": "confidence",
-      "scores": {
-        "career": 43,
-        "chaos": 29,
-        "confidence": 85,
-        "energy": 82,
-        "overall": 69,
-        "patience": 70,
-        "romance": 81,
-        "social": 46
-      },
-      "secondaryTheme": "energy",
-      "toneHints": [
-        "high social confidence",
-        "romance forward"
-      ]
-    },
-    "sunSign": "virgo"
-  },
-  {
-    "dayKey": "03-01",
-    "plan": {
-      "primaryTheme": "social",
-      "scores": {
-        "career": 49,
-        "chaos": 20,
-        "confidence": 44,
-        "energy": 75,
-        "overall": 60,
-        "patience": 77,
-        "romance": 59,
-        "social": 79
-      },
-      "secondaryTheme": "patience",
-      "toneHints": [
-        "steady patience"
-      ]
-    },
-    "sunSign": "libra"
-  },
-  {
-    "dayKey": "03-01",
-    "plan": {
-      "primaryTheme": "confidence",
-      "scores": {
-        "career": 41,
-        "chaos": 53,
-        "confidence": 76,
-        "energy": 46,
-        "overall": 53,
-        "patience": 46,
-        "romance": 62,
-        "social": 63
-      },
-      "secondaryTheme": "social",
-      "toneHints": [
-        "high social confidence"
-      ]
-    },
-    "sunSign": "scorpio"
-  },
-  {
-    "dayKey": "03-01",
-    "plan": {
-      "primaryTheme": "patience",
-      "scores": {
-        "career": 45,
-        "chaos": 22,
-        "confidence": 69,
-        "energy": 74,
-        "overall": 63,
-        "patience": 75,
-        "romance": 43,
-        "social": 49
-      },
-      "secondaryTheme": "energy",
-      "toneHints": [
-        "steady patience"
-      ]
-    },
-    "sunSign": "sagittarius"
-  },
-  {
-    "dayKey": "03-01",
-    "plan": {
-      "primaryTheme": "energy",
-      "scores": {
-        "career": 45,
-        "chaos": 56,
-        "confidence": 41,
-        "energy": 75,
-        "overall": 48,
-        "patience": 44,
-        "romance": 60,
-        "social": 54
-      },
-      "secondaryTheme": "romance",
-      "toneHints": [
-        "even keel"
-      ]
-    },
-    "sunSign": "capricorn"
-  },
-  {
-    "dayKey": "03-01",
-    "plan": {
-      "primaryTheme": "romance",
-      "scores": {
-        "career": 40,
-        "chaos": 50,
-        "confidence": 54,
-        "energy": 53,
-        "overall": 55,
-        "patience": 49,
-        "romance": 80,
-        "social": 78
-      },
-      "secondaryTheme": "social",
-      "toneHints": [
-        "romance forward"
-      ]
-    },
-    "sunSign": "aquarius"
-  },
-  {
-    "dayKey": "03-01",
-    "plan": {
-      "primaryTheme": "energy",
-      "scores": {
-        "career": 75,
-        "chaos": 58,
-        "confidence": 46,
-        "energy": 83,
-        "overall": 54,
-        "patience": 41,
-        "romance": 43,
-        "social": 48
-      },
-      "secondaryTheme": "career",
-      "toneHints": [
-        "career momentum"
-      ]
-    },
-    "sunSign": "pisces"
-  },
-  {
-    "dayKey": "03-02",
-    "plan": {
-      "primaryTheme": "confidence",
-      "scores": {
-        "career": 50,
-        "chaos": 56,
-        "confidence": 81,
-        "energy": 43,
-        "overall": 55,
-        "patience": 48,
-        "romance": 43,
-        "social": 42
-      },
-      "secondaryTheme": "chaos",
-      "toneHints": [
-        "high social confidence"
-      ]
-    },
-    "sunSign": "aries"
-  },
-  {
-    "dayKey": "03-02",
-    "plan": {
-      "primaryTheme": "energy",
-      "scores": {
-        "career": 40,
-        "chaos": 59,
-        "confidence": 43,
-        "energy": 72,
-        "overall": 47,
-        "patience": 45,
-        "romance": 43,
-        "social": 50
-      },
-      "secondaryTheme": "chaos",
-      "toneHints": [
-        "even keel"
-      ]
-    },
-    "sunSign": "taurus"
-  },
-  {
-    "dayKey": "03-02",
-    "plan": {
-      "primaryTheme": "energy",
-      "scores": {
-        "career": 50,
-        "chaos": 54,
-        "confidence": 45,
-        "energy": 58,
-        "overall": 48,
-        "patience": 45,
-        "romance": 44,
-        "social": 40
-      },
-      "secondaryTheme": "chaos",
-      "toneHints": [
-        "even keel"
-      ]
-    },
-    "sunSign": "gemini"
-  },
-  {
-    "dayKey": "03-02",
-    "plan": {
-      "primaryTheme": "social",
-      "scores": {
-        "career": 42,
-        "chaos": 55,
-        "confidence": 44,
-        "energy": 45,
-        "overall": 51,
-        "patience": 50,
-        "romance": 50,
-        "social": 72
-      },
-      "secondaryTheme": "chaos",
-      "toneHints": [
-        "even keel"
-      ]
-    },
-    "sunSign": "cancer"
-  },
-  {
-    "dayKey": "03-02",
-    "plan": {
-      "primaryTheme": "romance",
-      "scores": {
-        "career": 46,
-        "chaos": 60,
-        "confidence": 71,
-        "energy": 64,
-        "overall": 61,
-        "patience": 42,
-        "romance": 82,
-        "social": 70
-      },
-      "secondaryTheme": "confidence",
-      "toneHints": [
-        "romance forward"
-      ]
-    },
-    "sunSign": "leo"
-  },
-  {
-    "dayKey": "03-02",
-    "plan": {
-      "primaryTheme": "confidence",
-      "scores": {
-        "career": 47,
-        "chaos": 34,
-        "confidence": 85,
-        "energy": 77,
-        "overall": 69,
-        "patience": 68,
-        "romance": 77,
-        "social": 52
-      },
-      "secondaryTheme": "romance",
-      "toneHints": [
-        "high social confidence",
-        "romance forward"
-      ]
-    },
-    "sunSign": "virgo"
-  },
-  {
-    "dayKey": "03-02",
-    "plan": {
-      "primaryTheme": "patience",
-      "scores": {
-        "career": 42,
-        "chaos": 16,
-        "confidence": 41,
-        "energy": 73,
-        "overall": 65,
-        "patience": 84,
-        "romance": 56,
-        "social": 76
-      },
-      "secondaryTheme": "social",
-      "toneHints": [
-        "steady patience"
-      ]
-    },
-    "sunSign": "libra"
-  },
-  {
-    "dayKey": "03-02",
-    "plan": {
-      "primaryTheme": "confidence",
-      "scores": {
-        "career": 49,
-        "chaos": 57,
-        "confidence": 77,
-        "energy": 44,
-        "overall": 50,
-        "patience": 43,
-        "romance": 56,
-        "social": 53
-      },
-      "secondaryTheme": "chaos",
-      "toneHints": [
-        "high social confidence"
-      ]
-    },
-    "sunSign": "scorpio"
-  },
-  {
-    "dayKey": "03-02",
-    "plan": {
-      "primaryTheme": "energy",
-      "scores": {
-        "career": 51,
-        "chaos": 33,
-        "confidence": 70,
-        "energy": 70,
-        "overall": 60,
-        "patience": 66,
-        "romance": 47,
-        "social": 53
-      },
-      "secondaryTheme": "confidence",
-      "toneHints": [
-        "even keel"
-      ]
-    },
-    "sunSign": "sagittarius"
-  },
-  {
-    "dayKey": "03-02",
-    "plan": {
-      "primaryTheme": "energy",
-      "scores": {
-        "career": 45,
-        "chaos": 56,
-        "confidence": 47,
-        "energy": 71,
-        "overall": 58,
-        "patience": 46,
-        "romance": 64,
-        "social": 58
-      },
-      "secondaryTheme": "romance",
-      "toneHints": [
-        "even keel"
-      ]
-    },
-    "sunSign": "capricorn"
-  },
-  {
-    "dayKey": "03-02",
-    "plan": {
-      "primaryTheme": "romance",
-      "scores": {
-        "career": 43,
-        "chaos": 60,
-        "confidence": 63,
-        "energy": 53,
-        "overall": 56,
-        "patience": 44,
-        "romance": 80,
-        "social": 77
-      },
-      "secondaryTheme": "social",
-      "toneHints": [
-        "romance forward"
-      ]
-    },
-    "sunSign": "aquarius"
-  },
-  {
-    "dayKey": "03-02",
-    "plan": {
-      "primaryTheme": "energy",
-      "scores": {
-        "career": 76,
-        "chaos": 52,
-        "confidence": 49,
-        "energy": 78,
-        "overall": 57,
-        "patience": 47,
-        "romance": 46,
-        "social": 48
-      },
-      "secondaryTheme": "career",
-      "toneHints": [
-        "career momentum"
-      ]
-    },
-    "sunSign": "pisces"
-  },
-  {
-    "dayKey": "03-03",
-    "plan": {
-      "primaryTheme": "confidence",
-      "scores": {
-        "career": 43,
-        "chaos": 61,
-        "confidence": 79,
-        "energy": 49,
-        "overall": 48,
-        "patience": 45,
-        "romance": 40,
-        "social": 38
-      },
-      "secondaryTheme": "chaos",
-      "toneHints": [
-        "high social confidence"
-      ]
-    },
-    "sunSign": "aries"
-  },
-  {
-    "dayKey": "03-03",
-    "plan": {
-      "primaryTheme": "energy",
-      "scores": {
-        "career": 37,
-        "chaos": 52,
-        "confidence": 44,
-        "energy": 72,
-        "overall": 49,
-        "patience": 49,
-        "romance": 47,
-        "social": 51
-      },
-      "secondaryTheme": "chaos",
-      "toneHints": [
-        "even keel"
-      ]
-    },
-    "sunSign": "taurus"
-  },
-  {
-    "dayKey": "03-03",
-    "plan": {
-      "primaryTheme": "energy",
-      "scores": {
-        "career": 43,
-        "chaos": 59,
-        "confidence": 37,
-        "energy": 62,
-        "overall": 44,
-        "patience": 42,
-        "romance": 40,
-        "social": 47
-      },
-      "secondaryTheme": "chaos",
-      "toneHints": [
-        "even keel"
-      ]
-    },
-    "sunSign": "gemini"
-  },
-  {
-    "dayKey": "03-03",
-    "plan": {
-      "primaryTheme": "social",
-      "scores": {
-        "career": 45,
-        "chaos": 62,
-        "confidence": 46,
-        "energy": 50,
-        "overall": 53,
-        "patience": 44,
-        "romance": 50,
-        "social": 69
-      },
-      "secondaryTheme": "chaos",
-      "toneHints": [
-        "even keel"
-      ]
-    },
-    "sunSign": "cancer"
-  },
-  {
-    "dayKey": "03-03",
-    "plan": {
-      "primaryTheme": "romance",
-      "scores": {
-        "career": 43,
-        "chaos": 61,
-        "confidence": 62,
-        "energy": 66,
-        "overall": 59,
-        "patience": 45,
-        "romance": 82,
-        "social": 66
-      },
-      "secondaryTheme": "social",
-      "toneHints": [
-        "romance forward"
-      ]
-    },
-    "sunSign": "leo"
-  },
-  {
-    "dayKey": "03-03",
-    "plan": {
-      "primaryTheme": "confidence",
-      "scores": {
-        "career": 44,
-        "chaos": 29,
-        "confidence": 81,
-        "energy": 76,
-        "overall": 64,
-        "patience": 73,
-        "romance": 80,
-        "social": 48
-      },
-      "secondaryTheme": "romance",
-      "toneHints": [
-        "high social confidence",
-        "romance forward"
-      ]
-    },
-    "sunSign": "virgo"
-  },
-  {
-    "dayKey": "03-03",
-    "plan": {
-      "primaryTheme": "social",
-      "scores": {
-        "career": 48,
-        "chaos": 24,
-        "confidence": 45,
-        "energy": 77,
-        "overall": 62,
-        "patience": 78,
-        "romance": 53,
-        "social": 82
-      },
-      "secondaryTheme": "patience",
-      "toneHints": [
-        "steady patience"
-      ]
-    },
-    "sunSign": "libra"
-  },
-  {
-    "dayKey": "03-03",
-    "plan": {
-      "primaryTheme": "confidence",
-      "scores": {
-        "career": 49,
-        "chaos": 56,
-        "confidence": 87,
-        "energy": 46,
-        "overall": 57,
-        "patience": 45,
-        "romance": 56,
-        "social": 56
-      },
-      "secondaryTheme": "reset",
-      "toneHints": [
-        "high social confidence"
-      ]
-    },
-    "sunSign": "scorpio"
-  },
-  {
-    "dayKey": "03-03",
-    "plan": {
-      "primaryTheme": "confidence",
-      "scores": {
-        "career": 51,
-        "chaos": 30,
-        "confidence": 77,
-        "energy": 76,
-        "overall": 63,
-        "patience": 73,
-        "romance": 47,
-        "social": 52
-      },
-      "secondaryTheme": "energy",
-      "toneHints": [
-        "high social confidence"
-      ]
-    },
-    "sunSign": "sagittarius"
-  },
-  {
-    "dayKey": "03-03",
-    "plan": {
-      "primaryTheme": "energy",
-      "scores": {
-        "career": 42,
-        "chaos": 61,
-        "confidence": 42,
-        "energy": 75,
-        "overall": 52,
-        "patience": 43,
-        "romance": 71,
-        "social": 63
-      },
-      "secondaryTheme": "romance",
-      "toneHints": [
-        "even keel"
-      ]
-    },
-    "sunSign": "capricorn"
-  },
-  {
-    "dayKey": "03-03",
-    "plan": {
-      "primaryTheme": "romance",
-      "scores": {
-        "career": 47,
-        "chaos": 56,
-        "confidence": 60,
-        "energy": 54,
-        "overall": 59,
-        "patience": 48,
-        "romance": 81,
-        "social": 81
-      },
-      "secondaryTheme": "social",
-      "toneHints": [
-        "romance forward"
-      ]
-    },
-    "sunSign": "aquarius"
-  },
-  {
-    "dayKey": "03-03",
-    "plan": {
-      "primaryTheme": "career",
-      "scores": {
-        "career": 81,
-        "chaos": 64,
-        "confidence": 39,
-        "energy": 78,
-        "overall": 54,
-        "patience": 39,
-        "romance": 43,
-        "social": 43
-      },
-      "secondaryTheme": "energy",
-      "toneHints": [
-        "career momentum"
-      ]
-    },
-    "sunSign": "pisces"
-  },
-  {
-    "dayKey": "03-04",
-    "plan": {
-      "primaryTheme": "confidence",
-      "scores": {
-        "career": 43,
-        "chaos": 54,
-        "confidence": 78,
-        "energy": 43,
-        "overall": 47,
-        "patience": 48,
-        "romance": 37,
-        "social": 41
-      },
-      "secondaryTheme": "chaos",
-      "toneHints": [
-        "high social confidence"
-      ]
-    },
-    "sunSign": "aries"
-  },
-  {
-    "dayKey": "03-04",
-    "plan": {
-      "primaryTheme": "energy",
-      "scores": {
-        "career": 39,
-        "chaos": 62,
-        "confidence": 44,
-        "energy": 65,
-        "overall": 45,
-        "patience": 46,
-        "romance": 52,
-        "social": 47
-      },
-      "secondaryTheme": "chaos",
-      "toneHints": [
-        "even keel"
-      ]
-    },
-    "sunSign": "taurus"
-  },
-  {
-    "dayKey": "03-04",
-    "plan": {
-      "primaryTheme": "energy",
-      "scores": {
-        "career": 51,
-        "chaos": 60,
-        "confidence": 44,
-        "energy": 62,
-        "overall": 50,
-        "patience": 44,
-        "romance": 42,
-        "social": 39
-      },
-      "secondaryTheme": "chaos",
-      "toneHints": [
-        "even keel"
-      ]
-    },
-    "sunSign": "gemini"
-  },
-  {
-    "dayKey": "03-04",
-    "plan": {
-      "primaryTheme": "social",
-      "scores": {
-        "career": 50,
-        "chaos": 58,
-        "confidence": 43,
-        "energy": 43,
-        "overall": 48,
-        "patience": 44,
-        "romance": 46,
-        "social": 68
-      },
-      "secondaryTheme": "chaos",
-      "toneHints": [
-        "even keel"
-      ]
-    },
-    "sunSign": "cancer"
-  },
-  {
-    "dayKey": "03-04",
-    "plan": {
-      "primaryTheme": "romance",
-      "scores": {
-        "career": 47,
-        "chaos": 62,
-        "confidence": 67,
-        "energy": 64,
-        "overall": 56,
-        "patience": 46,
-        "romance": 79,
-        "social": 58
-      },
-      "secondaryTheme": "confidence",
-      "toneHints": [
-        "romance forward"
-      ]
-    },
-    "sunSign": "leo"
-  },
-  {
-    "dayKey": "03-04",
-    "plan": {
-      "primaryTheme": "romance",
-      "scores": {
-        "career": 45,
-        "chaos": 26,
-        "confidence": 81,
-        "energy": 78,
-        "overall": 71,
-        "patience": 76,
-        "romance": 87,
-        "social": 47
-      },
-      "secondaryTheme": "confidence",
-      "toneHints": [
-        "high social confidence",
-        "steady patience"
-      ]
-    },
-    "sunSign": "virgo"
-  },
-  {
-    "dayKey": "03-04",
-    "plan": {
-      "primaryTheme": "social",
-      "scores": {
-        "career": 40,
-        "chaos": 27,
-        "confidence": 54,
-        "energy": 77,
-        "overall": 65,
-        "patience": 81,
-        "romance": 57,
-        "social": 85
-      },
-      "secondaryTheme": "patience",
-      "toneHints": [
-        "steady patience"
-      ]
-    },
-    "sunSign": "libra"
-  },
-  {
-    "dayKey": "03-04",
-    "plan": {
-      "primaryTheme": "confidence",
-      "scores": {
-        "career": 41,
-        "chaos": 62,
-        "confidence": 86,
-        "energy": 46,
-        "overall": 50,
-        "patience": 46,
-        "romance": 54,
-        "social": 52
-      },
-      "secondaryTheme": "chaos",
-      "toneHints": [
-        "high social confidence"
-      ]
-    },
-    "sunSign": "scorpio"
-  },
-  {
-    "dayKey": "03-04",
-    "plan": {
-      "primaryTheme": "confidence",
-      "scores": {
-        "career": 42,
-        "chaos": 32,
-        "confidence": 80,
-        "energy": 75,
-        "overall": 58,
-        "patience": 70,
-        "romance": 41,
-        "social": 52
-      },
-      "secondaryTheme": "energy",
-      "toneHints": [
-        "high social confidence"
-      ]
-    },
-    "sunSign": "sagittarius"
-  },
-  {
-    "dayKey": "03-04",
-    "plan": {
-      "primaryTheme": "romance",
-      "scores": {
-        "career": 40,
-        "chaos": 58,
-        "confidence": 40,
-        "energy": 75,
-        "overall": 54,
-        "patience": 48,
-        "romance": 75,
-        "social": 63
-      },
-      "secondaryTheme": "energy",
-      "toneHints": [
-        "romance forward"
-      ]
-    },
-    "sunSign": "capricorn"
-  },
-  {
-    "dayKey": "03-04",
-    "plan": {
-      "primaryTheme": "social",
-      "scores": {
-        "career": 45,
-        "chaos": 59,
-        "confidence": 58,
-        "energy": 54,
-        "overall": 57,
-        "patience": 47,
-        "romance": 78,
-        "social": 83
-      },
-      "secondaryTheme": "romance",
-      "toneHints": [
-        "romance forward"
-      ]
-    },
-    "sunSign": "aquarius"
-  },
-  {
-    "dayKey": "03-04",
-    "plan": {
-      "primaryTheme": "energy",
-      "scores": {
-        "career": 75,
-        "chaos": 68,
-        "confidence": 42,
-        "energy": 84,
-        "overall": 50,
-        "patience": 38,
-        "romance": 43,
-        "social": 47
-      },
-      "secondaryTheme": "career",
-      "toneHints": [
-        "career momentum"
-      ]
-    },
-    "sunSign": "pisces"
-  },
-  {
-    "dayKey": "03-05",
-    "plan": {
-      "primaryTheme": "confidence",
-      "scores": {
-        "career": 42,
-        "chaos": 60,
-        "confidence": 80,
-        "energy": 41,
-        "overall": 51,
-        "patience": 46,
-        "romance": 44,
-        "social": 36
-      },
-      "secondaryTheme": "chaos",
-      "toneHints": [
-        "high social confidence"
-      ]
-    },
-    "sunSign": "aries"
-  },
-  {
-    "dayKey": "03-05",
-    "plan": {
-      "primaryTheme": "energy",
-      "scores": {
-        "career": 40,
-        "chaos": 58,
-        "confidence": 51,
-        "energy": 60,
-        "overall": 48,
-        "patience": 47,
-        "romance": 53,
-        "social": 51
-      },
-      "secondaryTheme": "chaos",
-      "toneHints": [
-        "even keel"
-      ]
-    },
-    "sunSign": "taurus"
-  },
-  {
-    "dayKey": "03-05",
-    "plan": {
-      "primaryTheme": "chaos",
-      "scores": {
-        "career": 43,
-        "chaos": 55,
-        "confidence": 36,
-        "energy": 54,
-        "overall": 44,
-        "patience": 49,
-        "romance": 37,
-        "social": 44
-      },
-      "secondaryTheme": "energy",
-      "toneHints": [
-        "even keel"
-      ]
-    },
-    "sunSign": "gemini"
-  },
-  {
-    "dayKey": "03-05",
-    "plan": {
-      "primaryTheme": "social",
-      "scores": {
-        "career": 42,
-        "chaos": 60,
-        "confidence": 39,
-        "energy": 45,
-        "overall": 44,
-        "patience": 44,
-        "romance": 49,
-        "social": 62
-      },
-      "secondaryTheme": "chaos",
-      "toneHints": [
-        "even keel"
-      ]
-    },
-    "sunSign": "cancer"
-  },
-  {
-    "dayKey": "03-05",
-    "plan": {
-      "primaryTheme": "romance",
-      "scores": {
-        "career": 51,
-        "chaos": 49,
-        "confidence": 55,
-        "energy": 55,
-        "overall": 57,
-        "patience": 54,
-        "romance": 83,
-        "social": 64
-      },
-      "secondaryTheme": "social",
-      "toneHints": [
-        "romance forward"
-      ]
-    },
-    "sunSign": "leo"
-  },
-  {
-    "dayKey": "03-05",
-    "plan": {
-      "primaryTheme": "energy",
-      "scores": {
-        "career": 43,
-        "chaos": 26,
-        "confidence": 78,
-        "energy": 86,
-        "overall": 73,
-        "patience": 77,
-        "romance": 83,
-        "social": 46
-      },
-      "secondaryTheme": "romance",
-      "toneHints": [
-        "high social confidence",
-        "steady patience"
-      ]
-    },
-    "sunSign": "virgo"
-  },
-  {
-    "dayKey": "03-05",
-    "plan": {
-      "primaryTheme": "patience",
-      "scores": {
-        "career": 43,
-        "chaos": 19,
-        "confidence": 58,
-        "energy": 81,
-        "overall": 65,
-        "patience": 85,
-        "romance": 49,
-        "social": 76
-      },
-      "secondaryTheme": "energy",
-      "toneHints": [
-        "steady patience"
-      ]
-    },
-    "sunSign": "libra"
-  },
-  {
-    "dayKey": "03-05",
-    "plan": {
-      "primaryTheme": "confidence",
-      "scores": {
-        "career": 48,
-        "chaos": 59,
-        "confidence": 84,
-        "energy": 50,
-        "overall": 52,
-        "patience": 46,
-        "romance": 48,
-        "social": 43
-      },
-      "secondaryTheme": "chaos",
-      "toneHints": [
-        "high social confidence"
-      ]
-    },
-    "sunSign": "scorpio"
-  },
-  {
-    "dayKey": "03-05",
-    "plan": {
-      "primaryTheme": "confidence",
-      "scores": {
-        "career": 46,
-        "chaos": 35,
-        "confidence": 77,
-        "energy": 70,
-        "overall": 63,
-        "patience": 69,
-        "romance": 43,
-        "social": 49
-      },
-      "secondaryTheme": "energy",
-      "toneHints": [
-        "high social confidence"
-      ]
-    },
-    "sunSign": "sagittarius"
-  },
-  {
-    "dayKey": "03-05",
-    "plan": {
-      "primaryTheme": "energy",
-      "scores": {
-        "career": 36,
-        "chaos": 58,
-        "confidence": 39,
-        "energy": 80,
-        "overall": 56,
-        "patience": 48,
-        "romance": 76,
-        "social": 64
-      },
-      "secondaryTheme": "romance",
-      "toneHints": [
-        "romance forward"
-      ]
-    },
-    "sunSign": "capricorn"
-  },
-  {
-    "dayKey": "03-05",
-    "plan": {
-      "primaryTheme": "social",
-      "scores": {
-        "career": 50,
-        "chaos": 52,
-        "confidence": 47,
-        "energy": 53,
-        "overall": 56,
-        "patience": 57,
-        "romance": 70,
-        "social": 82
-      },
-      "secondaryTheme": "romance",
-      "toneHints": [
-        "even keel"
-      ]
-    },
-    "sunSign": "aquarius"
-  },
-  {
-    "dayKey": "03-05",
-    "plan": {
-      "primaryTheme": "career",
-      "scores": {
-        "career": 82,
-        "chaos": 64,
-        "confidence": 46,
-        "energy": 79,
-        "overall": 51,
-        "patience": 45,
-        "romance": 44,
-        "social": 48
-      },
-      "secondaryTheme": "energy",
-      "toneHints": [
-        "career momentum"
-      ]
-    },
-    "sunSign": "pisces"
-  },
-  {
-    "dayKey": "03-06",
-    "plan": {
-      "primaryTheme": "confidence",
-      "scores": {
-        "career": 47,
-        "chaos": 62,
-        "confidence": 87,
-        "energy": 43,
-        "overall": 49,
-        "patience": 46,
-        "romance": 37,
-        "social": 36
-      },
-      "secondaryTheme": "chaos",
-      "toneHints": [
-        "high social confidence"
-      ]
-    },
-    "sunSign": "aries"
-  },
-  {
-    "dayKey": "03-06",
-    "plan": {
-      "primaryTheme": "chaos",
-      "scores": {
-        "career": 37,
-        "chaos": 65,
-        "confidence": 43,
-        "energy": 62,
-        "overall": 47,
-        "patience": 43,
-        "romance": 57,
-        "social": 47
-      },
-      "secondaryTheme": "energy",
-      "toneHints": [
-        "even keel"
-      ]
-    },
-    "sunSign": "taurus"
-  },
-  {
-    "dayKey": "03-06",
-    "plan": {
-      "primaryTheme": "energy",
-      "scores": {
-        "career": 45,
-        "chaos": 57,
-        "confidence": 37,
-        "energy": 58,
-        "overall": 46,
-        "patience": 52,
-        "romance": 39,
-        "social": 42
-      },
-      "secondaryTheme": "chaos",
-      "toneHints": [
-        "even keel"
-      ]
-    },
-    "sunSign": "gemini"
-  },
-  {
-    "dayKey": "03-06",
-    "plan": {
-      "primaryTheme": "social",
-      "scores": {
-        "career": 49,
-        "chaos": 56,
-        "confidence": 43,
-        "energy": 54,
-        "overall": 48,
-        "patience": 53,
-        "romance": 46,
-        "social": 60
-      },
-      "secondaryTheme": "chaos",
-      "toneHints": [
-        "even keel"
-      ]
-    },
-    "sunSign": "cancer"
-  },
-  {
-    "dayKey": "03-06",
-    "plan": {
-      "primaryTheme": "romance",
-      "scores": {
-        "career": 54,
-        "chaos": 60,
-        "confidence": 56,
-        "energy": 56,
-        "overall": 62,
-        "patience": 49,
-        "romance": 83,
-        "social": 57
-      },
-      "secondaryTheme": "reset",
-      "toneHints": [
-        "romance forward"
-      ]
-    },
-    "sunSign": "leo"
-  },
-  {
-    "dayKey": "03-06",
-    "plan": {
-      "primaryTheme": "energy",
-      "scores": {
-        "career": 47,
-        "chaos": 30,
-        "confidence": 77,
-        "energy": 87,
-        "overall": 65,
-        "patience": 76,
-        "romance": 82,
-        "social": 37
-      },
-      "secondaryTheme": "romance",
-      "toneHints": [
-        "high social confidence",
-        "steady patience"
-      ]
-    },
-    "sunSign": "virgo"
-  },
-  {
-    "dayKey": "03-06",
-    "plan": {
-      "primaryTheme": "social",
-      "scores": {
-        "career": 42,
-        "chaos": 20,
-        "confidence": 51,
-        "energy": 85,
-        "overall": 67,
-        "patience": 85,
-        "romance": 44,
-        "social": 86
-      },
-      "secondaryTheme": "energy",
-      "toneHints": [
-        "steady patience"
-      ]
-    },
-    "sunSign": "libra"
-  },
-  {
-    "dayKey": "03-06",
-    "plan": {
-      "primaryTheme": "confidence",
-      "scores": {
-        "career": 44,
-        "chaos": 54,
-        "confidence": 86,
-        "energy": 43,
-        "overall": 50,
-        "patience": 53,
-        "romance": 49,
-        "social": 50
-      },
-      "secondaryTheme": "chaos",
-      "toneHints": [
-        "high social confidence"
-      ]
-    },
-    "sunSign": "scorpio"
-  },
-  {
-    "dayKey": "03-06",
-    "plan": {
-      "primaryTheme": "confidence",
-      "scores": {
-        "career": 49,
-        "chaos": 39,
-        "confidence": 85,
-        "energy": 75,
-        "overall": 58,
-        "patience": 68,
-        "romance": 39,
-        "social": 38
-      },
-      "secondaryTheme": "energy",
-      "toneHints": [
-        "high social confidence"
-      ]
-    },
-    "sunSign": "sagittarius"
-  },
-  {
-    "dayKey": "03-06",
-    "plan": {
-      "primaryTheme": "energy",
-      "scores": {
-        "career": 36,
-        "chaos": 54,
-        "confidence": 38,
-        "energy": 83,
-        "overall": 57,
-        "patience": 51,
-        "romance": 77,
-        "social": 67
-      },
-      "secondaryTheme": "romance",
-      "toneHints": [
-        "romance forward"
-      ]
-    },
-    "sunSign": "capricorn"
-  },
-  {
-    "dayKey": "03-06",
-    "plan": {
-      "primaryTheme": "social",
-      "scores": {
-        "career": 45,
-        "chaos": 50,
-        "confidence": 49,
-        "energy": 52,
-        "overall": 57,
-        "patience": 56,
-        "romance": 74,
-        "social": 84
-      },
-      "secondaryTheme": "romance",
-      "toneHints": [
-        "even keel"
-      ]
-    },
-    "sunSign": "aquarius"
-  },
-  {
-    "dayKey": "03-06",
-    "plan": {
-      "primaryTheme": "career",
-      "scores": {
-        "career": 80,
-        "chaos": 61,
-        "confidence": 42,
-        "energy": 77,
-        "overall": 56,
-        "patience": 44,
-        "romance": 36,
-        "social": 53
-      },
-      "secondaryTheme": "energy",
-      "toneHints": [
-        "career momentum"
-      ]
-    },
-    "sunSign": "pisces"
-  },
-  {
-    "dayKey": "03-07",
-    "plan": {
-      "primaryTheme": "confidence",
-      "scores": {
-        "career": 47,
-        "chaos": 50,
-        "confidence": 81,
-        "energy": 41,
-        "overall": 47,
-        "patience": 54,
-        "romance": 39,
-        "social": 42
-      },
-      "secondaryTheme": "patience",
-      "toneHints": [
-        "high social confidence"
-      ]
-    },
-    "sunSign": "aries"
-  },
-  {
-    "dayKey": "03-07",
-    "plan": {
-      "primaryTheme": "romance",
-      "scores": {
-        "career": 36,
-        "chaos": 52,
-        "confidence": 48,
-        "energy": 61,
-        "overall": 49,
-        "patience": 52,
-        "romance": 61,
-        "social": 48
-      },
-      "secondaryTheme": "energy",
-      "toneHints": [
-        "even keel"
-      ]
-    },
-    "sunSign": "taurus"
-  },
-  {
-    "dayKey": "03-07",
-    "plan": {
-      "primaryTheme": "chaos",
-      "scores": {
-        "career": 55,
-        "chaos": 61,
-        "confidence": 37,
-        "energy": 54,
-        "overall": 45,
-        "patience": 46,
-        "romance": 44,
-        "social": 33
-      },
-      "secondaryTheme": "career",
-      "toneHints": [
-        "even keel"
-      ]
-    },
-    "sunSign": "gemini"
-  },
-  {
-    "dayKey": "03-07",
-    "plan": {
-      "primaryTheme": "chaos",
-      "scores": {
-        "career": 45,
-        "chaos": 60,
-        "confidence": 43,
-        "energy": 52,
-        "overall": 50,
-        "patience": 46,
-        "romance": 56,
-        "social": 55
-      },
-      "secondaryTheme": "romance",
-      "toneHints": [
-        "even keel"
-      ]
-    },
-    "sunSign": "cancer"
-  },
-  {
-    "dayKey": "03-07",
-    "plan": {
-      "primaryTheme": "romance",
-      "scores": {
-        "career": 52,
-        "chaos": 57,
-        "confidence": 57,
-        "energy": 53,
-        "overall": 57,
-        "patience": 50,
-        "romance": 79,
-        "social": 59
-      },
-      "secondaryTheme": "social",
-      "toneHints": [
-        "romance forward"
-      ]
-    },
-    "sunSign": "leo"
-  },
-  {
-    "dayKey": "03-07",
-    "plan": {
-      "primaryTheme": "romance",
-      "scores": {
-        "career": 52,
-        "chaos": 20,
-        "confidence": 76,
-        "energy": 87,
-        "overall": 68,
-        "patience": 83,
-        "romance": 87,
-        "social": 38
-      },
-      "secondaryTheme": "energy",
-      "toneHints": [
-        "high social confidence",
-        "steady patience"
-      ]
-    },
-    "sunSign": "virgo"
-  },
-  {
-    "dayKey": "03-07",
-    "plan": {
-      "primaryTheme": "patience",
-      "scores": {
-        "career": 38,
-        "chaos": 19,
-        "confidence": 56,
-        "energy": 77,
-        "overall": 61,
-        "patience": 84,
-        "romance": 46,
-        "social": 79
-      },
-      "secondaryTheme": "social",
-      "toneHints": [
-        "steady patience"
-      ]
-    },
-    "sunSign": "libra"
-  },
-  {
-    "dayKey": "03-07",
-    "plan": {
-      "primaryTheme": "confidence",
-      "scores": {
-        "career": 54,
-        "chaos": 51,
-        "confidence": 79,
-        "energy": 47,
-        "overall": 51,
-        "patience": 54,
-        "romance": 43,
-        "social": 45
-      },
-      "secondaryTheme": "career",
-      "toneHints": [
-        "high social confidence"
-      ]
-    },
-    "sunSign": "scorpio"
-  },
-  {
-    "dayKey": "03-07",
-    "plan": {
-      "primaryTheme": "confidence",
-      "scores": {
-        "career": 48,
-        "chaos": 45,
-        "confidence": 86,
-        "energy": 68,
-        "overall": 58,
-        "patience": 63,
-        "romance": 41,
-        "social": 45
-      },
-      "secondaryTheme": "energy",
-      "toneHints": [
-        "high social confidence"
-      ]
-    },
-    "sunSign": "sagittarius"
-  },
-  {
-    "dayKey": "03-07",
-    "plan": {
-      "primaryTheme": "romance",
-      "scores": {
-        "career": 29,
-        "chaos": 53,
-        "confidence": 36,
-        "energy": 77,
-        "overall": 60,
-        "patience": 53,
-        "romance": 81,
-        "social": 74
-      },
-      "secondaryTheme": "energy",
-      "toneHints": [
-        "romance forward"
-      ]
-    },
-    "sunSign": "capricorn"
-  },
-  {
-    "dayKey": "03-07",
-    "plan": {
-      "primaryTheme": "social",
-      "scores": {
-        "career": 52,
-        "chaos": 54,
-        "confidence": 50,
-        "energy": 45,
-        "overall": 58,
-        "patience": 50,
-        "romance": 68,
-        "social": 86
-      },
-      "secondaryTheme": "romance",
-      "toneHints": [
-        "even keel"
-      ]
-    },
-    "sunSign": "aquarius"
-  },
-  {
-    "dayKey": "03-07",
-    "plan": {
-      "primaryTheme": "career",
-      "scores": {
-        "career": 84,
-        "chaos": 72,
-        "confidence": 37,
-        "energy": 80,
-        "overall": 54,
-        "patience": 35,
-        "romance": 40,
-        "social": 46
-      },
-      "secondaryTheme": "energy",
-      "toneHints": [
-        "high chaos",
-        "career momentum"
-      ]
-    },
-    "sunSign": "pisces"
-  },
-  {
-    "dayKey": "03-08",
-    "plan": {
-      "primaryTheme": "confidence",
-      "scores": {
-        "career": 44,
-        "chaos": 53,
-        "confidence": 86,
-        "energy": 35,
-        "overall": 45,
-        "patience": 50,
-        "romance": 39,
-        "social": 41
-      },
-      "secondaryTheme": "chaos",
-      "toneHints": [
-        "high social confidence"
-      ]
-    },
-    "sunSign": "aries"
-  },
-  {
-    "dayKey": "03-08",
-    "plan": {
-      "primaryTheme": "romance",
-      "scores": {
-        "career": 30,
-        "chaos": 57,
-        "confidence": 51,
-        "energy": 55,
-        "overall": 49,
-        "patience": 47,
-        "romance": 58,
-        "social": 45
-      },
-      "secondaryTheme": "chaos",
-      "toneHints": [
-        "even keel"
-      ]
-    },
-    "sunSign": "taurus"
-  },
-  {
-    "dayKey": "03-08",
-    "plan": {
-      "primaryTheme": "chaos",
-      "scores": {
-        "career": 45,
-        "chaos": 57,
-        "confidence": 29,
-        "energy": 47,
-        "overall": 38,
-        "patience": 48,
-        "romance": 41,
-        "social": 39
-      },
-      "secondaryTheme": "patience",
-      "toneHints": [
-        "low confidence"
-      ]
-    },
-    "sunSign": "gemini"
-  },
-  {
-    "dayKey": "03-08",
-    "plan": {
-      "primaryTheme": "energy",
-      "scores": {
-        "career": 41,
-        "chaos": 51,
-        "confidence": 38,
-        "energy": 59,
-        "overall": 48,
-        "patience": 52,
-        "romance": 58,
-        "social": 57
-      },
-      "secondaryTheme": "romance",
-      "toneHints": [
-        "even keel"
-      ]
-    },
-    "sunSign": "cancer"
-  },
-  {
-    "dayKey": "03-08",
-    "plan": {
-      "primaryTheme": "romance",
-      "scores": {
-        "career": 52,
-        "chaos": 46,
-        "confidence": 53,
-        "energy": 46,
-        "overall": 54,
-        "patience": 57,
-        "romance": 80,
-        "social": 52
-      },
-      "secondaryTheme": "patience",
-      "toneHints": [
-        "romance forward"
-      ]
-    },
-    "sunSign": "leo"
-  },
-  {
-    "dayKey": "03-08",
-    "plan": {
-      "primaryTheme": "romance",
-      "scores": {
-        "career": 43,
-        "chaos": 20,
-        "confidence": 77,
-        "energy": 83,
-        "overall": 66,
-        "patience": 81,
-        "romance": 83,
-        "social": 34
-      },
-      "secondaryTheme": "energy",
-      "toneHints": [
-        "high social confidence",
-        "steady patience"
-      ]
-    },
-    "sunSign": "virgo"
-  },
-  {
-    "dayKey": "03-08",
-    "plan": {
-      "primaryTheme": "social",
-      "scores": {
-        "career": 34,
-        "chaos": 23,
-        "confidence": 57,
-        "energy": 86,
-        "overall": 68,
-        "patience": 78,
-        "romance": 46,
-        "social": 88
-      },
-      "secondaryTheme": "energy",
-      "toneHints": [
-        "steady patience"
-      ]
-    },
-    "sunSign": "libra"
-  },
-  {
-    "dayKey": "03-08",
-    "plan": {
-      "primaryTheme": "confidence",
-      "scores": {
-        "career": 46,
-        "chaos": 49,
-        "confidence": 77,
-        "energy": 48,
-        "overall": 52,
-        "patience": 58,
-        "romance": 39,
-        "social": 43
-      },
-      "secondaryTheme": "patience",
-      "toneHints": [
-        "high social confidence"
-      ]
-    },
-    "sunSign": "scorpio"
-  },
-  {
-    "dayKey": "03-08",
-    "plan": {
-      "primaryTheme": "confidence",
-      "scores": {
-        "career": 54,
-        "chaos": 47,
-        "confidence": 88,
-        "energy": 65,
-        "overall": 58,
-        "patience": 59,
-        "romance": 34,
-        "social": 45
-      },
-      "secondaryTheme": "energy",
-      "toneHints": [
-        "high social confidence"
-      ]
-    },
-    "sunSign": "sagittarius"
-  },
-  {
-    "dayKey": "03-08",
-    "plan": {
-      "primaryTheme": "energy",
-      "scores": {
-        "career": 30,
-        "chaos": 52,
-        "confidence": 35,
-        "energy": 83,
-        "overall": 62,
-        "patience": 50,
-        "romance": 80,
-        "social": 76
-      },
-      "secondaryTheme": "romance",
-      "toneHints": [
-        "romance forward"
-      ]
-    },
-    "sunSign": "capricorn"
-  },
-  {
-    "dayKey": "03-08",
-    "plan": {
-      "primaryTheme": "social",
-      "scores": {
-        "career": 49,
-        "chaos": 41,
-        "confidence": 46,
-        "energy": 49,
-        "overall": 61,
-        "patience": 60,
-        "romance": 65,
-        "social": 83
-      },
-      "secondaryTheme": "romance",
-      "toneHints": [
-        "even keel"
-      ]
-    },
-    "sunSign": "aquarius"
-  },
-  {
-    "dayKey": "03-08",
-    "plan": {
-      "primaryTheme": "energy",
-      "scores": {
-        "career": 81,
-        "chaos": 67,
-        "confidence": 46,
-        "energy": 82,
-        "overall": 53,
-        "patience": 34,
-        "romance": 41,
-        "social": 51
-      },
-      "secondaryTheme": "career",
-      "toneHints": [
-        "career momentum"
-      ]
-    },
-    "sunSign": "pisces"
-  },
-  {
-    "dayKey": "03-09",
-    "plan": {
-      "primaryTheme": "confidence",
-      "scores": {
-        "career": 51,
-        "chaos": 52,
-        "confidence": 82,
-        "energy": 36,
-        "overall": 52,
-        "patience": 49,
-        "romance": 37,
-        "social": 30
-      },
-      "secondaryTheme": "reset",
-      "toneHints": [
-        "high social confidence"
-      ]
-    },
-    "sunSign": "aries"
-  },
-  {
-    "dayKey": "03-09",
-    "plan": {
-      "primaryTheme": "romance",
-      "scores": {
-        "career": 29,
-        "chaos": 49,
-        "confidence": 46,
-        "energy": 48,
-        "overall": 47,
-        "patience": 51,
-        "romance": 62,
-        "social": 52
-      },
-      "secondaryTheme": "social",
-      "toneHints": [
-        "even keel"
-      ]
-    },
-    "sunSign": "taurus"
-  },
-  {
-    "dayKey": "03-09",
-    "plan": {
-      "primaryTheme": "chaos",
-      "scores": {
-        "career": 48,
-        "chaos": 57,
-        "confidence": 37,
-        "energy": 43,
-        "overall": 39,
-        "patience": 47,
-        "romance": 39,
-        "social": 31
-      },
-      "secondaryTheme": "career",
-      "toneHints": [
-        "even keel"
-      ]
-    },
-    "sunSign": "gemini"
-  },
-  {
-    "dayKey": "03-09",
-    "plan": {
-      "primaryTheme": "social",
-      "scores": {
-        "career": 42,
-        "chaos": 57,
-        "confidence": 38,
-        "energy": 56,
-        "overall": 50,
-        "patience": 49,
-        "romance": 51,
-        "social": 58
-      },
-      "secondaryTheme": "chaos",
-      "toneHints": [
-        "even keel"
-      ]
-    },
-    "sunSign": "cancer"
-  },
-  {
-    "dayKey": "03-09",
-    "plan": {
-      "primaryTheme": "romance",
-      "scores": {
-        "career": 60,
-        "chaos": 45,
-        "confidence": 46,
-        "energy": 44,
-        "overall": 61,
-        "patience": 58,
-        "romance": 86,
-        "social": 54
-      },
-      "secondaryTheme": "reset",
-      "toneHints": [
-        "romance forward"
-      ]
-    },
-    "sunSign": "leo"
-  },
-  {
-    "dayKey": "03-09",
-    "plan": {
-      "primaryTheme": "romance",
-      "scores": {
-        "career": 47,
-        "chaos": 17,
-        "confidence": 73,
-        "energy": 78,
-        "overall": 66,
-        "patience": 84,
-        "romance": 85,
-        "social": 35
-      },
-      "secondaryTheme": "patience",
-      "toneHints": [
-        "steady patience",
-        "romance forward"
-      ]
-    },
-    "sunSign": "virgo"
-  },
-  {
-    "dayKey": "03-09",
-    "plan": {
-      "primaryTheme": "energy",
-      "scores": {
-        "career": 37,
-        "chaos": 32,
-        "confidence": 57,
-        "energy": 84,
-        "overall": 65,
-        "patience": 74,
-        "romance": 40,
-        "social": 79
-      },
-      "secondaryTheme": "social",
-      "toneHints": [
-        "even keel"
-      ]
-    },
-    "sunSign": "libra"
-  },
-  {
-    "dayKey": "03-09",
-    "plan": {
-      "primaryTheme": "confidence",
-      "scores": {
-        "career": 54,
-        "chaos": 45,
-        "confidence": 74,
-        "energy": 51,
-        "overall": 49,
-        "patience": 57,
-        "romance": 41,
-        "social": 33
-      },
-      "secondaryTheme": "patience",
-      "toneHints": [
-        "even keel"
-      ]
-    },
-    "sunSign": "scorpio"
-  },
-  {
-    "dayKey": "03-09",
-    "plan": {
-      "primaryTheme": "confidence",
-      "scores": {
-        "career": 47,
-        "chaos": 46,
-        "confidence": 80,
-        "energy": 69,
-        "overall": 53,
-        "patience": 54,
-        "romance": 30,
-        "social": 35
-      },
-      "secondaryTheme": "energy",
-      "toneHints": [
-        "high social confidence"
-      ]
-    },
-    "sunSign": "sagittarius"
-  },
-  {
-    "dayKey": "03-09",
-    "plan": {
-      "primaryTheme": "romance",
-      "scores": {
-        "career": 37,
-        "chaos": 55,
-        "confidence": 34,
-        "energy": 78,
-        "overall": 59,
-        "patience": 47,
-        "romance": 83,
-        "social": 69
-      },
-      "secondaryTheme": "energy",
-      "toneHints": [
-        "romance forward"
-      ]
-    },
-    "sunSign": "capricorn"
-  },
-  {
-    "dayKey": "03-09",
-    "plan": {
-      "primaryTheme": "social",
-      "scores": {
-        "career": 57,
-        "chaos": 46,
-        "confidence": 42,
-        "energy": 44,
-        "overall": 60,
-        "patience": 59,
-        "romance": 71,
-        "social": 87
-      },
-      "secondaryTheme": "romance",
-      "toneHints": [
-        "even keel"
-      ]
-    },
-    "sunSign": "aquarius"
-  },
-  {
-    "dayKey": "03-09",
-    "plan": {
-      "primaryTheme": "career",
-      "scores": {
-        "career": 81,
-        "chaos": 60,
-        "confidence": 44,
-        "energy": 81,
-        "overall": 58,
-        "patience": 40,
-        "romance": 40,
-        "social": 48
-      },
-      "secondaryTheme": "energy",
-      "toneHints": [
-        "career momentum"
-      ]
-    },
-    "sunSign": "pisces"
-  },
-  {
-    "dayKey": "03-10",
-    "plan": {
-      "primaryTheme": "confidence",
-      "scores": {
-        "career": 47,
-        "chaos": 41,
-        "confidence": 81,
-        "energy": 32,
-        "overall": 50,
-        "patience": 58,
-        "romance": 30,
-        "social": 40
-      },
-      "secondaryTheme": "patience",
-      "toneHints": [
-        "high social confidence"
-      ]
-    },
-    "sunSign": "aries"
-  },
-  {
-    "dayKey": "03-10",
-    "plan": {
-      "primaryTheme": "romance",
-      "scores": {
-        "career": 35,
-        "chaos": 53,
-        "confidence": 51,
-        "energy": 46,
-        "overall": 44,
-        "patience": 48,
-        "romance": 58,
-        "social": 51
-      },
-      "secondaryTheme": "chaos",
-      "toneHints": [
-        "even keel"
-      ]
-    },
-    "sunSign": "taurus"
-  },
-  {
-    "dayKey": "03-10",
-    "plan": {
-      "primaryTheme": "patience",
-      "scores": {
-        "career": 54,
-        "chaos": 47,
-        "confidence": 35,
-        "energy": 41,
-        "overall": 41,
-        "patience": 57,
-        "romance": 35,
-        "social": 30
-      },
-      "secondaryTheme": "career",
-      "toneHints": [
-        "even keel"
-      ]
-    },
-    "sunSign": "gemini"
-  },
-  {
-    "dayKey": "03-10",
-    "plan": {
-      "primaryTheme": "energy",
-      "scores": {
-        "career": 51,
-        "chaos": 49,
-        "confidence": 40,
-        "energy": 58,
-        "overall": 49,
-        "patience": 52,
-        "romance": 54,
-        "social": 51
-      },
-      "secondaryTheme": "romance",
-      "toneHints": [
-        "even keel"
-      ]
-    },
-    "sunSign": "cancer"
-  },
-  {
-    "dayKey": "03-10",
-    "plan": {
-      "primaryTheme": "romance",
-      "scores": {
-        "career": 60,
-        "chaos": 36,
-        "confidence": 47,
-        "energy": 44,
-        "overall": 53,
-        "patience": 62,
-        "romance": 81,
-        "social": 48
-      },
-      "secondaryTheme": "patience",
-      "toneHints": [
-        "romance forward"
-      ]
-    },
-    "sunSign": "leo"
-  },
-  {
-    "dayKey": "03-10",
-    "plan": {
-      "primaryTheme": "romance",
-      "scores": {
-        "career": 46,
-        "chaos": 24,
-        "confidence": 72,
-        "energy": 84,
-        "overall": 65,
-        "patience": 77,
-        "romance": 85,
-        "social": 37
-      },
-      "secondaryTheme": "energy",
-      "toneHints": [
-        "steady patience",
-        "romance forward"
-      ]
-    },
-    "sunSign": "virgo"
-  },
-  {
-    "dayKey": "03-10",
-    "plan": {
-      "primaryTheme": "social",
-      "scores": {
-        "career": 30,
-        "chaos": 32,
-        "confidence": 65,
-        "energy": 79,
-        "overall": 60,
-        "patience": 69,
-        "romance": 39,
-        "social": 84
-      },
-      "secondaryTheme": "energy",
-      "toneHints": [
-        "even keel"
-      ]
-    },
-    "sunSign": "libra"
-  },
-  {
-    "dayKey": "03-10",
-    "plan": {
-      "primaryTheme": "confidence",
-      "scores": {
-        "career": 58,
-        "chaos": 42,
-        "confidence": 77,
-        "energy": 48,
-        "overall": 52,
-        "patience": 59,
-        "romance": 41,
-        "social": 36
-      },
-      "secondaryTheme": "patience",
-      "toneHints": [
-        "high social confidence"
-      ]
-    },
-    "sunSign": "scorpio"
-  },
-  {
-    "dayKey": "03-10",
-    "plan": {
-      "primaryTheme": "confidence",
-      "scores": {
-        "career": 53,
-        "chaos": 45,
-        "confidence": 87,
-        "energy": 64,
-        "overall": 53,
-        "patience": 55,
-        "romance": 38,
-        "social": 34
-      },
-      "secondaryTheme": "energy",
-      "toneHints": [
-        "high social confidence"
-      ]
-    },
-    "sunSign": "sagittarius"
-  },
-  {
-    "dayKey": "03-10",
-    "plan": {
-      "primaryTheme": "energy",
-      "scores": {
-        "career": 33,
-        "chaos": 55,
-        "confidence": 34,
-        "energy": 84,
-        "overall": 56,
-        "patience": 49,
-        "romance": 82,
-        "social": 73
-      },
-      "secondaryTheme": "romance",
-      "toneHints": [
-        "romance forward"
-      ]
-    },
-    "sunSign": "capricorn"
-  },
-  {
-    "dayKey": "03-10",
-    "plan": {
-      "primaryTheme": "social",
-      "scores": {
-        "career": 60,
-        "chaos": 42,
-        "confidence": 37,
-        "energy": 41,
-        "overall": 55,
-        "patience": 60,
-        "romance": 71,
-        "social": 79
-      },
-      "secondaryTheme": "romance",
-      "toneHints": [
-        "even keel"
-      ]
-    },
-    "sunSign": "aquarius"
-  },
-  {
-    "dayKey": "03-10",
-    "plan": {
-      "primaryTheme": "career",
-      "scores": {
-        "career": 85,
-        "chaos": 66,
-        "confidence": 47,
-        "energy": 70,
-        "overall": 53,
-        "patience": 36,
-        "romance": 30,
-        "social": 53
-      },
-      "secondaryTheme": "energy",
-      "toneHints": [
-        "career momentum"
-      ]
-    },
-    "sunSign": "pisces"
-  },
-  {
-    "dayKey": "03-11",
-    "plan": {
-      "primaryTheme": "confidence",
-      "scores": {
-        "career": 53,
-        "chaos": 44,
-        "confidence": 81,
-        "energy": 32,
-        "overall": 48,
-        "patience": 53,
-        "romance": 32,
-        "social": 29
-      },
-      "secondaryTheme": "career",
-      "toneHints": [
-        "high social confidence"
-      ]
-    },
-    "sunSign": "aries"
-  },
-  {
-    "dayKey": "03-11",
-    "plan": {
-      "primaryTheme": "romance",
-      "scores": {
-        "career": 31,
-        "chaos": 46,
-        "confidence": 51,
-        "energy": 45,
-        "overall": 49,
-        "patience": 51,
-        "romance": 58,
-        "social": 48
-      },
-      "secondaryTheme": "confidence",
-      "toneHints": [
-        "even keel"
-      ]
-    },
-    "sunSign": "taurus"
-  },
-  {
-    "dayKey": "03-11",
-    "plan": {
-      "primaryTheme": "patience",
-      "scores": {
-        "career": 52,
-        "chaos": 45,
-        "confidence": 37,
-        "energy": 48,
-        "overall": 42,
-        "patience": 55,
-        "romance": 38,
-        "social": 38
-      },
-      "secondaryTheme": "career",
-      "toneHints": [
-        "even keel"
-      ]
-    },
-    "sunSign": "gemini"
-  },
-  {
-    "dayKey": "03-11",
-    "plan": {
-      "primaryTheme": "energy",
-      "scores": {
-        "career": 47,
-        "chaos": 39,
-        "confidence": 35,
-        "energy": 61,
-        "overall": 50,
-        "patience": 57,
-        "romance": 56,
-        "social": 48
-      },
-      "secondaryTheme": "patience",
-      "toneHints": [
-        "even keel"
-      ]
-    },
-    "sunSign": "cancer"
-  },
-  {
-    "dayKey": "03-11",
-    "plan": {
-      "primaryTheme": "romance",
-      "scores": {
-        "career": 63,
-        "chaos": 33,
-        "confidence": 47,
-        "energy": 43,
-        "overall": 59,
-        "patience": 65,
-        "romance": 77,
-        "social": 51
-      },
-      "secondaryTheme": "patience",
-      "toneHints": [
-        "romance forward"
-      ]
-    },
-    "sunSign": "leo"
-  },
-  {
-    "dayKey": "03-11",
-    "plan": {
-      "primaryTheme": "romance",
-      "scores": {
-        "career": 51,
-        "chaos": 19,
-        "confidence": 71,
-        "energy": 82,
-        "overall": 70,
-        "patience": 80,
-        "romance": 82,
-        "social": 35
-      },
-      "secondaryTheme": "energy",
-      "toneHints": [
-        "steady patience",
-        "romance forward"
-      ]
-    },
-    "sunSign": "virgo"
-  },
-  {
-    "dayKey": "03-11",
-    "plan": {
-      "primaryTheme": "social",
-      "scores": {
-        "career": 34,
-        "chaos": 32,
-        "confidence": 66,
-        "energy": 79,
-        "overall": 61,
-        "patience": 69,
-        "romance": 37,
-        "social": 81
-      },
-      "secondaryTheme": "energy",
-      "toneHints": [
-        "even keel"
-      ]
-    },
-    "sunSign": "libra"
-  },
-  {
-    "dayKey": "03-11",
-    "plan": {
-      "primaryTheme": "confidence",
-      "scores": {
-        "career": 51,
-        "chaos": 37,
-        "confidence": 73,
-        "energy": 51,
-        "overall": 54,
-        "patience": 60,
-        "romance": 35,
-        "social": 35
-      },
-      "secondaryTheme": "patience",
-      "toneHints": [
-        "even keel"
-      ]
-    },
-    "sunSign": "scorpio"
-  },
-  {
-    "dayKey": "03-11",
-    "plan": {
-      "primaryTheme": "confidence",
-      "scores": {
-        "career": 51,
-        "chaos": 45,
-        "confidence": 83,
-        "energy": 63,
-        "overall": 51,
-        "patience": 53,
-        "romance": 31,
-        "social": 33
-      },
-      "secondaryTheme": "energy",
-      "toneHints": [
-        "high social confidence"
-      ]
-    },
-    "sunSign": "sagittarius"
-  },
-  {
-    "dayKey": "03-11",
-    "plan": {
-      "primaryTheme": "energy",
-      "scores": {
-        "career": 28,
-        "chaos": 42,
-        "confidence": 37,
-        "energy": 83,
-        "overall": 58,
-        "patience": 58,
-        "romance": 78,
-        "social": 73
-      },
-      "secondaryTheme": "romance",
-      "toneHints": [
-        "romance forward"
-      ]
-    },
-    "sunSign": "capricorn"
-  },
-  {
-    "dayKey": "03-11",
-    "plan": {
-      "primaryTheme": "social",
-      "scores": {
-        "career": 53,
-        "chaos": 37,
-        "confidence": 38,
-        "energy": 38,
-        "overall": 56,
-        "patience": 61,
-        "romance": 70,
-        "social": 75
-      },
-      "secondaryTheme": "romance",
-      "toneHints": [
-        "even keel"
-      ]
-    },
-    "sunSign": "aquarius"
-  },
-  {
-    "dayKey": "03-11",
-    "plan": {
-      "primaryTheme": "career",
-      "scores": {
-        "career": 79,
-        "chaos": 64,
-        "confidence": 40,
-        "energy": 70,
-        "overall": 45,
-        "patience": 35,
-        "romance": 29,
-        "social": 54
-      },
-      "secondaryTheme": "energy",
-      "toneHints": [
-        "career momentum"
-      ]
-    },
-    "sunSign": "pisces"
-  },
-  {
-    "dayKey": "03-12",
-    "plan": {
-      "primaryTheme": "confidence",
-      "scores": {
-        "career": 53,
-        "chaos": 43,
-        "confidence": 77,
-        "energy": 39,
-        "overall": 52,
-        "patience": 55,
-        "romance": 30,
-        "social": 30
-      },
-      "secondaryTheme": "patience",
-      "toneHints": [
-        "high social confidence"
-      ]
-    },
-    "sunSign": "aries"
-  },
-  {
-    "dayKey": "03-12",
-    "plan": {
-      "primaryTheme": "romance",
-      "scores": {
-        "career": 31,
-        "chaos": 49,
-        "confidence": 48,
-        "energy": 41,
-        "overall": 51,
-        "patience": 50,
-        "romance": 64,
-        "social": 54
-      },
-      "secondaryTheme": "social",
-      "toneHints": [
-        "even keel"
-      ]
-    },
-    "sunSign": "taurus"
-  },
-  {
-    "dayKey": "03-12",
-    "plan": {
-      "primaryTheme": "patience",
-      "scores": {
-        "career": 54,
-        "chaos": 35,
-        "confidence": 38,
-        "energy": 42,
-        "overall": 41,
-        "patience": 62,
-        "romance": 41,
-        "social": 28
-      },
-      "secondaryTheme": "career",
-      "toneHints": [
-        "even keel"
-      ]
-    },
-    "sunSign": "gemini"
-  },
-  {
-    "dayKey": "03-12",
-    "plan": {
-      "primaryTheme": "energy",
-      "scores": {
-        "career": 47,
-        "chaos": 42,
-        "confidence": 32,
-        "energy": 63,
-        "overall": 46,
-        "patience": 54,
-        "romance": 55,
-        "social": 50
-      },
-      "secondaryTheme": "romance",
-      "toneHints": [
-        "even keel"
-      ]
-    },
-    "sunSign": "cancer"
-  },
-  {
-    "dayKey": "03-12",
-    "plan": {
-      "primaryTheme": "romance",
-      "scores": {
-        "career": 70,
-        "chaos": 39,
-        "confidence": 37,
-        "energy": 35,
-        "overall": 52,
-        "patience": 59,
-        "romance": 77,
-        "social": 46
-      },
-      "secondaryTheme": "career",
-      "toneHints": [
-        "romance forward"
-      ]
-    },
-    "sunSign": "leo"
-  },
-  {
-    "dayKey": "03-12",
-    "plan": {
-      "primaryTheme": "patience",
-      "scores": {
-        "career": 56,
-        "chaos": 17,
-        "confidence": 76,
-        "energy": 76,
-        "overall": 68,
-        "patience": 83,
-        "romance": 81,
-        "social": 34
-      },
-      "secondaryTheme": "romance",
-      "toneHints": [
-        "high social confidence",
-        "steady patience"
-      ]
-    },
-    "sunSign": "virgo"
-  },
-  {
-    "dayKey": "03-12",
-    "plan": {
-      "primaryTheme": "energy",
-      "scores": {
-        "career": 35,
-        "chaos": 27,
-        "confidence": 64,
-        "energy": 85,
-        "overall": 58,
-        "patience": 68,
-        "romance": 40,
-        "social": 78
-      },
-      "secondaryTheme": "social",
-      "toneHints": [
-        "even keel"
-      ]
-    },
-    "sunSign": "libra"
-  },
-  {
-    "dayKey": "03-12",
-    "plan": {
-      "primaryTheme": "confidence",
-      "scores": {
-        "career": 57,
-        "chaos": 39,
-        "confidence": 71,
-        "energy": 52,
-        "overall": 48,
-        "patience": 59,
-        "romance": 39,
-        "social": 30
-      },
-      "secondaryTheme": "patience",
-      "toneHints": [
-        "even keel"
-      ]
-    },
-    "sunSign": "scorpio"
-  },
-  {
-    "dayKey": "03-12",
-    "plan": {
-      "primaryTheme": "confidence",
-      "scores": {
-        "career": 54,
-        "chaos": 48,
-        "confidence": 81,
-        "energy": 64,
-        "overall": 54,
-        "patience": 46,
-        "romance": 34,
-        "social": 39
-      },
-      "secondaryTheme": "energy",
-      "toneHints": [
-        "high social confidence"
-      ]
-    },
-    "sunSign": "sagittarius"
-  },
-  {
-    "dayKey": "03-12",
-    "plan": {
-      "primaryTheme": "romance",
-      "scores": {
-        "career": 33,
-        "chaos": 37,
-        "confidence": 34,
-        "energy": 79,
-        "overall": 59,
-        "patience": 59,
-        "romance": 80,
-        "social": 74
-      },
-      "secondaryTheme": "energy",
-      "toneHints": [
-        "romance forward"
-      ]
-    },
-    "sunSign": "capricorn"
-  },
-  {
-    "dayKey": "03-12",
-    "plan": {
-      "primaryTheme": "social",
-      "scores": {
-        "career": 61,
-        "chaos": 36,
-        "confidence": 35,
-        "energy": 41,
-        "overall": 55,
-        "patience": 58,
-        "romance": 59,
-        "social": 76
-      },
-      "secondaryTheme": "career",
-      "toneHints": [
-        "even keel"
-      ]
-    },
-    "sunSign": "aquarius"
-  },
-  {
-    "dayKey": "03-12",
-    "plan": {
-      "primaryTheme": "career",
-      "scores": {
-        "career": 84,
-        "chaos": 60,
-        "confidence": 42,
-        "energy": 72,
-        "overall": 55,
-        "patience": 35,
-        "romance": 36,
-        "social": 57
-      },
-      "secondaryTheme": "energy",
-      "toneHints": [
-        "career momentum"
-      ]
-    },
-    "sunSign": "pisces"
-  },
-  {
-    "dayKey": "03-13",
-    "plan": {
-      "primaryTheme": "confidence",
-      "scores": {
-        "career": 58,
-        "chaos": 38,
-        "confidence": 74,
-        "energy": 31,
-        "overall": 52,
-        "patience": 57,
-        "romance": 38,
-        "social": 39
-      },
-      "secondaryTheme": "career",
-      "toneHints": [
-        "even keel"
-      ]
-    },
-    "sunSign": "aries"
-  },
-  {
-    "dayKey": "03-13",
-    "plan": {
-      "primaryTheme": "romance",
-      "scores": {
-        "career": 34,
-        "chaos": 47,
-        "confidence": 57,
-        "energy": 46,
-        "overall": 49,
-        "patience": 51,
-        "romance": 67,
-        "social": 55
-      },
-      "secondaryTheme": "confidence",
-      "toneHints": [
-        "even keel"
-      ]
-    },
-    "sunSign": "taurus"
-  },
-  {
-    "dayKey": "03-13",
-    "plan": {
-      "primaryTheme": "patience",
-      "scores": {
-        "career": 56,
-        "chaos": 37,
-        "confidence": 40,
-        "energy": 35,
-        "overall": 41,
-        "patience": 61,
-        "romance": 41,
-        "social": 33
-      },
-      "secondaryTheme": "career",
-      "toneHints": [
-        "even keel"
-      ]
-    },
-    "sunSign": "gemini"
-  },
-  {
-    "dayKey": "03-13",
-    "plan": {
-      "primaryTheme": "romance",
-      "scores": {
-        "career": 52,
-        "chaos": 34,
-        "confidence": 30,
-        "energy": 58,
-        "overall": 54,
-        "patience": 62,
-        "romance": 64,
-        "social": 52
-      },
-      "secondaryTheme": "patience",
-      "toneHints": [
-        "low confidence"
-      ]
-    },
-    "sunSign": "cancer"
-  },
-  {
-    "dayKey": "03-13",
-    "plan": {
-      "primaryTheme": "romance",
-      "scores": {
-        "career": 69,
-        "chaos": 33,
-        "confidence": 41,
-        "energy": 39,
-        "overall": 52,
-        "patience": 66,
-        "romance": 78,
-        "social": 41
-      },
-      "secondaryTheme": "career",
-      "toneHints": [
-        "romance forward"
-      ]
-    },
-    "sunSign": "leo"
-  },
-  {
-    "dayKey": "03-13",
-    "plan": {
-      "primaryTheme": "energy",
-      "scores": {
-        "career": 58,
-        "chaos": 12,
-        "confidence": 66,
-        "energy": 85,
-        "overall": 66,
-        "patience": 81,
-        "romance": 78,
-        "social": 36
-      },
-      "secondaryTheme": "patience",
-      "toneHints": [
-        "steady patience",
-        "romance forward"
-      ]
-    },
-    "sunSign": "virgo"
-  },
-  {
-    "dayKey": "03-13",
-    "plan": {
-      "primaryTheme": "social",
-      "scores": {
-        "career": 31,
-        "chaos": 31,
-        "confidence": 59,
-        "energy": 79,
-        "overall": 63,
-        "patience": 62,
-        "romance": 42,
-        "social": 79
-      },
-      "secondaryTheme": "energy",
-      "toneHints": [
-        "even keel"
-      ]
-    },
-    "sunSign": "libra"
-  },
-  {
-    "dayKey": "03-13",
-    "plan": {
-      "primaryTheme": "confidence",
-      "scores": {
-        "career": 59,
-        "chaos": 36,
-        "confidence": 74,
-        "energy": 60,
-        "overall": 52,
-        "patience": 61,
-        "romance": 30,
-        "social": 24
-      },
-      "secondaryTheme": "patience",
-      "toneHints": [
-        "even keel"
-      ]
-    },
-    "sunSign": "scorpio"
-  },
-  {
-    "dayKey": "03-13",
-    "plan": {
-      "primaryTheme": "confidence",
-      "scores": {
-        "career": 65,
-        "chaos": 51,
-        "confidence": 78,
-        "energy": 61,
-        "overall": 53,
-        "patience": 45,
-        "romance": 30,
-        "social": 33
-      },
-      "secondaryTheme": "career",
-      "toneHints": [
-        "high social confidence"
-      ]
-    },
-    "sunSign": "sagittarius"
-  },
-  {
-    "dayKey": "03-13",
-    "plan": {
-      "primaryTheme": "social",
-      "scores": {
-        "career": 34,
-        "chaos": 41,
-        "confidence": 38,
-        "energy": 81,
-        "overall": 62,
-        "patience": 56,
-        "romance": 81,
-        "social": 82
-      },
-      "secondaryTheme": "romance",
-      "toneHints": [
-        "romance forward"
-      ]
-    },
-    "sunSign": "capricorn"
-  },
-  {
-    "dayKey": "03-13",
-    "plan": {
-      "primaryTheme": "social",
-      "scores": {
-        "career": 54,
-        "chaos": 36,
-        "confidence": 32,
-        "energy": 36,
-        "overall": 48,
-        "patience": 57,
-        "romance": 57,
-        "social": 73
-      },
-      "secondaryTheme": "romance",
-      "toneHints": [
-        "even keel"
-      ]
-    },
-    "sunSign": "aquarius"
-  },
-  {
-    "dayKey": "03-13",
-    "plan": {
-      "primaryTheme": "career",
-      "scores": {
-        "career": 84,
-        "chaos": 61,
-        "confidence": 52,
-        "energy": 68,
-        "overall": 51,
-        "patience": 38,
-        "romance": 35,
-        "social": 53
-      },
-      "secondaryTheme": "energy",
-      "toneHints": [
-        "career momentum"
-      ]
-    },
-    "sunSign": "pisces"
-  },
-  {
-    "dayKey": "03-14",
-    "plan": {
-      "primaryTheme": "confidence",
-      "scores": {
-        "career": 55,
-        "chaos": 31,
-        "confidence": 71,
-        "energy": 35,
-        "overall": 54,
-        "patience": 62,
-        "romance": 38,
-        "social": 35
-      },
-      "secondaryTheme": "patience",
-      "toneHints": [
-        "even keel"
-      ]
-    },
-    "sunSign": "aries"
-  },
-  {
-    "dayKey": "03-14",
-    "plan": {
-      "primaryTheme": "romance",
-      "scores": {
-        "career": 33,
-        "chaos": 35,
-        "confidence": 52,
-        "energy": 37,
-        "overall": 49,
-        "patience": 57,
-        "romance": 63,
-        "social": 55
-      },
-      "secondaryTheme": "patience",
-      "toneHints": [
-        "even keel"
-      ]
-    },
-    "sunSign": "taurus"
-  },
-  {
-    "dayKey": "03-14",
-    "plan": {
-      "primaryTheme": "patience",
-      "scores": {
-        "career": 53,
-        "chaos": 36,
-        "confidence": 38,
-        "energy": 40,
-        "overall": 44,
-        "patience": 56,
-        "romance": 41,
-        "social": 30
-      },
-      "secondaryTheme": "career",
-      "toneHints": [
-        "even keel"
-      ]
-    },
-    "sunSign": "gemini"
-  },
-  {
-    "dayKey": "03-14",
-    "plan": {
-      "primaryTheme": "energy",
-      "scores": {
-        "career": 46,
-        "chaos": 33,
-        "confidence": 33,
-        "energy": 66,
-        "overall": 57,
-        "patience": 61,
-        "romance": 64,
-        "social": 47
-      },
-      "secondaryTheme": "romance",
-      "toneHints": [
-        "even keel"
-      ]
-    },
-    "sunSign": "cancer"
-  },
-  {
-    "dayKey": "03-14",
-    "plan": {
-      "primaryTheme": "romance",
-      "scores": {
-        "career": 70,
-        "chaos": 37,
-        "confidence": 39,
-        "energy": 30,
-        "overall": 54,
-        "patience": 61,
-        "romance": 79,
-        "social": 37
-      },
-      "secondaryTheme": "career",
-      "toneHints": [
-        "romance forward"
-      ]
-    },
-    "sunSign": "leo"
-  },
-  {
-    "dayKey": "03-14",
-    "plan": {
-      "primaryTheme": "patience",
-      "scores": {
-        "career": 53,
-        "chaos": 9,
-        "confidence": 71,
-        "energy": 79,
-        "overall": 72,
-        "patience": 84,
-        "romance": 82,
-        "social": 33
-      },
-      "secondaryTheme": "romance",
-      "toneHints": [
-        "steady patience",
-        "romance forward"
-      ]
-    },
-    "sunSign": "virgo"
-  },
-  {
-    "dayKey": "03-14",
-    "plan": {
-      "primaryTheme": "energy",
-      "scores": {
-        "career": 34,
-        "chaos": 29,
-        "confidence": 61,
-        "energy": 79,
-        "overall": 57,
-        "patience": 65,
-        "romance": 36,
-        "social": 76
-      },
-      "secondaryTheme": "social",
-      "toneHints": [
-        "even keel"
-      ]
-    },
-    "sunSign": "libra"
-  },
-  {
-    "dayKey": "03-14",
-    "plan": {
-      "primaryTheme": "confidence",
-      "scores": {
-        "career": 53,
-        "chaos": 30,
-        "confidence": 71,
-        "energy": 54,
-        "overall": 53,
-        "patience": 66,
-        "romance": 35,
-        "social": 26
-      },
-      "secondaryTheme": "patience",
-      "toneHints": [
-        "even keel"
-      ]
-    },
-    "sunSign": "scorpio"
-  },
-  {
-    "dayKey": "03-14",
-    "plan": {
-      "primaryTheme": "confidence",
-      "scores": {
-        "career": 57,
-        "chaos": 56,
-        "confidence": 78,
-        "energy": 61,
-        "overall": 49,
-        "patience": 42,
-        "romance": 30,
-        "social": 33
-      },
-      "secondaryTheme": "energy",
-      "toneHints": [
-        "high social confidence"
-      ]
-    },
-    "sunSign": "sagittarius"
-  },
-  {
-    "dayKey": "03-14",
-    "plan": {
-      "primaryTheme": "social",
-      "scores": {
-        "career": 33,
-        "chaos": 38,
-        "confidence": 35,
-        "energy": 77,
-        "overall": 56,
-        "patience": 57,
-        "romance": 77,
-        "social": 80
-      },
-      "secondaryTheme": "romance",
-      "toneHints": [
-        "romance forward"
-      ]
-    },
-    "sunSign": "capricorn"
-  },
-  {
-    "dayKey": "03-14",
-    "plan": {
-      "primaryTheme": "social",
-      "scores": {
-        "career": 61,
-        "chaos": 39,
-        "confidence": 37,
-        "energy": 33,
-        "overall": 54,
-        "patience": 59,
-        "romance": 55,
-        "social": 74
-      },
-      "secondaryTheme": "career",
-      "toneHints": [
-        "even keel"
-      ]
-    },
-    "sunSign": "aquarius"
-  },
-  {
-    "dayKey": "03-14",
-    "plan": {
-      "primaryTheme": "career",
-      "scores": {
-        "career": 80,
-        "chaos": 58,
-        "confidence": 53,
-        "energy": 67,
-        "overall": 49,
-        "patience": 39,
-        "romance": 28,
-        "social": 58
-      },
-      "secondaryTheme": "energy",
-      "toneHints": [
-        "career momentum"
-      ]
-    },
-    "sunSign": "pisces"
-  }
-]
+{
+  "contentCycleVersion": "2026-pilot-v1",
+  "createdAt": "2026-08-27T00:43:34.444235Z",
+  "entries": [
+    {
+      "dayKey": "03-01",
+      "plan": {
+        "primaryTheme": "confidence",
+        "scores": {
+          "career": 41,
+          "chaos": 54,
+          "confidence": 73,
+          "energy": 38,
+          "overall": 50,
+          "patience": 49,
+          "romance": 43,
+          "social": 41
+        },
+        "secondaryTheme": "chaos",
+        "toneHints": [
+          "even keel"
+        ]
+      },
+      "sunSign": "aries"
+    },
+    {
+      "dayKey": "03-01",
+      "plan": {
+        "primaryTheme": "patience",
+        "scores": {
+          "career": 49,
+          "chaos": 29,
+          "confidence": 43,
+          "energy": 54,
+          "overall": 51,
+          "patience": 74,
+          "romance": 65,
+          "social": 42
+        },
+        "secondaryTheme": "romance",
+        "toneHints": [
+          "even keel"
+        ]
+      },
+      "sunSign": "taurus"
+    },
+    {
+      "dayKey": "03-01",
+      "plan": {
+        "primaryTheme": "romance",
+        "scores": {
+          "career": 44,
+          "chaos": 62,
+          "confidence": 74,
+          "energy": 43,
+          "overall": 56,
+          "patience": 41,
+          "romance": 75,
+          "social": 54
+        },
+        "secondaryTheme": "confidence",
+        "toneHints": [
+          "romance forward"
+        ]
+      },
+      "sunSign": "gemini"
+    },
+    {
+      "dayKey": "03-01",
+      "plan": {
+        "primaryTheme": "energy",
+        "scores": {
+          "career": 44,
+          "chaos": 62,
+          "confidence": 60,
+          "energy": 75,
+          "overall": 48,
+          "patience": 37,
+          "romance": 59,
+          "social": 43
+        },
+        "secondaryTheme": "chaos",
+        "toneHints": [
+          "even keel"
+        ]
+      },
+      "sunSign": "cancer"
+    },
+    {
+      "dayKey": "03-01",
+      "plan": {
+        "primaryTheme": "romance",
+        "scores": {
+          "career": 56,
+          "chaos": 60,
+          "confidence": 69,
+          "energy": 46,
+          "overall": 57,
+          "patience": 41,
+          "romance": 69,
+          "social": 41
+        },
+        "secondaryTheme": "confidence",
+        "toneHints": [
+          "even keel"
+        ]
+      },
+      "sunSign": "leo"
+    },
+    {
+      "dayKey": "03-01",
+      "plan": {
+        "primaryTheme": "career",
+        "scores": {
+          "career": 80,
+          "chaos": 54,
+          "confidence": 44,
+          "energy": 43,
+          "overall": 56,
+          "patience": 44,
+          "romance": 46,
+          "social": 65
+        },
+        "secondaryTheme": "social",
+        "toneHints": [
+          "career momentum"
+        ]
+      },
+      "sunSign": "virgo"
+    },
+    {
+      "dayKey": "03-01",
+      "plan": {
+        "primaryTheme": "social",
+        "scores": {
+          "career": 52,
+          "chaos": 52,
+          "confidence": 42,
+          "energy": 50,
+          "overall": 58,
+          "patience": 47,
+          "romance": 76,
+          "social": 78
+        },
+        "secondaryTheme": "romance",
+        "toneHints": [
+          "romance forward"
+        ]
+      },
+      "sunSign": "libra"
+    },
+    {
+      "dayKey": "03-01",
+      "plan": {
+        "primaryTheme": "energy",
+        "scores": {
+          "career": 45,
+          "chaos": 54,
+          "confidence": 65,
+          "energy": 79,
+          "overall": 55,
+          "patience": 43,
+          "romance": 50,
+          "social": 46
+        },
+        "secondaryTheme": "confidence",
+        "toneHints": [
+          "even keel"
+        ]
+      },
+      "sunSign": "scorpio"
+    },
+    {
+      "dayKey": "03-01",
+      "plan": {
+        "primaryTheme": "career",
+        "scores": {
+          "career": 79,
+          "chaos": 53,
+          "confidence": 44,
+          "energy": 45,
+          "overall": 53,
+          "patience": 48,
+          "romance": 72,
+          "social": 46
+        },
+        "secondaryTheme": "romance",
+        "toneHints": [
+          "career momentum"
+        ]
+      },
+      "sunSign": "sagittarius"
+    },
+    {
+      "dayKey": "03-01",
+      "plan": {
+        "primaryTheme": "career",
+        "scores": {
+          "career": 86,
+          "chaos": 32,
+          "confidence": 79,
+          "energy": 70,
+          "overall": 67,
+          "patience": 68,
+          "romance": 56,
+          "social": 48
+        },
+        "secondaryTheme": "confidence",
+        "toneHints": [
+          "high social confidence",
+          "career momentum"
+        ]
+      },
+      "sunSign": "capricorn"
+    },
+    {
+      "dayKey": "03-01",
+      "plan": {
+        "primaryTheme": "energy",
+        "scores": {
+          "career": 40,
+          "chaos": 53,
+          "confidence": 48,
+          "energy": 81,
+          "overall": 50,
+          "patience": 47,
+          "romance": 56,
+          "social": 50
+        },
+        "secondaryTheme": "romance",
+        "toneHints": [
+          "even keel"
+        ]
+      },
+      "sunSign": "aquarius"
+    },
+    {
+      "dayKey": "03-01",
+      "plan": {
+        "primaryTheme": "career",
+        "scores": {
+          "career": 64,
+          "chaos": 39,
+          "confidence": 42,
+          "energy": 53,
+          "overall": 56,
+          "patience": 61,
+          "romance": 60,
+          "social": 48
+        },
+        "secondaryTheme": "patience",
+        "toneHints": [
+          "even keel"
+        ]
+      },
+      "sunSign": "pisces"
+    },
+    {
+      "dayKey": "03-02",
+      "plan": {
+        "primaryTheme": "confidence",
+        "scores": {
+          "career": 48,
+          "chaos": 55,
+          "confidence": 81,
+          "energy": 40,
+          "overall": 53,
+          "patience": 50,
+          "romance": 40,
+          "social": 40
+        },
+        "secondaryTheme": "chaos",
+        "toneHints": [
+          "high social confidence"
+        ]
+      },
+      "sunSign": "aries"
+    },
+    {
+      "dayKey": "03-02",
+      "plan": {
+        "primaryTheme": "patience",
+        "scores": {
+          "career": 44,
+          "chaos": 28,
+          "confidence": 52,
+          "energy": 65,
+          "overall": 56,
+          "patience": 73,
+          "romance": 63,
+          "social": 41
+        },
+        "secondaryTheme": "energy",
+        "toneHints": [
+          "even keel"
+        ]
+      },
+      "sunSign": "taurus"
+    },
+    {
+      "dayKey": "03-02",
+      "plan": {
+        "primaryTheme": "confidence",
+        "scores": {
+          "career": 45,
+          "chaos": 60,
+          "confidence": 81,
+          "energy": 49,
+          "overall": 57,
+          "patience": 44,
+          "romance": 71,
+          "social": 48
+        },
+        "secondaryTheme": "romance",
+        "toneHints": [
+          "high social confidence"
+        ]
+      },
+      "sunSign": "gemini"
+    },
+    {
+      "dayKey": "03-02",
+      "plan": {
+        "primaryTheme": "energy",
+        "scores": {
+          "career": 44,
+          "chaos": 55,
+          "confidence": 50,
+          "energy": 85,
+          "overall": 57,
+          "patience": 47,
+          "romance": 55,
+          "social": 45
+        },
+        "secondaryTheme": "reset",
+        "toneHints": [
+          "even keel"
+        ]
+      },
+      "sunSign": "cancer"
+    },
+    {
+      "dayKey": "03-02",
+      "plan": {
+        "primaryTheme": "confidence",
+        "scores": {
+          "career": 57,
+          "chaos": 53,
+          "confidence": 75,
+          "energy": 43,
+          "overall": 51,
+          "patience": 46,
+          "romance": 67,
+          "social": 41
+        },
+        "secondaryTheme": "romance",
+        "toneHints": [
+          "high social confidence"
+        ]
+      },
+      "sunSign": "leo"
+    },
+    {
+      "dayKey": "03-02",
+      "plan": {
+        "primaryTheme": "career",
+        "scores": {
+          "career": 86,
+          "chaos": 51,
+          "confidence": 40,
+          "energy": 39,
+          "overall": 49,
+          "patience": 48,
+          "romance": 48,
+          "social": 61
+        },
+        "secondaryTheme": "social",
+        "toneHints": [
+          "career momentum"
+        ]
+      },
+      "sunSign": "virgo"
+    },
+    {
+      "dayKey": "03-02",
+      "plan": {
+        "primaryTheme": "social",
+        "scores": {
+          "career": 49,
+          "chaos": 60,
+          "confidence": 50,
+          "energy": 44,
+          "overall": 54,
+          "patience": 45,
+          "romance": 71,
+          "social": 73
+        },
+        "secondaryTheme": "romance",
+        "toneHints": [
+          "even keel"
+        ]
+      },
+      "sunSign": "libra"
+    },
+    {
+      "dayKey": "03-02",
+      "plan": {
+        "primaryTheme": "energy",
+        "scores": {
+          "career": 47,
+          "chaos": 54,
+          "confidence": 70,
+          "energy": 76,
+          "overall": 55,
+          "patience": 46,
+          "romance": 43,
+          "social": 52
+        },
+        "secondaryTheme": "confidence",
+        "toneHints": [
+          "even keel"
+        ]
+      },
+      "sunSign": "scorpio"
+    },
+    {
+      "dayKey": "03-02",
+      "plan": {
+        "primaryTheme": "career",
+        "scores": {
+          "career": 76,
+          "chaos": 50,
+          "confidence": 46,
+          "energy": 46,
+          "overall": 56,
+          "patience": 49,
+          "romance": 66,
+          "social": 43
+        },
+        "secondaryTheme": "romance",
+        "toneHints": [
+          "career momentum"
+        ]
+      },
+      "sunSign": "sagittarius"
+    },
+    {
+      "dayKey": "03-02",
+      "plan": {
+        "primaryTheme": "career",
+        "scores": {
+          "career": 87,
+          "chaos": 37,
+          "confidence": 78,
+          "energy": 75,
+          "overall": 65,
+          "patience": 63,
+          "romance": 52,
+          "social": 50
+        },
+        "secondaryTheme": "confidence",
+        "toneHints": [
+          "high social confidence",
+          "career momentum"
+        ]
+      },
+      "sunSign": "capricorn"
+    },
+    {
+      "dayKey": "03-02",
+      "plan": {
+        "primaryTheme": "energy",
+        "scores": {
+          "career": 49,
+          "chaos": 62,
+          "confidence": 43,
+          "energy": 73,
+          "overall": 53,
+          "patience": 40,
+          "romance": 56,
+          "social": 43
+        },
+        "secondaryTheme": "chaos",
+        "toneHints": [
+          "even keel"
+        ]
+      },
+      "sunSign": "aquarius"
+    },
+    {
+      "dayKey": "03-02",
+      "plan": {
+        "primaryTheme": "career",
+        "scores": {
+          "career": 70,
+          "chaos": 37,
+          "confidence": 48,
+          "energy": 41,
+          "overall": 55,
+          "patience": 64,
+          "romance": 63,
+          "social": 50
+        },
+        "secondaryTheme": "patience",
+        "toneHints": [
+          "even keel"
+        ]
+      },
+      "sunSign": "pisces"
+    },
+    {
+      "dayKey": "03-03",
+      "plan": {
+        "primaryTheme": "confidence",
+        "scores": {
+          "career": 44,
+          "chaos": 55,
+          "confidence": 77,
+          "energy": 44,
+          "overall": 52,
+          "patience": 51,
+          "romance": 49,
+          "social": 43
+        },
+        "secondaryTheme": "chaos",
+        "toneHints": [
+          "high social confidence"
+        ]
+      },
+      "sunSign": "aries"
+    },
+    {
+      "dayKey": "03-03",
+      "plan": {
+        "primaryTheme": "patience",
+        "scores": {
+          "career": 47,
+          "chaos": 30,
+          "confidence": 50,
+          "energy": 62,
+          "overall": 55,
+          "patience": 75,
+          "romance": 71,
+          "social": 50
+        },
+        "secondaryTheme": "romance",
+        "toneHints": [
+          "steady patience"
+        ]
+      },
+      "sunSign": "taurus"
+    },
+    {
+      "dayKey": "03-03",
+      "plan": {
+        "primaryTheme": "confidence",
+        "scores": {
+          "career": 51,
+          "chaos": 66,
+          "confidence": 82,
+          "energy": 50,
+          "overall": 52,
+          "patience": 41,
+          "romance": 63,
+          "social": 55
+        },
+        "secondaryTheme": "chaos",
+        "toneHints": [
+          "high social confidence"
+        ]
+      },
+      "sunSign": "gemini"
+    },
+    {
+      "dayKey": "03-03",
+      "plan": {
+        "primaryTheme": "energy",
+        "scores": {
+          "career": 45,
+          "chaos": 52,
+          "confidence": 56,
+          "energy": 80,
+          "overall": 56,
+          "patience": 49,
+          "romance": 56,
+          "social": 45
+        },
+        "secondaryTheme": "reset",
+        "toneHints": [
+          "even keel"
+        ]
+      },
+      "sunSign": "cancer"
+    },
+    {
+      "dayKey": "03-03",
+      "plan": {
+        "primaryTheme": "confidence",
+        "scores": {
+          "career": 48,
+          "chaos": 60,
+          "confidence": 76,
+          "energy": 42,
+          "overall": 52,
+          "patience": 47,
+          "romance": 56,
+          "social": 50
+        },
+        "secondaryTheme": "chaos",
+        "toneHints": [
+          "high social confidence"
+        ]
+      },
+      "sunSign": "leo"
+    },
+    {
+      "dayKey": "03-03",
+      "plan": {
+        "primaryTheme": "career",
+        "scores": {
+          "career": 81,
+          "chaos": 69,
+          "confidence": 41,
+          "energy": 50,
+          "overall": 52,
+          "patience": 37,
+          "romance": 49,
+          "social": 59
+        },
+        "secondaryTheme": "chaos",
+        "toneHints": [
+          "career momentum"
+        ]
+      },
+      "sunSign": "virgo"
+    },
+    {
+      "dayKey": "03-03",
+      "plan": {
+        "primaryTheme": "social",
+        "scores": {
+          "career": 44,
+          "chaos": 57,
+          "confidence": 51,
+          "energy": 49,
+          "overall": 55,
+          "patience": 48,
+          "romance": 74,
+          "social": 75
+        },
+        "secondaryTheme": "romance",
+        "toneHints": [
+          "even keel"
+        ]
+      },
+      "sunSign": "libra"
+    },
+    {
+      "dayKey": "03-03",
+      "plan": {
+        "primaryTheme": "energy",
+        "scores": {
+          "career": 43,
+          "chaos": 57,
+          "confidence": 73,
+          "energy": 73,
+          "overall": 57,
+          "patience": 48,
+          "romance": 45,
+          "social": 44
+        },
+        "secondaryTheme": "confidence",
+        "toneHints": [
+          "even keel"
+        ]
+      },
+      "sunSign": "scorpio"
+    },
+    {
+      "dayKey": "03-03",
+      "plan": {
+        "primaryTheme": "career",
+        "scores": {
+          "career": 71,
+          "chaos": 59,
+          "confidence": 50,
+          "energy": 46,
+          "overall": 51,
+          "patience": 44,
+          "romance": 69,
+          "social": 49
+        },
+        "secondaryTheme": "romance",
+        "toneHints": [
+          "even keel"
+        ]
+      },
+      "sunSign": "sagittarius"
+    },
+    {
+      "dayKey": "03-03",
+      "plan": {
+        "primaryTheme": "career",
+        "scores": {
+          "career": 87,
+          "chaos": 47,
+          "confidence": 85,
+          "energy": 77,
+          "overall": 63,
+          "patience": 58,
+          "romance": 49,
+          "social": 49
+        },
+        "secondaryTheme": "confidence",
+        "toneHints": [
+          "high social confidence",
+          "career momentum"
+        ]
+      },
+      "sunSign": "capricorn"
+    },
+    {
+      "dayKey": "03-03",
+      "plan": {
+        "primaryTheme": "energy",
+        "scores": {
+          "career": 45,
+          "chaos": 53,
+          "confidence": 49,
+          "energy": 78,
+          "overall": 55,
+          "patience": 48,
+          "romance": 55,
+          "social": 48
+        },
+        "secondaryTheme": "reset",
+        "toneHints": [
+          "even keel"
+        ]
+      },
+      "sunSign": "aquarius"
+    },
+    {
+      "dayKey": "03-03",
+      "plan": {
+        "primaryTheme": "patience",
+        "scores": {
+          "career": 58,
+          "chaos": 36,
+          "confidence": 47,
+          "energy": 42,
+          "overall": 53,
+          "patience": 65,
+          "romance": 63,
+          "social": 47
+        },
+        "secondaryTheme": "romance",
+        "toneHints": [
+          "even keel"
+        ]
+      },
+      "sunSign": "pisces"
+    },
+    {
+      "dayKey": "03-04",
+      "plan": {
+        "primaryTheme": "confidence",
+        "scores": {
+          "career": 51,
+          "chaos": 56,
+          "confidence": 79,
+          "energy": 42,
+          "overall": 57,
+          "patience": 46,
+          "romance": 50,
+          "social": 51
+        },
+        "secondaryTheme": "reset",
+        "toneHints": [
+          "high social confidence"
+        ]
+      },
+      "sunSign": "aries"
+    },
+    {
+      "dayKey": "03-04",
+      "plan": {
+        "primaryTheme": "romance",
+        "scores": {
+          "career": 55,
+          "chaos": 37,
+          "confidence": 50,
+          "energy": 68,
+          "overall": 62,
+          "patience": 68,
+          "romance": 75,
+          "social": 43
+        },
+        "secondaryTheme": "energy",
+        "toneHints": [
+          "romance forward"
+        ]
+      },
+      "sunSign": "taurus"
+    },
+    {
+      "dayKey": "03-04",
+      "plan": {
+        "primaryTheme": "confidence",
+        "scores": {
+          "career": 52,
+          "chaos": 60,
+          "confidence": 77,
+          "energy": 46,
+          "overall": 58,
+          "patience": 46,
+          "romance": 69,
+          "social": 45
+        },
+        "secondaryTheme": "romance",
+        "toneHints": [
+          "high social confidence"
+        ]
+      },
+      "sunSign": "gemini"
+    },
+    {
+      "dayKey": "03-04",
+      "plan": {
+        "primaryTheme": "energy",
+        "scores": {
+          "career": 48,
+          "chaos": 58,
+          "confidence": 51,
+          "energy": 79,
+          "overall": 56,
+          "patience": 49,
+          "romance": 64,
+          "social": 47
+        },
+        "secondaryTheme": "romance",
+        "toneHints": [
+          "even keel"
+        ]
+      },
+      "sunSign": "cancer"
+    },
+    {
+      "dayKey": "03-04",
+      "plan": {
+        "primaryTheme": "confidence",
+        "scores": {
+          "career": 51,
+          "chaos": 53,
+          "confidence": 77,
+          "energy": 47,
+          "overall": 53,
+          "patience": 53,
+          "romance": 60,
+          "social": 53
+        },
+        "secondaryTheme": "romance",
+        "toneHints": [
+          "high social confidence"
+        ]
+      },
+      "sunSign": "leo"
+    },
+    {
+      "dayKey": "03-04",
+      "plan": {
+        "primaryTheme": "career",
+        "scores": {
+          "career": 80,
+          "chaos": 64,
+          "confidence": 53,
+          "energy": 42,
+          "overall": 55,
+          "patience": 43,
+          "romance": 42,
+          "social": 61
+        },
+        "secondaryTheme": "chaos",
+        "toneHints": [
+          "career momentum"
+        ]
+      },
+      "sunSign": "virgo"
+    },
+    {
+      "dayKey": "03-04",
+      "plan": {
+        "primaryTheme": "romance",
+        "scores": {
+          "career": 44,
+          "chaos": 55,
+          "confidence": 51,
+          "energy": 44,
+          "overall": 54,
+          "patience": 50,
+          "romance": 76,
+          "social": 73
+        },
+        "secondaryTheme": "social",
+        "toneHints": [
+          "romance forward"
+        ]
+      },
+      "sunSign": "libra"
+    },
+    {
+      "dayKey": "03-04",
+      "plan": {
+        "primaryTheme": "energy",
+        "scores": {
+          "career": 48,
+          "chaos": 67,
+          "confidence": 74,
+          "energy": 80,
+          "overall": 51,
+          "patience": 41,
+          "romance": 42,
+          "social": 52
+        },
+        "secondaryTheme": "confidence",
+        "toneHints": [
+          "even keel"
+        ]
+      },
+      "sunSign": "scorpio"
+    },
+    {
+      "dayKey": "03-04",
+      "plan": {
+        "primaryTheme": "career",
+        "scores": {
+          "career": 69,
+          "chaos": 58,
+          "confidence": 44,
+          "energy": 51,
+          "overall": 49,
+          "patience": 45,
+          "romance": 61,
+          "social": 45
+        },
+        "secondaryTheme": "romance",
+        "toneHints": [
+          "even keel"
+        ]
+      },
+      "sunSign": "sagittarius"
+    },
+    {
+      "dayKey": "03-04",
+      "plan": {
+        "primaryTheme": "confidence",
+        "scores": {
+          "career": 77,
+          "chaos": 43,
+          "confidence": 83,
+          "energy": 79,
+          "overall": 60,
+          "patience": 61,
+          "romance": 43,
+          "social": 43
+        },
+        "secondaryTheme": "energy",
+        "toneHints": [
+          "high social confidence",
+          "career momentum"
+        ]
+      },
+      "sunSign": "capricorn"
+    },
+    {
+      "dayKey": "03-04",
+      "plan": {
+        "primaryTheme": "energy",
+        "scores": {
+          "career": 52,
+          "chaos": 65,
+          "confidence": 43,
+          "energy": 72,
+          "overall": 52,
+          "patience": 43,
+          "romance": 48,
+          "social": 43
+        },
+        "secondaryTheme": "chaos",
+        "toneHints": [
+          "even keel"
+        ]
+      },
+      "sunSign": "aquarius"
+    },
+    {
+      "dayKey": "03-04",
+      "plan": {
+        "primaryTheme": "career",
+        "scores": {
+          "career": 62,
+          "chaos": 43,
+          "confidence": 44,
+          "energy": 42,
+          "overall": 57,
+          "patience": 62,
+          "romance": 61,
+          "social": 51
+        },
+        "secondaryTheme": "patience",
+        "toneHints": [
+          "even keel"
+        ]
+      },
+      "sunSign": "pisces"
+    },
+    {
+      "dayKey": "03-05",
+      "plan": {
+        "primaryTheme": "confidence",
+        "scores": {
+          "career": 48,
+          "chaos": 61,
+          "confidence": 85,
+          "energy": 45,
+          "overall": 51,
+          "patience": 44,
+          "romance": 48,
+          "social": 48
+        },
+        "secondaryTheme": "chaos",
+        "toneHints": [
+          "high social confidence"
+        ]
+      },
+      "sunSign": "aries"
+    },
+    {
+      "dayKey": "03-05",
+      "plan": {
+        "primaryTheme": "romance",
+        "scores": {
+          "career": 51,
+          "chaos": 38,
+          "confidence": 47,
+          "energy": 67,
+          "overall": 57,
+          "patience": 70,
+          "romance": 74,
+          "social": 45
+        },
+        "secondaryTheme": "patience",
+        "toneHints": [
+          "even keel"
+        ]
+      },
+      "sunSign": "taurus"
+    },
+    {
+      "dayKey": "03-05",
+      "plan": {
+        "primaryTheme": "confidence",
+        "scores": {
+          "career": 44,
+          "chaos": 59,
+          "confidence": 69,
+          "energy": 50,
+          "overall": 49,
+          "patience": 44,
+          "romance": 67,
+          "social": 47
+        },
+        "secondaryTheme": "romance",
+        "toneHints": [
+          "even keel"
+        ]
+      },
+      "sunSign": "gemini"
+    },
+    {
+      "dayKey": "03-05",
+      "plan": {
+        "primaryTheme": "energy",
+        "scores": {
+          "career": 49,
+          "chaos": 51,
+          "confidence": 43,
+          "energy": 76,
+          "overall": 54,
+          "patience": 54,
+          "romance": 70,
+          "social": 51
+        },
+        "secondaryTheme": "romance",
+        "toneHints": [
+          "even keel"
+        ]
+      },
+      "sunSign": "cancer"
+    },
+    {
+      "dayKey": "03-05",
+      "plan": {
+        "primaryTheme": "confidence",
+        "scores": {
+          "career": 42,
+          "chaos": 59,
+          "confidence": 84,
+          "energy": 43,
+          "overall": 52,
+          "patience": 47,
+          "romance": 61,
+          "social": 50
+        },
+        "secondaryTheme": "romance",
+        "toneHints": [
+          "high social confidence"
+        ]
+      },
+      "sunSign": "leo"
+    },
+    {
+      "dayKey": "03-05",
+      "plan": {
+        "primaryTheme": "career",
+        "scores": {
+          "career": 85,
+          "chaos": 65,
+          "confidence": 50,
+          "energy": 45,
+          "overall": 55,
+          "patience": 43,
+          "romance": 42,
+          "social": 61
+        },
+        "secondaryTheme": "chaos",
+        "toneHints": [
+          "career momentum"
+        ]
+      },
+      "sunSign": "virgo"
+    },
+    {
+      "dayKey": "03-05",
+      "plan": {
+        "primaryTheme": "social",
+        "scores": {
+          "career": 50,
+          "chaos": 51,
+          "confidence": 43,
+          "energy": 52,
+          "overall": 56,
+          "patience": 56,
+          "romance": 69,
+          "social": 71
+        },
+        "secondaryTheme": "romance",
+        "toneHints": [
+          "even keel"
+        ]
+      },
+      "sunSign": "libra"
+    },
+    {
+      "dayKey": "03-05",
+      "plan": {
+        "primaryTheme": "energy",
+        "scores": {
+          "career": 45,
+          "chaos": 55,
+          "confidence": 72,
+          "energy": 79,
+          "overall": 55,
+          "patience": 48,
+          "romance": 44,
+          "social": 51
+        },
+        "secondaryTheme": "confidence",
+        "toneHints": [
+          "even keel"
+        ]
+      },
+      "sunSign": "scorpio"
+    },
+    {
+      "dayKey": "03-05",
+      "plan": {
+        "primaryTheme": "career",
+        "scores": {
+          "career": 69,
+          "chaos": 65,
+          "confidence": 52,
+          "energy": 44,
+          "overall": 48,
+          "patience": 42,
+          "romance": 67,
+          "social": 50
+        },
+        "secondaryTheme": "romance",
+        "toneHints": [
+          "even keel"
+        ]
+      },
+      "sunSign": "sagittarius"
+    },
+    {
+      "dayKey": "03-05",
+      "plan": {
+        "primaryTheme": "career",
+        "scores": {
+          "career": 87,
+          "chaos": 44,
+          "confidence": 77,
+          "energy": 76,
+          "overall": 66,
+          "patience": 62,
+          "romance": 39,
+          "social": 47
+        },
+        "secondaryTheme": "confidence",
+        "toneHints": [
+          "high social confidence",
+          "career momentum"
+        ]
+      },
+      "sunSign": "capricorn"
+    },
+    {
+      "dayKey": "03-05",
+      "plan": {
+        "primaryTheme": "energy",
+        "scores": {
+          "career": 50,
+          "chaos": 62,
+          "confidence": 46,
+          "energy": 74,
+          "overall": 47,
+          "patience": 42,
+          "romance": 44,
+          "social": 50
+        },
+        "secondaryTheme": "chaos",
+        "toneHints": [
+          "even keel"
+        ]
+      },
+      "sunSign": "aquarius"
+    },
+    {
+      "dayKey": "03-05",
+      "plan": {
+        "primaryTheme": "patience",
+        "scores": {
+          "career": 63,
+          "chaos": 41,
+          "confidence": 39,
+          "energy": 43,
+          "overall": 48,
+          "patience": 64,
+          "romance": 52,
+          "social": 49
+        },
+        "secondaryTheme": "career",
+        "toneHints": [
+          "even keel"
+        ]
+      },
+      "sunSign": "pisces"
+    },
+    {
+      "dayKey": "03-06",
+      "plan": {
+        "primaryTheme": "confidence",
+        "scores": {
+          "career": 56,
+          "chaos": 58,
+          "confidence": 87,
+          "energy": 51,
+          "overall": 58,
+          "patience": 46,
+          "romance": 52,
+          "social": 49
+        },
+        "secondaryTheme": "reset",
+        "toneHints": [
+          "high social confidence"
+        ]
+      },
+      "sunSign": "aries"
+    },
+    {
+      "dayKey": "03-06",
+      "plan": {
+        "primaryTheme": "romance",
+        "scores": {
+          "career": 52,
+          "chaos": 35,
+          "confidence": 47,
+          "energy": 70,
+          "overall": 61,
+          "patience": 68,
+          "romance": 78,
+          "social": 46
+        },
+        "secondaryTheme": "energy",
+        "toneHints": [
+          "romance forward"
+        ]
+      },
+      "sunSign": "taurus"
+    },
+    {
+      "dayKey": "03-06",
+      "plan": {
+        "primaryTheme": "confidence",
+        "scores": {
+          "career": 53,
+          "chaos": 51,
+          "confidence": 70,
+          "energy": 54,
+          "overall": 58,
+          "patience": 52,
+          "romance": 57,
+          "social": 39
+        },
+        "secondaryTheme": "reset",
+        "toneHints": [
+          "even keel"
+        ]
+      },
+      "sunSign": "gemini"
+    },
+    {
+      "dayKey": "03-06",
+      "plan": {
+        "primaryTheme": "energy",
+        "scores": {
+          "career": 44,
+          "chaos": 56,
+          "confidence": 43,
+          "energy": 82,
+          "overall": 55,
+          "patience": 48,
+          "romance": 70,
+          "social": 44
+        },
+        "secondaryTheme": "romance",
+        "toneHints": [
+          "even keel"
+        ]
+      },
+      "sunSign": "cancer"
+    },
+    {
+      "dayKey": "03-06",
+      "plan": {
+        "primaryTheme": "confidence",
+        "scores": {
+          "career": 45,
+          "chaos": 52,
+          "confidence": 86,
+          "energy": 40,
+          "overall": 52,
+          "patience": 56,
+          "romance": 54,
+          "social": 54
+        },
+        "secondaryTheme": "patience",
+        "toneHints": [
+          "high social confidence"
+        ]
+      },
+      "sunSign": "leo"
+    },
+    {
+      "dayKey": "03-06",
+      "plan": {
+        "primaryTheme": "career",
+        "scores": {
+          "career": 85,
+          "chaos": 67,
+          "confidence": 53,
+          "energy": 52,
+          "overall": 55,
+          "patience": 39,
+          "romance": 43,
+          "social": 59
+        },
+        "secondaryTheme": "chaos",
+        "toneHints": [
+          "career momentum"
+        ]
+      },
+      "sunSign": "virgo"
+    },
+    {
+      "dayKey": "03-06",
+      "plan": {
+        "primaryTheme": "social",
+        "scores": {
+          "career": 50,
+          "chaos": 57,
+          "confidence": 53,
+          "energy": 42,
+          "overall": 59,
+          "patience": 52,
+          "romance": 69,
+          "social": 73
+        },
+        "secondaryTheme": "romance",
+        "toneHints": [
+          "even keel"
+        ]
+      },
+      "sunSign": "libra"
+    },
+    {
+      "dayKey": "03-06",
+      "plan": {
+        "primaryTheme": "confidence",
+        "scores": {
+          "career": 47,
+          "chaos": 55,
+          "confidence": 79,
+          "energy": 77,
+          "overall": 62,
+          "patience": 51,
+          "romance": 42,
+          "social": 54
+        },
+        "secondaryTheme": "energy",
+        "toneHints": [
+          "high social confidence"
+        ]
+      },
+      "sunSign": "scorpio"
+    },
+    {
+      "dayKey": "03-06",
+      "plan": {
+        "primaryTheme": "career",
+        "scores": {
+          "career": 69,
+          "chaos": 69,
+          "confidence": 54,
+          "energy": 47,
+          "overall": 48,
+          "patience": 37,
+          "romance": 57,
+          "social": 49
+        },
+        "secondaryTheme": "chaos",
+        "toneHints": [
+          "even keel"
+        ]
+      },
+      "sunSign": "sagittarius"
+    },
+    {
+      "dayKey": "03-06",
+      "plan": {
+        "primaryTheme": "confidence",
+        "scores": {
+          "career": 77,
+          "chaos": 50,
+          "confidence": 87,
+          "energy": 75,
+          "overall": 58,
+          "patience": 56,
+          "romance": 34,
+          "social": 45
+        },
+        "secondaryTheme": "career",
+        "toneHints": [
+          "high social confidence",
+          "career momentum"
+        ]
+      },
+      "sunSign": "capricorn"
+    },
+    {
+      "dayKey": "03-06",
+      "plan": {
+        "primaryTheme": "energy",
+        "scores": {
+          "career": 45,
+          "chaos": 61,
+          "confidence": 53,
+          "energy": 73,
+          "overall": 52,
+          "patience": 46,
+          "romance": 45,
+          "social": 52
+        },
+        "secondaryTheme": "chaos",
+        "toneHints": [
+          "even keel"
+        ]
+      },
+      "sunSign": "aquarius"
+    },
+    {
+      "dayKey": "03-06",
+      "plan": {
+        "primaryTheme": "patience",
+        "scores": {
+          "career": 53,
+          "chaos": 29,
+          "confidence": 47,
+          "energy": 36,
+          "overall": 54,
+          "patience": 75,
+          "romance": 60,
+          "social": 51
+        },
+        "secondaryTheme": "romance",
+        "toneHints": [
+          "steady patience"
+        ]
+      },
+      "sunSign": "pisces"
+    },
+    {
+      "dayKey": "03-07",
+      "plan": {
+        "primaryTheme": "confidence",
+        "scores": {
+          "career": 53,
+          "chaos": 59,
+          "confidence": 86,
+          "energy": 50,
+          "overall": 57,
+          "patience": 46,
+          "romance": 57,
+          "social": 48
+        },
+        "secondaryTheme": "chaos",
+        "toneHints": [
+          "high social confidence"
+        ]
+      },
+      "sunSign": "aries"
+    },
+    {
+      "dayKey": "03-07",
+      "plan": {
+        "primaryTheme": "energy",
+        "scores": {
+          "career": 60,
+          "chaos": 40,
+          "confidence": 44,
+          "energy": 73,
+          "overall": 63,
+          "patience": 62,
+          "romance": 71,
+          "social": 49
+        },
+        "secondaryTheme": "romance",
+        "toneHints": [
+          "even keel"
+        ]
+      },
+      "sunSign": "taurus"
+    },
+    {
+      "dayKey": "03-07",
+      "plan": {
+        "primaryTheme": "confidence",
+        "scores": {
+          "career": 49,
+          "chaos": 59,
+          "confidence": 66,
+          "energy": 47,
+          "overall": 53,
+          "patience": 47,
+          "romance": 56,
+          "social": 41
+        },
+        "secondaryTheme": "chaos",
+        "toneHints": [
+          "even keel"
+        ]
+      },
+      "sunSign": "gemini"
+    },
+    {
+      "dayKey": "03-07",
+      "plan": {
+        "primaryTheme": "energy",
+        "scores": {
+          "career": 47,
+          "chaos": 59,
+          "confidence": 44,
+          "energy": 76,
+          "overall": 57,
+          "patience": 47,
+          "romance": 75,
+          "social": 49
+        },
+        "secondaryTheme": "romance",
+        "toneHints": [
+          "romance forward"
+        ]
+      },
+      "sunSign": "cancer"
+    },
+    {
+      "dayKey": "03-07",
+      "plan": {
+        "primaryTheme": "confidence",
+        "scores": {
+          "career": 44,
+          "chaos": 48,
+          "confidence": 77,
+          "energy": 35,
+          "overall": 53,
+          "patience": 56,
+          "romance": 54,
+          "social": 50
+        },
+        "secondaryTheme": "patience",
+        "toneHints": [
+          "high social confidence"
+        ]
+      },
+      "sunSign": "leo"
+    },
+    {
+      "dayKey": "03-07",
+      "plan": {
+        "primaryTheme": "career",
+        "scores": {
+          "career": 80,
+          "chaos": 67,
+          "confidence": 52,
+          "energy": 47,
+          "overall": 48,
+          "patience": 37,
+          "romance": 38,
+          "social": 49
+        },
+        "secondaryTheme": "chaos",
+        "toneHints": [
+          "career momentum"
+        ]
+      },
+      "sunSign": "virgo"
+    },
+    {
+      "dayKey": "03-07",
+      "plan": {
+        "primaryTheme": "romance",
+        "scores": {
+          "career": 46,
+          "chaos": 51,
+          "confidence": 51,
+          "energy": 43,
+          "overall": 57,
+          "patience": 52,
+          "romance": 70,
+          "social": 69
+        },
+        "secondaryTheme": "social",
+        "toneHints": [
+          "even keel"
+        ]
+      },
+      "sunSign": "libra"
+    },
+    {
+      "dayKey": "03-07",
+      "plan": {
+        "primaryTheme": "confidence",
+        "scores": {
+          "career": 53,
+          "chaos": 58,
+          "confidence": 79,
+          "energy": 67,
+          "overall": 51,
+          "patience": 44,
+          "romance": 37,
+          "social": 52
+        },
+        "secondaryTheme": "energy",
+        "toneHints": [
+          "high social confidence"
+        ]
+      },
+      "sunSign": "scorpio"
+    },
+    {
+      "dayKey": "03-07",
+      "plan": {
+        "primaryTheme": "chaos",
+        "scores": {
+          "career": 62,
+          "chaos": 63,
+          "confidence": 57,
+          "energy": 50,
+          "overall": 51,
+          "patience": 42,
+          "romance": 55,
+          "social": 47
+        },
+        "secondaryTheme": "career",
+        "toneHints": [
+          "even keel"
+        ]
+      },
+      "sunSign": "sagittarius"
+    },
+    {
+      "dayKey": "03-07",
+      "plan": {
+        "primaryTheme": "confidence",
+        "scores": {
+          "career": 76,
+          "chaos": 57,
+          "confidence": 88,
+          "energy": 75,
+          "overall": 61,
+          "patience": 51,
+          "romance": 41,
+          "social": 50
+        },
+        "secondaryTheme": "career",
+        "toneHints": [
+          "high social confidence",
+          "career momentum"
+        ]
+      },
+      "sunSign": "capricorn"
+    },
+    {
+      "dayKey": "03-07",
+      "plan": {
+        "primaryTheme": "energy",
+        "scores": {
+          "career": 55,
+          "chaos": 67,
+          "confidence": 48,
+          "energy": 78,
+          "overall": 49,
+          "patience": 40,
+          "romance": 47,
+          "social": 45
+        },
+        "secondaryTheme": "chaos",
+        "toneHints": [
+          "even keel"
+        ]
+      },
+      "sunSign": "aquarius"
+    },
+    {
+      "dayKey": "03-07",
+      "plan": {
+        "primaryTheme": "patience",
+        "scores": {
+          "career": 56,
+          "chaos": 29,
+          "confidence": 46,
+          "energy": 42,
+          "overall": 52,
+          "patience": 74,
+          "romance": 54,
+          "social": 49
+        },
+        "secondaryTheme": "career",
+        "toneHints": [
+          "even keel"
+        ]
+      },
+      "sunSign": "pisces"
+    },
+    {
+      "dayKey": "03-08",
+      "plan": {
+        "primaryTheme": "confidence",
+        "scores": {
+          "career": 58,
+          "chaos": 64,
+          "confidence": 84,
+          "energy": 47,
+          "overall": 55,
+          "patience": 43,
+          "romance": 59,
+          "social": 53
+        },
+        "secondaryTheme": "chaos",
+        "toneHints": [
+          "high social confidence"
+        ]
+      },
+      "sunSign": "aries"
+    },
+    {
+      "dayKey": "03-08",
+      "plan": {
+        "primaryTheme": "romance",
+        "scores": {
+          "career": 59,
+          "chaos": 40,
+          "confidence": 48,
+          "energy": 69,
+          "overall": 59,
+          "patience": 66,
+          "romance": 82,
+          "social": 59
+        },
+        "secondaryTheme": "energy",
+        "toneHints": [
+          "romance forward"
+        ]
+      },
+      "sunSign": "taurus"
+    },
+    {
+      "dayKey": "03-08",
+      "plan": {
+        "primaryTheme": "confidence",
+        "scores": {
+          "career": 48,
+          "chaos": 50,
+          "confidence": 65,
+          "energy": 52,
+          "overall": 57,
+          "patience": 56,
+          "romance": 63,
+          "social": 43
+        },
+        "secondaryTheme": "romance",
+        "toneHints": [
+          "even keel"
+        ]
+      },
+      "sunSign": "gemini"
+    },
+    {
+      "dayKey": "03-08",
+      "plan": {
+        "primaryTheme": "energy",
+        "scores": {
+          "career": 50,
+          "chaos": 55,
+          "confidence": 42,
+          "energy": 75,
+          "overall": 56,
+          "patience": 49,
+          "romance": 71,
+          "social": 47
+        },
+        "secondaryTheme": "romance",
+        "toneHints": [
+          "even keel"
+        ]
+      },
+      "sunSign": "cancer"
+    },
+    {
+      "dayKey": "03-08",
+      "plan": {
+        "primaryTheme": "confidence",
+        "scores": {
+          "career": 39,
+          "chaos": 45,
+          "confidence": 85,
+          "energy": 28,
+          "overall": 51,
+          "patience": 56,
+          "romance": 53,
+          "social": 60
+        },
+        "secondaryTheme": "social",
+        "toneHints": [
+          "high social confidence"
+        ]
+      },
+      "sunSign": "leo"
+    },
+    {
+      "dayKey": "03-08",
+      "plan": {
+        "primaryTheme": "career",
+        "scores": {
+          "career": 78,
+          "chaos": 62,
+          "confidence": 60,
+          "energy": 54,
+          "overall": 49,
+          "patience": 40,
+          "romance": 40,
+          "social": 50
+        },
+        "secondaryTheme": "chaos",
+        "toneHints": [
+          "career momentum"
+        ]
+      },
+      "sunSign": "virgo"
+    },
+    {
+      "dayKey": "03-08",
+      "plan": {
+        "primaryTheme": "romance",
+        "scores": {
+          "career": 49,
+          "chaos": 39,
+          "confidence": 57,
+          "energy": 51,
+          "overall": 60,
+          "patience": 62,
+          "romance": 67,
+          "social": 67
+        },
+        "secondaryTheme": "social",
+        "toneHints": [
+          "even keel"
+        ]
+      },
+      "sunSign": "libra"
+    },
+    {
+      "dayKey": "03-08",
+      "plan": {
+        "primaryTheme": "confidence",
+        "scores": {
+          "career": 54,
+          "chaos": 59,
+          "confidence": 77,
+          "energy": 72,
+          "overall": 59,
+          "patience": 44,
+          "romance": 41,
+          "social": 56
+        },
+        "secondaryTheme": "energy",
+        "toneHints": [
+          "high social confidence"
+        ]
+      },
+      "sunSign": "scorpio"
+    },
+    {
+      "dayKey": "03-08",
+      "plan": {
+        "primaryTheme": "chaos",
+        "scores": {
+          "career": 69,
+          "chaos": 70,
+          "confidence": 61,
+          "energy": 52,
+          "overall": 57,
+          "patience": 34,
+          "romance": 61,
+          "social": 48
+        },
+        "secondaryTheme": "career",
+        "toneHints": [
+          "high chaos"
+        ]
+      },
+      "sunSign": "sagittarius"
+    },
+    {
+      "dayKey": "03-08",
+      "plan": {
+        "primaryTheme": "confidence",
+        "scores": {
+          "career": 80,
+          "chaos": 54,
+          "confidence": 87,
+          "energy": 83,
+          "overall": 68,
+          "patience": 49,
+          "romance": 37,
+          "social": 55
+        },
+        "secondaryTheme": "energy",
+        "toneHints": [
+          "high social confidence",
+          "career momentum"
+        ]
+      },
+      "sunSign": "capricorn"
+    },
+    {
+      "dayKey": "03-08",
+      "plan": {
+        "primaryTheme": "energy",
+        "scores": {
+          "career": 55,
+          "chaos": 64,
+          "confidence": 58,
+          "energy": 70,
+          "overall": 57,
+          "patience": 42,
+          "romance": 47,
+          "social": 55
+        },
+        "secondaryTheme": "chaos",
+        "toneHints": [
+          "even keel"
+        ]
+      },
+      "sunSign": "aquarius"
+    },
+    {
+      "dayKey": "03-08",
+      "plan": {
+        "primaryTheme": "patience",
+        "scores": {
+          "career": 47,
+          "chaos": 27,
+          "confidence": 46,
+          "energy": 41,
+          "overall": 50,
+          "patience": 76,
+          "romance": 49,
+          "social": 48
+        },
+        "secondaryTheme": "reset",
+        "toneHints": [
+          "steady patience"
+        ]
+      },
+      "sunSign": "pisces"
+    },
+    {
+      "dayKey": "03-09",
+      "plan": {
+        "primaryTheme": "confidence",
+        "scores": {
+          "career": 60,
+          "chaos": 67,
+          "confidence": 84,
+          "energy": 53,
+          "overall": 55,
+          "patience": 37,
+          "romance": 59,
+          "social": 58
+        },
+        "secondaryTheme": "chaos",
+        "toneHints": [
+          "high social confidence"
+        ]
+      },
+      "sunSign": "aries"
+    },
+    {
+      "dayKey": "03-09",
+      "plan": {
+        "primaryTheme": "energy",
+        "scores": {
+          "career": 62,
+          "chaos": 46,
+          "confidence": 45,
+          "energy": 80,
+          "overall": 61,
+          "patience": 59,
+          "romance": 74,
+          "social": 57
+        },
+        "secondaryTheme": "romance",
+        "toneHints": [
+          "even keel"
+        ]
+      },
+      "sunSign": "taurus"
+    },
+    {
+      "dayKey": "03-09",
+      "plan": {
+        "primaryTheme": "confidence",
+        "scores": {
+          "career": 52,
+          "chaos": 46,
+          "confidence": 64,
+          "energy": 54,
+          "overall": 57,
+          "patience": 57,
+          "romance": 59,
+          "social": 41
+        },
+        "secondaryTheme": "romance",
+        "toneHints": [
+          "even keel"
+        ]
+      },
+      "sunSign": "gemini"
+    },
+    {
+      "dayKey": "03-09",
+      "plan": {
+        "primaryTheme": "energy",
+        "scores": {
+          "career": 51,
+          "chaos": 49,
+          "confidence": 43,
+          "energy": 77,
+          "overall": 57,
+          "patience": 51,
+          "romance": 72,
+          "social": 48
+        },
+        "secondaryTheme": "romance",
+        "toneHints": [
+          "even keel"
+        ]
+      },
+      "sunSign": "cancer"
+    },
+    {
+      "dayKey": "03-09",
+      "plan": {
+        "primaryTheme": "confidence",
+        "scores": {
+          "career": 31,
+          "chaos": 46,
+          "confidence": 87,
+          "energy": 30,
+          "overall": 53,
+          "patience": 54,
+          "romance": 55,
+          "social": 56
+        },
+        "secondaryTheme": "social",
+        "toneHints": [
+          "high social confidence"
+        ]
+      },
+      "sunSign": "leo"
+    },
+    {
+      "dayKey": "03-09",
+      "plan": {
+        "primaryTheme": "career",
+        "scores": {
+          "career": 79,
+          "chaos": 67,
+          "confidence": 62,
+          "energy": 51,
+          "overall": 51,
+          "patience": 34,
+          "romance": 42,
+          "social": 49
+        },
+        "secondaryTheme": "chaos",
+        "toneHints": [
+          "career momentum"
+        ]
+      },
+      "sunSign": "virgo"
+    },
+    {
+      "dayKey": "03-09",
+      "plan": {
+        "primaryTheme": "social",
+        "scores": {
+          "career": 50,
+          "chaos": 41,
+          "confidence": 54,
+          "energy": 49,
+          "overall": 60,
+          "patience": 62,
+          "romance": 60,
+          "social": 63
+        },
+        "secondaryTheme": "patience",
+        "toneHints": [
+          "even keel"
+        ]
+      },
+      "sunSign": "libra"
+    },
+    {
+      "dayKey": "03-09",
+      "plan": {
+        "primaryTheme": "confidence",
+        "scores": {
+          "career": 51,
+          "chaos": 57,
+          "confidence": 76,
+          "energy": 60,
+          "overall": 49,
+          "patience": 46,
+          "romance": 37,
+          "social": 52
+        },
+        "secondaryTheme": "energy",
+        "toneHints": [
+          "high social confidence"
+        ]
+      },
+      "sunSign": "scorpio"
+    },
+    {
+      "dayKey": "03-09",
+      "plan": {
+        "primaryTheme": "career",
+        "scores": {
+          "career": 67,
+          "chaos": 65,
+          "confidence": 54,
+          "energy": 54,
+          "overall": 49,
+          "patience": 41,
+          "romance": 55,
+          "social": 44
+        },
+        "secondaryTheme": "chaos",
+        "toneHints": [
+          "even keel"
+        ]
+      },
+      "sunSign": "sagittarius"
+    },
+    {
+      "dayKey": "03-09",
+      "plan": {
+        "primaryTheme": "energy",
+        "scores": {
+          "career": 72,
+          "chaos": 45,
+          "confidence": 78,
+          "energy": 79,
+          "overall": 57,
+          "patience": 57,
+          "romance": 28,
+          "social": 52
+        },
+        "secondaryTheme": "confidence",
+        "toneHints": [
+          "high social confidence"
+        ]
+      },
+      "sunSign": "capricorn"
+    },
+    {
+      "dayKey": "03-09",
+      "plan": {
+        "primaryTheme": "energy",
+        "scores": {
+          "career": 58,
+          "chaos": 59,
+          "confidence": 51,
+          "energy": 69,
+          "overall": 48,
+          "patience": 41,
+          "romance": 47,
+          "social": 51
+        },
+        "secondaryTheme": "chaos",
+        "toneHints": [
+          "even keel"
+        ]
+      },
+      "sunSign": "aquarius"
+    },
+    {
+      "dayKey": "03-09",
+      "plan": {
+        "primaryTheme": "patience",
+        "scores": {
+          "career": 54,
+          "chaos": 28,
+          "confidence": 39,
+          "energy": 42,
+          "overall": 52,
+          "patience": 78,
+          "romance": 53,
+          "social": 54
+        },
+        "secondaryTheme": "social",
+        "toneHints": [
+          "steady patience"
+        ]
+      },
+      "sunSign": "pisces"
+    },
+    {
+      "dayKey": "03-10",
+      "plan": {
+        "primaryTheme": "confidence",
+        "scores": {
+          "career": 56,
+          "chaos": 59,
+          "confidence": 84,
+          "energy": 57,
+          "overall": 55,
+          "patience": 39,
+          "romance": 62,
+          "social": 56
+        },
+        "secondaryTheme": "romance",
+        "toneHints": [
+          "high social confidence"
+        ]
+      },
+      "sunSign": "aries"
+    },
+    {
+      "dayKey": "03-10",
+      "plan": {
+        "primaryTheme": "energy",
+        "scores": {
+          "career": 61,
+          "chaos": 40,
+          "confidence": 49,
+          "energy": 81,
+          "overall": 58,
+          "patience": 59,
+          "romance": 76,
+          "social": 52
+        },
+        "secondaryTheme": "romance",
+        "toneHints": [
+          "romance forward"
+        ]
+      },
+      "sunSign": "taurus"
+    },
+    {
+      "dayKey": "03-10",
+      "plan": {
+        "primaryTheme": "energy",
+        "scores": {
+          "career": 51,
+          "chaos": 43,
+          "confidence": 61,
+          "energy": 61,
+          "overall": 50,
+          "patience": 61,
+          "romance": 50,
+          "social": 32
+        },
+        "secondaryTheme": "confidence",
+        "toneHints": [
+          "even keel"
+        ]
+      },
+      "sunSign": "gemini"
+    },
+    {
+      "dayKey": "03-10",
+      "plan": {
+        "primaryTheme": "romance",
+        "scores": {
+          "career": 56,
+          "chaos": 48,
+          "confidence": 37,
+          "energy": 74,
+          "overall": 58,
+          "patience": 54,
+          "romance": 77,
+          "social": 50
+        },
+        "secondaryTheme": "energy",
+        "toneHints": [
+          "romance forward"
+        ]
+      },
+      "sunSign": "cancer"
+    },
+    {
+      "dayKey": "03-10",
+      "plan": {
+        "primaryTheme": "confidence",
+        "scores": {
+          "career": 30,
+          "chaos": 44,
+          "confidence": 81,
+          "energy": 28,
+          "overall": 55,
+          "patience": 56,
+          "romance": 52,
+          "social": 64
+        },
+        "secondaryTheme": "social",
+        "toneHints": [
+          "high social confidence"
+        ]
+      },
+      "sunSign": "leo"
+    },
+    {
+      "dayKey": "03-10",
+      "plan": {
+        "primaryTheme": "career",
+        "scores": {
+          "career": 76,
+          "chaos": 61,
+          "confidence": 63,
+          "energy": 55,
+          "overall": 53,
+          "patience": 38,
+          "romance": 40,
+          "social": 46
+        },
+        "secondaryTheme": "confidence",
+        "toneHints": [
+          "career momentum"
+        ]
+      },
+      "sunSign": "virgo"
+    },
+    {
+      "dayKey": "03-10",
+      "plan": {
+        "primaryTheme": "social",
+        "scores": {
+          "career": 53,
+          "chaos": 39,
+          "confidence": 59,
+          "energy": 53,
+          "overall": 60,
+          "patience": 60,
+          "romance": 65,
+          "social": 67
+        },
+        "secondaryTheme": "romance",
+        "toneHints": [
+          "even keel"
+        ]
+      },
+      "sunSign": "libra"
+    },
+    {
+      "dayKey": "03-10",
+      "plan": {
+        "primaryTheme": "confidence",
+        "scores": {
+          "career": 55,
+          "chaos": 57,
+          "confidence": 84,
+          "energy": 59,
+          "overall": 55,
+          "patience": 46,
+          "romance": 32,
+          "social": 64
+        },
+        "secondaryTheme": "social",
+        "toneHints": [
+          "high social confidence"
+        ]
+      },
+      "sunSign": "scorpio"
+    },
+    {
+      "dayKey": "03-10",
+      "plan": {
+        "primaryTheme": "chaos",
+        "scores": {
+          "career": 63,
+          "chaos": 66,
+          "confidence": 64,
+          "energy": 53,
+          "overall": 54,
+          "patience": 35,
+          "romance": 55,
+          "social": 50
+        },
+        "secondaryTheme": "confidence",
+        "toneHints": [
+          "even keel"
+        ]
+      },
+      "sunSign": "sagittarius"
+    },
+    {
+      "dayKey": "03-10",
+      "plan": {
+        "primaryTheme": "energy",
+        "scores": {
+          "career": 70,
+          "chaos": 49,
+          "confidence": 80,
+          "energy": 83,
+          "overall": 57,
+          "patience": 52,
+          "romance": 32,
+          "social": 52
+        },
+        "secondaryTheme": "confidence",
+        "toneHints": [
+          "high social confidence"
+        ]
+      },
+      "sunSign": "capricorn"
+    },
+    {
+      "dayKey": "03-10",
+      "plan": {
+        "primaryTheme": "energy",
+        "scores": {
+          "career": 57,
+          "chaos": 57,
+          "confidence": 51,
+          "energy": 68,
+          "overall": 50,
+          "patience": 46,
+          "romance": 38,
+          "social": 49
+        },
+        "secondaryTheme": "career",
+        "toneHints": [
+          "even keel"
+        ]
+      },
+      "sunSign": "aquarius"
+    },
+    {
+      "dayKey": "03-10",
+      "plan": {
+        "primaryTheme": "patience",
+        "scores": {
+          "career": 42,
+          "chaos": 24,
+          "confidence": 45,
+          "energy": 39,
+          "overall": 52,
+          "patience": 80,
+          "romance": 50,
+          "social": 53
+        },
+        "secondaryTheme": "social",
+        "toneHints": [
+          "steady patience"
+        ]
+      },
+      "sunSign": "pisces"
+    },
+    {
+      "dayKey": "03-11",
+      "plan": {
+        "primaryTheme": "confidence",
+        "scores": {
+          "career": 64,
+          "chaos": 69,
+          "confidence": 80,
+          "energy": 54,
+          "overall": 58,
+          "patience": 30,
+          "romance": 59,
+          "social": 62
+        },
+        "secondaryTheme": "chaos",
+        "toneHints": [
+          "high social confidence",
+          "low patience"
+        ]
+      },
+      "sunSign": "aries"
+    },
+    {
+      "dayKey": "03-11",
+      "plan": {
+        "primaryTheme": "energy",
+        "scores": {
+          "career": 59,
+          "chaos": 40,
+          "confidence": 54,
+          "energy": 82,
+          "overall": 59,
+          "patience": 58,
+          "romance": 74,
+          "social": 54
+        },
+        "secondaryTheme": "romance",
+        "toneHints": [
+          "even keel"
+        ]
+      },
+      "sunSign": "taurus"
+    },
+    {
+      "dayKey": "03-11",
+      "plan": {
+        "primaryTheme": "confidence",
+        "scores": {
+          "career": 49,
+          "chaos": 46,
+          "confidence": 55,
+          "energy": 52,
+          "overall": 52,
+          "patience": 55,
+          "romance": 49,
+          "social": 30
+        },
+        "secondaryTheme": "patience",
+        "toneHints": [
+          "even keel"
+        ]
+      },
+      "sunSign": "gemini"
+    },
+    {
+      "dayKey": "03-11",
+      "plan": {
+        "primaryTheme": "romance",
+        "scores": {
+          "career": 59,
+          "chaos": 35,
+          "confidence": 35,
+          "energy": 68,
+          "overall": 62,
+          "patience": 63,
+          "romance": 72,
+          "social": 57
+        },
+        "secondaryTheme": "energy",
+        "toneHints": [
+          "even keel"
+        ]
+      },
+      "sunSign": "cancer"
+    },
+    {
+      "dayKey": "03-11",
+      "plan": {
+        "primaryTheme": "confidence",
+        "scores": {
+          "career": 31,
+          "chaos": 36,
+          "confidence": 84,
+          "energy": 25,
+          "overall": 51,
+          "patience": 61,
+          "romance": 43,
+          "social": 65
+        },
+        "secondaryTheme": "social",
+        "toneHints": [
+          "high social confidence"
+        ]
+      },
+      "sunSign": "leo"
+    },
+    {
+      "dayKey": "03-11",
+      "plan": {
+        "primaryTheme": "career",
+        "scores": {
+          "career": 81,
+          "chaos": 55,
+          "confidence": 61,
+          "energy": 51,
+          "overall": 53,
+          "patience": 41,
+          "romance": 38,
+          "social": 46
+        },
+        "secondaryTheme": "confidence",
+        "toneHints": [
+          "career momentum"
+        ]
+      },
+      "sunSign": "virgo"
+    },
+    {
+      "dayKey": "03-11",
+      "plan": {
+        "primaryTheme": "social",
+        "scores": {
+          "career": 59,
+          "chaos": 42,
+          "confidence": 59,
+          "energy": 58,
+          "overall": 57,
+          "patience": 57,
+          "romance": 56,
+          "social": 64
+        },
+        "secondaryTheme": "career",
+        "toneHints": [
+          "even keel"
+        ]
+      },
+      "sunSign": "libra"
+    },
+    {
+      "dayKey": "03-11",
+      "plan": {
+        "primaryTheme": "confidence",
+        "scores": {
+          "career": 47,
+          "chaos": 48,
+          "confidence": 79,
+          "energy": 64,
+          "overall": 56,
+          "patience": 49,
+          "romance": 37,
+          "social": 66
+        },
+        "secondaryTheme": "social",
+        "toneHints": [
+          "high social confidence"
+        ]
+      },
+      "sunSign": "scorpio"
+    },
+    {
+      "dayKey": "03-11",
+      "plan": {
+        "primaryTheme": "chaos",
+        "scores": {
+          "career": 61,
+          "chaos": 69,
+          "confidence": 56,
+          "energy": 54,
+          "overall": 48,
+          "patience": 32,
+          "romance": 54,
+          "social": 51
+        },
+        "secondaryTheme": "career",
+        "toneHints": [
+          "even keel"
+        ]
+      },
+      "sunSign": "sagittarius"
+    },
+    {
+      "dayKey": "03-11",
+      "plan": {
+        "primaryTheme": "energy",
+        "scores": {
+          "career": 74,
+          "chaos": 43,
+          "confidence": 77,
+          "energy": 78,
+          "overall": 61,
+          "patience": 53,
+          "romance": 32,
+          "social": 49
+        },
+        "secondaryTheme": "confidence",
+        "toneHints": [
+          "high social confidence"
+        ]
+      },
+      "sunSign": "capricorn"
+    },
+    {
+      "dayKey": "03-11",
+      "plan": {
+        "primaryTheme": "energy",
+        "scores": {
+          "career": 55,
+          "chaos": 58,
+          "confidence": 58,
+          "energy": 66,
+          "overall": 56,
+          "patience": 42,
+          "romance": 39,
+          "social": 55
+        },
+        "secondaryTheme": "confidence",
+        "toneHints": [
+          "even keel"
+        ]
+      },
+      "sunSign": "aquarius"
+    },
+    {
+      "dayKey": "03-11",
+      "plan": {
+        "primaryTheme": "patience",
+        "scores": {
+          "career": 43,
+          "chaos": 17,
+          "confidence": 50,
+          "energy": 37,
+          "overall": 55,
+          "patience": 81,
+          "romance": 46,
+          "social": 56
+        },
+        "secondaryTheme": "social",
+        "toneHints": [
+          "steady patience"
+        ]
+      },
+      "sunSign": "pisces"
+    },
+    {
+      "dayKey": "03-12",
+      "plan": {
+        "primaryTheme": "confidence",
+        "scores": {
+          "career": 61,
+          "chaos": 66,
+          "confidence": 83,
+          "energy": 60,
+          "overall": 57,
+          "patience": 29,
+          "romance": 62,
+          "social": 57
+        },
+        "secondaryTheme": "chaos",
+        "toneHints": [
+          "high social confidence",
+          "low patience"
+        ]
+      },
+      "sunSign": "aries"
+    },
+    {
+      "dayKey": "03-12",
+      "plan": {
+        "primaryTheme": "romance",
+        "scores": {
+          "career": 59,
+          "chaos": 45,
+          "confidence": 54,
+          "energy": 75,
+          "overall": 64,
+          "patience": 55,
+          "romance": 79,
+          "social": 62
+        },
+        "secondaryTheme": "energy",
+        "toneHints": [
+          "romance forward"
+        ]
+      },
+      "sunSign": "taurus"
+    },
+    {
+      "dayKey": "03-12",
+      "plan": {
+        "primaryTheme": "patience",
+        "scores": {
+          "career": 50,
+          "chaos": 40,
+          "confidence": 54,
+          "energy": 59,
+          "overall": 51,
+          "patience": 60,
+          "romance": 49,
+          "social": 30
+        },
+        "secondaryTheme": "energy",
+        "toneHints": [
+          "even keel"
+        ]
+      },
+      "sunSign": "gemini"
+    },
+    {
+      "dayKey": "03-12",
+      "plan": {
+        "primaryTheme": "romance",
+        "scores": {
+          "career": 62,
+          "chaos": 38,
+          "confidence": 39,
+          "energy": 63,
+          "overall": 57,
+          "patience": 61,
+          "romance": 78,
+          "social": 53
+        },
+        "secondaryTheme": "energy",
+        "toneHints": [
+          "romance forward"
+        ]
+      },
+      "sunSign": "cancer"
+    },
+    {
+      "dayKey": "03-12",
+      "plan": {
+        "primaryTheme": "confidence",
+        "scores": {
+          "career": 35,
+          "chaos": 30,
+          "confidence": 74,
+          "energy": 31,
+          "overall": 57,
+          "patience": 68,
+          "romance": 47,
+          "social": 64
+        },
+        "secondaryTheme": "patience",
+        "toneHints": [
+          "even keel"
+        ]
+      },
+      "sunSign": "leo"
+    },
+    {
+      "dayKey": "03-12",
+      "plan": {
+        "primaryTheme": "career",
+        "scores": {
+          "career": 79,
+          "chaos": 53,
+          "confidence": 59,
+          "energy": 59,
+          "overall": 55,
+          "patience": 46,
+          "romance": 39,
+          "social": 38
+        },
+        "secondaryTheme": "energy",
+        "toneHints": [
+          "career momentum"
+        ]
+      },
+      "sunSign": "virgo"
+    },
+    {
+      "dayKey": "03-12",
+      "plan": {
+        "primaryTheme": "patience",
+        "scores": {
+          "career": 61,
+          "chaos": 31,
+          "confidence": 63,
+          "energy": 54,
+          "overall": 55,
+          "patience": 65,
+          "romance": 55,
+          "social": 53
+        },
+        "secondaryTheme": "confidence",
+        "toneHints": [
+          "even keel"
+        ]
+      },
+      "sunSign": "libra"
+    },
+    {
+      "dayKey": "03-12",
+      "plan": {
+        "primaryTheme": "confidence",
+        "scores": {
+          "career": 56,
+          "chaos": 44,
+          "confidence": 78,
+          "energy": 59,
+          "overall": 57,
+          "patience": 51,
+          "romance": 33,
+          "social": 65
+        },
+        "secondaryTheme": "social",
+        "toneHints": [
+          "high social confidence"
+        ]
+      },
+      "sunSign": "scorpio"
+    },
+    {
+      "dayKey": "03-12",
+      "plan": {
+        "primaryTheme": "confidence",
+        "scores": {
+          "career": 54,
+          "chaos": 60,
+          "confidence": 67,
+          "energy": 61,
+          "overall": 53,
+          "patience": 36,
+          "romance": 44,
+          "social": 50
+        },
+        "secondaryTheme": "energy",
+        "toneHints": [
+          "even keel"
+        ]
+      },
+      "sunSign": "sagittarius"
+    },
+    {
+      "dayKey": "03-12",
+      "plan": {
+        "primaryTheme": "energy",
+        "scores": {
+          "career": 70,
+          "chaos": 50,
+          "confidence": 78,
+          "energy": 81,
+          "overall": 64,
+          "patience": 46,
+          "romance": 30,
+          "social": 56
+        },
+        "secondaryTheme": "confidence",
+        "toneHints": [
+          "high social confidence"
+        ]
+      },
+      "sunSign": "capricorn"
+    },
+    {
+      "dayKey": "03-12",
+      "plan": {
+        "primaryTheme": "energy",
+        "scores": {
+          "career": 63,
+          "chaos": 51,
+          "confidence": 61,
+          "energy": 67,
+          "overall": 57,
+          "patience": 43,
+          "romance": 36,
+          "social": 60
+        },
+        "secondaryTheme": "career",
+        "toneHints": [
+          "even keel"
+        ]
+      },
+      "sunSign": "aquarius"
+    },
+    {
+      "dayKey": "03-12",
+      "plan": {
+        "primaryTheme": "patience",
+        "scores": {
+          "career": 41,
+          "chaos": 12,
+          "confidence": 48,
+          "energy": 35,
+          "overall": 55,
+          "patience": 84,
+          "romance": 47,
+          "social": 56
+        },
+        "secondaryTheme": "social",
+        "toneHints": [
+          "steady patience"
+        ]
+      },
+      "sunSign": "pisces"
+    },
+    {
+      "dayKey": "03-13",
+      "plan": {
+        "primaryTheme": "confidence",
+        "scores": {
+          "career": 67,
+          "chaos": 58,
+          "confidence": 81,
+          "energy": 54,
+          "overall": 58,
+          "patience": 38,
+          "romance": 58,
+          "social": 57
+        },
+        "secondaryTheme": "career",
+        "toneHints": [
+          "high social confidence"
+        ]
+      },
+      "sunSign": "aries"
+    },
+    {
+      "dayKey": "03-13",
+      "plan": {
+        "primaryTheme": "energy",
+        "scores": {
+          "career": 68,
+          "chaos": 46,
+          "confidence": 57,
+          "energy": 84,
+          "overall": 64,
+          "patience": 52,
+          "romance": 74,
+          "social": 58
+        },
+        "secondaryTheme": "romance",
+        "toneHints": [
+          "even keel"
+        ]
+      },
+      "sunSign": "taurus"
+    },
+    {
+      "dayKey": "03-13",
+      "plan": {
+        "primaryTheme": "patience",
+        "scores": {
+          "career": 58,
+          "chaos": 30,
+          "confidence": 54,
+          "energy": 61,
+          "overall": 55,
+          "patience": 65,
+          "romance": 47,
+          "social": 33
+        },
+        "secondaryTheme": "energy",
+        "toneHints": [
+          "even keel"
+        ]
+      },
+      "sunSign": "gemini"
+    },
+    {
+      "dayKey": "03-13",
+      "plan": {
+        "primaryTheme": "romance",
+        "scores": {
+          "career": 62,
+          "chaos": 29,
+          "confidence": 29,
+          "energy": 64,
+          "overall": 56,
+          "patience": 64,
+          "romance": 73,
+          "social": 55
+        },
+        "secondaryTheme": "energy",
+        "toneHints": [
+          "low confidence"
+        ]
+      },
+      "sunSign": "cancer"
+    },
+    {
+      "dayKey": "03-13",
+      "plan": {
+        "primaryTheme": "confidence",
+        "scores": {
+          "career": 25,
+          "chaos": 26,
+          "confidence": 77,
+          "energy": 33,
+          "overall": 51,
+          "patience": 69,
+          "romance": 41,
+          "social": 67
+        },
+        "secondaryTheme": "patience",
+        "toneHints": [
+          "high social confidence"
+        ]
+      },
+      "sunSign": "leo"
+    },
+    {
+      "dayKey": "03-13",
+      "plan": {
+        "primaryTheme": "career",
+        "scores": {
+          "career": 78,
+          "chaos": 49,
+          "confidence": 59,
+          "energy": 58,
+          "overall": 55,
+          "patience": 48,
+          "romance": 31,
+          "social": 37
+        },
+        "secondaryTheme": "confidence",
+        "toneHints": [
+          "career momentum"
+        ]
+      },
+      "sunSign": "virgo"
+    },
+    {
+      "dayKey": "03-13",
+      "plan": {
+        "primaryTheme": "confidence",
+        "scores": {
+          "career": 53,
+          "chaos": 27,
+          "confidence": 66,
+          "energy": 58,
+          "overall": 56,
+          "patience": 66,
+          "romance": 52,
+          "social": 57
+        },
+        "secondaryTheme": "patience",
+        "toneHints": [
+          "even keel"
+        ]
+      },
+      "sunSign": "libra"
+    },
+    {
+      "dayKey": "03-13",
+      "plan": {
+        "primaryTheme": "confidence",
+        "scores": {
+          "career": 51,
+          "chaos": 44,
+          "confidence": 82,
+          "energy": 55,
+          "overall": 61,
+          "patience": 54,
+          "romance": 36,
+          "social": 70
+        },
+        "secondaryTheme": "social",
+        "toneHints": [
+          "high social confidence"
+        ]
+      },
+      "sunSign": "scorpio"
+    },
+    {
+      "dayKey": "03-13",
+      "plan": {
+        "primaryTheme": "chaos",
+        "scores": {
+          "career": 54,
+          "chaos": 67,
+          "confidence": 63,
+          "energy": 55,
+          "overall": 51,
+          "patience": 27,
+          "romance": 41,
+          "social": 50
+        },
+        "secondaryTheme": "confidence",
+        "toneHints": [
+          "low patience"
+        ]
+      },
+      "sunSign": "sagittarius"
+    },
+    {
+      "dayKey": "03-13",
+      "plan": {
+        "primaryTheme": "energy",
+        "scores": {
+          "career": 69,
+          "chaos": 58,
+          "confidence": 76,
+          "energy": 78,
+          "overall": 60,
+          "patience": 40,
+          "romance": 27,
+          "social": 60
+        },
+        "secondaryTheme": "confidence",
+        "toneHints": [
+          "high social confidence"
+        ]
+      },
+      "sunSign": "capricorn"
+    },
+    {
+      "dayKey": "03-13",
+      "plan": {
+        "primaryTheme": "confidence",
+        "scores": {
+          "career": 56,
+          "chaos": 47,
+          "confidence": 63,
+          "energy": 60,
+          "overall": 57,
+          "patience": 48,
+          "romance": 36,
+          "social": 55
+        },
+        "secondaryTheme": "energy",
+        "toneHints": [
+          "even keel"
+        ]
+      },
+      "sunSign": "aquarius"
+    },
+    {
+      "dayKey": "03-13",
+      "plan": {
+        "primaryTheme": "patience",
+        "scores": {
+          "career": 34,
+          "chaos": 16,
+          "confidence": 54,
+          "energy": 37,
+          "overall": 53,
+          "patience": 79,
+          "romance": 36,
+          "social": 55
+        },
+        "secondaryTheme": "social",
+        "toneHints": [
+          "steady patience"
+        ]
+      },
+      "sunSign": "pisces"
+    },
+    {
+      "dayKey": "03-14",
+      "plan": {
+        "primaryTheme": "confidence",
+        "scores": {
+          "career": 66,
+          "chaos": 65,
+          "confidence": 77,
+          "energy": 64,
+          "overall": 59,
+          "patience": 30,
+          "romance": 60,
+          "social": 63
+        },
+        "secondaryTheme": "career",
+        "toneHints": [
+          "high social confidence",
+          "low patience"
+        ]
+      },
+      "sunSign": "aries"
+    },
+    {
+      "dayKey": "03-14",
+      "plan": {
+        "primaryTheme": "energy",
+        "scores": {
+          "career": 64,
+          "chaos": 48,
+          "confidence": 52,
+          "energy": 76,
+          "overall": 61,
+          "patience": 45,
+          "romance": 73,
+          "social": 59
+        },
+        "secondaryTheme": "romance",
+        "toneHints": [
+          "even keel"
+        ]
+      },
+      "sunSign": "taurus"
+    },
+    {
+      "dayKey": "03-14",
+      "plan": {
+        "primaryTheme": "energy",
+        "scores": {
+          "career": 59,
+          "chaos": 34,
+          "confidence": 45,
+          "energy": 64,
+          "overall": 55,
+          "patience": 63,
+          "romance": 46,
+          "social": 26
+        },
+        "secondaryTheme": "patience",
+        "toneHints": [
+          "even keel"
+        ]
+      },
+      "sunSign": "gemini"
+    },
+    {
+      "dayKey": "03-14",
+      "plan": {
+        "primaryTheme": "romance",
+        "scores": {
+          "career": 57,
+          "chaos": 30,
+          "confidence": 31,
+          "energy": 64,
+          "overall": 56,
+          "patience": 62,
+          "romance": 74,
+          "social": 53
+        },
+        "secondaryTheme": "energy",
+        "toneHints": [
+          "even keel"
+        ]
+      },
+      "sunSign": "cancer"
+    },
+    {
+      "dayKey": "03-14",
+      "plan": {
+        "primaryTheme": "confidence",
+        "scores": {
+          "career": 31,
+          "chaos": 38,
+          "confidence": 81,
+          "energy": 27,
+          "overall": 54,
+          "patience": 60,
+          "romance": 40,
+          "social": 61
+        },
+        "secondaryTheme": "social",
+        "toneHints": [
+          "high social confidence"
+        ]
+      },
+      "sunSign": "leo"
+    },
+    {
+      "dayKey": "03-14",
+      "plan": {
+        "primaryTheme": "career",
+        "scores": {
+          "career": 80,
+          "chaos": 49,
+          "confidence": 61,
+          "energy": 60,
+          "overall": 52,
+          "patience": 48,
+          "romance": 30,
+          "social": 40
+        },
+        "secondaryTheme": "confidence",
+        "toneHints": [
+          "career momentum"
+        ]
+      },
+      "sunSign": "virgo"
+    },
+    {
+      "dayKey": "03-14",
+      "plan": {
+        "primaryTheme": "patience",
+        "scores": {
+          "career": 58,
+          "chaos": 30,
+          "confidence": 65,
+          "energy": 54,
+          "overall": 55,
+          "patience": 67,
+          "romance": 50,
+          "social": 56
+        },
+        "secondaryTheme": "confidence",
+        "toneHints": [
+          "even keel"
+        ]
+      },
+      "sunSign": "libra"
+    },
+    {
+      "dayKey": "03-14",
+      "plan": {
+        "primaryTheme": "confidence",
+        "scores": {
+          "career": 51,
+          "chaos": 41,
+          "confidence": 81,
+          "energy": 46,
+          "overall": 60,
+          "patience": 52,
+          "romance": 33,
+          "social": 74
+        },
+        "secondaryTheme": "social",
+        "toneHints": [
+          "high social confidence"
+        ]
+      },
+      "sunSign": "scorpio"
+    },
+    {
+      "dayKey": "03-14",
+      "plan": {
+        "primaryTheme": "confidence",
+        "scores": {
+          "career": 45,
+          "chaos": 60,
+          "confidence": 64,
+          "energy": 61,
+          "overall": 49,
+          "patience": 34,
+          "romance": 46,
+          "social": 51
+        },
+        "secondaryTheme": "energy",
+        "toneHints": [
+          "even keel"
+        ]
+      },
+      "sunSign": "sagittarius"
+    },
+    {
+      "dayKey": "03-14",
+      "plan": {
+        "primaryTheme": "energy",
+        "scores": {
+          "career": 63,
+          "chaos": 59,
+          "confidence": 84,
+          "energy": 84,
+          "overall": 59,
+          "patience": 39,
+          "romance": 26,
+          "social": 62
+        },
+        "secondaryTheme": "confidence",
+        "toneHints": [
+          "high social confidence"
+        ]
+      },
+      "sunSign": "capricorn"
+    },
+    {
+      "dayKey": "03-14",
+      "plan": {
+        "primaryTheme": "confidence",
+        "scores": {
+          "career": 57,
+          "chaos": 44,
+          "confidence": 61,
+          "energy": 60,
+          "overall": 55,
+          "patience": 48,
+          "romance": 34,
+          "social": 55
+        },
+        "secondaryTheme": "energy",
+        "toneHints": [
+          "even keel"
+        ]
+      },
+      "sunSign": "aquarius"
+    },
+    {
+      "dayKey": "03-14",
+      "plan": {
+        "primaryTheme": "patience",
+        "scores": {
+          "career": 41,
+          "chaos": 17,
+          "confidence": 57,
+          "energy": 32,
+          "overall": 47,
+          "patience": 80,
+          "romance": 35,
+          "social": 52
+        },
+        "secondaryTheme": "confidence",
+        "toneHints": [
+          "steady patience"
+        ]
+      },
+      "sunSign": "pisces"
+    }
+  ],
+  "entryCount": 168,
+  "generatorVersion": "humay-score-plan-v1",
+  "mode": "pilot",
+  "schemaVersion": 1,
+  "seed": "2026-pilot-v1"
+}

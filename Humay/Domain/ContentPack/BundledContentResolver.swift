@@ -279,13 +279,14 @@ enum BundledContentResolver {
             personalAccentSource: personalSource,
             socialAccentSource: socialSource
         )
+        let batchID = repository.batchID(dayKey: dayKey.key, sunSign: sunSign.rawValue)
         let prov = ResolvedProvenance(
             packVersion: pack.manifest.packVersion,
             generatorVersion: pack.manifest.compilerVersion,
             isPilot: pack.manifest.coverage.isPilot,
             contentCycleVersion: cycleVersion,
             generationMethod: pack.manifest.generationMethod ?? pack.manifest.provenance.generationMethod,
-            batchID: nil
+            batchID: batchID
         )
         return ResolvedDay(dailyMood: dailyMood, context: rc, provenance: prov)
     }

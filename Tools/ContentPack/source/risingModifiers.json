@@ -11,29 +11,45 @@
       "social": 2
     },
     "fragments": {
+      "boundaries": [
+        "You keep your energy for what you chose.",
+        "You keep your access intentional.",
+        "You let the no be complete."
+      ],
       "career": [
-        "Your first impression today is approximately 'move.'",
-        "Your first impression today is approximately 'move.' [career]"
+        "You look like the person who writes the recap.",
+        "You look ambitious without being sharp at the edges.",
+        "You keep the timeline honest and the tone warm."
       ],
       "chaos": [
-        "Your first impression today is approximately 'move.'",
-        "Your first impression today is approximately 'move.' [chaos]"
+        "You make the backup plan feel intentional.",
+        "You make the change of venue seem like an upgrade.",
+        "You make the spillover look chosen."
+      ],
+      "communication": [
+        "You keep your request concrete and time-bound.",
+        "You let clarity be the kindness today.",
+        "Your first sentence makes the second easier to hear."
       ],
       "confidence": [
-        "Your first impression today is approximately 'move.'",
-        "Your first impression today is approximately 'move.' [confidence]"
+        "You let the room adjust to you, not the other way.",
+        "You keep your feet planted and your options open.",
+        "You keep your shoulders relaxed and your standards clear."
       ],
       "energy": [
-        "Your first impression today is approximately 'move.'",
-        "Your first impression today is approximately 'move.' [energy]"
+        "You keep your stamina kind.",
+        "You make the room feel a degree more awake.",
+        "You let the quick walk be the reset button."
       ],
       "reset": [
-        "Your first impression today is approximately 'move.'",
-        "Your first impression today is approximately 'move.' [reset]"
+        "You begin again as if you mean it.",
+        "You let the reset be yours, not the algorithm's.",
+        "You close yesterday's tabs."
       ],
       "social": [
-        "Your first impression today is approximately 'move.'",
-        "Your first impression today is approximately 'move.' [social]"
+        "You read the room quickly and kindly.",
+        "You keep your story about you, not about impressing.",
+        "You let the laugh be shared, not solo."
       ]
     },
     "outwardFragment": "Your first impression today is approximately 'move.'",
@@ -51,29 +67,45 @@
       "social": 3
     },
     "fragments": {
+      "boundaries": [
+        "You let the door be open or closed, not half.",
+        "You let the boundary be the care.",
+        "You let people adjust without over-explaining."
+      ],
       "career": [
-        "You enter rooms like you've already paid rent.",
-        "You enter rooms like you've already paid rent. [career]"
+        "You keep the client feeling heard.",
+        "You seem like you read the brief before the meeting.",
+        "You keep the meeting on track with one sentence."
       ],
       "chaos": [
-        "You enter rooms like you've already paid rent.",
-        "You enter rooms like you've already paid rent. [chaos]"
+        "You keep your inbox from becoming your mood.",
+        "You keep your options warm.",
+        "You handle the curve without narrating it."
+      ],
+      "communication": [
+        "You let the hard thing be said gently.",
+        "You say the thing plainly and it lands nicely.",
+        "You ask the question others were rehearsing."
       ],
       "confidence": [
-        "You enter rooms like you've already paid rent.",
-        "You enter rooms like you've already paid rent. [confidence]"
+        "You keep your shoulders relaxed and your standards clear.",
+        "You keep your light on without blinding anyone.",
+        "You keep your craft close and your ego light."
       ],
       "energy": [
-        "You enter rooms like you've already paid rent.",
-        "You enter rooms like you've already paid rent. [energy]"
+        "You let your breath pace the hour.",
+        "You keep your focus warm and alert.",
+        "You let the small movement compound."
       ],
       "reset": [
-        "You enter rooms like you've already paid rent.",
-        "You enter rooms like you've already paid rent. [reset]"
+        "You let the second try be lighter than the first.",
+        "You let the day start when you start it.",
+        "You let the window open and the day come in."
       ],
       "social": [
-        "You enter rooms like you've already paid rent.",
-        "You enter rooms like you've already paid rent. [social]"
+        "You smile first and let others catch up.",
+        "You keep the small talk sincere.",
+        "You make eye contact and actually mean it."
       ]
     },
     "outwardFragment": "You enter rooms like you've already paid rent.",
@@ -91,29 +123,45 @@
       "social": 1
     },
     "fragments": {
+      "boundaries": [
+        "You let the gate be friendly and closed.",
+        "You let the boundary be the care.",
+        "You let the work stay at work."
+      ],
       "career": [
-        "You look like a group chat with good lighting.",
-        "You look like a group chat with good lighting. [career]"
+        "Your first impression says competent, not busy.",
+        "You keep the meeting on track with one sentence.",
+        "You seem like the calm after the launch."
       ],
       "chaos": [
-        "You look like a group chat with good lighting.",
-        "You look like a group chat with good lighting. [chaos]"
+        "You keep your inbox from becoming your mood.",
+        "You keep the dog, the dish, and the deadline all alive.",
+        "You make the unexpected the invitation."
+      ],
+      "communication": [
+        "You let your listening be visible.",
+        "You let your yes mean yes without footnotes.",
+        "You keep your questions curious, not corrective."
       ],
       "confidence": [
-        "You look like a group chat with good lighting.",
-        "You look like a group chat with good lighting. [confidence]"
+        "You let your experience show in small ways.",
+        "You let your presence be a steady signal.",
+        "You keep your boundaries visible and kind."
       ],
       "energy": [
-        "You look like a group chat with good lighting.",
-        "You look like a group chat with good lighting. [energy]"
+        "You keep your mind clear enough to choose.",
+        "You let the daylight do some of the work.",
+        "You bring usable light to a dim hour."
       ],
       "reset": [
-        "You look like a group chat with good lighting.",
-        "You look like a group chat with good lighting. [reset]"
+        "You tidy one surface and your thinking follows.",
+        "You let yesterday close without extra commentary.",
+        "You let the afternoon have its own weather."
       ],
       "social": [
-        "You look like a group chat with good lighting.",
-        "You look like a group chat with good lighting. [social]"
+        "You let your exit be as graceful as your entrance.",
+        "You let the host relax a little.",
+        "You remember someone's name from last time."
       ]
     },
     "outwardFragment": "You look like a group chat with good lighting.",
@@ -131,29 +179,45 @@
       "social": -3
     },
     "fragments": {
+      "boundaries": [
+        "You keep your time visible and respected.",
+        "You keep your boundaries warm.",
+        "You keep your access intentional."
+      ],
       "career": [
-        "You seem approachable in a way people remember.",
-        "You seem approachable in a way people remember. [career]"
+        "You keep the timeline honest and the tone warm.",
+        "You look organized without trying to prove it.",
+        "You let your results arrive before your excuses."
       ],
       "chaos": [
-        "You seem approachable in a way people remember.",
-        "You seem approachable in a way people remember. [chaos]"
+        "You make the backup plan feel intentional.",
+        "You keep your inbox from becoming your mood.",
+        "You keep your tone even when the timeline isn't."
+      ],
+      "communication": [
+        "You say the thing plainly and it lands nicely.",
+        "You let the other person finish before you interpret.",
+        "You let the hard thing be said gently."
       ],
       "confidence": [
-        "You seem approachable in a way people remember.",
-        "You seem approachable in a way people remember. [confidence]"
+        "You trust your first answer and it shows.",
+        "You keep your voice even and people lean in.",
+        "You let the pause make your point stronger."
       ],
       "energy": [
-        "You seem approachable in a way people remember.",
-        "You seem approachable in a way people remember. [energy]"
+        "You make effort look sustainable.",
+        "You let the daylight do some of the work.",
+        "Your timing feels early in a good way."
       ],
       "reset": [
-        "You seem approachable in a way people remember.",
-        "You seem approachable in a way people remember. [reset]"
+        "You let the fresh hour be fresh.",
+        "You let the curtain rise again without needing applause.",
+        "You keep the restart quiet and it actually sticks."
       ],
       "social": [
-        "You seem approachable in a way people remember.",
-        "You seem approachable in a way people remember. [social]"
+        "You keep your presence light and noticeable.",
+        "You let people approach at their pace.",
+        "Your hello is warm enough that people linger."
       ]
     },
     "outwardFragment": "You seem approachable in a way people remember.",
@@ -171,29 +235,45 @@
       "social": 3
     },
     "fragments": {
+      "boundaries": [
+        "You let the invitation include its timeframe.",
+        "You let the line be visible without being sharp.",
+        "You keep your peace by keeping your word to yourself."
+      ],
       "career": [
-        "You look like you own the place. You don't. Keep acting like it.",
-        "You look like you own the place. You don't. Keep acting like it. [career]"
+        "You look like you ask for the budget clearly.",
+        "You look like you make lists and actually use them.",
+        "You seem like someone who learns out loud well."
       ],
       "chaos": [
-        "You look like you own the place. You don't. Keep acting like it.",
-        "You look like you own the place. You don't. Keep acting like it. [chaos]"
+        "You keep your alternatives ready without being anxious.",
+        "You keep your essentials close when the room wobbles.",
+        "You keep the chaos to one shelf."
+      ],
+      "communication": [
+        "You keep your boundaries and your warmth together.",
+        "You keep your story human-sized.",
+        "You name the next step so no one has to guess."
       ],
       "confidence": [
-        "You look like you own the place. You don't. Keep acting like it.",
-        "You look like you own the place. You don't. Keep acting like it. [confidence]"
+        "You keep your boundaries visible and kind.",
+        "You let your style be consistent, not loud.",
+        "You look steady without being stiff."
       ],
       "energy": [
-        "You look like you own the place. You don't. Keep acting like it.",
-        "You look like you own the place. You don't. Keep acting like it. [energy]"
+        "You keep your caffeine optional today.",
+        "You arrive and the plan feels closer.",
+        "You keep your afternoon from borrowing the morning's light."
       ],
       "reset": [
-        "You look like you own the place. You don't. Keep acting like it.",
-        "You look like you own the place. You don't. Keep acting like it. [reset]"
+        "You clear the counter and clear a thought too.",
+        "You keep the reboot honest and low-stakes.",
+        "You let yesterday close without extra commentary."
       ],
       "social": [
-        "You look like you own the place. You don't. Keep acting like it.",
-        "You look like you own the place. You don't. Keep acting like it. [social]"
+        "You make space at your table without making a speech.",
+        "You let your exit be as graceful as your entrance.",
+        "You remember to introduce people properly."
       ]
     },
     "outwardFragment": "You look like you own the place. You don't. Keep acting like it.",
@@ -211,29 +291,45 @@
       "social": 0
     },
     "fragments": {
+      "boundaries": [
+        "You let the schedule have edges.",
+        "You keep your evenings for your life.",
+        "You keep your access intentional."
+      ],
       "career": [
-        "You seem competent before you speak. Use it wisely.",
-        "You seem competent before you speak. Use it wisely. [career]"
+        "You let your results arrive before your excuses.",
+        "You carry quiet momentum into the room.",
+        "You keep your ambition friendly."
       ],
       "chaos": [
-        "You seem competent before you speak. Use it wisely.",
-        "You seem competent before you speak. Use it wisely. [chaos]"
+        "You make the waiting room more interesting for everyone.",
+        "You handle the double-booking with grace and a better calendar.",
+        "You keep your style when the standard is moving."
+      ],
+      "communication": [
+        "You let clarity be the kindness today.",
+        "Your first sentence makes the second easier to hear.",
+        "You say the thing plainly and it lands nicely."
       ],
       "confidence": [
-        "You seem competent before you speak. Use it wisely.",
-        "You seem competent before you speak. Use it wisely. [confidence]"
+        "You stand a little taller without making it a thing.",
+        "You keep your voice even and people lean in.",
+        "You look like the plan, even when you're improvising."
       ],
       "energy": [
-        "You seem competent before you speak. Use it wisely.",
-        "You seem competent before you speak. Use it wisely. [energy]"
+        "You let your breath pace the hour.",
+        "You let the fresh air reset the meeting.",
+        "You keep your battery visible and honest."
       ],
       "reset": [
-        "You seem competent before you speak. Use it wisely.",
-        "You seem competent before you speak. Use it wisely. [reset]"
+        "You begin again as if you mean it.",
+        "You keep the beginning beginner-friendly.",
+        "You let the day start when you start it."
       ],
       "social": [
-        "You seem competent before you speak. Use it wisely.",
-        "You seem competent before you speak. Use it wisely. [social]"
+        "You make space at your table without making a speech.",
+        "You help two strangers talk to each other.",
+        "Your hello is warm enough that people linger."
       ]
     },
     "outwardFragment": "You seem competent before you speak. Use it wisely.",
@@ -251,29 +347,45 @@
       "social": 0
     },
     "fragments": {
+      "boundaries": [
+        "You keep your calendar honest.",
+        "You protect your focus without making it personal.",
+        "You let people love the clear line."
+      ],
       "career": [
-        "You look like a diplomatic solution with nice shoes.",
-        "You look like a diplomatic solution with nice shoes. [career]"
+        "You give the update before you're asked.",
+        "You look like you make lists and actually use them.",
+        "You keep the feedback specific and useful."
       ],
       "chaos": [
-        "You look like a diplomatic solution with nice shoes.",
-        "You look like a diplomatic solution with nice shoes. [chaos]"
+        "You make high voltage look like a manageable weather pattern.",
+        "You keep one thing finished while three things shift.",
+        "You make the spill a quick cleanup, not a crisis."
+      ],
+      "communication": [
+        "You ask the question others were rehearsing.",
+        "You let clarity be the kindness today.",
+        "You let the simple truth be enough."
       ],
       "confidence": [
-        "You look like a diplomatic solution with nice shoes.",
-        "You look like a diplomatic solution with nice shoes. [confidence]"
+        "You let your style be consistent, not loud.",
+        "You look prepared without looking rehearsed.",
+        "You wear the outfit you actually like."
       ],
       "energy": [
-        "You look like a diplomatic solution with nice shoes.",
-        "You look like a diplomatic solution with nice shoes. [energy]"
+        "You keep your mind clear enough to choose.",
+        "You keep your focus warm and alert.",
+        "Your timing feels early in a good way."
       ],
       "reset": [
-        "You look like a diplomatic solution with nice shoes.",
-        "You look like a diplomatic solution with nice shoes. [reset]"
+        "You choose the gentle restart over the grand announcement.",
+        "You look like a fresh page that knows what it wants to write.",
+        "You keep the beginning beginner-friendly."
       ],
       "social": [
-        "You look like a diplomatic solution with nice shoes.",
-        "You look like a diplomatic solution with nice shoes. [social]"
+        "You make one person's night easier.",
+        "You arrive on time and it reads as respect.",
+        "You remember someone's name from last time."
       ]
     },
     "outwardFragment": "You look like a diplomatic solution with nice shoes.",
@@ -291,29 +403,45 @@
       "social": -3
     },
     "fragments": {
+      "boundaries": [
+        "Your no sounds friendly and final.",
+        "You let people love the clear line.",
+        "You say the limit once and keep it."
+      ],
       "career": [
-        "You seem quiet. People lean in anyway.",
-        "You seem quiet. People lean in anyway. [career]"
+        "You look credible without being formal.",
+        "You seem like the person who answers the email.",
+        "You look like the person who writes the recap."
       ],
       "chaos": [
-        "You seem quiet. People lean in anyway.",
-        "You seem quiet. People lean in anyway. [chaos]"
+        "You keep your laughter in the toolbox.",
+        "You keep your tone even when the timeline isn't.",
+        "You keep the chaos to one shelf."
+      ],
+      "communication": [
+        "You keep your voice steady even when you're unsure.",
+        "Your first sentence makes the second easier to hear.",
+        "You keep your questions open and your answers honest."
       ],
       "confidence": [
-        "You seem quiet. People lean in anyway.",
-        "You seem quiet. People lean in anyway. [confidence]"
+        "You keep your boundaries visible and kind.",
+        "You look like the plan, even when you're improvising.",
+        "You keep your feet planted and your options open."
       ],
       "energy": [
-        "You seem quiet. People lean in anyway.",
-        "You seem quiet. People lean in anyway. [energy]"
+        "You keep your battery visible and honest.",
+        "You let your walk set the tempo.",
+        "You let the daylight do some of the work."
       ],
       "reset": [
-        "You seem quiet. People lean in anyway.",
-        "You seem quiet. People lean in anyway. [reset]"
+        "You let the reset be yours, not the algorithm's.",
+        "You choose the gentle restart over the grand announcement.",
+        "You let the window open and the day come in."
       ],
       "social": [
-        "You seem quiet. People lean in anyway.",
-        "You seem quiet. People lean in anyway. [social]"
+        "You leave on a good note, early enough to be missed.",
+        "You remember to introduce people properly.",
+        "You keep your vibe steady while the room adjusts."
       ]
     },
     "outwardFragment": "You seem quiet. People lean in anyway.",
@@ -331,29 +459,45 @@
       "social": -3
     },
     "fragments": {
+      "boundaries": [
+        "You let the container hold the work.",
+        "You keep your limits and your humor together.",
+        "You let the pause be your answer for a beat."
+      ],
       "career": [
-        "You look like you're about to recommend a trip you actually took.",
-        "You look like you're about to recommend a trip you actually took. [career]"
+        "You seem like someone who respects other people's time.",
+        "You seem like the person who answers the email.",
+        "Your first impression says competent, not busy."
       ],
       "chaos": [
-        "You look like you're about to recommend a trip you actually took.",
-        "You look like you're about to recommend a trip you actually took. [chaos]"
+        "You keep your options warm.",
+        "You let the improvisation be competent.",
+        "You make the typo a better title."
+      ],
+      "communication": [
+        "You keep your voice steady even when you're unsure.",
+        "You ask the question others were rehearsing.",
+        "You let the simple truth be enough."
       ],
       "confidence": [
-        "You look like you're about to recommend a trip you actually took.",
-        "You look like you're about to recommend a trip you actually took. [confidence]"
+        "Your calm is contagious before you speak.",
+        "You let your presence be a steady signal.",
+        "You let your posture do half the talking."
       ],
       "energy": [
-        "You look like you're about to recommend a trip you actually took.",
-        "You look like you're about to recommend a trip you actually took. [energy]"
+        "You keep your pace humane.",
+        "You make effort look sustainable.",
+        "You arrive and the plan feels closer."
       ],
       "reset": [
-        "You look like you're about to recommend a trip you actually took.",
-        "You look like you're about to recommend a trip you actually took. [reset]"
+        "You let the breath be the button you press.",
+        "You choose the gentle restart over the grand announcement.",
+        "You step outside and come back on time."
       ],
       "social": [
-        "You look like you're about to recommend a trip you actually took.",
-        "You look like you're about to recommend a trip you actually took. [social]"
+        "You help two strangers talk to each other.",
+        "You keep your welcome honest.",
+        "You remember to introduce people properly."
       ]
     },
     "outwardFragment": "You look like you're about to recommend a trip you actually took.",
@@ -371,29 +515,45 @@
       "social": -2
     },
     "fragments": {
+      "boundaries": [
+        "You say the limit once and keep it.",
+        "You let people adjust without over-explaining.",
+        "You keep your access intentional."
+      ],
       "career": [
-        "You look like the plan. People relax around you.",
-        "You look like the plan. People relax around you. [career]"
+        "You look like you measure twice and still move quickly.",
+        "You carry quiet momentum into the room.",
+        "You let your results arrive before your excuses."
       ],
       "chaos": [
-        "You look like the plan. People relax around you.",
-        "You look like the plan. People relax around you. [chaos]"
+        "You make the pivot look practiced, even though it isn't.",
+        "You keep your alternatives ready without being anxious.",
+        "You keep your breath even while the app loads."
+      ],
+      "communication": [
+        "You keep your receipts and your tone friendly.",
+        "You keep your voice steady even when you're unsure.",
+        "You let the hard thing be said gently."
       ],
       "confidence": [
-        "You look like the plan. People relax around you.",
-        "You look like the plan. People relax around you. [confidence]"
+        "You let your style be consistent, not loud.",
+        "You let the room adjust to you, not the other way.",
+        "You let your eyes say you're listening."
       ],
       "energy": [
-        "You look like the plan. People relax around you.",
-        "You look like the plan. People relax around you. [energy]"
+        "You keep your energy directed, not scattered.",
+        "You keep your mind clear enough to choose.",
+        "You arrive with battery to share."
       ],
       "reset": [
-        "You look like the plan. People relax around you.",
-        "You look like the plan. People relax around you. [reset]"
+        "You keep your reset humane and repeatable.",
+        "You let the mistake be a note, not a story.",
+        "You let the morning count as a do-over."
       ],
       "social": [
-        "You look like the plan. People relax around you.",
-        "You look like the plan. People relax around you. [social]"
+        "You offer help before you offer opinion.",
+        "You enter like you already know one person in the room.",
+        "You make eye contact and actually mean it."
       ]
     },
     "outwardFragment": "You look like the plan. People relax around you.",
@@ -411,29 +571,45 @@
       "social": -1
     },
     "fragments": {
+      "boundaries": [
+        "You keep your private life private without apology.",
+        "You keep your help sustainable.",
+        "You let the schedule have edges."
+      ],
       "career": [
-        "You seem unbothered in a way that bothers people, pleasantly.",
-        "You seem unbothered in a way that bothers people, pleasantly. [career]"
+        "You seem comfortable with hard questions.",
+        "You look prepared for the follow-up.",
+        "You look decisive while staying open to detail."
       ],
       "chaos": [
-        "You seem unbothered in a way that bothers people, pleasantly.",
-        "You seem unbothered in a way that bothers people, pleasantly. [chaos]"
+        "You make the pivot look practiced, even though it isn't.",
+        "You keep the chaos to one shelf.",
+        "You make the spill a quick cleanup, not a crisis."
+      ],
+      "communication": [
+        "You keep your voice steady even when you're unsure.",
+        "You keep your boundaries and your warmth together.",
+        "You keep your email to three lines and it works."
       ],
       "confidence": [
-        "You seem unbothered in a way that bothers people, pleasantly.",
-        "You seem unbothered in a way that bothers people, pleasantly. [confidence]"
+        "You keep your voice even and people lean in.",
+        "You look like someone who keeps their word.",
+        "You let your experience show in small ways."
       ],
       "energy": [
-        "You seem unbothered in a way that bothers people, pleasantly.",
-        "You seem unbothered in a way that bothers people, pleasantly. [energy]"
+        "You let the small movement compound.",
+        "You let your walk set the tempo.",
+        "You bring a second wind before you need it."
       ],
       "reset": [
-        "You seem unbothered in a way that bothers people, pleasantly.",
-        "You seem unbothered in a way that bothers people, pleasantly. [reset]"
+        "You make the bed and the day feels more possible.",
+        "You let the second try be lighter than the first.",
+        "You let the afternoon have its own weather."
       ],
       "social": [
-        "You seem unbothered in a way that bothers people, pleasantly.",
-        "You seem unbothered in a way that bothers people, pleasantly. [social]"
+        "You let the laugh be shared, not solo.",
+        "You let the room be warm before you add heat.",
+        "You keep your gestures open and unhurried."
       ]
     },
     "outwardFragment": "You seem unbothered in a way that bothers people, pleasantly.",
@@ -451,29 +627,45 @@
       "social": -1
     },
     "fragments": {
+      "boundaries": [
+        "You let people love the clear line.",
+        "You let the pause be your answer for a beat.",
+        "You let the container be respected."
+      ],
       "career": [
-        "You look like you know something tender about today.",
-        "You look like you know something tender about today. [career]"
+        "You look prepared for the follow-up.",
+        "You keep the client feeling heard.",
+        "You keep the feedback specific and useful."
       ],
       "chaos": [
-        "You look like you know something tender about today.",
-        "You look like you know something tender about today. [chaos]"
+        "You keep your list short when the day is long.",
+        "You keep one thing finished while three things shift.",
+        "You keep your essentials close when the room wobbles."
+      ],
+      "communication": [
+        "You keep your story concise and your intent plain.",
+        "You let the simple truth be enough.",
+        "You keep your tone matching your message."
       ],
       "confidence": [
-        "You look like you know something tender about today.",
-        "You look like you know something tender about today. [confidence]"
+        "You speak slowly enough to be understood.",
+        "You keep your feet planted and your options open.",
+        "You look steady without being stiff."
       ],
       "energy": [
-        "You look like you know something tender about today.",
-        "You look like you know something tender about today. [energy]"
+        "You keep your pace bright without being breathless.",
+        "You bring momentum without the mania.",
+        "You let the small movement compound."
       ],
       "reset": [
-        "You look like you know something tender about today.",
-        "You look like you know something tender about today. [reset]"
+        "You let the morning count as a do-over.",
+        "You let the mistake be a note, not a story.",
+        "You let the day start when you start it."
       ],
       "social": [
-        "You look like you know something tender about today.",
-        "You look like you know something tender about today. [social]"
+        "You leave on a good note, early enough to be missed.",
+        "You enter like you already know one person in the room.",
+        "You make space at your table without making a speech."
       ]
     },
     "outwardFragment": "You look like you know something tender about today.",

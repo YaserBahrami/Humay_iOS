@@ -11,7 +11,8 @@ actor HybridOfflineContentProvider: PersonalizedContentProviding {
     private let repository: BundledContentPackRepository
 
     nonisolated var descriptor: PersonalizedContentProviderDescriptor {
-        // Report primary identity; actual per-day basis is stamped per document.
+        // Primary identity; per-day/yearly mixed provenance is stamped via ForecastContentSource/basis
+        // (see yearlyForecast). When bundling is unavailable, chunk APIs fall through to deterministic.
         primary.descriptor
     }
 
@@ -50,17 +51,20 @@ actor HybridOfflineContentProvider: PersonalizedContentProviding {
                 let result = try await primary.generateMonthChunk(
                     subject: subject, outline: outline, anchor: anchor, monthIndex: monthIndex
                 )
-                // Tag whether this month was actually backed by bundled records:
-                // The primary already falls back per-day internally, so the chunk
-                // is always valid. No extra handling needed.
+                // Primary throws providerUnavailable when any day in the month lacks a Sun record.
+                // Hybrid does not fabricate per-day fallback here — caller gets providerUnavailable
+                // and decides honest fallback (yearlyForecast path) vs recorded failure.
                 return result
             } catch {
-                // Soft fallback.
+                // Fall through to deterministic fallback for coordinator paths where bundled
+                // is unavailable for this month. Returned chunk carries deterministic modelIdentifier
+                // so persistence layer can stamp honestly (coordinator tracks actual source via modelIdentifier).
             }
         }
-        return try await fallback.generateMonthChunk(
+        let fallbackResult = try await fallback.generateMonthChunk(
             subject: subject, outline: outline, anchor: anchor, monthIndex: monthIndex
         )
+        return fallbackResult
     }
 
     func regenerateDay(
