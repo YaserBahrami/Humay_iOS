@@ -224,7 +224,7 @@ struct ProfileSettingsSheet: View {
                             Task { @MainActor in
                                 guard let profile = environment.profile else { return }
                                 let newBirth = draft.currentBirthDetails
-                                if let err = draft.validationError {
+                                if draft.validationError != nil {
                                     saveFailed = true
                                     return
                                 }

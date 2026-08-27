@@ -50,6 +50,17 @@ enum BirthPlaceSearchError: Error, Sendable, Equatable {
     case resolutionFailed
 }
 
+/// Mutually exclusive transient UI state for birthplace search.
+/// The canonical resolved place (`draft.birthPlaceResult`) remains separately owned.
+enum BirthPlaceSearchUIState: Sendable, Equatable {
+    case idle
+    case searching
+    case suggestions([BirthPlaceSuggestion])
+    case resolving(BirthPlaceSuggestion)
+    case noResults
+    case failed(BirthPlaceSearchError)
+}
+
 /// Explicit two-stage contract for birthplace search.
 protocol BirthPlaceSearching: Sendable {
     /// Lightweight autocomplete suggestions while typing — no geocoding.

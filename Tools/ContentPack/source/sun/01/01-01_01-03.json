@@ -1,0 +1,938 @@
+[
+  {
+    "dayKey": "01-01",
+    "sunSign": "aries",
+    "scores": {
+      "career": 51,
+      "chaos": 50,
+      "confidence": 75,
+      "energy": 50,
+      "overall": 52,
+      "patience": 50,
+      "romance": 51,
+      "social": 46
+    },
+    "tags": [
+      "confidence",
+      "reset"
+    ],
+    "headline": "Your confidence arrived early — try not to spend it all at once.",
+    "personal": "Decisive in a surprising way today — move first, explain later, and let patience catch up tonight.",
+    "love": "Not a grand-gesture day. Send the short, true reply instead of the essay you’re drafting.",
+    "career": "You could finish the thing you’ve been circling for weeks. The window is open for about four hours — use it.",
+    "social": "You don’t need to reply to every group chat. One good yes beats three polite maybes.",
+    "greenFlag": "You stop editing past the point of better.",
+    "redFlag": "You turn a small delay into a moral failing.",
+    "summary": "High confidence wants a target. Give it one worth hitting."
+  },
+  {
+    "dayKey": "01-01",
+    "sunSign": "taurus",
+    "scores": {
+      "career": 45,
+      "chaos": 54,
+      "confidence": 47,
+      "energy": 71,
+      "overall": 49,
+      "patience": 49,
+      "romance": 44,
+      "social": 50
+    },
+    "tags": [
+      "energy",
+      "chaos"
+    ],
+    "headline": "Steady wins, especially when everyone else is improvising.",
+    "personal": "Comfort is your strategy today, not your flaw. Keep your standards, lower your urgency, and you’ll outlast the noise.",
+    "love": "Affection feels practical — a shared meal, a plan that actually happens. Skip the abstract promises.",
+    "career": "Energy is high but scattered. Anchor it to one tangible task and leave the rebrand for later.",
+    "social": "Chaos is contagious. Stay close to the people who don’t need drama to feel alive.",
+    "greenFlag": "You choose the slower, better option.",
+    "redFlag": "You treat comfort as an emergency exit.",
+    "summary": "High energy, low chaos if you keep your boundaries."
+  },
+  {
+    "dayKey": "01-01",
+    "sunSign": "gemini",
+    "scores": {
+      "career": 50,
+      "chaos": 60,
+      "confidence": 41,
+      "energy": 65,
+      "overall": 52,
+      "patience": 42,
+      "romance": 50,
+      "social": 48
+    },
+    "tags": [
+      "energy",
+      "chaos"
+    ],
+    "headline": "Your brain has seventeen tabs open and, somehow, they’re all useful.",
+    "personal": "Curiosity is paying rent today. Follow the tangent that actually teaches you something and close the other sixteen.",
+    "love": "Keep it light and specific. A clever question lands better than a vague confession.",
+    "career": "You’re good at starting. Today practice finishing — one thread, tied off properly.",
+    "social": "Chatty energy helps, but check your patience before you interrupt the quiet one.",
+    "greenFlag": "You ask before you assume.",
+    "redFlag": "You explain everyone’s motives but your own.",
+    "summary": "Energy high, patience thin. Talk less, notice more."
+  },
+  {
+    "dayKey": "01-01",
+    "sunSign": "cancer",
+    "scores": {
+      "career": 45,
+      "chaos": 56,
+      "confidence": 43,
+      "energy": 43,
+      "overall": 50,
+      "patience": 41,
+      "romance": 49,
+      "social": 66
+    },
+    "tags": [
+      "social",
+      "chaos"
+    ],
+    "headline": "Soft antenna, sharp read.",
+    "personal": "Picking up everything today — moods, subtext, the draft in the room. Protect the signal by muting one source of noise.",
+    "love": "You don’t need to earn reassurance. Ask plainly, hear the answer, then stop rehearsing the worst case.",
+    "career": "Career asks for steadiness, not heroics. Do the unglamorous follow-through and call it a win.",
+    "social": "You want belonging, but not at the cost of overgiving. Leave a little space and see who fills it.",
+    "greenFlag": "You name the feeling without assigning blame.",
+    "redFlag": "You replay the conversation with better comebacks.",
+    "summary": "High social radar, middling stamina. Choose the room that regulates you."
+  },
+  {
+    "dayKey": "01-01",
+    "sunSign": "leo",
+    "scores": {
+      "career": 40,
+      "chaos": 50,
+      "confidence": 72,
+      "energy": 63,
+      "overall": 62,
+      "patience": 47,
+      "romance": 78,
+      "social": 67
+    },
+    "tags": [
+      "romance",
+      "confidence"
+    ],
+    "headline": "The room already knows you’re here. Now use it.",
+    "personal": "Charisma is doing its job without you forcing it. Lead by making someone else look good — the glow doubles.",
+    "love": "Warm, a little theatrical, very effective. One generous compliment does more than a strategy thread.",
+    "career": "You have the least career momentum but the most audience. Pitch the idea; let work catch up tomorrow.",
+    "social": "Confidence wants an audience; love wants sincerity. Keep the two separate and both win.",
+    "greenFlag": "You celebrate without turning it into a performance review.",
+    "redFlag": "You mistake attention for agreement.",
+    "summary": "Confidence loud, patience selective. Shine on purpose."
+  },
+  {
+    "dayKey": "01-01",
+    "sunSign": "virgo",
+    "scores": {
+      "career": 43,
+      "chaos": 29,
+      "confidence": 85,
+      "energy": 82,
+      "overall": 69,
+      "patience": 70,
+      "romance": 81,
+      "social": 46
+    },
+    "tags": [
+      "confidence",
+      "energy"
+    ],
+    "headline": "Precision is your love language today.",
+    "personal": "Annoyingly right about the details today — use that to fix one real thing instead of cataloguing ten small flaws.",
+    "love": "Romance rewards exactness — remember the name of the thing they mentioned last week. That’s the whole move.",
+    "career": "High energy meets high standards. Make the checklist smaller so you can actually complete it.",
+    "social": "You’re tempted to correct everyone. Try one useful edit and let the rest be human.",
+    "greenFlag": "You fix the error without announcing it.",
+    "redFlag": "You audit the people you love like a spreadsheet.",
+    "summary": "Big brains, sharper tongue. Aim it at the work, not the person."
+  },
+  {
+    "dayKey": "01-01",
+    "sunSign": "libra",
+    "scores": {
+      "career": 49,
+      "chaos": 20,
+      "confidence": 44,
+      "energy": 75,
+      "overall": 60,
+      "patience": 77,
+      "romance": 59,
+      "social": 79
+    },
+    "tags": [
+      "social",
+      "patience"
+    ],
+    "headline": "Taste is making decisions for you — let it.",
+    "personal": "Your eye is excellent today; trust the edit you want to make and stop polling the group chat.",
+    "love": "You want harmony, but not at the price of honesty. One clear sentence beats a diplomatic paragraph.",
+    "career": "Career steadies when you stop auditioning for consensus. Choose, then make it beautiful.",
+    "social": "Social battery is generous and patient. Spend it on the one person who actually listens.",
+    "greenFlag": "You pick the plan and commit to the reservation.",
+    "redFlag": "You redesign the invitation instead of sending it.",
+    "summary": "Patient, poised, and finally decisive. Keep it that way."
+  },
+  {
+    "dayKey": "01-01",
+    "sunSign": "scorpio",
+    "scores": {
+      "career": 41,
+      "chaos": 53,
+      "confidence": 76,
+      "energy": 46,
+      "overall": 53,
+      "patience": 46,
+      "romance": 62,
+      "social": 63
+    },
+    "tags": [
+      "confidence",
+      "social"
+    ],
+    "headline": "You’re reading the footnotes everyone skipped.",
+    "personal": "Intensity is quiet today, not dramatic. Keep your cards close until the question is worth answering.",
+    "love": "Depth without the interrogation. Share one true thing and leave the mystery intact.",
+    "career": "You’d rather not explain the whole strategy — so show one finished piece and let it speak.",
+    "social": "Social confidence is high, but privacy is higher. Be selective with access and generous with presence.",
+    "greenFlag": "You hold the boundary without the speech.",
+    "redFlag": "You test loyalty by withdrawing.",
+    "summary": "Confident and contained. Power without the press release."
+  },
+  {
+    "dayKey": "01-01",
+    "sunSign": "sagittarius",
+    "scores": {
+      "career": 45,
+      "chaos": 22,
+      "confidence": 69,
+      "energy": 74,
+      "overall": 63,
+      "patience": 75,
+      "romance": 43,
+      "social": 49
+    },
+    "tags": [
+      "patience",
+      "energy"
+    ],
+    "headline": "Big plan, calm hands.",
+    "personal": "Optimism is useful today because it’s paired with restraint. Map the adventure, pack correctly, then go.",
+    "love": "Bluntness is not intimacy. Say it warm, or save it until it is.",
+    "career": "Patience is your edge — rare for you, potent today. Use it to finish the boring part.",
+    "social": "You have energy to spare. Spend it on movement, not on persuading strangers on the internet.",
+    "greenFlag": "You make the plan B before you need it.",
+    "redFlag": "You turn candor into a dare.",
+    "summary": "High patience, high range. Go far without burning goodwill."
+  },
+  {
+    "dayKey": "01-01",
+    "sunSign": "capricorn",
+    "scores": {
+      "career": 45,
+      "chaos": 56,
+      "confidence": 41,
+      "energy": 75,
+      "overall": 48,
+      "patience": 44,
+      "romance": 60,
+      "social": 54
+    },
+    "tags": [
+      "energy",
+      "romance"
+    ],
+    "headline": "You’re building, not browsing.",
+    "personal": "Structure is your friend today. One clear rule for yourself does more than five inspiring quotes.",
+    "love": "Romance wants stamina, not suspense. Show up when you said you would — that’s the plot twist.",
+    "career": "Mid-level career, but real progress if you respect the sequence. Do the foundation before the flourish.",
+    "social": "You have just enough chaos to be interesting. Use it sparingly.",
+    "greenFlag": "You ship the draft instead of perfecting the font.",
+    "redFlag": "You treat rest like a reward you haven’t earned.",
+    "summary": "Energy steady, heart practical. Build the thing that lasts."
+  },
+  {
+    "dayKey": "01-01",
+    "sunSign": "aquarius",
+    "scores": {
+      "career": 40,
+      "chaos": 50,
+      "confidence": 54,
+      "energy": 53,
+      "overall": 55,
+      "patience": 49,
+      "romance": 80,
+      "social": 78
+    },
+    "tags": [
+      "romance",
+      "social"
+    ],
+    "headline": "You love them, but from a humane distance.",
+    "personal": "Original thought is easy; original feeling is the assignment. Let one idea become personal before you publish it.",
+    "love": "Romance is unusually warm and direct — try meeting it without the footnote or the escape hatch.",
+    "career": "Work needs less system, more soul. Fix the human friction, not the workflow diagram.",
+    "social": "Social is your second language today. Say the kind thing plainly and log off before you overexplain.",
+    "greenFlag": "You join without needing to stand apart.",
+    "redFlag": "You keep score on who’s being irrational.",
+    "summary": "High romance, high social. Let the system wait."
+  },
+  {
+    "dayKey": "01-01",
+    "sunSign": "pisces",
+    "scores": {
+      "career": 75,
+      "chaos": 58,
+      "confidence": 46,
+      "energy": 83,
+      "overall": 54,
+      "patience": 41,
+      "romance": 43,
+      "social": 48
+    },
+    "tags": [
+      "energy",
+      "career"
+    ],
+    "headline": "Work wants you. You might even want it back.",
+    "personal": "Imagination is drifting into practical channels. Follow the image that comes with a to-do list.",
+    "love": "Love is quiet today; don’t make it carry your mood. Let a walk or a song do the regulating.",
+    "career": "Career is the one place where effort clicks. Ride that for three focused hours and stop while ahead.",
+    "social": "Social is gentle but porous — set a time to leave before you dissolve into everyone’s story.",
+    "greenFlag": "You make the art and also make the deadline.",
+    "redFlag": "You romanticize the detour.",
+    "summary": "Energy high, patience optional. Point the drift at work."
+  },
+  {
+    "dayKey": "01-02",
+    "sunSign": "aries",
+    "scores": {
+      "career": 50,
+      "chaos": 56,
+      "confidence": 81,
+      "energy": 43,
+      "overall": 55,
+      "patience": 48,
+      "romance": 43,
+      "social": 42
+    },
+    "tags": [
+      "confidence",
+      "chaos"
+    ],
+    "headline": "Loud engine, better brakes this time.",
+    "personal": "Confidence still high, but chaos is louder. Act fast on the small thing, slow on the one that has consequences.",
+    "love": "You want a clear answer; they want a little space. Give the space first and the answer gets honest.",
+    "career": "You’re decisive, they’re deliberating. Let the gap work for you instead of closing it prematurely.",
+    "social": "Chat less, do more. The recap will be more interesting than the live commentary.",
+    "greenFlag": "You quit while you’re ahead.",
+    "redFlag": "You turn momentum into an argument.",
+    "summary": "Confident, a little wild. Choose the hill after you’ve parked."
+  },
+  {
+    "dayKey": "01-02",
+    "sunSign": "taurus",
+    "scores": {
+      "career": 40,
+      "chaos": 59,
+      "confidence": 43,
+      "energy": 72,
+      "overall": 47,
+      "patience": 45,
+      "romance": 43,
+      "social": 50
+    },
+    "tags": [
+      "energy",
+      "chaos"
+    ],
+    "headline": "Not your tempo — so keep your tempo.",
+    "personal": "Everyone’s rushing and you’re not. That’s not lag; that’s a filter. Let them pass.",
+    "love": "Love is subtle today. Notice the small consistency rather than hunting the grand proof.",
+    "career": "Energy is high but unfocused. Pick the task with edges and finish the edge.",
+    "social": "You don’t need to explain your pace. The right people adjust.",
+    "greenFlag": "You protect your morning.",
+    "redFlag": "You dig in just to prove you can.",
+    "summary": "Steady heart, busy room. Keep your own clock."
+  },
+  {
+    "dayKey": "01-02",
+    "sunSign": "gemini",
+    "scores": {
+      "career": 50,
+      "chaos": 54,
+      "confidence": 45,
+      "energy": 58,
+      "overall": 48,
+      "patience": 45,
+      "romance": 44,
+      "social": 40
+    },
+    "tags": [
+      "energy",
+      "chaos"
+    ],
+    "headline": "You’re interesting today. Try being interested.",
+    "personal": "Mental speed is medium, curiosity is the spark. Trade one hot take for one good question.",
+    "love": "Flirty but distractible. If you like someone, remember one detail they told you yesterday.",
+    "career": "You’re juggling. Name the one ball that matters if it drops — that’s your calendar for today.",
+    "social": "Chat is thinner. Make the message shorter than you think it needs to be.",
+    "greenFlag": "You close the tab before it closes you.",
+    "redFlag": "You narrate instead of noticing.",
+    "summary": "Quick mind, quiet room. Listen louder."
+  },
+  {
+    "dayKey": "01-02",
+    "sunSign": "cancer",
+    "scores": {
+      "career": 42,
+      "chaos": 55,
+      "confidence": 44,
+      "energy": 45,
+      "overall": 51,
+      "patience": 50,
+      "romance": 50,
+      "social": 72
+    },
+    "tags": [
+      "social",
+      "chaos"
+    ],
+    "headline": "Careful is not the same as closed.",
+    "personal": "Tenderness is high, but so is the urge to armour. Keep the boundary, lose the cold shoulder.",
+    "love": "A soft check-in beats a surveillance report. Ask how they slept, not where they’ve been.",
+    "career": "Work needs a gentle but firm no to something that drains you. That’s productivity.",
+    "social": "Social wants depth, not breadth. One real conversation > three group threads.",
+    "greenFlag": "You say no without the apology tour.",
+    "redFlag": "You archive the feeling instead of feeling it.",
+    "summary": "Soft center, firmer edge. Use both."
+  },
+  {
+    "dayKey": "01-02",
+    "sunSign": "leo",
+    "scores": {
+      "career": 46,
+      "chaos": 60,
+      "confidence": 71,
+      "energy": 64,
+      "overall": 61,
+      "patience": 42,
+      "romance": 82,
+      "social": 70
+    },
+    "tags": [
+      "romance",
+      "confidence"
+    ],
+    "headline": "You’re the headline, not the footnote.",
+    "personal": "Romance and confidence are doing a duet. Let them — but keep the bridge short so the song ends on time.",
+    "love": "You’re magnetic when you’re specific. Tell them what you actually liked about last time.",
+    "career": "Work needs a little patience you don’t naturally have. Draft, pause, then send.",
+    "social": "Social wants a stage. Offer it to someone who rarely asks for one.",
+    "greenFlag": "You compliment in public and correct in private.",
+    "redFlag": "You keep the spotlight after your song is over.",
+    "summary": "Warm, visible, a touch impatient. Land the chorus cleanly."
+  },
+  {
+    "dayKey": "01-02",
+    "sunSign": "virgo",
+    "scores": {
+      "career": 47,
+      "chaos": 34,
+      "confidence": 85,
+      "energy": 77,
+      "overall": 69,
+      "patience": 68,
+      "romance": 77,
+      "social": 52
+    },
+    "tags": [
+      "confidence",
+      "romance"
+    ],
+    "headline": "You edit, therefore you improve.",
+    "personal": "Discernment is your superpower — aim it at the system, not the person sitting next to you.",
+    "love": "High romance, high standards. Make the plan thoughtful, not complicated.",
+    "career": "Confidence says you can; patience says you don’t have to tonight. Split the difference — start now, finish tomorrow.",
+    "social": "You’re tempted to optimize friendship. Leave one rough edge for charm.",
+    "greenFlag": "You make the useful improvement.",
+    "redFlag": "You make the improvement no one asked for.",
+    "summary": "Sharp eye, warm hands. Fix what matters."
+  },
+  {
+    "dayKey": "01-02",
+    "sunSign": "libra",
+    "scores": {
+      "career": 42,
+      "chaos": 16,
+      "confidence": 41,
+      "energy": 73,
+      "overall": 65,
+      "patience": 84,
+      "romance": 56,
+      "social": 76
+    },
+    "tags": [
+      "patience",
+      "social"
+    ],
+    "headline": "Patience looks like a decision.",
+    "personal": "Unusually willing to wait — not from indecision, from taste. Let the better option reveal itself.",
+    "love": "You want to keep the peace, but tell the truth about timing. ‘Not yet’ is a complete answer.",
+    "career": "Career is the least sparkly room today. Tidy it anyway; future you will send thanks.",
+    "social": "Social is generous but choosy. Choose the room that feels like a good outfit — it should fit.",
+    "greenFlag": "You wait without checking your phone every ten seconds.",
+    "redFlag": "You wait so long the opportunity leaves.",
+    "summary": "Calm, considerate, and actually moving forward."
+  },
+  {
+    "dayKey": "01-02",
+    "sunSign": "scorpio",
+    "scores": {
+      "career": 49,
+      "chaos": 57,
+      "confidence": 77,
+      "energy": 44,
+      "overall": 50,
+      "patience": 43,
+      "romance": 56,
+      "social": 53
+    },
+    "tags": [
+      "confidence",
+      "chaos"
+    ],
+    "headline": "Hold the intensity, lose the test.",
+    "personal": "You want to know where you stand — ask directly instead of measuring withdrawal symptoms.",
+    "love": "Depth reads as quiet today. A short, honest note carries more than the long analysis.",
+    "career": "Confidence high, deliberation medium. Ship the confident part, flag the uncertain part.",
+    "social": "Social is neutral. Don’t make it carry the weight of the private question.",
+    "greenFlag": "You ask the scary question plainly.",
+    "redFlag": "You keep the answer to see if they’ll guess.",
+    "summary": "Steady intensity. Aim it forward, not inward."
+  },
+  {
+    "dayKey": "01-02",
+    "sunSign": "sagittarius",
+    "scores": {
+      "career": 51,
+      "chaos": 33,
+      "confidence": 70,
+      "energy": 70,
+      "overall": 60,
+      "patience": 66,
+      "romance": 47,
+      "social": 53
+    },
+    "tags": [
+      "energy",
+      "confidence"
+    ],
+    "headline": "You’re early for once. Enjoy it.",
+    "personal": "Energy and confidence align just long enough to start the thing you keep calling ‘someday’.",
+    "love": "Keep romance simple: one invitation, one clear time, no TED Talk.",
+    "career": "Career gets a real boost if you treat it like travel — one destination, good shoes, no detours.",
+    "social": "Social is modest. Pick the adventure with one person, not the debate with thirty.",
+    "greenFlag": "You book the ticket instead of researching tickets.",
+    "redFlag": "You pitch the dream before you pack a bag.",
+    "summary": "Energy steady, aim true. Go."
+  },
+  {
+    "dayKey": "01-02",
+    "sunSign": "capricorn",
+    "scores": {
+      "career": 45,
+      "chaos": 56,
+      "confidence": 47,
+      "energy": 71,
+      "overall": 58,
+      "patience": 46,
+      "romance": 64,
+      "social": 58
+    },
+    "tags": [
+      "energy",
+      "romance"
+    ],
+    "headline": "You’re allowed to enjoy the climb.",
+    "personal": "Ambition is humming without the grind narrative. Let progress feel lighter by measuring what actually moved.",
+    "love": "Romance is tender underneath the schedule. Put it in the calendar or it won’t happen.",
+    "career": "Work stretches if you let it sprawl. Put a fence around today’s deliverable.",
+    "social": "Social is warm enough to ask for help. Do it early, not at 11 p.m.",
+    "greenFlag": "You celebrate a small milestone.",
+    "redFlag": "You postpone joy until the milestone is perfect.",
+    "summary": "Progress you can feel. Mark it."
+  },
+  {
+    "dayKey": "01-02",
+    "sunSign": "aquarius",
+    "scores": {
+      "career": 43,
+      "chaos": 60,
+      "confidence": 63,
+      "energy": 53,
+      "overall": 56,
+      "patience": 44,
+      "romance": 80,
+      "social": 77
+    },
+    "tags": [
+      "romance",
+      "social"
+    ],
+    "headline": "You’re close without crowding.",
+    "personal": "Unusually attuned today — use it to make one person feel seen, not to diagnose humanity.",
+    "love": "Romance wants presence, not analysis. Try ‘I missed you’ instead of the theory of missing.",
+    "career": "Work wants a little more patience than you have. Borrow it from the walk between meetings.",
+    "social": "Social is your home turf, but keep the door open, not the entire house.",
+    "greenFlag": "You share the idea without footnoting the origin story.",
+    "redFlag": "You explain why feeling is inefficient.",
+    "summary": "Warm brain, warm heart. Keep both on."
+  },
+  {
+    "dayKey": "01-02",
+    "sunSign": "pisces",
+    "scores": {
+      "career": 76,
+      "chaos": 52,
+      "confidence": 49,
+      "energy": 78,
+      "overall": 57,
+      "patience": 47,
+      "romance": 46,
+      "social": 48
+    },
+    "tags": [
+      "energy",
+      "career"
+    ],
+    "headline": "Finish the thing that’s almost done.",
+    "personal": "You’re good at beginnings; today endings are charmed. Close the loop you’ve been carrying.",
+    "love": "Love is steady but not loud. A small ritual beats a big speech.",
+    "career": "Career is the brightest room. Stay there until the light fades, then leave on time.",
+    "social": "You’re porous after lunch. Schedule solitude like a meeting.",
+    "greenFlag": "You end the day with a period, not an ellipsis.",
+    "redFlag": "You add one more revision to avoid the send button.",
+    "summary": "High work stamina, gentle everything else. Use the glow."
+  },
+  {
+    "dayKey": "01-03",
+    "sunSign": "aries",
+    "scores": {
+      "career": 43,
+      "chaos": 61,
+      "confidence": 79,
+      "energy": 49,
+      "overall": 48,
+      "patience": 45,
+      "romance": 40,
+      "social": 38
+    },
+    "tags": [
+      "confidence",
+      "chaos"
+    ],
+    "headline": "You don’t need to win today — just begin.",
+    "personal": "Confidence is still high, but chaos is louder than yesterday. Start the brave thing in the smallest possible form.",
+    "love": "Romance is lean. Don’t make love solve your restlessness; go for a run first.",
+    "career": "Career wants less swagger, more checklist. Three items, no heroics.",
+    "social": "Social is thin. Save your best line for one person who gets it.",
+    "greenFlag": "You make the first move and let the rest be response.",
+    "redFlag": "You mistake friction for destiny.",
+    "summary": "Bold start, quiet chorus. That’s enough."
+  },
+  {
+    "dayKey": "01-03",
+    "sunSign": "taurus",
+    "scores": {
+      "career": 37,
+      "chaos": 52,
+      "confidence": 44,
+      "energy": 72,
+      "overall": 49,
+      "patience": 49,
+      "romance": 47,
+      "social": 51
+    },
+    "tags": [
+      "energy",
+      "chaos"
+    ],
+    "headline": "The routine is the flex.",
+    "personal": "No drama, just durable choices. Cook the same good meal, text the same good person, do the same good work.",
+    "love": "Love prefers the predictable kindness over the sporadic fireworks. Be boring in the best way.",
+    "career": "Career is the tight spot. Do the boring prerequisite and the rest unsticks.",
+    "social": "You’re steady while others test the ice. Stay on shore and wave.",
+    "greenFlag": "You keep the promise you made to your calendar.",
+    "redFlag": "You wait for inspiration to sanction the obvious.",
+    "summary": "Steady wins the middle miles. Stay steady."
+  },
+  {
+    "dayKey": "01-03",
+    "sunSign": "gemini",
+    "scores": {
+      "career": 43,
+      "chaos": 59,
+      "confidence": 37,
+      "energy": 62,
+      "overall": 44,
+      "patience": 42,
+      "romance": 40,
+      "social": 47
+    },
+    "tags": [
+      "energy",
+      "chaos"
+    ],
+    "headline": "Hot brain, cool mouth — if you choose it.",
+    "personal": "You’re spiky and bright today. Aim the spark at the puzzle, not the person who didn’t ask for a debate.",
+    "love": "Shorter messages, better outcomes. The extra paragraph won’t save the point.",
+    "career": "Career is the narrow door. You’ll fit if you leave the bigger, shinier idea for tomorrow.",
+    "social": "Social wants curiosity, not commentary. Ask one question you don’t know the answer to.",
+    "greenFlag": "You edit before you send.",
+    "redFlag": "You perform enthusiasm instead of feeling it.",
+    "summary": "Quick tongue, slow send button. Use it."
+  },
+  {
+    "dayKey": "01-03",
+    "sunSign": "cancer",
+    "scores": {
+      "career": 45,
+      "chaos": 62,
+      "confidence": 46,
+      "energy": 50,
+      "overall": 53,
+      "patience": 44,
+      "romance": 50,
+      "social": 69
+    },
+    "tags": [
+      "social",
+      "chaos"
+    ],
+    "headline": "You feel a lot. You don’t have to fix a lot.",
+    "personal": "Sensitivity is high, but so is your capacity to hold it without acting immediately. Sit with it for one song length.",
+    "love": "You want to be held, not handled. Say that exactly.",
+    "career": "Work wants a humane pace. Do the necessary, postpone the optional guilt.",
+    "social": "Social is warm if you curate it. Pick the friend who makes your shoulders drop.",
+    "greenFlag": "You let the feeling pass through without forwarding it.",
+    "redFlag": "You turn nostalgia into a to-do list.",
+    "summary": "Feeling much, doing just enough."
+  },
+  {
+    "dayKey": "01-03",
+    "sunSign": "leo",
+    "scores": {
+      "career": 43,
+      "chaos": 61,
+      "confidence": 62,
+      "energy": 66,
+      "overall": 59,
+      "patience": 45,
+      "romance": 82,
+      "social": 66
+    },
+    "tags": [
+      "romance",
+      "social"
+    ],
+    "headline": "You lead better when you’re not proving it.",
+    "personal": "You’re sunny with a little storm at the edges. Keep the sun public, the storm private, and both honest.",
+    "love": "Love is the main event today — direct, generous, a touch dramatic. Use the drama for delight, not for tests.",
+    "career": "Career needs a little humility. Ask for the feedback before you defend the draft.",
+    "social": "Social is lively but not endless. Leave the party while you still love the people there.",
+    "greenFlag": "You make the toast that makes someone else cry (good cry).",
+    "redFlag": "You need the last word to feel safe.",
+    "summary": "Warm, visible, still learning. Keep the heart open."
+  },
+  {
+    "dayKey": "01-03",
+    "sunSign": "virgo",
+    "scores": {
+      "career": 44,
+      "chaos": 29,
+      "confidence": 81,
+      "energy": 76,
+      "overall": 64,
+      "patience": 73,
+      "romance": 80,
+      "social": 48
+    },
+    "tags": [
+      "confidence",
+      "romance"
+    ],
+    "headline": "You’re right — now be kind about it.",
+    "personal": "Standards are high and, for once, you have the patience to meet them without making everyone else meet them too.",
+    "love": "Romance is generous. Plan the small, perfect detail and let the rest be human.",
+    "career": "Career patience is up; use it to review the work, not the person who made it.",
+    "social": "You’re good at seeing improvement areas. Leave one unspoken as a gift.",
+    "greenFlag": "You polish and then stop.",
+    "redFlag": "You rehearse the flawless reply you’ll never send.",
+    "summary": "High standards, softer delivery. That’s growth."
+  },
+  {
+    "dayKey": "01-03",
+    "sunSign": "libra",
+    "scores": {
+      "career": 48,
+      "chaos": 24,
+      "confidence": 45,
+      "energy": 77,
+      "overall": 62,
+      "patience": 78,
+      "romance": 53,
+      "social": 82
+    },
+    "tags": [
+      "social",
+      "patience"
+    ],
+    "headline": "You finally pick — and it looks good.",
+    "personal": "Indecision has left the room. What you choose today will feel obvious by Friday.",
+    "love": "You’re tempted to make love effortless; make it effortful in the charming way — choose the restaurant.",
+    "career": "Career likes your taste but wants your decision. Ship the option that feels most you.",
+    "social": "Social is your best room today — but keep the guest list short so the conversation goes deep.",
+    "greenFlag": "You decide and then delight in the decision.",
+    "redFlag": "You ask for one more opinion after you’ve decided.",
+    "summary": "Patience with a point. Make the call."
+  },
+  {
+    "dayKey": "01-03",
+    "sunSign": "scorpio",
+    "scores": {
+      "career": 49,
+      "chaos": 56,
+      "confidence": 87,
+      "energy": 46,
+      "overall": 57,
+      "patience": 45,
+      "romance": 56,
+      "social": 56
+    },
+    "tags": [
+      "confidence",
+      "reset"
+    ],
+    "headline": "Quiet confidence, loud future.",
+    "personal": "You’re at your most self-assured today. Spend it on the private project that matters, not on proving you’re fine.",
+    "love": "You want depth but without the control test. Share the why, not the where-they-were-at-8-pm.",
+    "career": "Career momentum is decent — better when you don’t narrate every move. Do, then describe.",
+    "social": "Social wants you present, not performing. One real yes is enough.",
+    "greenFlag": "You keep the plan to yourself until it’s born.",
+    "redFlag": "You mistake secrecy for safety.",
+    "summary": "Confident, contained, forward. Keep it that way."
+  },
+  {
+    "dayKey": "01-03",
+    "sunSign": "sagittarius",
+    "scores": {
+      "career": 51,
+      "chaos": 30,
+      "confidence": 77,
+      "energy": 76,
+      "overall": 63,
+      "patience": 73,
+      "romance": 47,
+      "social": 52
+    },
+    "tags": [
+      "confidence",
+      "energy"
+    ],
+    "headline": "You’re booked, blessed, and — surprisingly — on time.",
+    "personal": "Hunger for more is high and, unusually, so is follow-through. Chase the bigger idea and bring a map.",
+    "love": "You’re warm but not clingy. Invite them along instead of waiting to be invited.",
+    "career": "Career loves your optimism when it’s attached to a deliverable. Make that link explicit.",
+    "social": "Energy is ample; spend it on one good outing, not three mediocre obligations.",
+    "greenFlag": "You turn ‘someday’ into a calendar invite.",
+    "redFlag": "You promise tomorrow what today already offered.",
+    "summary": "High aim, steady feet. That’s new."
+  },
+  {
+    "dayKey": "01-03",
+    "sunSign": "capricorn",
+    "scores": {
+      "career": 42,
+      "chaos": 61,
+      "confidence": 42,
+      "energy": 75,
+      "overall": 52,
+      "patience": 43,
+      "romance": 71,
+      "social": 63
+    },
+    "tags": [
+      "energy",
+      "romance"
+    ],
+    "headline": "You’re the grown-up and the fun one — at the same time.",
+    "personal": "Discipline is easy today, so you can afford a little delight without losing the thread.",
+    "love": "Romance wants a little more boldness. Say the nice thing you usually think but edit out.",
+    "career": "Career is the tight corner — smaller task, deeper quality. One well-built piece beats two wireframes.",
+    "social": "Social is sociable but not sacrificial. Stay until you’re energized, leave before you’re depleted.",
+    "greenFlag": "You mix the practical with the pleasurable.",
+    "redFlag": "You schedule the joy for ‘after’ and miss it.",
+    "summary": "Grounded and a little glowing. Use both."
+  },
+  {
+    "dayKey": "01-03",
+    "sunSign": "aquarius",
+    "scores": {
+      "career": 47,
+      "chaos": 56,
+      "confidence": 60,
+      "energy": 54,
+      "overall": 59,
+      "patience": 48,
+      "romance": 81,
+      "social": 81
+    },
+    "tags": [
+      "romance",
+      "social"
+    ],
+    "headline": "You’re affectionate without losing the plot.",
+    "personal": "Warmth is your surprise feature today. Lead with it, then bring the idea that only you could have.",
+    "love": "You’re romantic in the plain, lovely way — show up, listen, stay a little longer than usual.",
+    "career": "Career needs a nudge, not a rebuild. Ship the small improvement that helps a real person.",
+    "social": "Social is your natural habitat — but make room for one deep one-on-one inside the crowd.",
+    "greenFlag": "You let someone surprise you.",
+    "redFlag": "You keep the heart behind the whiteboard.",
+    "summary": "Social, warm, still unmistakably you."
+  },
+  {
+    "dayKey": "01-03",
+    "sunSign": "pisces",
+    "scores": {
+      "career": 81,
+      "chaos": 64,
+      "confidence": 39,
+      "energy": 78,
+      "overall": 54,
+      "patience": 39,
+      "romance": 43,
+      "social": 43
+    },
+    "tags": [
+      "career",
+      "energy"
+    ],
+    "headline": "Work is the game; play keeps score.",
+    "personal": "You’re porous again, but today work gives the container. Let the structure hold the softness.",
+    "love": "Love is thin; keep it kind and brief. Don’t make it review your entire year.",
+    "career": "Career is the clear win — high stakes, high skill. Take the swing and document how you did it.",
+    "social": "Social is quiet. You don’t need to be the bridge for everyone’s feelings tonight.",
+    "greenFlag": "You let the deadline be the day’s spine.",
+    "redFlag": "You swim away from the shore that’s actually safe.",
+    "summary": "Work strong, heart soft. Let the work lead."
+  }
+]

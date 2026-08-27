@@ -6,6 +6,7 @@ struct HumayApp: App {
     @State private var navigation: AppNavigationState
     @State private var forecastStore: ForecastStore
     private let skyInput: D3FeatureInput
+    private let birthPlaceSearchService: any BirthPlaceSearching
 
     init() {
         let store: any UserStateStore
@@ -46,19 +47,20 @@ struct HumayApp: App {
         ))
 
 #if DEBUG
+        if ProcessInfo.processInfo.arguments.contains("-HumayMockSearch") {
+            birthPlaceSearchService = InMemoryBirthPlaceSearchService()
+        } else {
+            birthPlaceSearchService = AppleBirthPlaceSearchService()
+        }
+#else
+        birthPlaceSearchService = AppleBirthPlaceSearchService()
+#endif
+
+#if DEBUG
         skyInput = DevelopmentD3Sample.makeInput()
 #else
         skyInput = .productionUnavailable
 #endif
-    }
-
-    private var birthPlaceSearchService: any BirthPlaceSearching {
-#if DEBUG
-        if ProcessInfo.processInfo.arguments.contains("-HumayMockSearch") {
-            return InMemoryBirthPlaceSearchService()
-        }
-#endif
-        return AppleBirthPlaceSearchService()
     }
 
     var body: some Scene {

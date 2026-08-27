@@ -129,8 +129,20 @@ final class LaunchUITests: XCTestCase {
     }
 
     private func tapBirthPlaceContinue(in app: XCUIApplication) {
-        if element("onboarding.birthPlace.continue", in: app).waitForExistence(timeout: 5) {
-            element("onboarding.birthPlace.continue", in: app).tap(); return
+        let cont = element("onboarding.birthPlace.continue", in: app)
+        if cont.waitForExistence(timeout: 5) {
+            if cont.isEnabled {
+                cont.tap(); return
+            } else {
+                // Continue disabled without resolved place — use explicit Skip
+                let skip = element("onboarding.birthPlace.skip", in: app)
+                if skip.waitForExistence(timeout: 2) { skip.tap(); return }
+                // Fallback label search
+                for label in ["Skip for now"] {
+                    let btn = app.buttons[label].firstMatch
+                    if btn.waitForExistence(timeout: 1) { btn.tap(); return }
+                }
+            }
         }
         for label in ["Continue", "Use this place", "Skip for now"] {
             let btn = app.buttons[label].firstMatch

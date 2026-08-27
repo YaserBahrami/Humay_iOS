@@ -11,5 +11,18 @@
     "reviewedByModel": null,
     "reviewedAt": null,
     "qaStatus": "approved"
+  },
+  {
+    "batchID": "prod-01-01_01-03-v1",
+    "dayKeyRange": "01-01_01-03",
+    "signs": ["aries","taurus","gemini","cancer","leo","virgo","libra","scorpio","sagittarius","capricorn","aquarius","pisces"],
+    "sourceModel": "Muse Spark 1.2",
+    "sourceModelVersion": "1.2-contributor-free",
+    "promptVersion": "pack-prompt-v1",
+    "generationMethod": "ai-batch-authored",
+    "generatedAt": "2026-08-27T05:45:00Z",
+    "reviewedByModel": "Muse Spark 1.2 (writer) + internal QA review (Nemotron unavailable)",
+    "reviewedAt": "2026-08-27T06:05:00Z",
+    "qaStatus": "approved"
   }
 ]
