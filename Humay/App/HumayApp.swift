@@ -32,14 +32,17 @@ struct HumayApp: App {
         }
         // Phase I: offline bundled pack is primary, deterministic is resilient fallback.
         // No network, no AI API.
-        let offlineProvider = HybridOfflineContentProvider(repository: BundledContentPackRepository.shared)
+        let bundledRepo = BundledContentPackRepository.shared
+        let offlineProvider = HybridOfflineContentProvider(repository: bundledRepo)
         let coordinator = ForecastGenerationCoordinator(
             provider: offlineProvider,
-            repository: forecastRepository
+            repository: forecastRepository,
+            bundledRepository: bundledRepo
         )
         _forecastStore = State(initialValue: ForecastStore(
             repository: forecastRepository,
-            coordinator: coordinator
+            coordinator: coordinator,
+            bundledRepository: bundledRepo
         ))
 
 #if DEBUG

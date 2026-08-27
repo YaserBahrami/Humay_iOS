@@ -201,7 +201,7 @@ struct ProfileSettingsSheet: View {
             .alert("Couldn't save that", isPresented: $saveFailed) {
                 Button("OK", role: .cancel) { saveFailed = false }
             } message: {
-                Text("Your change didn't stick. Check your connection and try again.")
+                Text("Your changes couldn't be saved. Try again.")
             }
             .sheet(item: $exportWrapper) { wrapper in
                 ShareLink(item: wrapper.url) {

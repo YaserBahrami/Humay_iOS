@@ -8,14 +8,14 @@ struct BirthPlaceSearchView: View {
     let onSkip: (() -> Void)?
 
     @State private var query: String = ""
-    @State private var results: [BirthPlaceSearchResult] = []
+    @State private var suggestions: [BirthPlaceSuggestion] = []
     @State private var isSearching = false
+    @State private var isResolving = false
     @State private var errorMessage: String?
     @State private var hasSearched = false
     @State private var selectedResult: BirthPlaceSearchResult?
     @State private var searchTask: Task<Void, Never>?
-
-    @Environment(\.dynamicTypeSize) private var dynamicTypeSize
+    @State private var generation: Int = 0
 
     var body: some View {
         OnboardingScreen { proxy in
@@ -27,14 +27,14 @@ struct BirthPlaceSearchView: View {
                 portraitLayout(compactHeight: compactHeight, sectionSpacing: sectionSpacing)
             }
         }
-        .scrollDisabled(!dynamicTypeSize.isAccessibilitySize)
+        .scrollDismissesKeyboard(.interactively)
         .onAppear {
             query = draft.birthPlaceQuery
             selectedResult = draft.birthPlaceResult
             if let r = draft.birthPlaceResult {
                 query = r.displayName
-                results = [r]
-                hasSearched = true
+                hasSearched = false
+                suggestions = []
             }
         }
         .onChange(of: query) { _, newValue in
@@ -128,16 +128,16 @@ struct BirthPlaceSearchView: View {
                         .accessibilityHint("Search a city and country for your birthplace")
                         .accessibilityIdentifier("onboarding.birthPlace.field")
                     if !query.isEmpty {
-                        Button { query = ""; results = []; errorMessage = nil; hasSearched = false } label: {
+                        Button { query = ""; suggestions = []; errorMessage = nil; hasSearched = false; generation &+= 1 } label: {
                             Image(systemName: "xmark.circle.fill")
                                 .foregroundStyle(Color.humayTextSecondary)
                         }
                         .buttonStyle(.plain)
                         .accessibilityLabel("Clear search")
                     }
-                    if isSearching {
+                    if isSearching || isResolving {
                         ProgressView()
-                            .accessibilityLabel("Searching places")
+                            .accessibilityLabel(isResolving ? "Resolving place" : "Searching places")
                     }
                 }
                 .padding(HumaySpacing.small)
@@ -156,9 +156,11 @@ struct BirthPlaceSearchView: View {
                                     .font(HumayTypography.caption)
                                     .foregroundStyle(Color.humayTextSecondary)
                             }
+#if DEBUG
                             Text("\(sel.timeZoneIdentifier) · \(String(format: "%.2f, %.2f", sel.latitude, sel.longitude))")
                                 .font(HumayTypography.caption)
                                 .foregroundStyle(Color.humayTextSecondary)
+#endif
                         }
                         Spacer()
                         Button("Change") { selectedResult = nil; draft.birthPlaceResult = nil }
@@ -192,49 +194,49 @@ struct BirthPlaceSearchView: View {
                             .foregroundStyle(Color.humayTextSecondary)
                     }
                 }
-            } else if !results.isEmpty {
+            } else if isResolving {
+                HumaySurface(padding: HumaySpacing.large) {
+                    HStack(spacing: HumaySpacing.small) {
+                        ProgressView()
+                        Text("Resolving…")
+                            .font(HumayTypography.supporting)
+                            .foregroundStyle(Color.humayTextSecondary)
+                    }
+                }
+            } else if selectedResult != nil && suggestions.isEmpty {
+                EmptyView()
+            } else if !suggestions.isEmpty {
                 HumaySurface(padding: HumaySpacing.small) {
                     VStack(alignment: .leading, spacing: HumaySpacing.extraSmall) {
-                        ForEach(results) { result in
+                        ForEach(suggestions) { sug in
                             Button {
-                                selectedResult = result
-                                draft.birthPlaceResult = result
-                                errorMessage = nil
+                                Task { await resolve(suggestion: sug) }
                             } label: {
                                 HStack(spacing: HumaySpacing.small) {
                                     VStack(alignment: .leading, spacing: 2) {
-                                        Text(result.displayName)
+                                        Text(sug.title)
                                             .font(HumayTypography.bodyEmphasized)
                                             .foregroundStyle(Color.humayTextPrimary)
-                                        if let sec = result.secondaryLabel {
-                                            Text(sec)
+                                        if let sub = sug.subtitle {
+                                            Text(sub)
                                                 .font(HumayTypography.caption)
                                                 .foregroundStyle(Color.humayTextSecondary)
                                         }
-                                        Text(result.timeZoneIdentifier)
-                                            .font(HumayTypography.caption)
-                                            .foregroundStyle(Color.humayTextSecondary.opacity(0.8))
                                     }
                                     Spacer()
-                                    if selectedResult?.id == result.id {
-                                        Image(systemName: "checkmark.circle.fill")
-                                            .foregroundStyle(Color.humayCoral)
-                                    } else {
-                                        Image(systemName: "chevron.right")
-                                            .font(.caption)
-                                            .foregroundStyle(Color.humayTextSecondary)
-                                    }
+                                    Image(systemName: "chevron.right")
+                                        .font(.caption)
+                                        .foregroundStyle(Color.humayTextSecondary)
                                 }
                                 .padding(HumaySpacing.small)
-                                .background(selectedResult?.id == result.id ? Color.humayCoral.opacity(0.08) : Color.clear, in: RoundedRectangle(cornerRadius: 8))
                                 .contentShape(RoundedRectangle(cornerRadius: 8))
                             }
                             .buttonStyle(.plain)
                             .frame(minHeight: HumayMetrics.minimumHitTarget)
-                            .accessibilityLabel("\(result.displayName), \(result.secondaryLabel ?? "")")
+                            .accessibilityLabel("\(sug.title), \(sug.subtitle ?? "")")
                             .accessibilityHint("Double tap to select this birthplace")
-                            .accessibilityIdentifier("onboarding.birthPlace.result.\(result.id)")
-                            if result.id != results.last?.id {
+                            .accessibilityIdentifier("onboarding.birthPlace.suggestion.\(sug.id)")
+                            if sug.id != suggestions.last?.id {
                                 Divider().overlay(Color.humayHairline.opacity(0.6))
                             }
                         }
@@ -264,51 +266,97 @@ struct BirthPlaceSearchView: View {
         }
     }
 
-    // MARK: Search debounce / cancellation (§52)
+    // MARK: Resolve
+
+    private func resolve(suggestion: BirthPlaceSuggestion) async {
+        isResolving = true
+        errorMessage = nil
+        do {
+            let result = try await searchService.resolve(suggestion)
+            // Ensure query still matches user's intent (not overwritten by stale resolve)
+            selectedResult = result
+            draft.birthPlaceResult = result
+            query = result.displayName
+            suggestions = []
+            hasSearched = false
+            errorMessage = nil
+        } catch let e as BirthPlaceSearchError {
+            switch e {
+            case .networkUnavailable: errorMessage = "Couldn't search places right now. Check your connection and try again."
+            case .missingTimeZone: errorMessage = "Humay couldn't resolve a timezone for that place. Try a nearby city."
+            case .resolutionFailed: errorMessage = "Couldn't resolve that place. Try again."
+            case .noResults: errorMessage = "No matching cities found."
+            case .invalidQuery: errorMessage = nil
+            }
+        } catch {
+            errorMessage = "Couldn't resolve that place. Try again."
+        }
+        isResolving = false
+    }
+
+    // MARK: Search debounce / cancellation
 
     private func debounceSearch(query: String) {
         searchTask?.cancel()
         let trimmed = query.trimmingCharacters(in: .whitespacesAndNewlines)
+        // If query matches selected display, don't search
+        if let sel = selectedResult, sel.displayName == trimmed {
+            suggestions = []
+            hasSearched = false
+            isSearching = false
+            errorMessage = nil
+            return
+        }
+        // Editing away from selected clears selection
+        if let sel = selectedResult, sel.displayName != trimmed {
+            selectedResult = nil
+            draft.birthPlaceResult = nil
+        }
         guard trimmed.count >= 2 else {
-            results = []
+            suggestions = []
             errorMessage = nil
             hasSearched = false
             isSearching = false
             return
         }
-        // Defer clearing selected if user edits away from selected display name
-        if let sel = selectedResult, sel.displayName != trimmed {
-            selectedResult = nil
-            draft.birthPlaceResult = nil
-        }
         errorMessage = nil
+        generation &+= 1
+        let currentGen = generation
         let task = Task { @MainActor in
-            // modest debounce
-            try? await Task.sleep(nanoseconds: 350_000_000)
+            try? await Task.sleep(nanoseconds: 200_000_000)
             guard !Task.isCancelled else { return }
+            // Only latest generation proceeds
+            guard currentGen == generation else { return }
             isSearching = true
             hasSearched = true
             do {
-                let newResults = try await searchService.search(query: trimmed)
+                let newSugs = try await searchService.suggestions(for: trimmed)
                 guard !Task.isCancelled else { return }
-                // Latest-query only: ensure query hasn't changed during await
+                guard currentGen == generation else { return }
                 if draft.birthPlaceQuery.trimmingCharacters(in: .whitespacesAndNewlines) == trimmed {
-                    results = newResults
+                    // If we already have a selected result with same query, hide suggestions
+                    if selectedResult != nil {
+                        suggestions = []
+                    } else {
+                        suggestions = newSugs
+                    }
                     errorMessage = nil
                 }
             } catch let e as BirthPlaceSearchError {
                 guard !Task.isCancelled else { return }
+                guard currentGen == generation else { return }
                 if draft.birthPlaceQuery.trimmingCharacters(in: .whitespacesAndNewlines) == trimmed {
-                    results = []
+                    suggestions = []
                     switch e {
                     case .networkUnavailable: errorMessage = "Couldn't search places right now. Check your connection and try again."
-                    case .noResults: errorMessage = nil // handled by no results UI
-                    case .missingTimeZone: errorMessage = "That place couldn't be resolved to a timezone. Try a nearby city."
+                    case .noResults: errorMessage = nil
+                    case .missingTimeZone: errorMessage = "Humay couldn't resolve a timezone for that place. Try a nearby city."
                     case .invalidQuery: errorMessage = nil
+                    case .resolutionFailed: errorMessage = "Couldn't search places right now."
                     }
                 }
             } catch {
-                results = []
+                suggestions = []
                 errorMessage = "Couldn't search places right now."
             }
             isSearching = false

@@ -2,18 +2,25 @@ import Foundation
 
 /// Hybrid offline provider: bundled AI content when available, deterministic fallback otherwise.
 ///
-/// Production runtime has no network dependency. Provenance is honest:
-/// - bundled hit → `aiGenerated(modelIdentifier: bundled-ai-v1)`
-/// - fallback    → `entertainmentFixture`
+/// Stable pipeline identity (§28): humay-offline-hybrid-v1 participates in fingerprint/staleness.
+/// Actual content source (bundled/deterministic/mixed) is recorded honestly via provenance
+/// but does NOT change the pipeline fingerprint.
 actor HybridOfflineContentProvider: PersonalizedContentProviding {
+    static let pipelineIdentifier = "humay-offline-hybrid"
+    static let pipelineVersion = "humay-offline-hybrid-v1"
+
     private let primary: BundledAIContentProvider
     private let fallback: DeterministicContentProvider
     private let repository: BundledContentPackRepository
 
     nonisolated var descriptor: PersonalizedContentProviderDescriptor {
-        // Primary identity; per-day/yearly mixed provenance is stamped via ForecastContentSource/basis
-        // (see yearlyForecast). When bundling is unavailable, chunk APIs fall through to deterministic.
-        primary.descriptor
+        PersonalizedContentProviderDescriptor(
+            providerIdentifier: Self.pipelineIdentifier,
+            generatorVersion: Self.pipelineVersion,
+            promptCatalogVersion: IntelligenceVersions.promptCatalog,
+            basis: .aiGenerated(modelIdentifier: Self.pipelineIdentifier),
+            modelIdentifier: Self.pipelineIdentifier
+        )
     }
 
     init(
@@ -51,14 +58,10 @@ actor HybridOfflineContentProvider: PersonalizedContentProviding {
                 let result = try await primary.generateMonthChunk(
                     subject: subject, outline: outline, anchor: anchor, monthIndex: monthIndex
                 )
-                // Primary throws providerUnavailable when any day in the month lacks a Sun record.
-                // Hybrid does not fabricate per-day fallback here — caller gets providerUnavailable
-                // and decides honest fallback (yearlyForecast path) vs recorded failure.
                 return result
             } catch {
                 // Fall through to deterministic fallback for coordinator paths where bundled
-                // is unavailable for this month. Returned chunk carries deterministic modelIdentifier
-                // so persistence layer can stamp honestly (coordinator tracks actual source via modelIdentifier).
+                // is unavailable for this month.
             }
         }
         let fallbackResult = try await fallback.generateMonthChunk(
@@ -89,6 +92,7 @@ actor HybridOfflineContentProvider: PersonalizedContentProviding {
 
     /// Synchronous hybrid forecast build for `ForecastStore.effectiveForecast`-style use.
     /// Produces a full `YearlyForecast` with bundled days where available and honest mixed provenance.
+    /// Generator version is always the stable pipeline version.
     func yearlyForecast(subject: ForecastSubject, anchor: ForecastAnchor) -> (YearlyForecast, usedFallbackDays: Int) {
         let personalization = PersonalizationContext.from(subject: subject)
         var days: [DailyMood] = []
@@ -113,22 +117,18 @@ actor HybridOfflineContentProvider: PersonalizedContentProviding {
         let cycleVersion = manifest?.contentCycleVersion
         let contentSource: ForecastContentSource
         let basis: ContentBasis
-        let generatorVersion: String
         if fallbackCount == YearlyForecast.dayCount {
             contentSource = .deterministic(days: YearlyForecast.dayCount)
             basis = .entertainmentFixture
-            generatorVersion = YearlyForecast.currentGeneratorVersion
         } else if fallbackCount == 0 {
             contentSource = .bundled(days: bundledDays, packVersion: packVersion, contentCycleVersion: cycleVersion)
             basis = .aiGenerated(modelIdentifier: BundledAIContentProvider.identifier)
-            generatorVersion = BundledAIContentProvider.generatorVersion
         } else {
             contentSource = .mixed(bundledDays: bundledDays, deterministicDays: fallbackCount, packVersion: packVersion, contentCycleVersion: cycleVersion)
             basis = .aiGenerated(modelIdentifier: BundledAIContentProvider.identifier)
-            generatorVersion = BundledAIContentProvider.generatorVersion
         }
         let provenance = ContentProvenance(
-            generatorVersion: generatorVersion,
+            generatorVersion: Self.pipelineVersion,
             generatedAt: .now,
             basis: basis
         )

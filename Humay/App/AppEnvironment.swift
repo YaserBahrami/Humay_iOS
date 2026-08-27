@@ -183,8 +183,9 @@ final class AppEnvironment {
             profile = previousInMemory
             throw error
         }
-        // Invalidate shared BigThreeCache for old fingerprint
-        Task { await BigThreeCacheShared.shared.invalidate(for: previousProfile.birth) }
+        if hadSemanticChange {
+            await BigThreeCacheShared.shared.invalidate(for: previousProfile.birth)
+        }
         return hadSemanticChange
     }
 

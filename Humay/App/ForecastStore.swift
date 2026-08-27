@@ -72,24 +72,20 @@ final class ForecastStore {
             let manifest = bundledRepository.manifest
             let contentSource: ForecastContentSource
             let basis: ContentBasis
-            let genVersion: String
             if bundledHits == 0 {
                 contentSource = .deterministic(days: YearlyForecast.dayCount)
                 basis = .entertainmentFixture
-                genVersion = YearlyForecast.currentGeneratorVersion
             } else if fallbackCount == 0 {
                 contentSource = .bundled(days: bundledHits, packVersion: manifest?.packVersion, contentCycleVersion: manifest?.contentCycleVersion)
                 basis = .aiGenerated(modelIdentifier: BundledAIContentProvider.identifier)
-                genVersion = BundledAIContentProvider.generatorVersion
             } else {
                 contentSource = .mixed(bundledDays: bundledHits, deterministicDays: fallbackCount, packVersion: manifest?.packVersion, contentCycleVersion: manifest?.contentCycleVersion)
                 basis = .aiGenerated(modelIdentifier: BundledAIContentProvider.identifier)
-                genVersion = BundledAIContentProvider.generatorVersion
             }
             let forecast = YearlyForecast(
                 profileID: subject.id,
                 days: days,
-                provenance: ContentProvenance(generatorVersion: genVersion, generatedAt: .now, basis: basis),
+                provenance: ContentProvenance(generatorVersion: HybridOfflineContentProvider.pipelineVersion, generatedAt: .now, basis: basis),
                 contentSource: contentSource
             )
             fallbacks[subject.id] = forecast
@@ -167,8 +163,9 @@ final class ForecastStore {
         }
 
         let resolvedAnchor = anchor ?? fallbackAnchor()
+        let bundledRepository = self.bundledRepository
 
-        let task = Task { [repository, coordinator] in
+        let task = Task { [repository, coordinator, bundledRepository] in
             ForecastLog.load(profileID: subject.id)
 
             // Surface whatever exists on disk before generating.
@@ -176,9 +173,7 @@ final class ForecastStore {
                 documents[subject.id] = try? await repository.load(subject: subject)
             }
             func bundledStaleInTask(_ doc: PersonalizedForecastDocument) -> Bool {
-                // Use shared repository directly (actor-safe snapshot)
-                let shared = BundledContentPackRepository.shared
-                return doc.isStaleDueToContentCycle(currentContentCycleVersion: shared.manifest?.contentCycleVersion, currentPackVersion: shared.manifest?.packVersion, isBundledAvailable: shared.isAvailable, isPackActive: shared.manifest?.isActive(on: Date()) ?? false)
+                doc.isStaleDueToContentCycle(currentContentCycleVersion: bundledRepository.manifest?.contentCycleVersion, currentPackVersion: bundledRepository.manifest?.packVersion, isBundledAvailable: bundledRepository.isAvailable, isPackActive: bundledRepository.manifest?.isActive(on: Date()) ?? false)
             }
             if let existing = documents[subject.id],
                !existing.isStale(for: subject),
